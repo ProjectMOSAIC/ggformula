@@ -15,3 +15,13 @@ mosaicCore::df_stats
 #' @importFrom mosaicCore na.warn
 #' @export
 mosaicCore::na.warn
+
+#' @importFrom ggforce stat_sina StatSina
+#' @export
+ggforce::stat_sina
+#' @export
+ggforce::StatSina
+
+#' @importFrom ggforce geom_sina
+#' @export
+ggforce::geom_sina

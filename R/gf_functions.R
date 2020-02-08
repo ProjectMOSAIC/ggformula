@@ -2199,6 +2199,26 @@ gf_fitdistr <-
     note = "dist should be a density function like dnorm or dgamma"
   )
 
+#' Formula interface to geom_sina()
+#'
+#' @inherit ggforce::geom_sina description references
+#' @inherit gf_line
+#' @inheritParams ggforce::geom_sina
+#' @inheritParams ggforce::stat_sina
+#'
+#' @seealso [ggforce::geom_sina()]
+#' @examples
+#' gf_sina(age ~ substance, data = mosaicData::HELPrct)
+#'
+#' @export
+
+gf_sina <-
+  layer_factory(
+    geom = "point", stat = "sina", position = "identity",
+    extras = alist(alpha = , color = , size = , shape = , fill = , group = , stroke = )
+  )
+
+
 #' Mapping with shape files
 #'
 #' Mapping with shape files
@@ -2281,5 +2301,4 @@ gf_sf <-
 gf_empty <- function(environment = parent.frame()) {
   ggplot2::ggplot(environment = environment)
 }
-
 
