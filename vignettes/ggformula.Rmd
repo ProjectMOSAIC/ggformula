@@ -611,8 +611,8 @@ if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
   USshape <- 
     sf::st_as_sf(maps::map('state', plot = FALSE, fill = TRUE)) %>%
     dplyr::mutate(
-      name_length = nchar(ID),
-      centroid = purrr::map(geometry, st_centroid),
+      name_length = nchar(as.character(ID)),
+      centroid = purrr::map(geom, st_centroid),
       coords_x = purrr::map_dbl(centroid, 1),
       coords_y = purrr::map_dbl(centroid, 2)
     ) 
