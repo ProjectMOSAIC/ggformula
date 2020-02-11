@@ -2215,7 +2215,7 @@ gf_fitdistr <-
 gf_sina <-
   layer_factory(
     geom = "point", stat = "sina", position = "identity",
-    extras = alist(alpha = , color = , size = , shape = , fill = , group = , stroke = )
+    extras = alist(alpha = , color = , size = , fill = , group = )
   )
 
 
