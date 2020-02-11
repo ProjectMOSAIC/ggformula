@@ -16,8 +16,14 @@ knitr::opts_chunk$set(
   
 # ggformula
 
+<!-- badges: start -->
+[![R build status](https://github.com/ProjectMOSAIC/ggformula/workflows/R-CMD-check/badge.svg)](https://github.com/ProjectMOSAIC/ggformula/actions)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggformula)](https://cran.r-project.org/package=ggformula)
+<!-- badges: end -->
+
+<!--
 [![Codecov test coverage](https://codecov.io/gh/ProjectMOSAIC/ggformula/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjectMOSAIC/ggformula?branch=master)
+-->
 
 ## Formula interface to ggplot2
 
@@ -29,7 +35,12 @@ interface, while providing the intuitive "add this component" capabilities of
 
 ## Installation
 
-You can install ggformula from github with:
+You can install ggformula from CRAN sith 
+```{r gh-cran-installation, eval = FALSE}
+install.packages("ggformula")
+```
+
+or from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")

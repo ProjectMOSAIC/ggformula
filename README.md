@@ -3,9 +3,16 @@
 
 # ggformula
 
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/ProjectMOSAIC/ggformula/workflows/R-CMD-check/badge.svg)](https://github.com/ProjectMOSAIC/ggformula/actions)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggformula)](https://cran.r-project.org/package=ggformula)
-[![Codecov test
-coverage](https://codecov.io/gh/ProjectMOSAIC/ggformula/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjectMOSAIC/ggformula?branch=master)
+<!-- badges: end -->
+
+<!--
+[![Codecov test coverage](https://codecov.io/gh/ProjectMOSAIC/ggformula/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjectMOSAIC/ggformula?branch=master)
+-->
 
 ## Formula interface to ggplot2
 
@@ -17,7 +24,13 @@ this component” capabilities of `ggplot2`.
 
 ## Installation
 
-You can install ggformula from github with:
+You can install ggformula from CRAN sith
+
+``` r
+install.packages("ggformula")
+```
+
+or from github with:
 
 ``` r
 # install.packages("devtools")
