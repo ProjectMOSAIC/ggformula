@@ -298,10 +298,11 @@ layer_factory <-
 #########################################################################
 #
 
-# modify environments of aesthetics in a mapping
-#' @param mapping an aesthetic mapping
-#' @param environment an environment to use for aesthetics that have environments.
-#'
+# Modify environments of aesthetics in a mapping
+#
+# @param mapping an aesthetic mapping
+# @param environment an environment to use for aesthetics that have environments.
+#
 aes_env <- function(mapping, envir) {
   for (i in one_upto(length(mapping))) {
     if (!is.null(environment(mapping[[i]]))) {
@@ -311,9 +312,11 @@ aes_env <- function(mapping, envir) {
   mapping
 }
 
-# check if an aesthetic uses stat()
-#' @param aes an item in an aesthetic mapping
-#' @return a logical indicating whether the aethetic is of the form `stat( ... )`.
+# Check if an aesthetic uses a stat
+#
+# @param aes an item in an aesthetic mapping
+# @return a logical indicating whether the aethetic is of the form `stat( ... )`.
+
 uses_stat <- function(aes) {
   e <- rlang::get_expr(aes)
   length(e) > 1 && e[[1]] == as.name("stat")
