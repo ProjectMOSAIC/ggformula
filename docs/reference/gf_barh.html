@@ -8,11 +8,20 @@
 
 <title>Formula interface to geom_barh() — gf_barh • ggformula</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,12 +41,12 @@
 
 
 
+
 <meta property="og:title" content="Formula interface to geom_barh() — gf_barh" />
-
 <meta property="og:description" content="Horizontal version of geom_bar()." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2.9001</span>
       </span>
     </div>
 
@@ -120,7 +129,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula">
@@ -147,17 +155,35 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Horizontal version of <code><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a>()</code>.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>gf_barh</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='no'>alpha</span>,
-  <span class='no'>color</span>, <span class='no'>fill</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"barh"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"counth"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stackv"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
-    
+    <pre class="usage"><span class='fu'>gf_barh</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>fill</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"barh"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"counth"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stackv"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -282,15 +308,16 @@ display.</p></td>
       <td><p>An environment in which to look for variables not found in <code>data</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a gg object</p>
-    
     <h2 class="hasAnchor" id="specifying-plot-attributes"><a class="anchor" href="#specifying-plot-attributes"></a>Specifying plot attributes</h2>
 
     
-    <p>Positional attributes (a.k.a, aesthetics) are specified using the formula in <code>gformula</code>.
+
+
+<p>Positional attributes (a.k.a, aesthetics) are specified using the formula in <code>gformula</code>.
 Setting and mapping of additional attributes can be done through the
 use of additional arguments.
 Attributes can be set can be set using arguments of the form <code>attribute = value</code> or
@@ -301,19 +328,18 @@ This provides an alternative to
 <code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
 <code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
-    
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
     
-    <p>Evaluation of the <span class="pkg">ggplot2</span> code occurs in the environment of <code>gformula</code>.
+
+
+<p>Evaluation of the <span class="pkg">ggplot2</span> code occurs in the environment of <code>gformula</code>.
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ggstance/man/geom_barh.html'>ggstance::geom_barh()</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gf_barh</span>(~<span class='no'>Diet</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ChickWeight</span>)</div><div class='img'><img src='gf_barh-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_barh</span>(~<span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>sex</span>)</div><div class='img'><img src='gf_barh-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_barh</span>(~<span class='no'>substance</span>,
@@ -324,22 +350,17 @@ in another.</p>
 <span class='fu'><a href='gf_bar.html'>gf_props</a></span>(~<span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>())</div><div class='img'><img src='gf_barh-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_bar.html'>gf_percents</a></span>(~<span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>())</div><div class='img'><img src='gf_barh-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>scales</span>)) {
   <span class='fu'><a href='gf_bar.html'>gf_props</a></span>(~<span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>()) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_y_continuous</span>(<span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/scales/man/number_format.html'>percent</a></span>))
+    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_y_continuous</span>(<span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='no'><a href='https://scales.r-lib.org//reference/label_percent.html'>percent</a></span>))
 }</div><div class='img'><img src='gf_barh-7.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#specifying-plot-attributes">Specifying plot attributes</a></li>
-
       <li><a href="#evaluation">Evaluation</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -353,7 +374,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

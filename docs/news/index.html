@@ -8,11 +8,20 @@
 
 <title>Changelog • ggformula</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,10 +41,11 @@
 
 
 
-<meta property="og:title" content="Changelog" />
 
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -66,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2.9001</span>
       </span>
     </div>
 
@@ -118,7 +128,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula">
@@ -143,9 +152,19 @@
       <small>Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggformula-0-9-2" class="section level1">
+    <div id="ggformula-093" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-9-2" class="anchor"></a>ggformula 0.9.2<small> Unreleased </small>
+<a href="#ggformula-093" class="anchor"></a>ggformula 0.9.3<small> Unreleased </small>
+</h1>
+<ul>
+<li>add <code><a href="../reference/gf_sina.html">gf_sina()</a></code>. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/134'>#134</a>)</li>
+<li>update exampels involving <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">sf::st_as_sf()</a></code> to reflect updated names of in the resulting data frame. This is required to get CRAN builds to work without an error. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/137'>#137</a>)</li>
+<li>Add helpful error message if dist is not a string in <code><a href="../reference/gf_dist.html">gf_dist()</a></code>. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/133'>#133</a>)</li>
+</ul>
+</div>
+    <div id="ggformula-092" class="section level1">
+<h1 class="page-header">
+<a href="#ggformula-092" class="anchor"></a>ggformula 0.9.2<small> 2019-09-05 </small>
 </h1>
 <ul>
 <li>Some internals in <code><a href="../reference/layer_factory.html">layer_factory()</a></code> have been reimplemented to avoid making copies of ggplot2 functions at compile time. This should make things more stable when updating ggplot2 but not updating ggformula.</li>
@@ -159,9 +178,9 @@
 <li>New function: <code><a href="../reference/discrete_breaks.html">discrete_breaks()</a></code>.</li>
 </ul>
 </div>
-    <div id="ggformula-0-9-1" class="section level1">
+    <div id="ggformula-091" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-9-1" class="anchor"></a>ggformula 0.9.1<small> 2019-01-12 </small>
+<a href="#ggformula-091" class="anchor"></a>ggformula 0.9.1<small> 2019-01-12 </small>
 </h1>
 <p>This release includes a few minor improvements, including</p>
 <ul>
@@ -169,9 +188,9 @@
 <li>Other document improvements</li>
 </ul>
 </div>
-    <div id="ggformula-0-9-0" class="section level1">
+    <div id="ggformula-090" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-9-0" class="anchor"></a>ggformula 0.9.0<small> 2018-08-03 </small>
+<a href="#ggformula-090" class="anchor"></a>ggformula 0.9.0<small> 2018-08-03 </small>
 </h1>
 <ul>
 <li>
@@ -184,9 +203,9 @@
 <code>vdiffr</code> is used for testing plot output</li>
 </ul>
 </div>
-    <div id="ggformula-0-8-0" class="section level1">
+    <div id="ggformula-080" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-8-0" class="anchor"></a>ggformula 0.8.0<small> 2018-06-26 </small>
+<a href="#ggformula-080" class="anchor"></a>ggformula 0.8.0<small> 2018-06-26 </small>
 </h1>
 <ul>
 <li><p>The internals of all of the <code>gf_</code> functions have been modified to make them work with <code>ggplot2</code> version 2.3. In future releases, a version <code>ggplot2</code> at least this new will be required.</p></li>
@@ -195,9 +214,9 @@
 <li><p>improved documentation and examples</p></li>
 </ul>
 </div>
-    <div id="ggformula-0-7-0" class="section level1">
+    <div id="ggformula-070" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-7-0" class="anchor"></a>ggformula 0.7.0<small> 2018-05-22 </small>
+<a href="#ggformula-070" class="anchor"></a>ggformula 0.7.0<small> 2018-05-22 </small>
 </h1>
 <ul>
 <li>Formulas of the shape <code>y ~ .</code> can be used for plots that require a <code>y</code> aesthetic but no <code>x</code> aesthetic.</li>
@@ -207,9 +226,9 @@
 <li>Modifications to the environments in which some functions are evaluated.</li>
 </ul>
 </div>
-    <div id="ggformula-0-6-2" class="section level1">
+    <div id="ggformula-062" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-6-2" class="anchor"></a>ggformula 0.6.2<small> 2018-02-06 </small>
+<a href="#ggformula-062" class="anchor"></a>ggformula 0.6.2<small> 2018-02-06 </small>
 </h1>
 <ul>
 <li>Improved scoping of <code>gf_</code> functions makes it easier to work with data in the global environment.</li>
@@ -220,18 +239,18 @@
 <li>Additional examples for some functions.</li>
 </ul>
 </div>
-    <div id="ggformula-0-6-1" class="section level1">
+    <div id="ggformula-061" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-6-1" class="anchor"></a>ggformula 0.6.1<small> 2018-01-03 </small>
+<a href="#ggformula-061" class="anchor"></a>ggformula 0.6.1<small> 2018-01-03 </small>
 </h1>
 <p>Minor update primarily to support vignette data sets moving from <code>StatisticalModeling</code> to <code>mosaicModel</code>.</p>
 <ul>
 <li>Also added <code><a href="../reference/gf_fitdistr.html">gf_fitdistr()</a></code>.</li>
 </ul>
 </div>
-    <div id="ggformula-0-6-0" class="section level1">
+    <div id="ggformula-060" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-6-0" class="anchor"></a>ggformula 0.6.0<small> Unreleased </small>
+<a href="#ggformula-060" class="anchor"></a>ggformula 0.6.0<small> Unreleased </small>
 </h1>
 <p>Mostly minor changes:</p>
 <ul>
@@ -241,13 +260,14 @@
 <li>Reformatted quick help messages.</li>
 </ul>
 </div>
-    <div id="ggformula-0-5-0" class="section level1">
+    <div id="ggformula-050" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-5-0" class="anchor"></a>ggformula 0.5.0<small> Unreleased </small>
+<a href="#ggformula-050" class="anchor"></a>ggformula 0.5.0<small> Unreleased </small>
 </h1>
 <p>For version 0.5, the internals of <code>ggformula</code> have been largely redesigned to allow implementation of some new features. The new version relies much less on string parsing.</p>
 <ul>
-<li>Some important changes to formula parsing include
+<li>
+<p>Some important changes to formula parsing include</p>
 <ul>
 <li>
 <code>attribute:value</code> and <code>attribute::expression</code> are no longer supported within the main formula.</li>
@@ -256,7 +276,8 @@
 <code>y ~ 1</code> is equivalent to <code>~ y</code> in functions that allow the <code>~ y</code> formula shape. Example: <code><a href="../reference/gf_histogram.html">gf_histogram(age ~ 1)</a></code> and <code><a href="../reference/gf_histogram.html">gf_histogram( ~ age)</a></code> are equivalent</li>
 </ul>
 </li>
-<li>Some new functions have been added
+<li>
+<p>Some new functions have been added</p>
 <ul>
 <li>
 <code><a href="../reference/gf_dist.html">gf_dist()</a></code> can plot distributions</li>
@@ -270,9 +291,9 @@
 <li><p>Secondary layers are now able to inherit both data and formula-defined attributes from the primary layer. Use <code>inherit = FALSE</code> if you don’t want inheritance. (A few functions have <code>inherit = FALSE</code> as their default because it seems unlikely that inheriting will be desireable.)</p></li>
 </ul>
 </div>
-    <div id="ggformula-0-4-0" class="section level1">
+    <div id="ggformula-040" class="section level1">
 <h1 class="page-header">
-<a href="#ggformula-0-4-0" class="anchor"></a>ggformula 0.4.0<small> 2017-06-21 </small>
+<a href="#ggformula-040" class="anchor"></a>ggformula 0.4.0<small> 2017-06-21 </small>
 </h1>
 <p>Version 0.4.0 constitutes a stable beta release. Changes to the API are still possible, but more likely future changes will focus on expansion of the suite of functions supplied, changes to the internal implementation, and improved documentation.</p>
 <ul>
@@ -303,16 +324,17 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggformula-0-9-2">0.9.2</a></li>
-        <li><a href="#ggformula-0-9-1">0.9.1</a></li>
-        <li><a href="#ggformula-0-9-0">0.9.0</a></li>
-        <li><a href="#ggformula-0-8-0">0.8.0</a></li>
-        <li><a href="#ggformula-0-7-0">0.7.0</a></li>
-        <li><a href="#ggformula-0-6-2">0.6.2</a></li>
-        <li><a href="#ggformula-0-6-1">0.6.1</a></li>
-        <li><a href="#ggformula-0-6-0">0.6.0</a></li>
-        <li><a href="#ggformula-0-5-0">0.5.0</a></li>
-        <li><a href="#ggformula-0-4-0">0.4.0</a></li>
+        <li><a href="#ggformula-093">0.9.3</a></li>
+        <li><a href="#ggformula-092">0.9.2</a></li>
+        <li><a href="#ggformula-091">0.9.1</a></li>
+        <li><a href="#ggformula-090">0.9.0</a></li>
+        <li><a href="#ggformula-080">0.8.0</a></li>
+        <li><a href="#ggformula-070">0.7.0</a></li>
+        <li><a href="#ggformula-062">0.6.2</a></li>
+        <li><a href="#ggformula-061">0.6.1</a></li>
+        <li><a href="#ggformula-060">0.6.0</a></li>
+        <li><a href="#ggformula-050">0.5.0</a></li>
+        <li><a href="#ggformula-040">0.4.0</a></li>
       </ul>
     </div>
   </div>
@@ -326,7 +348,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

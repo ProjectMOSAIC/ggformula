@@ -8,11 +8,20 @@
 
 <title>Formula interface to ggplot2 — ggformula • ggformula</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,12 +41,12 @@
 
 
 
+
 <meta property="og:title" content="Formula interface to ggplot2 — ggformula" />
-
 <meta property="og:description" content="Formula interface to ggplot2" />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2.9001</span>
       </span>
     </div>
 
@@ -120,7 +129,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula">
@@ -147,27 +155,29 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Formula interface to ggplot2</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="the-ggformula-system"><a class="anchor" href="#the-ggformula-system"></a>The ggformula system</h2>
 
     
-    <p>The functions in <span class="pkg">ggformula</span> provide a formula interface to <span class="pkg">ggplot2</span> layer
+
+
+<p>The functions in <span class="pkg">ggformula</span> provide a formula interface to <span class="pkg">ggplot2</span> layer
 functions and a system for working with pipes to create multi-layer
 plots and to refine plots.
 For plots with just one layer, the formula interface
 is more compact than native <span class="pkg">ggplot2</span> code and is consistent with modeling
 functions like <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm()</a></code> that use a formula interface and with the
 numerical summary functions in the <span class="pkg">mosaic</span> package.</p>
-    
     <h2 class="hasAnchor" id="specifying-plot-attributes"><a class="anchor" href="#specifying-plot-attributes"></a>Specifying plot attributes</h2>
 
     
-    <p>Positional attributes (a.k.a aesthetics) are typically specified using a formula
+
+
+<p>Positional attributes (a.k.a aesthetics) are typically specified using a formula
 (see the <code>gformula</code> argument).
 Setting and mapping of additional attributes can be done through the use of additional arguments.
 Attributes can be set can be set using arguments of the form <code>attribute = value</code> or
@@ -179,16 +189,15 @@ plotting functions with no arguments.</p>
 This provides an alternative to <code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
 <code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
-    
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
     
-    <p>Evaluation of the <span class="pkg">ggplot2</span> code occurs in the environment specified
+
+<p>Evaluation of the <span class="pkg">ggplot2</span> code occurs in the environment specified
 by <code>environment</code>. This will typically do the right thing, but is exposed
 in case some non-standard behavior is desired. In earlier versions,
 the environment of the formula was used, but since some functions in
 the package do not require a formula, a separate argument is used now.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span>(<span class='st'>"gf_"</span>)</div><div class='output co'>#&gt;  [1] "gf_abline"           "gf_area"             "gf_ash"             
@@ -218,10 +227,10 @@ the package do not require a formula, a separate argument is used now.</p>
 #&gt; [73] "gf_raster"           "gf_rect"             "gf_refine"          
 #&gt; [76] "gf_ribbon"           "gf_rug"              "gf_rugx"            
 #&gt; [79] "gf_rugy"             "gf_segment"          "gf_sf"              
-#&gt; [82] "gf_smooth"           "gf_spline"           "gf_spoke"           
-#&gt; [85] "gf_step"             "gf_summary"          "gf_text"            
-#&gt; [88] "gf_theme"            "gf_tile"             "gf_violin"          
-#&gt; [91] "gf_violinh"          "gf_vline"           </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
+#&gt; [82] "gf_sina"             "gf_smooth"           "gf_spline"          
+#&gt; [85] "gf_spoke"            "gf_step"             "gf_summary"         
+#&gt; [88] "gf_text"             "gf_theme"            "gf_tile"            
+#&gt; [91] "gf_violin"           "gf_violinh"          "gf_vline"           </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  point </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, size, shape, fill, group, stroke</span>
@@ -231,13 +240,9 @@ the package do not require a formula, a separate argument is used now.</p>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#the-ggformula-system">The ggformula system</a></li>
-
       <li><a href="#specifying-plot-attributes">Specifying plot attributes</a></li>
-
       <li><a href="#evaluation">Evaluation</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -251,7 +256,7 @@ the package do not require a formula, a separate argument is used now.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

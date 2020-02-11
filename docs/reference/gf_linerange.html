@@ -8,11 +8,20 @@
 
 <title>Formula interface to geom_linerange() and geom_pointrange() — gf_linerange • ggformula</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,13 +41,13 @@
 
 
 
-<meta property="og:title" content="Formula interface to geom_linerange() and geom_pointrange() — gf_linerange" />
 
+<meta property="og:title" content="Formula interface to geom_linerange() and geom_pointrange() — gf_linerange" />
 <meta property="og:description" content="Various ways of representing a vertical interval defined by x,
 ymin and ymax. Each case draws a single graphical object." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -69,7 +78,7 @@ ymin and ymax. Each case draws a single graphical object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2.9001</span>
       </span>
     </div>
 
@@ -121,7 +130,6 @@ ymin and ymax. Each case draws a single graphical object." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula">
@@ -148,43 +156,136 @@ ymin and ymax. Each case draws a single graphical object." />
     </div>
 
     <div class="ref-description">
-    
     <p>Various ways of representing a vertical interval defined by <code>x</code>,
 <code>ymin</code> and <code>ymax</code>. Each case draws a single graphical object.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>gf_linerange</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='no'>alpha</span>,
-  <span class='no'>color</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"linerange"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+    <pre class="usage"><span class='fu'>gf_linerange</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"linerange"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)
 
-<span class='fu'>gf_pointrange</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='no'>alpha</span>, <span class='no'>color</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrange"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>gf_pointrange</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrange"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)
 
-<span class='fu'>gf_summary</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='no'>alpha</span>,
-  <span class='no'>color</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='kw'>fun.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun.ymax</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fun.ymin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrange"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"summary"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>gf_summary</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='kw'>fun.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fun.ymax</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fun.ymin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fun.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrange"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"summary"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)
 
-<span class='fu'>gf_linerangeh</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='no'>alpha</span>, <span class='no'>color</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"linerangeh"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>gf_linerangeh</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"linerangeh"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)
 
-<span class='fu'>gf_pointrangeh</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>,
-  <span class='no'>alpha</span>, <span class='no'>color</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrangeh"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
-    
+<span class='fu'>gf_pointrangeh</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>alpha</span>,
+  <span class='no'>color</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"pointrangeh"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -204,10 +305,10 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></td>
       <td><p>The data to be displayed in this layer. There are three
 options:</p>
 <p>If <code>NULL</code>, the default, the data is inherited from the plot
-data as specified in the call to <code>ggplot()</code>.</p>
+data as specified in the call to <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot()</a></code>.</p>
 <p>A <code>data.frame</code>, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-<code>fortify()</code> for which variables will be created.</p>
+<code><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify()</a></code> for which variables will be created.</p>
 <p>A <code>function</code> will be called with a single argument,
 the plot data. The return value must be a <code>data.frame</code>, and
 will be used as the layer data. A <code>function</code> can be created
@@ -327,13 +428,12 @@ single number.</p></td>
       <td><p>Optional additional arguments passed on to the functions.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>ggplot2::geom_linerange()</a></code></p>
 <p><code><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>ggplot2::geom_pointrange()</a></code></p>
 <p><code><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>ggplot2::geom_pointrange()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>ggplot2::stat_summary()</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gf_linerange</span>()</div><div class='output co'>#&gt; <span class='message'>gf_linerange() uses </span>
@@ -444,9 +544,7 @@ single number.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -460,7 +558,7 @@ single number.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
