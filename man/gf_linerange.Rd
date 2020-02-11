@@ -8,36 +8,131 @@
 \alias{gf_pointrangeh}
 \title{Formula interface to geom_linerange() and geom_pointrange()}
 \usage{
-gf_linerange(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, group, linetype, size, xlab, ylab, title, subtitle, caption,
-  geom = "linerange", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_linerange(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "linerange",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_pointrange(object = NULL, gformula = NULL, data = NULL, ...,
-  alpha, color, group, linetype, size, fatten = 2, xlab, ylab, title,
-  subtitle, caption, geom = "pointrange", stat = "identity",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_pointrange(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  fatten = 2,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "pointrange",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_summary(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, group, linetype, size, fun.y = NULL, fun.ymax = NULL,
-  fun.ymin = NULL, fun.args = list(), fatten = 2, xlab, ylab, title,
-  subtitle, caption, geom = "pointrange", stat = "summary",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_summary(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  fun.y = NULL,
+  fun.ymax = NULL,
+  fun.ymin = NULL,
+  fun.args = list(),
+  fatten = 2,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "pointrange",
+  stat = "summary",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_linerangeh(object = NULL, gformula = NULL, data = NULL, ...,
-  alpha, color, group, linetype, size, xlab, ylab, title, subtitle,
-  caption, geom = "linerangeh", stat = "identity",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_linerangeh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "linerangeh",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_pointrangeh(object = NULL, gformula = NULL, data = NULL, ...,
-  alpha, color, group, linetype, size, xlab, ylab, title, subtitle,
-  caption, geom = "pointrangeh", stat = "identity",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_pointrangeh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "pointrangeh",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -51,11 +146,11 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and

@@ -5,19 +5,69 @@
 \alias{gf_violinh}
 \title{Formula interface to geom_violin()}
 \usage{
-gf_violin(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, weight, draw_quantiles = NULL,
-  trim = TRUE, scale = "area", bw, adjust = 1, kernel = "gaussian",
-  xlab, ylab, title, subtitle, caption, geom = "violin",
-  stat = "ydensity", position = "dodge", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_violin(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  weight,
+  draw_quantiles = NULL,
+  trim = TRUE,
+  scale = "area",
+  bw,
+  adjust = 1,
+  kernel = "gaussian",
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "violin",
+  stat = "ydensity",
+  position = "dodge",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_violinh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, weight, draw_quantiles = NULL,
-  trim = TRUE, scale = "area", bw, adjust = 1, kernel = "gaussian",
-  xlab, ylab, title, subtitle, caption, geom = "violinh",
-  stat = "xdensity", position = "dodgev", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_violinh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  weight,
+  draw_quantiles = NULL,
+  trim = TRUE,
+  scale = "area",
+  bw,
+  adjust = 1,
+  kernel = "gaussian",
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "violinh",
+  stat = "xdensity",
+  position = "dodgev",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -31,11 +81,11 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -123,7 +173,7 @@ a gg object
 }
 \description{
 A violin plot is a compact display of a continuous distribution. It is a
-blend of \code{\link[=geom_boxplot]{geom_boxplot()}} and \code{\link[=geom_density]{geom_density()}}: a
+blend of \code{\link[ggplot2:geom_boxplot]{geom_boxplot()}} and \code{\link[ggplot2:geom_density]{geom_density()}}: a
 violin plot is a mirrored density plot displayed in the same way as a
 boxplot.
 }

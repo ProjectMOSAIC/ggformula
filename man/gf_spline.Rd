@@ -4,11 +4,33 @@
 \alias{gf_spline}
 \title{Formula interface to geom_spline()}
 \usage{
-gf_spline(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, group, linetype, size, weight, df, spar, tol, xlab, ylab, title,
-  subtitle, caption, geom = "line", stat = "spline",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_spline(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  weight,
+  df,
+  spar,
+  tol,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "line",
+  stat = "spline",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

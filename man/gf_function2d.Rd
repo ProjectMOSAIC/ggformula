@@ -11,29 +11,85 @@
 \alias{gf_fun_contour}
 \title{Plot functions of two variables}
 \usage{
-gf_function_2d(object = NULL, fun = identity, xlim = NULL,
-  ylim = NULL, ..., tile = TRUE, contour = TRUE, resolution = 50)
+gf_function_2d(
+  object = NULL,
+  fun = identity,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  tile = TRUE,
+  contour = TRUE,
+  resolution = 50
+)
 
-gf_function2d(object = NULL, fun = identity, xlim = NULL,
-  ylim = NULL, ..., tile = TRUE, contour = TRUE, resolution = 50)
+gf_function2d(
+  object = NULL,
+  fun = identity,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  tile = TRUE,
+  contour = TRUE,
+  resolution = 50
+)
 
-gf_function_contour(object = NULL, fun = identity, xlim = NULL,
-  ylim = NULL, ..., resolution = 50)
+gf_function_contour(
+  object = NULL,
+  fun = identity,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  resolution = 50
+)
 
-gf_function_tile(object = NULL, fun = identity, xlim = NULL,
-  ylim = NULL, ..., resolution = 50)
+gf_function_tile(
+  object = NULL,
+  fun = identity,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  resolution = 50
+)
 
-gf_fun_2d(object = NULL, formula = NULL, xlim = NULL, ylim = NULL,
-  tile = TRUE, contour = TRUE, ..., resolution = 50)
+gf_fun_2d(
+  object = NULL,
+  formula = NULL,
+  xlim = NULL,
+  ylim = NULL,
+  tile = TRUE,
+  contour = TRUE,
+  ...,
+  resolution = 50
+)
 
-gf_fun2d(object = NULL, formula = NULL, xlim = NULL, ylim = NULL,
-  tile = TRUE, contour = TRUE, ..., resolution = 50)
+gf_fun2d(
+  object = NULL,
+  formula = NULL,
+  xlim = NULL,
+  ylim = NULL,
+  tile = TRUE,
+  contour = TRUE,
+  ...,
+  resolution = 50
+)
 
-gf_fun_tile(object = NULL, formula = NULL, xlim = NULL,
-  ylim = NULL, ..., resolution = 50)
+gf_fun_tile(
+  object = NULL,
+  formula = NULL,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  resolution = 50
+)
 
-gf_fun_contour(object = NULL, formula = NULL, xlim = NULL,
-  ylim = NULL, ..., resolution = 50)
+gf_fun_contour(
+  object = NULL,
+  formula = NULL,
+  xlim = NULL,
+  ylim = NULL,
+  ...,
+  resolution = 50
+)
 }
 \arguments{
 \item{object}{An R object, typically of class "gg".}

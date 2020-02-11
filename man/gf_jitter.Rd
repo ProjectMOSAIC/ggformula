@@ -4,11 +4,33 @@
 \alias{gf_jitter}
 \title{Formula interface to geom_jitter()}
 \usage{
-gf_jitter(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, size, shape, fill, width, height, group, stroke, xlab, ylab,
-  title, subtitle, caption, geom = "point", stat = "identity",
-  position = "jitter", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_jitter(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  size,
+  shape,
+  fill,
+  width,
+  height,
+  group,
+  stroke,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "point",
+  stat = "identity",
+  position = "jitter",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

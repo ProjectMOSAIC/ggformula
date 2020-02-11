@@ -4,13 +4,38 @@
 \alias{gf_dotplot}
 \title{Formula interface to geom_dotplot()}
 \usage{
-gf_dotplot(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, binwidth = NULL, binaxis = "x",
-  method = "dotdensity", binpositions = "bygroup", stackdir = "up",
-  stackratio = 1, dotsize = 1, stackgroups = FALSE, origin = NULL,
-  right = TRUE, width = 0.9, drop = FALSE, xlab, ylab, title,
-  subtitle, caption, position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_dotplot(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  binwidth = NULL,
+  binaxis = "x",
+  method = "dotdensity",
+  binpositions = "bygroup",
+  stackdir = "up",
+  stackratio = 1,
+  dotsize = 1,
+  stackgroups = FALSE,
+  origin = NULL,
+  right = TRUE,
+  width = 0.9,
+  drop = FALSE,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

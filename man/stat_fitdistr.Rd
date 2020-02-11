@@ -4,9 +4,18 @@
 \alias{stat_fitdistr}
 \title{A stat for fitting distributions}
 \usage{
-stat_fitdistr(mapping = NULL, data = NULL, geom = "path",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, dist = "dnorm", start = NULL, ...)
+stat_fitdistr(
+  mapping = NULL,
+  data = NULL,
+  geom = "path",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  dist = "dnorm",
+  start = NULL,
+  ...
+)
 }
 \arguments{
 \item{mapping}{Aesthetics created using \code{aes()} or \code{aes_string()}.}

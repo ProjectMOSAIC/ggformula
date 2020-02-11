@@ -4,11 +4,30 @@
 \alias{gf_bin2d}
 \title{Formula interface to geom_bin2d()}
 \usage{
-gf_bin2d(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab, ylab, title, subtitle, caption,
-  geom = "tile", stat = "bin2d", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_bin2d(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "tile",
+  stat = "bin2d",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

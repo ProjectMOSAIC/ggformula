@@ -5,15 +5,43 @@
 \alias{gf_frame}
 \title{Formula interface to geom_blank()}
 \usage{
-gf_blank(object = NULL, gformula = NULL, data = NULL, ..., xlab,
-  ylab, title, subtitle, caption, geom = "blank", stat = "identity",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_blank(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "blank",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_frame(object = NULL, gformula = NULL, data = NULL, ..., xlab,
-  ylab, title, subtitle, caption, geom = "blank", stat = "identity",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_frame(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "blank",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -65,7 +93,7 @@ a gg object
 }
 \description{
 The blank geom draws nothing, but can be a useful way of ensuring common
-scales between different plots. See \code{\link[=expand_limits]{expand_limits()}} for
+scales between different plots. See \code{\link[ggplot2:expand_limits]{expand_limits()}} for
 more details.
 }
 \section{Specifying plot attributes}{

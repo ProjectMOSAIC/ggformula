@@ -4,12 +4,33 @@
 \alias{gf_raster}
 \title{Formula interface to geom_raster()}
 \usage{
-gf_raster(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, hjust = 0.5, vjust = 0.5,
-  interpolate = FALSE, xlab, ylab, title, subtitle, caption,
-  geom = "raster", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_raster(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  hjust = 0.5,
+  vjust = 0.5,
+  interpolate = FALSE,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "raster",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

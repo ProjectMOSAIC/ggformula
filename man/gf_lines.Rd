@@ -7,20 +7,69 @@
 \alias{gf_coefline}
 \title{Reference lines -- horizontal, vertical, and diagonal.}
 \usage{
-gf_abline(object = NULL, gformula = NULL, data = NULL, ..., slope,
-  intercept, color, size, linetype, alpha, xlab, ylab, title, subtitle,
-  caption, show.legend = NA, show.help = NULL, inherit = FALSE,
-  environment = parent.frame())
+gf_abline(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  slope,
+  intercept,
+  color,
+  size,
+  linetype,
+  alpha,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  show.legend = NA,
+  show.help = NULL,
+  inherit = FALSE,
+  environment = parent.frame()
+)
 
-gf_hline(object = NULL, gformula = NULL, data = NULL, ...,
-  yintercept, color, size, linetype, alpha, xlab, ylab, title, subtitle,
-  caption, show.legend = NA, show.help = NULL, inherit = FALSE,
-  environment = parent.frame())
+gf_hline(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  yintercept,
+  color,
+  size,
+  linetype,
+  alpha,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  show.legend = NA,
+  show.help = NULL,
+  inherit = FALSE,
+  environment = parent.frame()
+)
 
-gf_vline(object = NULL, gformula = NULL, data = NULL, ...,
-  xintercept, color, size, linetype, alpha, xlab, ylab, title, subtitle,
-  caption, show.legend = NA, show.help = NULL, inherit = FALSE,
-  environment = parent.frame())
+gf_vline(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  xintercept,
+  color,
+  size,
+  linetype,
+  alpha,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  show.legend = NA,
+  show.help = NULL,
+  inherit = FALSE,
+  environment = parent.frame()
+)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
@@ -35,11 +84,11 @@ See details and examples.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and

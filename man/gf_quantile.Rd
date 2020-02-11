@@ -4,12 +4,37 @@
 \alias{gf_quantile}
 \title{Formula interface to geom_quantile()}
 \usage{
-gf_quantile(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, group, linetype, size, weight, lineend = "butt",
-  linejoin = "round", linemitre = 1, quantiles, formula, method,
-  method.args, xlab, ylab, title, subtitle, caption, geom = "quantile",
-  stat = "quantile", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_quantile(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  weight,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  quantiles,
+  formula,
+  method,
+  method.args,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "quantile",
+  stat = "quantile",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -23,11 +48,11 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -108,7 +133,7 @@ a gg object
 }
 \description{
 This fits a quantile regression to the data and draws the fitted quantiles
-with lines. This is as a continuous analogue to \code{\link[=geom_boxplot]{geom_boxplot()}}.
+with lines. This is as a continuous analogue to \code{\link[ggplot2:geom_boxplot]{geom_boxplot()}}.
 }
 \section{Specifying plot attributes}{
 

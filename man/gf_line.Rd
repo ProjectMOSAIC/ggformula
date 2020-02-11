@@ -5,18 +5,62 @@
 \alias{gf_path}
 \title{Formula interface to geom_line() and geom_path()}
 \usage{
-gf_line(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, lineend, linejoin, linemitre, arrow,
-  xlab, ylab, title, subtitle, caption, geom = "line",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_line(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  lineend,
+  linejoin,
+  linemitre,
+  arrow,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "line",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_path(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, group, linetype, size, lineend = "butt", linejoin = "round",
-  linemitre = 1, arrow = NULL, xlab, ylab, title, subtitle, caption,
-  geom = "path", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_path(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  arrow = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "path",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

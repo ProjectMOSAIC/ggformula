@@ -29,9 +29,9 @@ chaining syntax.
 \details{
 \code{gf_refine()} provides a mechanism to replace \code{+} with the
 chaining operator from \pkg{magrittr}.
-Each of its \code{\dots} arguments is added in turn to the
+Each of its \verb{\\dots} arguments is added in turn to the
 base plot in \code{object}.  The other functions are thin wrappers around
-specific \code{ggplot2} refinement functions and pass their \code{\dots}
+specific \code{ggplot2} refinement functions and pass their \verb{\\dots}
 arguments through to the similarly named \code{ggplot2} functions.
 }
 \examples{

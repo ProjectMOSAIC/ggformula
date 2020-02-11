@@ -4,10 +4,18 @@
 \alias{stat_qqline}
 \title{A Stat for Adding Reference Lines to QQ-Plots}
 \usage{
-stat_qqline(mapping = NULL, data = NULL, geom = "line",
-  position = "identity", ..., distribution = stats::qnorm,
-  dparams = list(), na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE)
+stat_qqline(
+  mapping = NULL,
+  data = NULL,
+  geom = "line",
+  position = "identity",
+  ...,
+  distribution = stats::qnorm,
+  dparams = list(),
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 }
 \arguments{
 \item{mapping}{An aesthetic mapping produced with \code{\link[=aes]{aes()}} or

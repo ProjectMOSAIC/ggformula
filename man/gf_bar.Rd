@@ -11,53 +11,212 @@
 \alias{gf_percentsh}
 \title{Formula interface to geom_bar()}
 \usage{
-gf_bar(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, width = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "bar", stat = "count",
-  position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_bar(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  width = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "bar",
+  stat = "count",
+  position = "stack",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_counts(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, width = NULL, binwidth = NULL,
-  xlab, ylab, title, subtitle, caption, geom = "bar", stat = "count",
-  position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_counts(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  width = NULL,
+  binwidth = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "bar",
+  stat = "count",
+  position = "stack",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_props(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab, ylab = "proportion", title,
-  subtitle, caption, geom = "bar", stat = "count",
-  position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_props(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab = "proportion",
+  title,
+  subtitle,
+  caption,
+  geom = "bar",
+  stat = "count",
+  position = "stack",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_percents(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab, ylab = "percent", title,
-  subtitle, caption, geom = "bar", stat = "count",
-  position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_percents(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab = "percent",
+  title,
+  subtitle,
+  caption,
+  geom = "bar",
+  stat = "count",
+  position = "stack",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_countsh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, width = NULL, binwidth = NULL,
-  xlab, ylab, title, subtitle, caption, geom = "barh", stat = "counth",
-  position = "stackv", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_countsh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  width = NULL,
+  binwidth = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "barh",
+  stat = "counth",
+  position = "stackv",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_colh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, width = NULL, binwidth = NULL,
-  xlab, ylab, title, subtitle, caption, geom = "colh",
-  stat = "identity", position = "stackv", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame())
+gf_colh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  width = NULL,
+  binwidth = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "colh",
+  stat = "identity",
+  position = "stackv",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_propsh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab = "proportion", ylab, title,
-  subtitle, caption, geom = "barh", stat = "counth",
-  position = "stackv", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_propsh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab = "proportion",
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "barh",
+  stat = "counth",
+  position = "stackv",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 
-gf_percentsh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab = "percent", ylab, title,
-  subtitle, caption, geom = "barh", stat = "counth",
-  position = "stackv", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_percentsh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab = "percent",
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "barh",
+  stat = "counth",
+  position = "stackv",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -73,11 +232,11 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -140,7 +299,7 @@ display.}
 
 \item{binwidth}{\code{geom_bar()} no longer has a binwidth argument - if
 you use it you'll get an warning telling to you use
-\code{\link[=geom_histogram]{geom_histogram()}} instead.}
+\code{\link[ggplot2:geom_histogram]{geom_histogram()}} instead.}
 }
 \value{
 a gg object

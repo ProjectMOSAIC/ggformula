@@ -4,11 +4,30 @@
 \alias{gf_col}
 \title{Formula interface to geom_col()}
 \usage{
-gf_col(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, xlab, ylab, title, subtitle, caption,
-  geom = "col", stat = "identity", position = "stack",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_col(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "col",
+  stat = "identity",
+  position = "stack",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

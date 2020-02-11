@@ -5,19 +5,47 @@
 \alias{geom_spline}
 \title{Geoms and stats for spline smoothing}
 \usage{
-stat_spline(mapping = NULL, data = NULL, geom = "line",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, weight = NULL, df = NULL, spar = NULL,
-  cv = FALSE, all.knots = FALSE, nknots = stats::.nknots.smspl,
-  df.offset = 0, penalty = 1, control.spar = list(), tol = NULL,
-  ...)
+stat_spline(
+  mapping = NULL,
+  data = NULL,
+  geom = "line",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  weight = NULL,
+  df = NULL,
+  spar = NULL,
+  cv = FALSE,
+  all.knots = FALSE,
+  nknots = stats::.nknots.smspl,
+  df.offset = 0,
+  penalty = 1,
+  control.spar = list(),
+  tol = NULL,
+  ...
+)
 
-geom_spline(mapping = NULL, data = NULL, stat = "spline",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, weight = NULL, df = NULL, spar = NULL,
-  cv = FALSE, all.knots = FALSE, nknots = stats::.nknots.smspl,
-  df.offset = 0, penalty = 1, control.spar = list(), tol = NULL,
-  ...)
+geom_spline(
+  mapping = NULL,
+  data = NULL,
+  stat = "spline",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  weight = NULL,
+  df = NULL,
+  spar = NULL,
+  cv = FALSE,
+  all.knots = FALSE,
+  nknots = stats::.nknots.smspl,
+  df.offset = 0,
+  penalty = 1,
+  control.spar = list(),
+  tol = NULL,
+  ...
+)
 }
 \arguments{
 \item{mapping}{An aesthetic mapping produced with \code{\link[=aes]{aes()}} or

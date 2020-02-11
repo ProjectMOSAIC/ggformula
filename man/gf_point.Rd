@@ -4,11 +4,31 @@
 \alias{gf_point}
 \title{Formula interface to geom_point()}
 \usage{
-gf_point(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, size, shape, fill, group, stroke, xlab, ylab, title, subtitle,
-  caption, geom = "point", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame())
+gf_point(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  size,
+  shape,
+  fill,
+  group,
+  stroke,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "point",
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

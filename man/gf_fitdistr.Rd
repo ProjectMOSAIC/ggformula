@@ -4,11 +4,32 @@
 \alias{gf_fitdistr}
 \title{Plot density function based on fit to data}
 \usage{
-gf_fitdistr(object = NULL, gformula = NULL, data = NULL, ...,
-  dist = "dnorm", start = NULL, alpha, color, fill, group, linetype,
-  size, xlab, ylab, title, subtitle, caption, geom = "path",
-  stat = "fitdistr", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, environment = parent.frame())
+gf_fitdistr(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  dist = "dnorm",
+  start = NULL,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "path",
+  stat = "fitdistr",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = FALSE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

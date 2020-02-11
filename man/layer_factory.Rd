@@ -4,10 +4,20 @@
 \alias{layer_factory}
 \title{Create a ggformula layer function}
 \usage{
-layer_factory(geom = "point", position = "identity",
-  stat = "identity", pre = { }, aes_form = y ~ x, extras = alist(),
-  note = NULL, aesthetics = aes(), inherit.aes = TRUE,
-  check.aes = TRUE, data = NULL, layer_fun = quo(ggplot2::layer))
+layer_factory(
+  geom = "point",
+  position = "identity",
+  stat = "identity",
+  pre = { },
+  aes_form = y ~ x,
+  extras = alist(),
+  note = NULL,
+  aesthetics = aes(),
+  inherit.aes = TRUE,
+  check.aes = TRUE,
+  data = NULL,
+  layer_fun = quo(ggplot2::layer)
+)
 }
 \arguments{
 \item{geom}{The geom to use for the layer

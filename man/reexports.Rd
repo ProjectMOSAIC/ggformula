@@ -7,6 +7,9 @@
 \alias{makeFun}
 \alias{df_stats}
 \alias{na.warn}
+\alias{stat_sina}
+\alias{StatSina}
+\alias{geom_sina}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -14,8 +17,10 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{ggforce}{\code{\link[ggforce]{geom_sina}}, \code{\link[ggforce]{stat_sina}}, \code{\link[ggforce]{StatSina}}}
+
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 
-  \item{mosaicCore}{\code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{df_stats}}, \code{\link[mosaicCore]{na.warn}}}
+  \item{mosaicCore}{\code{\link[mosaicCore]{df_stats}}, \code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{na.warn}}}
 }}
 

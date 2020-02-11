@@ -4,11 +4,31 @@
 \alias{gf_barh}
 \title{Formula interface to geom_barh()}
 \usage{
-gf_barh(object = NULL, gformula = NULL, data = NULL, ..., alpha,
-  color, fill, group, linetype, size, width = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "barh", stat = "counth",
-  position = "stackv", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_barh(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  size,
+  width = NULL,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "barh",
+  stat = "counth",
+  position = "stackv",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

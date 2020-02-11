@@ -25,11 +25,11 @@ StatAsh
 StatFitdistr
 }
 \description{
-These are typically accessed through their associated \code{geom_*}, \code{stat_*} or
-\code{gf_*} functions.
+These are typically accessed through their associated \verb{geom_*}, \verb{stat_*} or
+\verb{gf_*} functions.
 
-These are typically accessed through their associated \code{geom_*}, \code{stat_*} or
-\code{gf_*} functions.
+These are typically accessed through their associated \verb{geom_*}, \verb{stat_*} or
+\verb{gf_*} functions.
 }
 \seealso{
 \code{\link[=stat_ash]{stat_ash()}}

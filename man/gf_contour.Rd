@@ -4,10 +4,24 @@
 \alias{gf_contour}
 \title{Formula interface to geom_contour()}
 \usage{
-gf_contour(object = NULL, gformula = NULL, data = NULL, ..., xlab,
-  ylab, title, subtitle, caption, geom = "contour", stat = "contour",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame())
+gf_contour(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "contour",
+  stat = "contour",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -21,11 +35,11 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -75,7 +89,7 @@ a gg object
 }
 \description{
 ggplot2 can not draw true 3d surfaces, but you can use \code{geom_contour}
-and \code{\link[=geom_tile]{geom_tile()}} to visualise 3d surfaces in 2d. To be a valid
+and \code{\link[ggplot2:geom_tile]{geom_tile()}} to visualise 3d surfaces in 2d. To be a valid
 surface, the data must contain only a single row for each unique combination
 of the variables mapped to the \code{x} and \code{y} aesthetics. Contouring
 tends to work best when \code{x} and \code{y} form a (roughly) evenly
