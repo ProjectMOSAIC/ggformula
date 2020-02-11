@@ -1,4 +1,10 @@
 
+# ggformula 0.9.3
+
+* add `gf_sina()`. (#134)
+* update exampels involving `sf::st_as_sf()` to reflect updated names of in the resulting data frame. This is required to get CRAN builds to work without an error. (#137)
+* Add helpful error message if dist is not a string in `gf_dist()`. (#133)
+
 # ggformula 0.9.2 
 
  * Some internals in `layer_factory()` have been reimplemented to avoid making copies of ggplot2 functions at compile time. This should make things more stable when updating ggplot2 but not updating ggformula.
