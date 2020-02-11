@@ -459,8 +459,15 @@ gf_bar( ~ age, data = HELPrct, stat = "bin")
   
   * `gf_violin()`, `gf_density()`, and `gf_density2d()` use stats to compute a 
   sequence of points along an estimated density.  It is these points, and the not
-  the raw data that are used to create the plot.
-
+  the raw data that are used to create the plot. `gf_sina()` uses the estimated 
+  density to jitter points.
+  
+```{r boxplot-violin-sina}
+gf_boxplot(age ~ substance, data = HELPrct)
+gf_violin(age ~ substance, data = HELPrct) %>%
+  gf_sina(alpha = 0.3)
+```
+  
 There are also a number of stats that can be used to show a 
 functional relationship between two variables.
 
