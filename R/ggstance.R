@@ -53,7 +53,7 @@ gf_countsh <-
     aes_form = list(~y, y ~ .),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
-      width = NULL, binwidth = NULL
+      width = NULL
     )
   )
 
@@ -66,7 +66,7 @@ gf_colh <-
     aes_form = list(y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
-      width = NULL, binwidth = NULL
+      width = NULL
     )
   )
 

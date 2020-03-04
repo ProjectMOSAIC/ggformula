@@ -1226,7 +1226,7 @@ gf_counts <-
     aes_form = ~x,
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
-      width = NULL, binwidth = NULL
+      width = NULL
     )
   )
 

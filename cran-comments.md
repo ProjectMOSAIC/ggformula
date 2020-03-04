@@ -10,10 +10,7 @@
 
 ## Context
 
-The main reason for this update is that the sf package changed the names of some of 
-objects it produces. This caused an example in one vignette to fail. I've updated 
-to the new nomenclature, and that's good to go. I made a few other minor adjustments
-since I'm making an update, but this is a relatively small update to the package.
+Fixing a couple documentation errors that are caught by checks now.
 
 ## R CMD check results (local)
 
@@ -21,10 +18,6 @@ since I'm making an update, but this is a relatively small update to the package
 
 R CMD check succeeded
 
-## revdepcheck results
 
-revdepcheck() reported only one problem: it was unable to build MESS.  But MESS builds
-fine outside of revdepcheck and doesn't appear to have any issues.  I've contacted 
-the author with some detials, just so he is aware.
 
 
