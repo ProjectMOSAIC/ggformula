@@ -79,7 +79,7 @@ as input for describing positional attributes of the plot." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -367,7 +367,7 @@ position of the line. If these are set, <code>data</code>, <code>mapping</code> 
 <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>wt</span> ~ <span class='no'>hp</span>, <span class='kw'>size</span> <span class='kw'>=</span> ~<span class='no'>wt</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_abline</span>(<span class='kw'>slope</span> <span class='kw'>=</span> ~<span class='fl'>0</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> ~<span class='no'>median_wt</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars2</span>)</div><div class='img'><img src='gf_lines-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>wt</span> ~ <span class='no'>hp</span>, <span class='kw'>size</span> <span class='kw'>=</span> ~<span class='no'>wt</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_abline</span>(<span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Using `intercept` and/or `slope` with `mapping` may not have the desired result as mapping is overwritten if either of these is specified</span></div><div class='img'><img src='gf_lines-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'>gf_abline</span>(<span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: geom_abline(): Ignoring `mapping` because `slope` and/or `intercept` were provided.</span></div><div class='img'><img src='gf_lines-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># avoid warnings by using formulas:</span>
 
 <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>wt</span> ~ <span class='no'>hp</span>, <span class='kw'>size</span> <span class='kw'>=</span> ~<span class='no'>wt</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>) <span class='kw'>%&gt;%</span>

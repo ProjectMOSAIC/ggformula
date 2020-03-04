@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -236,23 +236,27 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Smoothing method (function) to use, accepts either a character vector,
-e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
-<code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.</p>
-<p>For <code>method = "auto"</code> the smoothing method is chosen based on the
+      <td><p>Smoothing method (function) to use, accepts either
+<code>NULL</code> or a character vector, e.g. <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code>
+or a function, e.g. <code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.
+<code>"auto"</code> is also accepted for backwards compatibility.  It is equivalent to
+<code>NULL</code>.</p>
+<p>For <code>method = NULL</code> the smoothing method is chosen based on the
 size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
 used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
-used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
+used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.</p>
 <p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
-model that <code>method = "auto"</code> would use, then set
+model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
     </tr>
     <tr>
       <th>formula</th>
       <td><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
-<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></p></td>
+<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
+<code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
+observations and <code>formula = y ~ s(x, bs = "cs")</code> otherwise.</p></td>
     </tr>
     <tr>
       <th>se</th>
@@ -399,16 +403,16 @@ in another.</p>
 #&gt; <span class='message'>    * key attributes:  alpha = 0.3, lm.args = list(), interval = "none", level =</span>
 #&gt; <span class='message'>                   0.95, fullrange = TRUE</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_lm</span></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='gf_smooth-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
+#&gt; <span class='message'>For more information, try ?gf_lm</span></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
   <span class='kw'>fullrange</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 16 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='gf_smooth-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
+)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 16 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='gf_smooth-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
   <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='gf_smooth-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
+)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
   <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='gf_smooth-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
+)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
   <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>biggerfoot</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
 ) <span class='kw'>%&gt;%</span>

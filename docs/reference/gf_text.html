@@ -43,8 +43,11 @@
 
 
 <meta property="og:title" content="Formula interface to geom_text() and geom_label() — gf_text" />
-<meta property="og:description" content="geom_text() adds text directly to the plot. geom_label() draws
-a rectangle behind the text, making it easier to read." />
+<meta property="og:description" content="Text geoms are useful for labeling plots. They can be used by themselves as
+scatterplots or in cobination with other geoms, for example, for labeling
+points or for annotating the height of bars. geom_text() adds only text
+to the plot. geom_label() draws a rectangle behind the text, making it
+easier to read." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -78,7 +81,7 @@ a rectangle behind the text, making it easier to read." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -156,8 +159,11 @@ a rectangle behind the text, making it easier to read." />
     </div>
 
     <div class="ref-description">
-    <p><code>geom_text()</code> adds text directly to the plot. <code>geom_label()</code> draws
-a rectangle behind the text, making it easier to read.</p>
+    <p>Text geoms are useful for labeling plots. They can be used by themselves as
+scatterplots or in cobination with other geoms, for example, for labeling
+points or for annotating the height of bars. <code>geom_text()</code> adds only text
+to the plot. <code>geom_label()</code> draws a rectangle behind the text, making it
+easier to read.</p>
     </div>
 
     <pre class="usage"><span class='fu'>gf_text</span>(
@@ -313,17 +319,21 @@ displayed as described in <code><a href='https://rdrr.io/r/grDevices/plotmath.ht
     <tr>
       <th>nudge_x</th>
       <td><p>Horizontal and vertical adjustment to nudge labels by.
-Useful for offsetting text from points, particularly on discrete scales.</p></td>
+Useful for offsetting text from points, particularly on discrete scales.
+Cannot be jointy specified with <code>position</code>.</p></td>
     </tr>
     <tr>
       <th>nudge_y</th>
       <td><p>Horizontal and vertical adjustment to nudge labels by.
-Useful for offsetting text from points, particularly on discrete scales.</p></td>
+Useful for offsetting text from points, particularly on discrete scales.
+Cannot be jointy specified with <code>position</code>.</p></td>
     </tr>
     <tr>
       <th>check_overlap</th>
       <td><p>If <code>TRUE</code>, text that overlaps previous text in the
-same layer will not be plotted.</p></td>
+same layer will not be plotted. <code>check_overlap</code> happens at draw time and in
+the order of the data. Therefore data should be arranged by the label
+column before calling <code>geom_label()</code> or <code>geom_text()</code>.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -360,7 +370,8 @@ layer, as a string.</p></td>
     <tr>
       <th>position</th>
       <td><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></td>
+a call to a position adjustment function. Cannot be jointy specified with
+<code>nudge_x</code> or <code>nudge_y</code>.</p></td>
     </tr>
     <tr>
       <th>show.legend</th>

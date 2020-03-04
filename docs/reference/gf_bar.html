@@ -44,11 +44,10 @@
 
 <meta property="og:title" content="Formula interface to geom_bar() — gf_bar" />
 <meta property="og:description" content="There are two types of bar charts: geom_bar() and geom_col().
-geom_bar() makes the height of the
-bar proportional to the number of cases in each group (or if the
-weight aesthetic is supplied, the sum of the weights). If you want the
-heights of the bars to represent values in the data, use
-geom_col() instead. geom_bar() uses stat_count() by
+geom_bar() makes the height of the bar proportional to the number of
+cases in each group (or if the weight aesthetic is supplied, the sum
+of the weights). If you want the heights of the bars to represent values
+in the data, use geom_col() instead. geom_bar() uses stat_count() by
 default: it counts the number of cases at each x position. geom_col()
 uses stat_identity(): it leaves the data as is." />
 <meta property="og:image" content="/logo.png" />
@@ -84,7 +83,7 @@ uses stat_identity(): it leaves the data as is." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -163,11 +162,10 @@ uses stat_identity(): it leaves the data as is." />
 
     <div class="ref-description">
     <p>There are two types of bar charts: <code>geom_bar()</code> and <code>geom_col()</code>.
-<code>geom_bar()</code> makes the height of the
-bar proportional to the number of cases in each group (or if the
-<code>weight</code> aesthetic is supplied, the sum of the weights). If you want the
-heights of the bars to represent values in the data, use
-<code>geom_col()</code> instead. <code>geom_bar()</code> uses <code>stat_count()</code> by
+<code>geom_bar()</code> makes the height of the bar proportional to the number of
+cases in each group (or if the <code>weight</code> aesthetic is supplied, the sum
+of the weights). If you want the heights of the bars to represent values
+in the data, use <code>geom_col()</code> instead. <code>geom_bar()</code> uses <code>stat_count()</code> by
 default: it counts the number of cases at each x position. <code>geom_col()</code>
 uses <code>stat_identity()</code>: it leaves the data as is.</p>
     </div>
@@ -210,7 +208,6 @@ uses <code>stat_identity()</code>: it leaves the data as is.</p>
   <span class='no'>linetype</span>,
   <span class='no'>size</span>,
   <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>xlab</span>,
   <span class='no'>ylab</span>,
   <span class='no'>title</span>,
@@ -287,7 +284,6 @@ uses <code>stat_identity()</code>: it leaves the data as is.</p>
   <span class='no'>linetype</span>,
   <span class='no'>size</span>,
   <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>xlab</span>,
   <span class='no'>ylab</span>,
   <span class='no'>title</span>,
@@ -314,7 +310,6 @@ uses <code>stat_identity()</code>: it leaves the data as is.</p>
   <span class='no'>linetype</span>,
   <span class='no'>size</span>,
   <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>xlab</span>,
   <span class='no'>ylab</span>,
   <span class='no'>title</span>,
@@ -502,12 +497,6 @@ display.</p></td>
     <tr>
       <th>environment</th>
       <td><p>An environment in which to look for variables not found in <code>data</code>.</p></td>
-    </tr>
-    <tr>
-      <th>binwidth</th>
-      <td><p><code>geom_bar()</code> no longer has a binwidth argument - if
-you use it you'll get an warning telling to you use
-<code><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram()</a></code> instead.</p></td>
     </tr>
     </table>
 
