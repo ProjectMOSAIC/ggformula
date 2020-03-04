@@ -71,23 +71,27 @@ Faceting can be achieved by including \code{|} in the formula.}
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
-\item{method}{Smoothing method (function) to use, accepts either a character vector,
-e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
-\code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
+\item{method}{Smoothing method (function) to use, accepts either
+\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
+or a function, e.g. \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
+\code{"auto"} is also accepted for backwards compatibility.  It is equivalent to
+\code{NULL}.
 
-For \code{method = "auto"} the smoothing method is chosen based on the
+For \code{method = NULL} the smoothing method is chosen based on the
 size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
 used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
-used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+used with \code{formula = y ~ s(x, bs = "cs")} with \code{method = "REML"}. Somewhat anecdotally,
 \code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
 so does not work for larger datasets.
 
 If you have fewer than 1,000 observations but want to use the same \code{gam()}
-model that \code{method = "auto"} would use, then set
-\code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+model that \code{method = NULL} would use, then set
+\verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
 
 \item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
-\code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
+\code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in which case
+\code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000
+observations and \code{formula = y ~ s(x, bs = "cs")} otherwise.}
 
 \item{se}{Display confidence interval around smooth? (\code{TRUE} by default, see
 \code{level} to control.)}

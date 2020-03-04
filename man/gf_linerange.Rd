@@ -210,17 +210,14 @@ display.}
 middle bar in \code{geom_crossbar()} and the middle point in
 \code{geom_pointrange()}.}
 
-\item{fun.y}{Alternatively, supply three individual
-functions that are each passed a vector of x's and should return a
-single number.}
+\item{fun.y}{Deprecated, use the versions specified above
+instead.}
 
-\item{fun.ymax}{Alternatively, supply three individual
-functions that are each passed a vector of x's and should return a
-single number.}
+\item{fun.ymax}{Deprecated, use the versions specified above
+instead.}
 
-\item{fun.ymin}{Alternatively, supply three individual
-functions that are each passed a vector of x's and should return a
-single number.}
+\item{fun.ymin}{Deprecated, use the versions specified above
+instead.}
 
 \item{fun.args}{Optional additional arguments passed on to the functions.}
 }

@@ -57,7 +57,7 @@ The default \code{"t"} assumes a multivariate t-distribution, and
 representing the euclidean distance from the center.
 This ellipse probably won't appear circular unless \code{coord_fixed()} is applied.}
 
-\item{level}{The confidence level at which to draw an ellipse (default is 0.95),
+\item{level}{The level at which to draw an ellipse,
 or, if \code{type="euclid"}, the radius of the circle to be drawn.}
 
 \item{segments}{The number of segments to be used in drawing the ellipse.}

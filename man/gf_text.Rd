@@ -127,13 +127,17 @@ text relative the the specified location.}
 displayed as described in \code{?plotmath}.}
 
 \item{nudge_x}{Horizontal and vertical adjustment to nudge labels by.
-Useful for offsetting text from points, particularly on discrete scales.}
+Useful for offsetting text from points, particularly on discrete scales.
+Cannot be jointy specified with \code{position}.}
 
 \item{nudge_y}{Horizontal and vertical adjustment to nudge labels by.
-Useful for offsetting text from points, particularly on discrete scales.}
+Useful for offsetting text from points, particularly on discrete scales.
+Cannot be jointy specified with \code{position}.}
 
 \item{check_overlap}{If \code{TRUE}, text that overlaps previous text in the
-same layer will not be plotted.}
+same layer will not be plotted. \code{check_overlap} happens at draw time and in
+the order of the data. Therefore data should be arranged by the label
+column before calling \code{geom_label()} or \code{geom_text()}.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -154,7 +158,8 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 layer, as a string.}
 
 \item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+a call to a position adjustment function. Cannot be jointy specified with
+\code{nudge_x} or \code{nudge_y}.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -178,8 +183,11 @@ display.}
 a gg object
 }
 \description{
-\code{geom_text()} adds text directly to the plot. \code{geom_label()} draws
-a rectangle behind the text, making it easier to read.
+Text geoms are useful for labeling plots. They can be used by themselves as
+scatterplots or in cobination with other geoms, for example, for labeling
+points or for annotating the height of bars. \code{geom_text()} adds only text
+to the plot. \code{geom_label()} draws a rectangle behind the text, making it
+easier to read.
 }
 \section{Specifying plot attributes}{
 

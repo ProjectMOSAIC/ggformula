@@ -68,8 +68,9 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{direction}{direction of stairs: 'vh' for vertical then horizontal, or
-'hv' for horizontal then vertical.}
+\item{direction}{direction of stairs: 'vh' for vertical then horizontal,
+'hv' for horizontal then vertical, or 'mid' for step half-way between
+adjacent x-values.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

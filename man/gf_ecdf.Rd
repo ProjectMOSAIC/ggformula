@@ -97,7 +97,7 @@ display.}
 }
 \description{
 The empirical cumulative distribution function (ECDF) provides an alternative
-visualisation of distribution. Compared to other visualisations that rely on
+visualization of distribution. Compared to other visualizations that rely on
 density (like histograms or density plots) the ECDF doesn't require any tuning
 parameters and handles both continuous and categorical variables. The
 downside is that it requires more training to accurately interpret, and the

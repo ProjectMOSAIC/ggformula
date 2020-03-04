@@ -49,7 +49,6 @@ gf_counts(
   linetype,
   size,
   width = NULL,
-  binwidth = NULL,
   xlab,
   ylab,
   title,
@@ -126,7 +125,6 @@ gf_countsh(
   linetype,
   size,
   width = NULL,
-  binwidth = NULL,
   xlab,
   ylab,
   title,
@@ -153,7 +151,6 @@ gf_colh(
   linetype,
   size,
   width = NULL,
-  binwidth = NULL,
   xlab,
   ylab,
   title,
@@ -296,21 +293,16 @@ display.}
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
-
-\item{binwidth}{\code{geom_bar()} no longer has a binwidth argument - if
-you use it you'll get an warning telling to you use
-\code{\link[ggplot2:geom_histogram]{geom_histogram()}} instead.}
 }
 \value{
 a gg object
 }
 \description{
 There are two types of bar charts: \code{geom_bar()} and \code{geom_col()}.
-\code{geom_bar()} makes the height of the
-bar proportional to the number of cases in each group (or if the
-\code{weight} aesthetic is supplied, the sum of the weights). If you want the
-heights of the bars to represent values in the data, use
-\code{geom_col()} instead. \code{geom_bar()} uses \code{stat_count()} by
+\code{geom_bar()} makes the height of the bar proportional to the number of
+cases in each group (or if the \code{weight} aesthetic is supplied, the sum
+of the weights). If you want the heights of the bars to represent values
+in the data, use \code{geom_col()} instead. \code{geom_bar()} uses \code{stat_count()} by
 default: it counts the number of cases at each x position. \code{geom_col()}
 uses \code{stat_identity()}: it leaves the data as is.
 }
