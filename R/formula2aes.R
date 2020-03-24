@@ -2,10 +2,12 @@
 NULL
 
 formula2aes <- function(formula, template) {
-  fs <- formula_slots(formula) %>% unlist()
-  ts <- formula_slots(template) %>% unlist()
-  names(fs) <- sapply(ts, as.character)
-  do.call(aes, fs)
+  fs <- f_formula_slots(formula) %>% unlist()
+  ts <- f_formula_slots(template) %>% unlist()
+  names(fs) <-
+    sapply(ts, function(x) as.character(rlang::f_rhs(x)))
+  # names(fs) <- sapply(ts, as.character)
+  do.call(aes_, fs)
 }
 
 list2aes <- function(l) {

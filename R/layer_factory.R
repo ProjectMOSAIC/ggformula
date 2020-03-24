@@ -503,7 +503,7 @@ response2explanatory <-
 # themselves are at the end of this file....
 
 # traverse a formula and return a nested list of "nodes"
-# stop traversal if we encouter a binary operator in stop_binops
+# stop traversal if we encounter a binary operator in stop_binops
 formula_slots <- function(x, stop_binops = c(":", "::")) {
   if (length(x) == 2L && deparse(x[[1]]) == "~") {
     formula_slots(x[[2]])
@@ -518,6 +518,56 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   } else {
     list(formula_slots(x[[2]]), formula_slots(x[[3]]))
   }
+}
+
+
+as_formula <- function(x, ...) {
+  UseMethod("as_formula", x)
+}
+
+as_formula.formula <- function(x, ...) {
+  x
+}
+
+
+as_formula.call <- function(x, ...) {
+  res <- ~ x
+  # environment(res) <- env
+  res[[2]] <- x[[2]]
+  res
+}
+
+as_formula.name <- function(x, env = parent.frame(), ...) {
+  res <- ~ x
+  environment(res) <- env
+  res[[2]] <- x
+  res
+}
+
+f_formula_slots <- function(x, env = parent.frame()) {
+  if (is.null(x)) {
+    return(x)
+  }
+  if (length(x) == 1L) {
+    return(as_formula(x, env))
+  }
+  if (x[[1]] == as.symbol("~")) {
+    return(list(f_formula_slots(rlang::f_lhs(x), env), f_formula_slots(rlang::f_rhs(x), env)))
+  }
+  if (x[[1]] == as.symbol("(")) {
+    res <- ~ x
+    res[[2]] <- x[[2]]  # strip parens
+    environment(res) <- env
+    return(res)
+  }
+  if (length(x) == 2L) {
+    res <- ~ x
+    res[[2]] <- x  # leave call as is
+    environment(res) <- env
+    return(res)
+  }
+  # if we get here, we should have a binary operation
+  return(list(f_formula_slots(rlang::f_lhs(x), env), f_formula_slots(rlang::f_rhs(x), env)))
 }
 
 # add quotes to character elements of list x and returns a vector of character
