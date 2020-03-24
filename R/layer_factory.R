@@ -855,22 +855,35 @@ formula_shape <- function(x) {
     return(0L)
   }
   if (length(x) == 2L) {
-    res <- ~ x
-    res[[2]] <- x  # leave call as is
-    environment(res) <- env
     return(0L)
   }
   # if we get here, we should have a binary operation
   return(c(2L, formula_shape(rlang::f_lhs(x)), formula_shape(rlang::f_rhs(x))))
 }
 
-formula_match <- function(formula, aes_form = y ~ x) {
+# @param formula a formula describing aesthetics
+# @param aes_form a list of template formulas (or a single formula)
+# @param value a logical indicating whether the first matching value should be returend
+#   rather than a vector of logicals
+# @param unmatched value of retun if value = TRUE and there are no matches.
+
+formula_match <-
+  function(formula, aes_form = y ~ x, value = FALSE, unmatched = NULL) {
   if (!is.list(aes_form)) {
     aes_form <- list(aes_form)
   }
   user_shape <- formula_shape(formula_split(formula)$formula)
   shapes <- lapply(aes_form, formula_shape)
-  sapply(shapes, function(s) identical(s, user_shape))
+  bools <- sapply(shapes, function(s) identical(s, user_shape))
+  if (value) {
+    if (any(bools)) {
+      aes_form[[which.max(bools)]]
+    } else {
+      unmatched
+    }
+  } else {
+    bools
+  }
 }
 
 formula_to_df <- function(formula = NULL, data_names = character(0),
