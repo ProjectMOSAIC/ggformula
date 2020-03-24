@@ -786,7 +786,7 @@ remove_dot_from_mapping <- function(mapping) {
   mapping
 }
 
-formula_shape <- function(x) {
+formula_shape0 <- function(x) {
   if (length(x) < 2) {
     return(0)
   }
@@ -803,41 +803,65 @@ formula_shape <- function(x) {
   }
 
   # if (as.character(x[[1]]) %in% c("|")){
-  #   return(formula_shape(x[[2]]))
+  #   return(formula_shape0(x[[2]]))
   # }
 
   if (arity == 1L) {
-    right_shape <- formula_shape(x[[2]])
-    arity <- arity - (right_shape[1] < 0)
+    right_shape0 <- formula_shape0(x[[2]])
+    arity <- arity - (right_shape0[1] < 0)
     if (arity == 0) {
       return(arity)
     }
-    return(right_shape)
+    return(right_shape0)
   }
   if (arity == 2L) {
-    right_shape <- formula_shape(x[[3]])
-    left_shape <- formula_shape(x[[2]])
-    if (left_shape[1] < 0 && right_shape < 0) {
+    right_shape0 <- formula_shape0(x[[3]])
+    left_shape0 <- formula_shape0(x[[2]])
+    if (left_shape0[1] < 0 && right_shape0 < 0) {
       return(0)
     }
-    if (left_shape[1] < 0) {
-      if (right_shape[1] == 1L) {
-        return(right_shape[-1])
+    if (left_shape0[1] < 0) {
+      if (right_shape0[1] == 1L) {
+        return(right_shape0[-1])
       }
-      return(right_shape)
+      return(right_shape0)
     }
-    if (right_shape[1] < 0) {
-      if (left_shape[1] == 1L) {
-        return(left_shape[-1])
+    if (right_shape0[1] < 0) {
+      if (left_shape0[1] == 1L) {
+        return(left_shape0[-1])
       }
-      return(left_shape)
+      return(left_shape0)
     }
-    return(c(2, left_shape, right_shape))
+    return(c(2, left_shape0, right_shape0))
   }
-  stop("Bug: problems determining formula shape.")
+  stop("Bug: problems determining formula shape (0).")
 
-  c(length(x) - 1, unlist(sapply(x[-1], formula_shape)))
-  # list(length(x) - 1, lapply(x[-1], formula_shape))
+  c(length(x) - 1, unlist(sapply(x[-1], formula_shape0)))
+  # list(length(x) - 1, lapply(x[-1], formula_shape0))
+}
+
+
+formula_shape <- function(x) {
+  if (is.null(x)) {
+    return(integer(0))
+  }
+  if (length(x) == 1L) {
+    return(0L)
+  }
+  if (x[[1]] == as.symbol("~")) {
+    return(c( length(x) - 1, formula_shape(rlang::f_lhs(x)), formula_shape(rlang::f_rhs(x))))
+  }
+  if (x[[1]] == as.symbol("(")) {
+    return(0L)
+  }
+  if (length(x) == 2L) {
+    res <- ~ x
+    res[[2]] <- x  # leave call as is
+    environment(res) <- env
+    return(0L)
+  }
+  # if we get here, we should have a binary operation
+  return(c(2L, formula_shape(rlang::f_lhs(x)), formula_shape(rlang::f_rhs(x))))
 }
 
 formula_match <- function(formula, aes_form = y ~ x) {
