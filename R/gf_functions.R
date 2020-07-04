@@ -1257,8 +1257,8 @@ gf_props <-
       } else {
         aes(y = after_stat(props_by_group(count, DENOM)))
       },
-    pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::enexpr(denom) },
-    denom = as.name("PANEL")
+    pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
+    denom = ~ PANEL
   )
 
 #' @rdname gf_bar
