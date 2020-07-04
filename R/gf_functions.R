@@ -1230,6 +1230,16 @@ gf_counts <-
     )
   )
 
+#' @export
+props_by_group <-
+  function(x, g) {
+    tibble(x, g = rep(!!g, length.out = length(x))) %>%
+      group_by(g) %>%
+      mutate(s = sum(x), p = x / s) %>%
+      # (function(x) {print(x); x})() %>%
+      pull(p)
+  }
+
 #' @rdname gf_bar
 #' @export
 gf_props <-
@@ -1239,14 +1249,16 @@ gf_props <-
     extras =
       alist(
         alpha = , color = , fill = , group = ,
-        linetype = , size = , ylab = "proportion"
+        linetype = , size = , ylab = "proportion",
       ),
     aesthetics =
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
         aes(y = ..count.. / sum(..count..))
       } else {
-        aes(y = stat(count / sum(count)))
-      }
+        aes(y = after_stat(props_by_group(count, DENOM)))
+      },
+    pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::enexpr(denom) },
+    denom = as.name("PANEL")
   )
 
 #' @rdname gf_bar

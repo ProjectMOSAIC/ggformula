@@ -56,7 +56,8 @@ layer_factory <-
     inherit.aes = TRUE,
     check.aes = TRUE,
     data = NULL,
-    layer_fun = quo(ggplot2::layer)) {
+    layer_fun = quo(ggplot2::layer),
+    ...) {
 
   pre <- substitute(pre)
 
@@ -283,9 +284,11 @@ layer_factory <-
       p
     }
   formals(res) <-
-    create_formals(
-      extras, layer_fun = layer_fun, geom = geom, stat = stat,
-      position = position, inherit.aes = inherit.aes)
+    c(
+      create_formals(
+        extras, layer_fun = layer_fun, geom = geom, stat = stat,
+        position = position, inherit.aes = inherit.aes),
+      list(...))
 
   assign("inherit.aes", inherit.aes, environment(res))
   assign("check.aes", check.aes, environment(res))
@@ -688,11 +691,25 @@ formula_split <- function(formula) {
   list(formula = formula, condition = condition, facet_type = facet_type)
 }
 
-have_arg <- function(arg, env = sys.frame(-1)) {
-  L <- as.list(env)
-  arg %in% names(L) &&
-    !(inherits(L[[arg]], "name") && as.character(L[[arg]]) == "")
+#' @export
+match_call <- function(n = 1L, include_missing = FALSE) {
+  call <- evalq(match.call(expand.dots = TRUE), parent.frame(n))
+  formals <- evalq(formals(), parent.frame(n))
+
+  for(i in setdiff(names(formals), names(call))) {
+    if (include_missing || !rlang::is_missing(formals[[i]])) {
+      call[i] <- list( formals[[i]] )
+    }
+  }
+  match.call(sys.function(sys.parent()), call)
 }
+
+#' @export
+have_arg <- function(arg, n = 1L) {
+  call <- evalq(match_call(include_missing = FALSE), parent.frame(n))
+  arg %in% names(call)
+}
+
 
 #' @importFrom utils packageVersion
 
