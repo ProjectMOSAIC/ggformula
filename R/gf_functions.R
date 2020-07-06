@@ -1173,6 +1173,9 @@ gf_dotplot <-
 #'   to using this formula shape.)
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param width Width of the bars.
+#' @param denom A formula, the right hand side of which describes the denominators used for
+#'   computing proportions and percents.  These are computed after the stat has been applied
+#'   to the data and should refer to variables available at that point.  See the examples.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
@@ -1192,6 +1195,11 @@ gf_dotplot <-
 #'   position = position_dodge()
 #' )
 #' # gf_props() and gf_percents() use proportions or percentages instead of counts
+#' # use denom to control which denominators are used.
+#' gf_props(~substance,
+#'   data = mosaicData::HELPrct, fill = ~sex,
+#'   position = position_dodge()
+#' )
 #' gf_props(~substance,
 #'   data = mosaicData::HELPrct, fill = ~sex,
 #'   position = position_dodge()
@@ -1200,10 +1208,37 @@ gf_dotplot <-
 #'   data = mosaicData::HELPrct, fill = ~sex,
 #'   position = position_dodge()
 #' )
+#' gf_percents(~substance,
+#'   data = mosaicData::HELPrct, fill = ~sex,
+#'   position = position_dodge(),
+#'   denom = ~x
+#' )
+#' gf_percents(~substance,
+#'   data = mosaicData::HELPrct, fill = ~sex,
+#'   position = position_dodge(),
+#'   denom = ~fill
+#' )
+#' gf_percents(~substance | sex,
+#'   data = mosaicData::HELPrct, fill = ~homeless,
+#'   position = position_dodge()
+#' )
+#' gf_percents(~substance | sex,
+#'   data = mosaicData::HELPrct,
+#'   fill = ~homeless,
+#'   denom = ~fill,
+#'   position = position_dodge()
+#' )
+#' gf_percents(~substance | sex,
+#'   data = mosaicData::HELPrct,
+#'   fill = ~homeless,
+#'   denom = ~interaction(fill, PANEL),
+#'   position = position_dodge()
+#' )
 #' if (require(scales)) {
-#'   gf_props(~substance,
+#'   gf_percents(~substance,
 #'     data = mosaicData::HELPrct, fill = ~sex,
-#'     position = position_dodge()
+#'     position = position_dodge(),
+#'     denom = ~ x,
 #'   ) %>%
 #'     gf_refine(scale_y_continuous(labels = scales::percent))
 #' }
@@ -1230,13 +1265,40 @@ gf_counts <-
     )
   )
 
+#' Compute groupwise proportions and percents
+#'
+#' Transform a vector of counts and a vector of groups into
+#' a vector of proportions or percentages within groups.
+#'
+#' @rdname proportions
+#' @param x A vector of counts
+#' @param group A vector to determine groups.
+#'
+#' @export
+#' @examples
+#'
+#' x <- c(20, 30, 30, 70)
+#' g1 <- c("A", "A", "B", "B")
+#' g2 <- c("A", "B", "A", "B")
+#' props_by_group(x, g1)
+#' percs_by_group(x, g1)
+#' props_by_group(x, g2)
+
+percs_by_group <-
+  function(x, group) {
+    tibble(x, group = rep(!!group, length.out = length(x))) %>%
+      group_by(group) %>%
+      mutate(s = sum(x), p = 100 * x / s) %>%
+      pull(p)
+  }
+
+#' @rdname proportions
 #' @export
 props_by_group <-
-  function(x, g) {
-    tibble(x, g = rep(!!g, length.out = length(x))) %>%
-      group_by(g) %>%
+  function(x, group) {
+    tibble(x, group = rep(!!group, length.out = length(x))) %>%
+      group_by(group) %>%
       mutate(s = sum(x), p = x / s) %>%
-      # (function(x) {print(x); x})() %>%
       pull(p)
   }
 
@@ -1273,10 +1335,12 @@ gf_percents <-
     ),
     aesthetics =
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = 100 * ..count.. / sum(..count..))
+        aes(y = ..count.. / sum(..count..))
       } else {
-        aes(y = stat(100 * count / sum(count)))
-      }
+        aes(y = after_stat(percs_by_group(count, DENOM)))
+      },
+    pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
+    denom = ~ PANEL
   )
 
 #' Formula interface to geom_freqpoly()
