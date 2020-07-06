@@ -85,8 +85,10 @@ gf_propsh <-
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
         aes(x = ..count.. / sum(..count..))
       } else {
-        aes(x = stat(count / sum(count)))
-      }
+        aes(x = after_stat(props_by_group(count, DENOM)))
+      },
+    pre = { aesthetics[['x']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
+    denom = ~ PANEL
   )
 
 #' @rdname gf_bar
@@ -101,10 +103,12 @@ gf_percentsh <-
     ),
     aesthetics =
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(x = 100 * ..count.. / sum(..count..))
+        aes(x = ..count.. / sum(..count..))
       } else {
-        aes(x = stat(100 * count / sum(count)))
-      }
+        aes(x = after_stat(percs_by_group(count, DENOM)))
+      },
+    pre = { aesthetics[['x']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
+    denom = ~ PANEL
   )
 
 #' Formula interface to geom_boxploth()
