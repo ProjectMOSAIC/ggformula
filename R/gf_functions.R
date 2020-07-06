@@ -1287,9 +1287,9 @@ gf_counts <-
 percs_by_group <-
   function(x, group) {
     tibble(x, group = rep(!!group, length.out = length(x))) %>%
-      group_by(group) %>%
-      mutate(s = sum(x), p = 100 * x / s) %>%
-      pull(p)
+      dplyr::group_by(group) %>%
+      dplyr::mutate(s = sum(x), p = 100 * x / s) %>%
+      dplyr::pull(p)
   }
 
 #' @rdname proportions
@@ -1297,9 +1297,9 @@ percs_by_group <-
 props_by_group <-
   function(x, group) {
     tibble(x, group = rep(!!group, length.out = length(x))) %>%
-      group_by(group) %>%
-      mutate(s = sum(x), p = x / s) %>%
-      pull(p)
+      dplyr::group_by(group) %>%
+      dplyr::mutate(s = sum(x), p = x / s) %>%
+      dplyr::pull(p)
   }
 
 #' @rdname gf_bar
