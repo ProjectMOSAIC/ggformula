@@ -5,6 +5,7 @@
 #' @inherit gf_point
 #' @inheritParams gf_line
 #' @inheritParams ggstance::geom_barh
+#' @importFrom utils packageVersion
 #'
 #' @param gformula A formula, typically with shape `~ x`.  (`y ~ x` is also possible,
 #'   but typically using one of [gf_col()], [gf_props()], or [gf_percents()] is preferable

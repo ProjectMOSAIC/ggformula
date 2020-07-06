@@ -693,29 +693,28 @@ formula_split <- function(formula) {
   list(formula = formula, condition = condition, facet_type = facet_type)
 }
 
-#' #' @export
-#' match_call <- function(n = 1L, include_missing = FALSE) {
-#'   call <- evalq(match.call(), parent.frame(n))
-#'   formals <- evalq(formals(), parent.frame(n))
-#'
-#'   for(i in setdiff(names(formals), names(call))) {
-#'     if (include_missing || !rlang::is_missing(formals[[i]])) {
-#'       call[i] <- list( formals[[i]] )
-#'     }
-#'   }
-#'   match.call(sys.function(sys.parent()), call)
-#' }
-#'
-#' #' @export
-#' have_arg <-
-#'   function(arg, n = 1L,
-#'            call = evalq(match_call(include_missing = FALSE), parent.frame(n))
-#'   ) {
-#'   arg %in% names(call)
-#' }
+#  #' @export
+#  match_call <- function(n = 1L, include_missing = FALSE) {
+#    call <- evalq(match.call(), parent.frame(n))
+#    formals <- evalq(formals(), parent.frame(n))
+#
+#    for(i in setdiff(names(formals), names(call))) {
+#      if (include_missing || !rlang::is_missing(formals[[i]])) {
+#        call[i] <- list( formals[[i]] )
+#      }
+#    }
+#    match.call(sys.function(sys.parent()), call)
+#  }
+#
+#  #' @export
+#  have_arg <-
+#    function(arg, n = 1L,
+#             call = evalq(match_call(include_missing = FALSE), parent.frame(n))
+#    ) {
+#    arg %in% names(call)
+#  }
 
 
-#' @importFrom utils packageVersion
 
 gf_ingredients <-
   function(formula = NULL, data = NULL,
