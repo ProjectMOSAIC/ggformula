@@ -875,11 +875,17 @@ formula_shape <- function(x) {
   if (x[[1]] == as.symbol("(")) {
     return(0L)
   }
-  if (length(x) == 2L) {
-    return(0L)
+  # this is covered by fall through below now
+  # if (length(x) == 2L) {
+  #   return(0L)
+  # }
+
+  if (length(x) == 3 && as.character(x[[1]]) %in% c('+')) {
+    # treat as binary op and call recusively on lhs and rhs
+    return(c(2L, formula_shape(rlang::f_lhs(x)), formula_shape(rlang::f_rhs(x))))
   }
-  # if we get here, we should have a binary operation
-  return(c(2L, formula_shape(rlang::f_lhs(x)), formula_shape(rlang::f_rhs(x))))
+
+  return(0)
 }
 
 # @param formula a formula describing aesthetics
