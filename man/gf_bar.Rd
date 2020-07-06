@@ -74,7 +74,6 @@ gf_props(
   group,
   linetype,
   size,
-  `NA` = NULL,
   xlab,
   ylab = "proportion",
   title,

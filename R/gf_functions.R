@@ -1,3 +1,5 @@
+utils::globalVariables(c('s', 'p'))
+
 #' @importFrom mosaicCore makeFun
 #' @importFrom stats dnorm
 
@@ -1311,14 +1313,9 @@ gf_props <-
     extras =
       alist(
         alpha = , color = , fill = , group = ,
-        linetype = , size = , ylab = "proportion",
+        linetype = , size = , ylab = "proportion"
       ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = ..count.. / sum(..count..))
-      } else {
-        aes(y = after_stat(props_by_group(count, DENOM)))
-      },
+    aesthetics = aes(y = after_stat(props_by_group(count, DENOM))),
     pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
     denom = ~ PANEL
   )
@@ -1333,12 +1330,7 @@ gf_percents <-
       alpha = , color = , fill = , group = ,
       linetype = , size = , ylab = "percent"
     ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = ..count.. / sum(..count..))
-      } else {
-        aes(y = after_stat(percs_by_group(count, DENOM)))
-      },
+    aesthetics = aes(y = after_stat(percs_by_group(count, DENOM))),
     pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
     denom = ~ PANEL
   )
