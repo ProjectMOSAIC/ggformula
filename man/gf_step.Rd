@@ -160,5 +160,5 @@ if (require(survival) && require(broom)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_step]{ggplot2::geom_step()}}
+\code{\link[ggplot2:geom_path]{ggplot2::geom_step()}}
 }

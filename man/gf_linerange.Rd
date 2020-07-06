@@ -353,7 +353,7 @@ gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
 \seealso{
 \code{\link[ggplot2:geom_linerange]{ggplot2::geom_linerange()}}
 
-\code{\link[ggplot2:geom_pointrange]{ggplot2::geom_pointrange()}}
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}
 
-\code{\link[ggplot2:geom_pointrange]{ggplot2::geom_pointrange()}}, \code{\link[ggplot2:stat_summary]{ggplot2::stat_summary()}}
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}, \code{\link[ggplot2:stat_summary]{ggplot2::stat_summary()}}
 }

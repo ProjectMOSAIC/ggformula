@@ -16,7 +16,8 @@ layer_factory(
   inherit.aes = TRUE,
   check.aes = TRUE,
   data = NULL,
-  layer_fun = quo(ggplot2::layer)
+  layer_fun = quo(ggplot2::layer),
+  ...
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ when aesthetics provided don't match what is expected.}
 
 \item{layer_fun}{The function used to create the layer or a quosure that evaluates
 to such a function.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 A function.

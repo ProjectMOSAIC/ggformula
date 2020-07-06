@@ -4,12 +4,14 @@
 \name{MIpop}
 \alias{MIpop}
 \title{Population of Michigan counties}
-\format{A data frame with populations of Michigan counties.
+\format{
+A data frame with populations of Michigan counties.
 \describe{
 \item{rank}{ Population rank.}
 \item{county}{ County name.}
 \item{population}{ Population (2010 census).}
-}}
+}
+}
 \usage{
 data(MIpop)
 }

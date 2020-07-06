@@ -125,9 +125,9 @@ display.}
 a gg object
 }
 \description{
-\code{geom_segment} draws a straight line between points (x, y) and
+\code{geom_segment()} draws a straight line between points (x, y) and
 (xend, yend). \code{geom_curve} draws a curved line. See the underlying
-drawing function \code{\link[grid:curveGrob]{grid::curveGrob()}} for the parameters that
+drawing function \code{\link[grid:grid.curve]{grid::curveGrob()}} for the parameters that
 control the curve.
 }
 \section{Specifying plot attributes}{
@@ -163,5 +163,5 @@ gf_point(mpg ~ wt, data = mtcars) \%>\%
   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 }
 \seealso{
-\code{\link[ggplot2:geom_curve]{ggplot2::geom_curve()}}
+\code{\link[ggplot2:geom_segment]{ggplot2::geom_curve()}}
 }

@@ -153,5 +153,5 @@ if (require(dplyr) && require(mosaicData)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_col]{ggplot2::geom_col()}}
+\code{\link[ggplot2:geom_bar]{ggplot2::geom_col()}}
 }

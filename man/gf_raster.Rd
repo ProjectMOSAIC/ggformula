@@ -143,5 +143,5 @@ gf_raster(y ~ x, fill = ~z, data = D)
 gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
 }
 \seealso{
-\code{\link[ggplot2:geom_raster]{ggplot2::geom_raster()}}
+\code{\link[ggplot2:geom_tile]{ggplot2::geom_raster()}}
 }

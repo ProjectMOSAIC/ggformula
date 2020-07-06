@@ -214,6 +214,6 @@ gf_hline(color = "orange", yintercept = ~ 20) \%>\%
 }
 \seealso{
 \code{\link[ggplot2:geom_abline]{ggplot2::geom_abline()}},
-\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}},
-\code{\link[ggplot2:geom_hline]{ggplot2::geom_hline()}}
+\code{\link[ggplot2:geom_abline]{ggplot2::geom_vline()}},
+\code{\link[ggplot2:geom_abline]{ggplot2::geom_hline()}}
 }

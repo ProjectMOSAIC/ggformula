@@ -91,7 +91,7 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-\code{geom_bin2d()} uses \code{\link[ggplot2:stat_bin2d]{ggplot2::stat_bin2d()}} to bin the data before using
+\code{geom_bin2d()} uses \code{\link[ggplot2:geom_bin2d]{ggplot2::stat_bin2d()}} to bin the data before using
 \code{\link[=gf_tile]{gf_tile()}} to display the results.
 }
 \section{Specifying plot attributes}{

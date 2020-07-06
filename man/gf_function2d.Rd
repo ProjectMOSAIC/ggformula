@@ -109,7 +109,7 @@ gf_fun_contour(
 \item{resolution}{A numeric vector of length 1 or 2 specifying the
 number of grid points at which the function is evaluated (in each dimension).}
 
-\item{formula}{A formula describing a function of two variables to be plotted.  See \code{\link[mosaic:makeFun]{mosaic::makeFun()}}
+\item{formula}{A formula describing a function of two variables to be plotted.  See \code{\link[mosaic:reexports]{mosaic::makeFun()}}
 for details regarding the conversion from a formula to a function.}
 }
 \value{

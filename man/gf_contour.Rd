@@ -88,13 +88,13 @@ display.}
 a gg object
 }
 \description{
-ggplot2 can not draw true 3d surfaces, but you can use \code{geom_contour}
-and \code{\link[ggplot2:geom_tile]{geom_tile()}} to visualise 3d surfaces in 2d. To be a valid
-surface, the data must contain only a single row for each unique combination
-of the variables mapped to the \code{x} and \code{y} aesthetics. Contouring
+ggplot2 can not draw true 3D surfaces, but you can use \code{geom_contour()},
+\code{geom_contour_filled()}, and \code{\link[ggplot2:geom_tile]{geom_tile()}} to visualise 3D surfaces in 2D.
+To specify a valid surface, the data must contain \code{x}, \code{y}, and \code{z} coordinates,
+and each unique combination of \code{x} and \code{y} can appear exactly once. Contouring
 tends to work best when \code{x} and \code{y} form a (roughly) evenly
 spaced grid. If your data is not evenly spaced, you may want to interpolate
-to a grid before visualising.
+to a grid before visualising, see \code{\link[ggplot2:geom_density_2d]{geom_density_2d()}}.
 }
 \section{Specifying plot attributes}{
 

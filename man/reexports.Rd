@@ -17,9 +17,9 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggforce}{\code{\link[ggforce]{geom_sina}}, \code{\link[ggforce]{stat_sina}}, \code{\link[ggforce]{StatSina}}}
+  \item{ggforce}{\code{\link[ggforce:ggforce-extensions]{StatSina}}, \code{\link[ggforce]{geom_sina}}, \code{\link[ggforce:geom_sina]{stat_sina}}}
 
-  \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
+  \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}}
 
   \item{mosaicCore}{\code{\link[mosaicCore]{df_stats}}, \code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{na.warn}}}
 }}

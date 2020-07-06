@@ -104,7 +104,7 @@ display.}
 a gg object
 }
 \description{
-A rotated version of \code{\link[ggplot2:geom_errorbar]{geom_errorbar()}}.
+A rotated version of \code{\link[ggplot2:geom_linerange]{geom_errorbar()}}.
 }
 \section{Specifying plot attributes}{
 

@@ -133,5 +133,5 @@ gf_point(eruptions ~ waiting, data = faithful) \%>\%
     data = data.frame(), inherit = FALSE)
 }
 \seealso{
-\code{\link[ggplot2:geom_rect]{ggplot2::geom_rect()}}
+\code{\link[ggplot2:geom_tile]{ggplot2::geom_rect()}}
 }

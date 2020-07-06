@@ -103,7 +103,7 @@ display.}
 \description{
 For each x value, \code{geom_ribbon()} displays a y interval defined
 by \code{ymin} and \code{ymax}. \code{geom_area()} is a special case of
-\code{geom_ribbon}, where the \code{ymin} is fixed to 0 and \code{y} is used instead
+\code{geom_ribbon()}, where the \code{ymin} is fixed to 0 and \code{y} is used instead
 of \code{ymax}.
 }
 \examples{
@@ -138,5 +138,5 @@ if (require(mosaicData) && require(dplyr)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}
 }

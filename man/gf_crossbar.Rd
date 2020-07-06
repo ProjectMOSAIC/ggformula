@@ -203,5 +203,5 @@ if (require(mosaicData) && require(dplyr)) {
 
 }
 \seealso{
-\code{\link[ggplot2:geom_crossbar]{ggplot2::geom_crossbar()}}
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_crossbar()}}
 }

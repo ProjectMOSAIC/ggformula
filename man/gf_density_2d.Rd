@@ -105,9 +105,9 @@ for mapping linetype.}
 \item{size}{A numeric size or a formula used for mapping size.}
 
 \item{contour}{If \code{TRUE}, contour the results of the 2d density
-estimation}
+estimation.}
 
-\item{n}{number of grid points in each direction}
+\item{n}{Number of grid points in each direction.}
 
 \item{h}{Bandwidth (vector of length two). If \code{NULL}, estimated
 using \code{\link[MASS:bandwidth.nrd]{MASS::bandwidth.nrd()}}.}
@@ -158,7 +158,9 @@ a gg object
 \description{
 Perform a 2D kernel density estimation using \code{\link[MASS:kde2d]{MASS::kde2d()}} and
 display the results with contours. This can be useful for dealing with
-overplotting. This is a 2d version of \code{\link[ggplot2:geom_density]{geom_density()}}.
+overplotting. This is a 2D version of \code{\link[ggplot2:geom_density]{geom_density()}}. \code{geom_density_2d()}
+draws contour lines, and \code{geom_density_2d_filled()} draws filled contour
+bands.
 }
 \section{Specifying plot attributes}{
 
