@@ -40,6 +40,7 @@ NA
 #' @param data A data frame or `NULL` or `NA`.
 #' @param layer_fun The function used to create the layer or a quosure that evaluates
 #'   to such a function.
+#' @param ... Additional arguments.
 #' @return A function.
 #' @export
 
@@ -691,7 +692,6 @@ formula_split <- function(formula) {
   list(formula = formula, condition = condition, facet_type = facet_type)
 }
 
-#' @export
 match_call <- function(n = 1L, include_missing = FALSE) {
   call <- evalq(match.call(expand.dots = TRUE), parent.frame(n))
   formals <- evalq(formals(), parent.frame(n))
@@ -704,7 +704,6 @@ match_call <- function(n = 1L, include_missing = FALSE) {
   match.call(sys.function(sys.parent()), call)
 }
 
-#' @export
 have_arg <- function(arg, n = 1L) {
   call <- evalq(match_call(include_missing = FALSE), parent.frame(n))
   arg %in% names(call)
