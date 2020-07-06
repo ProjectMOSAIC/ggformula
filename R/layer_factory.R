@@ -5,8 +5,9 @@ utils::globalVariables("role")
 #' @importFrom stringr str_split str_match
 #' @importFrom stats as.formula
 #' @importFrom utils modifyList
-#' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
+#' @importFrom rlang is_character exprs f_rhs f_lhs is_formula is_null enquo
 #' @importFrom rlang get_expr
+#' @importFrom rlang is_missing
 #' @import ggplot2
 NA
 
@@ -217,7 +218,7 @@ layer_factory <-
       }
 
       # If no ..., be sure to remove things not in the formals list
-      if (!"..." %in% names(formals(layer_fun))) {
+      if (! "..." %in% names(formals(layer_fun))) {
         layer_args <- cull_list(layer_args, names(formals(layer_fun)))
       }
 
@@ -267,19 +268,19 @@ layer_factory <-
         }
       }
 
-      if (have_arg("ylab")) {
+      if (! rlang::is_missing(ylab)) {
         p <- p + ggplot2::ylab(ylab)
       }
-      if (have_arg("xlab")) {
+      if (! rlang::is_missing(xlab)) {
         p <- p + ggplot2::xlab(xlab)
       }
-      if (have_arg("title")) {
+      if (! rlang::is_missing(title)) {
         p <- p + ggplot2::labs(title = title)
       }
-      if (have_arg("subtitle")) {
+      if (! rlang::is_missing(subtitle)) {
         p <- p + ggplot2::labs(subtitle = subtitle)
       }
-      if (have_arg("caption")) {
+      if (! rlang::is_missing(caption)) {
         p <- p + ggplot2::labs(caption = caption)
       }
       p
@@ -692,22 +693,26 @@ formula_split <- function(formula) {
   list(formula = formula, condition = condition, facet_type = facet_type)
 }
 
-match_call <- function(n = 1L, include_missing = FALSE) {
-  call <- evalq(match.call(expand.dots = TRUE), parent.frame(n))
-  formals <- evalq(formals(), parent.frame(n))
-
-  for(i in setdiff(names(formals), names(call))) {
-    if (include_missing || !rlang::is_missing(formals[[i]])) {
-      call[i] <- list( formals[[i]] )
-    }
-  }
-  match.call(sys.function(sys.parent()), call)
-}
-
-have_arg <- function(arg, n = 1L) {
-  call <- evalq(match_call(include_missing = FALSE), parent.frame(n))
-  arg %in% names(call)
-}
+#' #' @export
+#' match_call <- function(n = 1L, include_missing = FALSE) {
+#'   call <- evalq(match.call(), parent.frame(n))
+#'   formals <- evalq(formals(), parent.frame(n))
+#'
+#'   for(i in setdiff(names(formals), names(call))) {
+#'     if (include_missing || !rlang::is_missing(formals[[i]])) {
+#'       call[i] <- list( formals[[i]] )
+#'     }
+#'   }
+#'   match.call(sys.function(sys.parent()), call)
+#' }
+#'
+#' #' @export
+#' have_arg <-
+#'   function(arg, n = 1L,
+#'            call = evalq(match_call(include_missing = FALSE), parent.frame(n))
+#'   ) {
+#'   arg %in% names(call)
+#' }
 
 
 #' @importFrom utils packageVersion
