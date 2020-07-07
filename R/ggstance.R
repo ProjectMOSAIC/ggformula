@@ -1,6 +1,12 @@
 
 #' Formula interface to geom_barh()
 #'
+#' @section Horizontal Geoms:
+#' There are two ways to obtain "horizontal" geoms:
+#' (1) The ggstance package provides a set of "horizontal" geoms and positions;
+#' (2) Thee ggplot2 now provides an `orientation` argument for "native" horizontal
+#' geoms and positions.  ggformula supports both.
+#'
 #' @inherit ggstance::geom_barh description references
 #' @inherit gf_point
 #' @inheritParams gf_line
@@ -20,14 +26,19 @@
 #' @export
 #' @examples
 #' gf_barh(~Diet, data = ChickWeight)
+#' gf_bar(Diet ~ ., data = ChickWeight, orientation = 'y' )
 #' gf_barh(~substance, data = mosaicData::HELPrct, fill = ~sex)
+#' gf_bar(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, orientation = 'y')
 #' gf_barh(~substance,
 #'   data = mosaicData::HELPrct, fill = ~sex,
 #'   position = position_dodgev()
 #' )
-#' # gf_counts() is another name for gf_bar()
-#' gf_counts(~substance, data = mosaicData::HELPrct, fill = ~sex)
-#' # gf_props() and gf_percents() use proportions or percentages instead of counts
+#' # gf_countsh() is another name for gf_barh()
+#' gf_countsh(~Diet, data = ChickWeight)
+#'
+#' # gf_propsh() and gf_percentsh() use proportions or percentages instead of counts
+#' gf_propsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = position_dodgev())
+#' gf_props(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = position_dodge(), orientation = 'y')
 #' gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex, position = position_dodge())
 #' gf_percents(~substance, data = mosaicData::HELPrct, fill = ~sex, position = position_dodge())
 #'
@@ -82,12 +93,7 @@ gf_propsh <-
         alpha = , color = , fill = , group = ,
         linetype = , size = , xlab = "proportion"
       ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(x = ..count.. / sum(..count..))
-      } else {
-        aes(x = after_stat(props_by_group(count, DENOM)))
-      },
+    aesthetics = aes(x = after_stat(props_by_group(count, DENOM))),
     pre = { aesthetics[['x']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
     denom = ~ PANEL
   )
@@ -102,17 +108,18 @@ gf_percentsh <-
       alpha = , color = , fill = , group = ,
       linetype = , size = , xlab = "percent"
     ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(x = ..count.. / sum(..count..))
-      } else {
-        aes(x = after_stat(percs_by_group(count, DENOM)))
-      },
+    aesthetics = aes(x = after_stat(percs_by_group(count, DENOM))),
     pre = { aesthetics[['x']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
     denom = ~ PANEL
   )
 
 #' Formula interface to geom_boxploth()
+#'
+#' @section Horizontal Geoms:
+#' There are two ways to obtain "horizontal" geoms:
+#' (1) The ggstance package provides a set of "horizontal" geoms and positions;
+#' (2) Thee ggplot2 now provides an `orientation` argument for "native" horizontal
+#' geoms and positions.  ggformula supports both.
 #'
 #' @inherit ggstance::geom_boxploth description references
 #' @inherit gf_line
@@ -129,11 +136,17 @@ gf_percentsh <-
 #' @export
 #' @examples
 #' gf_boxploth(sex ~ age, data = mosaicData::HELPrct, varwidth = TRUE)
+#' gf_boxplot(sex ~ age, data = mosaicData::HELPrct, varwidth = TRUE, orientation = 'y')
 #' gf_boxploth(substance ~ age, data = mosaicData::HELPrct, color = ~sex)
 #' # move boxplots away a bit by adjusting dodge
 #' gf_boxploth(substance ~ age,
 #'   data = mosaicData::HELPrct, color = ~sex,
 #'   position = position_dodgev(height = 0.9)
+#' )
+#' # gf_boxplot guesses horizontal because substance is categorical
+#' gf_boxplot(substance ~ age,
+#'   data = mosaicData::HELPrct, color = ~sex,
+#'   position = position_dodge(width = 0.9)
 #' )
 #' gf_boxploth(substance ~ age, data = mosaicData::HELPrct, color = ~sex, outlier.color = "gray50")
 #' # longer whiskers
@@ -152,12 +165,7 @@ gf_percentsh <-
 #'   gf_boxploth(32 ~ eruptions, alpha = 0, width = 2)
 gf_boxploth <-
   layer_factory(
-    aes_form =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        y ~ x
-      } else {
-        list(y ~ x, ~x, y ~ .)
-      },
+    aes_form = list(y ~ x, ~x, y ~ .),
     geom = "boxploth",
     stat = "boxploth",
     position = "dodgev",
@@ -171,10 +179,18 @@ gf_boxploth <-
   )
 
 #' @rdname gf_histogram
+#'
+#' @section Horizontal Geoms:
+#' There are two ways to obtain "horizontal" geoms:
+#' (1) The ggstance package provides a set of "horizontal" geoms and positions;
+#' (2) Thee ggplot2 now provides an `orientation` argument for "native" horizontal
+#' geoms and positions.  ggformula supports both.
+#'
 #' @export
 #' @examples
 #'
 #' gf_histogramh(~x, bins = 30)
+#' gf_histogram(x ~., bins = 30)
 #' gf_histogramh(x ~ ., bins = 30)
 #' gf_histogramh(x ~ stat(density), bins = 30)
 gf_histogramh <-
@@ -194,9 +210,8 @@ gf_histogramh <-
 #' @export
 #' @examples
 #' gf_dhistogramh(~x, bins = 30)
+#' gf_dhistogram(x ~ ., bins = 30)
 #' gf_dhistogramh(x ~ ., bins = 30)
-#' # better to use gf_histogramh() here, but this works
-#' gf_dhistogramh(x ~ stat(count), bins = 30)
 gf_dhistogramh <-
   layer_factory(
     geom = "barh", stat = "binh", position = "stackv",
@@ -211,14 +226,20 @@ gf_dhistogramh <-
 #' @export
 #' @examples
 #' gf_linerangeh(date ~ low_temp + high_temp | ~city,
-#'   data = Weather,
+#'   data = mosaicData::Weather,
 #'   color = ~avg_temp
+#' ) %>%
+#'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+#' gf_linerange(date ~ low_temp + high_temp | ~city,
+#'   data = mosaicData::Weather,
+#'   color = ~avg_temp,
+#'   orientation = 'y'
 #' ) %>%
 #'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 gf_linerangeh <-
   layer_factory(
     geom = "linerangeh",
-    aes_form = y ~ xmin + xmax,
+    aes_form = list(y ~ xmin + xmax),
     extras = alist(alpha = , color = , group = , linetype = , size = )
   )
 

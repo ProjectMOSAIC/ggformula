@@ -358,10 +358,16 @@ gf_props(~substance,
   data = mosaicData::HELPrct, fill = ~sex,
   position = position_dodge()
 )
-gf_props(~substance,
+gf_props(substance ~ .,
   data = mosaicData::HELPrct, fill = ~sex,
-  position = position_dodge()
+  position = position_dodge(),
+  orientation = 'y'
 )
+gf_propsh(substance ~ .,
+  data = mosaicData::HELPrct, fill = ~sex,
+  position = position_dodgev(),
+)
+
 gf_percents(~substance,
   data = mosaicData::HELPrct, fill = ~sex,
   position = position_dodge()

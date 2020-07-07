@@ -126,7 +126,6 @@ in another.
 
 if (require(maps) && require(maptools) &&
   require(sf) && require(rgeos) &&
-  utils::packageVersion("ggplot2") > "2.2.1") {
   US <- sf::st_as_sf(map("state", plot = FALSE, fill = TRUE))
   gf_sf(fill = ~ factor(nchar(ID)), data = US) \%>\%
     gf_refine(coord_sf())
@@ -148,7 +147,6 @@ if (require(maps) && require(maptools) &&
       coord_sf(), theme_bw(),
       scale_fill_continuous(name = "population (thousands)", trans = "log10")
     )
-}
 }
 \seealso{
 \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}

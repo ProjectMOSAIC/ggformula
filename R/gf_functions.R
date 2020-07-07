@@ -593,12 +593,7 @@ gf_hex <-
 #' )
 gf_boxplot <-
   layer_factory(
-    aes_form =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        y ~ x
-      } else {
-        list(y ~ x, ~y, y ~ .)
-      },
+    aes_form = list(y ~ x, ~ x, y ~ .),
     geom = "boxplot",
     stat = "boxplot",
     position = "dodge",
@@ -1028,14 +1023,10 @@ gf_frame <-
 gf_histogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(~x, y ~ x),
+    aes_form = list(~x, y ~ ., y ~ x),
     extras = alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , size = ),
     note =
-      if (packageVersion("ggplot2") <= "2.2.1") {
-        "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.., but see gf_dhistogram()."
-      } else {
-        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount), but see gf_dhistogram()."
-      }
+        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount), but see gf_dhistogram().",
   )
 
 #' @rdname gf_histogram
@@ -1043,24 +1034,15 @@ gf_histogram <-
 gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(~x, y ~ x),
+    aes_form = list(~x, y ~ .,  y ~ x),
     extras =
       alist(
         bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
         linetype = , size =
         ),
     note =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
-      } else {
-        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount)"
-      },
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = ..density..)
-      } else {
-        aes(y = stat(density))
-      }
+        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount)",
+    aesthetics = aes(y = stat(density))
   )
 
 #' Formula interface to stat_density()
@@ -1094,18 +1076,13 @@ gf_dhistogram <-
 gf_density <-
   layer_factory(
     geom = "area", stat = "density",
-    aes_form = ~x,
+    aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = , fill = ,
       group = , linetype = , size = ,
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = ..density..)
-      } else {
-        aes(y = stat(density))
-      }
+    aesthetics = aes(y = stat(density))
   )
 
 #' @rdname gf_density
@@ -1114,18 +1091,13 @@ gf_density <-
 gf_dens <-
   layer_factory(
     geom = "line", stat = "density",
-    aes_form = ~x,
+    aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = ,
       group = , linetype = , size = ,
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        aes(y = ..density..)
-      } else {
-        aes(y = stat(density))
-      }
+    aesthetics = aes(y = stat(density))
   )
 
 #' Formula interface to geom_dotplot()
@@ -1202,10 +1174,16 @@ gf_dotplot <-
 #'   data = mosaicData::HELPrct, fill = ~sex,
 #'   position = position_dodge()
 #' )
-#' gf_props(~substance,
+#' gf_props(substance ~ .,
 #'   data = mosaicData::HELPrct, fill = ~sex,
-#'   position = position_dodge()
+#'   position = position_dodge(),
+#'   orientation = 'y'
 #' )
+#' gf_propsh(substance ~ .,
+#'   data = mosaicData::HELPrct, fill = ~sex,
+#'   position = position_dodgev(),
+#' )
+#'
 #' gf_percents(~substance,
 #'   data = mosaicData::HELPrct, fill = ~sex,
 #'   position = position_dodge()
@@ -1247,7 +1225,7 @@ gf_dotplot <-
 gf_bar <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~x, y ~ x),
+    aes_form = list(~x, y ~ ., y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL
@@ -1260,7 +1238,7 @@ gf_bar <-
 gf_counts <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = ~x,
+    aes_form = list(~x, y ~.),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL
@@ -1309,7 +1287,7 @@ props_by_group <-
 gf_props <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~x),
+    aes_form = list(~x, y ~ ., y ~ x),
     extras =
       alist(
         alpha = , color = , fill = , group = ,
@@ -1325,7 +1303,7 @@ gf_props <-
 gf_percents <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~x),
+    aes_form = list(~x, y ~ .),
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , size = , ylab = "percent"
@@ -1353,27 +1331,21 @@ gf_percents <-
 #' gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
 #'   gf_freqpoly(~Sepal.Length, data = iris, color = ~Species, bins = 20)
 #' gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 20)
-#' if (utils::packageVersion("ggplot2") > "2.2.1") {
-#'   gf_dens(~Sepal.Length, data = iris, color = "navy") %>%
-#'     gf_freqpoly(stat(density) ~ Sepal.Length,
-#'       data = iris,
-#'       color = "red", bins = 20
-#'     )
-#' }
+#' gf_dens(~Sepal.Length, data = iris, color = "navy") %>%
+#'   gf_freqpoly(stat(density) ~ Sepal.Length,
+#'     data = iris,
+#'     color = "red", bins = 20
+#'   )
 gf_freqpoly <-
   layer_factory(
     geom = "path", stat = "bin",
-    aes_form = list(~x, y ~ x),
+    aes_form = list(~x, y ~ .),
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       binwidth = , bins = , center = , boundary =
       ),
     note =
-      if (utils::packageVersion("ggplot2") <= "2.2.1") {
-        "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
-      } else {
         "y may be omitted or stat(density) or stat(count) or stat(ndensity) or stant(ncount)."
-      }
   )
 
 #' Formula interface to geom_qq()
@@ -1457,7 +1429,7 @@ gf_qqstep <-
 gf_ecdf <-
   layer_factory(
     geom = "step", stat = "ecdf", position = "identity",
-    aes_form = ~ x,
+    aes_form = list(~ x, y ~ .),
     extras = alist(group = , pad = , n = NULL)
   )
 
@@ -1619,7 +1591,8 @@ gf_contour <-
 #'   gf_facet_grid(city ~ .)
 gf_ribbon <-
   layer_factory(
-    geom = "ribbon", aes_form = ymin + ymax ~ x,
+    geom = "ribbon",
+    aes_form = list(ymin + ymax ~ x, y ~ xmin + xmax),
     extras = list(alpha = 0.3)
   )
 
@@ -1715,7 +1688,7 @@ gf_segment <-
 gf_linerange <-
   layer_factory(
     geom = "linerange",
-    aes_form = ymin + ymax ~ x,
+    aes_form = list(ymin + ymax ~ x, y ~ xmin + xmax),
     extras = alist(alpha = , color = , group = , linetype = , size = )
   )
 
@@ -1760,7 +1733,7 @@ gf_linerange <-
 gf_pointrange <-
   layer_factory(
     geom = "pointrange",
-    aes_form = y + ymin + ymax ~ x,
+    aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       fatten = 2
@@ -1904,7 +1877,7 @@ gf_summary <-
 gf_crossbar <-
   layer_factory(
     geom = "crossbar",
-    aes_form = y + ymin + ymax ~ x,
+    aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
     extras = alist(
       alpha = , color = , group = , linetype = , size = , fatten = 2.5
     )
@@ -1955,7 +1928,7 @@ gf_crossbar <-
 gf_errorbar <-
   layer_factory(
     geom = "errorbar",
-    aes_form = ymin + ymax ~ x,
+    aes_form = list(ymin + ymax ~ x, y ~ xmin + xmax),
     inherit.aes = TRUE, # changed from FALSE to TRUE after aesthetic renaming in ggplot2
     check.aes = FALSE,
     extras = alist(
@@ -2303,7 +2276,6 @@ gf_sina <-
 #'
 #' if (require(maps) && require(maptools) &&
 #'   require(sf) && require(rgeos) &&
-#'   utils::packageVersion("ggplot2") > "2.2.1") {
 #'   US <- sf::st_as_sf(map("state", plot = FALSE, fill = TRUE))
 #'   gf_sf(fill = ~ factor(nchar(ID)), data = US) %>%
 #'     gf_refine(coord_sf())
@@ -2325,17 +2297,7 @@ gf_sina <-
 #'       coord_sf(), theme_bw(),
 #'       scale_fill_continuous(name = "population (thousands)", trans = "log10")
 #'     )
-#' }
 gf_sf <-
-  if (utils::packageVersion("ggplot2") <= "2.2.1") {
-    function(object = NULL, gformula = NULL, data = NULL, alpha,
-                 color, fill, group, linetype, size, geometry, xlab,
-                 ylab, title, subtitle, caption, stat = "sf", position
-                 = "identity", show.legend = NA, show.help = NULL,
-                 inherit = TRUE, environment = parent.frame(), ...) {
-      message("gf_sf() requires a newer version of ggplot2.")
-    }
-  } else {
     layer_factory(
       layer_fun = quo(ggplot2::geom_sf),
       geom = "sf", stat = "sf",
@@ -2351,7 +2313,6 @@ gf_sf <-
         }
       }
     )
-  }
 
 
 #' Create an "empty" plot
