@@ -129,17 +129,25 @@ test_that(
 
 test_that(
   "gf_barh() and gf_colh()", {
-    vdiffr::expect_doppelganger(
-      "gf_barh1",
-      gf_barh(Species ~ ., data = iris)
-    )
     SomeData <- data.frame(
       group = LETTERS[1:3],
       count = c(20, 25, 18)
     )
     vdiffr::expect_doppelganger(
+      "gf_barh1",
+      gf_barh(substance ~ ., data = mosaicData::HELPrct)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_barh1a",
+      gf_bar(substance ~ ., data = mosaicData::HELPrct)
+    )
+    vdiffr::expect_doppelganger(
       "gf_colh1",
       gf_colh(group ~ count, data = SomeData)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_colh1a",
+      gf_col(group ~ count, data = SomeData)
     )
   }
 )
@@ -241,30 +249,54 @@ test_that(
 )
 
 test_that(
-  "gf_countsh(), gf_percentssh(), gf_propssh()", {
+  "gf_countsh(), gf_percentsh(), gf_propsh()", {
     vdiffr::expect_doppelganger(
       "gf_countsh1",
       gf_countsh(~substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_countsh1a",
+      gf_counts(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
     )
     vdiffr::expect_doppelganger(
       "gf_countsh2",
       gf_countsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
     )
     vdiffr::expect_doppelganger(
+      "gf_countsh2a",
+      gf_counts(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
+    )
+    vdiffr::expect_doppelganger(
       "gf_percentsh1",
       gf_percentsh(~substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_percentsh1a",
+      gf_percents(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
     )
     vdiffr::expect_doppelganger(
       "gf_percentsh2",
       gf_percentsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
     )
     vdiffr::expect_doppelganger(
+      "gf_percentsh2a",
+      gf_percents(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
+    )
+    vdiffr::expect_doppelganger(
       "gf_propsh1",
       gf_propsh(~substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
     )
     vdiffr::expect_doppelganger(
+      "gf_propsh1a",
+      gf_props(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
+    )
+    vdiffr::expect_doppelganger(
       "gf_propsh2",
       gf_propsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_propsh2a",
+      gf_props(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
     )
   }
 )
@@ -355,6 +387,15 @@ test_that(
         gf_facet_grid(sex ~ .)
     )
     vdiffr::expect_doppelganger(
+      "gf_pointrangeh1a",
+      gf_jitter(substance ~ age,
+                data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
+      ) %>%
+        gf_pointrange(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_facet_grid(sex ~ .)
+    )
+    vdiffr::expect_doppelganger(
       "gf_errorbarh1",
       gf_jitter(substance ~ age,
                 data = mosaicData::HELPrct, seed = 123,
@@ -364,12 +405,30 @@ test_that(
         gf_facet_grid(sex ~ .)
     )
     vdiffr::expect_doppelganger(
+      "gf_errorbarh1a",
+      gf_jitter(substance ~ age,
+                data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
+      ) %>%
+        gf_errorbar(substance ~ lo + hi, data = HELP2, inherit = FALSE) %>%
+        gf_facet_grid(sex ~ .)
+    )
+    vdiffr::expect_doppelganger(
       "gf_crossbarh1",
       gf_jitter(substance ~ age,
                 data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
       ) %>%
         gf_crossbarh(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_facet_grid(sex ~ .)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_crossbarh1a",
+      gf_jitter(substance ~ age,
+                data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
+      ) %>%
+        gf_crossbar(substance ~ mean.age + lo + hi, data = HELP2) %>%
         gf_facet_grid(sex ~ .)
     )
   }
@@ -610,8 +669,16 @@ test_that(
       gf_dhistogramh(Sepal.Length ~ ., data = iris)
     )
     vdiffr::expect_doppelganger(
+      "gf_dhistogramh1a",
+      gf_dhistogram(Sepal.Length ~ ., data = iris)
+    )
+    vdiffr::expect_doppelganger(
       "gf_dhistogramh2",
       gf_dhistogramh(Sepal.Length ~ stat(ndensity), data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dhistogramh2a",
+      gf_dhistogram(Sepal.Length ~ stat(ndensity), data = iris)
     )
   }
 )
