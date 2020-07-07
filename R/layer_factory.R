@@ -283,6 +283,7 @@ layer_factory <-
       if (! rlang::is_missing(caption)) {
         p <- p + ggplot2::labs(caption = caption)
       }
+      class(p) <- unique(c("gf_ggplot", class(p)))
       p
     }
   formals(res) <-
