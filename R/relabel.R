@@ -40,7 +40,7 @@ get_labels <- function(object, ...) {
 #' @rdname get_labels
 #' @export
 get_labels.data.frame <- function(object, ...) {
-  sapply(object, get_labels)
+  lapply(object, get_labels)
 }
 
 #' @rdname get_labels
@@ -73,6 +73,7 @@ set_labels.default <- function(object, lab = NULL, ...) {
 #' @rdname get_labels
 #' @export
 set_labels.data.frame <- function(object, lab, ...) {
+  lab <- as.list(lab)
   for (n in names(lab)) {
     if (! is.null(object[[n]])) {
       attr(object[[n]], "label") <- lab[[n]]
