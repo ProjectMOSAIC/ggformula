@@ -1,0 +1,106 @@
+
+#' Extract labels from a labeled object
+#'
+#' Some packages like expss provide mechanisms for providing longer labels to R objects.
+#' These labels can be used when labeling plots and tables, for example, without requiring
+#' long or awkward variable names.  This is an experimental feature and currently only supports
+#' expss or any other system that stores a label in the `label` attribute of a vector.
+#'
+#' @param object An R object, potentially labelled.
+#' @param ... Additional arguments. Ignored in existing methods.
+#' @return The label(s) for the object.  If `object` is a data frame,
+#'   labels are extracted from each variable and returned as a named list.
+#'   If there are no labels, `NULL` is returned.
+#'
+#' @examples
+#' KF <- mosaicData::KidsFeet
+#' attr(KF$length, 'label') = 'foot length (cm)'
+#' attr(KF$width, 'label') = 'foot width (cm)'
+#' gf_point(length ~ width, data = KF)
+#' get_labels(KF)
+#'
+#'
+#' @export
+get_labels <- function(object, ...) {
+  UseMethod('get_labels')
+}
+
+#' @export
+get_labels.data.frame <- function(object, ...) {
+  sapply(object, get_labels)
+}
+
+#' @export
+get_labels.labelled <- function(object, ...) {
+  attr(object, "label")
+}
+
+#' @export
+get_labels.default <- function(object, ...) {
+  attr(object, "label")
+}
+
+#' Modify plot labeling
+#'
+#' Some packages like expss provide mechanisms for providing longer labels to R objects.
+#' These labels can be used when labeling plots and tables, for example, without requiring
+#' long or awkward variable names.  This is an experimental feature and currently only supports
+#' expss or any other system that stores a label in the `label` attribute of a vector.
+#'
+#' @param plot A ggplot.
+#' @param labels A named list of labels.
+#' @return A plot with potentially modified labels.
+#' @examples
+#'
+#' labels <- list(width = "width of foot (cm)", length = "length of foot (cm)",
+#'   domhand = "dominant hand")
+#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) %>%
+#'   gf_relabel(labels)
+#'
+#' # Alternatively, we can store labels with data.
+#' KF <- mosaicData::KidsFeet
+#' attr(KF$length, 'label') = 'foot length (cm)'
+#' attr(KF$width, 'label') = 'foot width (cm)'
+#' gf_point(length ~ width, data = KF)
+#' gf_density2d(length ~ width, data = KF)
+#' get_labels(KF)
+#'
+#'
+#' @export
+gf_relabel <- function(plot, labels = get_labels(plot$data)) {
+  for (label_name in names(plot$labels)) {
+    plot$labels[[label_name]] <-
+      labels[[plot$labels[[label_name]]]] %||% plot$labels[[label_name]]
+  }
+  plot
+}
+
+#' @rdname get_labels
+#' @param x A ggplot.
+#' @export
+
+print.gf_ggplot <- function(x, labels = get_labels(x$data), ...) {
+  x <- gf_relabel(x, labels)
+  NextMethod()
+}
+
+#  #
+#  #' Use expss labels to relabel a ggplot.
+#  #'
+#  #' @param object A ggplot.
+#  #' @param ... Additional arguments passed along `expss::use_labels
+#  #' @export
+#  #'
+#  use_labels <- function(object, ...) {
+#    UseMethod('use_labels')
+#  }
+#
+#  #' @export
+#  use_labels.default <- function(object, ...) {
+#    expss::use_labels(object, ...)
+#  }
+#
+#  #' @export
+#  use_labels.ggplot <- function(object, ...) {
+#    gf_relabel(object, ...)
+#  }
