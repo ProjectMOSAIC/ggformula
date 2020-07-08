@@ -65,4 +65,5 @@ Collate:
     'reexports.R'
     'scales.R'
     'utils.R'
+    'relabel.R'
     'zzz.R'
