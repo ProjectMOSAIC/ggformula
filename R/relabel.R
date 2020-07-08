@@ -13,6 +13,7 @@
 #'   labels are extracted from each variable and returned as a named list.
 #'   If there are no labels, `NULL` is returned.
 #'
+#' @export
 #' @examples
 #' KF <-
 #'   mosaicData::KidsFeet %>%
@@ -29,10 +30,7 @@
 #' KF %>%
 #'   gf_point(length ~ width, color = ~ domhand)
 #' get_labels(KF)
-#'
-#'
-#' @rdname get_labels
-#' @export
+
 get_labels <- function(object, ...) {
   UseMethod('get_labels')
 }
@@ -60,18 +58,21 @@ get_labels.default <- function(object, ...) {
 #'   or a named list of strings
 #'   providing multiple labels (when `object` is a data frame, for example).
 #' @export
+
 set_labels <- function(object, ...) {
   UseMethod("set_labels")
 }
 
 #' @rdname get_labels
 #' @export
+
 set_labels.default <- function(object, lab = NULL, ...) {
   attr(object, 'label') <- lab
 }
 
 #' @rdname get_labels
 #' @export
+
 set_labels.data.frame <- function(object, lab, ...) {
   lab <- as.list(lab)
   for (n in names(lab)) {
