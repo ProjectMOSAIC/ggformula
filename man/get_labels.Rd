@@ -2,10 +2,28 @@
 % Please edit documentation in R/relabel.R
 \name{get_labels}
 \alias{get_labels}
+\alias{get_labels.data.frame}
+\alias{get_labels.labelled}
+\alias{get_labels.default}
+\alias{set_labels}
+\alias{set_labels.default}
+\alias{set_labels.data.frame}
 \alias{print.gf_ggplot}
-\title{Extract labels from a labeled object}
+\title{Set and extract labels from a labeled object}
 \usage{
 get_labels(object, ...)
+
+\method{get_labels}{data.frame}(object, ...)
+
+\method{get_labels}{labelled}(object, ...)
+
+\method{get_labels}{default}(object, label, ...)
+
+set_labels(object, ...)
+
+\method{set_labels}{default}(object, label = NULL, ...)
+
+\method{set_labels}{data.frame}(object, label, ...)
 
 \method{print}{gf_ggplot}(x, labels = get_labels(x$data), ...)
 }
@@ -13,6 +31,10 @@ get_labels(object, ...)
 \item{object}{An R object, potentially labelled.}
 
 \item{...}{Additional arguments. Ignored in existing methods.}
+
+\item{label}{A string providing a label (when \code{object} is a vector, for example)
+or a named list of strings
+providing multiple labels (when \code{object} is a data frame, for example).}
 
 \item{x}{A ggplot.}
 }
@@ -28,10 +50,20 @@ long or awkward variable names.  This is an experimental feature and currently o
 expss or any other system that stores a label in the \code{label} attribute of a vector.
 }
 \examples{
-KF <- mosaicData::KidsFeet
-attr(KF$length, 'label') = 'foot length (cm)'
-attr(KF$width, 'label') = 'foot width (cm)'
-gf_point(length ~ width, data = KF)
+KF <-
+  mosaicData::KidsFeet \%>\%
+  set_labels(
+    list(
+      length      = 'foot length (cm)',
+      width       = 'foot width (cm)',
+      birthmonth  = 'birth month',
+      birthyear   = 'birth year',
+      biggerfoot  = 'bigger foot',
+      domhand     = 'dominant hand'
+    )
+  )
+KF \%>\%
+  gf_point(length ~ width, color = ~domhand)
 get_labels(KF)
 
 

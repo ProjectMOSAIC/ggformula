@@ -1,11 +1,12 @@
 
-#' Extract labels from a labeled object
+#' Set and extract labels from a labeled object
 #'
 #' Some packages like expss provide mechanisms for providing longer labels to R objects.
 #' These labels can be used when labeling plots and tables, for example, without requiring
 #' long or awkward variable names.  This is an experimental feature and currently only supports
 #' expss or any other system that stores a label in the `label` attribute of a vector.
 #'
+#' @rdname get_labels
 #' @param object An R object, potentially labelled.
 #' @param ... Additional arguments. Ignored in existing methods.
 #' @return The label(s) for the object.  If `object` is a data frame,
@@ -13,31 +14,71 @@
 #'   If there are no labels, `NULL` is returned.
 #'
 #' @examples
-#' KF <- mosaicData::KidsFeet
-#' attr(KF$length, 'label') = 'foot length (cm)'
-#' attr(KF$width, 'label') = 'foot width (cm)'
-#' gf_point(length ~ width, data = KF)
+#' KF <-
+#'   mosaicData::KidsFeet %>%
+#'   set_labels(
+#'     list(
+#'       length      = 'foot length (cm)',
+#'       width       = 'foot width (cm)',
+#'       birthmonth  = 'birth month',
+#'       birthyear   = 'birth year',
+#'       biggerfoot  = 'bigger foot',
+#'       domhand     = 'dominant hand'
+#'     )
+#'   )
+#' KF %>%
+#'   gf_point(length ~ width, color = ~domhand)
 #' get_labels(KF)
 #'
 #'
+#' @rdname get_labels
 #' @export
 get_labels <- function(object, ...) {
   UseMethod('get_labels')
 }
 
+#' @rdname get_labels
 #' @export
 get_labels.data.frame <- function(object, ...) {
   sapply(object, get_labels)
 }
 
+#' @rdname get_labels
 #' @export
 get_labels.labelled <- function(object, ...) {
   attr(object, "label")
 }
 
+#' @rdname get_labels
+#' @param label A string providing a label (when `object` is a vector, for example)
+#'   or a named list of strings
+#'   providing multiple labels (when `object` is a data frame, for example).
 #' @export
-get_labels.default <- function(object, ...) {
+get_labels.default <- function(object, label, ...) {
   attr(object, "label")
+}
+
+#' @rdname get_labels
+#' @export
+set_labels <- function(object, ...) {
+  UseMethod("set_labels")
+}
+
+#' @rdname get_labels
+#' @export
+set_labels.default <- function(object, label = NULL, ...) {
+  attr(object, 'label') <- label
+}
+
+#' @rdname get_labels
+#' @export
+set_labels.data.frame <- function(object, label, ...) {
+  for (n in names(label)) {
+    if (! is.null(object[[n]])) {
+      attr(object[[n]], "label") <- label[[n]]
+    }
+  }
+  object
 }
 
 #' Modify plot labeling
