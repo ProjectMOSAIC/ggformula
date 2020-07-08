@@ -80,6 +80,7 @@ gf_function_2d <-
         gf_contour(value ~ x + y, data = Layer_Data, ...) %>%
         gf_labs(fill = "")
     }
+    class(res) <- unique(c('gf_ggplot', class(res)))
     res
   }
 
