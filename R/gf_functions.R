@@ -2124,7 +2124,7 @@ gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
   }
   qdots <- rlang::quos(...)
   afq <- aes_from_qdots(qdots)
-  object +
+  p <- object +
     do.call(
       ggplot2::layer,
       list(
@@ -2135,6 +2135,8 @@ gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
         params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
+  class(p) <- unique(c('gf_ggplot', class(p)))
+  p
 }
 
 #' @rdname gf_function
@@ -2161,7 +2163,7 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
   qdots <- rlang::quos(...)
   fun <- function(x, ...) mosaicCore::makeFun(formula)(x, ...)
   afq <- aes_from_qdots(qdots)
-  object +
+  p <- object +
     do.call(
       ggplot2::layer,
       list(
@@ -2172,6 +2174,8 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
         params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
+  class(p) <- unique(c('gf_ggplot', class(p)))
+  p
 }
 
 #' Plot density function based on fit to data
@@ -2275,16 +2279,17 @@ gf_sina <-
 #' @examples
 #'
 #' if (require(maps) && require(maptools) &&
-#'   require(sf) && require(rgeos) &&
-#'   US <- sf::st_as_sf(map("state", plot = FALSE, fill = TRUE))
+#'   require(sf) && require(rgeos))
+#'   US <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
 #'   gf_sf(fill = ~ factor(nchar(ID)), data = US) %>%
 #'     gf_refine(coord_sf())
 #'
 #'   # We can specify shape data and external data separately using geometry
-#'   MI <- sf::st_as_sf(map("county", "michigan", plot = FALSE, fill = TRUE))
+#'   MI <- sf::st_as_sf(maps::map("county", "michigan", plot = FALSE, fill = TRUE))
+#'   MIgeom <- MI$geom
 #'   gf_sf(
 #'     fill = ~ log10(population), data = MIpop %>% dplyr::arrange(county),
-#'     geometry = ~ MI$geometry, color = "white"
+#'     geometry = ~MIgeom, color = "white"
 #'   ) %>%
 #'     gf_refine(coord_sf(), theme_bw())
 #'
