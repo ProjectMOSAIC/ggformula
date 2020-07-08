@@ -161,14 +161,19 @@ gf_barh(~substance,
 gf_countsh(~Diet, data = ChickWeight)
 
 # gf_propsh() and gf_percentsh() use proportions or percentages instead of counts
-gf_propsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = position_dodgev())
-gf_props(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = position_dodge(), orientation = 'y')
-gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex, position = position_dodge())
-gf_percents(~substance, data = mosaicData::HELPrct, fill = ~sex, position = position_dodge())
+gf_propsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex,
+  position = position_dodgev())
+gf_props(substance ~ ., data = mosaicData::HELPrct, fill = ~sex,
+  position = position_dodge(), orientation = 'y')
+gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex,
+  position = position_dodge())
+gf_percents(~substance, data = mosaicData::HELPrct, fill = ~sex,
+  position = position_dodge())
 
 if (require(scales)) {
-  gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex, position = position_dodge()) \%>\%
-    gf_refine(scale_y_continuous(labels = scales::percent))
+  gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex,
+    position = position_dodge()) \%>\%
+      gf_refine(scale_y_continuous(labels = scales::percent))
 }
 }
 \seealso{
