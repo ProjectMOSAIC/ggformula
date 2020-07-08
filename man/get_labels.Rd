@@ -17,22 +17,22 @@ get_labels(object, ...)
 
 \method{get_labels}{labelled}(object, ...)
 
-\method{get_labels}{default}(object, label, ...)
+\method{get_labels}{default}(object, ...)
 
 set_labels(object, ...)
 
-\method{set_labels}{default}(object, label = NULL, ...)
+\method{set_labels}{default}(object, lab = NULL, ...)
 
-\method{set_labels}{data.frame}(object, label, ...)
+\method{set_labels}{data.frame}(object, lab, ...)
 
-\method{print}{gf_ggplot}(x, labels = get_labels(x$data), ...)
+\method{print}{gf_ggplot}(x, lab = get_labels(x$data), ...)
 }
 \arguments{
 \item{object}{An R object, potentially labelled.}
 
 \item{...}{Additional arguments. Ignored in existing methods.}
 
-\item{label}{A string providing a label (when \code{object} is a vector, for example)
+\item{lab}{A string providing a label (when \code{object} is a vector, for example)
 or a named list of strings
 providing multiple labels (when \code{object} is a data frame, for example).}
 
@@ -63,7 +63,7 @@ KF <-
     )
   )
 KF \%>\%
-  gf_point(length ~ width, color = ~domhand)
+  gf_point(length ~ width, color = ~ domhand)
 get_labels(KF)
 
 

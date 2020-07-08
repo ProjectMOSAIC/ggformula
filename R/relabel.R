@@ -27,7 +27,7 @@
 #'     )
 #'   )
 #' KF %>%
-#'   gf_point(length ~ width, color = ~domhand)
+#'   gf_point(length ~ width, color = ~ domhand)
 #' get_labels(KF)
 #'
 #'
@@ -50,15 +50,15 @@ get_labels.labelled <- function(object, ...) {
 }
 
 #' @rdname get_labels
-#' @param label A string providing a label (when `object` is a vector, for example)
-#'   or a named list of strings
-#'   providing multiple labels (when `object` is a data frame, for example).
 #' @export
-get_labels.default <- function(object, label, ...) {
+get_labels.default <- function(object, ...) {
   attr(object, "label")
 }
 
 #' @rdname get_labels
+#' @param lab A string providing a label (when `object` is a vector, for example)
+#'   or a named list of strings
+#'   providing multiple labels (when `object` is a data frame, for example).
 #' @export
 set_labels <- function(object, ...) {
   UseMethod("set_labels")
@@ -66,16 +66,16 @@ set_labels <- function(object, ...) {
 
 #' @rdname get_labels
 #' @export
-set_labels.default <- function(object, label = NULL, ...) {
-  attr(object, 'label') <- label
+set_labels.default <- function(object, lab = NULL, ...) {
+  attr(object, 'label') <- lab
 }
 
 #' @rdname get_labels
 #' @export
-set_labels.data.frame <- function(object, label, ...) {
-  for (n in names(label)) {
+set_labels.data.frame <- function(object, lab, ...) {
+  for (n in names(lab)) {
     if (! is.null(object[[n]])) {
-      attr(object[[n]], "label") <- label[[n]]
+      attr(object[[n]], "label") <- lab[[n]]
     }
   }
   object
@@ -120,8 +120,8 @@ gf_relabel <- function(plot, labels = get_labels(plot$data)) {
 #' @param x A ggplot.
 #' @export
 
-print.gf_ggplot <- function(x, labels = get_labels(x$data), ...) {
-  x <- gf_relabel(x, labels)
+print.gf_ggplot <- function(x, lab = get_labels(x$data), ...) {
+  x <- gf_relabel(x, lab)
   NextMethod()
 }
 
