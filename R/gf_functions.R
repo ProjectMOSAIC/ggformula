@@ -482,8 +482,9 @@ gf_quantile <-
       )
   )
 
-#' Formula interface to geom_density_2d()
+#' Formula interface to geom_density_2d() and geom_density_2d_filled()
 #'
+#' @rdname gf_density_2d
 #' @inherit ggplot2::geom_density_2d description
 #' @inherit gf_line
 #' @inheritParams ggplot2::geom_density_2d
@@ -514,6 +515,27 @@ gf_density_2d <-
 #' @rdname gf_density_2d
 #' @export
 #' @examples
+#' gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) %>%
+#'   gf_jitter(avg_drinks ~ age,
+#'     alpha = 0.3, data = mosaicData::HELPrct,
+#'     width = 0.4, height = 0.4,
+#'     color = "white"
+#' )
+gf_density_2d_filled <-
+  layer_factory(
+    geom = "density_2d_filled",
+    stat = "density_2d_filled",
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = ,
+      contour = TRUE, n = 100, h = NULL, lineend = "butt", linejoin = "round",
+      linemitre = 1
+    )
+  )
+
+
+#' @rdname gf_density_2d
+#' @export
+#' @examples
 #' gf_jitter(avg_drinks ~ age,
 #'   alpha = 0.2, data = mosaicData::HELPrct,
 #'   width = 0.4, height = 0.4
@@ -523,6 +545,27 @@ gf_density2d <-
   layer_factory(
     geom = "density2d",
     stat = "density2d",
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = ,
+      contour = TRUE, n = 100, h = NULL,
+      lineend = "butt", linejoin = "round",
+      linemitre = 1
+    )
+  )
+
+#' @rdname gf_density_2d
+#' @export
+#' @examples
+#' gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) %>%
+#'   gf_jitter(avg_drinks ~ age,
+#'     alpha = 0.4, data = mosaicData::HELPrct,
+#'     width = 0.4, height = 0.4,
+#'     color = "white"
+#' )
+gf_density2d_filled <-
+  layer_factory(
+    geom = "density2d_filled",
+    stat = "density_2d_filled",
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       contour = TRUE, n = 100, h = NULL,
@@ -1538,8 +1581,9 @@ gf_rugy <-
     }
   )
 
-#' Formula interface to geom_contour()
+#' Formula interface to geom_contour() and geom_contour_filled()
 #'
+#' @rdname gf_contour
 #' @inherit ggplot2::geom_contour description references
 #' @inherit gf_point
 #' @inheritParams ggplot2::geom_contour
@@ -1556,6 +1600,19 @@ gf_rugy <-
 gf_contour <-
   layer_factory(
     geom = "contour", stat = "contour",
+    aes_form = z ~ x + y
+  )
+
+#' @rdname gf_contour
+#' @export
+#' @examples
+#' gf_contour_filled(density ~ waiting + eruptions, data = faithfuld, bins = 10,
+#'     show.legend = FALSE) %>%
+#'   gf_jitter(eruptions ~ waiting, data = faithful, color = "white", alpha = 0.5,
+#'     inherit = FALSE)
+gf_contour_filled <-
+  layer_factory(
+    geom = "contour_filled", stat = "contour_filled",
     aes_form = z ~ x + y
   )
 

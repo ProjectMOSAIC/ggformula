@@ -2,7 +2,8 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_contour}
 \alias{gf_contour}
-\title{Formula interface to geom_contour()}
+\alias{gf_contour_filled}
+\title{Formula interface to geom_contour() and geom_contour_filled()}
 \usage{
 gf_contour(
   object = NULL,
@@ -16,6 +17,25 @@ gf_contour(
   caption,
   geom = "contour",
   stat = "contour",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_contour_filled(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "contour_filled",
+  stat = "contour_filled",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -125,6 +145,10 @@ in another.
 \examples{
 gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") \%>\%
   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
+gf_contour_filled(density ~ waiting + eruptions, data = faithfuld, bins = 10,
+    show.legend = FALSE) \%>\%
+  gf_jitter(eruptions ~ waiting, data = faithful, color = "white", alpha = 0.5,
+    inherit = FALSE)
 }
 \seealso{
 \code{\link[ggplot2:geom_contour]{ggplot2::geom_contour()}}, \code{\link[=gf_density_2d]{gf_density_2d()}}

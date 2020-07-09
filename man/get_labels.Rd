@@ -65,6 +65,4 @@ KF <-
 KF \%>\%
   gf_point(length ~ width, color = ~ domhand)
 get_labels(KF)
-
-
 }

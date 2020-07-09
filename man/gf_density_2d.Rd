@@ -2,8 +2,10 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_density_2d}
 \alias{gf_density_2d}
+\alias{gf_density_2d_filled}
 \alias{gf_density2d}
-\title{Formula interface to geom_density_2d()}
+\alias{gf_density2d_filled}
+\title{Formula interface to geom_density_2d() and geom_density_2d_filled()}
 \usage{
 gf_density_2d(
   object = NULL,
@@ -35,6 +37,36 @@ gf_density_2d(
   environment = parent.frame()
 )
 
+gf_density_2d_filled(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "density_2d_filled",
+  stat = "density_2d_filled",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
 gf_density2d(
   object = NULL,
   gformula = NULL,
@@ -58,6 +90,36 @@ gf_density2d(
   caption,
   geom = "density2d",
   stat = "density2d",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_density2d_filled(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  size,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "density2d_filled",
+  stat = "density_2d_filled",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -194,11 +256,23 @@ gf_jitter(avg_drinks ~ age,
   width = 0.4, height = 0.4
 ) \%>\%
   gf_density_2d(avg_drinks ~ age, data = mosaicData::HELPrct)
+gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) \%>\%
+  gf_jitter(avg_drinks ~ age,
+    alpha = 0.3, data = mosaicData::HELPrct,
+    width = 0.4, height = 0.4,
+    color = "white"
+)
 gf_jitter(avg_drinks ~ age,
   alpha = 0.2, data = mosaicData::HELPrct,
   width = 0.4, height = 0.4
 ) \%>\%
   gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct)
+gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) \%>\%
+  gf_jitter(avg_drinks ~ age,
+    alpha = 0.4, data = mosaicData::HELPrct,
+    width = 0.4, height = 0.4,
+    color = "white"
+)
 }
 \seealso{
 \code{\link[ggplot2:geom_density_2d]{ggplot2::geom_density_2d()}}
