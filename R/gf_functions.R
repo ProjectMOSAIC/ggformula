@@ -1113,6 +1113,7 @@ gf_dhistogram <-
 #' gf_dens()
 #' gf_density(~Sepal.Length, fill = ~Species, data = iris)
 #' gf_dens(~Sepal.Length, color = ~Species, data = iris)
+#' gf_dens(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
 #' gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
 #' # Chaining in the data
 #' iris %>% gf_dens(~Sepal.Length, color = ~Species)
@@ -1133,10 +1134,10 @@ gf_density <-
 
 gf_dens <-
   layer_factory(
-    geom = "line", stat = "density",
+    geom = "density_line", stat = "density",
     aes_form = list( ~x, y ~ .),
     extras = alist(
-      alpha = 0.5, color = ,
+      alpha = 0.5, color = , fill = NA,
       group = , linetype = , size = ,
       kernel = "gaussian", n = 512, trim = FALSE
     ),

@@ -40,6 +40,7 @@ gf_dens(
   ...,
   alpha = 0.5,
   color,
+  fill = NA,
   group,
   linetype,
   size,
@@ -51,7 +52,7 @@ gf_dens(
   title,
   subtitle,
   caption,
-  geom = "line",
+  geom = "density_line",
   stat = "density",
   position = "identity",
   show.legend = NA,
@@ -189,6 +190,7 @@ in another.
 gf_dens()
 gf_density(~Sepal.Length, fill = ~Species, data = iris)
 gf_dens(~Sepal.Length, color = ~Species, data = iris)
+gf_dens(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
 gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
 # Chaining in the data
 iris \%>\% gf_dens(~Sepal.Length, color = ~Species)
