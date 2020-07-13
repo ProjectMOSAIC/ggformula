@@ -2,7 +2,7 @@ Package: ggformula
 Title: Formula Interface to the Grammar of Graphics
 Description: Provides a formula interface to 'ggplot2' graphics.
 Type: Package
-Version: 0.9.4.9001
+Version: 0.9.4.9002
 Authors@R: c(
     person("Daniel", "Kaplan", email = "kaplan@macalester.edu", role = c("aut")),
     person("Randall", "Pruim", email = "rpruim@calvin.edu", role = c("aut","cre"))
@@ -21,6 +21,7 @@ Imports:
     tibble,
     stringr,
     ggforce,
+    ggridges,
     grid
 Suggests:
     tidyr,
@@ -60,6 +61,7 @@ Collate:
     'gf_function2d.R'
     'gf_functions.R'
     'ggstance.R'
+    'ggridges.R'
     'ggstrings.R'
     'newplots.R'
     'reexports.R'
