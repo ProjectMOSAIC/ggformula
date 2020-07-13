@@ -4,7 +4,7 @@
 \alias{gf_relabel}
 \title{Modify plot labeling}
 \usage{
-gf_relabel(plot, labels = get_labels(plot$data))
+gf_relabel(plot, labels = get_labels(plot$data), ...)
 }
 \arguments{
 \item{plot}{A ggplot.}

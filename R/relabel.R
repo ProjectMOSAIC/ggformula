@@ -18,14 +18,12 @@
 #' KF <-
 #'   mosaicData::KidsFeet %>%
 #'   set_labels(
-#'     list(
 #'       length      = 'foot length (cm)',
 #'       width       = 'foot width (cm)',
 #'       birthmonth  = 'birth month',
 #'       birthyear   = 'birth year',
 #'       biggerfoot  = 'bigger foot',
 #'       domhand     = 'dominant hand'
-#'     )
 #'   )
 #' KF %>%
 #'   gf_point(length ~ width, color = ~ domhand)
@@ -38,7 +36,9 @@ get_labels <- function(object, ...) {
 #' @rdname get_labels
 #' @export
 get_labels.data.frame <- function(object, ...) {
-  lapply(object, get_labels)
+  res <- lapply(object, get_labels)
+  if (is.null(res)) res <- list()
+  res
 }
 
 #' @rdname get_labels
@@ -73,8 +73,10 @@ set_labels.default <- function(object, lab = NULL, ...) {
 #' @rdname get_labels
 #' @export
 
-set_labels.data.frame <- function(object, lab, ...) {
-  lab <- as.list(lab)
+set_labels.data.frame <- function(object, lab = list(), ...) {
+  lab <- c(as.list(lab), list(...))
+  lab <- utils::modifyList(get_labels(object), lab)
+
   for (n in names(lab)) {
     if (! is.null(object[[n]])) {
       attr(object[[n]], "label") <- lab[[n]]
@@ -110,7 +112,8 @@ set_labels.data.frame <- function(object, lab, ...) {
 #'
 #'
 #' @export
-gf_relabel <- function(plot, labels = get_labels(plot$data)) {
+gf_relabel <- function(plot, labels = get_labels(plot$data), ...) {
+  labels <- utils::modifyList(as.list(labels), list(...))
   for (label_name in names(plot$labels)) {
     plot$labels[[label_name]] <-
       labels[[plot$labels[[label_name]]]] %||% plot$labels[[label_name]]

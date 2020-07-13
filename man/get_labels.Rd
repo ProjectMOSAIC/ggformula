@@ -23,7 +23,7 @@ set_labels(object, ...)
 
 \method{set_labels}{default}(object, lab = NULL, ...)
 
-\method{set_labels}{data.frame}(object, lab, ...)
+\method{set_labels}{data.frame}(object, lab = list(), ...)
 
 \method{print}{gf_ggplot}(x, lab = get_labels(x$data), ...)
 }
@@ -53,14 +53,12 @@ expss or any other system that stores a label in the \code{label} attribute of a
 KF <-
   mosaicData::KidsFeet \%>\%
   set_labels(
-    list(
       length      = 'foot length (cm)',
       width       = 'foot width (cm)',
       birthmonth  = 'birth month',
       birthyear   = 'birth year',
       biggerfoot  = 'bigger foot',
       domhand     = 'dominant hand'
-    )
   )
 KF \%>\%
   gf_point(length ~ width, color = ~ domhand)
