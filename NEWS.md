@@ -1,4 +1,13 @@
 
+# ggformula 0.9.5
+
+* add `gf_ridgeline()`, `gf_ridgeline_gradient()`, `gf_density_ridges()`, `gf_density_ridges_gradient()`.
+* `gf_dens()` now uses `geom = "geom_density_line"`.  This allows setting fill.
+
+# ggformula 0.9.4
+
+* internal updates precipated by changes to ggplot2.
+
 # ggformula 0.9.3
 
 * add `gf_sina()`. (#134)
