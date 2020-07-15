@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Formula interface to ggplot2 — ggformula" />
 <meta property="og:description" content="Formula interface to ggplot2" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -63,7 +66,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4.9002</span>
       </span>
     </div>
 
@@ -131,7 +134,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ProjectMOSAIC/ggformula">
+  <a href="https://github.com/ProjectMOSAIC/ggformula/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -200,52 +203,68 @@ the environment of the formula was used, but since some functions in
 the package do not require a formula, a separate argument is used now.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span>(<span class='st'>"gf_"</span>)</div><div class='output co'>#&gt;  [1] "gf_abline"           "gf_area"             "gf_ash"             
-#&gt;  [4] "gf_bar"              "gf_barh"             "gf_bin2d"           
-#&gt;  [7] "gf_blank"            "gf_boxplot"          "gf_boxploth"        
-#&gt; [10] "gf_coefline"         "gf_col"              "gf_colh"            
-#&gt; [13] "gf_contour"          "gf_count"            "gf_counts"          
-#&gt; [16] "gf_countsh"          "gf_crossbar"         "gf_crossbarh"       
-#&gt; [19] "gf_curve"            "gf_dens"             "gf_density"         
-#&gt; [22] "gf_density_2d"       "gf_density2d"        "gf_dhistogram"      
-#&gt; [25] "gf_dhistogramh"      "gf_dist"             "gf_dotplot"         
-#&gt; [28] "gf_ecdf"             "gf_ellipse"          "gf_empty"           
-#&gt; [31] "gf_errorbar"         "gf_errorbarh"        "gf_facet_grid"      
-#&gt; [34] "gf_facet_wrap"       "gf_fitdistr"         "gf_frame"           
-#&gt; [37] "gf_freqpoly"         "gf_fun"              "gf_fun_2d"          
-#&gt; [40] "gf_fun_contour"      "gf_fun_tile"         "gf_fun2d"           
-#&gt; [43] "gf_function"         "gf_function_2d"      "gf_function_contour"
-#&gt; [46] "gf_function_tile"    "gf_function2d"       "gf_hex"             
-#&gt; [49] "gf_histogram"        "gf_histogramh"       "gf_hline"           
-#&gt; [52] "gf_jitter"           "gf_label"            "gf_labs"            
-#&gt; [55] "gf_lims"             "gf_line"             "gf_linerange"       
-#&gt; [58] "gf_linerangeh"       "gf_lm"               "gf_path"            
-#&gt; [61] "gf_percents"         "gf_percentsh"        "gf_point"           
-#&gt; [64] "gf_pointrange"       "gf_pointrangeh"      "gf_polygon"         
-#&gt; [67] "gf_props"            "gf_propsh"           "gf_qq"              
-#&gt; [70] "gf_qqline"           "gf_qqstep"           "gf_quantile"        
-#&gt; [73] "gf_raster"           "gf_rect"             "gf_refine"          
-#&gt; [76] "gf_ribbon"           "gf_rug"              "gf_rugx"            
-#&gt; [79] "gf_rugy"             "gf_segment"          "gf_sf"              
-#&gt; [82] "gf_sina"             "gf_smooth"           "gf_spline"          
-#&gt; [85] "gf_spoke"            "gf_step"             "gf_summary"         
-#&gt; [88] "gf_text"             "gf_theme"            "gf_tile"            
-#&gt; [91] "gf_violin"           "gf_violinh"          "gf_vline"           </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span>(<span class='st'>"gf_"</span>)</div><div class='output co'>#&gt;   [1] "gf_abline"                     "gf_area"                      
+#&gt;   [3] "gf_ash"                        "gf_bar"                       
+#&gt;   [5] "gf_barh"                       "gf_bin2d"                     
+#&gt;   [7] "gf_blank"                      "gf_boxplot"                   
+#&gt;   [9] "gf_boxploth"                   "gf_coefline"                  
+#&gt;  [11] "gf_col"                        "gf_colh"                      
+#&gt;  [13] "gf_contour"                    "gf_contour_filled"            
+#&gt;  [15] "gf_count"                      "gf_counts"                    
+#&gt;  [17] "gf_countsh"                    "gf_crossbar"                  
+#&gt;  [19] "gf_crossbarh"                  "gf_curve"                     
+#&gt;  [21] "gf_dens"                       "gf_dens2"                     
+#&gt;  [23] "gf_density"                    "gf_density_2d"                
+#&gt;  [25] "gf_density_2d_filled"          "gf_density_ridgeline_gradient"
+#&gt;  [27] "gf_density_ridges"             "gf_density_ridges_gradient"   
+#&gt;  [29] "gf_density_ridges2"            "gf_density2d"                 
+#&gt;  [31] "gf_density2d_filled"           "gf_dhistogram"                
+#&gt;  [33] "gf_dhistogramh"                "gf_dist"                      
+#&gt;  [35] "gf_dotplot"                    "gf_ecdf"                      
+#&gt;  [37] "gf_ellipse"                    "gf_empty"                     
+#&gt;  [39] "gf_errorbar"                   "gf_errorbarh"                 
+#&gt;  [41] "gf_facet_grid"                 "gf_facet_wrap"                
+#&gt;  [43] "gf_fitdistr"                   "gf_frame"                     
+#&gt;  [45] "gf_freqpoly"                   "gf_fun"                       
+#&gt;  [47] "gf_fun_2d"                     "gf_fun_contour"               
+#&gt;  [49] "gf_fun_tile"                   "gf_fun2d"                     
+#&gt;  [51] "gf_function"                   "gf_function_2d"               
+#&gt;  [53] "gf_function_contour"           "gf_function_tile"             
+#&gt;  [55] "gf_function2d"                 "gf_hex"                       
+#&gt;  [57] "gf_histogram"                  "gf_histogramh"                
+#&gt;  [59] "gf_hline"                      "gf_jitter"                    
+#&gt;  [61] "gf_label"                      "gf_labs"                      
+#&gt;  [63] "gf_lims"                       "gf_line"                      
+#&gt;  [65] "gf_linerange"                  "gf_linerangeh"                
+#&gt;  [67] "gf_lm"                         "gf_path"                      
+#&gt;  [69] "gf_percents"                   "gf_percentsh"                 
+#&gt;  [71] "gf_point"                      "gf_pointrange"                
+#&gt;  [73] "gf_pointrangeh"                "gf_polygon"                   
+#&gt;  [75] "gf_props"                      "gf_propsh"                    
+#&gt;  [77] "gf_qq"                         "gf_qqline"                    
+#&gt;  [79] "gf_qqstep"                     "gf_quantile"                  
+#&gt;  [81] "gf_raster"                     "gf_rect"                      
+#&gt;  [83] "gf_refine"                     "gf_relabel"                   
+#&gt;  [85] "gf_ribbon"                     "gf_ridgeline"                 
+#&gt;  [87] "gf_rug"                        "gf_rugx"                      
+#&gt;  [89] "gf_rugy"                       "gf_segment"                   
+#&gt;  [91] "gf_sf"                         "gf_sina"                      
+#&gt;  [93] "gf_smooth"                     "gf_spline"                    
+#&gt;  [95] "gf_spoke"                      "gf_step"                      
+#&gt;  [97] "gf_summary"                    "gf_text"                      
+#&gt;  [99] "gf_theme"                      "gf_tile"                      
+#&gt; [101] "gf_violin"                     "gf_violinh"                   
+#&gt; [103] "gf_vline"                     </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  point </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, size, shape, fill, group, stroke</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>For more information, try ?gf_point</span></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#the-ggformula-system">The ggformula system</a></li>
-      <li><a href="#specifying-plot-attributes">Specifying plot attributes</a></li>
-      <li><a href="#evaluation">Evaluation</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -256,7 +275,7 @@ the package do not require a formula, a separate argument is used now.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
