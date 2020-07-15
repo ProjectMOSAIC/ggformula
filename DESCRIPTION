@@ -62,6 +62,7 @@ Collate:
     'layer_factory.R'
     'gf_function2d.R'
     'gf_functions.R'
+    'gf_plot.R'
     'ggstance.R'
     'ggridges.R'
     'ggstrings.R'
