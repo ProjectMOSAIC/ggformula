@@ -9,6 +9,7 @@ utils::globalVariables("role")
 #' @importFrom rlang get_expr
 #' @importFrom rlang is_missing
 #' @import ggplot2
+#' @import scales
 NA
 
 
