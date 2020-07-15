@@ -44,16 +44,20 @@ ggformula.
 
 ``` r
 suppressPackageStartupMessages(library(ggformula))
-gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species,
+data(penguins, package = "modeldata")
+penguins %>% 
+  gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~ species,
           width = 0.05, height = 0.05, alpha = 0.6) %>%
   gf_density2d(alpha = 0.3) %>%
-  gf_labs(title = "A famous data set",
-          caption = "Data available in datasets package",
-          ylab = "sepal length",
-          xlab = "sepal width"
+  gf_labs(title = "Palmer Penguins",
+          caption = "Data available in modeldata package",
+          y = "bill length (mm)",
+          x = "bill depth (mm)"
   ) %>%
   gf_theme(theme_bw()) %>%
   gf_theme(text = element_text(colour = "navy", face = "italic"))
+#> Warning: Removed 2 rows containing non-finite values (stat_density2d).
+#> Warning: Removed 2 rows containing missing values (geom_point).
 ```
 
 ![](README-example-1.png)<!-- -->
