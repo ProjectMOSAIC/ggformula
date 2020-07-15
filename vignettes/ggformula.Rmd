@@ -493,11 +493,12 @@ Penguins %>%
 
 Ridge plots can be useful to displaying multiple density plots compactly.
 
-```{ridge}
+```{r, ridge-plots}
 Weather %>%
   gf_density_ridges(month ~ high_temp | city, group = ~month)
 Weather %>%
-  gf_density_ridges_gradient(month ~ high_temp | city, group = ~month, show.legend = FALSE) %>% 
+  gf_density_ridges_gradient(month ~ high_temp | city, group = ~ month, 
+                             show.legend = FALSE) %>% 
   gf_refine(scale_fill_viridis_c(option = "B"))
 ```
 
