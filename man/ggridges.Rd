@@ -5,6 +5,7 @@
 \alias{gf_density_ridges}
 \alias{gf_density_ridges2}
 \alias{gf_density_ridgeline_gradient}
+\alias{gf_density_ridges_gradient}
 \title{Formula interface to ggridges plots}
 \usage{
 gf_ridgeline(
@@ -137,8 +138,43 @@ gf_density_ridgeline_gradient(
   inherit = TRUE,
   environment = parent.frame()
 )
+
+gf_density_ridges_gradient(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  height,
+  panel_scaling = TRUE,
+  color,
+  fill = ~stat(x),
+  alpha,
+  group,
+  linetype,
+  size,
+  gradient_lwd = 0.5,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "density_ridges_gradient",
+  stat = "density_ridges",
+  position = "points_sina",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
 }
 \arguments{
+\item{object}{When chaining, this holds an object produced in the earlier portions
+of the chain.  Most users can safely ignore this argument.
+See details and examples.}
+
+\item{gformula}{A formula with shape \code{~ x}.
+Faceting can be achieved by including \code{|} in the formula.}
+
 \item{data}{The data to be displayed in this layer. There are three
 options:
 
@@ -157,6 +193,35 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{color = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{geom}{Use to override the default connection between
+\code{geom_density} and \code{stat_density}.}
+
 \item{stat}{The statistical transformation to use on the data for this
 layer, as a string.}
 
@@ -166,6 +231,15 @@ a call to a position adjustment function.}
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
+\item{environment}{An environment in which to look for variables not found in \code{data}.}
+
+\item{panel_scaling}{If \code{TRUE}, the default, relative scaling is calculated separately
+for each panel. If \code{FALSE}, relative scaling is calculated globally.}
 }
 \description{
 Formula interface to ggridges plots
@@ -240,6 +314,10 @@ diamonds \%>\%
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
+mosaicData::Weather \%>\%
+  gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),
+    group = ~ month, show.legend = FALSE) \%>\%
+  gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
 }
 \seealso{
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}

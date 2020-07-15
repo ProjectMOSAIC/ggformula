@@ -97,7 +97,8 @@ gf_density_ridges2 <-
 
 #' @rdname ggridges
 #' @seealso [`ggridges::geom_density_ridges()`]
-#'
+#' @inheritParams gf_density
+#' @inheritParams ggridges::geom_density_ridges
 #' @export
 #' @examples
 #' diamonds %>%
@@ -134,7 +135,7 @@ gf_density_ridgeline_gradient <-
                    gradient_lwd = 0.5)
   )
 
-
+#' @rdname ggridges
 #' @export
 #' @examples
 #' mosaicData::Weather %>%

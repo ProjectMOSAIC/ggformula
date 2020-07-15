@@ -10,6 +10,8 @@ gf_relabel(plot, labels = get_labels(plot$data), ...)
 \item{plot}{A ggplot.}
 
 \item{labels}{A named list of labels.}
+
+\item{...}{Additional named labels. See examples.}
 }
 \value{
 A plot with potentially modified labels.
@@ -22,15 +24,25 @@ expss or any other system that stores a label in the \code{label} attribute of a
 }
 \examples{
 
+# labeling using a list
 labels <- list(width = "width of foot (cm)", length = "length of foot (cm)",
   domhand = "dominant hand")
 gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) \%>\%
   gf_relabel(labels)
 
+# labeling using ...
+gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) \%>\%
+  gf_relabel(
+    width = "width of foot (cm)",
+   length = "length of foot (cm)",
+   domhand = "dominant hand")
+
 # Alternatively, we can store labels with data.
-KF <- mosaicData::KidsFeet
-attr(KF$length, 'label') = 'foot length (cm)'
-attr(KF$width, 'label') = 'foot width (cm)'
+KF <- mosaicData::KidsFeet \%>\%
+  set_labels(
+    length = 'foot length (cm)',
+    width = 'foot width (cm)'
+  )
 gf_point(length ~ width, data = KF)
 gf_density2d(length ~ width, data = KF)
 get_labels(KF)

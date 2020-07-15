@@ -94,18 +94,29 @@ set_labels.data.frame <- function(object, lab = list(), ...) {
 #'
 #' @param plot A ggplot.
 #' @param labels A named list of labels.
+#' @param ... Additional named labels. See examples.
 #' @return A plot with potentially modified labels.
 #' @examples
 #'
+#' # labeling using a list
 #' labels <- list(width = "width of foot (cm)", length = "length of foot (cm)",
 #'   domhand = "dominant hand")
 #' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) %>%
 #'   gf_relabel(labels)
 #'
+#' # labeling using ...
+#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) %>%
+#'   gf_relabel(
+#'     width = "width of foot (cm)",
+#'    length = "length of foot (cm)",
+#'    domhand = "dominant hand")
+#'
 #' # Alternatively, we can store labels with data.
-#' KF <- mosaicData::KidsFeet
-#' attr(KF$length, 'label') = 'foot length (cm)'
-#' attr(KF$width, 'label') = 'foot width (cm)'
+#' KF <- mosaicData::KidsFeet %>%
+#'   set_labels(
+#'     length = 'foot length (cm)',
+#'     width = 'foot width (cm)'
+#'   )
 #' gf_point(length ~ width, data = KF)
 #' gf_density2d(length ~ width, data = KF)
 #' get_labels(KF)
