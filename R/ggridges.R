@@ -1,3 +1,4 @@
+
 #' Formula interface to ggridges plots
 #'
 #' Formula interface to ggridges plots
@@ -96,15 +97,57 @@ gf_density_ridges2 <-
 
 #' @rdname ggridges
 #' @seealso [`ggridges::geom_density_ridges()`]
+#'
 #' @export
 #' @examples
-#' gf_density_line
-#'
-#'
-gf_density_line <-
+#' diamonds %>%
+#'   gf_density_ridges(cut ~ price,
+#'     scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) %>%
+#'   gf_theme(theme_ridges()) %>%
+#'   gf_refine(
+#'     scale_y_discrete(expand = c(0.01, 0)),
+#'     scale_x_continuous(expand = c(0.01, 0))
+#'   )
+#' diamonds %>%
+#'   gf_density_ridges(clarity ~ price | cut,
+#'     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) %>%
+#'   gf_theme(theme_ridges()) %>%
+#'   gf_refine(
+#'     scale_y_discrete(expand = c(0.01, 0)),
+#'     scale_x_continuous(expand = c(0.01, 0))
+#'   )
+#' diamonds %>%
+#'   gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+#'     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) %>%
+#'   gf_theme(theme_ridges()) %>%
+#'   gf_refine(
+#'     scale_y_discrete(expand = c(0.01, 0)),
+#'     scale_x_continuous(expand = c(0.01, 0))
+#'   )
+
+gf_density_ridgeline_gradient <-
   layer_factory(
-    geom = "density_line", stat = "density", position = "identity",
-    aes_form = list(~ x, y ~ .),
-    extras = alist(color = , fill = , alpha = 0.5, group =, linetype = , size = ,
-                   kernel = "gaussian", n = 512, trim = FALSE)
+    geom = "ridgeline_gradient", stat = "identity", position = "identity",
+    aes_form = y ~ x,
+    extras = alist(height =,
+                   color = , fill = , alpha = , group =, linetype = , size = ,
+                   gradient_lwd = 0.5)
+  )
+
+
+#' @export
+#' @examples
+#' mosaicData::Weather %>%
+#'   gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),
+#'     group = ~ month, show.legend = FALSE) %>%
+#'   gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
+
+
+gf_density_ridges_gradient <-
+  layer_factory(
+    geom = "density_ridges_gradient", stat = "density_ridges", position = "points_sina",
+    aes_form = y ~ x,
+    extras = alist(height =, panel_scaling = TRUE,
+                   color = , fill = ~stat(x), alpha = , group =, linetype = , size = ,
+                   gradient_lwd = 0.5)
   )
