@@ -1,7 +1,7 @@
 ---
 title: "Formula Interface for ggplot2"
 author: "Daniel Kaplan and Randall Pruim"
-date: "January, 2018"
+date: "July, 2020"
 output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,14 +16,17 @@ have_packages <-
   require(ggplot2) &&
   require(mosaicData) &&
   require(maps) &&
-  requireNamespace("mosaicModel") &&
+  require(modeldata) &&
   requireNamespace("mosaic") 
-  
+
+have_extra_packages <- 
+  require(maps) && require(sf) && require(purrr)  
 
 knitr::opts_chunk$set(
-  fig.show = "hold",
+  fig.show = "asis",
   fig.align = "center",
-  out.width = "45%",
+  fig.width = 6, fig.height = 4,
+  out.width = "60%",
   eval = have_packages
 )
 theme_set(theme_light())
@@ -35,7 +38,7 @@ cat(
 ## Warning: Missing packages
 
 Because one or more of 
-`ggformula`, `ggplot2`, `dplyr`, `mosaic`, `mosaicData`, `mosaicModel`,
+`ggformula`, `ggplot2`, `dplyr`, `mosaic`, `mosaicData`, `modeldata`,
 and `maps`, appears to be missing, this vignette is compiling
 without executing any code. 
 
@@ -44,7 +47,6 @@ without executing any code.
 ```
 
 # Formula-driven graphics
-
 
 There are several excellent graphics packages provided for R. The
 `ggformula` package currently builds on one of them, `ggplot2`, but
@@ -75,6 +77,12 @@ The basic template for creating a plot with `ggformula` is
 gf_plottype(formula, data = mydata)
 ```
 
+or, equivalently, 
+
+```{r, plottype2, eval = FALSE}
+mydata %>% gf_plottype(formula)
+```
+
 where 
 
   * `plottype` describes the type of plot (layer) desired (points, lines, a histogram,
@@ -89,12 +97,16 @@ name of a variable to be plotted on the y-axis and `x` is the name of a variable
 be plotted on the x-axis.  (It is also possible to use expressions that can be evaluated
 using variables in the data frame as well.)
 
+The first form of the tempate is useful for simple plots or for multi-layered plots
+where different layers use different data.  The second form is useful for multi-layered
+plots or plots with many arguments.
+
 Here is a simple example:
 ```{r, simple-example}
 library(ggformula)
 gf_point(mpg ~ hp, data = mtcars)
+mtcars %>% gf_point(mpg ~ hp)
 ```
-
 
 
 ## Selecting the glyph type
@@ -142,7 +154,8 @@ in this case smallish black filled-in circles.
 ### Specifying attributes
 
 In the `gf_` functions, you specify the non-position graphical attributes using 
-an extension of the basic formula.  Attributes can be **set** to a constant value
+additional arguments to the function.
+Attributes can be **set** to a constant value
 (e.g, set the color to "blue"; set the size to 2) 
 or they can be **mapped** to a variable in the data or some 
 expression involving the variables 
@@ -162,7 +175,7 @@ use that variable instead of an on-the-fly calculation within the plot).
 
 The following plot, for instance, 
 
- * We use `cyl` to determine the color and `carb` to  determine the size of each
+ * We use `cyl` to determine the color and `carb` to determine the size of each
  dot.  Color and size are **mapped** to `cyl` and `carb`. 
  A legend is provided to show us how the mapping is being done.
  (Later, we can use scales to control precisely how the mapping is done -- 
@@ -182,12 +195,15 @@ of the plot is often better if we create a new variable in our data frame.  In t
 examples below, since there are only three values for `carb`, it is easier to read the 
 graph if we tell R to treat `cyl` as a categorical variable by converting to a factor (or to 
 a string).  Except for the labeling of the legend, these two plots are the same.
+In the second example, we see how the ggformula works well with data tranformations
+using `%>%`.
 
 ```{r, on-the-fly}
 library(dplyr)
 gf_point(mpg ~ hp,  color = ~ factor(cyl), size = ~ carb, alpha = 0.75, data = mtcars)
-gf_point(mpg ~ hp,  color = ~ cylinders, size = ~ carb, alpha = 0.75, 
-         data = mtcars %>% mutate(cylinders = factor(cyl)))
+mtcars %>% 
+  mutate(cylinders = factor(cyl)) %>% 
+  gf_point(mpg ~ hp,  color = ~ cylinders, size = ~ carb, alpha = 0.75)
 ```
 
 
@@ -199,13 +215,15 @@ To illustrate, we'll use density plots, but the same ideas apply to
 `gf_histogram()`, and `gf_freqpolygon()` as well. 
 *Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.*
 
-```{r Runners, fig.show = "hold", out.width = "30%", warning=FALSE}
-data(Runners, package = "mosaicModel")
-Runners <- Runners %>% filter( ! is.na(net))
-gf_density( ~ net, data = Runners)
-gf_density( ~ net,  fill = ~ sex,  alpha = 0.5, data = Runners)
-# gf_dens() is similar, but there is no line at bottom/sides, and it is not "fillable"
-gf_dens( ~ net, color = ~ sex, alpha = 0.7, data = Runners)    
+```{r penguins, warning=FALSE}
+data(penguins, package = "modeldata")   
+gf_density( ~ bill_length_mm, data = penguins)
+gf_density( ~ bill_length_mm,  fill = ~ species,  alpha = 0.5, data = penguins)
+# gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable
+gf_dens( ~ bill_length_mm, color = ~ species,  alpha = 0.7, data = penguins)
+# gf_dens2() is like gf_dens() but is fillable
+gf_dens2( ~ bill_length_mm, fill = ~ species, data = penguins,
+          color = "gray50", alpha = 0.4) 
 ```
 
 Several of the plotting functions include additional arguments that do not modify
@@ -214,22 +232,27 @@ case, `adjust` can be used to increase or decrease the amount of smoothing.
 
 ```{r, dens}
 # less smoothing
-gf_dens( ~ net, color = ~ sex, alpha = 0.7, data = Runners, adjust = 0.25)  
+penguins %>% gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 0.25)  
 # more smoothing
-gf_dens( ~ net, color = ~ sex, alpha = 0.7, data = Runners, adjust = 4)     
+penguins %>% gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 4)     
 ```
 
 ## Position
 
 When the `fill` or `color` or `group` aesthetics are mapped to a variable, the
 default behavior is to lay the group-wise densities on top of one another. Other
-behavior is also available by using `position` in the formula. Using the value
-`"stack"` causes the densities to be laid one on top of another, so that the
-overall height of the stack is the density across all groups. The value `"fill"`
-produces a conditional probability graphic.
-```{r position, fig.show = "hold", warning=FALSE}
-gf_density( ~ net, fill = ~ sex, color = NA, position = "stack", data = Runners)
-gf_density( ~ net, fill = ~ sex, color = NA, position = "fill", data = Runners, adjust = 2)
+behavior is also available by using the `position` argument. Using the value
+`"stack"` causes the densities to be laid one on top of another.  This makes the
+overall height of the stack represent the density across all groups, but it can be
+difficult to discern the shape of the distribution for the individual groups. 
+The value `"fill"` produces a conditional probability graphic.
+
+```{r position, warning=FALSE}
+penguins %>% 
+  gf_density( ~ bill_length_mm, fill = ~ species, color = NA, position = "stack") 
+penguins %>% 
+  gf_density( ~ bill_length_mm, fill = ~ species, color = NA, position = "fill", 
+              adjust = 2)
 ```
 
 Similar commands can be constructed with `gf_histogram()` and `gf_freqpoly()`,
@@ -245,12 +268,21 @@ the values of one or two categorical variables. This is done by chaining
 with  `gf_facet_grid()` or `gf_facet_wrap()`. These functions use formulas 
 to specify which variable(s) are to be used for faceting.
 
-```{r facets, fig.show = "hold", warning=FALSE}
-gf_density_2d(net ~ age, data = Runners) %>% gf_facet_grid( ~ sex)
+```{r facets, warning=FALSE}
+penguins %>% 
+  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>% 
+  gf_facet_grid( ~ species)
 # the dot here is a bit strange, but required to make a valid formula
-gf_density_2d(net ~ age, data = Runners) %>% gf_facet_grid( sex ~ .)
-gf_density_2d(net ~ age, data = Runners) %>% gf_facet_wrap( ~ year)
-gf_density_2d(net ~ age, data = Runners) %>% gf_facet_grid(start_position ~ sex)
+penguins %>% 
+  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>% 
+  gf_facet_grid( species ~ .)
+penguins %>% 
+  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>% 
+  gf_facet_grid(island ~ species)
+penguins %>% 
+  gf_density_2d_filled(bill_length_mm ~ bill_depth_mm, 
+                       show.legend = FALSE) %>% 
+  gf_facet_wrap(island ~ species)
 ```
 
 An alternative syntax uses `|` to separate the faceting information from the main
@@ -260,10 +292,11 @@ The redundant use of the `y` and `color` attributes for
 temperature makes it easier to compare across facets.
 
 ```{r, facets02, out.width = "95%", fig.width = 6, fig.height = 3.5}
+Weather %>% 
+  gf_ribbon(low_temp + high_temp ~ date | city ~ year, alpha = 0.3) 
 
-gf_ribbon(low_temp + high_temp ~ date | city ~ year, data = Weather, alpha = 0.3) 
-
-gf_linerange(low_temp + high_temp ~ date | city ~ year, color = ~ avg_temp, data = Weather) %>%
+Weather %>% 
+  gf_linerange(low_temp + high_temp ~ date | city ~ year, color = ~ avg_temp) %>%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 ```
 
@@ -271,13 +304,97 @@ In this case, we should either not facet by year, or allows the x-scale to be fr
 using the `scales` argument to `gf_facet_grid()`.
 
 ```{r, facets03, out.width = "95%", fig.width = 6, fig.height = 3.5}
+Weather %>% 
+  gf_ribbon(low_temp + high_temp ~ date | city ~ ., alpha = 0.3) 
 
-gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, alpha = 0.3) 
-
-gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>%
+Weather %>% 
+  gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp) %>%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) %>%
   gf_facet_grid(city ~ year, scales = "free_x")
 ```
+
+## Labels in plots
+
+Usually plot labels reflect the expression mapped to a given attribute. But in the previous
+example, our colorbar legend is labeled "avg temp (F)" even though the variable name
+is `avg_temp`. This is because the `Weather` data set is *labeled*.
+
+```{r}
+get_labels(Weather)
+```
+
+ggformula will detect these labels and use them on our plots.  We can use `set_labels()`
+to add custom labels to some or all of the variables in a data frame.^[labels]
+
+[labels]: ggformula also detects labels created by functions in the expss and Hmisc packages.
+
+```{r}
+KF <- KidsFeet %>% 
+  set_labels(
+    length = "length (cm)", 
+    width = "width (cm)",
+    domhand = "dominant hand",
+    biggerfoot = "bigger foot"
+  )
+
+KidsFeet %>% 
+  gf_point(width ~ length, color = ~domhand)
+KF %>%
+  gf_point(width ~ length, color = ~domhand)
+
+Penguins <- penguins %>%
+  set_labels(
+    species = "Species",
+    island = "Island",
+    bill_length_mm = "Bill Length (mm)",
+    bill_depth_mm = "Bill Depth (mm)",
+    flipper_length_mm = "Flipper Length (mm)",
+    body_mass_g = "Body Mass (g)",
+    sex = "Sex"
+  )
+
+Penguins %>%
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) 
+```
+
+By adding labels to the data, we can ensure consitent labeling across several plots.
+But it is also possible to modify labels just for one plot.
+This can be done in three ways:
+
+* We can use arguments like `xlab`, `ylab`, and `title`;
+* We can use the `gf_labs()` function (which has arguments like `x`, `y`, `title`, etc.);
+* We can use the `gf_relabel()` function.
+
+```{r}
+KidsFeet %>%
+  gf_point(width ~ length, color = ~domhand, xlab = "length (cm)", 
+           title = "Length and width of kids' feet")
+
+p <- KidsFeet %>% gf_point(width ~ length, color = ~domhand)
+
+p %>% 
+  gf_labs(x = "length (cm)", color = "dominant hand", title = "Some kids' feet")
+
+p %>% 
+  gf_relabel(length = "length (cm)", width = "width (cm)", domhand = "dominant hand")
+
+# alternatively, we can use a list. 
+# this is handy if we have several data sets with the same variables.
+KFlabels <- 
+  list(length = "length (cm)", width = "width (cm)", domhand = "dominant hand")
+p %>% 
+  gf_relabel(KFlabels)
+```
+
+Notice that `gf_labs()` and `gf_relabel()` take a different approaches to
+labeling. `gf_labs()` refers to labels by their *role in the plot* whereas
+`gf_relabel()` refers to variables in the data set and uses the new labels
+wherever the variable appears.  Both are useful.  `gf_labs()` provides access to
+additional labels (title, subtitle, caption, etc.), but it easier to mistakenly
+create a plot with a label that doesn't match the true content of the plot.
+`gf_relabel()` only deals with labels associated with variables, but the label
+is guaranteed to match that variable no matter how the variable is used within
+the plot.
 
 ## More 2-variable plots
 
@@ -285,17 +402,19 @@ gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>
 
 Sometimes you have so many points in a scatter plot that they obscure one another. 
 The `ggplot2` system provides two easy ways to deal with this: translucency and jittering.
-
-Use `alpha = 0.5` to make the points semi-translucent. If there are many points
-overlapping at one point, a much smaller value of alpha, say `alpha = 0.01`. 
-We've already seen this above.
+Use `alpha` to make the points semi-translucent. 
 
 Using `gf_jitter()` in place of `gf_point()` will move the plotted points to
 reduce overlap.  Jitter and transparency can be used together as well.
 
 ```{r, jitter}
-gf_point(age ~ sex, alpha = 0.05, data = Runners)
-gf_jitter(age ~ sex, alpha = 0.05, data = Runners)
+Penguins %>% 
+  gf_point(bill_length_mm ~ species, alpha = 0.15)  
+Penguins %>%
+  gf_jitter(bill_length_mm ~ species, alpha = 0.35)
+# width and heigh control the amount of horizontal and vertical jitter
+Penguins %>%
+  gf_jitter(bill_length_mm ~ species, alpha = 0.35, width = 0.2, height = 0)
 ```
 
 ### Box and Whisker plots
@@ -306,47 +425,54 @@ have the quantitative variable to the left of the tilde.  (To make horizontal
 boxplots using `ggplot2` you have to make vertical boxplots and then flip the 
 coordinates with `coord_flip()`.)
 
-```{r boxplot, fig.show = "hold", warning = FALSE}
-gf_boxplot(net ~ sex, color = "red", data = Runners)
-gf_boxplot(net ~ sex, color = ~ start_position, data = Runners)
+```{r boxplot, warning = FALSE}
+gf_boxplot(length ~ sex, color = "red", data = KF)
+gf_boxplot(length ~ sex, color = ~biggerfoot , data = KF)
 ```
+
 
 This plot may surprise you.
 
 ```{r, boxplot02}
-gf_boxplot(net ~ year, data = Runners)
+Weather %>% 
+  gf_boxplot(high_temp ~ month | city)
 ```
 
-This plot is placing a single box and whisker plot at the mean value of `year`.
+A single plot is placed at the at the mean value of `month` (for each city).
 The warning message suggests that we need to tell R how to form the groups
 when using a quantitative variable for `x`.
 It suggests using the `group` aesthetic, and sometimes, this is 
 just what we want.
 
 ```{r, boxplot03}
-gf_boxplot(net ~ year, group = ~ year, data = Runners)
+Weather %>%
+  gf_boxplot(high_temp ~ month |  city, group = ~ month)
 ```
 
-But often, is is better to convert a discrete quantitative variable used for grouping into
-a categorical variable (a factor or character vector). This can be done in several ways:
+Alternatively, we could create a new categorical variable that puts the quantitative 
+values into one of a few different bins.
 
-```{r, factors, fig.keep = 1, fig.width = 5, echo = TRUE}
-# add a new variable to the data
-Runners$the_year <- as.character(Runners$year)               # in base R
-Runners <- Runners %>% mutate(the_year = as.character(year)) # in dplyr
-gf_boxplot(net ~ the_year, color = ~ sex, data = Runners)
+### Alternatives to box and whisker plots.
 
-# or do it on the fly
-gf_boxplot(net ~ factor(year), color = ~ sex, data = Runners)
+`gf_violin()` and `gf_sina()` provide two alternatives to box and whisker plots.
+
+```{r, violin-sina}
+Penguins %>% gf_violin(bill_length_mm ~  species)
+Penguins %>% gf_sina(bill_length_mm ~  species, alpha = 0.5)
+Penguins %>%
+  gf_violin(bill_length_mm ~  species) %>%
+  gf_sina(bill_length_mm ~  species, alpha = 0.5, color = ~ island)
 ```
+
 
 ### 2-dimensional density plots
 
 Two-dimensional plots of density also have both a left and right component to the formula.
 
-```{r density2d-hex, fig.show = "hold"}
-gf_density_2d(net ~ age, data = Runners)
-gf_hex(net ~ age, data = Runners)
+```{r density2d-hex}
+Penguins %>% gf_density_2d(bill_length_mm ~ bill_depth_mm | species)
+Penguins %>% gf_density_2d_filled(bill_length_mm ~ bill_depth_mm | species)
+Penguins %>% gf_hex(bill_length_mm ~ bill_depth_mm | species, binwidth = 1)
 ```
 
 ### Paths and lines
@@ -365,8 +491,7 @@ We begin with a scatter plot showing the number of
 live births in the US for each day of 1978.
 
 ```{r, births01}
-library(mosaicData)
-gf_point(births ~ date, data = Births78)
+Births78 %>% gf_point(births ~ date)
 ```
 
 Can this interesting pattern be explained by a weekday/weekend effect?  
@@ -374,7 +499,7 @@ Converting to a line plot and coloring by day of week
 highlights the pattern and makes it easy to spot the unusual days.
 
 ```{r, births03}
-gf_line(births ~ date, color = ~ wday, data = Births78)
+Births78 %>% gf_line(births ~ date, color = ~ wday)
 ```
 
 The example above would look the same if we used `gf_path()` because the
@@ -385,7 +510,7 @@ the data are sorted by date) and the
 second in order of their low temperature.
 
 
-```{r paths, fig.show = "hold", out.width = "30%"}
+```{r paths} 
 Weather %>%
   filter(month == 5, year == 2017, city == "Chicago") %>%
   gf_path(high_temp ~ low_temp | city ~ year, color = ~ day) %>%
@@ -418,10 +543,12 @@ Temps <-
   Weather %>%
   filter(month <= 4, year <= 2016, city == "Chicago")
 
-gf_pointrange(avg_temp + low_temp + high_temp  ~ date, color = ~ avg_temp, data = Temps) %>%
-    gf_refine(scale_color_gradientn(colors = c("blue", "green", "orange", "red")))
+Temps %>% 
+  gf_pointrange(avg_temp + low_temp + high_temp  ~ date, color = ~ avg_temp) %>% 
+  gf_refine(scale_color_gradientn(colors = c("blue", "green", "orange", "red")))
 
-gf_ribbon(low_temp + high_temp  ~ date, color = "navy", alpha = 0.3, data = Temps)
+Temps %>% 
+  gf_ribbon(low_temp + high_temp  ~ date, color = "navy", alpha = 0.3)
 ```
 
 ## Positions and Stats
@@ -436,8 +563,9 @@ many observations have the same value.  Dodging moves groups of glyphs a fixed
 difference to make it easier to distinguish the groups.
 
 ```{r, KidsFeet}
-gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
-         position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.4))
+KidsFeet %>% 
+  gf_point(length ~ sex, color = ~ domhand, 
+           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.4))
 ```
 
 ### Stats
@@ -450,7 +578,7 @@ of stats.
  number of observations in each bin.  It is equivalent to
  
 ```{r, stats}
-gf_bar( ~ age, data = HELPrct, stat = "bin")
+HELPrct %>% gf_bar( ~ age, stat = "bin")
 ```
 
 
@@ -480,17 +608,24 @@ functional relationship between two variables.
 * `gf_spline()` plots a spline fit to the data.
  
 ```{r}
-gf_point(length ~ width, data = KidsFeet, color = ~ sex) %>%
+KidsFeet %>% 
+  gf_point(length ~ width, color = ~ sex) %>%
   gf_lm()
-gf_point(births ~ date, color = ~wday,
-         data = mosaicData::Births, alpha = 0.25) %>%
-  gf_smooth()
+
+mosaicData::Births %>%  
+  gf_point(births ~ date, color = ~wday, alpha = 0.15) %>%
+  gf_smooth(method = "loess")
+
+mosaicData::Births %>%  
+  gf_point(births ~ date, color = ~wday, alpha = 0.15) %>%
+  gf_spline(spar = 1)
 ```
 
 Confidence or prediction bands can be added to these as well.
 
 ```{r}
-gf_point(length ~ width | sex, data = KidsFeet, color = ~ sex) %>%
+KidsFeet %>% 
+  gf_point(length ~ width | sex, color = ~ sex) %>%
   gf_lm(interval = "prediction", fill = "red") %>%
   gf_lm(interval = "confidence", fill = "navy")
 ```
@@ -507,21 +642,26 @@ the mean (and the mean plus and minus one standard error)
 This makes it simple to create an "interaction plot".
 
 ```{r, stats02}
-gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
-          width = 0.1, height = 0) %>%
-  gf_line(length ~ sex, color = ~ domhand, data = KidsFeet,
-          group = ~ domhand, stat="summary")
+KidsFeet %>% 
+  gf_jitter(length ~ sex, color = ~ domhand, width = 0.1, height = 0) %>%
+  gf_line(length ~ sex, color = ~ domhand, group = ~ domhand, stat = "summary")
+Penguins %>% 
+  gf_jitter(body_mass_g ~ sex, color = ~ species, width = 0.1, height = 0) %>%
+  gf_line(body_mass_g ~ sex, color = ~ species, group = ~ species, stat = "summary")
 ```
 
 The other two values computed by `mean_se()` are available (starting with 
 `ggplot2` version 2.3) as `stat(ymin)` and `stat(ymax)`.
 
 ```{r, stats03, eval = utils::packageVersion("ggplot2") > "2.2.1"}
-gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
-          width = 0.1, height = 0, alpha = 0.3) %>%
+KidsFeet %>% 
+  gf_jitter(length ~ sex, color = ~ domhand, width = 0.1, height = 0, alpha = 0.5) %>%
   gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
-                color = ~ domhand, data = KidsFeet, 
-                group = ~ domhand, stat="summary")
+                color = ~ domhand, group = ~ domhand, stat="summary")
+Penguins %>% 
+  gf_jitter(body_mass_g ~ sex, color = ~ species, width = 0.1, height = 0, alpha = 0.3) %>%
+  gf_pointrange(body_mass_g + stat(ymin) + stat(ymax) ~ sex, color = ~ species, 
+                group = ~ species, size = 1.5, stat="summary")
 ```
 
 Custom functions can be used by defining `fun.y`, `fun.ymin`, and `fun.ymax`,
@@ -530,14 +670,13 @@ named `y`, `ymin`, and `ymax`.
 
 
 ```{r, stats04, eval = utils::packageVersion("ggplot2") > "2.2.1"}
-gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
-          width = 0.1, height = 0, alpha = 0.5,
-          position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) %>%
+KidsFeet %>% 
+  gf_point(length ~ sex, color = ~ domhand, width = 0.1, height = 0, alpha = 0.5,
+           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) %>%
   gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
-                color = ~ domhand, data = KidsFeet, 
-                group = ~ domhand, stat="summary",
+                color = ~ domhand, group = ~ domhand, stat="summary",
                 fun.y = median, fun.ymin = min, fun.ymax = max,
-                position = position_dodge(width = 0.6))
+                position = position_dodge(width = 0.6), size = 1.2)
 ```
 
 
@@ -554,7 +693,8 @@ If these are used as a first layer, the limits for the x-axis must be specified.
 gf_function(fun = sqrt, xlim = c(0, 10)) %>%
   gf_fun(2 + 3 * cos(10 * x) ~ x, color = "red", n = 800)
 f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
-gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) %>%
+mosaicData::Utilities %>%  
+  gf_point(totalbill ~ month, alpha = 0.6) %>%
   gf_fun(f(m) ~ m, color = "red")
 ```
 
@@ -571,21 +711,22 @@ in the chain.
 The following plot illustrates how histograms and frequency polygons are related.
 
 ```{r, layers}
-gf_histogram( ~ age, data = Runners, alpha = 0.3, fill = "navy") %>%
-  gf_freqpoly( ~ age)
+Penguins %>% 
+  gf_histogram( ~ bill_length_mm, alpha = 0.3, fill = "navy", binwidth = 1) %>%
+  gf_freqpoly( ~ bill_length_mm , binwidth = 1) %>% 
+  gf_facet_grid(species ~ .)
 ```
 
 A 2-d density plot can be augmented with a scatterplot.
 
 ```{r, layers02}
-gf_density_2d(net ~ age, data = Runners) %>%
-  gf_point(net ~ age, alpha = 0.01) 
+Penguins %>% 
+  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>%
+  gf_jitter(bill_length_mm ~ bill_depth_mm, alpha = 0.2, width = 0.2, height = 0.2) %>%
+  gf_facet_wrap(~species)
 ```
 
-
-
 ### Maps
-
 
 Prior to `ggplot2` version 2.3,
 basic maps could be created using `gf_polygon()`.
@@ -628,7 +769,7 @@ if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
     gf_sf(data = sf::st_centroid(USshape), color = "white", alpha = 0.5, size = 3) %>%
     gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) %>%
     gf_labs(x = "", y = "") %>%
-    gf_refine(mosaic::theme_map(), theme_bw()) %>%
+    gf_refine(coord_sf(), mosaic::theme_map()) %>%
     gf_labs(fill = "name length")
 }
 ```
@@ -646,10 +787,12 @@ ASH plots often work well with larger bin widths than you might use for an
 individual histogram.
 
 ```{r}
-gf_ash( ~ age, data = HELPrct, binwidth = 2) %>%
-  gf_dhistogram( ~ age, data = HELPrct, binwidth = 2, alpha = 0.3) 
-gf_ash( ~ age, data = HELPrct, binwidth = 10) %>% 
-  gf_dhistogram( ~ age, data = HELPrct, binwidth = 2, alpha = 0.3) 
+HELPrct %>% 
+  gf_ash( ~ age, data = HELPrct, binwidth = 2) %>%
+  gf_dhistogram( ~ age, binwidth = 2, alpha = 0.3) 
+HELPrct %>% 
+  gf_ash( ~ age, binwidth = 10) %>% 
+  gf_dhistogram( ~ age, binwidth = 2, alpha = 0.3) 
 ```
 
 #### Distribution plots
@@ -666,11 +809,11 @@ gf_dist("gamma", shape = 3, rate = 4, kind = "cdf")
 ```
 
 When distribution parameters and plot attributes have the same name, 
-there are two ways to avoid the name colision:
+there are two ways to avoid the name collision:
 
 ```{r}
 # size is used by the binomial distribution functions and when plotting
-gf_dist("binom", size = 20, prob = 0.25, plot_size = 3)
+gf_dist("binom", size = 20, prob = 0.25, plot_size = 5)
 gf_dist("binom", params = list(size = 20, prob = 0.25), size = 3)
 ```
 
@@ -684,29 +827,33 @@ x <- rgamma(1000, shape = 2, rate = 5)
 gf_dhistogram( ~ x, alpha = 0.3) %>%
   gf_fitdistr(dist = "dnorm", color = ~ "Normal") %>% 
   gf_fitdistr(dist = "dgamma", color = ~ "Gamma") %>%
-  gf_fitdistr(dist = "dweibull", color = ~ "Weibull")
+  gf_fitdistr(dist = "dweibull", color = ~ "Weibull") %>% 
+  gf_labs(color = "")
 ```
 
 ### Global plot adjustments
-
 
 There are a number of things we may want to do to the entire plot -- adjusting
 labels, colors, fonts, etc.  `ggformula` provides wrappers to the `ggplot2` functions 
 for this so that the chaining syntax can be used.
 
 ```{r, themes}
-gf_histogram( ~ age, data = Runners, alpha = 0.2, fill = "navy",
-              binwidth = 5) %>%
-  gf_freqpoly( ~ age, binwidth = 5) %>%
-  gf_labs(x = "age (years)", title = "Age of runners") %>%
-  gf_lims(x = c(20, 80)) %>%
+penguins %>% 
+  gf_histogram( ~ body_mass_g, alpha = 0.2, fill = "navy",
+              color = "gray50", binwidth = 200) %>%
+  gf_freqpoly( ~ body_mass_g, binwidth = 200) %>%
+  gf_facet_grid(species ~ .) %>% 
+  gf_labs(x = "bill length (mm)", title = "Palmer Penguins") %>%
+  gf_lims(x = c(2500, 6500)) %>% 
   gf_theme(theme = theme_minimal())
 
-gf_histogram( ~ age, data = Runners, alpha = 0.5, fill = "white",
-              binwidth = 5) %>%
-  gf_freqpoly( ~ age, color = "skyblue", binwidth = 5, size = 1.5) %>%
-  gf_labs(x = "age (years)", title = "Age of runners") %>%
-  gf_lims(x = c(20, 80)) %>%
+penguins %>% 
+  gf_histogram( ~ body_mass_g | species ~ ., alpha = 0.5, fill = "white",
+              binwidth = 200, color = "gray40") %>%
+  gf_freqpoly( ~ body_mass_g, color = "skyblue", 
+               binwidth = 200, size = 1.2, alpha = 0.8) %>%
+  gf_labs(x = "bill length (mm)", title = "Palmer Penguins") %>%
+  gf_lims(x = c(2500, 6500)) %>% 
   gf_theme(theme = theme_dark())
 ```
 
@@ -714,8 +861,44 @@ For convenience, a few modifications can also be made directly in the original
 function call:
 
 ```{r}
-gf_histogram( ~ age, data = Runners, alpha = 0.5, fill = "skyblue", color = "navy",
-              binwidth = 5, 
-              xlab = "age (years)", title = "Age of runners"
-              ) 
+penguins %>% 
+  gf_dhistogram( ~ body_mass_g | species ~ ., 
+                alpha = 0.5, fill = "skyblue", color = "navy", binwidth = 200, 
+                xlab = "body mass (g)", title = "Palmer Penguins"
+  ) 
+```
+
+## Horizontal Geoms
+
+Some of the geoms in ggplot2 have a vertical orientation.
+There are two ways to obtain horizontal versions of thse geoms:
+
+* The ggstance package provides a set of horizontal geoms and positions;
+
+* The ggplot2 package now provides an `orientation` argument that can be use to
+obtain "native" horizontal or vertical geoms and positions.  
+
+    Often ggplot2 will correctly determine which orientation is intended.  If not, set
+`orientation = 'x'` or `orientation = 'y'` to explicitly set the direction of the geom.
+
+ggformula supports both of these methods.
+
+```{r}
+gf_boxplot(high_temp ~ city, data = Weather)
+
+# auto-detected because city is discrete
+gf_boxplot(city ~ high_temp, data = Weather)
+
+# auto-detected based on groups
+gf_boxplot(month ~ high_temp | ~ city, group = ~ month, data = Weather)
+gf_boxplot(high_temp ~ month | city ~ ., group = ~ month, data = Weather)
+
+# defaults to veritcal without groups
+gf_boxplot(month ~ high_temp | ~ city, data = Weather)
+
+# explicit horizontal orientation
+gf_boxplot(month ~ high_temp | city ~ ., data = Weather, orientation = 'y')
+
+# using ggstance; notice the "h" at the end of gf_boxploth()
+gf_boxploth(month ~ high_temp | city ~ ., data = Weather)
 ```
