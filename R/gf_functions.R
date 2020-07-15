@@ -1113,7 +1113,7 @@ gf_dhistogram <-
 #' gf_dens()
 #' gf_density(~Sepal.Length, fill = ~Species, data = iris)
 #' gf_dens(~Sepal.Length, color = ~Species, data = iris)
-#' gf_dens(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
+#' gf_dens2(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
 #' gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
 #' # Chaining in the data
 #' iris %>% gf_dens(~Sepal.Length, color = ~Species)
@@ -1134,7 +1134,7 @@ gf_density <-
 
 gf_dens <-
   layer_factory(
-    geom = "density_line", stat = "density",
+    geom = "line", stat = "density",
     aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = , fill = NA,
@@ -1144,6 +1144,20 @@ gf_dens <-
     aesthetics = aes(y = stat(density))
   )
 
+#' @rdname gf_density
+#' @export
+
+gf_dens2 <-
+  layer_factory(
+    geom = "density_line", stat = "density",
+    aes_form = list( ~x, y ~ .),
+    extras = alist(
+      alpha = 0.5, color = , fill = NA,
+      group = , linetype = , size = ,
+      kernel = "gaussian", n = 512, trim = FALSE
+    ),
+    aesthetics = aes(y = stat(density))
+  )
 #' Formula interface to geom_dotplot()
 #'
 #' @inherit gf_point

@@ -3,6 +3,7 @@
 \name{gf_density}
 \alias{gf_density}
 \alias{gf_dens}
+\alias{gf_dens2}
 \title{Formula interface to stat_density()}
 \usage{
 gf_density(
@@ -34,6 +35,34 @@ gf_density(
 )
 
 gf_dens(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha = 0.5,
+  color,
+  fill = NA,
+  group,
+  linetype,
+  size,
+  kernel = "gaussian",
+  n = 512,
+  trim = FALSE,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "line",
+  stat = "density",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_dens2(
   object = NULL,
   gformula = NULL,
   data = NULL,
@@ -190,7 +219,7 @@ in another.
 gf_dens()
 gf_density(~Sepal.Length, fill = ~Species, data = iris)
 gf_dens(~Sepal.Length, color = ~Species, data = iris)
-gf_dens(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
+gf_dens2(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
 gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
 # Chaining in the data
 iris \%>\% gf_dens(~Sepal.Length, color = ~Species)
