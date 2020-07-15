@@ -39,7 +39,6 @@ Suggests:
     lubridate,
     survival,
     broom,
-    scales,
     maps,
     maptools,
     rgeos,
