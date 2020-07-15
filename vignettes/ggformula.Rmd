@@ -396,6 +396,31 @@ create a plot with a label that doesn't match the true content of the plot.
 is guaranteed to match that variable no matter how the variable is used within
 the plot.
 
+## Chaining to create complex plots
+
+Often it is useful to overlay multiple layers onto a single plot.  This can be done 
+by chaining them with `%>%`, the "then" operator from `magrittr`.  The `data` 
+argument can be omitted if the new layers uses the same data as the first layer 
+in the chain. 
+
+The following plot illustrates how histograms and frequency polygons are related.
+
+```{r, layers}
+Penguins %>% 
+  gf_histogram( ~ bill_length_mm, alpha = 0.3, fill = "navy", binwidth = 1) %>%
+  gf_freqpoly( ~ bill_length_mm , binwidth = 1) %>% 
+  gf_facet_grid(species ~ .)
+```
+
+A 2-d density plot can be augmented with a scatterplot.
+
+```{r, layers02}
+Penguins %>% 
+  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>%
+  gf_jitter(bill_length_mm ~ bill_depth_mm, alpha = 0.2, width = 0.2, height = 0.2) %>%
+  gf_facet_wrap(~species)
+```
+
 ## More 2-variable plots
 
 ### Using jitter and transparency to handle overlapping cases
@@ -464,6 +489,17 @@ Penguins %>%
   gf_sina(bill_length_mm ~  species, alpha = 0.5, color = ~ island)
 ```
 
+### Ridge plots
+
+Ridge plots can be useful to displaying multiple density plots compactly.
+
+```{ridge}
+Weather %>%
+  gf_density_ridges(month ~ high_temp | city, group = ~month)
+Weather %>%
+  gf_density_ridges_gradient(month ~ high_temp | city, group = ~month, show.legend = FALSE) %>% 
+  gf_refine(scale_fill_viridis_c(option = "B"))
+```
 
 ### 2-dimensional density plots
 
@@ -550,6 +586,7 @@ Temps %>%
 Temps %>% 
   gf_ribbon(low_temp + high_temp  ~ date, color = "navy", alpha = 0.3)
 ```
+
 
 ## Positions and Stats
 
@@ -699,34 +736,7 @@ mosaicData::Utilities %>%
 ```
 
 
-## Chaining to create complex plots
-
-### Multiple layers 
-
-Often it is useful to overlay multiple layers onto a single plot.  This can be done 
-by chaining them with `%>%`, the "then" operator from `magrittr`.  The `data` 
-argument can be omitted if the new layers uses the same data as the first layer 
-in the chain. 
-
-The following plot illustrates how histograms and frequency polygons are related.
-
-```{r, layers}
-Penguins %>% 
-  gf_histogram( ~ bill_length_mm, alpha = 0.3, fill = "navy", binwidth = 1) %>%
-  gf_freqpoly( ~ bill_length_mm , binwidth = 1) %>% 
-  gf_facet_grid(species ~ .)
-```
-
-A 2-d density plot can be augmented with a scatterplot.
-
-```{r, layers02}
-Penguins %>% 
-  gf_density_2d(bill_length_mm ~ bill_depth_mm) %>%
-  gf_jitter(bill_length_mm ~ bill_depth_mm, alpha = 0.2, width = 0.2, height = 0.2) %>%
-  gf_facet_wrap(~species)
-```
-
-### Maps
+## Maps
 
 Prior to `ggplot2` version 2.3,
 basic maps could be created using `gf_polygon()`.
@@ -775,11 +785,11 @@ if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
 ```
 
 
-### New types of plots
+## New types of plots
 
 `ggformula` adds some additional plot options to `ggplot2`
 
-#### ASH plots
+### ASH plots
 
 Average shifted histograms can be created with `gf_ash()`.  These plots 
 average the height over all histograms with the same bin width.
@@ -795,7 +805,7 @@ HELPrct %>%
   gf_dhistogram( ~ age, binwidth = 2, alpha = 0.3) 
 ```
 
-#### Distribution plots
+### Distribution plots
 
 `gf_dist()` can be used to create plots of discrete and continuous distributions.
 
@@ -831,7 +841,7 @@ gf_dhistogram( ~ x, alpha = 0.3) %>%
   gf_labs(color = "")
 ```
 
-### Global plot adjustments
+## Global plot adjustments
 
 There are a number of things we may want to do to the entire plot -- adjusting
 labels, colors, fonts, etc.  `ggformula` provides wrappers to the `ggplot2` functions 
