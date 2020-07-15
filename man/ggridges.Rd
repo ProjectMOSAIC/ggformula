@@ -4,7 +4,7 @@
 \alias{gf_ridgeline}
 \alias{gf_density_ridges}
 \alias{gf_density_ridges2}
-\alias{gf_density_line}
+\alias{gf_density_ridgeline_gradient}
 \title{Formula interface to ggridges plots}
 \usage{
 gf_ridgeline(
@@ -111,27 +111,26 @@ gf_density_ridges2(
   environment = parent.frame()
 )
 
-gf_density_line(
+gf_density_ridgeline_gradient(
   object = NULL,
   gformula = NULL,
   data = NULL,
   ...,
+  height,
   color,
   fill,
-  alpha = 0.5,
+  alpha,
   group,
   linetype,
   size,
-  kernel = "gaussian",
-  n = 512,
-  trim = FALSE,
+  gradient_lwd = 0.5,
   xlab,
   ylab,
   title,
   subtitle,
   caption,
-  geom = "density_line",
-  stat = "density",
+  geom = "ridgeline_gradient",
+  stat = "identity",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -217,9 +216,30 @@ diamonds \%>\%
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
-gf_density_line
-
-
+diamonds \%>\%
+  gf_density_ridges(cut ~ price,
+    scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) \%>\%
+  gf_theme(theme_ridges()) \%>\%
+  gf_refine(
+    scale_y_discrete(expand = c(0.01, 0)),
+    scale_x_continuous(expand = c(0.01, 0))
+  )
+diamonds \%>\%
+  gf_density_ridges(clarity ~ price | cut,
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
+  gf_theme(theme_ridges()) \%>\%
+  gf_refine(
+    scale_y_discrete(expand = c(0.01, 0)),
+    scale_x_continuous(expand = c(0.01, 0))
+  )
+diamonds \%>\%
+  gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
+  gf_theme(theme_ridges()) \%>\%
+  gf_refine(
+    scale_y_discrete(expand = c(0.01, 0)),
+    scale_x_continuous(expand = c(0.01, 0))
+  )
 }
 \seealso{
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}
