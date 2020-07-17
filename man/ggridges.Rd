@@ -179,19 +179,28 @@ Faceting can be achieved by including \code{|} in the formula.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
-data.
+data. All objects will be fortified to produce a data frame. See
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
-the plot data. The return value must be a \code{data.frame.}, and
-will be used as the layer data.}
+the plot data. The return value must be a \code{data.frame}, and
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{...}{other arguments passed on to \code{\link[=layer]{layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{color = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Additional arguments.  Typically these are
+(a) ggplot2 aesthetics to be set with \code{attribute = value},
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
+
+\item{height}{The height of each ridgeline at the respective x value.
+Automatically calculated and provided by \code{\link[ggridges:stat_density_ridges]{ggridges::stat_density_ridges()}}
+if the default stat is not changed.}
+
+\item{scale}{A scaling factor to scale the height of the ridgelines relative to the
+spacing between them. A value of 1 indicates that the maximum point of any ridgeline touches the baseline right above, assuming even spacing between baselines.}
 
 \item{color}{A color or a formula used for mapping color.}
 
@@ -205,6 +214,8 @@ to the paired geom/stat.}
 for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
+
+\item{point_shape, point_colour, point_size, point_fill, point_alpha, point_stroke}{As in \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -222,15 +233,17 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom}{Use to override the default connection between
 \code{geom_density} and \code{stat_density}.}
 
-\item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+\item{stat}{Use to override the default connection between
+\code{geom_density} and \code{stat_density}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -238,18 +251,25 @@ a call to a position adjustment function.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
+\item{rel_min_height}{Lines with heights below this cutoff will be removed. The cutoff is
+measured relative to the overall maximum, so \code{rel_min_height = 0.01} would
+remove everything. Default is 0, so nothing is removed.}
+
 \item{panel_scaling}{If \code{TRUE}, the default, relative scaling is calculated separately
 for each panel. If \code{FALSE}, relative scaling is calculated globally.}
+
+\item{gradient_lwd}{A parameter to needed to remove rendering artifacts inside the
+rendered gradients. Should ideally be 0, but often needs to be around 0.5 or higher.}
 }
 \description{
 Formula interface to ggridges plots
 }
 \section{Details}{
 
-Note that the default stat (\code{stat_density_ridges}) makes joint density estimation
+Note that the \code{\link[ggridges:stat_density_ridges]{ggridges::stat_density_ridges()}} makes joint density estimation
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set \code{stat = "density"} to use
-\code{stat_density()}. In this case, it is required to add the aesthetic mapping
+\code{\link[ggplot2:geom_density]{ggplot2::stat_density()}}. In this case, it is required to add the aesthetic mapping
 \code{height = stat(density)} (see examples).
 }
 
@@ -322,7 +342,7 @@ mosaicData::Weather \%>\%
 \seealso{
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}
 
-\code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}
+\code{\link[ggridges:geom_density_ridgeline]{ggridges::geom_density_ridgeline()}}
 
-\code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}
+\code{\link[ggridges:geom_ridgeline_gradient]{ggridges::geom_density_ridges_gradient()}}
 }
