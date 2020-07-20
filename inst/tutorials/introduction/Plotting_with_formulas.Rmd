@@ -26,7 +26,6 @@ for (y in unique(Births$year)) {
   assign(paste0("Births",y),  Births %>% filter(year == y))
 }
 Births1978 <- Births %>% filter(year == 1978)
-data(Galton, package = "mosaicData")
 # knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
 knitr::opts_chunk$set(
   echo = FALSE,
