@@ -24,11 +24,11 @@ for (y in unique(Births$year)) {
   assign(paste0("Births",y),  Births %>% filter(year == y))
 }
 Births1978 <- Births %>% filter(year == 1978)
-data(Galton, package = "mosaicData")
+data(penguins, package = "modeldata")
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.align = "center",
-  fig.width = 6, fig.height = 4.0)
+  fig.width = 6, fig.bill_length_mm = 4.0)
 ```
 
 
@@ -173,7 +173,7 @@ Arbitrary text can be placed on a plot using `gf_text()` or `gf_label()`.
   3. Now change things so that the text or labels (your choice) are red.
   
 
-```{r, labels, exercise = TRUE, fig.height = 4.5}
+```{r, labels, exercise = TRUE, fig.bill_length_mm = 4.5}
 # summary data used to create annotation
 LabData <- Weather %>% group_by(city) %>%
   summarise(date = date[which.max(high_temp)],
@@ -240,7 +240,7 @@ warmer temperatures have warmer colors.
 in this case five colors selected using the `rainbow()` function.
 
 
-```{r, scales, exercise = TRUE, fig.height = 4.0}
+```{r, scales, exercise = TRUE, fig.bill_length_mm = 4.0}
 gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, 
              color = ~ avg_temp) %>%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
@@ -252,7 +252,7 @@ You can also use `scale_color_gradientn()` with colors you enter manually.
 Add a few colors between navy and red to make something more like the rainbow
 colors above.
 
-```{r, scales2, exercise = TRUE, fig.height = 4.0}
+```{r, scales2, exercise = TRUE, fig.bill_length_mm = 4.0}
 gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, 
              color = ~ avg_temp) %>%
   gf_refine(scale_colour_gradientn(colors = c("navy", "red")))
@@ -270,7 +270,7 @@ in the example with five of your own choosing.
 (Use `colors()` to list the possible color names.)
 
 
-```{r, scales3, exercise = TRUE, fig.height = 4.5}
+```{r, scales3, exercise = TRUE, fig.bill_length_mm = 4.5}
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, 
           fill = ~ city, alpha = 0.6)  %>%
   gf_refine(scale_fill_manual(values = c("red", "blue", "orange", "navy", "gray50")))
@@ -308,7 +308,7 @@ colors within one of the categorical palettes from ColorBrewer.
 Experiment with different colors by choosing different values for 
 `type` and `palette`.
 
-```{r, brewer, exercise = TRUE, fig.height = 4.0}
+```{r, brewer, exercise = TRUE, fig.bill_length_mm = 4.0}
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, fill = ~ city, alpha = 0.5) %>%
   gf_refine(scale_fill_brewer(type = "qual", palette = 2))
 
@@ -409,13 +409,14 @@ There are three ways this can be done.
   
   3. Use scales for x and y to set the limits.
   
-In this section we will use a different data set.  `Galton` contains
-data collected by Galton recording the heights of parents and sons.
+In this section we will use a different data set.  `penguins` contains
+data collected by Palmer recording measurements of some penguins.
 
-```{r, Galton}
-Galton %>% head(3)
-gf_point(height ~ father, data = Galton) %>%
-  gf_smooth(height ~ father, data = Galton, method = "lm")
+```{r, penguins}
+penguins %>% head(3)
+penguins %>%
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) %>%
+  gf_lm(bill_length_mm ~ bill_depth_mm)
 ```
 
 
@@ -423,9 +424,10 @@ gf_point(height ~ father, data = Galton) %>%
 
 
 ```{r, filter, exercise = TRUE}
-ShortDads <- Galton %>% filter(father <= 68)
-gf_point(height ~ father, data = ShortDads) %>%
-  gf_smooth(height ~ father, method = "lm") 
+SmallPenguins <- penguins %>% filter(bill_depth_mm < 17)
+SmallPenguins %>% 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) %>%
+  gf_lm(bill_length_mm ~ bill_depth_mm) 
 ```
 
 
@@ -433,20 +435,21 @@ gf_point(height ~ father, data = ShortDads) %>%
 
 
 ```{r, gf_lims, exercise = TRUE}
-gf_point(height ~ father, data = Galton) %>%
-  gf_smooth(height ~ father, method = "lm") %>%
-  gf_lims(x = c(NA, 68))
+penguins %>% 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) %>%
+  gf_lm(bill_length_mm ~ bill_depth_mm) %>%
+  gf_lims(x = c(NA, 17))
 ```
 
 
 ### Using scales to limit the view
 
 ```{r, scale_lims, exercise = TRUE}
-gf_point(height ~ father, data = Galton) %>%
-  gf_smooth(height ~ father, method = "lm") %>%
-  gf_refine(scale_x_continuous(limits = c(NA, 68)))
+penguins %>% 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) %>%
+  gf_lm(bill_length_mm ~ bill_depth_mm) %>%
+  gf_refine(scale_x_continuous(limits = c(NA, 17)))
 ```
-
 
 ## Themes
 
