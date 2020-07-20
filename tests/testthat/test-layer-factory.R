@@ -9,12 +9,13 @@ test_that(
     vdiffr::expect_doppelganger(
       "gf_abline1",
       gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-        gf_abline(intercept = ~3, slope = ~1, color = "red")
+        gf_abline(intercept = 10, slope = 2, color = "red")
     )
     vdiffr::expect_doppelganger(
       "gf_abline2",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-        gf_abline(intercept = 1:3, slope = 1, color = c("red", "green", "blue"))
+      gf_plot(data = penguins) %>%
+        gf_point(bill_length_mm ~ bill_depth_mm) %>%
+        gf_abline(intercept = 10:12, slope = 2, color = c("red", "green", "blue"))
     )
     vdiffr::expect_doppelganger(
       "gf_abline3",
@@ -81,11 +82,11 @@ test_that(
     )
     vdiffr::expect_doppelganger(
       "gf_ash2",
-      gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 0.3)
+      gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1)
     )
     vdiffr::expect_doppelganger(
       "gf_ash3",
-      gf_ash(~bill_length_mm, color = ~species, data = penguins, adjust = 2)
+      gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1, adjust = 10)
     )
   }
 )
