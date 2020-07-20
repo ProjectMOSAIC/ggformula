@@ -54,8 +54,9 @@ NA
 #' @examples
 #' data(penguins, package = "modeldata")
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins)
-#' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 0.3)
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins, adjust = 2)
+#' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1)
+#' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1, adjust = 2)
 gf_ash <-
   layer_factory(
     geom = "line", stat = "ash", position = "identity",
