@@ -202,6 +202,12 @@ if the default stat is not changed.}
 \item{scale}{A scaling factor to scale the height of the ridgelines relative to the
 spacing between them. A value of 1 indicates that the maximum point of any ridgeline touches the baseline right above, assuming even spacing between baselines.}
 
+\item{min_height}{A height cutoff on the drawn ridgelines. All values that fall below
+this cutoff will be removed. The main purpose of this cutoff is to remove
+long tails right at the baseline level, but other uses are possible. The
+cutoff is applied before any height scaling is applied via the scale
+aesthetic. Default is 0, so negative values are removed.}
+
 \item{color}{A color or a formula used for mapping color.}
 
 \item{fill}{A color for filling, or a formula used for mapping fill.}
@@ -336,13 +342,13 @@ diamonds \%>\%
   )
 mosaicData::Weather \%>\%
   gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),
-    group = ~ month, show.legend = FALSE) \%>\%
+    group = ~ month, show.legend = FALSE, rel_min_height = 0.02) \%>\%
   gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
 }
 \seealso{
 \code{\link[ggridges:geom_density_ridges]{ggridges::geom_density_ridges()}}
 
-\code{\link[ggridges:geom_density_ridgeline]{ggridges::geom_density_ridgeline()}}
+\code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}
 
 \code{\link[ggridges:geom_ridgeline_gradient]{ggridges::geom_density_ridges_gradient()}}
 }

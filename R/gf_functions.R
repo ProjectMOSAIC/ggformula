@@ -668,14 +668,15 @@ gf_boxplot <-
 #' @seealso [ggplot2::geom_text()]
 #' @export
 #' @examples
-#' gf_text(Sepal.Length ~ Sepal.Width,
-#'   data = iris,
-#'   label = ~Species, color = ~Species, size = 2, angle = 30
+#' data(penguins, package = "modeldata")
+#' gf_text(bill_length_mm ~ bill_depth_mm,
+#'   data = penguins,
+#'   label = ~species, color = ~species, size = 2, angle = 30
 #' )
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) %>%
-#'   gf_text(Sepal.Length ~ Sepal.Width,
-#'     data = iris,
-#'     label = ~Species, color = ~Species,
+#' penguins %>%
+#' gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) %>%
+#'   gf_text(bill_length_mm ~ bill_depth_mm,
+#'     label = ~species, color = ~species,
 #'     size = 2, angle = 0, hjust = 0, nudge_x = 0.1, nudge_y = 0.1
 #'   )
 gf_text <-
@@ -700,14 +701,15 @@ gf_text <-
 #' @export
 #' @examples
 #' if (require(dplyr)) {
-#'   iris_means <-
-#'     iris %>%
-#'     group_by(Species) %>%
-#'     summarise(Sepal.Length = mean(Sepal.Length), Sepal.Width = mean(Sepal.Width))
-#'   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) %>%
-#'     gf_label(Sepal.Length ~ Sepal.Width,
-#'       data = iris_means,
-#'       label = ~Species, color = ~Species, size = 2, alpha = 0.7
+#'   data(penguins, package = "modeldata")
+#'   penguins_means <-
+#'     penguins %>%
+#'     group_by(species) %>%
+#'     summarise(bill_length_mm = mean(bill_length_mm), bill_depth_mm = mean(bill_depth_mm))
+#'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) %>%
+#'     gf_label(bill_length_mm ~ bill_depth_mm,
+#'       data = penguins_means,
+#'       label = ~species, color = ~species, size = 2, alpha = 0.7
 #'     )
 #' }
 gf_label <-
@@ -935,10 +937,10 @@ gf_bin2d <-
 #' @export
 #' @examples
 #' # Best used in conjunction with scale_size_area which ensures that
-#' # counts of zero would be given size 0. Doesn't make much difference
+#' # counts of zero would be given size 0. This doesn't make much difference
 #' # here because the smallest count is already close to 0.
 #'
-#' gf_count(hwy ~ cty, data = mpg, alpha = 0.5) %>%
+#' gf_count(hwy ~ cty, data = mpg, alpha = 0.3) %>%
 #'   gf_refine(scale_size_area())
 gf_count <-
   layer_factory(
@@ -1049,7 +1051,8 @@ gf_frame <-
 #'
 #' gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 #'
-#' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
+#' data(penguins, package = "modeldata")
+#' gf_histogram(~ bill_length_mm | species, data = penguins, binwidth = 0.25)
 #' gf_histogram(~age,
 #'   data = mosaicData::HELPrct, binwidth = 5,
 #'   fill = "skyblue", color = "black"
@@ -1060,6 +1063,10 @@ gf_frame <-
 #'   binwidth = 5, fill = "skyblue", color = "black", center = 42.5
 #' )
 #' gf_histogram(~age,
+#'   data = mosaicData::HELPrct,
+#'   binwidth = 5, fill = "skyblue", color = "black", boundary = 40
+#' )
+#' gf_histogram(age ~ .,
 #'   data = mosaicData::HELPrct,
 #'   binwidth = 5, fill = "skyblue", color = "black", boundary = 40
 #' )
@@ -1111,12 +1118,16 @@ gf_dhistogram <-
 #' @export
 #' @examples
 #' gf_dens()
-#' gf_density(~Sepal.Length, fill = ~Species, data = iris)
-#' gf_dens(~Sepal.Length, color = ~Species, data = iris)
-#' gf_dens2(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
-#' gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
+#' data(penguins, package = "modeldata")
+#' gf_density(~bill_length_mm, fill = ~species, data = penguins)
+#' gf_dens(~bill_length_mm, color = ~species, data = penguins)
+#' gf_dens2(~bill_length_mm, color = ~species, fill = ~species, data = penguins)
+#' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 #' # Chaining in the data
-#' iris %>% gf_dens(~Sepal.Length, color = ~Species)
+#' data(penguins, package = "modeldata")
+#' penguins %>% gf_dens(~bill_length_mm, color = ~species)
+#' # horizontal orientation
+#' penguins %>% gf_dens(bill_length_mm ~ ., color = ~species)
 gf_density <-
   layer_factory(
     geom = "area", stat = "density",
@@ -1177,7 +1188,8 @@ gf_dens2 <-
 #' @seealso [ggplot2::geom_dotplot()]
 #' @export
 #' @examples
-#' gf_dotplot(~Sepal.Length, fill = ~Species, data = iris)
+#' data(penguins, package = "modeldata")
+#' gf_dotplot(~bill_length_mm, fill = ~species, data = penguins)
 gf_dotplot <-
   layer_factory(
     geom = "dotplot",
@@ -1386,12 +1398,13 @@ gf_percents <-
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
-#' gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
-#'   gf_freqpoly(~Sepal.Length, data = iris, color = ~Species, bins = 20)
-#' gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 20)
-#' gf_dens(~Sepal.Length, data = iris, color = "navy") %>%
-#'   gf_freqpoly(stat(density) ~ Sepal.Length,
-#'     data = iris,
+#' data(penguins, package = "modeldata")
+#' gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) %>%
+#'   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
+#' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
+#' gf_dens(~bill_length_mm, data = penguins, color = "navy") %>%
+#'   gf_freqpoly(stat(density) ~ bill_length_mm,
+#'     data = penguins,
 #'     color = "red", bins = 20
 #'   )
 gf_freqpoly <-
@@ -1426,10 +1439,11 @@ gf_freqpoly <-
 #' @export
 #' @examples
 #' gf_qq(~ rnorm(100))
-#' gf_qq(~ Sepal.Length | Species, data = iris) %>% gf_qqline()
-#' gf_qq(~ Sepal.Length | Species, data = iris) %>% gf_qqline(tail = 0.10)
-#' gf_qq(~Sepal.Length, color = ~Species, data = iris) %>%
-#'   gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
+#' data(penguins, package = "modeldata")
+#' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline()
+#' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline(tail = 0.10)
+#' gf_qq(~bill_length_mm, color = ~species, data = penguins) %>%
+#'   gf_qqstep(~bill_length_mm, color = ~species, data = penguins)
 gf_qq <-
   layer_factory(
     geom = "point", stat = "qq",
@@ -1512,24 +1526,25 @@ gf_ecdf <-
 #' @seealso [ggplot2::geom_rug()]
 #' @export
 #' @examples
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug(Sepal.Length ~ Sepal.Width)
+#' data(penguins, package = "modeldata")
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#'   gf_rug(bill_length_mm ~ bill_depth_mm)
 #'
 #' # There are several ways to control x- and y-rugs separately
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rugx(~Sepal.Width, data = iris, color = "red") %>%
-#'   gf_rugy(Sepal.Length ~ ., data = iris, color = "green")
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#'   gf_rugx(~bill_depth_mm, data = penguins, color = "red") %>%
+#'   gf_rugy(bill_length_mm ~ ., data = penguins, color = "green")
 #'
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug(. ~ Sepal.Width, data = iris, color = "red", inherit = FALSE) %>%
-#'   gf_rug(Sepal.Length ~ ., data = iris, color = "green", inherit = FALSE)
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", inherit = FALSE) %>%
+#'   gf_rug(bill_length_mm ~ ., data = penguins, color = "green", inherit = FALSE)
 #'
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug(. ~ Sepal.Width, data = iris, color = "red", sides = "b") %>%
-#'   gf_rug(Sepal.Length ~ ., data = iris, color = "green", sides = "l")
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", sides = "b") %>%
+#'   gf_rug(bill_length_mm ~ ., data = penguins, color = "green", sides = "l")
 #'
 #' # jitter requires both an x and a y, but we can turn off one or the other with sides
-#' gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
 #'   gf_rug(color = "green", sides = "b", position = "jitter")
 #'
 #' # rugs work with some 1-varialbe plots as well.
@@ -1547,12 +1562,12 @@ gf_ecdf <-
 #'   gf_rug(~eruptions, data = faithful, color = "red", inherit = FALSE)
 #'
 #' # using jitter with gf_histogram() requires manually setting the y value.
-#' gf_dhistogram(~Sepal.Width, data = iris) %>%
-#'   gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+#' gf_dhistogram(~bill_depth_mm, data = penguins) %>%
+#'   gf_rug(0 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 #'
 #' # the choice of y value can affect how the plot looks.
-#' gf_dhistogram(~Sepal.Width, data = iris) %>%
-#'   gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+#' gf_dhistogram(~bill_depth_mm, data = penguins) %>%
+#'   gf_rug(0.5 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 gf_rug <-
   layer_factory(
     geom = "rug",
@@ -2401,8 +2416,9 @@ gf_sf <-
 #' @return A plot with now layers.
 #' @examples
 #' gf_empty()
+#' data(penguins, package = "modeldata")
 #' gf_empty() %>%
-#'   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species)
+#'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species)
 #' @export
 gf_empty <- function(environment = parent.frame()) {
   ggplot2::ggplot(environment = environment)

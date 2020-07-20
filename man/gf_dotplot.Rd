@@ -175,7 +175,8 @@ in another.
 }
 
 \examples{
-gf_dotplot(~Sepal.Length, fill = ~Species, data = iris)
+data(penguins, package = "modeldata")
+gf_dotplot(~bill_length_mm, fill = ~species, data = penguins)
 }
 \references{
 Wilkinson, L. (1999) Dot plots. The American Statistician,

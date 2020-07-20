@@ -52,9 +52,10 @@ NA
 #' @export
 #' @rdname gf_ash
 #' @examples
-#' gf_ash(~Sepal.Length, color = ~Species, data = iris)
-#' gf_ash(~Sepal.Length, color = ~Species, data = iris, binwidth = 0.3)
-#' gf_ash(~Sepal.Length, color = ~Species, data = iris, adjust = 2)
+#' data(penguins, package = "modeldata")
+#' gf_ash(~bill_length_mm, color = ~species, data = penguins)
+#' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 0.3)
+#' gf_ash(~bill_length_mm, color = ~species, data = penguins, adjust = 2)
 gf_ash <-
   layer_factory(
     geom = "line", stat = "ash", position = "identity",
@@ -328,10 +329,11 @@ StatQqline <- ggproto("StatQqline", Stat,
 #' @rdname stat_qqline
 #' @export
 #' @examples
-#' ggplot(data = iris, aes(sample = Sepal.Length)) +
+#' data(penguins, package = "modeldata")
+#' ggplot(data = penguins, aes(sample = bill_length_mm)) +
 #'   geom_qq() +
 #'   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +
-#'   facet_wrap(~Species)
+#'   facet_wrap(~species)
 stat_qqline <-
   function(mapping = NULL, data = NULL, geom = "line",
              position = "identity", ...,

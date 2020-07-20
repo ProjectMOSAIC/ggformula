@@ -10,7 +10,7 @@
 #' @inheritParams ggridges::geom_density_ridges
 #' @inheritParams ggridges::geom_density_ridges_gradient
 #' @seealso [`ggridges::geom_density_ridges()`]
-#' @seealso [`ggridges::geom_density_ridgeline()`]
+#' @seealso [`ggridges::geom_ridgeline()`]
 #' @seealso [`ggridges::geom_density_ridges_gradient()`]
 #' @param height The height of each ridgeline at the respective x value.
 #'   Automatically calculated and provided by [`ggridges::stat_density_ridges()`]
@@ -22,6 +22,11 @@
 #'   Lines with heights below this cutoff will be removed. The cutoff is
 #'   measured relative to the overall maximum, so `rel_min_height = 0.01` would
 #'   remove everything. Default is 0, so nothing is removed.
+#' @param min_height A height cutoff on the drawn ridgelines. All values that fall below
+#'   this cutoff will be removed. The main purpose of this cutoff is to remove
+#'   long tails right at the baseline level, but other uses are possible. The
+#'   cutoff is applied before any height scaling is applied via the scale
+#'   aesthetic. Default is 0, so negative values are removed.
 #' @param point_shape,point_colour,point_size,point_fill,point_alpha,point_stroke
 #'   As in [`ggridges::geom_ridgeline()`].
 #' @export
@@ -153,7 +158,7 @@ gf_density_ridgeline_gradient <-
 #' @examples
 #' mosaicData::Weather %>%
 #'   gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),
-#'     group = ~ month, show.legend = FALSE) %>%
+#'     group = ~ month, show.legend = FALSE, rel_min_height = 0.02) %>%
 #'   gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
 
 

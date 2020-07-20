@@ -185,10 +185,11 @@ in another.
 
 \examples{
 gf_qq(~ rnorm(100))
-gf_qq(~ Sepal.Length | Species, data = iris) \%>\% gf_qqline()
-gf_qq(~ Sepal.Length | Species, data = iris) \%>\% gf_qqline(tail = 0.10)
-gf_qq(~Sepal.Length, color = ~Species, data = iris) \%>\%
-  gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
+data(penguins, package = "modeldata")
+gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline()
+gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline(tail = 0.10)
+gf_qq(~bill_length_mm, color = ~species, data = penguins) \%>\%
+  gf_qqstep(~bill_length_mm, color = ~species, data = penguins)
 }
 \seealso{
 \code{\link[ggplot2:geom_qq]{ggplot2::geom_qq()}}

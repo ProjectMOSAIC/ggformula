@@ -256,7 +256,8 @@ gf_dhistogram(~x, bins = 30) \%>\%
 
 gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 
-gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
+data(penguins, package = "modeldata")
+gf_histogram(~ bill_length_mm | species, data = penguins, binwidth = 0.25)
 gf_histogram(~age,
   data = mosaicData::HELPrct, binwidth = 5,
   fill = "skyblue", color = "black"
@@ -267,6 +268,10 @@ gf_histogram(~age,
   binwidth = 5, fill = "skyblue", color = "black", center = 42.5
 )
 gf_histogram(~age,
+  data = mosaicData::HELPrct,
+  binwidth = 5, fill = "skyblue", color = "black", boundary = 40
+)
+gf_histogram(age ~ .,
   data = mosaicData::HELPrct,
   binwidth = 5, fill = "skyblue", color = "black", boundary = 40
 )

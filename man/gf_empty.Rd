@@ -18,6 +18,7 @@ plot layers.
 }
 \examples{
 gf_empty()
+data(penguins, package = "modeldata")
 gf_empty() \%>\%
-  gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species)
+  gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species)
 }

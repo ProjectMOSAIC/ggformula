@@ -31,7 +31,6 @@ Suggests:
     lattice,
     mosaic,
     modeldata,
-    mosaicModel,
     testthat,
     vdiffr,
     knitr,

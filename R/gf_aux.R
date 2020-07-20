@@ -41,11 +41,12 @@
 #'   gf_lims(x = c(65, NA), y = c(3, NA))
 #'
 #' # modify scales using gf_refine()
-#' gf_jitter(Sepal.Length ~ Sepal.Width, color = ~Species, data = iris) %>%
+#' data(penguins, package = "modeldata")
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) %>%
 #'   gf_refine(scale_color_brewer(type = "qual", palette = 3)) %>%
 #'   gf_theme(theme_bw())
 #'
-#' gf_jitter(Sepal.Length ~ Sepal.Width, color = ~Species, data = iris) %>%
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) %>%
 #'   gf_refine(scale_color_manual(values = c("red", "navy", "limegreen"))) %>%
 #'   gf_theme(theme_bw())
 gf_labs <- function(object, ...) {

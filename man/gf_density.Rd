@@ -217,12 +217,16 @@ in another.
 
 \examples{
 gf_dens()
-gf_density(~Sepal.Length, fill = ~Species, data = iris)
-gf_dens(~Sepal.Length, color = ~Species, data = iris)
-gf_dens2(~Sepal.Length, color = ~Species, fill = ~Species, data = iris)
-gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 15)
+data(penguins, package = "modeldata")
+gf_density(~bill_length_mm, fill = ~species, data = penguins)
+gf_dens(~bill_length_mm, color = ~species, data = penguins)
+gf_dens2(~bill_length_mm, color = ~species, fill = ~species, data = penguins)
+gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 # Chaining in the data
-iris \%>\% gf_dens(~Sepal.Length, color = ~Species)
+data(penguins, package = "modeldata")
+penguins \%>\% gf_dens(~bill_length_mm, color = ~species)
+# horizontal orientation
+penguins \%>\% gf_dens(bill_length_mm ~ ., color = ~species)
 }
 \seealso{
 \code{\link[=gf_ash]{gf_ash()}}, \code{\link[ggplot2:geom_density]{ggplot2::geom_density()}}

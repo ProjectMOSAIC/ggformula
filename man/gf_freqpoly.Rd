@@ -178,12 +178,13 @@ in another.
 }
 
 \examples{
-gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) \%>\%
-  gf_freqpoly(~Sepal.Length, data = iris, color = ~Species, bins = 20)
-gf_freqpoly(~Sepal.Length, color = ~Species, data = iris, bins = 20)
-gf_dens(~Sepal.Length, data = iris, color = "navy") \%>\%
-  gf_freqpoly(stat(density) ~ Sepal.Length,
-    data = iris,
+data(penguins, package = "modeldata")
+gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) \%>\%
+  gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
+gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
+gf_dens(~bill_length_mm, data = penguins, color = "navy") \%>\%
+  gf_freqpoly(stat(density) ~ bill_length_mm,
+    data = penguins,
     color = "red", bins = 20
   )
 }

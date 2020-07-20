@@ -49,8 +49,9 @@ This stat computes quantiles of the sample and theoretical distribution for
 the purpose of providing reference lines for QQ-plots.
 }
 \examples{
-ggplot(data = iris, aes(sample = Sepal.Length)) +
+data(penguins, package = "modeldata")
+ggplot(data = penguins, aes(sample = bill_length_mm)) +
   geom_qq() +
   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +
-  facet_wrap(~Species)
+  facet_wrap(~species)
 }

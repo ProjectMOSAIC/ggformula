@@ -198,24 +198,25 @@ in another.
 }
 
 \examples{
-gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-  gf_rug(Sepal.Length ~ Sepal.Width)
+data(penguins, package = "modeldata")
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
+  gf_rug(bill_length_mm ~ bill_depth_mm)
 
 # There are several ways to control x- and y-rugs separately
-gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-  gf_rugx(~Sepal.Width, data = iris, color = "red") \%>\%
-  gf_rugy(Sepal.Length ~ ., data = iris, color = "green")
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
+  gf_rugx(~bill_depth_mm, data = penguins, color = "red") \%>\%
+  gf_rugy(bill_length_mm ~ ., data = penguins, color = "green")
 
-gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-  gf_rug(. ~ Sepal.Width, data = iris, color = "red", inherit = FALSE) \%>\%
-  gf_rug(Sepal.Length ~ ., data = iris, color = "green", inherit = FALSE)
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
+  gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", inherit = FALSE) \%>\%
+  gf_rug(bill_length_mm ~ ., data = penguins, color = "green", inherit = FALSE)
 
-gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-  gf_rug(. ~ Sepal.Width, data = iris, color = "red", sides = "b") \%>\%
-  gf_rug(Sepal.Length ~ ., data = iris, color = "green", sides = "l")
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
+  gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", sides = "b") \%>\%
+  gf_rug(bill_length_mm ~ ., data = penguins, color = "green", sides = "l")
 
 # jitter requires both an x and a y, but we can turn off one or the other with sides
-gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
+gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
   gf_rug(color = "green", sides = "b", position = "jitter")
 
 # rugs work with some 1-varialbe plots as well.
@@ -233,12 +234,12 @@ gf_dhistogram(~eruptions, data = faithful) \%>\%
   gf_rug(~eruptions, data = faithful, color = "red", inherit = FALSE)
 
 # using jitter with gf_histogram() requires manually setting the y value.
-gf_dhistogram(~Sepal.Width, data = iris) \%>\%
-  gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+gf_dhistogram(~bill_depth_mm, data = penguins) \%>\%
+  gf_rug(0 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 
 # the choice of y value can affect how the plot looks.
-gf_dhistogram(~Sepal.Width, data = iris) \%>\%
-  gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+gf_dhistogram(~bill_depth_mm, data = penguins) \%>\%
+  gf_rug(0.5 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 }
 \seealso{
 \code{\link[ggplot2:geom_rug]{ggplot2::geom_rug()}}

@@ -125,10 +125,10 @@ in another.
 
 \examples{
 # Best used in conjunction with scale_size_area which ensures that
-# counts of zero would be given size 0. Doesn't make much difference
+# counts of zero would be given size 0. This doesn't make much difference
 # here because the smallest count is already close to 0.
 
-gf_count(hwy ~ cty, data = mpg, alpha = 0.5) \%>\%
+gf_count(hwy ~ cty, data = mpg, alpha = 0.3) \%>\%
   gf_refine(scale_size_area())
 }
 \seealso{
