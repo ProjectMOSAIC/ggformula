@@ -334,10 +334,10 @@ in another.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Best used in conjunction with scale_size_area which ensures that</span>
-<span class='co'># counts of zero would be given size 0. Doesn't make much difference</span>
+<span class='co'># counts of zero would be given size 0. This doesn't make much difference</span>
 <span class='co'># here because the smallest count is already close to 0.</span>
 
-<span class='fu'>gf_count</span>(<span class='no'>hwy</span> ~ <span class='no'>cty</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>gf_count</span>(<span class='no'>hwy</span> ~ <span class='no'>cty</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_size_area</span>())</div><div class='img'><img src='gf_count-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

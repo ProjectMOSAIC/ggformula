@@ -530,7 +530,7 @@ Here is another example using our weather data. The redundant use of the <code>y
 <pre><code>## Picking joint bandwidth of 1.7</code></pre>
 <p><img src="ggformula_files/figure-html/ridge-plots-1.png" width="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu">gf_density_ridges_gradient</span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>,
+  <span class="fu"><a href="../reference/ggridges.html">gf_density_ridges_gradient</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>,
                              <span class="kw">show.legend</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_fill_viridis_c</span>(<span class="kw">option</span> <span class="kw">=</span> <span class="st">"B"</span>))</pre></body></html></div>
 <pre><code>## Picking joint bandwidth of 1.09</code></pre>

@@ -290,34 +290,151 @@
   <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
+)
+
+<span class='fu'>gf_density_ridges_gradient</span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='no'>height</span>,
+  <span class='kw'>panel_scaling</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>color</span>,
+  <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>x</span>),
+  <span class='no'>alpha</span>,
+  <span class='no'>group</span>,
+  <span class='no'>linetype</span>,
+  <span class='no'>size</span>,
+  <span class='kw'>gradient_lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='no'>xlab</span>,
+  <span class='no'>ylab</span>,
+  <span class='no'>title</span>,
+  <span class='no'>subtitle</span>,
+  <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"density_ridges_gradient"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density_ridges"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"points_sina"</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>object</th>
+      <td><p>When chaining, this holds an object produced in the earlier portions
+of the chain.  Most users can safely ignore this argument.
+See details and examples.</p></td>
+    </tr>
+    <tr>
+      <th>gformula</th>
+      <td><p>A formula with shape <code>~ x</code>.
+Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>The data to be displayed in this layer. There are three
 options:</p>
 <p>If <code>NULL</code>, the default, the data is inherited from the plot
-data as specified in the call to <code>ggplot()</code>.</p>
+data as specified in the call to <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot()</a></code>.</p>
 <p>A <code>data.frame</code>, or other object, will override the plot
-data.</p>
+data. All objects will be fortified to produce a data frame. See
+<code><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify()</a></code> for which variables will be created.</p>
 <p>A <code>function</code> will be called with a single argument,
-the plot data. The return value must be a <code>data.frame.</code>, and
-will be used as the layer data.</p></td>
+the plot data. The return value must be a <code>data.frame</code>, and
+will be used as the layer data. A <code>function</code> can be created
+from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed on to <code>layer()</code>. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-<code>color = "red"</code> or <code>size = 3</code>. They may also be parameters
-to the paired geom/stat.</p></td>
+      <td><p>Additional arguments.  Typically these are
+(a) ggplot2 aesthetics to be set with <code>attribute = value</code>,
+(b) ggplot2 aesthetics to be mapped with <code>attribute = ~ expression</code>, or
+(c) attributes of the layer as a whole, which are set with <code>attribute = value</code>.</p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p>The height of each ridgeline at the respective x value.
+Automatically calculated and provided by <code><a href='https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code>
+if the default stat is not changed.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>A scaling factor to scale the height of the ridgelines relative to the
+spacing between them. A value of 1 indicates that the maximum point of any ridgeline touches the baseline right above, assuming even spacing between baselines.</p></td>
+    </tr>
+    <tr>
+      <th>min_height</th>
+      <td><p>A height cutoff on the drawn ridgelines. All values that fall below
+this cutoff will be removed. The main purpose of this cutoff is to remove
+long tails right at the baseline level, but other uses are possible. The
+cutoff is applied before any height scaling is applied via the scale
+aesthetic. Default is 0, so negative values are removed.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>A color or a formula used for mapping color.</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p>A color for filling, or a formula used for mapping fill.</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>Opacity (0 = invisible, 1 = opaque).</p></td>
+    </tr>
+    <tr>
+      <th>group</th>
+      <td><p>Used for grouping.</p></td>
+    </tr>
+    <tr>
+      <th>linetype</th>
+      <td><p>A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>A numeric size or a formula used for mapping size.</p></td>
+    </tr>
+    <tr>
+      <th>point_shape, point_colour, point_size, point_fill, point_alpha, point_stroke</th>
+      <td><p>As in <code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>xlab</th>
+      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Title, sub-title, and caption for the plot.
+See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>Title, sub-title, and caption for the plot.
+See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>Title, sub-title, and caption for the plot.
+See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>geom</th>
+      <td><p>Use to override the default connection between
+<code>geom_density</code> and <code>stat_density</code>.</p></td>
     </tr>
     <tr>
       <th>stat</th>
-      <td><p>The statistical transformation to use on the data for this
-layer, as a string.</p></td>
+      <td><p>Use to override the default connection between
+<code>geom_density</code> and <code>stat_density</code>.</p></td>
     </tr>
     <tr>
       <th>position</th>
@@ -328,7 +445,37 @@ a call to a position adjustment function.</p></td>
       <th>show.legend</th>
       <td><p>logical. Should this layer be included in the legends?
 <code>NA</code>, the default, includes if any aesthetics are mapped.
-<code>FALSE</code> never includes, and <code>TRUE</code> always includes.</p></td>
+<code>FALSE</code> never includes, and <code>TRUE</code> always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.</p></td>
+    </tr>
+    <tr>
+      <th>show.help</th>
+      <td><p>If <code>TRUE</code>, display some minimal help.</p></td>
+    </tr>
+    <tr>
+      <th>inherit</th>
+      <td><p>A logical indicating whether default attributes are inherited.</p></td>
+    </tr>
+    <tr>
+      <th>environment</th>
+      <td><p>An environment in which to look for variables not found in <code>data</code>.</p></td>
+    </tr>
+    <tr>
+      <th>rel_min_height</th>
+      <td><p>Lines with heights below this cutoff will be removed. The cutoff is
+measured relative to the overall maximum, so <code>rel_min_height = 0.01</code> would
+remove everything. Default is 0, so nothing is removed.</p></td>
+    </tr>
+    <tr>
+      <th>panel_scaling</th>
+      <td><p>If <code>TRUE</code>, the default, relative scaling is calculated separately
+for each panel. If <code>FALSE</code>, relative scaling is calculated globally.</p></td>
+    </tr>
+    <tr>
+      <th>gradient_lwd</th>
+      <td><p>A parameter to needed to remove rendering artifacts inside the
+rendered gradients. Should ideally be 0, but often needs to be around 0.5 or higher.</p></td>
     </tr>
     </table>
 
@@ -336,16 +483,16 @@ a call to a position adjustment function.</p></td>
 
     
 
-<p>Note that the default stat (<code>stat_density_ridges</code>) makes joint density estimation
+<p>Note that the <code><a href='https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code> makes joint density estimation
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set <code>stat = "density"</code> to use
-<code>stat_density()</code>. In this case, it is required to add the aesthetic mapping
+<code><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>ggplot2::stat_density()</a></code>. In this case, it is required to add the aesthetic mapping
 <code>height = stat(density)</code> (see examples).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html'>ggridges::geom_density_ridges()</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html'>ggridges::geom_density_ridges()</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html'>ggridges::geom_density_ridges()</a></code></p></div>
+<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code></p>
+<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline_gradient.html'>ggridges::geom_density_ridges_gradient()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
@@ -400,7 +547,10 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
   <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
     <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
     <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='img'><img src='ggridges-8.png' alt='' width='700' height='433' /></div></pre>
+  )</div><div class='img'><img src='ggridges-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Weather.html'>Weather</a></span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges_gradient</span>(<span class='no'>month</span> ~ <span class='no'>high_temp</span> <span class='kw'>|</span> <span class='no'>city</span> ~ <span class='no'>.</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>x</span>),
+    <span class='kw'>group</span> <span class='kw'>=</span> ~ <span class='no'>month</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rel_min_height</span> <span class='kw'>=</span> <span class='fl'>0.02</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_fill_viridis_c</span>(<span class='kw'>option</span> <span class='kw'>=</span> <span class='st'>"B"</span>), <span class='fu'>theme_bw</span>())</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.09</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 2.45</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 3.79</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.16</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.7</span></div><div class='img'><img src='ggridges-9.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
