@@ -127,7 +127,8 @@ gf_relabel <- function(plot, labels = get_labels(plot$data), ...) {
   labels <- utils::modifyList(as.list(labels), list(...))
   for (label_name in names(plot$labels)) {
     plot$labels[[label_name]] <-
-      labels[[plot$labels[[label_name]]]] %||% plot$labels[[label_name]]
+      # labels[[plot$labels[[label_name]]]] %||% plot$labels[[label_name]]
+      labels[[label_name]] %||% plot$labels[[label_name]]
   }
   plot
 }
