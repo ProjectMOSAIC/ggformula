@@ -41,7 +41,7 @@
 #'   gf_lims(x = c(65, NA), y = c(3, NA))
 #'
 #' # modify scales using gf_refine()
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) %>%
 #'   gf_refine(scale_color_brewer(type = "qual", palette = 3)) %>%
 #'   gf_theme(theme_bw())
