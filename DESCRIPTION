@@ -23,7 +23,8 @@ Imports:
     tibble,
     stringr,
     ggforce,
-    grid
+    grid,
+    labelled
 Suggests:
     tidyr,
     mosaicData,
