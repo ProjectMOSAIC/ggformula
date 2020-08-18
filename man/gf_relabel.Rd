@@ -2,9 +2,12 @@
 % Please edit documentation in R/relabel.R
 \name{gf_relabel}
 \alias{gf_relabel}
+\alias{print.gf_ggplot}
 \title{Modify plot labeling}
 \usage{
-gf_relabel(plot, labels = get_labels(plot$data), ...)
+gf_relabel(plot, labels = get_variable_labels(plot$data), ...)
+
+\method{print}{gf_ggplot}(x, lab = get_variable_labels(x$data), ...)
 }
 \arguments{
 \item{plot}{A ggplot.}
@@ -12,6 +15,8 @@ gf_relabel(plot, labels = get_labels(plot$data), ...)
 \item{labels}{A named list of labels.}
 
 \item{...}{Additional named labels. See examples.}
+
+\item{x}{A ggplot.}
 }
 \value{
 A plot with potentially modified labels.
@@ -39,13 +44,13 @@ gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) \%>\%
 
 # Alternatively, we can store labels with data.
 KF <- mosaicData::KidsFeet \%>\%
-  set_labels(
+  set_variable_labels(
     length = 'foot length (cm)',
     width = 'foot width (cm)'
   )
 gf_point(length ~ width, data = KF)
 gf_density2d(length ~ width, data = KF)
-get_labels(KF)
+get_variable_labels(KF)
 
 
 }

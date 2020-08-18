@@ -53,13 +53,13 @@ The following example illustrates a typical plot constructed with ggformula.
 
 ```{r example}
 suppressPackageStartupMessages(library(ggformula))
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 penguins %>% 
   gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~ species,
           width = 0.05, height = 0.05, alpha = 0.6) %>%
   gf_density2d(alpha = 0.3) %>%
   gf_labs(title = "Palmer Penguins",
-          caption = "Data available in modeldata package",
+          caption = "Data available in palmerpenguins package",
           y = "bill length (mm)",
           x = "bill depth (mm)"
   ) %>%

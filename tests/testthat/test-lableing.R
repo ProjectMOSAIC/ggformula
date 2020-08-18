@@ -37,16 +37,16 @@ test_that(
 )
 
 test_that(
-  "set_labels() works", {
+  "set_variable_labels() works", {
     vdiffr::expect_doppelganger(
-      "set_labels() with list",
-      set_labels(mtcars,
+      "set_variable_labels() with list",
+      set_variable_labels(mtcars,
                  list(hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders")) %>%
       gf_point(mpg ~ hp, color = ~ cyl, data = mtcars)
     )
     vdiffr::expect_doppelganger(
-      "set_labels() without list",
-      set_labels(mtcars,
+      "set_variable_labels() without list",
+      set_variable_labels(mtcars,
                  hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders") %>%
       gf_point(mpg ~ hp, color = ~ cyl, data = mtcars)
     )

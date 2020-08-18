@@ -24,7 +24,7 @@ for (y in unique(Births$year)) {
   assign(paste0("Births",y),  Births %>% filter(year == y))
 }
 Births1978 <- Births %>% filter(year == 1978)
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.align = "center",

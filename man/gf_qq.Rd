@@ -185,7 +185,7 @@ in another.
 
 \examples{
 gf_qq(~ rnorm(100))
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline()
 gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline(tail = 0.10)
 gf_qq(~bill_length_mm, color = ~species, data = penguins) \%>\%

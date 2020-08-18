@@ -1,7 +1,7 @@
 context("layer factory")
 
 mtcars2 <- df_stats(wt ~ cyl, data = mtcars, median_wt = median)
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 
 
 test_that(

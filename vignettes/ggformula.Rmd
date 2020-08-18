@@ -16,7 +16,7 @@ have_packages <-
   require(ggplot2) &&
   require(mosaicData) &&
   require(maps) &&
-  require(modeldata) &&
+  require(palmerpenguins) &&
   requireNamespace("mosaic") 
 
 have_extra_packages <- 
@@ -38,7 +38,7 @@ cat(
 ## Warning: Missing packages
 
 Because one or more of 
-`ggformula`, `ggplot2`, `dplyr`, `mosaic`, `mosaicData`, `modeldata`,
+`ggformula`, `ggplot2`, `dplyr`, `mosaic`, `mosaicData`, `palmerpenguins`,
 and `maps`, appears to be missing, this vignette is compiling
 without executing any code. 
 
@@ -216,7 +216,7 @@ To illustrate, we'll use density plots, but the same ideas apply to
 *Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.*
 
 ```{r penguins, warning=FALSE}
-data(penguins, package = "modeldata")   
+data(penguins, package = "palmerpenguins")   
 gf_density( ~ bill_length_mm, data = penguins)
 gf_density( ~ bill_length_mm,  fill = ~ species,  alpha = 0.5, data = penguins)
 # gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable
@@ -320,17 +320,17 @@ example, our colorbar legend is labeled "avg temp (F)" even though the variable 
 is `avg_temp`. This is because the `Weather` data set is *labeled*.
 
 ```{r}
-get_labels(Weather)
+get_variable_labels(Weather)
 ```
 
-ggformula will detect these labels and use them on our plots.  We can use `set_labels()`
+ggformula will detect these labels and use them on our plots.  We can use `set_variable_labels()`
 to add custom labels to some or all of the variables in a data frame.^[labels]
 
 [labels]: ggformula also detects labels created by functions in the expss and Hmisc packages.
 
 ```{r}
 KF <- KidsFeet %>% 
-  set_labels(
+  set_variable_labels(
     length = "length (cm)", 
     width = "width (cm)",
     domhand = "dominant hand",
@@ -343,7 +343,7 @@ KF %>%
   gf_point(width ~ length, color = ~domhand)
 
 Penguins <- penguins %>%
-  set_labels(
+  set_variable_labels(
     species = "Species",
     island = "Island",
     bill_length_mm = "Bill Length (mm)",

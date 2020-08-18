@@ -49,7 +49,7 @@ This stat computes quantiles of the sample and theoretical distribution for
 the purpose of providing reference lines for QQ-plots.
 }
 \examples{
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 ggplot(data = penguins, aes(sample = bill_length_mm)) +
   geom_qq() +
   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +

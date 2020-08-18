@@ -30,7 +30,7 @@ Suggests:
     dplyr,
     lattice,
     mosaic,
-    modeldata,
+    palmerpenguins,
     testthat,
     vdiffr,
     knitr,

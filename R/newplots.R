@@ -52,7 +52,7 @@ NA
 #' @export
 #' @rdname gf_ash
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins)
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins, adjust = 2)
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1)
@@ -330,7 +330,7 @@ StatQqline <- ggproto("StatQqline", Stat,
 #' @rdname stat_qqline
 #' @export
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' ggplot(data = penguins, aes(sample = bill_length_mm)) +
 #'   geom_qq() +
 #'   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +

@@ -668,7 +668,7 @@ gf_boxplot <-
 #' @seealso [ggplot2::geom_text()]
 #' @export
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_text(bill_length_mm ~ bill_depth_mm,
 #'   data = penguins,
 #'   label = ~species, color = ~species, size = 2, angle = 30
@@ -701,7 +701,7 @@ gf_text <-
 #' @export
 #' @examples
 #' if (require(dplyr)) {
-#'   data(penguins, package = "modeldata")
+#'   data(penguins, package = "palmerpenguins")
 #'   penguins_means <-
 #'     penguins %>%
 #'     group_by(species) %>%
@@ -1051,7 +1051,7 @@ gf_frame <-
 #'
 #' gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 #'
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_histogram(~ bill_length_mm | species, data = penguins, binwidth = 0.25)
 #' gf_histogram(~age,
 #'   data = mosaicData::HELPrct, binwidth = 5,
@@ -1118,13 +1118,13 @@ gf_dhistogram <-
 #' @export
 #' @examples
 #' gf_dens()
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_density(~bill_length_mm, fill = ~species, data = penguins)
 #' gf_dens(~bill_length_mm, color = ~species, data = penguins)
 #' gf_dens2(~bill_length_mm, color = ~species, fill = ~species, data = penguins)
 #' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 #' # Chaining in the data
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' penguins %>% gf_dens(~bill_length_mm, color = ~species)
 #' # horizontal orientation
 #' penguins %>% gf_dens(bill_length_mm ~ ., color = ~species)
@@ -1188,7 +1188,7 @@ gf_dens2 <-
 #' @seealso [ggplot2::geom_dotplot()]
 #' @export
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_dotplot(~bill_length_mm, fill = ~species, data = penguins)
 gf_dotplot <-
   layer_factory(
@@ -1398,7 +1398,7 @@ gf_percents <-
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) %>%
 #'   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
 #' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
@@ -1439,7 +1439,7 @@ gf_freqpoly <-
 #' @export
 #' @examples
 #' gf_qq(~ rnorm(100))
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline()
 #' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline(tail = 0.10)
 #' gf_qq(~bill_length_mm, color = ~species, data = penguins) %>%
@@ -1526,7 +1526,7 @@ gf_ecdf <-
 #' @seealso [ggplot2::geom_rug()]
 #' @export
 #' @examples
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
 #'   gf_rug(bill_length_mm ~ bill_depth_mm)
 #'
@@ -2416,7 +2416,7 @@ gf_sf <-
 #' @return A plot with now layers.
 #' @examples
 #' gf_empty()
-#' data(penguins, package = "modeldata")
+#' data(penguins, package = "palmerpenguins")
 #' gf_empty() %>%
 #'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species)
 #' @export

@@ -217,13 +217,13 @@ in another.
 
 \examples{
 gf_dens()
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_density(~bill_length_mm, fill = ~species, data = penguins)
 gf_dens(~bill_length_mm, color = ~species, data = penguins)
 gf_dens2(~bill_length_mm, color = ~species, fill = ~species, data = penguins)
 gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 # Chaining in the data
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 penguins \%>\% gf_dens(~bill_length_mm, color = ~species)
 # horizontal orientation
 penguins \%>\% gf_dens(bill_length_mm ~ ., color = ~species)

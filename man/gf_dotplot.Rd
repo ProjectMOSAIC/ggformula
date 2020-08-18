@@ -175,7 +175,7 @@ in another.
 }
 
 \examples{
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_dotplot(~bill_length_mm, fill = ~species, data = penguins)
 }
 \references{

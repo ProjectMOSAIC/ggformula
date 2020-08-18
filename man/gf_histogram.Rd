@@ -256,7 +256,7 @@ gf_dhistogram(~x, bins = 30) \%>\%
 
 gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_histogram(~ bill_length_mm | species, data = penguins, binwidth = 0.25)
 gf_histogram(~age,
   data = mosaicData::HELPrct, binwidth = 5,

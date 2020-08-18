@@ -178,7 +178,7 @@ in another.
 }
 
 \examples{
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) \%>\%
   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
 gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)

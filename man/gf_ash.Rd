@@ -163,7 +163,7 @@ in another.
 }
 
 \examples{
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_ash(~bill_length_mm, color = ~species, data = penguins)
 gf_ash(~bill_length_mm, color = ~species, data = penguins, adjust = 2)
 gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1)

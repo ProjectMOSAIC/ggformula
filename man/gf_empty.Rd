@@ -18,7 +18,7 @@ plot layers.
 }
 \examples{
 gf_empty()
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_empty() \%>\%
   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species)
 }

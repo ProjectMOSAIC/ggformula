@@ -198,7 +198,7 @@ in another.
 }
 
 \examples{
-data(penguins, package = "modeldata")
+data(penguins, package = "palmerpenguins")
 gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) \%>\%
   gf_rug(bill_length_mm ~ bill_depth_mm)
 
