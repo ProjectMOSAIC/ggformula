@@ -8,6 +8,7 @@
 #'
 #' @rdname labels
 #' @inherit labelled::var_label
+#' @importFrom labelled set_variable_labels var_label var_label<-
 #' @note These functions are imported from the `{labelled}` package.
 #'
 #' @export
@@ -98,11 +99,10 @@ gf_relabel <- function(plot, labels = get_variable_labels(plot$data), ...) {
 
 #' @rdname gf_relabel
 #' @param x A ggplot.
-#' @importFrom labelled set_variable_labels
 #' @export
 
-print.gf_ggplot <- function(x, lab = get_variable_labels(x$data), ...) {
-  x <- gf_relabel(x, lab)
+print.gf_ggplot <- function(x, labels = get_variable_labels(x$data), ...) {
+  x <- gf_relabel(x, labels)
   NextMethod()
 }
 
