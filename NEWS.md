@@ -3,6 +3,10 @@
 
 * add `gf_ridgeline()`, `gf_ridgeline_gradient()`, `gf_density_ridges()`, `gf_density_ridges_gradient()`.
 * `gf_dens()` now uses `geom = "geom_density_line"`.  This allows setting fill.
+* plots now label variables with labels created in data using `labelled`, `expss` or `Hmisc` labeling functions
+* To reduce the size of the package, the main vignette has been shortened.  The full
+version is available on the pkdgdown site.
+* Two other vignettes have been moved to online only for the same reason.
 
 # ggformula 0.9.4
 
