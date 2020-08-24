@@ -19,5 +19,6 @@ cran-comments.md
 ^codecov\.yml$
 ^_pkgdown\.yml$
 ^pkgdown$
+^vignettes/pkgdown$
 ^\.github/workflows/R-CMD-check\.yaml$
 ^\.github/workflows/pr-commands\.yaml$
