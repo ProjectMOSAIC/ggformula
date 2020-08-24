@@ -99,7 +99,11 @@ gf_propsh <-
         linetype = , size = , xlab = "proportion"
       ),
     aesthetics = aes(x = after_stat(props_by_group(count, DENOM))),
-    pre = { print(aesthetics); aesthetics[['x']][[2]][[2]][[3]] <- rlang::f_rhs(denom); print(aesthetics) },
+    pre = {
+      xaes_expr <- rlang::quo_get_expr(aesthetics[['x']]);
+      xaes_expr[[2]][[3]] <- rlang::f_rhs(denom) ;
+      aesthetics[['x']] <- xaes_expr
+    },
     denom = ~ PANEL
   )
 
@@ -114,7 +118,11 @@ gf_percentsh <-
       linetype = , size = , xlab = "percent"
     ),
     aesthetics = aes(x = after_stat(percs_by_group(count, DENOM))),
-    pre = { foo <- rlang::quo_get_expr(aesthetics[['x']]); foo[[2]][[3]] <- rlang::f_rhs(denom) },
+    pre = {
+      xaes_expr <- rlang::quo_get_expr(aesthetics[['x']]);
+      xaes_expr[[2]][[3]] <- rlang::f_rhs(denom) ;
+      aesthetics[['x']] <- xaes_expr
+    },
     denom = ~ PANEL
   )
 
