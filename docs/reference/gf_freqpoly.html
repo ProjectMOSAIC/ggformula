@@ -111,10 +111,13 @@ across the levels of a categorical variable." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -390,7 +393,7 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>ggplot2::geom_freqpoly()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"modeldata"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
 <span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~ <span class='no'>bill_length_mm</span> <span class='kw'>|</span> <span class='no'>species</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_freqpoly</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_freqpoly-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_freqpoly</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_freqpoly-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_density.html'>gf_dens</a></span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_freqpoly</span>(<span class='fu'>stat</span>(<span class='no'>density</span>) ~ <span class='no'>bill_length_mm</span>,

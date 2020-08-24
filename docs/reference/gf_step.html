@@ -110,10 +110,13 @@ connected together." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -356,7 +359,7 @@ in another.</p>
   <span class='no'>surv_fit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survfit</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age</span> + <span class='no'>sex</span>, <span class='no'>lung</span>))
   <span class='no'>surv_fit</span>
   <span class='co'># use broom::tidy() to create a tidy data frame for plotting</span>
-  <span class='no'>surv_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/broom/man/reexports.html'>tidy</a></span>(<span class='no'>surv_fit</span>)
+  <span class='no'>surv_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://broom.tidymodels.org/reference/reexports.html'>tidy</a></span>(<span class='no'>surv_fit</span>)
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>surv_df</span>)
   <span class='co'># now create a plot</span>
   <span class='no'>surv_df</span> <span class='kw'>%&gt;%</span>

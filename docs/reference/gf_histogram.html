@@ -106,10 +106,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -452,7 +455,7 @@ in another.</p>
 <span class='fu'>gf_histogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>)</div><div class='img'><img src='gf_histogram-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>)</div><div class='img'><img src='gf_histogram-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='gf_fitdistr.html'>gf_fitdistr</a></span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>) <span class='co'># see help for gf_fitdistr() for more info.</span></div><div class='img'><img src='gf_histogram-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>gf_histogram</span>(~<span class='no'>x</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ (<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;=</span> <span class='fl'>2</span>), <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</div><div class='img'><img src='gf_histogram-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"modeldata"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
 <span class='fu'>gf_histogram</span>(~ <span class='no'>bill_length_mm</span> <span class='kw'>|</span> <span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_histogram-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span>(~<span class='no'>age</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>

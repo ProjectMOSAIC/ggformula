@@ -108,10 +108,13 @@ chaining syntax." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -217,7 +220,7 @@ arguments through to the similarly named <code>ggplot2</code> functions.</p>
 <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>eruptions</span> ~ <span class='no'>waiting</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='img'><img src='gf_aux-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>eruptions</span> ~ <span class='no'>waiting</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_lims</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>65</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 99 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># modify scales using gf_refine()</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"modeldata"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
 <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_refine</span>(<span class='fu'>scale_color_brewer</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"qual"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fl'>3</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_bw</span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-4.png' alt='' width='700' height='433' /></div><div class='input'>

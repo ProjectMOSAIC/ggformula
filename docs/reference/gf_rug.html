@@ -108,10 +108,13 @@ By default, these functions do not inherit from the formula in the original laye
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -404,7 +407,7 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>ggplot2::geom_rug()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"modeldata"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
 <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>gf_rug</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># There are several ways to control x- and y-rugs separately</span>

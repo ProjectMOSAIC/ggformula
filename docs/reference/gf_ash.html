@@ -108,10 +108,13 @@ using ggplot2 or ggformula." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -376,7 +379,7 @@ in another.</p>
     <div class='dont-index'><p><code>geom_histogram()</code>, <code>link{gf_histogram}()</code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"modeldata"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
 <span class='fu'>gf_ash</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_ash).</span></div><div class='img'><img src='gf_ash-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_ash).</span></div><div class='img'><img src='gf_ash-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_ash).</span></div><div class='img'><img src='gf_ash-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_ash).</span></div><div class='img'><img src='gf_ash-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ggplot</span>(<span class='no'>faithful</span>, <span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>eruptions</span>)) +
   <span class='fu'>geom_histogram</span>(<span class='fu'>aes</span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>stat</span>(<span class='no'>density</span>)),
     <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"lightskyblue"</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"gray50"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>

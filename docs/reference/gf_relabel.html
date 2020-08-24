@@ -109,10 +109,13 @@ expss or any other system that stores a label in the label attribute of a vector
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
+      <a href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
     </li>
     <li>
-      <a href="../articles/learn-more.html">Learn More About ggformula</a>
+      <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
     </li>
   </ul>
 </li>
@@ -167,7 +170,10 @@ long or awkward variable names.  This is an experimental feature and currently o
 expss or any other system that stores a label in the <code>label</code> attribute of a vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_relabel</span>(<span class='no'>plot</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='get_labels.html'>get_labels</a></span>(<span class='no'>plot</span>$<span class='no'>data</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>gf_relabel</span>(<span class='no'>plot</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>plot</span>$<span class='no'>data</span>), <span class='no'>...</span>)
+
+<span class='co'># S3 method for gf_ggplot</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>x</span>$<span class='no'>data</span>), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,6 +189,10 @@ expss or any other system that stores a label in the <code>label</code> attribut
     <tr>
       <th>...</th>
       <td><p>Additional named labels. See examples.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A ggplot.</p></td>
     </tr>
     </table>
 
@@ -205,11 +215,11 @@ expss or any other system that stores a label in the <code>label</code> attribut
    <span class='kw'>domhand</span> <span class='kw'>=</span> <span class='st'>"dominant hand"</span>)</div><div class='img'><img src='gf_relabel-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Alternatively, we can store labels with data.</span>
 <span class='no'>KF</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_labels.html'>set_labels</a></span>(
+  <span class='fu'><a href='labels.html'>set_variable_labels</a></span>(
     <span class='kw'>length</span> <span class='kw'>=</span> <span class='st'>'foot length (cm)'</span>,
     <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'foot width (cm)'</span>
   )
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_density_2d.html'>gf_density2d</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='get_labels.html'>get_labels</a></span>(<span class='no'>KF</span>)</div><div class='output co'>#&gt; $name
+<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_density_2d.html'>gf_density2d</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>KF</span>)</div><div class='output co'>#&gt; $name
 #&gt; NULL
 #&gt; 
 #&gt; $birthmonth
