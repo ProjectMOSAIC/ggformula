@@ -2,18 +2,21 @@ context("layer factory")
 
 mtcars2 <- df_stats(wt ~ cyl, data = mtcars, median_wt = median)
 data(penguins, package = "palmerpenguins")
+penguins2 <-
+  palmerpenguins::penguins %>%
+  dplyr::filter(!is.na(sex), !is.na(bill_depth_mm), !is.na(bill_length_mm))
 
 
 test_that(
   "gf_abline()", {
     vdiffr::expect_doppelganger(
       "gf_abline1",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
         gf_abline(intercept = 10, slope = 2, color = "red")
     )
     vdiffr::expect_doppelganger(
       "gf_abline2",
-      gf_plot(data = penguins) %>%
+      gf_plot(data = penguins2) %>%
         gf_point(bill_length_mm ~ bill_depth_mm) %>%
         gf_abline(intercept = 10:12, slope = 2, color = c("red", "green", "blue"))
     )
@@ -78,15 +81,15 @@ test_that(
   "gf_ash()", {
     vdiffr::expect_doppelganger(
       "gf_ash1",
-      gf_ash(~bill_length_mm, color = ~species, data = penguins)
+      gf_ash(~bill_length_mm, color = ~species, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_ash2",
-      gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1)
+      gf_ash(~bill_length_mm, color = ~species, data = penguins2, binwidth = 1)
     )
     vdiffr::expect_doppelganger(
       "gf_ash3",
-      gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1, adjust = 10)
+      gf_ash(~bill_length_mm, color = ~species, data = penguins2, binwidth = 1, adjust = 10)
     )
   }
 )
@@ -96,11 +99,11 @@ test_that(
     set.seed(1234)
     vdiffr::expect_doppelganger(
       "gf_sina",
-      gf_sina(bill_length_mm ~ species, data = penguins)
+      gf_sina(bill_length_mm ~ species, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_sina2",
-      gf_sina(bill_length_mm ~ species, data = penguins, color = ~species)
+      gf_sina(bill_length_mm ~ species, data = penguins2, color = ~species)
     )
     vdiffr::expect_doppelganger(
       "gf_sina3",
@@ -117,7 +120,7 @@ test_that(
   "gf_bar() and gf_col()", {
     vdiffr::expect_doppelganger(
       "gf_bar1",
-      gf_bar(~species, data = penguins)
+      gf_bar(~species, data = penguins2)
     )
     D <- data.frame(
       group = LETTERS[1:3],
@@ -188,7 +191,7 @@ test_that(
   "gf_boxplot()", {
     vdiffr::expect_doppelganger(
       "gf_boxplot1",
-      gf_boxplot(bill_length_mm ~ species, color = ~species, data = penguins)
+      gf_boxplot(bill_length_mm ~ species, color = ~species, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_boxplot2",
@@ -209,15 +212,15 @@ test_that(
 
 test_that(
   "gf_coefline()", {
-    mdl <- lm(bill_length_mm ~ bill_depth_mm, data = penguins)
+    mdl <- lm(bill_length_mm ~ bill_depth_mm, data = penguins2)
     vdiffr::expect_doppelganger(
       "gf_coefline1",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
         gf_coefline(coef = coef(mdl))
     )
     vdiffr::expect_doppelganger(
       "gf_coefline2",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
         gf_coefline(model = mdl)
     )
   }
@@ -275,7 +278,7 @@ test_that(
     )
     vdiffr::expect_doppelganger(
       "gf_percentsh1a",
-      gf_percents(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodge")
+      gf_percentsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
     )
     vdiffr::expect_doppelganger(
       "gf_percentsh2",
@@ -454,19 +457,19 @@ test_that(
   "gf_dens() and gf_density", {
     vdiffr::expect_doppelganger(
       "gf_dens1",
-      gf_dens(~bill_length_mm, data = penguins)
+      gf_dens(~bill_length_mm, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_dens2",
-      gf_dens(~bill_length_mm, data = penguins, color = ~species)
+      gf_dens(~bill_length_mm, data = penguins2, color = ~species)
     )
     vdiffr::expect_doppelganger(
       "gf_density1",
-      gf_density(~bill_length_mm, fill = ~species, data = penguins, alpha = 0.5)
+      gf_density(~bill_length_mm, fill = ~species, data = penguins2, alpha = 0.5)
     )
     vdiffr::expect_doppelganger(
       "gf_density2",
-      gf_density(~ bill_length_mm | species ~ ., fill = ~species, data = penguins, alpha = 0.5)
+      gf_density(~ bill_length_mm | species ~ ., fill = ~species, data = penguins2, alpha = 0.5)
     )
   }
 )
@@ -504,13 +507,13 @@ test_that(
   "gf_dotplot()", {
     vdiffr::expect_doppelganger(
       "gf_dotplot1",
-      gf_dotplot(~bill_length_mm, fill = ~species, data = penguins, binwidth = 0.2) %>%
+      gf_dotplot(~bill_length_mm, fill = ~species, data = penguins2, binwidth = 0.2) %>%
         gf_labs(title = "dotdensity")
     )
     vdiffr::expect_doppelganger(
       "gf_dotplot2",
       gf_dotplot(~bill_length_mm,
-                 fill = ~species, data = penguins,
+                 fill = ~species, data = penguins2,
                  binwidth = 0.2, method = "histodot"
       ) %>%
         gf_labs(title = "histodot")
@@ -528,7 +531,7 @@ test_that(
     vdiffr::expect_doppelganger(
       "gf_empty2",
       gf_empty() %>%
-        gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) %>%
+        gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2, color = ~species) %>%
         gf_labs(title = "empty + point")
     )
     vdiffr::expect_doppelganger(
@@ -568,12 +571,12 @@ test_that(
   "gf_freqpoly()", {
     vdiffr::expect_doppelganger(
       "gf_freqpoly1",
-      gf_freqpoly(~bill_length_mm, color = ~species, data = penguins)
+      gf_freqpoly(~bill_length_mm, color = ~species, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_freqpoly2",
       gf_freqpoly(~bill_length_mm,
-                  color = ~species, data = penguins,
+                  color = ~species, data = penguins2,
                   binwidth = 0.5
       )
     )
@@ -654,34 +657,34 @@ test_that(
   "gf_histogram() and gf_dhistogram", {
     vdiffr::expect_doppelganger(
       "gf_histogram1",
-      gf_histogram(~bill_length_mm, data = penguins)
+      gf_histogram(~bill_length_mm, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_histogram2",
       gf_histogram(~ bill_length_mm | species ~ .,
-                   fill = ~species, data = penguins, alpha = 0.5,
+                   fill = ~species, data = penguins2, alpha = 0.5,
                    binwidth = 0.25
       )
     )
     vdiffr::expect_doppelganger(
       "gf_dhistogram1",
-      gf_dhistogram(~bill_length_mm, data = penguins)
+      gf_dhistogram(~bill_length_mm, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_dhistogramh1",
-      gf_dhistogramh(bill_length_mm ~ ., data = penguins)
+      gf_dhistogramh(bill_length_mm ~ ., data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_dhistogramh1a",
-      gf_dhistogram(bill_length_mm ~ ., data = penguins)
+      gf_dhistogram(bill_length_mm ~ ., data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_dhistogramh2",
-      gf_dhistogramh(bill_length_mm ~ stat(ndensity), data = penguins)
+      gf_dhistogramh(bill_length_mm ~ stat(ndensity), data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_dhistogramh2a",
-      gf_dhistogram(bill_length_mm ~ stat(ndensity), data = penguins)
+      gf_dhistogram(bill_length_mm ~ stat(ndensity), data = penguins2)
     )
   }
 )
@@ -750,11 +753,11 @@ test_that(
   "gf_point()", {
     vdiffr::expect_doppelganger(
       "gf_point1",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins)
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2)
     )
     vdiffr::expect_doppelganger(
       "gf_point2",
-      gf_point(bill_length_mm ~ bill_depth_mm | species, color = ~species, data = penguins)
+      gf_point(bill_length_mm ~ bill_depth_mm | species, color = ~species, data = penguins2)
     )
   }
 )
@@ -844,44 +847,44 @@ test_that(
     set.seed(1234)
     vdiffr::expect_doppelganger(
       "gf_rugx()/gf_rug_y() #1",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-        gf_rugx(~bill_depth_mm, data = penguins, color = "red") %>%
-        gf_rugy(bill_length_mm ~ ., data = penguins, color = "green")
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
+        gf_rugx(~bill_depth_mm, data = penguins2, color = "red") %>%
+        gf_rugy(bill_length_mm ~ ., data = penguins2, color = "green")
     )
     vdiffr::expect_doppelganger(
       "gf_rugx()/gf_rug_y() with jitter",
-      gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins, seed = 123) %>%
-        gf_rugx(~bill_depth_mm, data = penguins, color = "red", position = "jitter", seed = 123) %>%
-        gf_rugy(bill_length_mm ~ ., data = penguins, color = "green", position = "jitter", seed = 123)
+      gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins2, seed = 123) %>%
+        gf_rugx(~bill_depth_mm, data = penguins2, color = "red", position = "jitter", seed = 123) %>%
+        gf_rugy(bill_length_mm ~ ., data = penguins2, color = "green", position = "jitter", seed = 123)
     )
     vdiffr::expect_doppelganger(
       "gf_rugx()",
-      gf_dhistogram( ~ bill_length_mm, data = penguins) %>%
+      gf_dhistogram( ~ bill_length_mm, data = penguins2) %>%
         gf_rugx(position = "jitter", alpha = 0.4, color = "red", seed = 123)
     )
     vdiffr::expect_doppelganger(
       "gf_rugy()",
-      gf_dhistogramh( bill_length_mm ~ ., data = penguins) %>%
+      gf_dhistogramh( bill_length_mm ~ ., data = penguins2) %>%
         gf_rugy(position = "jitter", alpha = 0.4, color = "navy", seed = 123)
     )
 
 ###
     vdiffr::expect_doppelganger(
       "gf_rug() #1",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-        gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", inherit = FALSE) %>%
-        gf_rug(bill_length_mm ~ ., data = penguins, color = "green", inherit = FALSE)
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
+        gf_rug(. ~ bill_depth_mm, data = penguins2, color = "red", inherit = FALSE) %>%
+        gf_rug(bill_length_mm ~ ., data = penguins2, color = "green", inherit = FALSE)
     )
     vdiffr::expect_doppelganger(
       "gf_rug() #2",
-      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-        gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", sides = "b") %>%
-        gf_rug(bill_length_mm ~ ., data = penguins, color = "green", sides = "l")
+      gf_point(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
+        gf_rug(. ~ bill_depth_mm, data = penguins2, color = "red", sides = "b") %>%
+        gf_rug(bill_length_mm ~ ., data = penguins2, color = "green", sides = "l")
     )
     # jitter requires both an x and a y, but we can turn off one or the other with sides
     vdiffr::expect_doppelganger(
       "gf_rug() #3",
-      gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+      gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins2) %>%
         gf_rug(color = "green", sides = "b", position = "jitter", seed = 123)
     )
     # rugs work with some 1-varialbe plots as well.
@@ -907,15 +910,15 @@ test_that(
     # using jitter with gf_histogram() requires manually setting the y value.
     vdiffr::expect_doppelganger(
       "gf_rug() #7",
-      gf_dhistogram(~bill_depth_mm, data = penguins) %>%
-        gf_rug(0 ~ bill_depth_mm, data = penguins, color = "green", sides = "b",
+      gf_dhistogram(~bill_depth_mm, data = penguins2) %>%
+        gf_rug(0 ~ bill_depth_mm, data = penguins2, color = "green", sides = "b",
                position = "jitter", seed = 123)
     )
     # the choice of y value can affect how the plot looks.
     vdiffr::expect_doppelganger(
       "gf_rug() #8",
-      gf_dhistogram(~bill_depth_mm, data = penguins) %>%
-        gf_rug(0.5 ~ bill_depth_mm, data = penguins, color = "green", sides = "b",
+      gf_dhistogram(~bill_depth_mm, data = penguins2) %>%
+        gf_rug(0.5 ~ bill_depth_mm, data = penguins2, color = "green", sides = "b",
                position = "jitter", seed = 123)
     )
   }
@@ -925,13 +928,13 @@ test_that(
   "discrete_breaks()", {
     vdiffr::expect_doppelganger(
       "discrete_breaks -- default",
-      gf_histogram( ~ bill_length_mm, data = penguins) %>%
+      gf_histogram( ~ bill_length_mm, data = penguins2) %>%
         gf_refine(scale_x_continuous(breaks = discrete_breaks()))
     )
     vdiffr::expect_doppelganger(
-      "discrete_breaks -- 0.5",
-      gf_histogram( ~ bill_length_mm, data = penguins) %>%
-        gf_refine(scale_x_continuous(breaks = discrete_breaks(0.5)))
+      "discrete_breaks -- 2.0",
+      gf_histogram( ~ bill_length_mm, data = penguins2) %>%
+        gf_refine(scale_x_continuous(breaks = discrete_breaks(2)))
     )
   }
 )
