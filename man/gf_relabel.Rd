@@ -7,7 +7,7 @@
 \usage{
 gf_relabel(plot, labels = get_variable_labels(plot$data), ...)
 
-\method{print}{gf_ggplot}(x, lab = get_variable_labels(x$data), ...)
+\method{print}{gf_ggplot}(x, labels = get_variable_labels(x$data), ...)
 }
 \arguments{
 \item{plot}{A ggplot.}
