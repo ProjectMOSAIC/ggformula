@@ -17,7 +17,7 @@ Depends:
     scales,
     ggridges
 Imports:
-    mosaicCore,
+    mosaicCore (>= 0.7.0),
     rlang,
     magrittr,
     tibble,
