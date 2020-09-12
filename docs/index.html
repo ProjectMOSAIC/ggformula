@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
       </span>
     </div>
 
@@ -139,19 +139,27 @@
 <a href="#using-ggformula" class="anchor"></a>Using ggformula</h2>
 <p>The following example illustrates a typical plot constructed with ggformula.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggformula</span>))
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">penguins</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"modeldata"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">penguins</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"palmerpenguins"</span>)
 <span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>,
-          <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.05</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0.05</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.6</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/labels.html">set_variable_labels</a></span>(
+    <span class="kw">bill_length_mm</span> <span class="kw">=</span> <span class="st">"bill length (mm)"</span>,
+    <span class="kw">bill_depth_mm</span> <span class="kw">=</span> <span class="st">"bill depth (mm)"</span>
+  ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span> <span class="kw">|</span> <span class="no">island</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>,
+          <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.05</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0.05</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.6</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/gf_density_2d.html">gf_density2d</a></span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/gf_aux.html">gf_labs</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Palmer Penguins"</span>,
-          <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Data available in modeldata package"</span>,
-          <span class="kw">y</span> <span class="kw">=</span> <span class="st">"bill length (mm)"</span>,
-          <span class="kw">x</span> <span class="kw">=</span> <span class="st">"bill depth (mm)"</span>
+          <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Data available in palmerpenguins package"</span>
   ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_color_brewer</span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"qual"</span>)) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/gf_theme.html">gf_theme</a></span>(<span class="fu">theme_bw</span>()) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/gf_theme.html">gf_theme</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"navy"</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"italic"</span>))
+  <span class="fu"><a href="reference/gf_theme.html">gf_theme</a></span>(
+    <span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">'top'</span>,
+    <span class="kw">text</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"navy"</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"italic"</span>)
+  )
 <span class="co">#&gt; Warning: Removed 2 rows containing non-finite values (stat_density2d).</span>
+<span class="co">#&gt; Warning: Computation failed in `stat_density2d()`:</span>
+<span class="co">#&gt; missing value where TRUE/FALSE needed</span>
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_point).</span></pre></div>
 <p><img src="README-example-1.png"><!-- --></p>
 <div id="more-information" class="section level3">
