@@ -123,7 +123,7 @@ in another.
 }
 
 \examples{
-
+\dontrun{
 if (require(maps) && require(maptools) &&
   require(sf) && require(rgeos))
   US <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
@@ -148,6 +148,7 @@ if (require(maps) && require(maptools) &&
       coord_sf(), theme_bw(),
       scale_fill_continuous(name = "population (thousands)", trans = "log10")
     )
+}
 }
 \seealso{
 \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}

@@ -2373,7 +2373,7 @@ gf_sina <-
 # #' @seealso [`ggplot2::geom_sf()`]
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' if (require(maps) && require(maptools) &&
 #'   require(sf) && require(rgeos))
 #'   US <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
@@ -2398,6 +2398,7 @@ gf_sina <-
 #'       coord_sf(), theme_bw(),
 #'       scale_fill_continuous(name = "population (thousands)", trans = "log10")
 #'     )
+#' }
 gf_sf <-
     layer_factory(
       layer_fun = quo(ggplot2::geom_sf),
