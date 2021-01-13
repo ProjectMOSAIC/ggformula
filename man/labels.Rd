@@ -15,7 +15,7 @@ get_variable_labels(x, unlist = FALSE)
 
 var_label(x, unlist = FALSE)
 
-set_variable_labels(.data, ..., .labels = NA)
+set_variable_labels(.data, ..., .labels = NA, .strict = TRUE)
 }
 \arguments{
 \item{x}{an object}
@@ -32,6 +32,9 @@ of same length as the number of columns in \code{x}.}
 
 \item{.labels}{variable labels to be applied to the data.frame,
 using the same syntax as \code{value} in \code{var_label(df) <- value}.}
+
+\item{.strict}{should an error be returned if some labels
+doesn't correspond to a column of \code{x}?}
 }
 \value{
 \code{set_variable_labels()} will return an updated copy of \code{.data}.
