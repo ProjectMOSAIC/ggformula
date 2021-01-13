@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -137,7 +137,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,7 +163,7 @@
 <a href="#ggformula-0100" class="anchor"></a>ggformula 0.10.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>add <code><a href="../reference/ggridges.html">gf_ridgeline()</a></code>, <code>gf_ridgeline_gradient()</code>, <code><a href="../reference/ggridges.html">gf_density_ridges()</a></code>, <code><a href="../reference/ggridges.html">gf_density_ridges_gradient()</a></code>.</li>
+<li>add <code><a href="../reference/gf_ridgeline.html">gf_ridgeline()</a></code>, <code>gf_ridgeline_gradient()</code>, <code><a href="../reference/gf_ridgeline.html">gf_density_ridges()</a></code>, <code><a href="../reference/gf_ridgeline.html">gf_density_ridges_gradient()</a></code>.</li>
 <li>
 <code><a href="../reference/gf_density.html">gf_dens()</a></code> now uses <code>geom = "geom_density_line"</code>. This allows setting fill.</li>
 <li>plots now label variables with labels created in data using <code>labelled</code>, <code>expss</code> or <code>Hmisc</code> labeling functions</li>
@@ -185,7 +185,7 @@
 </h1>
 <ul>
 <li>add <code><a href="../reference/gf_sina.html">gf_sina()</a></code>. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/134'>#134</a>)</li>
-<li>update exampels involving <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">sf::st_as_sf()</a></code> to reflect updated names of in the resulting data frame. This is required to get CRAN builds to work without an error. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/137'>#137</a>)</li>
+<li>update exampels involving <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">sf::st_as_sf()</a></code> to reflect updated names of in the resulting data frame. This is required to get CRAN builds to work without an error. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/137'>#137</a>)</li>
 <li>Add helpful error message if dist is not a string in <code><a href="../reference/gf_dist.html">gf_dist()</a></code>. (<a href='https://github.com/ProjectMOSAIC/ggformula/issues/133'>#133</a>)</li>
 </ul>
 </div>
@@ -262,7 +262,7 @@
 <li>New functions <code><a href="../reference/gf_bar.html">gf_props()</a></code> and <code><a href="../reference/gf_bar.html">gf_percents()</a></code> added to simplify creating bar graphs on a proportion or percent scale.</li>
 <li>New arguments <code>xlab</code>, <code>ylab</code>, <code>title</code>, <code>subtitle</code>, and <code>caption</code> added to <code>gf_</code> functions. In the case of <code><a href="../reference/gf_bar.html">gf_props()</a></code> and <code><a href="../reference/gf_bar.html">gf_percents()</a></code> these are prepopulated with defaults of “proportion” and “percent” to give nicer labeling of the plot.</li>
 <li>The use of <code>weatherData</code> has been removed since that package is no longer on CRAN</li>
-<li>Improvements to <code><a href="../reference/gf_lines.html">gf_abline()</a></code>, <code><a href="../reference/gf_lines.html">gf_hline()</a></code>, and <code><a href="../reference/gf_lines.html">gf_vline()</a></code> expand the usable portion of the API.</li>
+<li>Improvements to <code><a href="../reference/gf_abline.html">gf_abline()</a></code>, <code><a href="../reference/gf_abline.html">gf_hline()</a></code>, and <code><a href="../reference/gf_abline.html">gf_vline()</a></code> expand the usable portion of the API.</li>
 <li>Additional examples for some functions.</li>
 </ul>
 </div>
@@ -332,10 +332,10 @@
 <li>Added support for geoms that have different required aesthetics.</li>
 <li>Added support for functions that allow more than one formula shape. Example: <code><a href="../reference/gf_histogram.html">gf_histogram()</a></code> accepts formulas with shape <code>~ x</code> or <code>y ~ x</code>. This makes it possible to create density histograms with <code><a href="../reference/gf_histogram.html">gf_histogram()</a></code>.</li>
 <li>Parentheses now halt parsing of formulas. This allows for on-the-fly computations in formulas. Typically these computed expressions must be within parentheses to avoid formula expansion.</li>
-<li>Use <code>::</code> to indicate mapping aesthetics. (<code>:</code> will autodetect, but only if the value is the name of a variable in the data set.) This should be considered experimental.</li>
-<li>Added wrappers <code><a href="../reference/gf_aux.html">gf_lims()</a></code>, <code><a href="../reference/gf_aux.html">gf_labs()</a></code>, <code><a href="../reference/gf_theme.html">gf_theme()</a></code>, <code><a href="../reference/gf_facet_grid.html">gf_facet_grid()</a></code>, <code><a href="../reference/gf_facet_grid.html">gf_facet_wrap()</a></code>
+<li>Use <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> to indicate mapping aesthetics. (<code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> will autodetect, but only if the value is the name of a variable in the data set.) This should be considered experimental.</li>
+<li>Added wrappers <code><a href="../reference/gf_labs.html">gf_lims()</a></code>, <code><a href="../reference/gf_labs.html">gf_labs()</a></code>, <code><a href="../reference/gf_theme.html">gf_theme()</a></code>, <code><a href="../reference/gf_facet_wrap.html">gf_facet_grid()</a></code>, <code><a href="../reference/gf_facet_wrap.html">gf_facet_wrap()</a></code>
 </li>
-<li>Added <code><a href="../reference/gf_aux.html">gf_refine()</a></code> which can be used to pass by chaining anything that would have been “added” in `<code>ggplot2</code>
+<li>Added <code><a href="../reference/gf_labs.html">gf_refine()</a></code> which can be used to pass by chaining anything that would have been “added” in `<code>ggplot2</code>
 </li>
 <li>Expanded and improved vignette describing use of the package.</li>
 <li>Added two tutorials.</li>
@@ -362,7 +362,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

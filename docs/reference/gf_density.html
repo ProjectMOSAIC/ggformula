@@ -85,7 +85,7 @@ gf_dens() using a line geom (which cannot be filled)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ gf_dens() using a line geom (which cannot be filled)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -143,7 +143,7 @@ gf_dens() using a line geom (which cannot be filled)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -174,89 +174,89 @@ used to show the density curve: <code>gf_density()</code> uses an area geom (whi
 <code>gf_dens()</code> using a line geom (which cannot be filled).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_density</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>512</span>,
-  <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"area"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_density</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  kernel <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+  n <span class='op'>=</span> <span class='fl'>512</span>,
+  trim <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"area"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_dens</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>512</span>,
-  <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"line"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_dens</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  fill <span class='op'>=</span> <span class='cn'>NA</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  kernel <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+  n <span class='op'>=</span> <span class='fl'>512</span>,
+  trim <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"line"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_dens2</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>512</span>,
-  <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"density_line"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_dens2</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  fill <span class='op'>=</span> <span class='cn'>NA</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  kernel <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+  n <span class='op'>=</span> <span class='fl'>512</span>,
+  trim <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"density_line"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,7 +270,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -339,26 +339,26 @@ one plot or if you are manually adjusting the scale limits.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -413,8 +413,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -430,7 +430,8 @@ in another.</p>
     <div class='dont-index'><p><code><a href='gf_ash.html'>gf_ash()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>ggplot2::geom_density()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gf_dens</span>()</div><div class='output co'>#&gt; <span class='message'>gf_dens() uses </span>
+    <pre class="examples"><div class='input'><span class='fu'>gf_dens</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_dens() uses </span>
 #&gt; <span class='message'>    * a formula with shape ~x or y ~ .. </span>
 #&gt; <span class='message'>    * geom:  line </span>
 #&gt; <span class='message'>    * stat:  density </span>
@@ -438,11 +439,17 @@ in another.</p>
 #&gt; <span class='message'>                   kernel = "gaussian", n = 512, trim =</span>
 #&gt; <span class='message'>                   FALSE</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_dens</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='fu'>gf_density</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dens</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dens2</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_freqpoly.html'>gf_freqpoly</a></span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_density-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Chaining in the data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='no'>penguins</span> <span class='kw'>%&gt;%</span> <span class='fu'>gf_dens</span>(~<span class='no'>bill_length_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># horizontal orientation</span>
-<span class='no'>penguins</span> <span class='kw'>%&gt;%</span> <span class='fu'>gf_dens</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>.</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-6.png' alt='' width='700' height='433' /></div></pre>
+#&gt; <span class='message'>For more information, try ?gf_dens</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='fu'>gf_density</span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_length_mm</span>, fill <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dens</span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_length_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dens2</span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_length_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, fill <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_freqpoly.html'>gf_freqpoly</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_length_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, bins <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_density-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Chaining in the data</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='va'>penguins</span> <span class='op'>%&gt;%</span> <span class='fu'>gf_dens</span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_length_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># horizontal orientation</span>
+<span class='va'>penguins</span> <span class='op'>%&gt;%</span> <span class='fu'>gf_dens</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>.</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_density).</span></div><div class='img'><img src='gf_density-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -458,7 +465,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

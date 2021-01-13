@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><script src="ggformula_files/header-attrs-2.3/header-attrs.js"></script><script src="ggformula_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="ggformula_files/header-attrs-2.6/header-attrs.js"></script><script src="ggformula_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Formula Interface for ggplot2</h1>
@@ -128,7 +128,7 @@
 <div id="formula-driven-graphics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#formula-driven-graphics" class="anchor"></a>Formula-driven graphics</h1>
-<p>There are several excellent graphics packages provided for R. The <code>ggformula</code> package currently builds on one of them, <code>ggplot2</code>, but provides a very different user interface for creating plots. The interface is based on formulas (much like the <code>lattice</code> interface) and the use of the chaining operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>) to build more complex graphics from simpler components.</p>
+<p>There are several excellent graphics packages provided for R. The <code>ggformula</code> package currently builds on one of them, <code>ggplot2</code>, but provides a very different user interface for creating plots. The interface is based on formulas (much like the <code>lattice</code> interface) and the use of the chaining operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>) to build more complex graphics from simpler components.</p>
 <p>The <code>ggformula</code> graphics were designed with several user groups in mind:</p>
 <ul>
 <li><p>beginners who want to get started quickly and may find the syntax of <code>ggplot2()</code> a bit offputting,</p></li>
@@ -139,9 +139,11 @@
 <h2 class="hasAnchor">
 <a href="#the-basic-formula-template" class="anchor"></a>The basic formula template</h2>
 <p>The basic template for creating a plot with <code>ggformula</code> is</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu">gf_plottype</span>(<span class="no">formula</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mydata</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="va">mydata</span><span class="op">)</span></code></pre></div>
 <p>or, equivalently,</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">mydata</span> <span class="kw">%&gt;%</span> <span class="fu">gf_plottype</span>(<span class="no">formula</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mydata</span> <span class="op">%&gt;%</span> <span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span><span class="op">)</span></code></pre></div>
 <p>where</p>
 <ul>
 <li><p><code>plottype</code> describes the type of plot (layer) desired (points, lines, a histogram, etc., etc.),</p></li>
@@ -151,10 +153,12 @@
 <p>For example, in a bivariate plot, <code>formula</code> will take the form <code>y ~ x</code>, where <code>y</code> is the name of a variable to be plotted on the y-axis and <code>x</code> is the name of a variable to be plotted on the x-axis. (It is also possible to use expressions that can be evaluated using variables in the data frame as well.)</p>
 <p>The first form of the tempate is useful for simple plots or for multi-layered plots where different layers use different data. The second form is useful for multi-layered plots or plots with many arguments.</p>
 <p>Here is a simple example:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggformula</span>)
-<span class="fu"><a href="../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/ggformula">ggformula</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/simple-example-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">mtcars</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/simple-example-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="selecting-the-glyph-type" class="section level2">
@@ -208,19 +212,22 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 <li><p>We use <code>cyl</code> to determine the color and <code>carb</code> to determine the size of each dot. Color and size are <strong>mapped</strong> to <code>cyl</code> and <code>carb</code>. A legend is provided to show us how the mapping is being done. (Later, we can use scales to control precisely how the mapping is done – which colors and sizes are used to represent which values of <code>cyl</code> and <code>carb</code>.)</p></li>
 <li><p>We also <strong>set</strong> the transparency to 50%. The gives the same value of <code>alpha</code> to all glyphs in this layer.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">cyl</span>, <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.50</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">cyl</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.50</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula_files/figure-html/mapping-setting-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="on-the-fly-calculations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#on-the-fly-calculations" class="anchor"></a>On-the-fly calculations</h3>
-<p><code>ggformula</code> allows for on-the-fly calculations of attributes, although the default labeling of the plot is often better if we create a new variable in our data frame. In the examples below, since there are only three values for <code>carb</code>, it is easier to read the graph if we tell R to treat <code>cyl</code> as a categorical variable by converting to a factor (or to a string). Except for the labeling of the legend, these two plots are the same. In the second example, we see how the ggformula works well with data tranformations using <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>,  <span class="kw">color</span> <span class="kw">=</span> ~ <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">cyl</span>), <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.75</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<p><code>ggformula</code> allows for on-the-fly calculations of attributes, although the default labeling of the plot is often better if we create a new variable in our data frame. In the examples below, since there are only three values for <code>carb</code>, it is easier to read the graph if we tell R to treat <code>cyl</code> as a categorical variable by converting to a factor (or to a string). Except for the labeling of the legend, these two plots are the same. In the second example, we see how the ggformula works well with data tranformations using <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/on-the-fly-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">mtcars</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cylinders</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">cyl</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>,  <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">cylinders</span>, <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.75</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cylinders <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="va">cylinders</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/on-the-fly-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -228,25 +235,31 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 <h2 class="hasAnchor">
 <a href="#one-variable-plots" class="anchor"></a>“One-variable” plots</h2>
 <p>For some plots, we only have to specify the x-position because the y-position is calculated from the x-values. Histograms, densityplots, and frequency polygons are examples. To illustrate, we’ll use density plots, but the same ideas apply to <code><a href="../reference/gf_histogram.html">gf_histogram()</a></code>, and <code>gf_freqpolygon()</code> as well. <em>Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.</em></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">penguins</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"palmerpenguins"</span>)
-<span class="fu"><a href="../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span>   
+<span class="fu"><a href="../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/penguins-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>,  <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>,  <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>,  fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>,  alpha <span class="op">=</span> <span class="fl">0.5</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/penguins-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable</span>
-<span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>,  <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable</span>
+<span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>,  alpha <span class="op">=</span> <span class="fl">0.7</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula_files/figure-html/penguins-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># gf_dens2() is like gf_dens() but is fillable</span>
-<span class="fu"><a href="../reference/gf_density.html">gf_dens2</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>,
-          <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray50"</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># gf_dens2() is like gf_dens() but is fillable</span>
+<span class="fu"><a href="../reference/gf_density.html">gf_dens2</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span>,
+          color <span class="op">=</span> <span class="st">"gray50"</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula_files/figure-html/penguins-4.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Several of the plotting functions include additional arguments that do not modify attributes of individual glyphs but control some other aspect of the plot. In this case, <code>adjust</code> can be used to increase or decrease the amount of smoothing.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># less smoothing</span>
-<span class="no">penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">adjust</span> <span class="kw">=</span> <span class="fl">0.25</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># less smoothing</span>
+<span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>  </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="ggformula_files/figure-html/dens-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># more smoothing</span>
-<span class="no">penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">adjust</span> <span class="kw">=</span> <span class="fl">4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># more smoothing</span>
+<span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>     </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="ggformula_files/figure-html/dens-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -287,7 +300,7 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

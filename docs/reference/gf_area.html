@@ -83,7 +83,7 @@ of ymax." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ of ymax." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@ of ymax." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -170,30 +170,30 @@ by <code>ymin</code> and <code>ymax</code>. <code>geom_area()</code> is a specia
 of <code>ymax</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_area</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"area"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>gf_area</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"area"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,7 +207,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -257,26 +257,26 @@ for mapping linetype.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -319,20 +319,21 @@ display.</p></td>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>ggplot2::geom_area()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>dplyr</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>mosaicData</span>)) {
-  <span class='no'>Temps</span> <span class='kw'>&lt;-</span> <span class='no'>Weather</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>city</span> <span class='kw'>==</span> <span class='st'>"Chicago"</span>, <span class='no'>year</span> <span class='kw'>==</span> <span class='fl'>2016</span>, <span class='no'>month</span> <span class='kw'>&lt;=</span> <span class='fl'>4</span>)
-  <span class='fu'><a href='gf_linerange.html'>gf_linerange</a></span>(<span class='no'>low_temp</span> + <span class='no'>high_temp</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>high_temp</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Temps</span>)
-  <span class='fu'><a href='gf_ribbon.html'>gf_ribbon</a></span>(<span class='no'>low_temp</span> + <span class='no'>high_temp</span> ~ <span class='no'>date</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Temps</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
-  <span class='fu'>gf_area</span>(<span class='no'>high_temp</span> ~ <span class='no'>date</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Temps</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ProjectMOSAIC/mosaicData'>mosaicData</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>Temps</span> <span class='op'>&lt;-</span> <span class='va'>Weather</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>city</span> <span class='op'>==</span> <span class='st'>"Chicago"</span>, <span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2016</span>, <span class='va'>month</span> <span class='op'>&lt;=</span> <span class='fl'>4</span><span class='op'>)</span>
+  <span class='fu'><a href='gf_linerange.html'>gf_linerange</a></span><span class='op'>(</span><span class='va'>low_temp</span> <span class='op'>+</span> <span class='va'>high_temp</span> <span class='op'>~</span> <span class='va'>date</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>high_temp</span>, data <span class='op'>=</span> <span class='va'>Temps</span><span class='op'>)</span>
+  <span class='fu'><a href='gf_ribbon.html'>gf_ribbon</a></span><span class='op'>(</span><span class='va'>low_temp</span> <span class='op'>+</span> <span class='va'>high_temp</span> <span class='op'>~</span> <span class='va'>date</span>, data <span class='op'>=</span> <span class='va'>Temps</span>, color <span class='op'>=</span> <span class='st'>"navy"</span>, alpha <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>
+  <span class='fu'>gf_area</span><span class='op'>(</span><span class='va'>high_temp</span> <span class='op'>~</span> <span class='va'>date</span>, data <span class='op'>=</span> <span class='va'>Temps</span>, color <span class='op'>=</span> <span class='st'>"navy"</span>, alpha <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>
 
-  <span class='fu'><a href='gf_ribbon.html'>gf_ribbon</a></span>(<span class='no'>low_temp</span> + <span class='no'>high_temp</span> ~ <span class='no'>date</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Weather</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>(<span class='no'>city</span> ~ <span class='no'>.</span>)
+  <span class='fu'><a href='gf_ribbon.html'>gf_ribbon</a></span><span class='op'>(</span><span class='va'>low_temp</span> <span class='op'>+</span> <span class='va'>high_temp</span> <span class='op'>~</span> <span class='va'>date</span>, data <span class='op'>=</span> <span class='va'>Weather</span>, alpha <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_facet_wrap.html'>gf_facet_grid</a></span><span class='op'>(</span><span class='va'>city</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>)</span>
 
-  <span class='fu'><a href='gf_linerange.html'>gf_linerange</a></span>(<span class='no'>low_temp</span> + <span class='no'>high_temp</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>high_temp</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Weather</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>(<span class='no'>city</span> ~ <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_colour_gradientn</span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fl'>5</span>))))
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: dplyr</span></div><div class='output co'>#&gt; <span class='message'></span>
+  <span class='fu'><a href='gf_linerange.html'>gf_linerange</a></span><span class='op'>(</span><span class='va'>low_temp</span> <span class='op'>+</span> <span class='va'>high_temp</span> <span class='op'>~</span> <span class='va'>date</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>high_temp</span>, data <span class='op'>=</span> <span class='va'>Weather</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_facet_wrap.html'>gf_facet_grid</a></span><span class='op'>(</span><span class='va'>city</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span><span class='fu'>scale_colour_gradientn</span><span class='op'>(</span>colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: dplyr</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
@@ -355,7 +356,7 @@ display.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

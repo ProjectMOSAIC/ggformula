@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,56 +164,56 @@
     <p>LOESS and linear model smoothers in <code>ggformula</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_smooth</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
-  <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>method.args</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>80</span>,
-  <span class='kw'>span</span> <span class='kw'>=</span> <span class='fl'>0.75</span>,
-  <span class='kw'>fullrange</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"smooth"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"smooth"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_smooth</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  method <span class='op'>=</span> <span class='st'>"auto"</span>,
+  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>,
+  se <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>method.args</span>,
+  n <span class='op'>=</span> <span class='fl'>80</span>,
+  span <span class='op'>=</span> <span class='fl'>0.75</span>,
+  fullrange <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"smooth"</span>,
+  stat <span class='op'>=</span> <span class='st'>"smooth"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_lm</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>lm.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>interval</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>fullrange</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_lm</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.3</span>,
+  lm.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  interval <span class='op'>=</span> <span class='st'>"none"</span>,
+  level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  fullrange <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"lm"</span>,
+  stat <span class='op'>=</span> <span class='st'>"lm"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -227,7 +227,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -295,26 +295,26 @@ the data?</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -377,8 +377,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -394,7 +394,8 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggplot2::geom_smooth()</a></code>, <code><a href='gf_spline.html'>gf_spline()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gf_smooth</span>()</div><div class='output co'>#&gt; <span class='message'>gf_smooth() uses </span>
+    <pre class="examples"><div class='input'><span class='fu'>gf_smooth</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_smooth() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  smooth </span>
 #&gt; <span class='message'>    * stat:  smooth </span>
@@ -402,53 +403,64 @@ in another.</p>
 #&gt; <span class='message'>                   n = 80, span = 0.75, fullrange = FALSE,</span>
 #&gt; <span class='message'>                   level = 0.95</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_smooth</span></div><div class='input'><span class='fu'>gf_lm</span>()</div><div class='output co'>#&gt; <span class='message'>gf_lm() uses </span>
+#&gt; <span class='message'>For more information, try ?gf_smooth</span></div><div class='input'><span class='fu'>gf_lm</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_lm() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  lm </span>
 #&gt; <span class='message'>    * stat:  lm </span>
 #&gt; <span class='message'>    * key attributes:  alpha = 0.3, lm.args = list(), interval = "none", level =</span>
 #&gt; <span class='message'>                   0.95, fullrange = TRUE</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_lm</span></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
-  <span class='kw'>fullrange</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 16 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='gf_smooth-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>biggerfoot</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='img'><img src='gf_smooth-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>biggerfoot</span>, <span class='kw'>fullrange</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
-)</div><div class='img'><img src='gf_smooth-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
+#&gt; <span class='message'>For more information, try ?gf_lm</span></div><div class='input'><span class='fu'>gf_smooth</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
+  fullrange <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 16 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='gf_smooth-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
+  show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_smooth</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
+  show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, se <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess'</span></div><div class='img'><img src='gf_smooth-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>biggerfoot</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_smooth-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>biggerfoot</span>, fullrange <span class='op'>=</span> <span class='cn'>FALSE</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_smooth-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  point </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, size, shape, fill, group, stroke</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_point</span></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>), <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='img'><img src='gf_smooth-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span>(<span class='no'>length</span> ~ <span class='no'>width</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>y</span>) ~ <span class='no'>x</span>, <span class='kw'>backtrans</span> <span class='kw'>=</span> <span class='no'>exp</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='img'><img src='gf_smooth-8.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>gf_lm</span>(<span class='no'>hwy</span> ~ <span class='no'>displ</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>y</span>) ~ <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span>(<span class='no'>x</span>, <span class='fl'>3</span>), <span class='kw'>backtrans</span> <span class='kw'>=</span> <span class='no'>exp</span>,
-  <span class='kw'>interval</span> <span class='kw'>=</span> <span class='st'>"prediction"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_lm</span>(
-    <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>y</span>) ~ <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span>(<span class='no'>x</span>, <span class='fl'>3</span>), <span class='kw'>backtrans</span> <span class='kw'>=</span> <span class='no'>exp</span>,
-    <span class='kw'>interval</span> <span class='kw'>=</span> <span class='st'>"confidence"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='img'><img src='gf_smooth-9.png' alt='' width='700' height='433' /></div></pre>
+#&gt; <span class='message'>For more information, try ?gf_point</span></div><div class='input'><span class='fu'>gf_lm</span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>sex</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
+  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span><span class='op'>)</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_smooth-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_lm</span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>sex</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>,
+  formula <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>x</span>, backtrans <span class='op'>=</span> <span class='va'>exp</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_smooth-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>gf_lm</span><span class='op'>(</span><span class='va'>hwy</span> <span class='op'>~</span> <span class='va'>displ</span>,
+  data <span class='op'>=</span> <span class='va'>mpg</span>,
+  formula <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span><span class='op'>)</span>, backtrans <span class='op'>=</span> <span class='va'>exp</span>,
+  interval <span class='op'>=</span> <span class='st'>"prediction"</span>, fill <span class='op'>=</span> <span class='st'>"skyblue"</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_lm</span><span class='op'>(</span>
+    formula <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span><span class='op'>)</span>, backtrans <span class='op'>=</span> <span class='va'>exp</span>,
+    interval <span class='op'>=</span> <span class='st'>"confidence"</span>, color <span class='op'>=</span> <span class='st'>"red"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_smooth-9.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -464,7 +476,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

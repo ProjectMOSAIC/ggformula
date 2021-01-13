@@ -83,7 +83,7 @@ expss or any other system that stores a label in the label attribute of a vector
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ expss or any other system that stores a label in the label attribute of a vector
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@ expss or any other system that stores a label in the label attribute of a vector
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -170,10 +170,10 @@ long or awkward variable names.  This is an experimental feature and currently o
 expss or any other system that stores a label in the <code>label</code> attribute of a vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_relabel</span>(<span class='no'>plot</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>plot</span>$<span class='no'>data</span>), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>gf_relabel</span><span class='op'>(</span><span class='va'>plot</span>, labels <span class='op'>=</span> <span class='fu'><a href='var_label.html'>get_variable_labels</a></span><span class='op'>(</span><span class='va'>plot</span><span class='op'>$</span><span class='va'>data</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for gf_ggplot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>x</span>$<span class='no'>data</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, labels <span class='op'>=</span> <span class='fu'><a href='var_label.html'>get_variable_labels</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>data</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -203,23 +203,28 @@ expss or any other system that stores a label in the <code>label</code> attribut
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># labeling using a list</span>
-<span class='no'>labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"width of foot (cm)"</span>, <span class='kw'>length</span> <span class='kw'>=</span> <span class='st'>"length of foot (cm)"</span>,
-  <span class='kw'>domhand</span> <span class='kw'>=</span> <span class='st'>"dominant hand"</span>)
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>domhand</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_relabel</span>(<span class='no'>labels</span>)</div><div class='img'><img src='gf_relabel-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='st'>"width of foot (cm)"</span>, length <span class='op'>=</span> <span class='st'>"length of foot (cm)"</span>,
+  domhand <span class='op'>=</span> <span class='st'>"dominant hand"</span><span class='op'>)</span>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>domhand</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_relabel</span><span class='op'>(</span><span class='va'>labels</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_relabel-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># labeling using ...</span>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>domhand</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_relabel</span>(
-    <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"width of foot (cm)"</span>,
-   <span class='kw'>length</span> <span class='kw'>=</span> <span class='st'>"length of foot (cm)"</span>,
-   <span class='kw'>domhand</span> <span class='kw'>=</span> <span class='st'>"dominant hand"</span>)</div><div class='img'><img src='gf_relabel-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>domhand</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_relabel</span><span class='op'>(</span>
+    width <span class='op'>=</span> <span class='st'>"width of foot (cm)"</span>,
+   length <span class='op'>=</span> <span class='st'>"length of foot (cm)"</span>,
+   domhand <span class='op'>=</span> <span class='st'>"dominant hand"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_relabel-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Alternatively, we can store labels with data.</span>
-<span class='no'>KF</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='labels.html'>set_variable_labels</a></span>(
-    <span class='kw'>length</span> <span class='kw'>=</span> <span class='st'>'foot length (cm)'</span>,
-    <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'foot width (cm)'</span>
-  )
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_density_2d.html'>gf_density2d</a></span>(<span class='no'>length</span> ~ <span class='no'>width</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>KF</span>)</div><div class='img'><img src='gf_relabel-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='labels.html'>get_variable_labels</a></span>(<span class='no'>KF</span>)</div><div class='output co'>#&gt; $name
+<span class='va'>KF</span> <span class='op'>&lt;-</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/KidsFeet.html'>KidsFeet</a></span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='var_label.html'>set_variable_labels</a></span><span class='op'>(</span>
+    length <span class='op'>=</span> <span class='st'>'foot length (cm)'</span>,
+    width <span class='op'>=</span> <span class='st'>'foot width (cm)'</span>
+  <span class='op'>)</span>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>, data <span class='op'>=</span> <span class='va'>KF</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_relabel-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_density_2d.html'>gf_density2d</a></span><span class='op'>(</span><span class='va'>length</span> <span class='op'>~</span> <span class='va'>width</span>, data <span class='op'>=</span> <span class='va'>KF</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_relabel-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='var_label.html'>get_variable_labels</a></span><span class='op'>(</span><span class='va'>KF</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $name
 #&gt; NULL
 #&gt; 
 #&gt; $birthmonth
@@ -260,7 +265,7 @@ expss or any other system that stores a label in the <code>label</code> attribut
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

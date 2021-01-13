@@ -81,7 +81,7 @@ the formula interface." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ the formula interface." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -139,7 +139,7 @@ the formula interface." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -166,9 +166,9 @@ the formula interface." />
 the formula interface.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_facet_wrap</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>gf_facet_wrap</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>gf_facet_grid</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>gf_facet_grid</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,16 +190,20 @@ This typically includes an unnamed formula argument describing the facets.
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>ggplot2::facet_grid()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>ggplot2::facet_wrap()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~<span class='no'>avg_drinks</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_facet_grid</span>(~<span class='no'>substance</span>)</div><div class='img'><img src='gf_facet_grid-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~<span class='no'>avg_drinks</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_facet_grid</span>(~<span class='no'>substance</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"free"</span>)</div><div class='img'><img src='gf_facet_grid-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~<span class='no'>avg_drinks</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_facet_grid</span>(~<span class='no'>substance</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"free"</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"free"</span>)</div><div class='img'><img src='gf_facet_grid-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_line.html'>gf_line</a></span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births.html'>Births</a></span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_facet_wrap</span>(~<span class='no'>year</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"free_x"</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(
-    <span class='kw'>axis.title.x</span> <span class='kw'>=</span> <span class='fu'>element_blank</span>(),
-    <span class='kw'>axis.text.x</span> <span class='kw'>=</span> <span class='fu'>element_blank</span>(), <span class='kw'>axis.ticks.x</span> <span class='kw'>=</span> <span class='fu'>element_blank</span>()
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_labs</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Day"</span>)</div><div class='img'><img src='gf_facet_grid-4.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>avg_drinks</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_facet_grid</span><span class='op'>(</span><span class='op'>~</span><span class='va'>substance</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_facet_grid-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>avg_drinks</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_facet_grid</span><span class='op'>(</span><span class='op'>~</span><span class='va'>substance</span>, scales <span class='op'>=</span> <span class='st'>"free"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_facet_grid-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>avg_drinks</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_facet_grid</span><span class='op'>(</span><span class='op'>~</span><span class='va'>substance</span>, scales <span class='op'>=</span> <span class='st'>"free"</span>, space <span class='op'>=</span> <span class='st'>"free"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_facet_grid-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_line.html'>gf_line</a></span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births.html'>Births</a></span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>year</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span>, nrow <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span>
+    axis.title.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>, axis.ticks.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_labs</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"Day"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_facet_grid-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -215,7 +219,7 @@ This typically includes an unnamed formula argument describing the facets.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

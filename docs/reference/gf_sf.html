@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,30 +164,30 @@
     <p>Mapping with shape files</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_sf</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>geometry</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"sf"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>gf_sf</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>geometry</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  stat <span class='op'>=</span> <span class='st'>"sf"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,7 +201,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -248,26 +248,26 @@ inherited.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>stat</th>
@@ -314,8 +314,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -332,30 +332,34 @@ in another.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>maps</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>maptools</span>) <span class='kw'>&amp;&amp;</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>sf</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>rgeos</span>))
-  <span class='no'>US</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span>(<span class='kw pkg'>maps</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span>(<span class='st'>"state"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='message'>Loading required package: maptools</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: sp</span></div><div class='output co'>#&gt; <span class='message'>Checking rgeos availability: TRUE</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: sf</span></div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: rgeos</span></div><div class='output co'>#&gt; <span class='message'>rgeos version: 0.5-3, (SVN revision 634)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>maps</span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='http://maptools.r-forge.r-project.org/'>maptools</a></span><span class='op'>)</span> <span class='op'>&amp;&amp;</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://r-forge.r-project.org/projects/rgeos/'>rgeos</a></span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>US</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='fu'>maps</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span><span class='op'>(</span><span class='st'>"state"</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, fill <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: maptools</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: sp</span></div><div class='output co'>#&gt; <span class='message'>Checking rgeos availability: TRUE</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: sf</span></div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: rgeos</span></div><div class='output co'>#&gt; <span class='message'>rgeos version: 0.5-3, (SVN revision 634)</span>
 #&gt; <span class='message'> GEOS runtime version: 3.7.2-CAPI-1.11.2 </span>
 #&gt; <span class='message'> Linking to sp version: 1.4-1 </span>
-#&gt; <span class='message'> Polygon checking: TRUE </span></div><div class='input'>  <span class='fu'>gf_sf</span>(<span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nchar.html'>nchar</a></span>(<span class='no'>ID</span>)), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>US</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>coord_sf</span>())</div><div class='img'><img src='gf_sf-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'> Polygon checking: TRUE </span></div><div class='input'>  <span class='fu'>gf_sf</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nchar.html'>nchar</a></span><span class='op'>(</span><span class='va'>ID</span><span class='op'>)</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>US</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span><span class='fu'>coord_sf</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_sf-1.png' alt='' width='700' height='433' /></div><div class='input'>
   <span class='co'># We can specify shape data and external data separately using geometry</span>
-  <span class='no'>MI</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span>(<span class='kw pkg'>maps</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span>(<span class='st'>"county"</span>, <span class='st'>"michigan"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
-  <span class='no'>MIgeom</span> <span class='kw'>&lt;-</span> <span class='no'>MI</span>$<span class='no'>geom</span>
-  <span class='fu'>gf_sf</span>(
-    <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log10</a></span>(<span class='no'>population</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>MIpop</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='no'>county</span>),
-    <span class='kw'>geometry</span> <span class='kw'>=</span> ~<span class='no'>MIgeom</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"white"</span>
-  ) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>coord_sf</span>(), <span class='fu'>theme_bw</span>())</div><div class='img'><img src='gf_sf-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='va'>MI</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='fu'>maps</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/maps/man/map.html'>map</a></span><span class='op'>(</span><span class='st'>"county"</span>, <span class='st'>"michigan"</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, fill <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>MIgeom</span> <span class='op'>&lt;-</span> <span class='va'>MI</span><span class='op'>$</span><span class='va'>geom</span>
+  <span class='fu'>gf_sf</span><span class='op'>(</span>
+    fill <span class='op'>=</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log10</a></span><span class='op'>(</span><span class='va'>population</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>MIpop</span> <span class='op'>%&gt;%</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>county</span><span class='op'>)</span>,
+    geometry <span class='op'>=</span> <span class='op'>~</span><span class='va'>MIgeom</span>, color <span class='op'>=</span> <span class='st'>"white"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span><span class='fu'>coord_sf</span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_sf-2.png' alt='' width='700' height='433' /></div><div class='input'>
   <span class='co'># alternatively we can merge external data and shape data into one data frame.</span>
-  <span class='no'>MI</span> <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>county</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"michigan,"</span>, <span class='st'>""</span>, <span class='no'>ID</span>)) <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span>(<span class='no'>MIpop</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>county</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span>(<span class='no'>county</span>))) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_sf</span>(<span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>population</span> / <span class='fl'>1e3</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-      <span class='fu'>coord_sf</span>(), <span class='fu'>theme_bw</span>(),
-      <span class='fu'>scale_fill_continuous</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"population (thousands)"</span>, <span class='kw'>trans</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)
-    )</div><div class='output co'>#&gt; <span class='message'>Joining, by = "county"</span></div><div class='img'><img src='gf_sf-3.png' alt='' width='700' height='433' /></div></pre>
+  <span class='va'>MI</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>county <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"michigan,"</span>, <span class='st'>""</span>, <span class='va'>ID</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>MIpop</span> <span class='op'>%&gt;%</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>county <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span><span class='op'>(</span><span class='va'>county</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>gf_sf</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>population</span> <span class='op'>/</span> <span class='fl'>1e3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+      <span class='fu'>coord_sf</span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span>,
+      <span class='fu'>scale_fill_continuous</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"population (thousands)"</span>, trans <span class='op'>=</span> <span class='st'>"log10"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = "county"</span></div><div class='img'><img src='gf_sf-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -371,7 +375,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

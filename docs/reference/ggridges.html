@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,164 +164,164 @@
     <p>Formula interface to ggridges plots</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_ridgeline</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>height</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>min_height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>point_size</span>,
-  <span class='no'>point_shape</span>,
-  <span class='no'>point_colour</span>,
-  <span class='no'>point_fill</span>,
-  <span class='no'>point_alpha</span>,
-  <span class='no'>point_stroke</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"ridgeline"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_ridgeline</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>height</span>,
+  scale <span class='op'>=</span> <span class='fl'>1</span>,
+  min_height <span class='op'>=</span> <span class='fl'>0</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>point_size</span>,
+  <span class='va'>point_shape</span>,
+  <span class='va'>point_colour</span>,
+  <span class='va'>point_fill</span>,
+  <span class='va'>point_alpha</span>,
+  <span class='va'>point_stroke</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"ridgeline"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_density_ridges</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>height</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>rel_min_height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>point_size</span>,
-  <span class='no'>point_shape</span>,
-  <span class='no'>point_colour</span>,
-  <span class='no'>point_fill</span>,
-  <span class='no'>point_alpha</span>,
-  <span class='no'>point_stroke</span>,
-  <span class='kw'>panel_scaling</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"density_ridges"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density_ridges"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"points_sina"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_density_ridges</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>height</span>,
+  scale <span class='op'>=</span> <span class='fl'>1</span>,
+  rel_min_height <span class='op'>=</span> <span class='fl'>0</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>point_size</span>,
+  <span class='va'>point_shape</span>,
+  <span class='va'>point_colour</span>,
+  <span class='va'>point_fill</span>,
+  <span class='va'>point_alpha</span>,
+  <span class='va'>point_stroke</span>,
+  panel_scaling <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"density_ridges"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density_ridges"</span>,
+  position <span class='op'>=</span> <span class='st'>"points_sina"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_density_ridges2</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>height</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>rel_min_height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>point_size</span>,
-  <span class='no'>point_shape</span>,
-  <span class='no'>point_colour</span>,
-  <span class='no'>point_fill</span>,
-  <span class='no'>point_alpha</span>,
-  <span class='no'>point_stroke</span>,
-  <span class='kw'>panel_scaling</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"density_ridges2"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density_ridges"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"points_sina"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_density_ridges2</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>height</span>,
+  scale <span class='op'>=</span> <span class='fl'>1</span>,
+  rel_min_height <span class='op'>=</span> <span class='fl'>0</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>point_size</span>,
+  <span class='va'>point_shape</span>,
+  <span class='va'>point_colour</span>,
+  <span class='va'>point_fill</span>,
+  <span class='va'>point_alpha</span>,
+  <span class='va'>point_stroke</span>,
+  panel_scaling <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"density_ridges2"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density_ridges"</span>,
+  position <span class='op'>=</span> <span class='st'>"points_sina"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_density_ridgeline_gradient</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>height</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>gradient_lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"ridgeline_gradient"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_density_ridgeline_gradient</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>height</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  gradient_lwd <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"ridgeline_gradient"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_density_ridges_gradient</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>height</span>,
-  <span class='kw'>panel_scaling</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>color</span>,
-  <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>x</span>),
-  <span class='no'>alpha</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>gradient_lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"density_ridges_gradient"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density_ridges"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"points_sina"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_density_ridges_gradient</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>height</span>,
+  panel_scaling <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>color</span>,
+  fill <span class='op'>=</span> <span class='op'>~</span><span class='fu'>stat</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  gradient_lwd <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"density_ridges_gradient"</span>,
+  stat <span class='op'>=</span> <span class='st'>"density_ridges"</span>,
+  position <span class='op'>=</span> <span class='st'>"points_sina"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -335,7 +335,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -361,7 +361,7 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></td>
     <tr>
       <th>height</th>
       <td><p>The height of each ridgeline at the respective x value.
-Automatically calculated and provided by <code><a href='https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code>
+Automatically calculated and provided by <code><a href='https://wilkelab.org/ggridges/reference/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code>
 if the default stat is not changed.</p></td>
     </tr>
     <tr>
@@ -404,30 +404,30 @@ for mapping linetype.</p></td>
     </tr>
     <tr>
       <th>point_shape, point_colour, point_size, point_fill, point_alpha, point_stroke</th>
-      <td><p>As in <code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code>.</p></td>
+      <td><p>As in <code><a href='https://wilkelab.org/ggridges/reference/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code>.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -486,74 +486,83 @@ rendered gradients. Should ideally be 0, but often needs to be around 0.5 or hig
 
     
 
-<p>Note that the <code><a href='https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code> makes joint density estimation
+<p>Note that the <code><a href='https://wilkelab.org/ggridges/reference/stat_density_ridges.html'>ggridges::stat_density_ridges()</a></code> makes joint density estimation
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set <code>stat = "density"</code> to use
 <code><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>ggplot2::stat_density()</a></code>. In this case, it is required to add the aesthetic mapping
 <code>height = stat(density)</code> (see examples).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html'>ggridges::geom_density_ridges()</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/ggridges/man/geom_ridgeline_gradient.html'>ggridges::geom_density_ridges_gradient()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://wilkelab.org/ggridges/reference/geom_density_ridges.html'>ggridges::geom_density_ridges()</a></code></p>
+<p><code><a href='https://wilkelab.org/ggridges/reference/geom_ridgeline.html'>ggridges::geom_ridgeline()</a></code></p>
+<p><code><a href='https://wilkelab.org/ggridges/reference/geom_ridgeline_gradient.html'>ggridges::geom_density_ridges_gradient()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>5</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>3</span>, <span class='fl'>5</span>)),
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>1</span>)
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_ridgeline</span>(<span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>height</span> <span class='kw'>=</span> ~ <span class='no'>height</span>, <span class='kw'>group</span> <span class='kw'>=</span> ~<span class='no'>y</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>)</div><div class='img'><img src='ggridges-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>cut</span> ~ <span class='no'>price</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>cut</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>clarity</span> ~ <span class='no'>price</span> <span class='kw'>|</span> <span class='no'>cut</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>clarity</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 796</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 751</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 677</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 718</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 400</span></div><div class='img'><img src='ggridges-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>clarity</span> ~ <span class='no'>price</span> <span class='kw'>|</span> <span class='no'>cut</span>, <span class='kw'>height</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>density</span>), <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>clarity</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='img'><img src='ggridges-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges2</span>(<span class='no'>cut</span> ~ <span class='no'>price</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>cut</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>cut</span> ~ <span class='no'>price</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>cut</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>clarity</span> ~ <span class='no'>price</span> <span class='kw'>|</span> <span class='no'>cut</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>clarity</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 796</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 751</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 677</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 718</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 400</span></div><div class='img'><img src='ggridges-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>diamonds</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges</span>(<span class='no'>clarity</span> ~ <span class='no'>price</span> <span class='kw'>|</span> <span class='no'>cut</span>, <span class='kw'>height</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>density</span>), <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>clarity</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_ridges</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(
-    <span class='fu'>scale_y_discrete</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>)),
-    <span class='fu'>scale_x_continuous</span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>0</span>))
-  )</div><div class='img'><img src='ggridges-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Weather.html'>Weather</a></span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_density_ridges_gradient</span>(<span class='no'>month</span> ~ <span class='no'>high_temp</span> <span class='kw'>|</span> <span class='no'>city</span> ~ <span class='no'>.</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~<span class='fu'>stat</span>(<span class='no'>x</span>),
-    <span class='kw'>group</span> <span class='kw'>=</span> ~ <span class='no'>month</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rel_min_height</span> <span class='kw'>=</span> <span class='fl'>0.02</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_fill_viridis_c</span>(<span class='kw'>option</span> <span class='kw'>=</span> <span class='st'>"B"</span>), <span class='fu'>theme_bw</span>())</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.09</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 2.45</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 3.79</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.16</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.7</span></div><div class='img'><img src='ggridges-9.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>3</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>,
+  height <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_ridgeline</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>, height <span class='op'>=</span> <span class='op'>~</span> <span class='va'>height</span>, group <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, fill <span class='op'>=</span> <span class='st'>"lightblue"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span>
+</div><div class='img'><img src='ggridges-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>cut</span> <span class='op'>~</span> <span class='va'>price</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>cut</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>clarity</span> <span class='op'>~</span> <span class='va'>price</span> <span class='op'>|</span> <span class='va'>cut</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>clarity</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 796</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 751</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 677</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 718</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 400</span></div><div class='img'><img src='ggridges-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>clarity</span> <span class='op'>~</span> <span class='va'>price</span> <span class='op'>|</span> <span class='va'>cut</span>, height <span class='op'>=</span> <span class='op'>~</span><span class='fu'>stat</span><span class='op'>(</span><span class='va'>density</span><span class='op'>)</span>, stat <span class='op'>=</span> <span class='st'>"density"</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>clarity</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='ggridges-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges2</span><span class='op'>(</span><span class='va'>cut</span> <span class='op'>~</span> <span class='va'>price</span>, scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>cut</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>cut</span> <span class='op'>~</span> <span class='va'>price</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>cut</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 458</span></div><div class='img'><img src='ggridges-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>clarity</span> <span class='op'>~</span> <span class='va'>price</span> <span class='op'>|</span> <span class='va'>cut</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>clarity</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 796</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 751</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 677</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 718</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 400</span></div><div class='img'><img src='ggridges-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>diamonds</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges</span><span class='op'>(</span><span class='va'>clarity</span> <span class='op'>~</span> <span class='va'>price</span> <span class='op'>|</span> <span class='va'>cut</span>, height <span class='op'>=</span> <span class='op'>~</span><span class='fu'>stat</span><span class='op'>(</span><span class='va'>density</span><span class='op'>)</span>, stat <span class='op'>=</span> <span class='st'>"density"</span>,
+    scale <span class='op'>=</span> <span class='fl'>2</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='va'>clarity</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_ridges</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span>
+    <span class='fu'>scale_y_discrete</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='fu'>scale_x_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='ggridges-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Weather.html'>Weather</a></span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_density_ridges_gradient</span><span class='op'>(</span><span class='va'>month</span> <span class='op'>~</span> <span class='va'>high_temp</span> <span class='op'>|</span> <span class='va'>city</span> <span class='op'>~</span> <span class='va'>.</span>, fill <span class='op'>=</span> <span class='op'>~</span><span class='fu'>stat</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>,
+    group <span class='op'>=</span> <span class='op'>~</span> <span class='va'>month</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, rel_min_height <span class='op'>=</span> <span class='fl'>0.02</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_labs.html'>gf_refine</a></span><span class='op'>(</span><span class='fu'>scale_fill_viridis_c</span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"B"</span><span class='op'>)</span>, <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.09</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 2.45</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 3.79</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.16</span></div><div class='output co'>#&gt; <span class='message'>Picking joint bandwidth of 1.7</span></div><div class='img'><img src='ggridges-9.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -569,7 +578,7 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

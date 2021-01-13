@@ -81,7 +81,7 @@ interfaces for creating a layer that contains the graph of a function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ interfaces for creating a layer that contains the graph of a function." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -139,7 +139,7 @@ interfaces for creating a layer that contains the graph of a function." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -166,9 +166,9 @@ interfaces for creating a layer that contains the graph of a function." />
 interfaces for creating a layer that contains the graph of a function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_function</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>fun</span>, <span class='no'>xlim</span>, <span class='no'>...</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>gf_function</span><span class='op'>(</span>object <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>fun</span>, <span class='va'>xlim</span>, <span class='va'>...</span>, inherit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>gf_fun</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>formula</span>, <span class='no'>xlim</span>, <span class='no'>...</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>gf_fun</span><span class='op'>(</span>object <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>formula</span>, <span class='va'>xlim</span>, <span class='va'>...</span>, inherit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,15 +204,19 @@ the first layer in a plot.  Ignored when creating a subsequent layer.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gf_function</span>(<span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>sqrt</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>))</div><div class='img'><img src='gf_function-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span>(~<span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_function</span>(
-    <span class='kw'>fun</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span>,
-    <span class='kw'>args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>$<span class='no'>age</span>), <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span>(<span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>$<span class='no'>age</span>)),
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>
-  )</div><div class='img'><img src='gf_function-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_fun</span>(<span class='fl'>5</span> + <span class='fl'>3</span> * <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='fl'>10</span> * <span class='no'>x</span>) ~ <span class='no'>x</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>))</div><div class='img'><img src='gf_function-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Utility bill is quadratic in month?</span>
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mosaicCore/man/makeFun.html'>makeFun</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>totalbill</span> ~ <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span>(<span class='no'>month</span>, <span class='fl'>2</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Utilities.html'>Utilities</a></span>))
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>totalbill</span> ~ <span class='no'>month</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Utilities.html'>Utilities</a></span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_fun</span>(<span class='fu'>f</span>(<span class='no'>m</span>) ~ <span class='no'>m</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='img'><img src='gf_function-4.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>gf_function</span><span class='op'>(</span>fun <span class='op'>=</span> <span class='va'>sqrt</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_function-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>age</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, binwidth <span class='op'>=</span> <span class='fl'>3</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_function</span><span class='op'>(</span>
+    fun <span class='op'>=</span> <span class='fu'>stats</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span>,
+    args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>$</span><span class='va'>age</span><span class='op'>)</span>, sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>$</span><span class='va'>age</span><span class='op'>)</span><span class='op'>)</span>,
+    color <span class='op'>=</span> <span class='st'>"red"</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='gf_function-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_fun</span><span class='op'>(</span><span class='fl'>5</span> <span class='op'>+</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='fl'>10</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>x</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_function-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Utility bill is quadratic in month?</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mosaicCore/man/makeFun.html'>makeFun</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>totalbill</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/poly.html'>poly</a></span><span class='op'>(</span><span class='va'>month</span>, <span class='fl'>2</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Utilities.html'>Utilities</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>totalbill</span> <span class='op'>~</span> <span class='va'>month</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Utilities.html'>Utilities</a></span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_fun</span><span class='op'>(</span><span class='fu'>f</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>m</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_function-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -228,7 +232,7 @@ the first layer in a plot.  Ignored when creating a subsequent layer.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

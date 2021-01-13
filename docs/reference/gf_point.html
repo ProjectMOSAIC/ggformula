@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,31 +164,31 @@
     <p>Scatterplots in <code>ggformula</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_point</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>size</span>,
-  <span class='no'>shape</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>stroke</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"point"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>gf_point</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>size</span>,
+  <span class='va'>shape</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>stroke</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"point"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,7 +202,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -246,16 +246,16 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title, subtitle, caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -306,8 +306,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -323,26 +323,35 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point()</a></code>, <code><a href='gf_line.html'>gf_line()</a></code>, <code><a href='gf_jitter.html'>gf_jitter()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gf_point</span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
+    <pre class="examples"><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  point </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, size, shape, fill, group, stroke</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_point</span></div><div class='input'><span class='fu'>gf_point</span>((<span class='fl'>10</span> * ((<span class='fl'>1</span>:<span class='fl'>25</span>) <span class='kw'>%/%</span> <span class='fl'>10</span>)) ~ ((<span class='fl'>1</span>:<span class='fl'>25</span>) <span class='kw'>%%</span> <span class='fl'>10</span>),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>25</span>,
-  <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>stroke</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fl'>NA</span>
-)</div><div class='img'><img src='gf_point-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>hp</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>size</span> <span class='kw'>=</span> ~<span class='no'>wt</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)</div><div class='img'><img src='gf_point-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># faceting -- two ways</span>
-<span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>hp</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_facet_grid.html'>gf_facet_wrap</a></span>(~<span class='no'>am</span>)</div><div class='img'><img src='gf_point-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>hp</span> <span class='kw'>|</span> <span class='no'>am</span>, <span class='kw'>group</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)</div><div class='img'><img src='gf_point-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>hp</span> <span class='kw'>|</span> ~<span class='no'>am</span>, <span class='kw'>group</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)</div><div class='img'><img src='gf_point-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>hp</span> <span class='kw'>|</span> <span class='no'>am</span> ~ <span class='no'>.</span>, <span class='kw'>group</span> <span class='kw'>=</span> ~<span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)</div><div class='img'><img src='gf_point-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Chaining in the data</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>gf_point</span>(<span class='no'>mpg</span> ~ <span class='no'>wt</span>)</div><div class='img'><img src='gf_point-7.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'>For more information, try ?gf_point</span></div><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='op'>(</span><span class='fl'>10</span> <span class='op'>*</span> <span class='op'>(</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>25</span><span class='op'>)</span> <span class='op'>%/%</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>~</span> <span class='op'>(</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>25</span><span class='op'>)</span> <span class='op'>%%</span> <span class='fl'>10</span><span class='op'>)</span>,
+  shape <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>25</span>,
+  fill <span class='op'>=</span> <span class='st'>"skyblue"</span>, color <span class='op'>=</span> <span class='st'>"navy"</span>, size <span class='op'>=</span> <span class='fl'>4</span>, stroke <span class='op'>=</span> <span class='fl'>1</span>, data <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_point-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>cyl</span>, size <span class='op'>=</span> <span class='op'>~</span><span class='va'>wt</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># faceting -- two ways</span>
+<span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_facet_wrap.html'>gf_facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>am</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span> <span class='op'>|</span> <span class='va'>am</span>, group <span class='op'>=</span> <span class='op'>~</span><span class='va'>cyl</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span> <span class='op'>|</span> <span class='op'>~</span><span class='va'>am</span>, group <span class='op'>=</span> <span class='op'>~</span><span class='va'>cyl</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span> <span class='op'>|</span> <span class='va'>am</span> <span class='op'>~</span> <span class='va'>.</span>, group <span class='op'>=</span> <span class='op'>~</span><span class='va'>cyl</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Chaining in the data</span>
+<span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>wt</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_point-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># short cuts for main labels in the plot</span>
-<span class='fu'>gf_point</span>(<span class='no'>births</span> ~ <span class='no'>date</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Date"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Number of Live Births"</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Interesting Patterns in the Number of Births"</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"(United States, 1978)"</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Source: mosaicData::Births78"</span>
-)</div><div class='img'><img src='gf_point-8.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>gf_point</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>,
+  color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>,
+  xlab <span class='op'>=</span> <span class='st'>"Date"</span>, ylab <span class='op'>=</span> <span class='st'>"Number of Live Births"</span>,
+  title <span class='op'>=</span> <span class='st'>"Interesting Patterns in the Number of Births"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"(United States, 1978)"</span>,
+  caption <span class='op'>=</span> <span class='st'>"Source: mosaicData::Births78"</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_point-8.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -358,7 +367,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

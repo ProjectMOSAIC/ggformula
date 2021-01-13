@@ -82,7 +82,7 @@ chaining syntax." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ chaining syntax." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@ chaining syntax." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -168,11 +168,11 @@ ggplot2 plots. They are wrappers around functions in ggplot2 that allow for
 chaining syntax.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_labs</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>gf_labs</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>gf_lims</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>gf_lims</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>gf_refine</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>gf_refine</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,7 +193,7 @@ chaining syntax.</p>
     <p>a modified gg object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>gf_refine()</code> provides a mechanism to replace <code>+</code> with the
+    <p><code>gf_refine()</code> provides a mechanism to replace <code><a href='https://rdrr.io/r/base/Arithmetic.html'>+</a></code> with the
 chaining operator from <span class="pkg">magrittr</span>.
 Each of its <code>\dots</code> arguments is added in turn to the
 base plot in <code>object</code>.  The other functions are thin wrappers around
@@ -201,32 +201,37 @@ specific <code>ggplot2</code> refinement functions and pass their <code>\dots</c
 arguments through to the similarly named <code>ggplot2</code> functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='gf_density.html'>gf_dens</a></span>(~<span class='no'>cesd</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>substance</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_labs</span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Center for Epidemiologic Studies Depression measure"</span>,
-    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"(at baseline)"</span>,
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Abused substance: "</span>,
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"CESD score"</span>,
-    <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>""</span>,
-    <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Source: HELPrct"</span>
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_classic</span>()) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(
-    <span class='kw'>axis.text.y</span> <span class='kw'>=</span> <span class='fu'>element_blank</span>(),
-    <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
-    <span class='kw'>plot.title</span> <span class='kw'>=</span> <span class='fu'>element_text</span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>),
-    <span class='kw'>plot.subtitle</span> <span class='kw'>=</span> <span class='fu'>element_text</span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
-  )</div><div class='img'><img src='gf_aux-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>eruptions</span> ~ <span class='no'>waiting</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='img'><img src='gf_aux-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>eruptions</span> ~ <span class='no'>waiting</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_lims</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>65</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 99 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-3.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='gf_density.html'>gf_dens</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>cesd</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>substance</span>, size <span class='op'>=</span> <span class='fl'>1.5</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_labs</span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Center for Epidemiologic Studies Depression measure"</span>,
+    subtitle <span class='op'>=</span> <span class='st'>"(at baseline)"</span>,
+    color <span class='op'>=</span> <span class='st'>"Abused substance: "</span>,
+    x <span class='op'>=</span> <span class='st'>"CESD score"</span>,
+    y <span class='op'>=</span> <span class='st'>""</span>,
+    caption <span class='op'>=</span> <span class='st'>"Source: HELPrct"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_classic</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span>
+    axis.text.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    legend.position <span class='op'>=</span> <span class='st'>"top"</span>,
+    plot.title <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span>, color <span class='op'>=</span> <span class='st'>"navy"</span><span class='op'>)</span>,
+    plot.subtitle <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span>, color <span class='op'>=</span> <span class='st'>"navy"</span>, size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='gf_aux-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>eruptions</span> <span class='op'>~</span> <span class='va'>waiting</span>, data <span class='op'>=</span> <span class='va'>faithful</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_aux-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>eruptions</span> <span class='op'>~</span> <span class='va'>waiting</span>, data <span class='op'>=</span> <span class='va'>faithful</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_lims</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>65</span>, <span class='cn'>NA</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 99 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># modify scales using gf_refine()</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_refine</span>(<span class='fu'>scale_color_brewer</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"qual"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fl'>3</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_bw</span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_refine</span>(<span class='fu'>scale_color_manual</span>(<span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"navy"</span>, <span class='st'>"limegreen"</span>))) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span>(<span class='fu'>theme_bw</span>())</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-5.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_refine</span><span class='op'>(</span><span class='fu'>scale_color_brewer</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"qual"</span>, palette <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_refine</span><span class='op'>(</span><span class='fu'>scale_color_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"navy"</span>, <span class='st'>"limegreen"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_theme.html'>gf_theme</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_aux-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -242,7 +247,7 @@ arguments through to the similarly named <code>ggplot2</code> functions.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

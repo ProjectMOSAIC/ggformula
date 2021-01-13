@@ -84,7 +84,7 @@ easier to read." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ easier to read." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -142,7 +142,7 @@ easier to read." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -172,74 +172,74 @@ to the plot. <code>geom_label()</code> draws a rectangle behind the text, making
 easier to read.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_text</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>label</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>angle</span>,
-  <span class='no'>color</span>,
-  <span class='no'>family</span>,
-  <span class='no'>fontface</span>,
-  <span class='no'>group</span>,
-  <span class='no'>hjust</span>,
-  <span class='no'>lineheight</span>,
-  <span class='no'>size</span>,
-  <span class='no'>vjust</span>,
-  <span class='kw'>parse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nudge_x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nudge_y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>check_overlap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"text"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"nudge"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_text</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>label</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>angle</span>,
+  <span class='va'>color</span>,
+  <span class='va'>family</span>,
+  <span class='va'>fontface</span>,
+  <span class='va'>group</span>,
+  <span class='va'>hjust</span>,
+  <span class='va'>lineheight</span>,
+  <span class='va'>size</span>,
+  <span class='va'>vjust</span>,
+  parse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  nudge_x <span class='op'>=</span> <span class='fl'>0</span>,
+  nudge_y <span class='op'>=</span> <span class='fl'>0</span>,
+  check_overlap <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"text"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"nudge"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_label</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>label</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>angle</span>,
-  <span class='no'>color</span>,
-  <span class='no'>family</span>,
-  <span class='no'>fontface</span>,
-  <span class='no'>group</span>,
-  <span class='no'>hjust</span>,
-  <span class='no'>vjust</span>,
-  <span class='no'>lineheight</span>,
-  <span class='no'>size</span>,
-  <span class='no'>parse</span>,
-  <span class='kw'>nudge_x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nudge_y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.padding</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0.25</span>, <span class='st'>"lines"</span>),
-  <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0.15</span>, <span class='st'>"lines"</span>),
-  <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"nudge"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_label</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>label</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>angle</span>,
+  <span class='va'>color</span>,
+  <span class='va'>family</span>,
+  <span class='va'>fontface</span>,
+  <span class='va'>group</span>,
+  <span class='va'>hjust</span>,
+  <span class='va'>vjust</span>,
+  <span class='va'>lineheight</span>,
+  <span class='va'>size</span>,
+  <span class='va'>parse</span>,
+  nudge_x <span class='op'>=</span> <span class='fl'>0</span>,
+  nudge_y <span class='op'>=</span> <span class='fl'>0</span>,
+  label.padding <span class='op'>=</span> <span class='fu'>unit</span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='st'>"lines"</span><span class='op'>)</span>,
+  label.r <span class='op'>=</span> <span class='fu'>unit</span><span class='op'>(</span><span class='fl'>0.15</span>, <span class='st'>"lines"</span><span class='op'>)</span>,
+  label.size <span class='op'>=</span> <span class='fl'>0.25</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"nudge"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -253,7 +253,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -343,26 +343,26 @@ column before calling <code>geom_label()</code> or <code>geom_text()</code>.</p>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -429,8 +429,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -446,27 +446,30 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>ggplot2::geom_text()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='fu'>gf_text</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>30</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_text).</span></div><div class='img'><img src='gf_text-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>penguins</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_text</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>,
-    <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>nudge_x</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nudge_y</span> <span class='kw'>=</span> <span class='fl'>0.1</span>
-  )</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_text).</span></div><div class='img'><img src='gf_text-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>dplyr</span>)) {
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-  <span class='no'>penguins_means</span> <span class='kw'>&lt;-</span>
-    <span class='no'>penguins</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>species</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>bill_length_mm</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>bill_length_mm</span>), <span class='kw'>bill_depth_mm</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>bill_depth_mm</span>))
-  <span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_label</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>,
-      <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins_means</span>,
-      <span class='kw'>label</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>species</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>
-    )
-}</div><div class='output co'>#&gt; <span class='message'>`summarise()` ungrouping output (override with `.groups` argument)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_label).</span></div><div class='img'><img src='gf_text-3.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='fu'>gf_text</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>,
+  data <span class='op'>=</span> <span class='va'>penguins</span>,
+  label <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, size <span class='op'>=</span> <span class='fl'>2</span>, angle <span class='op'>=</span> <span class='fl'>30</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_text).</span></div><div class='img'><img src='gf_text-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>penguins</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_text</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>,
+    label <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>,
+    size <span class='op'>=</span> <span class='fl'>2</span>, angle <span class='op'>=</span> <span class='fl'>0</span>, hjust <span class='op'>=</span> <span class='fl'>0</span>, nudge_x <span class='op'>=</span> <span class='fl'>0.1</span>, nudge_y <span class='op'>=</span> <span class='fl'>0.1</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_text).</span></div><div class='img'><img src='gf_text-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+  <span class='va'>penguins_means</span> <span class='op'>&lt;-</span>
+    <span class='va'>penguins</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>bill_length_mm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span><span class='op'>)</span>, bill_depth_mm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>bill_depth_mm</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>gf_label</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>,
+      data <span class='op'>=</span> <span class='va'>penguins_means</span>,
+      label <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>species</span>, size <span class='op'>=</span> <span class='fl'>2</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span>
+    <span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>`summarise()` ungrouping output (override with `.groups` argument)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_label).</span></div><div class='img'><img src='gf_text-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -482,7 +485,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

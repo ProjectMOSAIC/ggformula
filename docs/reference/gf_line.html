@@ -81,7 +81,7 @@ are connected in the order in which they appear in data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ are connected in the order in which they appear in data." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -139,7 +139,7 @@ are connected in the order in which they appear in data." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -166,62 +166,62 @@ are connected in the order in which they appear in data." />
 are connected in the order in which they appear in <code>data</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_line</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>lineend</span>,
-  <span class='no'>linejoin</span>,
-  <span class='no'>linemitre</span>,
-  <span class='no'>arrow</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"line"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_line</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>lineend</span>,
+  <span class='va'>linejoin</span>,
+  <span class='va'>linemitre</span>,
+  <span class='va'>arrow</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"line"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_path</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>lineend</span> <span class='kw'>=</span> <span class='st'>"butt"</span>,
-  <span class='kw'>linejoin</span> <span class='kw'>=</span> <span class='st'>"round"</span>,
-  <span class='kw'>linemitre</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>arrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"path"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_path</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  lineend <span class='op'>=</span> <span class='st'>"butt"</span>,
+  linejoin <span class='op'>=</span> <span class='st'>"round"</span>,
+  linemitre <span class='op'>=</span> <span class='fl'>1</span>,
+  arrow <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"path"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,7 +235,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>y ~ x</code>.
-Faceting can be achieved by including <code>|</code> in the formula.</p></td>
+Faceting can be achieved by including <code><a href='https://rdrr.io/r/base/Logic.html'>|</a></code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -291,26 +291,26 @@ for mapping linetype.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -361,8 +361,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -378,25 +378,31 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code>, <code><a href='gf_point.html'>gf_point()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gf_line</span>()</div><div class='output co'>#&gt; <span class='message'>gf_line() uses </span>
+    <pre class="examples"><div class='input'><span class='fu'>gf_line</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_line() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  line </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, fill, group, linetype, size, lineend,</span>
 #&gt; <span class='message'>                   linejoin, linemitre, arrow</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_line</span></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>age</span> ~ <span class='no'>sex</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>)</div><div class='img'><img src='gf_line-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>)</div><div class='img'><img src='gf_line-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># lines make the exceptions stand out more prominently</span>
-<span class='fu'>gf_line</span>(<span class='no'>births</span> ~ <span class='no'>date</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>wday</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span>)</div><div class='img'><img src='gf_line-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_path</span>()</div><div class='output co'>#&gt; <span class='message'>gf_path() uses </span>
+#&gt; <span class='message'>For more information, try ?gf_line</span></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>age</span> <span class='op'>~</span> <span class='va'>sex</span>, alpha <span class='op'>=</span> <span class='fl'>0.25</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span><span class='op'>)</span>
+</div><div class='img'><img src='gf_line-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span><span class='op'>)</span>
+</div><div class='img'><img src='gf_line-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># lines make the exceptions stand out more prominently</span>
+<span class='fu'>gf_line</span><span class='op'>(</span><span class='va'>births</span> <span class='op'>~</span> <span class='va'>date</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>wday</span>, data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/Births78.html'>Births78</a></span><span class='op'>)</span>
+</div><div class='img'><img src='gf_line-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_path</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_path() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  path </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, group, linetype, size, lineend = "butt",</span>
 #&gt; <span class='message'>                   linejoin = "round", linemitre = 1,</span>
 #&gt; <span class='message'>                   arrow = NULL</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>For more information, try ?gf_path</span></div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>dplyr</span>)) {
-  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>t</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span> * <span class='no'>pi</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>400</span>)) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>t</span> * <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='no'>t</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>t</span> * <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>(<span class='no'>t</span>)) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_path</span>(<span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~<span class='no'>t</span>)
-}</div><div class='img'><img src='gf_line-4.png' alt='' width='700' height='433' /></div></pre>
+#&gt; <span class='message'>For more information, try ?gf_path</span></div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>t <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>pi</span>, length.out <span class='op'>=</span> <span class='fl'>400</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>t</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>t</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>gf_path</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>, color <span class='op'>=</span> <span class='op'>~</span><span class='va'>t</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='img'><img src='gf_line-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -412,7 +418,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

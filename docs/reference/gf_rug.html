@@ -82,7 +82,7 @@ By default, these functions do not inherit from the formula in the original laye
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ By default, these functions do not inherit from the formula in the original laye
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@ By default, these functions do not inherit from the formula in the original laye
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -168,82 +168,82 @@ By default, these functions do not inherit from the formula in the original laye
 (because doing so would often result in rugs on both axes), so the formula is required.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_rug</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"bl"</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"rug"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_rug</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  sides <span class='op'>=</span> <span class='st'>"bl"</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"rug"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_rugx</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"rug"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_rugx</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  sides <span class='op'>=</span> <span class='st'>"b"</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  height <span class='op'>=</span> <span class='fl'>0</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"rug"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_rugy</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"l"</span>,
-  <span class='no'>alpha</span>,
-  <span class='no'>color</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"rug"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_rugy</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  sides <span class='op'>=</span> <span class='st'>"l"</span>,
+  <span class='va'>alpha</span>,
+  <span class='va'>color</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  width <span class='op'>=</span> <span class='fl'>0</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"rug"</span>,
+  stat <span class='op'>=</span> <span class='st'>"identity"</span>,
+  position <span class='op'>=</span> <span class='st'>"identity"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -309,26 +309,26 @@ for mapping linetype.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -390,8 +390,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -407,39 +407,49 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>ggplot2::geom_rug()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># There are several ways to control x- and y-rugs separately</span>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rugx</span>(~<span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rugy</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>.</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='no'>.</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>.</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='gf_point.html'>gf_point</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='no'>.</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>.</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"l"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rugx</span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rugy</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"green"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='va'>.</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, inherit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"green"</span>, inherit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='va'>.</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, sides <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"green"</span>, sides <span class='op'>=</span> <span class='st'>"l"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># jitter requires both an x and a y, but we can turn off one or the other with sides</span>
-<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>bill_length_mm</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"jitter"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span><span class='op'>(</span><span class='va'>bill_length_mm</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"green"</span>, sides <span class='op'>=</span> <span class='st'>"b"</span>, position <span class='op'>=</span> <span class='st'>"jitter"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='img'><img src='gf_rug-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># rugs work with some 1-varialbe plots as well.</span>
-<span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='img'><img src='gf_rug-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span>, color <span class='op'>=</span> <span class='st'>"navy"</span>, sides <span class='op'>=</span> <span class='st'>"t"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_rug-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we can take advantage of inheritance to shorten the code</span>
-<span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"navy"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='img'><img src='gf_rug-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_histogram.html'>gf_histogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"navy"</span>, sides <span class='op'>=</span> <span class='st'>"t"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_rug-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Need to turn off inheritance when using gf_dhistogram:</span>
-<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(~<span class='no'>eruptions</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='gf_rug-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='op'>~</span><span class='va'>eruptions</span>, data <span class='op'>=</span> <span class='va'>faithful</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, inherit <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_rug-8.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using jitter with gf_histogram() requires manually setting the y value.</span>
-<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span>(~<span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='fl'>0</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"jitter"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_rug-9.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='fl'>0</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"green"</span>, sides <span class='op'>=</span> <span class='st'>"b"</span>, position <span class='op'>=</span> <span class='st'>"jitter"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_rug-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># the choice of y value can affect how the plot looks.</span>
-<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span>(~<span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_rug</span>(<span class='fl'>0.5</span> ~ <span class='no'>bill_depth_mm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>sides</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"jitter"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_rug-10.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_rug</span><span class='op'>(</span><span class='fl'>0.5</span> <span class='op'>~</span> <span class='va'>bill_depth_mm</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, color <span class='op'>=</span> <span class='st'>"green"</span>, sides <span class='op'>=</span> <span class='st'>"b"</span>, position <span class='op'>=</span> <span class='st'>"jitter"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_rug-10.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -455,7 +465,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

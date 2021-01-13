@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -192,8 +192,8 @@ A (sometimes partial) list of available attributes can be obtained by executing
 plotting functions with no arguments.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
-This provides an alternative to <code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+This provides an alternative to <code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -206,7 +206,8 @@ the environment of the formula was used, but since some functions in
 the package do not require a formula, a separate argument is used now.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span>(<span class='st'>"gf_"</span>)</div><div class='output co'>#&gt;   [1] "gf_abline"                     "gf_area"                      
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span><span class='op'>(</span><span class='st'>"gf_"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1] "gf_abline"                     "gf_area"                      
 #&gt;   [3] "gf_ash"                        "gf_bar"                       
 #&gt;   [5] "gf_barh"                       "gf_bin2d"                     
 #&gt;   [7] "gf_blank"                      "gf_boxplot"                   
@@ -257,7 +258,8 @@ the package do not require a formula, a separate argument is used now.</p>
 #&gt;  [97] "gf_step"                       "gf_summary"                   
 #&gt;  [99] "gf_text"                       "gf_theme"                     
 #&gt; [101] "gf_tile"                       "gf_violin"                    
-#&gt; [103] "gf_violinh"                    "gf_vline"                     </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span>()</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
+#&gt; [103] "gf_violinh"                    "gf_vline"                     </div><div class='input'><span class='fu'><a href='gf_point.html'>gf_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>gf_point() uses </span>
 #&gt; <span class='message'>    * a formula with shape y ~ x. </span>
 #&gt; <span class='message'>    * geom:  point </span>
 #&gt; <span class='message'>    * key attributes:  alpha, color, size, shape, fill, group, stroke</span>
@@ -278,7 +280,7 @@ the package do not require a formula, a separate argument is used now.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><script src="ggformula-long_files/header-attrs-2.3/header-attrs.js"></script><script src="ggformula-long_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="ggformula-long_files/header-attrs-2.6/header-attrs.js"></script><script src="ggformula-long_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Formula Interface for ggplot2 (full version)</h1>
@@ -128,7 +128,7 @@
 <div id="formula-driven-graphics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#formula-driven-graphics" class="anchor"></a>Formula-driven graphics</h1>
-<p>There are several excellent graphics packages provided for R. The <code>ggformula</code> package currently builds on one of them, <code>ggplot2</code>, but provides a very different user interface for creating plots. The interface is based on formulas (much like the <code>lattice</code> interface) and the use of the chaining operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>) to build more complex graphics from simpler components.</p>
+<p>There are several excellent graphics packages provided for R. The <code>ggformula</code> package currently builds on one of them, <code>ggplot2</code>, but provides a very different user interface for creating plots. The interface is based on formulas (much like the <code>lattice</code> interface) and the use of the chaining operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>) to build more complex graphics from simpler components.</p>
 <p>The <code>ggformula</code> graphics were designed with several user groups in mind:</p>
 <ul>
 <li><p>beginners who want to get started quickly and may find the syntax of <code>ggplot2()</code> a bit offputting,</p></li>
@@ -139,9 +139,11 @@
 <h2 class="hasAnchor">
 <a href="#the-basic-formula-template" class="anchor"></a>The basic formula template</h2>
 <p>The basic template for creating a plot with <code>ggformula</code> is</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu">gf_plottype</span>(<span class="no">formula</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mydata</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="va">mydata</span><span class="op">)</span></code></pre></div>
 <p>or, equivalently,</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">mydata</span> <span class="kw">%&gt;%</span> <span class="fu">gf_plottype</span>(<span class="no">formula</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mydata</span> <span class="op">%&gt;%</span> <span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span><span class="op">)</span></code></pre></div>
 <p>where</p>
 <ul>
 <li><p><code>plottype</code> describes the type of plot (layer) desired (points, lines, a histogram, etc., etc.),</p></li>
@@ -151,10 +153,12 @@
 <p>For example, in a bivariate plot, <code>formula</code> will take the form <code>y ~ x</code>, where <code>y</code> is the name of a variable to be plotted on the y-axis and <code>x</code> is the name of a variable to be plotted on the x-axis. (It is also possible to use expressions that can be evaluated using variables in the data frame as well.)</p>
 <p>The first form of the tempate is useful for simple plots or for multi-layered plots where different layers use different data. The second form is useful for multi-layered plots or plots with many arguments.</p>
 <p>Here is a simple example:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggformula</span>)
-<span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/ggformula">ggformula</a></span><span class="op">)</span>
+<span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/simple-example-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">mtcars</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/simple-example-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="selecting-the-glyph-type" class="section level2">
@@ -208,19 +212,22 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 <li><p>We use <code>cyl</code> to determine the color and <code>carb</code> to determine the size of each dot. Color and size are <strong>mapped</strong> to <code>cyl</code> and <code>carb</code>. A legend is provided to show us how the mapping is being done. (Later, we can use scales to control precisely how the mapping is done – which colors and sizes are used to represent which values of <code>cyl</code> and <code>carb</code>.)</p></li>
 <li><p>We also <strong>set</strong> the transparency to 50%. The gives the same value of <code>alpha</code> to all glyphs in this layer.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">cyl</span>, <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.50</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">cyl</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.50</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/mapping-setting-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="on-the-fly-calculations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#on-the-fly-calculations" class="anchor"></a>On-the-fly calculations</h3>
-<p><code>ggformula</code> allows for on-the-fly calculations of attributes, although the default labeling of the plot is often better if we create a new variable in our data frame. In the examples below, since there are only three values for <code>carb</code>, it is easier to read the graph if we tell R to treat <code>cyl</code> as a categorical variable by converting to a factor (or to a string). Except for the labeling of the legend, these two plots are the same. In the second example, we see how the ggformula works well with data tranformations using <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>,  <span class="kw">color</span> <span class="kw">=</span> ~ <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">cyl</span>), <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.75</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)</pre></body></html></div>
+<p><code>ggformula</code> allows for on-the-fly calculations of attributes, although the default labeling of the plot is often better if we create a new variable in our data frame. In the examples below, since there are only three values for <code>carb</code>, it is easier to read the graph if we tell R to treat <code>cyl</code> as a categorical variable by converting to a factor (or to a string). Except for the labeling of the legend, these two plots are the same. In the second example, we see how the ggformula works well with data tranformations using <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/on-the-fly-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">mtcars</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cylinders</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">cyl</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">mpg</span> ~ <span class="no">hp</span>,  <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">cylinders</span>, <span class="kw">size</span> <span class="kw">=</span> ~ <span class="no">carb</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.75</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cylinders <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="va">cylinders</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/on-the-fly-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -228,25 +235,31 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 <h2 class="hasAnchor">
 <a href="#one-variable-plots" class="anchor"></a>“One-variable” plots</h2>
 <p>For some plots, we only have to specify the x-position because the y-position is calculated from the x-values. Histograms, densityplots, and frequency polygons are examples. To illustrate, we’ll use density plots, but the same ideas apply to <code><a href="../../reference/gf_histogram.html">gf_histogram()</a></code>, and <code>gf_freqpolygon()</code> as well. <em>Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.</em></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">penguins</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"palmerpenguins"</span>)
-<span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span>   
+<span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/penguins-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>,  <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>,  <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>,  fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>,  alpha <span class="op">=</span> <span class="fl">0.5</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/penguins-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable</span>
-<span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>,  <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable</span>
+<span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>,  alpha <span class="op">=</span> <span class="fl">0.7</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/penguins-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># gf_dens2() is like gf_dens() but is fillable</span>
-<span class="fu"><a href="../../reference/gf_density.html">gf_dens2</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">penguins</span>,
-          <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray50"</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># gf_dens2() is like gf_dens() but is fillable</span>
+<span class="fu"><a href="../../reference/gf_density.html">gf_dens2</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span>,
+          color <span class="op">=</span> <span class="st">"gray50"</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/penguins-4.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Several of the plotting functions include additional arguments that do not modify attributes of individual glyphs but control some other aspect of the plot. In this case, <code>adjust</code> can be used to increase or decrease the amount of smoothing.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># less smoothing</span>
-<span class="no">penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">adjust</span> <span class="kw">=</span> <span class="fl">0.25</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># less smoothing</span>
+<span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>  </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="ggformula-long_files/figure-html/dens-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># more smoothing</span>
-<span class="no">penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>, <span class="kw">adjust</span> <span class="kw">=</span> <span class="fl">4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># more smoothing</span>
+<span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>     </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="ggformula-long_files/figure-html/dens-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -254,61 +267,72 @@ We’ve told R to put <code>mpg</code> along the y-axis and <code>hp</code> alon
 <h2 class="hasAnchor">
 <a href="#position" class="anchor"></a>Position</h2>
 <p>When the <code>fill</code> or <code>color</code> or <code>group</code> aesthetics are mapped to a variable, the default behavior is to lay the group-wise densities on top of one another. Other behavior is also available by using the <code>position</code> argument. Using the value <code>"stack"</code> causes the densities to be laid one on top of another. This makes the overall height of the stack represent the density across all groups, but it can be difficult to discern the shape of the distribution for the individual groups. The value <code>"fill"</code> produces a conditional probability graphic.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">position</span> <span class="kw">=</span> <span class="st">"stack"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, color <span class="op">=</span> <span class="cn">NA</span>, position <span class="op">=</span> <span class="st">"stack"</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/position-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">position</span> <span class="kw">=</span> <span class="st">"fill"</span>,
-              <span class="kw">adjust</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density.html">gf_density</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, color <span class="op">=</span> <span class="cn">NA</span>, position <span class="op">=</span> <span class="st">"fill"</span>, 
+              adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/position-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Similar commands can be constructed with <code><a href="../../reference/gf_histogram.html">gf_histogram()</a></code> and <code><a href="../../reference/gf_freqpoly.html">gf_freqpoly()</a></code>, but note that <code>color</code>, not <code>fill</code>, is the active attribute for frequency polygons. It’s also rarely good to overlay histograms on top of one another – better to use a density plot or a frequency polygon for that application.</p>
 </div>
 <div id="faceting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#faceting" class="anchor"></a>Faceting</h2>
-<p>The <code>ggplot2</code> system allows you to make subplots — called “facets” — based on the values of one or two categorical variables. This is done by chaining with <code><a href="../../reference/gf_facet_grid.html">gf_facet_grid()</a></code> or <code><a href="../../reference/gf_facet_grid.html">gf_facet_wrap()</a></code>. These functions use formulas to specify which variable(s) are to be used for faceting.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>( ~ <span class="no">species</span>)</pre></body></html></div>
+<p>The <code>ggplot2</code> system allows you to make subplots — called “facets” — based on the values of one or two categorical variables. This is done by chaining with <code><a href="../../reference/gf_facet_wrap.html">gf_facet_grid()</a></code> or <code><a href="../../reference/gf_facet_wrap.html">gf_facet_wrap()</a></code>. These functions use formulas to specify which variable(s) are to be used for faceting.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># the dot here is a bit strange, but required to make a valid formula</span>
-<span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>( <span class="no">species</span> ~ <span class="no">.</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># the dot here is a bit strange, but required to make a valid formula</span>
+<span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span> <span class="va">species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>(<span class="no">island</span> ~ <span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span><span class="va">island</span> <span class="op">~</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d_filled</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>,
-                       <span class="kw">show.legend</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span>(<span class="no">island</span> ~ <span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d_filled</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, 
+                       show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_wrap</a></span><span class="op">(</span><span class="va">island</span> <span class="op">~</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets-4.png" width="60%" style="display: block; margin: auto;"></p>
 <p>An alternative syntax uses <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> to separate the faceting information from the main part of the formula.<br>
 Here is another example using our weather data. The redundant use of the <code>y</code> and <code>color</code> attributes for temperature makes it easier to compare across facets.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span>(<span class="no">low_temp</span> + <span class="no">high_temp</span> ~ <span class="no">date</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">year</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span><span class="op">(</span><span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">~</span> <span class="va">date</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">year</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets02-1.png" width="95%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_linerange</a></span>(<span class="no">low_temp</span> + <span class="no">high_temp</span> ~ <span class="no">date</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">year</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">avg_temp</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_colour_gradientn</span>(<span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">5</span>))))</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_linerange</a></span><span class="op">(</span><span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">~</span> <span class="va">date</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">year</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">avg_temp</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_colour_gradientn</span><span class="op">(</span>colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets02-2.png" width="95%" style="display: block; margin: auto;"></p>
-<p>In this case, we should either not facet by year, or allows the x-scale to be freely adjusted in each column so that we don’t have so much unnecessary white space. We can do the latter using the <code>scales</code> argument to <code><a href="../../reference/gf_facet_grid.html">gf_facet_grid()</a></code>.</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span>(<span class="no">low_temp</span> + <span class="no">high_temp</span> ~ <span class="no">date</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">.</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<p>In this case, we should either not facet by year, or allows the x-scale to be freely adjusted in each column so that we don’t have so much unnecessary white space. We can do the latter using the <code>scales</code> argument to <code><a href="../../reference/gf_facet_wrap.html">gf_facet_grid()</a></code>.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span><span class="op">(</span><span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">~</span> <span class="va">date</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">.</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets03-1.png" width="95%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_linerange</a></span>(<span class="no">low_temp</span> + <span class="no">high_temp</span> ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">avg_temp</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_colour_gradientn</span>(<span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">5</span>)))) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>(<span class="no">city</span> ~ <span class="no">year</span>, <span class="kw">scales</span> <span class="kw">=</span> <span class="st">"free_x"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_linerange</a></span><span class="op">(</span><span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">avg_temp</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_colour_gradientn</span><span class="op">(</span>colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span><span class="va">city</span> <span class="op">~</span> <span class="va">year</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/facets03-2.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="labels-in-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#labels-in-plots" class="anchor"></a>Labels in plots</h2>
 <p>Usually plot labels reflect the expression mapped to a given attribute. But in the previous example, our colorbar legend is labeled “avg temp (F)” even though the variable name is <code>avg_temp</code>. This is because the <code>Weather</code> data set is <em>labeled</em>.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../../reference/labels.html">get_variable_labels</a></span>(<span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/var_label.html">get_variable_labels</a></span><span class="op">(</span><span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <pre><code>## $city
 ## NULL
 ## 
@@ -383,81 +407,90 @@ Here is another example using our weather data. The redundant use of the <code>y
 ## 
 ## $events
 ## [1] "events"</code></pre>
-<p>ggformula will detect these labels and use them on our plots. We can use <code><a href="../../reference/labels.html">set_variable_labels()</a></code> to add custom labels to some or all of the variables in a data frame.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">KF</span> <span class="kw">&lt;-</span> <span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/labels.html">set_variable_labels</a></span>(
-    <span class="kw">length</span> <span class="kw">=</span> <span class="st">"length (cm)"</span>,
-    <span class="kw">width</span> <span class="kw">=</span> <span class="st">"width (cm)"</span>,
-    <span class="kw">domhand</span> <span class="kw">=</span> <span class="st">"dominant hand"</span>,
-    <span class="kw">biggerfoot</span> <span class="kw">=</span> <span class="st">"bigger foot"</span>
-  )
+<p>ggformula will detect these labels and use them on our plots. We can use <code><a href="../../reference/var_label.html">set_variable_labels()</a></code> to add custom labels to some or all of the variables in a data frame.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KF</span> <span class="op">&lt;-</span> <span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/var_label.html">set_variable_labels</a></span><span class="op">(</span>
+    length <span class="op">=</span> <span class="st">"length (cm)"</span>, 
+    width <span class="op">=</span> <span class="st">"width (cm)"</span>,
+    domhand <span class="op">=</span> <span class="st">"dominant hand"</span>,
+    biggerfoot <span class="op">=</span> <span class="st">"bigger foot"</span>
+  <span class="op">)</span>
 
-<span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">width</span> ~ <span class="no">length</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">domhand</span>)</pre></body></html></div>
+<span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">width</span> <span class="op">~</span> <span class="va">length</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">domhand</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">KF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">width</span> ~ <span class="no">length</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">domhand</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KF</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">width</span> <span class="op">~</span> <span class="va">length</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">domhand</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-3-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">&lt;-</span> <span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/labels.html">set_variable_labels</a></span>(
-    <span class="kw">species</span> <span class="kw">=</span> <span class="st">"Species"</span>,
-    <span class="kw">island</span> <span class="kw">=</span> <span class="st">"Island"</span>,
-    <span class="kw">bill_length_mm</span> <span class="kw">=</span> <span class="st">"Bill Length (mm)"</span>,
-    <span class="kw">bill_depth_mm</span> <span class="kw">=</span> <span class="st">"Bill Depth (mm)"</span>,
-    <span class="kw">flipper_length_mm</span> <span class="kw">=</span> <span class="st">"Flipper Length (mm)"</span>,
-    <span class="kw">body_mass_g</span> <span class="kw">=</span> <span class="st">"Body Mass (g)"</span>,
-    <span class="kw">sex</span> <span class="kw">=</span> <span class="st">"Sex"</span>
-  )
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/var_label.html">set_variable_labels</a></span><span class="op">(</span>
+    species <span class="op">=</span> <span class="st">"Species"</span>,
+    island <span class="op">=</span> <span class="st">"Island"</span>,
+    bill_length_mm <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,
+    bill_depth_mm <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span>,
+    flipper_length_mm <span class="op">=</span> <span class="st">"Flipper Length (mm)"</span>,
+    body_mass_g <span class="op">=</span> <span class="st">"Body Mass (g)"</span>,
+    sex <span class="op">=</span> <span class="st">"Sex"</span>
+  <span class="op">)</span>
 
-<span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>)</pre></body></html></div>
+<span class="va">Penguins</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span><span class="op">)</span> </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-3-3.png" width="60%" style="display: block; margin: auto;"></p>
 <p>By adding labels to the data, we can ensure consitent labeling across several plots. But it is also possible to modify labels just for one plot. This can be done in three ways:</p>
 <ul>
 <li>We can use arguments like <code>xlab</code>, <code>ylab</code>, and <code>title</code>;</li>
-<li>We can use the <code><a href="../../reference/gf_aux.html">gf_labs()</a></code> function (which has arguments like <code>x</code>, <code>y</code>, <code>title</code>, etc.);</li>
+<li>We can use the <code><a href="../../reference/gf_labs.html">gf_labs()</a></code> function (which has arguments like <code>x</code>, <code>y</code>, <code>title</code>, etc.);</li>
 <li>We can use the <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> function.</li>
 </ul>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">width</span> ~ <span class="no">length</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">domhand</span>, <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"length (cm)"</span>,
-           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Length and width of kids' feet"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">width</span> <span class="op">~</span> <span class="va">length</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">domhand</span>, xlab <span class="op">=</span> <span class="st">"length (cm)"</span>, 
+           title <span class="op">=</span> <span class="st">"Length and width of kids' feet"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">p</span> <span class="kw">&lt;-</span> <span class="no">KidsFeet</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">width</span> ~ <span class="no">length</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">domhand</span>)
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">KidsFeet</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">width</span> <span class="op">~</span> <span class="va">length</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">domhand</span><span class="op">)</span>
 
-<span class="no">p</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"length (cm)"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"dominant hand"</span>, <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Some kids' feet"</span>)</pre></body></html></div>
+<span class="va">p</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"length (cm)"</span>, color <span class="op">=</span> <span class="st">"dominant hand"</span>, title <span class="op">=</span> <span class="st">"Some kids' feet"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-4-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">p</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_relabel.html">gf_relabel</a></span>(<span class="kw">length</span> <span class="kw">=</span> <span class="st">"length (cm)"</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="st">"width (cm)"</span>, <span class="kw">domhand</span> <span class="kw">=</span> <span class="st">"dominant hand"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_relabel.html">gf_relabel</a></span><span class="op">(</span>length <span class="op">=</span> <span class="st">"length (cm)"</span>, width <span class="op">=</span> <span class="st">"width (cm)"</span>, domhand <span class="op">=</span> <span class="st">"dominant hand"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-4-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="co"># alternatively, we can use a list. </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># alternatively, we can use a list. </span>
 <span class="co"># this is handy if we have several data sets with the same variables.</span>
-<span class="no">KFlabels</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">length</span> <span class="kw">=</span> <span class="st">"length (cm)"</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="st">"width (cm)"</span>, <span class="kw">domhand</span> <span class="kw">=</span> <span class="st">"dominant hand"</span>)
-<span class="no">p</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_relabel.html">gf_relabel</a></span>(<span class="no">KFlabels</span>)</pre></body></html></div>
+<span class="va">KFlabels</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>length <span class="op">=</span> <span class="st">"length (cm)"</span>, width <span class="op">=</span> <span class="st">"width (cm)"</span>, domhand <span class="op">=</span> <span class="st">"dominant hand"</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_relabel.html">gf_relabel</a></span><span class="op">(</span><span class="va">KFlabels</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-4-4.png" width="60%" style="display: block; margin: auto;"></p>
-<p>Notice that <code><a href="../../reference/gf_aux.html">gf_labs()</a></code> and <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> take a different approaches to labeling. <code><a href="../../reference/gf_aux.html">gf_labs()</a></code> refers to labels by their <em>role in the plot</em> whereas <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> refers to variables in the data set and uses the new labels wherever the variable appears. Both are useful. <code><a href="../../reference/gf_aux.html">gf_labs()</a></code> provides access to additional labels (title, subtitle, caption, etc.), but it easier to mistakenly create a plot with a label that doesn’t match the true content of the plot. <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> only deals with labels associated with variables, but the label is guaranteed to match that variable no matter how the variable is used within the plot.</p>
+<p>Notice that <code><a href="../../reference/gf_labs.html">gf_labs()</a></code> and <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> take a different approaches to labeling. <code><a href="../../reference/gf_labs.html">gf_labs()</a></code> refers to labels by their <em>role in the plot</em> whereas <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> refers to variables in the data set and uses the new labels wherever the variable appears. Both are useful. <code><a href="../../reference/gf_labs.html">gf_labs()</a></code> provides access to additional labels (title, subtitle, caption, etc.), but it easier to mistakenly create a plot with a label that doesn’t match the true content of the plot. <code><a href="../../reference/gf_relabel.html">gf_relabel()</a></code> only deals with labels associated with variables, but the label is guaranteed to match that variable no matter how the variable is used within the plot.</p>
 </div>
 <div id="chaining-to-create-complex-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#chaining-to-create-complex-plots" class="anchor"></a>Chaining to create complex plots</h2>
-<p>Often it is useful to overlay multiple layers onto a single plot. This can be done by chaining them with <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, the “then” operator from <code>magrittr</code>. The <code>data</code> argument can be omitted if the new layers uses the same data as the first layer in the chain.</p>
+<p>Often it is useful to overlay multiple layers onto a single plot. This can be done by chaining them with <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>, the “then” operator from <code>magrittr</code>. The <code>data</code> argument can be omitted if the new layers uses the same data as the first layer in the chain.</p>
 <p>The following plot illustrates how histograms and frequency polygons are related.</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span>( ~ <span class="no">bill_length_mm</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"navy"</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span>( ~ <span class="no">bill_length_mm</span> , <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>(<span class="no">species</span> ~ <span class="no">.</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="st">"navy"</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span> , binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span><span class="va">species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_bin).
 
 ## Warning: Removed 2 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="ggformula-long_files/figure-html/layers-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>A 2-d density plot can be augmented with a scatterplot.</p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0.2</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span>(~<span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">species</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density2d).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/layers02-1.png" width="60%" style="display: block; margin: auto;"></p>
@@ -470,17 +503,20 @@ Here is another example using our weather data. The redundant use of the <code>y
 <a href="#using-jitter-and-transparency-to-handle-overlapping-cases" class="anchor"></a>Using jitter and transparency to handle overlapping cases</h3>
 <p>Sometimes you have so many points in a scatter plot that they obscure one another. The <code>ggplot2</code> system provides two easy ways to deal with this: translucency and jittering. Use <code>alpha</code> to make the points semi-translucent.</p>
 <p>Using <code><a href="../../reference/gf_jitter.html">gf_jitter()</a></code> in place of <code><a href="../../reference/gf_point.html">gf_point()</a></code> will move the plotted points to reduce overlap. Jitter and transparency can be used together as well.</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.15</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span>  </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/jitter-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.35</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.35</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/jitter-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="co"># width and heigh control the amount of horizontal and vertical jitter</span>
-<span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.35</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># width and heigh control the amount of horizontal and vertical jitter</span>
+<span class="va">Penguins</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.35</span>, width <span class="op">=</span> <span class="fl">0.2</span>, height <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/jitter-3.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -488,18 +524,22 @@ Here is another example using our weather data. The redundant use of the <code>y
 <h3 class="hasAnchor">
 <a href="#box-and-whisker-plots" class="anchor"></a>Box and Whisker plots</h3>
 <p>Box and whisker plots show the distribution of a quantitative variable as a function of a categorical variable. The formula used in <code><a href="../../reference/gf_boxplot.html">gf_boxplot()</a></code> should have the quantitative variable to the left of the tilde. (To make horizontal boxplots using <code>ggplot2</code> you have to make vertical boxplots and then flip the coordinates with <code>coord_flip()</code>.)</p>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">KF</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="st">"red"</span>, data <span class="op">=</span> <span class="va">KF</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/boxplot-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">biggerfoot</span> , <span class="kw">data</span> <span class="kw">=</span> <span class="no">KF</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">biggerfoot</span> , data <span class="op">=</span> <span class="va">KF</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/boxplot-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>This plot may surprise you.</p>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">high_temp</span> ~ <span class="no">month</span> <span class="kw">|</span> <span class="no">city</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">month</span> <span class="op">|</span> <span class="va">city</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
 <p><img src="ggformula-long_files/figure-html/boxplot02-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>A single plot is placed at the at the mean value of <code>month</code> (for each city). The warning message suggests that we need to tell R how to form the groups when using a quantitative variable for <code>x</code>. It suggests using the <code>group</code> aesthetic, and sometimes, this is just what we want.</p>
-<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">high_temp</span> ~ <span class="no">month</span> <span class="kw">|</span>  <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">month</span> <span class="op">|</span>  <span class="va">city</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">month</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/boxplot03-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Alternatively, we could create a new categorical variable that puts the quantitative values into one of a few different bins.</p>
 </div>
@@ -507,15 +547,18 @@ Here is another example using our weather data. The redundant use of the <code>y
 <h3 class="hasAnchor">
 <a href="#alternatives-to-box-and-whisker-plots-" class="anchor"></a>Alternatives to box and whisker plots.</h3>
 <p><code><a href="../../reference/gf_violin.html">gf_violin()</a></code> and <code><a href="../../reference/gf_sina.html">gf_sina()</a></code> provide two alternatives to box and whisker plots.</p>
-<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span>(<span class="no">bill_length_mm</span> ~  <span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span>  <span class="va">species</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="ggformula-long_files/figure-html/violin-sina-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span>(<span class="no">bill_length_mm</span> ~  <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span>  <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_sina).</code></pre>
 <p><img src="ggformula-long_files/figure-html/violin-sina-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span>(<span class="no">bill_length_mm</span> ~  <span class="no">species</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span>(<span class="no">bill_length_mm</span> ~  <span class="no">species</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">island</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span>  <span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span>  <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">island</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_ydensity).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_sina).</code></pre>
 <p><img src="ggformula-long_files/figure-html/violin-sina-3.png" width="60%" style="display: block; margin: auto;"></p>
@@ -524,18 +567,20 @@ Here is another example using our weather data. The redundant use of the <code>y
 <h3 class="hasAnchor">
 <a href="#ridge-plots" class="anchor"></a>Ridge plots</h3>
 <p>Ridge plots can be useful to displaying multiple density plots compactly.</p>
-<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/ggridges.html">gf_density_ridges</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~<span class="no">month</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_ridgeline.html">gf_density_ridges</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="va">city</span>, group <span class="op">=</span> <span class="op">~</span><span class="va">month</span><span class="op">)</span></code></pre></div>
 <pre><code>## Picking joint bandwidth of 1.09</code></pre>
 <pre><code>## Picking joint bandwidth of 2.45</code></pre>
 <pre><code>## Picking joint bandwidth of 3.79</code></pre>
 <pre><code>## Picking joint bandwidth of 1.16</code></pre>
 <pre><code>## Picking joint bandwidth of 1.7</code></pre>
 <p><img src="ggformula-long_files/figure-html/ridge-plots-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/ggridges.html">gf_density_ridges_gradient</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>,
-                             <span class="kw">show.legend</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_fill_viridis_c</span>(<span class="kw">option</span> <span class="kw">=</span> <span class="st">"B"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_ridgeline.html">gf_density_ridges_gradient</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="va">city</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">month</span>, 
+                             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_fill_viridis_c</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Picking joint bandwidth of 1.09</code></pre>
 <pre><code>## Picking joint bandwidth of 2.45</code></pre>
 <pre><code>## Picking joint bandwidth of 3.79</code></pre>
@@ -547,13 +592,16 @@ Here is another example using our weather data. The redundant use of the <code>y
 <h3 class="hasAnchor">
 <a href="#dimensional-density-plots" class="anchor"></a>2-dimensional density plots</h3>
 <p>Two-dimensional plots of density also have both a left and right component to the formula.</p>
-<div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span> <span class="kw">|</span> <span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span> <span class="op">|</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density2d).</code></pre>
 <p><img src="ggformula-long_files/figure-html/density2d-hex-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d_filled</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span> <span class="kw">|</span> <span class="no">species</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_density_2d.html">gf_density_2d_filled</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span> <span class="op">|</span> <span class="va">species</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_density2d_filled).</code></pre>
 <p><img src="ggformula-long_files/figure-html/density2d-hex-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_hex.html">gf_hex</a></span>(<span class="no">bill_length_mm</span> ~ <span class="no">bill_depth_mm</span> <span class="kw">|</span> <span class="no">species</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_hex.html">gf_hex</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span> <span class="op">|</span> <span class="va">species</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_binhex).</code></pre>
 <p><img src="ggformula-long_files/figure-html/density2d-hex-3.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -566,22 +614,26 @@ Here is another example using our weather data. The redundant use of the <code>y
 <!-- `gf_point()` here, but then you wouldn't see how `gf_line()` and `gf_path()` -->
 <!-- work! -->
 <p>Here’s an example where <code><a href="../../reference/gf_line.html">gf_line()</a></code> is useful. We begin with a scatter plot showing the number of live births in the US for each day of 1978.</p>
-<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="no">Births78</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">births</span> ~ <span class="no">date</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births78</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">births</span> <span class="op">~</span> <span class="va">date</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/births01-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Can this interesting pattern be explained by a weekday/weekend effect?<br>
 Converting to a line plot and coloring by day of week highlights the pattern and makes it easy to spot the unusual days.</p>
-<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="no">Births78</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span>(<span class="no">births</span> ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">wday</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births78</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span><span class="op">(</span><span class="va">births</span> <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">wday</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/births03-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>The example above would look the same if we used <code><a href="../../reference/gf_line.html">gf_path()</a></code> because the data set is already sorted by date. But in general, <code><a href="../../reference/gf_line.html">gf_path()</a></code> and <code><a href="../../reference/gf_line.html">gf_line()</a></code> produce different results. In the plots below, the first connects days chronologically (because the data are sorted by date) and the second in order of their low temperature.</p>
-<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">month</span> <span class="kw">==</span> <span class="fl">5</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2017</span>, <span class="no">city</span> <span class="kw">==</span> <span class="st">"Chicago"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_line.html">gf_path</a></span>(<span class="no">high_temp</span> ~ <span class="no">low_temp</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">year</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">day</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_color_viridis_c</span>(<span class="kw">option</span> <span class="kw">=</span> <span class="st">"C"</span>, <span class="kw">begin</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">end</span> <span class="kw">=</span> <span class="fl">0.8</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">5</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2017</span>, <span class="va">city</span> <span class="op">==</span> <span class="st">"Chicago"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_line.html">gf_path</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">low_temp</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">year</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_color_viridis_c</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"C"</span>, begin <span class="op">=</span> <span class="fl">0.2</span>, end <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/paths-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">month</span> <span class="kw">==</span> <span class="fl">5</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2017</span>, <span class="no">city</span> <span class="kw">==</span> <span class="st">"Chicago"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span>(<span class="no">high_temp</span> ~ <span class="no">low_temp</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">year</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">day</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_color_viridis_c</span>(<span class="kw">option</span> <span class="kw">=</span> <span class="st">"C"</span>, <span class="kw">begin</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">end</span> <span class="kw">=</span> <span class="fl">0.8</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">5</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2017</span>, <span class="va">city</span> <span class="op">==</span> <span class="st">"Chicago"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">low_temp</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">year</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_color_viridis_c</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"C"</span>, begin <span class="op">=</span> <span class="fl">0.2</span>, end <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/paths-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -603,16 +655,18 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <code><a href="../../reference/gf_ribbon.html">gf_ribbon()</a></code> – a band between a line above and line below.</li>
 </ul>
 <p>Often these are used to depict some sort of estimate of uncertainty in a measurement or a prediction, but they can be used to represent any data of the correct form. Here we will use <code><a href="../../reference/gf_linerange.html">gf_linerange()</a></code> and <code><a href="../../reference/gf_ribbon.html">gf_ribbon()</a></code> to indicate the high and low temperatures in New York for the first few months of 2013.</p>
-<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="no">Temps</span> <span class="kw">&lt;-</span>
-  <span class="no">Weather</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">month</span> <span class="kw">&lt;=</span> <span class="fl">4</span>, <span class="no">year</span> <span class="kw">&lt;=</span> <span class="fl">2016</span>, <span class="no">city</span> <span class="kw">==</span> <span class="st">"Chicago"</span>)
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Temps</span> <span class="op">&lt;-</span>
+  <span class="va">Weather</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">&lt;=</span> <span class="fl">4</span>, <span class="va">year</span> <span class="op">&lt;=</span> <span class="fl">2016</span>, <span class="va">city</span> <span class="op">==</span> <span class="st">"Chicago"</span><span class="op">)</span>
 
-<span class="no">Temps</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span>(<span class="no">avg_temp</span> + <span class="no">low_temp</span> + <span class="no">high_temp</span>  ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">avg_temp</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">scale_color_gradientn</span>(<span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>)))</pre></body></html></div>
+<span class="va">Temps</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span><span class="op">(</span><span class="va">avg_temp</span> <span class="op">+</span> <span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span>  <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">avg_temp</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">scale_color_gradientn</span><span class="op">(</span>colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/weather-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="no">Temps</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span>(<span class="no">low_temp</span> + <span class="no">high_temp</span>  ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"navy"</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Temps</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_ribbon.html">gf_ribbon</a></span><span class="op">(</span><span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span>  <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="st">"navy"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/weather-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="positions-and-stats" class="section level2">
@@ -622,9 +676,10 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <h3 class="hasAnchor">
 <a href="#positions" class="anchor"></a>Positions</h3>
 <p><code>position_dodge()</code>, <code>position_jitter()</code>, and <code>position_jitterdodge()</code> can be used to adjust the positions at which glyphs are placed. Jittering adds some random noise and can be useful when many observations have the same value. Dodging moves groups of glyphs a fixed difference to make it easier to distinguish the groups.</p>
-<div class="sourceCode" id="cb83"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>,
-           <span class="kw">position</span> <span class="kw">=</span> <span class="fu">position_jitterdodge</span>(<span class="kw">jitter.width</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">dodge.width</span> <span class="kw">=</span> <span class="fl">0.4</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, 
+           position <span class="op">=</span> <span class="fu">position_jitterdodge</span><span class="op">(</span>jitter.width <span class="op">=</span> <span class="fl">0.2</span>, dodge.width <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/KidsFeet-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="stats" class="section level3">
@@ -635,17 +690,20 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <li>
 <code><a href="../../reference/gf_histogram.html">gf_histogram()</a></code> uses <code>stat_bin()</code> to bin the data and count the number of observations in each bin. It is equivalent to</li>
 </ul>
-<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="no">HELPrct</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../../reference/gf_bar.html">gf_bar</a></span>( ~ <span class="no">age</span>, <span class="kw">stat</span> <span class="kw">=</span> <span class="st">"bin"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">HELPrct</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../../reference/gf_bar.html">gf_bar</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">age</span>, stat <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats-1.png" width="60%" style="display: block; margin: auto;"></p>
 <ul>
 <li><p><code><a href="../../reference/gf_boxplot.html">gf_boxplot()</a></code> uses <code>stat_boxplot()</code> to compute the five-number summary on which the boxplot is based.</p></li>
 <li><p><code><a href="../../reference/gf_violin.html">gf_violin()</a></code>, <code><a href="../../reference/gf_density.html">gf_density()</a></code>, and <code><a href="../../reference/gf_density_2d.html">gf_density2d()</a></code> use stats to compute a sequence of points along an estimated density. It is these points, and the not the raw data that are used to create the plot. <code><a href="../../reference/gf_sina.html">gf_sina()</a></code> uses the estimated density to jitter points.</p></li>
 </ul>
-<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">age</span> ~ <span class="no">substance</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">HELPrct</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">substance</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/boxplot-violin-sina-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span>(<span class="no">age</span> ~ <span class="no">substance</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">HELPrct</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">substance</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_sina.html">gf_sina</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/boxplot-violin-sina-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>There are also a number of stats that can be used to show a functional relationship between two variables.</p>
 <ul>
@@ -653,61 +711,70 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <li><p><code><a href="../../reference/gf_smooth.html">gf_lm()</a></code> is <code><a href="../../reference/gf_smooth.html">gf_smooth()</a></code> with the method set to <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> so it plots a least squares regression line.</p></li>
 <li><p><code><a href="../../reference/gf_spline.html">gf_spline()</a></code> plots a spline fit to the data.</p></li>
 </ul>
-<div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">length</span> ~ <span class="no">width</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">sex</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">width</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="kw pkg">mosaicData</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/mosaicData/man/Births.html">Births</a></span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">births</span> ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">wday</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.15</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_smooth.html">gf_smooth</a></span>(<span class="kw">method</span> <span class="kw">=</span> <span class="st">"loess"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Births.html">Births</a></span> <span class="op">%&gt;%</span>  
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">births</span> <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">wday</span>, alpha <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_smooth.html">gf_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-5-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb90"><html><body><pre class="r"><span class="kw pkg">mosaicData</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/mosaicData/man/Births.html">Births</a></span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">births</span> ~ <span class="no">date</span>, <span class="kw">color</span> <span class="kw">=</span> ~<span class="no">wday</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.15</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_spline.html">gf_spline</a></span>(<span class="kw">spar</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Births.html">Births</a></span> <span class="op">%&gt;%</span>  
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">births</span> <span class="op">~</span> <span class="va">date</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">wday</span>, alpha <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_spline.html">gf_spline</a></span><span class="op">(</span>spar <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-5-3.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Confidence or prediction bands can be added to these as well.</p>
-<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">length</span> ~ <span class="no">width</span> <span class="kw">|</span> <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">sex</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span>(<span class="kw">interval</span> <span class="kw">=</span> <span class="st">"prediction"</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"red"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span>(<span class="kw">interval</span> <span class="kw">=</span> <span class="st">"confidence"</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"navy"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">width</span> <span class="op">|</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>interval <span class="op">=</span> <span class="st">"prediction"</span>, fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>interval <span class="op">=</span> <span class="st">"confidence"</span>, fill <span class="op">=</span> <span class="st">"navy"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Mostly, the stats selected by default are just the ones you need. But sometimes it is useful to select a different stat. The <code>stat_summary()</code> and <code>stat_summary_bin()</code> stats are particularly useful in this respect. These stats use a function to aggregate over unique values of <code>x</code> or over bins of <code>x</code> values and save the user needing to do that data transformation manually.</p>
 <p>The default function applied in each group is <code>mean_se()</code>, which computes the mean (and the mean plus and minus one standard error) This makes it simple to create an “interaction plot”.</p>
-<div class="sourceCode" id="cb92"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, width <span class="op">=</span> <span class="fl">0.1</span>, height <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, stat <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span></code></pre></div>
 <pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats02-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb94"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">body_mass_g</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span>(<span class="no">body_mass_g</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, width <span class="op">=</span> <span class="fl">0.1</span>, height <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_line.html">gf_line</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, stat <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_summary).</code></pre>
 <pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats02-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>The other two values computed by <code>mean_se()</code> are available (starting with <code>ggplot2</code> version 2.3) as <code>stat(ymin)</code> and <code>stat(ymax)</code>.</p>
-<div class="sourceCode" id="cb98"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span>(<span class="no">length</span> + <span class="fu">stat</span>(<span class="no">ymin</span>) + <span class="fu">stat</span>(<span class="no">ymax</span>) ~ <span class="no">sex</span>,
-                <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">stat</span><span class="kw">=</span><span class="st">"summary"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, width <span class="op">=</span> <span class="fl">0.1</span>, height <span class="op">=</span> <span class="fl">0</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span><span class="op">(</span><span class="va">length</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymin</span><span class="op">)</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymax</span><span class="op">)</span> <span class="op">~</span> <span class="va">sex</span>, 
+                color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, stat<span class="op">=</span><span class="st">"summary"</span><span class="op">)</span></code></pre></div>
 <pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats03-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb100"><html><body><pre class="r"><span class="no">Penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span>(<span class="no">body_mass_g</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span>(<span class="no">body_mass_g</span> + <span class="fu">stat</span>(<span class="no">ymin</span>) + <span class="fu">stat</span>(<span class="no">ymax</span>) ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">species</span>,
-                <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">species</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">stat</span><span class="kw">=</span><span class="st">"summary"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, width <span class="op">=</span> <span class="fl">0.1</span>, height <span class="op">=</span> <span class="fl">0</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymin</span><span class="op">)</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymax</span><span class="op">)</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, 
+                group <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, size <span class="op">=</span> <span class="fl">1.5</span>, stat<span class="op">=</span><span class="st">"summary"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_summary).</code></pre>
 <pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats03-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Custom functions can be used by defining <code>fun.y</code>, <code>fun.ymin</code>, and <code>fun.ymax</code>, or a single function <code>fun.data</code> that returns a data frame with variables named <code>y</code>, <code>ymin</code>, and <code>ymax</code>.</p>
-<div class="sourceCode" id="cb104"><html><body><pre class="r"><span class="no">KidsFeet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">length</span> ~ <span class="no">sex</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-           <span class="kw">position</span> <span class="kw">=</span> <span class="fu">position_jitterdodge</span>(<span class="kw">jitter.width</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">dodge.width</span> <span class="kw">=</span> <span class="fl">0.3</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span>(<span class="no">length</span> + <span class="fu">stat</span>(<span class="no">ymin</span>) + <span class="fu">stat</span>(<span class="no">ymax</span>) ~ <span class="no">sex</span>,
-                <span class="kw">color</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">domhand</span>, <span class="kw">stat</span><span class="kw">=</span><span class="st">"summary"</span>,
-                <span class="kw">fun.y</span> <span class="kw">=</span> <span class="no">median</span>, <span class="kw">fun.ymin</span> <span class="kw">=</span> <span class="no">min</span>, <span class="kw">fun.ymax</span> <span class="kw">=</span> <span class="no">max</span>,
-                <span class="kw">position</span> <span class="kw">=</span> <span class="fu">position_dodge</span>(<span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.6</span>), <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1.2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">KidsFeet</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">length</span> <span class="op">~</span> <span class="va">sex</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, width <span class="op">=</span> <span class="fl">0.1</span>, height <span class="op">=</span> <span class="fl">0</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>,
+           position <span class="op">=</span> <span class="fu">position_jitterdodge</span><span class="op">(</span>jitter.width <span class="op">=</span> <span class="fl">0.2</span>, dodge.width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_linerange.html">gf_pointrange</a></span><span class="op">(</span><span class="va">length</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymin</span><span class="op">)</span> <span class="op">+</span> <span class="fu">stat</span><span class="op">(</span><span class="va">ymax</span><span class="op">)</span> <span class="op">~</span> <span class="va">sex</span>, 
+                color <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">domhand</span>, stat<span class="op">=</span><span class="st">"summary"</span>,
+                fun.y <span class="op">=</span> <span class="va">median</span>, fun.ymin <span class="op">=</span> <span class="va">min</span>, fun.ymax <span class="op">=</span> <span class="va">max</span>,
+                position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></code></pre></div>
 <pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="ggformula-long_files/figure-html/stats04-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -722,13 +789,15 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <code><a href="../../reference/gf_function.html">gf_fun()</a></code> requires a formula describing how the y-values are computed from the x-values.</li>
 </ul>
 <p>If these are used as a first layer, the limits for the x-axis must be specified.</p>
-<div class="sourceCode" id="cb106"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_function.html">gf_function</a></span>(<span class="kw">fun</span> <span class="kw">=</span> <span class="no">sqrt</span>, <span class="kw">xlim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">10</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_function.html">gf_fun</a></span>(<span class="fl">2</span> + <span class="fl">3</span> * <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span>(<span class="fl">10</span> * <span class="no">x</span>) ~ <span class="no">x</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">800</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_function.html">gf_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">sqrt</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_function.html">gf_fun</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">~</span> <span class="va">x</span>, color <span class="op">=</span> <span class="st">"red"</span>, n <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/functions-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb107"><html><body><pre class="r"><span class="no">f</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/makeFun.html">makeFun</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">totalbill</span> ~ <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span>(<span class="no">month</span>, <span class="fl">2</span>), <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">mosaicData</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/mosaicData/man/Utilities.html">Utilities</a></span>))
-<span class="kw pkg">mosaicData</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/mosaicData/man/Utilities.html">Utilities</a></span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span>(<span class="no">totalbill</span> ~ <span class="no">month</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.6</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_function.html">gf_fun</a></span>(<span class="fu">f</span>(<span class="no">m</span>) ~ <span class="no">m</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/makeFun.html">makeFun</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">totalbill</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">month</span>, <span class="fl">2</span><span class="op">)</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Utilities.html">Utilities</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Utilities.html">Utilities</a></span> <span class="op">%&gt;%</span>  
+  <span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">totalbill</span> <span class="op">~</span> <span class="va">month</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_function.html">gf_fun</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">~</span> <span class="va">m</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/functions-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -736,40 +805,42 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <h2 class="hasAnchor">
 <a href="#maps" class="anchor"></a>Maps</h2>
 <p>Prior to <code>ggplot2</code> version 2.3, basic maps could be created using <code><a href="../../reference/gf_polygon.html">gf_polygon()</a></code>.</p>
-<div class="sourceCode" id="cb108"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">maps</span>) <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>)) {
-  <span class="no">US</span> <span class="kw">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>) <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">name_length</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="no">region</span>))
-  <span class="no">States</span> <span class="kw">&lt;-</span> <span class="no">US</span> <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">region</span>) <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="kw">lat</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="no">lat</span>)), <span class="kw">long</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="no">long</span>))) <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/abbreviate.html">abbreviate</a></span>(<span class="no">region</span>, <span class="fl">3</span>))
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">US</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"state"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">States</span> <span class="op">&lt;-</span> <span class="va">US</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">lat</span><span class="op">)</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">long</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/abbreviate.html">abbreviate</a></span><span class="op">(</span><span class="va">region</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 
-  <span class="fu"><a href="../../reference/gf_polygon.html">gf_polygon</a></span>(<span class="no">lat</span> ~ <span class="no">long</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">US</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">group</span>,
-             <span class="kw">fill</span> <span class="kw">=</span> ~ <span class="no">name_length</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"white"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_text.html">gf_text</a></span>(<span class="no">lat</span> ~ <span class="no">long</span>, <span class="kw">label</span> <span class="kw">=</span> ~ <span class="no">name</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">States</span>,
-    <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray70"</span>, <span class="kw">inherit</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="kw pkg">mosaic</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/theme_map.html">theme_map</a></span>())
-}</pre></body></html></div>
+  <span class="fu"><a href="../../reference/gf_polygon.html">gf_polygon</a></span><span class="op">(</span><span class="va">lat</span> <span class="op">~</span> <span class="va">long</span>, data <span class="op">=</span> <span class="va">US</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">group</span>,
+             fill <span class="op">=</span> <span class="op">~</span> <span class="va">name_length</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_text.html">gf_text</a></span><span class="op">(</span><span class="va">lat</span> <span class="op">~</span> <span class="va">long</span>, label <span class="op">=</span> <span class="op">~</span> <span class="va">name</span>, data <span class="op">=</span> <span class="va">States</span>,
+    color <span class="op">=</span> <span class="st">"gray70"</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">mosaic</span><span class="fu">::</span><span class="fu"><a href="https://projectmosaic.github.io/mosaic/reference/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-7-1.png" width="75%" style="display: block; margin: auto;"></p>
 <p>Starting with <code>ggplot2</code> version 2.3, there is direct support for shape files. This allows each row of a data frame to contain all the geometry information for a region in a single column. There is also better support for overlaying information from multiple shape files.</p>
-<div class="sourceCode" id="cb110"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">maps</span>) <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>) <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">sf</span>) <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">purrr</span>)) {
-  <span class="no">USshape</span> <span class="kw">&lt;-</span>
-    <span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf</a></span>(<span class="kw pkg">maps</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html">map</a></span>(<span class="st">'state'</span>, <span class="kw">plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-      <span class="kw">name_length</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="no">ID</span>)),
-      <span class="kw">centroid</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="no">geom</span>, <span class="no">st_centroid</span>),
-      <span class="kw">coords_x</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(<span class="no">centroid</span>, <span class="fl">1</span>),
-      <span class="kw">coords_y</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(<span class="no">centroid</span>, <span class="fl">2</span>)
-    )
-
-  <span class="fu"><a href="../../reference/gf_sf.html">gf_sf</a></span>(<span class="kw">fill</span> <span class="kw">=</span> ~ <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">name_length</span>), <span class="kw">color</span> <span class="kw">=</span> <span class="st">"white"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">USshape</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../../reference/gf_sf.html">gf_sf</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/geos_unary.html">st_centroid</a></span>(<span class="no">USshape</span>), <span class="kw">color</span> <span class="kw">=</span> <span class="st">"white"</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../../reference/gf_text.html">gf_text</a></span>(<span class="no">coords_y</span> ~ <span class="no">coords_x</span>, <span class="kw">label</span> <span class="kw">=</span> ~ <span class="no">ID</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">""</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="st">""</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span>(<span class="fu">coord_sf</span>(), <span class="kw pkg">mosaic</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/theme_map.html">theme_map</a></span>()) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="st">"name length"</span>)
-}</pre></body></html></div>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">USshape</span> <span class="op">&lt;-</span> 
+    <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html">map</a></span><span class="op">(</span><span class="st">'state'</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+      name_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span><span class="op">)</span>,
+      centroid <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">geom</span>, <span class="va">st_centroid</span><span class="op">)</span>,
+      coords_x <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">centroid</span>, <span class="fl">1</span><span class="op">)</span>,
+      coords_y <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">centroid</span>, <span class="fl">2</span><span class="op">)</span>
+    <span class="op">)</span> 
+    
+  <span class="fu"><a href="../../reference/gf_sf.html">gf_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">name_length</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span>, data <span class="op">=</span> <span class="va">USshape</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="../../reference/gf_sf.html">gf_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">USshape</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="../../reference/gf_text.html">gf_text</a></span><span class="op">(</span><span class="va">coords_y</span> <span class="op">~</span> <span class="va">coords_x</span>, label <span class="op">=</span> <span class="op">~</span> <span class="va">ID</span>, color <span class="op">=</span> <span class="st">"gray20"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="../../reference/gf_labs.html">gf_refine</a></span><span class="op">(</span><span class="fu">coord_sf</span><span class="op">(</span><span class="op">)</span>, <span class="fu">mosaic</span><span class="fu">::</span><span class="fu"><a href="https://projectmosaic.github.io/mosaic/reference/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"name length"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## Warning in st_centroid.sf(USshape): st_centroid assumes attributes are constant
 ## over geometries of x</code></pre>
 <pre><code>## Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
@@ -785,42 +856,52 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <h3 class="hasAnchor">
 <a href="#ash-plots" class="anchor"></a>ASH plots</h3>
 <p>Average shifted histograms can be created with <code><a href="../../reference/gf_ash.html">gf_ash()</a></code>. These plots average the height over all histograms with the same bin width. ASH plots often work well with larger bin widths than you might use for an individual histogram.</p>
-<div class="sourceCode" id="cb113"><html><body><pre class="r"><span class="no">HELPrct</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_ash.html">gf_ash</a></span>( ~ <span class="no">age</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">HELPrct</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span>( ~ <span class="no">age</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">HELPrct</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_ash.html">gf_ash</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, binwidth <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">age</span>, binwidth <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb114"><html><body><pre class="r"><span class="no">HELPrct</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_ash.html">gf_ash</a></span>( ~ <span class="no">age</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">10</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span>( ~ <span class="no">age</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">HELPrct</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_ash.html">gf_ash</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">age</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">age</span>, binwidth <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> </code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-9-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="distribution-plots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#distribution-plots" class="anchor"></a>Distribution plots</h3>
 <p><code><a href="../../reference/gf_dist.html">gf_dist()</a></code> can be used to create plots of discrete and continuous distributions.</p>
-<div class="sourceCode" id="cb115"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"pois"</span>, <span class="kw">lambda</span> <span class="kw">=</span> <span class="fl">5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"pois"</span>, lambda <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb116"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"pois"</span>, <span class="kw">lambda</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">kind</span> <span class="kw">=</span> <span class="st">"cdf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"pois"</span>, lambda <span class="op">=</span> <span class="fl">5</span>, kind <span class="op">=</span> <span class="st">"cdf"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-10-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb117"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"gamma"</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">rate</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">geom</span> <span class="kw">=</span> <span class="st">"area"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"gamma"</span>, shape <span class="op">=</span> <span class="fl">3</span>, rate <span class="op">=</span> <span class="fl">4</span>, geom <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-10-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb118"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"gamma"</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">rate</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">geom</span> <span class="kw">=</span> <span class="st">"area"</span>, <span class="kw">fill</span> <span class="kw">=</span> ~ (<span class="no">x</span> <span class="kw">&lt;=</span> <span class="fl">1</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"gamma"</span>, shape <span class="op">=</span> <span class="fl">3</span>, rate <span class="op">=</span> <span class="fl">4</span>, geom <span class="op">=</span> <span class="st">"area"</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-10-4.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb119"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"gamma"</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">rate</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">kind</span> <span class="kw">=</span> <span class="st">"cdf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"gamma"</span>, shape <span class="op">=</span> <span class="fl">3</span>, rate <span class="op">=</span> <span class="fl">4</span>, kind <span class="op">=</span> <span class="st">"cdf"</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-10-5.png" width="60%" style="display: block; margin: auto;"></p>
 <p>When distribution parameters and plot attributes have the same name, there are two ways to avoid the name collision:</p>
-<div class="sourceCode" id="cb120"><html><body><pre class="r"><span class="co"># size is used by the binomial distribution functions and when plotting</span>
-<span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"binom"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">prob</span> <span class="kw">=</span> <span class="fl">0.25</span>, <span class="kw">plot_size</span> <span class="kw">=</span> <span class="fl">5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># size is used by the binomial distribution functions and when plotting</span>
+<span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"binom"</span>, size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">0.25</span>, plot_size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb121"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span>(<span class="st">"binom"</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">prob</span> <span class="kw">=</span> <span class="fl">0.25</span>), <span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_dist.html">gf_dist</a></span><span class="op">(</span><span class="st">"binom"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-11-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p><code>ggformula</code> also provides an interface to <code><a href="https://rdrr.io/pkg/MASS/man/fitdistr.html">MASS::fitdistr()</a></code> for fitting distributions to data and displaying the resulting pdf.</p>
-<div class="sourceCode" id="cb122"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span>(<span class="fl">1000</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">rate</span> <span class="kw">=</span> <span class="fl">5</span>)
-<span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span>( ~ <span class="no">x</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span>(<span class="kw">dist</span> <span class="kw">=</span> <span class="st">"dnorm"</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="st">"Normal"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span>(<span class="kw">dist</span> <span class="kw">=</span> <span class="st">"dgamma"</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="st">"Gamma"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span>(<span class="kw">dist</span> <span class="kw">=</span> <span class="st">"dweibull"</span>, <span class="kw">color</span> <span class="kw">=</span> ~ <span class="st">"Weibull"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">""</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span><span class="op">(</span><span class="fl">1000</span>, shape <span class="op">=</span> <span class="fl">2</span>, rate <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">x</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="st">"dnorm"</span>, color <span class="op">=</span> <span class="op">~</span> <span class="st">"Normal"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="st">"dgamma"</span>, color <span class="op">=</span> <span class="op">~</span> <span class="st">"Gamma"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_fitdistr.html">gf_fitdistr</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="st">"dweibull"</span>, color <span class="op">=</span> <span class="op">~</span> <span class="st">"Weibull"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
 
 ## Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
@@ -835,36 +916,39 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 <h2 class="hasAnchor">
 <a href="#global-plot-adjustments" class="anchor"></a>Global plot adjustments</h2>
 <p>There are a number of things we may want to do to the entire plot – adjusting labels, colors, fonts, etc. <code>ggformula</code> provides wrappers to the <code>ggplot2</code> functions for this so that the chaining syntax can be used.</p>
-<div class="sourceCode" id="cb124"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span>( ~ <span class="no">body_mass_g</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"navy"</span>,
-              <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray50"</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">200</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span>( ~ <span class="no">body_mass_g</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">200</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span>(<span class="no">species</span> ~ <span class="no">.</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"bill length (mm)"</span>, <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Palmer Penguins"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_lims</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2500</span>, <span class="fl">6500</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span>(<span class="kw">theme</span> <span class="kw">=</span> <span class="fu">theme_minimal</span>())</pre></body></html></div>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">body_mass_g</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, fill <span class="op">=</span> <span class="st">"navy"</span>,
+              color <span class="op">=</span> <span class="st">"gray50"</span>, binwidth <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">body_mass_g</span>, binwidth <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_facet_wrap.html">gf_facet_grid</a></span><span class="op">(</span><span class="va">species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"bill length (mm)"</span>, title <span class="op">=</span> <span class="st">"Palmer Penguins"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2500</span>, <span class="fl">6500</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_bin).
 
 ## Warning: Removed 2 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="ggformula-long_files/figure-html/themes-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb126"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span>( ~ <span class="no">body_mass_g</span> <span class="kw">|</span> <span class="no">species</span> ~ <span class="no">.</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"white"</span>,
-              <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">200</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"gray40"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span>( ~ <span class="no">body_mass_g</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"skyblue"</span>,
-               <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">200</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1.2</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.8</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"bill length (mm)"</span>, <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Palmer Penguins"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_aux.html">gf_lims</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2500</span>, <span class="fl">6500</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span>(<span class="kw">theme</span> <span class="kw">=</span> <span class="fu">theme_dark</span>())</pre></body></html></div>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_histogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">body_mass_g</span> <span class="op">|</span> <span class="va">species</span> <span class="op">~</span> <span class="va">.</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"white"</span>,
+              binwidth <span class="op">=</span> <span class="fl">200</span>, color <span class="op">=</span> <span class="st">"gray40"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_freqpoly.html">gf_freqpoly</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">body_mass_g</span>, color <span class="op">=</span> <span class="st">"skyblue"</span>, 
+               binwidth <span class="op">=</span> <span class="fl">200</span>, size <span class="op">=</span> <span class="fl">1.2</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"bill length (mm)"</span>, title <span class="op">=</span> <span class="st">"Palmer Penguins"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../../reference/gf_labs.html">gf_lims</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2500</span>, <span class="fl">6500</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu">theme_dark</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_bin).
 
 ## Warning: Removed 2 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="ggformula-long_files/figure-html/themes-2.png" width="60%" style="display: block; margin: auto;"></p>
 <p>For convenience, a few modifications can also be made directly in the original function call:</p>
-<div class="sourceCode" id="cb128"><html><body><pre class="r"><span class="no">penguins</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span>( ~ <span class="no">body_mass_g</span> <span class="kw">|</span> <span class="no">species</span> ~ <span class="no">.</span>,
-                <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"skyblue"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"navy"</span>, <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">200</span>,
-                <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"body mass (g)"</span>, <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Palmer Penguins"</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">penguins</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../../reference/gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">body_mass_g</span> <span class="op">|</span> <span class="va">species</span> <span class="op">~</span> <span class="va">.</span>, 
+                alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"skyblue"</span>, color <span class="op">=</span> <span class="st">"navy"</span>, binwidth <span class="op">=</span> <span class="fl">200</span>, 
+                xlab <span class="op">=</span> <span class="st">"body mass (g)"</span>, title <span class="op">=</span> <span class="st">"Palmer Penguins"</span>
+  <span class="op">)</span> </code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -880,26 +964,33 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 </li>
 </ul>
 <p>ggformula supports both of these methods.</p>
-<div class="sourceCode" id="cb130"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">high_temp</span> ~ <span class="no">city</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb131"><html><body><pre class="r"><span class="co"># auto-detected because city is discrete</span>
-<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">city</span> ~ <span class="no">high_temp</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># auto-detected because city is discrete</span>
+<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">city</span> <span class="op">~</span> <span class="va">high_temp</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-2.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb132"><html><body><pre class="r"><span class="co"># auto-detected based on groups</span>
-<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> ~ <span class="no">city</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># auto-detected based on groups</span>
+<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span> <span class="va">city</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">month</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-3.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb133"><html><body><pre class="r"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">high_temp</span> ~ <span class="no">month</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">.</span>, <span class="kw">group</span> <span class="kw">=</span> ~ <span class="no">month</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">high_temp</span> <span class="op">~</span> <span class="va">month</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">.</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">month</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-4.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb134"><html><body><pre class="r"><span class="co"># defaults to veritcal without groups</span>
-<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> ~ <span class="no">city</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># defaults to veritcal without groups</span>
+<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-5.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb136"><html><body><pre class="r"><span class="co"># explicit horizontal orientation</span>
-<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">.</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>, <span class="kw">orientation</span> <span class="kw">=</span> <span class="st">'y'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># explicit horizontal orientation</span>
+<span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">Weather</span>, orientation <span class="op">=</span> <span class="st">'y'</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Continuous y aesthetic -- did you forget aes(group=...)?</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-6.png" width="60%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb138"><html><body><pre class="r"><span class="co"># using ggstance; notice the "h" at the end of gf_boxploth()</span>
-<span class="fu"><a href="../../reference/gf_boxploth.html">gf_boxploth</a></span>(<span class="no">month</span> ~ <span class="no">high_temp</span> <span class="kw">|</span> <span class="no">city</span> ~ <span class="no">.</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">Weather</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># using ggstance; notice the "h" at the end of gf_boxploth()</span>
+<span class="fu"><a href="../../reference/gf_boxploth.html">gf_boxploth</a></span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">Weather</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Continuous y aesthetic -- did you forget aes(group=...)?</code></pre>
 <p><img src="ggformula-long_files/figure-html/unnamed-chunk-14-7.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -927,7 +1018,7 @@ Converting to a line plot and coloring by day of week highlights the pattern and
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

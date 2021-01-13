@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,15 +164,15 @@
     <p>Create a layer displaying a probability distribution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_dist</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='fu'>ggplot</span>(),
-  <span class='no'>dist</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>kind</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"density"</span>, <span class='st'>"cdf"</span>, <span class='st'>"qq"</span>, <span class='st'>"qqstep"</span>, <span class='st'>"histogram"</span>),
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5000L</span>,
-  <span class='kw'>params</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gf_dist</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>dist</span>,
+  <span class='va'>...</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  kind <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"density"</span>, <span class='st'>"cdf"</span>, <span class='st'>"qq"</span>, <span class='st'>"qqstep"</span>, <span class='st'>"histogram"</span><span class='op'>)</span>,
+  resolution <span class='op'>=</span> <span class='fl'>5000L</span>,
+  params <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -217,13 +217,21 @@ the plot.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span>(~ <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>), <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='img'><img src='gf_dist-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='gf_histogram.html'>gf_dhistogram</a></span><span class='op'>(</span><span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>, bins <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># shading tails -- but see pdist() for this</span>
-<span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ (<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;=</span> <span class='fl'>2</span>), <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"area"</span>)</div><div class='img'><img src='gf_dist-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>kind</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>)</div><div class='img'><img src='gf_dist-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>kind</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>)</div><div class='img'><img src='gf_dist-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>kind</span> <span class='kw'>=</span> <span class='st'>"qqstep"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>25</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>gf_dist</span>(<span class='st'>"norm"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>kind</span> <span class='kw'>=</span> <span class='st'>"qq"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='img'><img src='gf_dist-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># size is used as parameter for binomial distribution</span>
-<span class='fu'>gf_dist</span>(<span class='st'>"binom"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</div><div class='img'><img src='gf_dist-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># If we want to adjust size argument for plots, we have two choices:</span>
-<span class='fu'>gf_dist</span>(<span class='st'>"binom"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>plot_size</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='gf_dist-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span>(<span class='st'>"binom"</span>, <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.25</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='gf_dist-8.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;=</span> <span class='fl'>2</span><span class='op'>)</span>, geom <span class='op'>=</span> <span class='st'>"area"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, kind <span class='op'>=</span> <span class='st'>"cdf"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, fill <span class='op'>=</span> <span class='st'>"red"</span>, kind <span class='op'>=</span> <span class='st'>"histogram"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, kind <span class='op'>=</span> <span class='st'>"qqstep"</span>, resolution <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"norm"</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, kind <span class='op'>=</span> <span class='st'>"qq"</span>, resolution <span class='op'>=</span> <span class='fl'>25</span>, size <span class='op'>=</span> <span class='fl'>2</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># size is used as parameter for binomial distribution</span>
+<span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"binom"</span>, size <span class='op'>=</span> <span class='fl'>20</span>, prob <span class='op'>=</span> <span class='fl'>0.25</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># If we want to adjust size argument for plots, we have two choices:</span>
+<span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"binom"</span>, size <span class='op'>=</span> <span class='fl'>20</span>, prob <span class='op'>=</span> <span class='fl'>0.25</span>, plot_size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dist</span><span class='op'>(</span><span class='st'>"binom"</span>, params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>20</span>, prob <span class='op'>=</span> <span class='fl'>0.25</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_dist-8.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -239,7 +247,7 @@ the plot.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

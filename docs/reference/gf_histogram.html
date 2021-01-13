@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ProjectMOSAIC/ggformula/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,113 +164,113 @@
     <p>Count and density histograms in <code>ggformula</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gf_histogram</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='no'>binwidth</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"bar"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"bin"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stack"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+    <pre class="usage"><span class='fu'>gf_histogram</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  bins <span class='op'>=</span> <span class='fl'>25</span>,
+  <span class='va'>binwidth</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"bar"</span>,
+  stat <span class='op'>=</span> <span class='st'>"bin"</span>,
+  position <span class='op'>=</span> <span class='st'>"stack"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_dhistogram</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='no'>binwidth</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"bar"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"bin"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stack"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_dhistogram</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  bins <span class='op'>=</span> <span class='fl'>25</span>,
+  <span class='va'>binwidth</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"bar"</span>,
+  stat <span class='op'>=</span> <span class='st'>"bin"</span>,
+  position <span class='op'>=</span> <span class='st'>"stack"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_histogramh</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='no'>binwidth</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"barh"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"binh"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stackv"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>gf_histogramh</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  bins <span class='op'>=</span> <span class='fl'>25</span>,
+  <span class='va'>binwidth</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"barh"</span>,
+  stat <span class='op'>=</span> <span class='st'>"binh"</span>,
+  position <span class='op'>=</span> <span class='st'>"stackv"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>gf_dhistogramh</span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='no'>binwidth</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='no'>color</span>,
-  <span class='no'>fill</span>,
-  <span class='no'>group</span>,
-  <span class='no'>linetype</span>,
-  <span class='no'>size</span>,
-  <span class='no'>xlab</span>,
-  <span class='no'>ylab</span>,
-  <span class='no'>title</span>,
-  <span class='no'>subtitle</span>,
-  <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"barh"</span>,
-  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"binh"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"stackv"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)</pre>
+<span class='fu'>gf_dhistogramh</span><span class='op'>(</span>
+  object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gformula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  bins <span class='op'>=</span> <span class='fl'>25</span>,
+  <span class='va'>binwidth</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  <span class='va'>color</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>group</span>,
+  <span class='va'>linetype</span>,
+  <span class='va'>size</span>,
+  <span class='va'>xlab</span>,
+  <span class='va'>ylab</span>,
+  <span class='va'>title</span>,
+  <span class='va'>subtitle</span>,
+  <span class='va'>caption</span>,
+  geom <span class='op'>=</span> <span class='st'>"barh"</span>,
+  stat <span class='op'>=</span> <span class='st'>"binh"</span>,
+  position <span class='op'>=</span> <span class='st'>"stackv"</span>,
+  show.legend <span class='op'>=</span> <span class='cn'>NA</span>,
+  show.help <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inherit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  environment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -352,26 +352,26 @@ for mapping linetype.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for x-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+      <td><p>Label for y-axis. See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>Title, sub-title, and caption for the plot.
-See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
+See also <code><a href='gf_labs.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -434,8 +434,8 @@ mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
 <p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
 <code>facet_wrap()</code> or <code>facet_grid()</code>.
 This provides an alternative to
-<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
-<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+<code><a href='gf_facet_wrap.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_wrap.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -451,26 +451,44 @@ in another.</p>
     <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>ggplot2::geom_histogram()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1000</span>)
-<span class='fu'>gf_histogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>)</div><div class='img'><img src='gf_histogram-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>)</div><div class='img'><img src='gf_histogram-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='gf_fitdistr.html'>gf_fitdistr</a></span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>) <span class='co'># see help for gf_fitdistr() for more info.</span></div><div class='img'><img src='gf_histogram-5.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>gf_histogram</span>(~<span class='no'>x</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ (<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;=</span> <span class='fl'>2</span>), <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</div><div class='img'><img src='gf_histogram-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>penguins</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"palmerpenguins"</span>)
-<span class='fu'>gf_histogram</span>(~ <span class='no'>bill_length_mm</span> <span class='kw'>|</span> <span class='no'>species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>penguins</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_histogram-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span>(~<span class='no'>age</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>
-)</div><div class='img'><img src='gf_histogram-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># bins can be adjusted left/right using center or boundary</span>
-<span class='fu'>gf_histogram</span>(~<span class='no'>age</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>42.5</span>
-)</div><div class='img'><img src='gf_histogram-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span>(~<span class='no'>age</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>40</span>
-)</div><div class='img'><img src='gf_histogram-10.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span>(<span class='no'>age</span> ~ <span class='no'>.</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>mosaicData</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>boundary</span> <span class='kw'>=</span> <span class='fl'>40</span>
-)</div><div class='img'><img src='gf_histogram-11.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>gf_histogramh</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-12.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span>(<span class='no'>x</span> ~<span class='no'>.</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-13.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogramh</span>(<span class='no'>x</span> ~ <span class='no'>.</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-14.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogramh</span>(<span class='no'>x</span> ~ <span class='fu'>stat</span>(<span class='no'>density</span>), <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-15.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogramh</span>(~<span class='no'>x</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-16.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span>(<span class='no'>x</span> ~ <span class='no'>.</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-17.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogramh</span>(<span class='no'>x</span> ~ <span class='no'>.</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div><div class='img'><img src='gf_histogram-18.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span>
+<span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, binwidth <span class='op'>=</span> <span class='fl'>0.5</span>, center <span class='op'>=</span> <span class='fl'>0</span>, color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, binwidth <span class='op'>=</span> <span class='fl'>0.5</span>, boundary <span class='op'>=</span> <span class='fl'>0</span>, color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='gf_fitdistr.html'>gf_fitdistr</a></span><span class='op'>(</span>dist <span class='op'>=</span> <span class='st'>"dnorm"</span><span class='op'>)</span> <span class='co'># see help for gf_fitdistr() for more info.</span>
+</div><div class='img'><img src='gf_histogram-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, fill <span class='op'>=</span> <span class='op'>~</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;=</span> <span class='fl'>2</span><span class='op'>)</span>, boundary <span class='op'>=</span> <span class='fl'>2</span>, binwidth <span class='op'>=</span> <span class='fl'>0.25</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>penguins</span>, package <span class='op'>=</span> <span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span> <span class='va'>bill_length_mm</span> <span class='op'>|</span> <span class='va'>species</span>, data <span class='op'>=</span> <span class='va'>penguins</span>, binwidth <span class='op'>=</span> <span class='fl'>0.25</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gf_histogram-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>age</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>, binwidth <span class='op'>=</span> <span class='fl'>5</span>,
+  fill <span class='op'>=</span> <span class='st'>"skyblue"</span>, color <span class='op'>=</span> <span class='st'>"black"</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># bins can be adjusted left/right using center or boundary</span>
+<span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>age</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
+  binwidth <span class='op'>=</span> <span class='fl'>5</span>, fill <span class='op'>=</span> <span class='st'>"skyblue"</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, center <span class='op'>=</span> <span class='fl'>42.5</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span><span class='op'>(</span><span class='op'>~</span><span class='va'>age</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
+  binwidth <span class='op'>=</span> <span class='fl'>5</span>, fill <span class='op'>=</span> <span class='st'>"skyblue"</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, boundary <span class='op'>=</span> <span class='fl'>40</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-10.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span><span class='op'>(</span><span class='va'>age</span> <span class='op'>~</span> <span class='va'>.</span>,
+  data <span class='op'>=</span> <span class='fu'>mosaicData</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/mosaicData/man/HELPrct.html'>HELPrct</a></span>,
+  binwidth <span class='op'>=</span> <span class='fl'>5</span>, fill <span class='op'>=</span> <span class='st'>"skyblue"</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, boundary <span class='op'>=</span> <span class='fl'>40</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-11.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>gf_histogramh</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-12.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogram</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span><span class='va'>.</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-13.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogramh</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>.</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-14.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_histogramh</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='fu'>stat</span><span class='op'>(</span><span class='va'>density</span><span class='op'>)</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-15.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogramh</span><span class='op'>(</span><span class='op'>~</span><span class='va'>x</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-16.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogram</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>.</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-17.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_dhistogramh</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>.</span>, bins <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='img'><img src='gf_histogram-18.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -486,7 +504,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
