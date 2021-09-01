@@ -21,6 +21,8 @@ NA
 #'   describing what kind of plot to create.
 #' @param resolution An integer specifying the number of points to use for creating
 #'  the plot.
+#' @param eps a (small) numeric value. When other defaults are not available, the
+#'   distribution is processed from the `eps` to `1 - eps` quantiles.
 #' @param params a list of parameters for the distribution.
 #' @export
 #' @examples
@@ -45,7 +47,9 @@ gf_dist <-
     xlim = NULL,
     #  xmin = NULL, xmax = NULL,
     kind = c("density", "cdf", "qq", "qqstep", "histogram"),
-    resolution = 5000L, params = NULL)
+    resolution = 5000L,
+    eps = 1e-6,
+    params = NULL)
   {
     if (missing(dist)) {
        if (is.character(object)) {
@@ -120,25 +124,23 @@ gf_dist <-
     discrete <- length(unique_values) < 0.9 * length(sample_values)
 
     if (is.null(xlim)) {
-      xlim_opts <- do.call(qdist, c(list(p = c(0, 0.001, 0.999, 1)), qparams))
-      dxlim_opts <- diff(xlim_opts)
-      xlim <- xlim_opts[2:3]
-      if (dxlim_opts[1] < dxlim_opts[2]) {
-        xlim[1] <- xlim_opts[1]
-      }
-      if (dxlim_opts[3] < dxlim_opts[2]) {
-        xlim[2] <- xlim_opts[4]
-      }
-    }
-    plim <- do.call(pdist, c(list(q = xlim), pparams))
-    #  dpqrdist(dist, type = "p", q = xlim)
+      # most distributions can handle 0 and 1, but just in case...
 
-    if (!discrete) {
-      unif_values <- seq(
-        do.call(qdist, c(list(p = plim[1]), qparams)),
-        do.call(qdist, c(list(p = plim[2]), qparams)),
-        length.out = resolution
+      xlim_opts <-
+        tryCatch(
+          do.call(qdist, c(list(p = c(0, eps, 0.01, 0.99, 1 - eps, 1)), qparams)),
+        error = function(x) {
+          do.call(qdist, c(list(p = c(eps, 0.01, 0.99, 1 - eps)), qparams))
+        }
       )
+      xlim[1] <- min(xlim_opts[is.finite(xlim_opts)])
+      xlim[2] <- max(xlim_opts[is.finite(xlim_opts)])
+    }
+    if (!discrete) {
+      unif_values <- seq(xlim[1], xlim[2], length.out = resolution)
+        # do.call(qdist, c(list(p = plim[1]), qparams)),
+        # do.call(qdist, c(list(p = plim[2]), qparams)),
+        # length.out = resolution
       fewer_values <- unif_values
     } else {
       fewer_values <- unique_values
