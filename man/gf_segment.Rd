@@ -110,7 +110,7 @@ a gg object
 }
 \description{
 \code{geom_segment()} draws a straight line between points (x, y) and
-(xend, yend). \code{geom_curve} draws a curved line. See the underlying
+(xend, yend). \code{geom_curve()} draws a curved line. See the underlying
 drawing function \code{\link[grid:grid.curve]{grid::curveGrob()}} for the parameters that
 control the curve.
 }

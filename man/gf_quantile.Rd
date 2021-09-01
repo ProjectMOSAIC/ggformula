@@ -108,10 +108,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{Use to override the default connection between
-\code{geom_quantile} and \code{stat_quantile}.}
+\code{geom_quantile()} and \code{stat_quantile()}.}
 
 \item{stat}{Use to override the default connection between
-\code{geom_quantile} and \code{stat_quantile}.}
+\code{geom_quantile()} and \code{stat_quantile()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}

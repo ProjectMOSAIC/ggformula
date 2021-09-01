@@ -109,12 +109,16 @@ a gg object
 }
 \description{
 ggplot2 can not draw true 3D surfaces, but you can use \code{geom_contour()},
-\code{geom_contour_filled()}, and \code{\link[ggplot2:geom_tile]{geom_tile()}} to visualise 3D surfaces in 2D.
-To specify a valid surface, the data must contain \code{x}, \code{y}, and \code{z} coordinates,
-and each unique combination of \code{x} and \code{y} can appear exactly once. Contouring
-tends to work best when \code{x} and \code{y} form a (roughly) evenly
-spaced grid. If your data is not evenly spaced, you may want to interpolate
-to a grid before visualising, see \code{\link[ggplot2:geom_density_2d]{geom_density_2d()}}.
+\code{geom_contour_filled()}, and \code{\link[ggplot2:geom_tile]{geom_tile()}} to visualise 3D surfaces in 2D. To
+specify a valid surface, the data must contain \code{x}, \code{y}, and \code{z} coordinates,
+and each unique combination of \code{x} and \code{y} can appear at most once.
+Contouring requires that the points can be rearranged so that the \code{z} values
+form a matrix, with rows corresponding to unique \code{x} values, and columns
+corresponding to unique \code{y} values. Missing entries are allowed, but contouring
+will only be done on cells of the grid with all four \code{z} values present. If
+your data is irregular, you can interpolate to a grid before visualising
+using the \code{\link[interp:interp]{interp::interp()}} function from the \code{interp} package
+(or one of the interpolating functions from the \code{akima} package.)
 }
 \section{Specifying plot attributes}{
 

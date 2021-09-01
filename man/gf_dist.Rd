@@ -11,6 +11,7 @@ gf_dist(
   xlim = NULL,
   kind = c("density", "cdf", "qq", "qqstep", "histogram"),
   resolution = 5000L,
+  eps = 1e-06,
   params = NULL
 )
 }
@@ -34,6 +35,9 @@ describing what kind of plot to create.}
 
 \item{resolution}{An integer specifying the number of points to use for creating
 the plot.}
+
+\item{eps}{a (small) numeric value. When other defaults are not available, the
+distribution is processed from the \code{eps} to \code{1 - eps} quantiles.}
 
 \item{params}{a list of parameters for the distribution.}
 }

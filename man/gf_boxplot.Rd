@@ -181,10 +181,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{Use to override the default connection between
-\code{geom_boxplot} and \code{stat_boxplot}.}
+\code{geom_boxplot()} and \code{stat_boxplot()}.}
 
 \item{stat}{Use to override the default connection between
-\code{geom_boxplot} and \code{stat_boxplot}.}
+\code{geom_boxplot()} and \code{stat_boxplot()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}

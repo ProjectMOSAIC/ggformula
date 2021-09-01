@@ -87,11 +87,11 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{geom}{Override the default connection between \code{geom_hex} and
-\code{stat_binhex.}}
+\item{geom}{Override the default connection between \code{geom_hex()} and
+\code{stat_binhex()}.}
 
-\item{stat}{Override the default connection between \code{geom_hex} and
-\code{stat_binhex.}}
+\item{stat}{Override the default connection between \code{geom_hex()} and
+\code{stat_binhex()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
