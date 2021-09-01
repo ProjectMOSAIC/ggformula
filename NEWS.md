@@ -1,11 +1,15 @@
 # ggformula (development version)
 
 
+# ggformula 0.10.2
+
+* Added examples of `gf_lm()` with non-default models.
+
 # ggformula 0.10.0
 
-* add `gf_ridgeline()`, `gf_ridgeline_gradient()`, `gf_density_ridges()`, `gf_density_ridges_gradient()`.
+* Added `gf_ridgeline()`, `gf_ridgeline_gradient()`, `gf_density_ridges()`, `gf_density_ridges_gradient()`.
 * `gf_dens()` now uses `geom = "geom_density_line"`.  This allows setting fill.
-* plots now label variables with labels created in data using `labelled`, `expss` or `Hmisc` labeling functions
+* Plots now label variables with labels created in data using `labelled`, `expss` or `Hmisc` labeling functions
 * To reduce the size of the package, the main vignette has been shortened.  The full
 version is available at <https://projectmosaic.github.io/ggformula/>.
 * Two other vignettes have been moved to online only for the same reason.
