@@ -349,10 +349,11 @@ add_aes <- function(mapping, new, envir = parent.frame()) {
 # grab formuls from a stat or geom (or similar)
 
 grab_formals <- function(f, type = "stat") {
+  # wrapping with c() is per issue #150 due to change in "union() and friends"
   if (is.character(f) && !grepl(paste0("^", type), f)) {
-    return(formals(paste0(type, "_", f)))
+    return(c(formals(paste0(type, "_", f))))
   } else if (is.function(f)) {
-    return(formals(f))
+    return(c(formals(f)))
   } else {
     return(list())
   }
