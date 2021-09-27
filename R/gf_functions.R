@@ -377,9 +377,11 @@ gf_polygon <-
 #'    lot1 = c(118,58,42,35,27,25,21,19,18),
 #'    lot2 = c(69,35,26,21,18,16,13,12,12))
 #'   gf_point(lot1 ~ u, data = clotting) %>%
-#'     gf_smooth(formula = y ~ log(x), method = "glm", method.args = list(family = Gamma))
+#'     gf_smooth(formula = y ~ log(x), method = "glm",
+#'               method.args = list(family = Gamma))
 #'   gf_point(lot2 ~ u, data = clotting) %>%
-#'     gf_smooth(formula = y ~ log(x), color = "red", method = "glm", method.args = list(family = Gamma))
+#'     gf_smooth(formula = y ~ log(x), color = "red", method = "glm",
+#'               method.args = list(family = Gamma))
 #'
 
 # summary(glm(lot1 ~ log(u), data = clotting, family = Gamma))
