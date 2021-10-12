@@ -229,9 +229,9 @@ gf_dist <-
                ),
              histogram =
                do.call(
-                 gf_histogram,
+                 gf_dhistogram,
                  c(
-                   list(object, rlang::set_env(..density.. ~ x, parent.frame()),
+                   list(object, rlang::set_env( ~ x, parent.frame()),
                         data = data.frame(x = sample_values)
                    ),
                    dots
