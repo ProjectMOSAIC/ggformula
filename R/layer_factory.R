@@ -925,10 +925,10 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     ))
   }
   parts <- formula_slots(formula) %>%
-    rapply(deparse, how = "replace") %>%
+    rapply(as.name, how = "replace") %>%
     unlist()
   aes_names <- formula_slots(aes_form) %>%
-    rapply(deparse, how = "replace") %>%
+    rapply(as.name, how = "replace") %>%
     unlist()
 
   # trim leading/trailing blanks
