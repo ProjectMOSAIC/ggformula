@@ -924,11 +924,18 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
       map = logical(0)
     ))
   }
+  get_leaf <- function(x) {
+    return(x)
+    if (is.numeric(x)) { return(x) }
+    if (is.symbol(x)) { return(x) }
+    as.name(x)
+  }
+
   parts <- formula_slots(formula) %>%
-    rapply(as.name, how = "replace") %>%
+    rapply(get_leaf, how = "replace") %>%
     unlist()
   aes_names <- formula_slots(aes_form) %>%
-    rapply(as.name, how = "replace") %>%
+    rapply(get_leaf, how = "replace") %>%
     unlist()
 
   # trim leading/trailing blanks
