@@ -717,6 +717,11 @@ formula_split <- function(formula) {
 #    arg %in% names(call)
 #  }
 
+stringify <- function(x) {
+  # trim leading/trailing white space
+  # this also turns `some name` into "`some name`"
+  unlist(gsub("^\\s+|\\s+$", "", list(x)))
+}
 
 
 gf_ingredients <-
@@ -753,7 +758,7 @@ gf_ingredients <-
     # . is placeholder for "no aesthetic mapping", so remove the dots
     mapped_list[mapped_list == "."] <- NULL
     more_mapped_list <-
-      lapply(aesthetics, function(x) deparse(rlang::get_expr(x))) %>%
+      lapply(aesthetics, function(x) stringify(rlang::get_expr(x))) %>%
       stats::setNames(names(aesthetics))
     mapped_list <- modifyList(more_mapped_list, mapped_list)
 
@@ -925,10 +930,8 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     ))
   }
   get_leaf <- function(x) {
+    # if there are any special cases, add them here
     return(x)
-    if (is.numeric(x)) { return(x) }
-    if (is.symbol(x)) { return(x) }
-    as.name(x)
   }
 
   parts <- formula_slots(formula) %>%
@@ -938,7 +941,7 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     rapply(get_leaf, how = "replace") %>%
     unlist()
 
-  # trim leading/trailing blanks
+  # trim leading/trailing blanks and turn `some name` into "`some name`"
   parts <- gsub("^\\s+|\\s+$", "", parts)
 
   # split into pairs/nonpairs
