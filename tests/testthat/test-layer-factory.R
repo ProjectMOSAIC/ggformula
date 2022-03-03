@@ -12,6 +12,16 @@ penguins3 <-
   dplyr::rename(`bill length` = bill_length_mm, `bill depth` = bill_depth_mm,
                 `sex of penguin` = sex)
 
+TestData <- dplyr::bind_rows(
+  mosaic::do(20) * tibble(a = "A", b = "E", c = "X"),
+  mosaic::do(20) * tibble(a = "A", b = "E", c = "Z"),
+  mosaic::do(10) * tibble(a = "A", b = "F", c = "X"),
+  mosaic::do(10) * tibble(a = "A", b = "F", c = "Z"),
+  mosaic::do(5)  * tibble(a = "B", b = "E", c = "X"),
+  mosaic::do(10) * tibble(a = "B", b = "E", c = "Z"),
+  mosaic::do(15) * tibble(a = "B", b = "F", c = "X"),
+  mosaic::do(10) * tibble(a = "B", b = "F", c = "Z"),
+)
 
 test_that(
   "gf_abline()", {
@@ -973,3 +983,52 @@ test_that(
     )
   }
 )
+
+
+test_that(
+  "gf_props() and denom",
+  {
+    wrapped_expect_doppelganger(
+      "proportions within panel (dodge)",
+      TestData %>% gf_props( ~ a | b ~ c, position = "dodge",
+                      title = "proportions within panel")
+    )
+    wrapped_expect_doppelganger(
+      "proportions within fill (dodge)",
+      TestData %>% gf_props( ~ a | b ~ c, fill = ~ b, position = "dodge", denom = ~ fill,
+                title = "proportions within fill")
+    )
+    wrapped_expect_doppelganger(
+      "proportions within all (dodge)",
+      TestData %>% gf_props( ~ a | b, fill = ~ c, position = "dodge", denom = ~ 1,
+                      title = "proportions within all")
+
+    )
+    wrapped_expect_doppelganger(
+      "proportions within fill (facet grid)",
+      TestData %>% gf_props( ~ a | b ~ c, fill = ~ b, denom = ~ fill,
+                      title = "proportions within fill")
+
+    )
+    wrapped_expect_doppelganger(
+      "proportions within fill (facet grid and group)",
+      TestData %>% gf_props( ~ a | b ~ c, fill = ~ c, group = ~b, denom = ~ fill,
+                      title = "proportions within fill")
+    )
+    wrapped_expect_doppelganger(
+      "proportions within group (facet grid)",
+      TestData %>% gf_props( ~ a | b ~ c, fill = ~ c, group = ~b, denom = ~ group,
+                      title = "proportions in group (b = E or F)")
+    )
+  }
+)
+
+
+
+
+
+
+
+
+
+
