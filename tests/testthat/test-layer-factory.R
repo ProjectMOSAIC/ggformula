@@ -6,6 +6,12 @@ penguins2 <-
   palmerpenguins::penguins %>%
   dplyr::filter(!is.na(sex), !is.na(bill_depth_mm), !is.na(bill_length_mm))
 
+penguins3 <-
+  palmerpenguins::penguins %>%
+  dplyr::filter(!is.na(sex), !is.na(bill_depth_mm), !is.na(bill_length_mm)) %>%
+  dplyr::rename(`bill length` = bill_length_mm, `bill depth` = bill_depth_mm,
+                `sex of penguin` = sex)
+
 
 test_that(
   "gf_abline()", {
@@ -684,7 +690,7 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_dhistogramh2a",
-      gf_dhistogram(bill_length_mm ~ stat(ndensity), data = penguins2)
+      gf_dhistogramh(bill_length_mm ~ stat(ndensity), data = penguins2)
     )
   }
 )
@@ -939,3 +945,31 @@ test_that(
   }
 )
 
+
+test_that(
+  "non-syntactic names", {
+    wrapped_expect_doppelganger(
+      "gf_point() with facets",
+      gf_point(`bill length` ~ `bill depth` | `sex of penguin`, data = penguins3)
+    )
+    wrapped_expect_doppelganger(
+      "gf_histogram() with facets",
+      gf_histogram(~ `bill depth` | `sex of penguin` ~ ., data = penguins3)
+    )
+    wrapped_expect_doppelganger(
+      "gf_density() with fill",
+      gf_density( ~ `bill depth`, fill = ~ `sex of penguin`, data = penguins3)
+    )
+  }
+)
+
+test_that(
+  "ellipses", {
+    wrapped_expect_doppelganger(
+      "multiple ellipses of two different types",
+      gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) %>%
+        gf_ellipse(type = "norm", linetype = ~ "norm") %>%
+        gf_ellipse(type = "t",    linetype = ~ "t")
+    )
+  }
+)
