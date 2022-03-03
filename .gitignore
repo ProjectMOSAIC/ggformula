@@ -7,3 +7,5 @@ inst/doc
 rsconnect/
 ggformula.Rproj
 revdep
+_snaps
+Rbuildignore
