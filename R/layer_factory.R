@@ -717,13 +717,6 @@ formula_split <- function(formula) {
 #    arg %in% names(call)
 #  }
 
-stringify <- function(x) {
-  # trim leading/trailing white space
-  # this also turns `some name` into "`some name`"
-  unlist(gsub("^\\s+|\\s+$", "", list(x)))
-}
-
-
 gf_ingredients <-
   function(formula = NULL, data = NULL,
              extras = list(),
@@ -757,19 +750,15 @@ gf_ingredients <-
     names(mapped_list) <- aes_df[["role"]][aes_df$map]
     # . is placeholder for "no aesthetic mapping", so remove the dots
     mapped_list[mapped_list == "."] <- NULL
-    more_mapped_list <-
-      lapply(aesthetics, function(x) stringify(rlang::get_expr(x))) %>%
-      stats::setNames(names(aesthetics))
-    mapped_list <- modifyList(more_mapped_list, mapped_list)
+
+    mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
+    mapping <- aes_env(mapping, envir)
+    mapping <- remove_dot_from_mapping(mapping)
 
     set_list <- as.list(aes_df[["expr"]][!aes_df$map])
     names(set_list) <- aes_df[["role"]][!aes_df$map]
     set_list <- modifyList(extras, set_list)
 
-    mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
-    mapping <- aes_env(mapping, envir)
-
-    mapping <- remove_dot_from_mapping(mapping)
 
     res <-
       list(
