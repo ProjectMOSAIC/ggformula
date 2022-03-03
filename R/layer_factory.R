@@ -234,6 +234,12 @@ layer_factory <-
       # remove any duplicated arguments
       layer_args <- layer_args[unique(names(layer_args))]
 
+      # remove mapping and data if mapping is empty -- to avoid warnings from gf_abline() and friends
+      if (length(layer_args[['mapping']]) < 1) {
+        layer_args[['mapping']] <- NULL
+        layer_args[['data']] <- NULL
+      }
+
       new_layer <- do.call(layer_fun, layer_args, envir = environment)
 
       if (is.null(ingredients[["facet"]])) {
