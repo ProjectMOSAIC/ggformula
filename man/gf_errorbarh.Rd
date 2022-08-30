@@ -71,13 +71,7 @@ for mapping linetype.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
@@ -104,7 +98,7 @@ display.}
 a gg object
 }
 \description{
-A rotated version of \code{\link[ggplot2:geom_linerange]{geom_errorbar()}}.
+A rotated version of \code{\link[ggplot2:geom_errorbar]{geom_errorbar()}}.
 }
 \section{Specifying plot attributes}{
 

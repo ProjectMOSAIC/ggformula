@@ -82,11 +82,15 @@ for mapping linetype.}
 
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
-\item{outlier.color}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
-
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+\item{outlier.color, outlier.size, outlier.stroke, outlier.shape}{Default aesthetics for outliers.
+Set to NULL to inherit from the aesthetics used for the box.
+In the unlikely event you specify both US and UK spellings of colour,
+the US spelling will take precedence.
+Sometimes it can be useful to hide the outliers, for example when overlaying the
+raw data points on top of the boxplot. Hiding the outliers can be achieved by
+setting outlier.shape = NA. Importantly, this does not remove the outliers, it only
+hides them, so the range calculated for the y-axis will be the same with outliers shown
+and outliers hidden.}
 
 \item{outlier.fill}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
 aesthetics used for the box.
@@ -99,24 +103,6 @@ the raw data points on top of the boxplot. Hiding the outliers can be achieved
 by setting \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the y-axis will be the
 same with outliers shown and outliers hidden.}
-
-\item{outlier.shape}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
-
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
-
-\item{outlier.size}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
-
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
-
-\item{outlier.stroke}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
-
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
 
 \item{outlier.alpha}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
 aesthetics used for the box.
@@ -147,13 +133,7 @@ weighted, using the \code{weight} aesthetic).}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}

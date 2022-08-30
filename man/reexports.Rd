@@ -17,7 +17,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggforce}{\code{\link[ggforce:ggforce-extensions]{StatSina}}, \code{\link[ggforce]{geom_sina}}, \code{\link[ggforce:geom_sina]{stat_sina}}}
+  \item{ggforce}{\code{\link[ggforce]{geom_sina}}, \code{\link[ggforce:geom_sina]{stat_sina}}, \code{\link[ggforce:ggforce-extensions]{StatSina}}}
 
   \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}}
 

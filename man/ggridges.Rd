@@ -227,19 +227,10 @@ for mapping linetype.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{geom}{Use to override the default connection between
-\code{geom_density()} and \code{stat_density()}.}
-
-\item{stat}{Use to override the default connection between
+\item{geom, stat}{Use to override the default connection between
 \code{geom_density()} and \code{stat_density()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of

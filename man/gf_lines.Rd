@@ -100,14 +100,6 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
-\item{slope}{Parameters that control the
-position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden.}
-
-\item{intercept}{Parameters that control the
-position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden.}
-
 \item{color}{A color or a formula used for mapping color.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
@@ -121,13 +113,7 @@ for mapping linetype.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
@@ -142,11 +128,7 @@ display.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
-\item{yintercept}{Parameters that control the
-position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden.}
-
-\item{xintercept}{Parameters that control the
+\item{xintercept, yintercept, slope, intercept}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
 \code{show.legend} are overridden.}
 

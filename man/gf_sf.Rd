@@ -66,13 +66,7 @@ inherited.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{stat}{A character string naming the stat used to make the layer.}

@@ -8,7 +8,8 @@ layer_factory(
   geom = "point",
   position = "identity",
   stat = "identity",
-  pre = { },
+  pre = {
+ },
   aes_form = y ~ x,
   extras = alist(),
   note = NULL,

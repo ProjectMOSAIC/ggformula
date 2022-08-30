@@ -240,7 +240,7 @@ penguins %>% gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust =
 ## Learning more
 
 To learn more about `ggformula`, see the longer version of this vignette available
-at <https://projectmosaic.github.io/ggformula/>.  That version include sections on
+at <https://www.mosaic-web.org/ggformula/>. That version include sections on
 
 * Adjusting position (stack, dodge, etc.)
 * Faceting (coordinated subplots)

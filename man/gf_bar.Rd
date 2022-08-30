@@ -268,19 +268,10 @@ for mapping linetype.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{geom}{Override the default connection between \code{geom_bar()} and
-\code{stat_count()}.}
-
-\item{stat}{Override the default connection between \code{geom_bar()} and
+\item{geom, stat}{Override the default connection between \code{geom_bar()} and
 \code{stat_count()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of

@@ -59,11 +59,7 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{hjust}{horizontal and vertical justification of the grob.  Each
-justification value should be a number between 0 and 1.  Defaults to 0.5
-for both, centering each pixel over its data location.}
-
-\item{vjust}{horizontal and vertical justification of the grob.  Each
+\item{hjust, vjust}{horizontal and vertical justification of the grob.  Each
 justification value should be a number between 0 and 1.  Defaults to 0.5
 for both, centering each pixel over its data location.}
 
@@ -74,13 +70,7 @@ for both, centering each pixel over its data location.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
+\item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
