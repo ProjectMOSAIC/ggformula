@@ -3,7 +3,11 @@
 
 # ggformula 0.10.2
 
+* Added improvements to `gf_hline()`, etc. responding to changes in {ggplot2}.  See #128.
+* Added support for nonsyntactic names in formulas.  Among other things, this allows for
+  using backticks around such names.  See #152 and #153
 * Added examples of `gf_lm()` with non-default models.
+
 
 # ggformula 0.10.0
 
@@ -11,7 +15,7 @@
 * `gf_dens()` now uses `geom = "geom_density_line"`.  This allows setting fill.
 * Plots now label variables with labels created in data using `labelled`, `expss` or `Hmisc` labeling functions
 * To reduce the size of the package, the main vignette has been shortened.  The full
-version is available at <https://projectmosaic.github.io/ggformula/>.
+version is available at <https://www.mosaic-web.org/ggformula/>.
 * Two other vignettes have been moved to online only for the same reason.
 
 # ggformula 0.9.4
@@ -48,7 +52,7 @@ This release includes a few minor improvements, including
 # ggformula 0.9.0
 
  * `ggformula` now requires `ggplot2 (>= 3.0.0)`.  This should take care of issues in 0.8.0 when `ggplot2` was upgraded *after* upgrading `ggformula`.
- * `pkgdown` website created at https://projectmosaic.github.io/ggformula/
+ * `pkgdown` website created at https://www.mosaic-web.org/ggformula/
  * Several horizontal versions of geom and stats are implemented using `ggstance`.
  * `vdiffr` is used for testing plot output
  

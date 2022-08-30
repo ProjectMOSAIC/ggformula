@@ -72,5 +72,4 @@ penguins %>%
 
 ### More Information
 
-Find out more about `ggformula` at
-[projectmosiac.github.io/ggformula](https://projectmosaic.github.io/ggformula).
+Find out more about `ggformula` at <https://www.mosaic-web.org/ggformula/>.
