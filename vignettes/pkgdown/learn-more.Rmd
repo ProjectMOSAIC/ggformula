@@ -27,10 +27,10 @@ The `mosaic` package includes a number of vignettes. These are available
 
  * from within R 
  * from <https://cran.r-project.org/package=mosaic>
- * from <https://projectmosaic.github.io/mosaic/>
+ * from <http://www.mosaic-web.org/mosaic/>
  
 One of these is a 
-[side-by-side comparison of lattice and ggfromula](https://projectmosaic.github.io/mosaic/articles/ggformula-lattice.html)
+[side-by-side comparison of lattice and ggfromula](http://www.mosaic-web.org/mosaic/articles/ggformula-lattice.html)
 
 
 ## Textbook-Related Resources

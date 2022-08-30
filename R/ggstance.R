@@ -144,6 +144,17 @@ gf_percentsh <-
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #'
+#' @param outlier.color,outlier.size,outlier.stroke,outlier.shape
+#' 	 Default aesthetics for outliers.
+#' 	 Set to NULL to inherit from the aesthetics used for the box.
+#' 	 In the unlikely event you specify both US and UK spellings of colour,
+#' 	 the US spelling will take precedence.
+#'   Sometimes it can be useful to hide the outliers, for example when overlaying the
+#'   raw data points on top of the boxplot. Hiding the outliers can be achieved by
+#'   setting outlier.shape = NA. Importantly, this does not remove the outliers, it only
+#'   hides them, so the range calculated for the y-axis will be the same with outliers shown
+#'   and outliers hidden.
+#'
 #' @seealso [ggstance::geom_boxploth()][ggplot2::geom_boxplot()], [fivenum()], [df_stats()]
 #' @importFrom ggstance geom_boxploth stat_boxploth position_dodgev
 #' @export
