@@ -4,7 +4,7 @@ author: "Randall Pruim"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Another Option for Teaching Graphics}
+  %\VignetteIndexEntry{ggformula: Another Option for Teaching Graphics in R to Beginners}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
