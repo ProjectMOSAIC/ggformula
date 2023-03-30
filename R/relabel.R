@@ -1,4 +1,3 @@
-
 #' Set and extract labels from a labeled object
 #'
 #' Some packages like expss provide mechanisms for providing longer labels to R objects.
@@ -6,11 +5,11 @@
 #' long or awkward variable names.  This is an experimental feature and currently only supports
 #' expss or any other system that stores a label in the `label` attribute of a vector.
 #'
-#' @rdname labels
-#' @inherit labelled::var_label
-#' @importFrom labelled set_variable_labels var_label var_label<-
-#' @note These functions are imported from the `{labelled}` package.
+#' `get_variable_labels()` is a synonym of [labelled::var_label()].
 #'
+#' @rdname labels
+#' @param ... passed to [labelled::var_label()]
+#' @seealso [labelled::var_label()], [labelled::set_variable_labels()]
 #' @export
 #' @examples
 #' KF <-
@@ -26,27 +25,8 @@
 #' KF %>%
 #'   gf_point(length ~ width, color = ~ domhand)
 #' get_variable_labels(KF)
-
-var_label <- labelled::var_label
-
-#' @rdname labels
-#' @export
-
-`var_label<-`  <- labelled::`var_label<-`
-
-#' @rdname labels
-#' @export
-
-get_variable_labels <- labelled::var_label
-
-#' @rdname labels
-#' @export
-
-var_label <- labelled::var_label
-
-#' @rdname labels
-#' @export
-set_variable_labels <- labelled::set_variable_labels
+get_variable_labels <- function(...)
+  labelled::var_label(...)
 
 #' Modify plot labeling
 #'
@@ -100,10 +80,7 @@ gf_relabel <- function(plot, labels = get_variable_labels(plot$data), ...) {
 #' @rdname gf_relabel
 #' @param x A ggplot.
 #' @export
-
 print.gf_ggplot <- function(x, labels = get_variable_labels(x$data), ...) {
   x <- gf_relabel(x, labels)
   NextMethod()
 }
-
-#
