@@ -10,6 +10,9 @@
 \alias{stat_sina}
 \alias{StatSina}
 \alias{geom_sina}
+\alias{var_label}
+\alias{var_label<-}
+\alias{set_variable_labels}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -18,6 +21,8 @@ below to see their documentation.
 
 \describe{
   \item{ggforce}{\code{\link[ggforce]{geom_sina}}, \code{\link[ggforce:geom_sina]{stat_sina}}, \code{\link[ggforce:ggforce-extensions]{StatSina}}}
+
+  \item{labelled}{\code{\link[labelled:var_label]{set_variable_labels}}, \code{\link[labelled]{var_label}}, \code{\link[labelled:var_label]{var_label<-}}}
 
   \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}}
 

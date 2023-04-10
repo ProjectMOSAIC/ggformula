@@ -25,3 +25,16 @@ ggforce::StatSina
 #' @importFrom ggforce geom_sina
 #' @export
 ggforce::geom_sina
+
+
+#' @importFrom labelled var_label
+#' @export
+labelled::var_label
+
+#' @importFrom labelled var_label<-
+#' @export
+labelled::`var_label<-`
+
+#' @importFrom labelled set_variable_labels
+#' @export
+labelled::set_variable_labels
