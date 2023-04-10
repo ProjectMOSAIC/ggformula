@@ -19,7 +19,7 @@
 #' @rdname gf_aux
 #' @export
 #' @examples
-#' gf_dens(~cesd, color = ~substance, size = 1.5, data = mosaicData::HELPrct) %>%
+#' gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) %>%
 #'   gf_labs(
 #'     title = "Center for Epidemiologic Studies Depression measure",
 #'     subtitle = "(at baseline)",

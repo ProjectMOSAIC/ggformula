@@ -183,6 +183,7 @@ gf_jitter <-
 #' @inherit gf_point
 #' @param linetype A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 #'   for mapping linetype.
+#' @param linewidth A numerical line width or a formula used for mapping linewidth.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
@@ -199,7 +200,8 @@ gf_line <-
   layer_factory(
     geom = "line",
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size = ,
+      alpha = , color = , fill = , group = , linetype = , linewidth =,
+      size = ,  # remove eventually?
       lineend = , linejoin = , linemitre = , arrow =
       )
   )
@@ -218,7 +220,9 @@ gf_path <-
   layer_factory(
     geom = "path",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL
     )
   )
@@ -305,7 +309,9 @@ gf_ellipse <-
 gf_polygon <-
   layer_factory(
     geom = "polygon",
-    extras = alist(alpha = , color = , size = , shape = , fill = , group = , stroke = )
+    extras = alist(alpha = , color = , linewidth =,
+                   size = , # remove eventually?
+                   shape = , fill = , group = , stroke = )
   )
 
 
@@ -431,7 +437,9 @@ gf_spline <-
     geom = "line",
     stat = "spline",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       weight = , df = , spar = , tol =
       )
   )
@@ -464,7 +472,9 @@ gf_raster <-
     geom = "raster",
     aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size = ,
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       hjust = 0.5, vjust = 0.5, interpolate = FALSE
     )
   )
@@ -491,7 +501,9 @@ gf_quantile <-
     geom = "quantile",
     stat = "quantile",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = , weight = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       lineend = "butt", linejoin = "round", linemitre = 1, quantiles = ,
       formula = , method = , method.args =
       )
@@ -521,7 +533,9 @@ gf_density_2d <-
     geom = "density_2d",
     stat = "density_2d",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL, lineend = "butt", linejoin = "round",
       linemitre = 1
     )
@@ -541,7 +555,9 @@ gf_density_2d_filled <-
     geom = "density_2d_filled",
     stat = "density_2d_filled",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL, lineend = "butt", linejoin = "round",
       linemitre = 1
     )
@@ -561,7 +577,9 @@ gf_density2d <-
     geom = "density2d",
     stat = "density2d",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL,
       lineend = "butt", linejoin = "round",
       linemitre = 1
@@ -582,7 +600,9 @@ gf_density2d_filled <-
     geom = "density2d_filled",
     stat = "density_2d_filled",
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL,
       lineend = "butt", linejoin = "round",
       linemitre = 1
@@ -607,7 +627,9 @@ gf_hex <-
   layer_factory(
     geom = "hex",
     stat = "binhex",
-    extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = , size = )
+    extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = ,
+                   linetype = , linewidth = ,
+                   size = ) # remove eventually?
   )
 
 #' Formula interface to geom_boxplot()
@@ -667,7 +689,9 @@ gf_boxplot <-
     stat = "boxplot",
     position = "dodge",
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size = , # shape = ,
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       coef = ,
       outlier.color = NULL, outlier.fill = NULL,
       outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5,
@@ -793,7 +817,10 @@ gf_label <-
 gf_area <-
   layer_factory(
     geom = "area",
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    extras = alist(
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = ) # remove eventually?
   )
 
 #' Formula interface to geom_violin()
@@ -821,8 +848,10 @@ gf_violin <-
     stat = "ydensity",
     position = "dodge",
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = ,
-      size = , weight = , draw_quantiles = NULL, trim = TRUE,
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      weight = , draw_quantiles = NULL, trim = TRUE,
       scale = "area", bw = , adjust = 1, kernel = "gaussian"
     )
   )
@@ -860,7 +889,9 @@ gf_spoke <-
     geom = "spoke",
     extras = alist(
       angle = , radius = ,
-      alpha = , color = , group = , linetype = , size =
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       ),
     note = "Note: angle and radius must be set or mapped."
   )
@@ -898,7 +929,11 @@ gf_spoke <-
 gf_step <-
   layer_factory(
     geom = "step",
-    extras = alist(alpha = , color = , group = , linetype = , size = , direction = "hv")
+    extras = alist(
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      direction = "hv")
   )
 
 #' Formula interface to geom_tile()
@@ -922,7 +957,10 @@ gf_tile <-
   layer_factory(
     geom = "tile",
     aes_form = list(y ~ x, fill ~ x + y),
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    extras = alist(
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = ) # remove eventually?
   )
 
 #' Formula interface to geom_bin2d()
@@ -947,7 +985,10 @@ gf_bin2d <-
     geom = "tile",
     stat = "bin2d",
     aes_form = list(y ~ x),
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    extras = alist(
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = ) # remove eventually?
   )
 
 #' Formula interface to geom_count()
@@ -1019,7 +1060,9 @@ gf_col <-
     geom = "col",
     position = "stack",
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size =
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth =,
+      size = # remove eventually?
       )
   )
 
@@ -1100,9 +1143,13 @@ gf_histogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ ., y ~ x),
-    extras = alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , size = ),
+    extras = alist(
+      bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
+      linetype = , linewidth =,
+      size = # remove eventually?
+    ),
     note =
-        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount), but see gf_dhistogram().",
+        "y may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount), but see gf_dhistogram().",
   )
 
 #' @rdname gf_histogram
@@ -1110,15 +1157,16 @@ gf_histogram <-
 gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(~x, y ~ .,  y ~ x),
+    aes_form = list(~x, y ~ x,  y ~ .),
     extras =
       alist(
         bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
-        linetype = , size =
-        ),
+        linetype = , linewidth =,
+        size = # remove eventually?
+      ),
     note =
-        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount)",
-    aesthetics = aes(y = stat(density))
+        "y may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
+    aesthetics = aes(y = after_stat(density))
   )
 
 #' Formula interface to stat_density()
@@ -1160,10 +1208,12 @@ gf_density <-
     aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = , fill = ,
-      group = , linetype = , size = ,
+      group = ,
+      linetype = , linewidth =,
+      size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = stat(density))
+    aesthetics = aes(y = after_stat(density))
   )
 
 #' @rdname gf_density
@@ -1175,10 +1225,12 @@ gf_dens <-
     aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = , fill = NA,
-      group = , linetype = , size = ,
+      group = ,
+      linetype = , linewidth =,
+      size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = stat(density))
+    aesthetics = aes(y = after_stat(density))
   )
 
 #' @rdname gf_density
@@ -1190,10 +1242,12 @@ gf_dens2 <-
     aes_form = list( ~x, y ~ .),
     extras = alist(
       alpha = 0.5, color = , fill = NA,
-      group = , linetype = , size = ,
+      group = ,
+      linetype = , linewidth =,
+      size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = stat(density))
+    aesthetics = aes(y = after_stat(density))
   )
 #' Formula interface to geom_dotplot()
 #'
@@ -1323,7 +1377,9 @@ gf_bar <-
     geom = "bar", stat = "count", position = "stack",
     aes_form = list(~x, y ~ ., y ~ x),
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size = ,
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       width = NULL
     )
   )
@@ -1336,7 +1392,9 @@ gf_counts <-
     geom = "bar", stat = "count", position = "stack",
     aes_form = list(~x, y ~.),
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , size = ,
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       width = NULL
     )
   )
@@ -1387,7 +1445,9 @@ gf_props <-
     extras =
       alist(
         alpha = , color = , fill = , group = ,
-        linetype = , size = , ylab = "proportion"
+        linetype = , linewidth = ,
+        size = , # remove eventually?
+        ylab = "proportion"
       ),
     aesthetics = aes(y = after_stat(props_by_group(count, DENOM))),
     # pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
@@ -1407,7 +1467,9 @@ gf_percents <-
     aes_form = list(~x, y ~ .),
     extras = alist(
       alpha = , color = , fill = , group = ,
-      linetype = , size = , ylab = "percent"
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      ylab = "percent"
     ),
     aesthetics = aes(y = after_stat(percs_by_group(count, DENOM))),
     pre = {
@@ -1438,7 +1500,7 @@ gf_percents <-
 #'   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
 #' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
 #' gf_dens(~bill_length_mm, data = penguins, color = "navy") %>%
-#'   gf_freqpoly(stat(density) ~ bill_length_mm,
+#'   gf_freqpoly(after_stat(density) ~ bill_length_mm,
 #'     data = penguins,
 #'     color = "red", bins = 20
 #'   )
@@ -1447,11 +1509,13 @@ gf_freqpoly <-
     geom = "path", stat = "bin",
     aes_form = list(~x, y ~ .),
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       binwidth = , bins = , center = , boundary =
       ),
     note =
-        "y may be omitted or stat(density) or stat(count) or stat(ndensity) or stant(ncount)."
+        "y may be omitted or after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)."
   )
 
 #' Formula interface to geom_qq()
@@ -1607,7 +1671,11 @@ gf_rug <-
   layer_factory(
     geom = "rug",
     aes_form = list(~x, y ~ x, NULL),
-    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
+    extras = alist(
+      sides = "bl", alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size =  # remove eventually?
+    )
   )
 
 #' @rdname gf_rug
@@ -1618,8 +1686,11 @@ gf_rugx <-
     geom = "rug",
     aes_form = list( ~ x, y ~ x, NULL),
     check.aes = FALSE,
-    extras = alist(sides = "b", alpha = , color = , group = , linetype = , size = ,
-                   height = 0),
+    extras = alist(
+      sides = "b", alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      height = 0),
     pre = {
       if (inherits(object, "gg")) {
         if (uses_stat(object$mapping$y)) {
@@ -1635,8 +1706,11 @@ gf_rugy <-
   layer_factory(
     geom = "rug",
     aes_form = list(~y, y ~ ., NULL),
-    extras = alist(sides = "l", alpha = , color = , group = , linetype = , size = ,
-                   width = 0),
+    extras = alist(
+      sides = "l", alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      width = 0),
     pre = {
       if (inherits(object, "gg")) {
         if (uses_stat(object$mapping$x)) {
@@ -1740,7 +1814,9 @@ gf_curve <-
   layer_factory(
     geom = "curve", aes_form = y + yend ~ x + xend,
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       curvature = 0.5, angle = 90, ncp = 5, arrow = NULL, lineend = "butt"
     )
   )
@@ -1767,7 +1843,9 @@ gf_segment <-
     geom = "segment",
     aes_form = y + yend ~ x + xend,
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       arrow = NULL, lineend = "butt"
     )
   )
@@ -1811,7 +1889,11 @@ gf_linerange <-
   layer_factory(
     geom = "linerange",
     aes_form = list(ymin + ymax ~ x, y ~ xmin + xmax),
-    extras = alist(alpha = , color = , group = , linetype = , size = )
+    extras = alist(
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size =  # remove eventually?
+    )
   )
 
 #' @rdname gf_linerange
@@ -1857,7 +1939,9 @@ gf_pointrange <-
     geom = "pointrange",
     aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
       fatten = 2
     )
   )
@@ -1869,13 +1953,13 @@ gf_pointrange <-
 #' @export
 #' @examples
 #' p <- gf_jitter(mpg ~ cyl, data = mtcars, height = 0, width = 0.15); p
-#' p %>% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2)
+#' p %>% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
 
 #' # You can supply individual functions to summarise the value at
 #' # each x:
-#' p %>% gf_summary(fun.y = "median", color = "red", size = 2, geom = "point")
+#' p %>% gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
 #' p %>%
-#'   gf_summary(fun.y = "mean", color = "red", size = 2, geom = "point") %>%
+#'   gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") %>%
 #'   gf_summary(fun.y = mean, geom = "line")
 
 #' p %>%
@@ -1939,7 +2023,9 @@ gf_summary <-
     stat = "summary",
     aes_form = y ~ x,
     extras = alist(
-      alpha = , color = , group = , linetype = , size = ,
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # now separate from size
       fun.y = NULL, fun.ymax = NULL, fun.ymin = NULL, fun.args = list(),
       fatten = 2
     )
@@ -2001,7 +2087,10 @@ gf_crossbar <-
     geom = "crossbar",
     aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
     extras = alist(
-      alpha = , color = , group = , linetype = , size = , fatten = 2.5
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      fatten = 2.5
     )
   )
 
@@ -2054,7 +2143,9 @@ gf_errorbar <-
     inherit.aes = TRUE, # changed from FALSE to TRUE after aesthetic renaming in ggplot2
     check.aes = FALSE,
     extras = alist(
-      alpha = , color = , group = , linetype = , size =
+      alpha = , color = , group = ,
+      linetype = , linewidth = ,
+      size = # remove eventually?
       )
   )
 
@@ -2090,7 +2181,11 @@ gf_rect <-
   layer_factory(
     geom = "rect",
     aes_form = ymin + ymax ~ xmin + xmax,
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    extras = alist(
+      alpha = , color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = # remove eventually?
+    )
   )
 
 
@@ -2170,7 +2265,11 @@ gf_abline <-
   layer_factory(
     geom = "abline",
     aes_form = NULL,
-    extras = alist(slope = , intercept = , color = , size = , linetype = , alpha = ),
+    extras = alist(
+      slope = , intercept = , color = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      alpha = ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = rlang::quo(ggplot2::geom_abline)
@@ -2182,7 +2281,11 @@ gf_hline <-
   layer_factory(
     geom = "hline",
     aes_form = NULL,
-    extras = alist(yintercept = , color = , size = , linetype = , alpha = ),
+    extras = alist(
+      yintercept = , color = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      alpha = ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = rlang::quo(ggplot2::geom_hline)
@@ -2194,7 +2297,11 @@ gf_vline <-
   layer_factory(
     geom = "vline",
     aes_form = NULL,
-    extras = alist(xintercept = , color = , size = , linetype = , alpha = ),
+    extras = alist(
+      xintercept = , color = ,
+      linetype = , linewidth = ,
+      size = , # remove eventually?
+      alpha = ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = rlang::quo(ggplot2::geom_vline)
@@ -2337,9 +2444,12 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'   gf_fitdistr()
 #'
 #' set.seed(12345)
-#' Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
+#' Dat <- data.frame(
+#'   f = rf(500, df1 = 3, df2 = 47),
+#'   g = rgamma(500, 3, 10)
+#' )
 #' gf_dhistogram(~g, data = Dat) %>%
-#'   gf_fitdistr(dist = "dgamma")
+#'   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
 #'
 #' gf_dhistogram(~g, data = Dat) %>%
 #'   gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
@@ -2361,7 +2471,9 @@ gf_fitdistr <-
     aes_form = list(~x), inherit.aes = "x",
     extras = alist(
       dist = "dnorm", start = NULL, alpha = ,
-      color = , fill = , group = , linetype = , size =
+      color = , fill = , group = ,
+      linetype = , linewidth = ,
+      size = # remove eventually?
       ),
     note = "dist should be a density function like dnorm or dgamma"
   )
@@ -2432,8 +2544,10 @@ gf_sf <-
       position = "identity",
       aes_form = list(NULL),
       extras = alist(
-        alpha = , color = , fill = , group = , linetype = ,
-        size = , geometry =
+        alpha = , color = , fill = , group = ,
+        linetype = , linewidth = ,
+        size = , # remove eventually?
+        geometry =
         ),
       pre = {
         if (!requireNamespace("sf", quietly = TRUE)) {

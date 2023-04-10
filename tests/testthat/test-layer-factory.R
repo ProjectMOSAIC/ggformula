@@ -506,15 +506,15 @@ test_that(
     wrapped_expect_doppelganger(
       "gf_dist4",
       gf_dist("norm", color = "red", kind = "qqstep", resolution = 25) %>%
-        gf_dist("norm", color = "black", kind = "qq", resolution = 25, size = 2, alpha = 0.5)
+        gf_dist("norm", color = "black", kind = "qq", resolution = 25, linewidth = 2, alpha = 0.5)
     )
     wrapped_expect_doppelganger(
       "gf_dist5",
-      gf_dist("binom", size = 20, prob = 0.25, plot_size = 2)
+      gf_dist("binom", size = 20, prob = 0.25, plot_size = 2, linewidth = 0.8)
     )
     wrapped_expect_doppelganger(
       "gf_dist6",
-      gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2)
+      gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2, linewidth = 0.8)
     )
   }
 )
@@ -875,7 +875,8 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_rugx()",
-      gf_dhistogram( ~ bill_length_mm, data = penguins2) %>%
+      penguins2 %>%
+      gf_dhistogram( ~ bill_length_mm) %>%
         gf_rugx(position = "jitter", alpha = 0.4, color = "red", seed = 123)
     )
     wrapped_expect_doppelganger(
