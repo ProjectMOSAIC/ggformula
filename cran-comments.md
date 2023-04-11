@@ -9,6 +9,10 @@ in that package which are used in `ggformula`. The changes needed to address thi
 As long as I'm submitting, I've also modified some things to avoid some deprecation
 notices due to changes in `ggplot2`.
 
+Previous submission had a few examples that ran long.  I've not been able to recreate this
+on my local machine or with `devtools`, but I added some `\dontrun{}`s in hopes that it will
+shorten the running time sufficiently.
+
 ## Test environments
 
 * local

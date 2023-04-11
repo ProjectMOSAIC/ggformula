@@ -288,8 +288,10 @@ p \%>\%
   gf_summary(fun.y = mean, geom = "line")
 p \%>\%
   gf_summary(fun.y = mean, fun.ymin = min, fun.ymax = max, color = "red")
-p \%>\%
+\dontrun{
+  p \%>\%
   gf_summary(fun.ymin = min, fun.ymax = max, color = "red", geom = "linerange")
+}
 
 gf_bar(~ cut, data = diamonds)
 gf_col(price ~ cut, data = diamonds, stat = "summary_bin", fun.y = "mean")
@@ -302,7 +304,7 @@ p \%>\% gf_lims(y = c(15, 30))
 # Instead use coord_cartesian()
 p \%>\% gf_refine(coord_cartesian(ylim = c(15, 30)))
 # A set of useful summary functions is provided from the Hmisc package.
-
+\dontrun{
 p <- gf_jitter(mpg ~ cyl, data = mtcars, width = 0.15, height = 0); p
 p \%>\% gf_summary(fun.data = mean_cl_boot, color = "red")
 p \%>\% gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
@@ -312,6 +314,7 @@ p \%>\% gf_summary(group = ~ cyl, color = "red", geom = "crossbar", width = 0.3,
         fun.data = mean_sdl, fun.args = list(mult = 1))
 p \%>\% gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
         geom = "crossbar", width = 0.3)
+}
 
 # An example with highly skewed distributions:
 if (require("ggplot2movies")) {
@@ -337,22 +340,26 @@ if (require("ggplot2movies")) {
   # standard errors.
   m2 \%>\% gf_refine(coord_trans(y="log10"))
 }
+\dontrun{
 gf_linerangeh(date ~ low_temp + high_temp | ~city,
   data = mosaicData::Weather,
   color = ~avg_temp
-) \%>\%
+  ) \%>\%
   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 gf_linerange(date ~ low_temp + high_temp | ~city,
   data = mosaicData::Weather,
   color = ~avg_temp,
   orientation = 'y'
-) \%>\%
+  ) \%>\%
   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
-gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
-  data = Weather,
-  color = ~avg_temp
-) \%>\%
-  gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+}
+\dontrun{
+  gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
+    data = Weather,
+    color = ~avg_temp
+    ) \%>\%
+    gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+}
 }
 \seealso{
 \code{\link[ggplot2:geom_linerange]{ggplot2::geom_linerange()}}

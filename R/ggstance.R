@@ -249,17 +249,19 @@ gf_dhistogramh <-
 #' @rdname gf_linerange
 #' @export
 #' @examples
+#' \dontrun{
 #' gf_linerangeh(date ~ low_temp + high_temp | ~city,
 #'   data = mosaicData::Weather,
 #'   color = ~avg_temp
-#' ) %>%
+#'   ) %>%
 #'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 #' gf_linerange(date ~ low_temp + high_temp | ~city,
 #'   data = mosaicData::Weather,
 #'   color = ~avg_temp,
 #'   orientation = 'y'
-#' ) %>%
+#'   ) %>%
 #'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+#' }
 gf_linerangeh <-
   layer_factory(
     geom = "linerangeh",
@@ -270,11 +272,14 @@ gf_linerangeh <-
 #' @rdname gf_linerange
 #' @export
 #' @examples
-#' gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
-#'   data = Weather,
-#'   color = ~avg_temp
-#' ) %>%
-#'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+#' \dontrun{
+#'   gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
+#'     data = Weather,
+#'     color = ~avg_temp
+#'     ) %>%
+#'     gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
+#' }
+
 gf_pointrangeh <-
   layer_factory(
     geom = "pointrangeh",

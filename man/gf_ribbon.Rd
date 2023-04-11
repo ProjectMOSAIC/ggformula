@@ -106,9 +106,11 @@ gf_linerange(
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 # Chaining in the data
+\dontrun{
 mosaicData::Weather \%>\%
   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) \%>\%
   gf_facet_grid(city ~ .)
+}
 }
 \seealso{
 \code{\link[ggplot2:geom_ribbon]{ggplot2::geom_ribbon()}}

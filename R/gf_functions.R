@@ -1791,9 +1791,11 @@ gf_contour_filled <-
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 #' # Chaining in the data
+#' \dontrun{
 #' mosaicData::Weather %>%
 #'   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) %>%
 #'   gf_facet_grid(city ~ .)
+#' }
 gf_ribbon <-
   layer_factory(
     geom = "ribbon",
@@ -1975,8 +1977,10 @@ gf_pointrange <-
 #' p %>%
 #'   gf_summary(fun.y = mean, fun.ymin = min, fun.ymax = max, color = "red")
 
-#' p %>%
+#' \dontrun{
+#'   p %>%
 #'   gf_summary(fun.ymin = min, fun.ymax = max, color = "red", geom = "linerange")
+#' }
 #'
 #' gf_bar(~ cut, data = diamonds)
 #' gf_col(price ~ cut, data = diamonds, stat = "summary_bin", fun.y = "mean")
@@ -1990,7 +1994,7 @@ gf_pointrange <-
 #' p %>% gf_refine(coord_cartesian(ylim = c(15, 30)))
 
 #' # A set of useful summary functions is provided from the Hmisc package.
-#'
+#' \dontrun{
 #' p <- gf_jitter(mpg ~ cyl, data = mtcars, width = 0.15, height = 0); p
 #' p %>% gf_summary(fun.data = mean_cl_boot, color = "red")
 #' p %>% gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
@@ -2000,6 +2004,7 @@ gf_pointrange <-
 #'         fun.data = mean_sdl, fun.args = list(mult = 1))
 #' p %>% gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
 #'         geom = "crossbar", width = 0.3)
+#' }
 #'
 
 #' # An example with highly skewed distributions:
