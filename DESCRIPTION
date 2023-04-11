@@ -46,7 +46,9 @@ Suggests:
     purrr,
     ggthemes,
     covr,
-    ggplot2movies
+    ggplot2movies,
+    interp,
+    quantreg
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)

@@ -294,6 +294,7 @@ diamonds \%>\%
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
+\dontrun{
 diamonds \%>\%
   gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
@@ -302,6 +303,7 @@ diamonds \%>\%
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
+}
 \dontrun{
 diamonds \%>\%
   gf_density_ridges2(cut ~ price, scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) \%>\%
@@ -327,14 +329,16 @@ diamonds \%>\%
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
+\dontrun{
 diamonds \%>\%
-  gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
+  gf_density_ridges(clarity ~ price | cut, height = ~ after_stat(density), stat = "density",
     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
   gf_theme(theme_ridges()) \%>\%
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
+}
 \dontrun{
 mosaicData::Weather \%>\%
   gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),

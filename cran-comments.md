@@ -9,9 +9,15 @@ in that package which are used in `ggformula`. The changes needed to address thi
 As long as I'm submitting, I've also modified some things to avoid some deprecation
 notices due to changes in `ggplot2`.
 
-Previous submission had a few examples that ran long.  I've not been able to recreate this
-on my local machine or with `devtools`, but I added some `\dontrun{}`s in hopes that it will
-shorten the running time sufficiently.
+Regarding long-running examples.
+
+* I've not see this in my testing, and the examples are the same as in previous CRAN submissions.
+* The examples appear to run slightly more slowly on CRAN's machines.
+* Since I'm unable to test, I added some `\dontruns{}`s.
+* This is a second resubmission (with a couple more `\dontruns{}`s). 
+* Since the note indicates a time just a tick over 10 seconds, this should take care of the 
+problem if the timing is close to stable.
+* Hoping the third time is the charm.
 
 ## Test environments
 
