@@ -405,16 +405,18 @@ test_that(
                 data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
       ) %>%
-        gf_pointrangeh(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_pointrangeh(substance ~ mean.age + lo + hi, inherit = FALSE,
+                       data = HELP2) %>%
         gf_facet_grid(sex ~ .)
     )
     wrapped_expect_doppelganger(
       "gf_pointrangeh1a",
-      gf_jitter(substance ~ age,
+      gf_jitter(substance ~ age, inherit = FALSE,
                 data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
       ) %>%
-        gf_pointrange(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_pointrange(substance ~ mean.age + lo + hi, inherity = FALSE,
+                      data = HELP2) %>%
         gf_facet_grid(sex ~ .)
     )
     wrapped_expect_doppelganger(
@@ -441,7 +443,7 @@ test_that(
                 data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
       ) %>%
-        gf_crossbarh(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_crossbarh(substance ~ mean.age + lo + hi, data = HELP2, inherit = FALSE) %>%
         gf_facet_grid(sex ~ .)
     )
     wrapped_expect_doppelganger(
@@ -450,7 +452,7 @@ test_that(
                 data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, height = 0.2, width = 0, color = "skyblue"
       ) %>%
-        gf_crossbar(substance ~ mean.age + lo + hi, data = HELP2) %>%
+        gf_crossbar(substance ~ mean.age + lo + hi, data = HELP2, inherit = FALSE) %>%
         gf_facet_grid(sex ~ .)
     )
   }
@@ -619,7 +621,8 @@ test_that(
   "gf_fun2d()", {
     wrapped_expect_doppelganger(
       "gf_fun2d1",
-      gf_function_2d(fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) %>%
+      gf_function_2d(fun = function(x, y) sin(2 * x * y),
+                     xlim = c(-pi, pi), ylim = c(-pi, pi)) %>%
         gf_refine(scale_fill_viridis_c())
     )
     wrapped_expect_doppelganger(
@@ -629,13 +632,13 @@ test_that(
     wrapped_expect_doppelganger(
       "gf_fun2d3",
       gf_function_tile(fun = function(x, y) x * y) %>%
-        gf_function_contour(fun = function(x, y) x * y, color = "white") %>%
+        gf_function_contour(fun = function(x, y) x * y, color = "white", inherit = FALSE) %>%
         gf_refine(scale_fill_viridis_c())
     )
     wrapped_expect_doppelganger(
       "gf_fun2d4",
       gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) %>%
-        gf_fun_contour(x * y ~ x + y, color = "white") %>%
+        gf_fun_contour(x * y ~ x + y, color = "white", inherit = FALSE) %>%
         gf_refine(scale_fill_viridis_c()) %>%
         gf_labs(fill = "product")
     )
@@ -696,11 +699,11 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_dhistogramh2",
-      gf_dhistogramh(bill_length_mm ~ stat(ndensity), data = penguins2)
+      gf_dhistogramh(bill_length_mm ~ after_stat(ndensity), data = penguins2)
     )
     wrapped_expect_doppelganger(
       "gf_dhistogramh2a",
-      gf_dhistogramh(bill_length_mm ~ stat(ndensity), data = penguins2)
+      gf_dhistogramh(bill_length_mm ~ after_stat(ndensity), data = penguins2)
     )
   }
 )
@@ -815,8 +818,9 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_tile1",
+      # inherit = FALSE avoids warning about dropping fill
       gf_tile(density ~ eruptions + waiting, data = faithfuld) %>%
-        gf_contour(density ~ eruptions + waiting, color = "yellow") %>%
+        gf_contour(density ~ eruptions + waiting, color = "yellow", inherit = FALSE) %>%
         gf_refine(scale_fill_viridis_c(begin = 0.2))
     )
     wrapped_expect_doppelganger(
@@ -870,19 +874,31 @@ test_that(
     wrapped_expect_doppelganger(
       "gf_rugx()/gf_rug_y() with jitter",
       gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins2, seed = 123) %>%
-        gf_rugx(~bill_depth_mm, data = penguins2, color = "red", position = "jitter", seed = 123) %>%
-        gf_rugy(bill_length_mm ~ ., data = penguins2, color = "green", position = "jitter", seed = 123)
+        gf_rugx( ~ bill_depth_mm, data = penguins2, color = "red", seed = 123) %>%
+        gf_rugy(bill_length_mm ~ ., data = penguins2, color = "green", seed = 123)
     )
     wrapped_expect_doppelganger(
-      "gf_rugx()",
+      "gf_rugx() without jitter",
       penguins2 %>%
       gf_dhistogram( ~ bill_length_mm) %>%
-        gf_rugx(position = "jitter", alpha = 0.4, color = "red", seed = 123)
+        gf_rugx(~ bill_length_mm, alpha = 0.4, color = "red", seed = 123)
+    )
+    wrapped_expect_doppelganger(
+      "gf_rugx() with jitter",
+      penguins2 %>%
+      gf_dhistogram( ~ bill_length_mm) %>%
+        gf_rugx(0 ~ bill_length_mm, position = "jitter", alpha = 0.4, color = "red",
+                seed = 123)
     )
     wrapped_expect_doppelganger(
       "gf_rugy()",
       gf_dhistogramh( bill_length_mm ~ ., data = penguins2) %>%
-        gf_rugy(position = "jitter", alpha = 0.4, color = "navy", seed = 123)
+        gf_rugy( ~ bill_length_mm , alpha = 0.4, color = "navy", seed = 123)
+    )
+    wrapped_expect_doppelganger(
+      "gf_rug() on y only but with jitter",
+      gf_dhistogramh( bill_length_mm ~ ., data = penguins2) %>%
+        gf_rug( bill_length_mm ~ 0, alpha = 0.4, color = "navy", seed = 123)
     )
 
 ###

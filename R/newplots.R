@@ -61,7 +61,7 @@ gf_ash <-
   layer_factory(
     geom = "line", stat = "ash", position = "identity",
     aes_form = list(~x, y ~ x),
-    extras = alist(alpha = , color = , group = , linetype = , size = )
+    extras = alist(alpha = , color = , group = , linetype = , linewidth = )
   )
 
 #' ggproto classes for ggplot2

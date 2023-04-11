@@ -42,7 +42,7 @@ gf_ridgeline <-
     geom = "ridgeline", stat = "identity", position = "identity",
     aes_form = y ~ x,
     extras = alist(height =, scale = 1, min_height = 0, color = , fill = , alpha = ,
-                   group =, linetype = , size = ,
+                   group =, linetype = , linewidth = ,
                    point_size =, point_shape = , point_colour = , point_fill = ,
                    point_alpha = , point_stroke =)
   )
@@ -53,7 +53,7 @@ gf_ridgeline <-
 #' across all datasets. This may not generate the desired result when using
 #' faceted plots. As an alternative, you can set `stat = "density"` to use
 #' [`ggplot2::stat_density()`]. In this case, it is required to add the aesthetic mapping
-#' `height = stat(density)` (see examples).
+#' `height = after_stat(density)` (see examples).
 #'
 #' @export
 #' @examples
@@ -74,7 +74,7 @@ gf_ridgeline <-
 #'     scale_x_continuous(expand = c(0.01, 0))
 #'   )
 #' diamonds %>%
-#'   gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+#'   gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
 #'     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) %>%
 #'   gf_theme(theme_ridges()) %>%
 #'   gf_refine(
@@ -87,7 +87,7 @@ gf_density_ridges <-
     geom = "density_ridges", stat = "density_ridges", position = "points_sina",
     aes_form = y ~ x,
     extras = alist(height =, scale = 1, rel_min_height = 0,
-                   color = , fill = , alpha = , group =, linetype = , size = ,
+                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
                    point_size =, point_shape = , point_colour = , point_fill = ,
                    point_alpha = , point_stroke =,
                    panel_scaling = TRUE)
@@ -110,7 +110,7 @@ gf_density_ridges2 <-
     geom = "density_ridges2", stat = "density_ridges", position = "points_sina",
     aes_form = y ~ x,
     extras = alist(height =, scale = 1, rel_min_height = 0,
-                   color = , fill = , alpha = , group =, linetype = , size = ,
+                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
                    point_size =, point_shape = , point_colour = , point_fill = ,
                    point_alpha = , point_stroke =,
                    panel_scaling = TRUE)
@@ -136,7 +136,7 @@ gf_density_ridges2 <-
 #'     scale_x_continuous(expand = c(0.01, 0))
 #'   )
 #' diamonds %>%
-#'   gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+#'   gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
 #'     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) %>%
 #'   gf_theme(theme_ridges()) %>%
 #'   gf_refine(
@@ -149,7 +149,7 @@ gf_density_ridgeline_gradient <-
     geom = "ridgeline_gradient", stat = "identity", position = "identity",
     aes_form = y ~ x,
     extras = alist(height =,
-                   color = , fill = , alpha = , group =, linetype = , size = ,
+                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
                    gradient_lwd = 0.5)
   )
 
@@ -167,6 +167,6 @@ gf_density_ridges_gradient <-
     geom = "density_ridges_gradient", stat = "density_ridges", position = "points_sina",
     aes_form = y ~ x,
     extras = alist(height =, panel_scaling = TRUE,
-                   color = , fill = ~stat(x), alpha = , group =, linetype = , size = ,
+                   color = , fill = ~stat(x), alpha = , group =, linetype = , linewidth = ,
                    gradient_lwd = 0.5)
   )
