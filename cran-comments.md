@@ -1,3 +1,14 @@
+## Submission notes
+
+This is a relatively minor update to the package.
+
+This submission was prompeted by the maintainer of `labelled` who is planning a CRAN submission
+and was getting some warnings due to documentations issues due to a planned update to functions
+in that package which are used in `ggformula`. The changes needed to address this were minor.
+
+As long as I'm submitting, I've also modified some things to avoid some deprecation
+notices due to changes in `ggplot2`.
+
 ## Test environments
 
 * local
@@ -8,30 +19,16 @@
 * WinBuilder
 
   * `devtools::check_win_devel()`
+  * `devtools::check_win_release()`
 
 ## revdep_check()
 
-|package   |old    |new    |Δ  |
-|:---------|:------|:------|:--|
-|ggformula |0.10.1 |0.10.2 |*  |
+`revdep_check()` reported no errors in reverse dependencies, but was unable to install
+`MESS`.  (It appears that it was unable to compile some fortran code in that package.)
 
 ### Failed to check (1)
-
-Not sure why this package fails to check in revdep_check()
 
 |package |version |error |warning |note |
 |:-------|:-------|:-----|:-------|:----|
 |MESS    |0.5.9   |1     |        |     |
 
-## Tandem submission
-
-This package and mosaicData are being submitted together. All the examples in mosaicData
-work without errors when I use both submitted versions.
-
-## long executing examples
-
-One time (of many) that I used check_win_devel(), there was a note about two examples
-that used ~ 11 seconds.  They run faster than than on my laptop, and I didn't get
-complaints other times, and these have not changed from previous CRAN releases. 
-I'm going to leave as is for now, but I could consider shortening them or adding don't run
-to some of them in the future.

@@ -1,5 +1,10 @@
-# ggformula (development version)
+# ggformula
 
+# ggformula 0.10.4
+
+* Updated the re-export of a few functions from `labelled`. (#160)
+* Migrated from `stat()` to `after_stat()` to avoid deprecation notices from `ggplot2`. (#156)
+* Migrated from `size` to `linewidth` for line-like geoms to avoid deprecation notices from `ggplot2`. (#155)
 
 # ggformula 0.10.2
 
