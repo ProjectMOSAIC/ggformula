@@ -16,6 +16,7 @@ gf_fitdistr(
   fill,
   group,
   linetype,
+  linewidth,
   size,
   xlab,
   ylab,
@@ -58,7 +59,9 @@ See \code{\link[mosaicCore:fit_distr_fun]{mosaicCore::fit_distr_fun()}} for more
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
+
+\item{size}{size aesthetic for dots in pmf plots.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -125,9 +128,12 @@ gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25
   gf_fitdistr()
 
 set.seed(12345)
-Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
+Dat <- data.frame(
+  f = rf(500, df1 = 3, df2 = 47),
+  g = rgamma(500, 3, 10)
+)
 gf_dhistogram(~g, data = Dat) \%>\%
-  gf_fitdistr(dist = "dgamma")
+  gf_fitdistr(dist = "dgamma", linewidth = 1.4)
 
 gf_dhistogram(~g, data = Dat) \%>\%
   gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))

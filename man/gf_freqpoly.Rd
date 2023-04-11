@@ -13,7 +13,7 @@ gf_freqpoly(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   binwidth,
   bins,
   center,
@@ -69,7 +69,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value
 or as a function that calculates width from unscaled x. Here, "unscaled x"
@@ -106,8 +106,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_histogram()}/\code{geom_freqpoly()} and \code{stat_bin()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -164,7 +166,7 @@ gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20
   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
 gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
 gf_dens(~bill_length_mm, data = penguins, color = "navy") \%>\%
-  gf_freqpoly(stat(density) ~ bill_length_mm,
+  gf_freqpoly(after_stat(density) ~ bill_length_mm,
     data = penguins,
     color = "red", bins = 20
   )

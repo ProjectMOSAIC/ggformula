@@ -13,7 +13,7 @@ gf_spline(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   weight,
   df,
   spar,
@@ -56,7 +56,7 @@ Faceting can be achieved by including \code{|} in the formula.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{weight}{An optional vector of weights.
 See \code{\link[=smooth.spline]{smooth.spline()}}.}

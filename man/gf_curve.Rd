@@ -13,7 +13,7 @@ gf_curve(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   curvature = 0.5,
   angle = 90,
   ncp = 5,
@@ -69,7 +69,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{curvature}{A numeric value giving the amount of curvature.
     Negative values produce left-hand curves, positive values
@@ -84,7 +84,7 @@ for mapping linetype.}
 \item{ncp}{The number of control points used to draw the curve.
     More control points creates a smoother curve.}
 
-\item{arrow}{specification for arrow heads, as created by arrow().}
+\item{arrow}{specification for arrow heads, as created by \code{\link[grid:arrow]{grid::arrow()}}.}
 
 \item{lineend}{Line end style (round, butt, square).}
 
@@ -98,10 +98,14 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom}{A character string naming the geom used to make the layer.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

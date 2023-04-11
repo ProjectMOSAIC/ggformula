@@ -17,7 +17,7 @@ gf_linerange(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -41,6 +41,7 @@ gf_pointrange(
   color,
   group,
   linetype,
+  linewidth,
   size,
   fatten = 2,
   xlab,
@@ -66,6 +67,7 @@ gf_summary(
   color,
   group,
   linetype,
+  linewidth,
   size,
   fun.y = NULL,
   fun.ymax = NULL,
@@ -95,7 +97,7 @@ gf_linerangeh(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -119,7 +121,7 @@ gf_pointrangeh(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -171,7 +173,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -180,13 +182,19 @@ for mapping linetype.}
 \item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{geom}{A character string naming the geom used to make the layer.}
+\item{geom}{The geometric object to use to display the data, either as a
+\code{ggproto} \code{Geom} subclass or as a string naming the geom stripped of the
+\code{geom_} prefix (e.g. \code{"point"} rather than \code{"geom_point"})}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -200,12 +208,14 @@ display.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
+\item{size}{size aesthetic for points (\code{gf_pointrange()}).}
+
 \item{fatten}{A multiplicative factor used to increase the size of the
 middle bar in \code{geom_crossbar()} and the middle point in
 \code{geom_pointrange()}.}
 
-\item{fun.ymin, fun.y, fun.ymax}{Deprecated, use the versions specified above
-instead.}
+\item{fun.ymin, fun.y, fun.ymax}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the
+versions specified above instead.}
 
 \item{fun.args}{Optional additional arguments passed on to the functions.}
 }
@@ -269,12 +279,12 @@ if (require(mosaicData) && require(dplyr)) {
     gf_jitter(width = 0.2, height = 0, color = "skyblue", alpha = 0.5)
 }
 p <- gf_jitter(mpg ~ cyl, data = mtcars, height = 0, width = 0.15); p
-p \%>\% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2)
+p \%>\% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
 # You can supply individual functions to summarise the value at
 # each x:
-p \%>\% gf_summary(fun.y = "median", color = "red", size = 2, geom = "point")
+p \%>\% gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
 p \%>\%
-  gf_summary(fun.y = "mean", color = "red", size = 2, geom = "point") \%>\%
+  gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") \%>\%
   gf_summary(fun.y = mean, geom = "line")
 p \%>\%
   gf_summary(fun.y = mean, fun.ymin = min, fun.ymax = max, color = "red")

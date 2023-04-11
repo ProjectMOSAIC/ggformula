@@ -146,7 +146,9 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom}{A character string naming the geom used to make the layer.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function. Cannot be jointy specified with

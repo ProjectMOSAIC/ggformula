@@ -15,7 +15,7 @@ gf_violin(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   weight,
   draw_quantiles = NULL,
   trim = TRUE,
@@ -47,7 +47,7 @@ gf_violinh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   weight,
   draw_quantiles = NULL,
   trim = TRUE,
@@ -108,7 +108,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{weight}{Useful for summarized data, \code{weight} provides a count
 of the number of values with the given combination of \code{x} and \code{y} values.}
@@ -144,8 +144,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_violin()} and \code{stat_ydensity()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

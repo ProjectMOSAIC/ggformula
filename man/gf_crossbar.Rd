@@ -14,7 +14,7 @@ gf_crossbar(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   fatten = 2.5,
   xlab,
   ylab,
@@ -39,7 +39,7 @@ gf_crossbarh(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   fatten = 2.5,
   xlab,
   ylab,
@@ -92,7 +92,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{fatten}{A multiplicative factor used to increase the size of the
 middle bar in \code{geom_crossbar()} and the middle point in
@@ -108,10 +108,14 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom}{A character string naming the geom used to make the layer.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

@@ -14,7 +14,7 @@ gf_boxploth(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   coef,
   outlier.color = NULL,
   outlier.fill = NULL,
@@ -78,7 +78,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 

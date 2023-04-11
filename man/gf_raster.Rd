@@ -14,7 +14,7 @@ gf_raster(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   hjust = 0.5,
   vjust = 0.5,
   interpolate = FALSE,
@@ -57,7 +57,7 @@ See details and examples.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{hjust, vjust}{horizontal and vertical justification of the grob.  Each
 justification value should be a number between 0 and 1.  Defaults to 0.5

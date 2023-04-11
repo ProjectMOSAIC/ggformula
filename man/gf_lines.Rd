@@ -15,8 +15,8 @@ gf_abline(
   slope,
   intercept,
   color,
-  size,
   linetype,
+  linewidth,
   alpha,
   xlab,
   ylab,
@@ -36,8 +36,8 @@ gf_hline(
   ...,
   yintercept,
   color,
-  size,
   linetype,
+  linewidth,
   alpha,
   xlab,
   ylab,
@@ -57,8 +57,8 @@ gf_vline(
   ...,
   xintercept,
   color,
-  size,
   linetype,
+  linewidth,
   alpha,
   xlab,
   ylab,
@@ -102,10 +102,10 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{color}{A color or a formula used for mapping color.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
-
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
+
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 

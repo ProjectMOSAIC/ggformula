@@ -16,7 +16,7 @@ gf_rug(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -41,7 +41,7 @@ gf_rugx(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   height = 0,
   xlab,
   ylab,
@@ -53,7 +53,7 @@ gf_rugx(
   position = "identity",
   show.legend = NA,
   show.help = NULL,
-  inherit = TRUE,
+  inherit = FALSE,
   environment = parent.frame()
 )
 
@@ -67,7 +67,7 @@ gf_rugy(
   color,
   group,
   linetype,
-  size,
+  linewidth,
   width = 0,
   xlab,
   ylab,
@@ -79,7 +79,7 @@ gf_rugy(
   position = "identity",
   show.legend = NA,
   show.help = NULL,
-  inherit = TRUE,
+  inherit = FALSE,
   environment = parent.frame()
 )
 }
@@ -124,7 +124,7 @@ bottom, and left.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -136,10 +136,14 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom}{A character string naming the geom used to make the layer.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

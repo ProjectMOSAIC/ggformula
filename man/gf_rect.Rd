@@ -14,7 +14,7 @@ gf_rect(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -55,7 +55,7 @@ Faceting can be achieved by including \code{|} in the formula.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

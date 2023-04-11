@@ -14,7 +14,7 @@ gf_boxplot(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   coef,
   outlier.color = NULL,
   outlier.fill = NULL,
@@ -78,7 +78,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
@@ -115,8 +115,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_boxplot()} and \code{stat_boxplot()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

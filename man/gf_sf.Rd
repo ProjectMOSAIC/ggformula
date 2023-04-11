@@ -14,7 +14,7 @@ gf_sf(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   geometry,
   xlab,
   ylab,
@@ -56,7 +56,7 @@ Faceting can be achieved by including \code{|} in the formula.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{geometry}{A column of class sfc containing simple features data. (Another option
 is that \code{data} may contain a column named \code{geometry}.)  \code{geometry} is never

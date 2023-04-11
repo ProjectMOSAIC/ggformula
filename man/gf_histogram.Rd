@@ -19,7 +19,7 @@ gf_histogram(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -46,7 +46,7 @@ gf_dhistogram(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -73,7 +73,7 @@ gf_histogramh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -100,7 +100,7 @@ gf_dhistogramh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -169,7 +169,7 @@ bin width of a time variable is the number of seconds.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -181,8 +181,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_histogram()}/\code{geom_freqpoly()} and \code{stat_bin()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -270,7 +272,7 @@ gf_histogram(age ~ .,
 gf_histogramh(~x, bins = 30)
 gf_histogram(x ~., bins = 30)
 gf_histogramh(x ~ ., bins = 30)
-gf_histogramh(x ~ stat(density), bins = 30)
+gf_histogramh(x ~ after_stat(density), bins = 30)
 gf_dhistogramh(~x, bins = 30)
 gf_dhistogram(x ~ ., bins = 30)
 gf_dhistogramh(x ~ ., bins = 30)

@@ -15,7 +15,8 @@ gf_hex(
   color,
   fill,
   group,
-  size,
+  linetype,
+  linewidth,
   xlab,
   ylab,
   title,
@@ -72,7 +73,10 @@ horizontal directions. Overrides \code{bins} if both set.}
 
 \item{group}{Used for grouping.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -84,8 +88,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Override the default connection between \code{geom_hex()} and
 \code{stat_binhex()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

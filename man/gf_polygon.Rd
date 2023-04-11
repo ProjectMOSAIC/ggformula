@@ -11,7 +11,7 @@ gf_polygon(
   ...,
   alpha,
   color,
-  size,
+  linewidth,
   shape,
   fill,
   group,
@@ -42,23 +42,20 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression},
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}, or
-(d) arguments for the geom, stat, or position function.}
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
 \item{color}{A color or a formula used for mapping color.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
-\item{shape}{An integer or letter shape or a formula used for mapping shape.}
+\item{shape, stroke}{Aesthetics for polygons.}
 
 \item{fill}{A color for filling, or a formula used for mapping fill.}
 
 \item{group}{Used for grouping.}
-
-\item{stroke}{A numeric size of the border or a formula used to map stroke.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -88,7 +85,8 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-Scatterplots in \code{ggformula}.
+Line plots in \code{ggformula}.  \code{gf_path()} differs from \code{gf_line()} in that points
+are connected in the order in which they appear in \code{data}.
 }
 \section{Specifying plot attributes}{
 
@@ -138,5 +136,5 @@ if (require(maps) && require(ggthemes) && require(dplyr)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}, \code{\link[=gf_line]{gf_line()}}, \code{\link[=gf_jitter]{gf_jitter()}}
+\code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}
 }

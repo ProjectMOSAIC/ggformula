@@ -21,7 +21,7 @@ gf_bar(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   width = NULL,
   xlab,
   ylab,
@@ -47,7 +47,7 @@ gf_counts(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   width = NULL,
   xlab,
   ylab,
@@ -73,7 +73,7 @@ gf_props(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab = "proportion",
   title,
@@ -99,7 +99,7 @@ gf_percents(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab,
   ylab = "percent",
   title,
@@ -125,7 +125,7 @@ gf_countsh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   width = NULL,
   xlab,
   ylab,
@@ -151,7 +151,7 @@ gf_colh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   width = NULL,
   xlab,
   ylab,
@@ -177,7 +177,7 @@ gf_propsh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab = "proportion",
   ylab,
   title,
@@ -203,7 +203,7 @@ gf_percentsh(
   fill,
   group,
   linetype,
-  size,
+  linewidth,
   xlab = "percent",
   ylab,
   title,
@@ -260,7 +260,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{width}{Width of the bars.}
 
@@ -274,8 +274,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Override the default connection between \code{geom_bar()} and
 \code{stat_count()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

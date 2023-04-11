@@ -21,7 +21,7 @@ gf_ridgeline(
   alpha,
   group,
   linetype,
-  size,
+  linewidth,
   point_size,
   point_shape,
   point_colour,
@@ -55,7 +55,7 @@ gf_density_ridges(
   alpha,
   group,
   linetype,
-  size,
+  linewidth,
   point_size,
   point_shape,
   point_colour,
@@ -90,7 +90,7 @@ gf_density_ridges2(
   alpha,
   group,
   linetype,
-  size,
+  linewidth,
   point_size,
   point_shape,
   point_colour,
@@ -123,7 +123,7 @@ gf_density_ridgeline_gradient(
   alpha,
   group,
   linetype,
-  size,
+  linewidth,
   gradient_lwd = 0.5,
   xlab,
   ylab,
@@ -151,7 +151,7 @@ gf_density_ridges_gradient(
   alpha,
   group,
   linetype,
-  size,
+  linewidth,
   gradient_lwd = 0.5,
   xlab,
   ylab,
@@ -219,7 +219,7 @@ aesthetic. Default is 0, so negative values are removed.}
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
 for mapping linetype.}
 
-\item{size}{A numeric size or a formula used for mapping size.}
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
 
 \item{point_shape, point_colour, point_size, point_fill, point_alpha, point_stroke}{As in \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}.}
 
@@ -233,8 +233,10 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{geom, stat}{Use to override the default connection between
 \code{geom_density()} and \code{stat_density()}.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -267,7 +269,7 @@ Note that the \code{\link[ggridges:stat_density_ridges]{ggridges::stat_density_r
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set \code{stat = "density"} to use
 \code{\link[ggplot2:geom_density]{ggplot2::stat_density()}}. In this case, it is required to add the aesthetic mapping
-\code{height = stat(density)} (see examples).
+\code{height = after_stat(density)} (see examples).
 }
 
 \examples{
@@ -293,7 +295,7 @@ diamonds \%>\%
     scale_x_continuous(expand = c(0.01, 0))
   )
 diamonds \%>\%
-  gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+  gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
   gf_theme(theme_ridges()) \%>\%
   gf_refine(
@@ -324,7 +326,7 @@ diamonds \%>\%
     scale_x_continuous(expand = c(0.01, 0))
   )
 diamonds \%>\%
-  gf_density_ridges(clarity ~ price | cut, height = ~stat(density), stat = "density",
+  gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
     scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
   gf_theme(theme_ridges()) \%>\%
   gf_refine(
