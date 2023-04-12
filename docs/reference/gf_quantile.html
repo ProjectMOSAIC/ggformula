@@ -18,7 +18,7 @@ with lines. This is as a continuous analogue to geom_boxplot()."><meta property=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -96,8 +96,7 @@ with lines. This is as a continuous analogue to <code><a href="https://ggplot2.t
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
-<span>  <span class="va">weight</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  lineend <span class="op">=</span> <span class="st">"butt"</span>,</span>
 <span>  linejoin <span class="op">=</span> <span class="st">"round"</span>,</span>
 <span>  linemitre <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -171,13 +170,8 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
-
-
-<dt>weight</dt>
-<dd><p>Useful for summarized data, <code>weight</code> provides a count
-of the number of values with the given combination of <code>x</code> and <code>y</code> values.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>lineend</dt>
@@ -229,8 +223,10 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 
 
 <dt>position</dt>
-<dd><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></dd>
+<dd><p>Position adjustment, either as a string naming the adjustment
+(e.g. <code>"jitter"</code> to use <code>position_jitter</code>), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.</p></dd>
 
 
 <dt>show.legend</dt>
@@ -311,7 +307,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

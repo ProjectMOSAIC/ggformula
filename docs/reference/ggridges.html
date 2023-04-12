@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
 <span>  <span class="va">alpha</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">point_size</span>,</span>
 <span>  <span class="va">point_shape</span>,</span>
 <span>  <span class="va">point_colour</span>,</span>
@@ -132,7 +132,7 @@
 <span>  <span class="va">alpha</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">point_size</span>,</span>
 <span>  <span class="va">point_shape</span>,</span>
 <span>  <span class="va">point_colour</span>,</span>
@@ -167,7 +167,7 @@
 <span>  <span class="va">alpha</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">point_size</span>,</span>
 <span>  <span class="va">point_shape</span>,</span>
 <span>  <span class="va">point_colour</span>,</span>
@@ -200,7 +200,7 @@
 <span>  <span class="va">alpha</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  gradient_lwd <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
@@ -228,7 +228,7 @@
 <span>  <span class="va">alpha</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  gradient_lwd <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
@@ -319,8 +319,8 @@ aesthetic. Default is 0, so negative values are removed.</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>point_shape, point_colour, point_size, point_fill, point_alpha, point_stroke</dt>
@@ -346,8 +346,10 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 
 
 <dt>position</dt>
-<dd><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></dd>
+<dd><p>Position adjustment, either as a string naming the adjustment
+(e.g. <code>"jitter"</code> to use <code>position_jitter</code>), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.</p></dd>
 
 
 <dt>show.legend</dt>
@@ -394,7 +396,7 @@ rendered gradients. Should ideally be 0, but often needs to be around 0.5 or hig
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set <code>stat = "density"</code> to use
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">ggplot2::stat_density()</a></code>. In this case, it is required to add the aesthetic mapping
-<code>height = stat(density)</code> (see examples).</p>
+<code>height = after_stat(density)</code> (see examples).</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -435,15 +437,17 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 718</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 400</span>
 <span class="r-plt img"><img src="ggridges-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">clarity</span> <span class="op">~</span> <span class="va">price</span> <span class="op">|</span> <span class="va">cut</span>, height <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"density"</span>,</span></span>
+<span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">clarity</span> <span class="op">~</span> <span class="va">price</span> <span class="op">|</span> <span class="va">cut</span>, height <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"density"</span>,</span></span>
 <span class="r-in"><span>    scale <span class="op">=</span> <span class="fl">2</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">clarity</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://wilkelab.org/ggridges/reference/theme_ridges.html" class="external-link">theme_ridges</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggridges-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_density_ridges2</span><span class="op">(</span><span class="va">cut</span> <span class="op">~</span> <span class="va">price</span>, scale <span class="op">=</span> <span class="fl">2</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">cut</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://wilkelab.org/ggridges/reference/theme_ridges.html" class="external-link">theme_ridges</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
@@ -451,8 +455,7 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 458</span>
-<span class="r-plt img"><img src="ggridges-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">cut</span> <span class="op">~</span> <span class="va">price</span>,</span></span>
 <span class="r-in"><span>    scale <span class="op">=</span> <span class="fl">2</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">cut</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
@@ -462,7 +465,7 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 458</span>
-<span class="r-plt img"><img src="ggridges-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggridges-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">clarity</span> <span class="op">~</span> <span class="va">price</span> <span class="op">|</span> <span class="va">cut</span>,</span></span>
 <span class="r-in"><span>    scale <span class="op">=</span> <span class="fl">2</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">clarity</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
@@ -476,26 +479,23 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 677</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 718</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 400</span>
-<span class="r-plt img"><img src="ggridges-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggridges-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">clarity</span> <span class="op">~</span> <span class="va">price</span> <span class="op">|</span> <span class="va">cut</span>, height <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"density"</span>,</span></span>
+<span class="r-in"><span>  <span class="fu">gf_density_ridges</span><span class="op">(</span><span class="va">clarity</span> <span class="op">~</span> <span class="va">price</span> <span class="op">|</span> <span class="va">cut</span>, height <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"density"</span>,</span></span>
 <span class="r-in"><span>    scale <span class="op">=</span> <span class="fl">2</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">clarity</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://wilkelab.org/ggridges/reference/theme_ridges.html" class="external-link">theme_ridges</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggridges-8.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Weather.html" class="external-link">Weather</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_density_ridges_gradient</span><span class="op">(</span><span class="va">month</span> <span class="op">~</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="va">city</span> <span class="op">~</span> <span class="va">.</span>, fill <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">stat</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="op">~</span> <span class="va">month</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, rel_min_height <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 1.09</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 2.45</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 3.79</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 1.16</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Picking joint bandwidth of 1.7</span>
-<span class="r-plt img"><img src="ggridges-9.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -510,7 +510,7 @@ faceted plots. As an alternative, you can set <code>stat = "density"</code> to u
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

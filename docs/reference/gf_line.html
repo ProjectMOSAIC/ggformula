@@ -18,7 +18,7 @@ are connected in the order in which they appear in data."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@ are connected in the order in which they appear in <code>data</code>.</p>
 <span>  <span class="va">fill</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">lineend</span>,</span>
 <span>  <span class="va">linejoin</span>,</span>
 <span>  <span class="va">linemitre</span>,</span>
@@ -125,7 +125,7 @@ are connected in the order in which they appear in <code>data</code>.</p>
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  lineend <span class="op">=</span> <span class="st">"butt"</span>,</span>
 <span>  linejoin <span class="op">=</span> <span class="st">"round"</span>,</span>
 <span>  linemitre <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -190,8 +190,8 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>lineend</dt>
@@ -298,7 +298,7 @@ in another.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> gf_line() uses </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * a formula with shape y ~ x. </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * geom:  line </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, fill, group, linetype, size, lineend,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, fill, group, linetype, linewidth, lineend,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>                    linejoin, linemitre, arrow</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> For more information, try ?gf_line</span>
@@ -313,7 +313,7 @@ in another.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> gf_path() uses </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * a formula with shape y ~ x. </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * geom:  path </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, group, linetype, size, lineend = "butt",</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, group, linetype, linewidth, lineend = "butt",</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>                    linejoin = "round", linemitre = 1, arrow</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>                    = NULL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -338,7 +338,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

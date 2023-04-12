@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
 <span>  <span class="va">fill</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">coef</span>,</span>
 <span>  outlier.color <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  outlier.fill <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -176,8 +176,8 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>coef</dt>
@@ -336,16 +336,35 @@ in another.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">sex</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, varwidth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using the `size` aesthietic with geom_segment was deprecated in ggplot2 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` aesthetic instead.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using the `size` aesthietic with geom_polygon was deprecated in ggplot2 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` aesthetic instead.</span>
 <span class="r-plt img"><img src="gf_boxploth-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, varwidth <span class="op">=</span> <span class="cn">TRUE</span>, orientation <span class="op">=</span> <span class="st">'y'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_boxploth-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, color <span class="op">=</span> <span class="op">~</span><span class="va">sex</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># move boxplots away a bit by adjusting dodge</span></span></span>
 <span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, color <span class="op">=</span> <span class="op">~</span><span class="va">sex</span>,</span></span>
 <span class="r-in"><span>  position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggstance/man/position-vertical.html" class="external-link">position_dodgev</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># gf_boxplot guesses horizontal because substance is categorical</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span>,</span></span>
@@ -354,25 +373,60 @@ in another.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_boxploth-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, color <span class="op">=</span> <span class="op">~</span><span class="va">sex</span>, outlier.color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># longer whiskers</span></span></span>
 <span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, color <span class="op">=</span> <span class="op">~</span><span class="va">sex</span>, coef <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Note: height for boxplots is full width of box.</span></span></span>
 <span class="r-in"><span><span class="co">#   For jittering, it is the half-height.</span></span></span>
 <span class="r-in"><span><span class="fu">gf_boxploth</span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">age</span> <span class="op">|</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/HELPrct.html" class="external-link">HELPrct</a></span>, coef <span class="op">=</span> <span class="fl">5</span>, height <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_jitter.html">gf_jitter</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># combining boxplots and histograms</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_histogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">eruptions</span>, data <span class="op">=</span> <span class="va">faithful</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_boxploth</span><span class="op">(</span><span class="fl">0</span> <span class="op">~</span> <span class="va">eruptions</span>, alpha <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_histogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">eruptions</span>, data <span class="op">=</span> <span class="va">faithful</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_boxploth</span><span class="op">(</span><span class="op">-</span><span class="fl">2</span> <span class="op">~</span> <span class="va">eruptions</span>, alpha <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_histogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">eruptions</span>, data <span class="op">=</span> <span class="va">faithful</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_boxploth</span><span class="op">(</span><span class="fl">32</span> <span class="op">~</span> <span class="va">eruptions</span>, alpha <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">x</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="gf_boxploth-11.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -388,7 +442,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -18,7 +18,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
 <span>  <span class="va">title</span>,</span>
@@ -120,6 +120,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">size</span>,</span>
 <span>  fatten <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
@@ -145,6 +146,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">size</span>,</span>
 <span>  fun.y <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  fun.ymax <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -174,7 +176,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
 <span>  <span class="va">title</span>,</span>
@@ -198,7 +200,7 @@ ymin and ymax. Each case draws a single graphical object."><meta property="og:im
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
 <span>  <span class="va">title</span>,</span>
@@ -265,8 +267,8 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>xlab</dt>
@@ -283,17 +285,23 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 
 
 <dt>geom</dt>
-<dd><p>A character string naming the geom used to make the layer.</p></dd>
+<dd><p>The geometric object to use to display the data, either as a
+<code>ggproto</code> <code>Geom</code> subclass or as a string naming the geom stripped of the
+<code>geom_</code> prefix (e.g. <code>"point"</code> rather than <code>"geom_point"</code>)</p></dd>
 
 
 <dt>stat</dt>
 <dd><p>The statistical transformation to use on the data for this
-layer, as a string.</p></dd>
+layer, either as a <code>ggproto</code> <code>Geom</code> subclass or as a string naming the
+stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather than
+<code>"stat_count"</code>)</p></dd>
 
 
 <dt>position</dt>
-<dd><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></dd>
+<dd><p>Position adjustment, either as a string naming the adjustment
+(e.g. <code>"jitter"</code> to use <code>position_jitter</code>), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.</p></dd>
 
 
 <dt>show.legend</dt>
@@ -316,6 +324,10 @@ display.</p></dd>
 <dd><p>An environment in which to look for variables not found in <code>data</code>.</p></dd>
 
 
+<dt>size</dt>
+<dd><p>size aesthetic for points (<code>gf_pointrange()</code>).</p></dd>
+
+
 <dt>fatten</dt>
 <dd><p>A multiplicative factor used to increase the size of the
 middle bar in <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_crossbar()</a></code> and the middle point in
@@ -323,8 +335,8 @@ middle bar in <code><a href="https://ggplot2.tidyverse.org/reference/geom_linera
 
 
 <dt>fun.ymin, fun.y, fun.ymax</dt>
-<dd><p>Deprecated, use the versions specified above
-instead.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Use the
+versions specified above instead.</p></dd>
 
 
 <dt>fun.args</dt>
@@ -344,7 +356,7 @@ instead.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> gf_linerange() uses </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * a formula with shape ymin + ymax ~ x or y ~ xmin + xmax. </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     * geom:  linerange </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, group, linetype, size</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     * key attributes:  alpha, color, group, linetype, linewidth</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> For more information, try ?gf_linerange</span>
 <span class="r-in"><span></span></span>
@@ -409,16 +421,15 @@ instead.</p></dd>
 <span class="r-plt img"><img src="gf_linerange-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span>, height <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span>; <span class="va">p</span></span></span>
 <span class="r-plt img"><img src="gf_linerange-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="st">"mean_cl_boot"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="st">"mean_cl_boot"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">2</span>, linewidth <span class="op">=</span> <span class="fl">1.3</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_linerange-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># You can supply individual functions to summarise the value at</span></span></span>
 <span class="r-in"><span><span class="co"># each x:</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="st">"median"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">2</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="st">"median"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-plt img"><img src="gf_linerange-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="st">"mean"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">2</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="st">"mean"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
@@ -427,57 +438,47 @@ instead.</p></dd>
 <span class="r-in"><span>  <span class="fu">gf_summary</span><span class="op">(</span>fun.y <span class="op">=</span> <span class="va">mean</span>, fun.ymin <span class="op">=</span> <span class="va">min</span>, fun.ymax <span class="op">=</span> <span class="va">max</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-plt img"><img src="gf_linerange-10.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_summary</span><span class="op">(</span>fun.ymin <span class="op">=</span> <span class="va">min</span>, fun.ymax <span class="op">=</span> <span class="va">max</span>, color <span class="op">=</span> <span class="st">"red"</span>, geom <span class="op">=</span> <span class="st">"linerange"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
-<span class="r-plt img"><img src="gf_linerange-11.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_bar.html">gf_bar</a></span><span class="op">(</span><span class="op">~</span> <span class="va">cut</span>, data <span class="op">=</span> <span class="va">diamonds</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gf_linerange-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="gf_col.html">gf_col</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">cut</span>, data <span class="op">=</span> <span class="va">diamonds</span>, stat <span class="op">=</span> <span class="st">"summary_bin"</span>, fun.y <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
-<span class="r-plt img"><img src="gf_linerange-13.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Don't use gf_lims() to zoom into a summary plot - this throws the</span></span></span>
 <span class="r-in"><span><span class="co"># data away</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">gf_summary</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span>, fun.y <span class="op">=</span> <span class="st">"mean"</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
-<span class="r-plt img"><img src="gf_linerange-14.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="gf_aux.html">gf_lims</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 9 rows containing non-finite values (stat_summary).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 9 rows containing non-finite values (`stat_summary()`).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
-<span class="r-plt img"><img src="gf_linerange-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Instead use coord_cartesian()</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No summary function supplied, defaulting to `mean_se()`</span>
-<span class="r-plt img"><img src="gf_linerange-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># A set of useful summary functions is provided from the Hmisc package.</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span>, width <span class="op">=</span> <span class="fl">0.15</span>, height <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>; <span class="va">p</span></span></span>
-<span class="r-plt img"><img src="gf_linerange-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="va">mean_cl_boot</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="va">mean_cl_boot</span>, color <span class="op">=</span> <span class="st">"red"</span>, geom <span class="op">=</span> <span class="st">"crossbar"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="va">mean_sdl</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">cyl</span>, color <span class="op">=</span> <span class="st">"red"</span>,</span></span>
 <span class="r-in"><span>                   geom <span class="op">=</span> <span class="st">"crossbar"</span>, width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>group <span class="op">=</span> <span class="op">~</span> <span class="va">cyl</span>, color <span class="op">=</span> <span class="st">"red"</span>, geom <span class="op">=</span> <span class="st">"crossbar"</span>, width <span class="op">=</span> <span class="fl">0.3</span>,</span></span>
 <span class="r-in"><span>        fun.data <span class="op">=</span> <span class="va">mean_sdl</span>, fun.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="va">median_hilow</span>, group <span class="op">=</span> <span class="op">~</span> <span class="va">cyl</span>, color <span class="op">=</span> <span class="st">"red"</span>,</span></span>
 <span class="r-in"><span>        geom <span class="op">=</span> <span class="st">"crossbar"</span>, width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-22.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># An example with highly skewed distributions:</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"ggplot2movies"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -504,27 +505,27 @@ instead.</p></dd>
 <span class="r-in"><span>  <span class="va">m2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_trans.html" class="external-link">coord_trans</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">"log10"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggplot2movies</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_summary()`:</span>
-<span class="r-plt img"><img src="gf_linerange-23.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gf_linerange-16.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">gf_linerangeh</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span> <span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span><span class="va">city</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Weather.html" class="external-link">Weather</a></span>,</span></span>
 <span class="r-in"><span>  color <span class="op">=</span> <span class="op">~</span><span class="va">avg_temp</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gf_linerange-24.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_linerange</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span> <span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span><span class="va">city</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu">mosaicData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mosaicData/man/Weather.html" class="external-link">Weather</a></span>,</span></span>
 <span class="r-in"><span>  color <span class="op">=</span> <span class="op">~</span><span class="va">avg_temp</span>,</span></span>
 <span class="r-in"><span>  orientation <span class="op">=</span> <span class="st">'y'</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gf_linerange-25.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">gf_pointrangeh</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span> <span class="va">avg_temp</span> <span class="op">+</span> <span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span><span class="va">city</span>,</span></span>
-<span class="r-in"><span>  data <span class="op">=</span> <span class="va">Weather</span>,</span></span>
-<span class="r-in"><span>  color <span class="op">=</span> <span class="op">~</span><span class="va">avg_temp</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gf_linerange-26.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">gf_pointrangeh</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span> <span class="va">avg_temp</span> <span class="op">+</span> <span class="va">low_temp</span> <span class="op">+</span> <span class="va">high_temp</span> <span class="op">|</span> <span class="op">~</span><span class="va">city</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">Weather</span>,</span></span>
+<span class="r-in"><span>    color <span class="op">=</span> <span class="op">~</span><span class="va">avg_temp</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_c</a></span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -539,7 +540,7 @@ instead.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

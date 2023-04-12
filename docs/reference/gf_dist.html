@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -155,13 +155,15 @@ distribution is processed from the <code>eps</code> to <code>1 - eps</code> quan
 <span class="r-in"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"norm"</span>, fill <span class="op">=</span> <span class="st">"red"</span>, kind <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_dist-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"norm"</span>, color <span class="op">=</span> <span class="st">"red"</span>, kind <span class="op">=</span> <span class="st">"qqstep"</span>, resolution <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"norm"</span>, color <span class="op">=</span> <span class="st">"black"</span>, kind <span class="op">=</span> <span class="st">"qq"</span>, resolution <span class="op">=</span> <span class="fl">25</span>, size <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"norm"</span>, color <span class="op">=</span> <span class="st">"black"</span>, kind <span class="op">=</span> <span class="st">"qq"</span>, resolution <span class="op">=</span> <span class="fl">25</span>, linewidth <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_dist-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># size is used as parameter for binomial distribution</span></span></span>
 <span class="r-in"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>, size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_dist-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># If we want to adjust size argument for plots, we have two choices:</span></span></span>
 <span class="r-in"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>, size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">0.25</span>, plot_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
 <span class="r-plt img"><img src="gf_dist-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_dist-8.png" alt="" width="700" height="433"></span>
@@ -179,7 +181,7 @@ distribution is processed from the <code>eps</code> to <code>1 - eps</code> quan
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

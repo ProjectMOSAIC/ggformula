@@ -20,7 +20,7 @@ control the curve."><meta property="og:image" content="/logo.png"><!-- mathjax -
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@ control the curve.</p>
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  curvature <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  angle <span class="op">=</span> <span class="fl">90</span>,</span>
 <span>  ncp <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -171,8 +171,8 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>curvature</dt>
@@ -195,7 +195,7 @@ for mapping linetype.</p></dd>
 
 
 <dt>arrow</dt>
-<dd><p>specification for arrow heads, as created by arrow().</p></dd>
+<dd><p>specification for arrow heads, as created by <code><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">grid::arrow()</a></code>.</p></dd>
 
 
 <dt>lineend</dt>
@@ -221,12 +221,16 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 
 <dt>stat</dt>
 <dd><p>The statistical transformation to use on the data for this
-layer, as a string.</p></dd>
+layer, either as a <code>ggproto</code> <code>Geom</code> subclass or as a string naming the
+stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather than
+<code>"stat_count"</code>)</p></dd>
 
 
 <dt>position</dt>
-<dd><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></dd>
+<dd><p>Position adjustment, either as a string naming the adjustment
+(e.g. <code>"jitter"</code> to use <code>position_jitter</code>), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.</p></dd>
 
 
 <dt>show.legend</dt>
@@ -308,7 +312,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -19,7 +19,7 @@ using ggplot2 or ggformula."><meta property="og:image" content="/logo.png"><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ using <span class="pkg">ggplot2</span> or <span class="pkg">ggformula</span>.</p
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
 <span>  <span class="va">title</span>,</span>
@@ -182,8 +182,8 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>xlab</dt>
@@ -297,16 +297,16 @@ in another.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">penguins</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">gf_ash</span><span class="op">(</span><span class="op">~</span><span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_ash).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_ash()`).</span>
 <span class="r-plt img"><img src="gf_ash-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_ash</span><span class="op">(</span><span class="op">~</span><span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span>, adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_ash).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_ash()`).</span>
 <span class="r-plt img"><img src="gf_ash-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_ash</span><span class="op">(</span><span class="op">~</span><span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_ash).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_ash()`).</span>
 <span class="r-plt img"><img src="gf_ash-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_ash</span><span class="op">(</span><span class="op">~</span><span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">species</span>, data <span class="op">=</span> <span class="va">penguins</span>, binwidth <span class="op">=</span> <span class="fl">1</span>, adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_ash).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_ash()`).</span>
 <span class="r-plt img"><img src="gf_ash-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>,</span></span>
@@ -316,6 +316,8 @@ in another.</p>
 <span class="r-in"><span>  <span class="fu">geom_ash</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"forestgreen"</span>, adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">geom_ash</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"navy"</span>, adjust <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`stat(density)` was deprecated in ggplot2 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `after_stat(density)` instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
 <span class="r-plt img"><img src="gf_ash-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>
@@ -332,7 +334,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

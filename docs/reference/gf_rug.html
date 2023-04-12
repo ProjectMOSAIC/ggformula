@@ -19,7 +19,7 @@ By default, these functions do not inherit from the formula in the original laye
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@ By default, these functions do not inherit from the formula in the original laye
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
 <span>  <span class="va">title</span>,</span>
@@ -124,7 +124,7 @@ By default, these functions do not inherit from the formula in the original laye
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  height <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
@@ -136,7 +136,7 @@ By default, these functions do not inherit from the formula in the original laye
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  show.help <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  inherit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  inherit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -150,7 +150,7 @@ By default, these functions do not inherit from the formula in the original laye
 <span>  <span class="va">color</span>,</span>
 <span>  <span class="va">group</span>,</span>
 <span>  <span class="va">linetype</span>,</span>
-<span>  <span class="va">size</span>,</span>
+<span>  <span class="va">linewidth</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="va">xlab</span>,</span>
 <span>  <span class="va">ylab</span>,</span>
@@ -162,7 +162,7 @@ By default, these functions do not inherit from the formula in the original laye
 <span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  show.help <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  inherit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  inherit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -224,8 +224,8 @@ bottom, and left.</p></dd>
 for mapping linetype.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>A numeric size or a formula used for mapping size.</p></dd>
+<dt>linewidth</dt>
+<dd><p>A numerical line width or a formula used for mapping linewidth.</p></dd>
 
 
 <dt>xlab</dt>
@@ -247,12 +247,16 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 
 <dt>stat</dt>
 <dd><p>The statistical transformation to use on the data for this
-layer, as a string.</p></dd>
+layer, either as a <code>ggproto</code> <code>Geom</code> subclass or as a string naming the
+stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather than
+<code>"stat_count"</code>)</p></dd>
 
 
 <dt>position</dt>
-<dd><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></dd>
+<dd><p>Position adjustment, either as a string naming the adjustment
+(e.g. <code>"jitter"</code> to use <code>position_jitter</code>), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.</p></dd>
 
 
 <dt>show.legend</dt>
@@ -326,32 +330,32 @@ in another.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">penguins</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (geom_point).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (`geom_point()`).</span>
 <span class="r-plt img"><img src="gf_rug-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># There are several ways to control x- and y-rugs separately</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rugx</span><span class="op">(</span><span class="op">~</span><span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rugy</span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (geom_point).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (`geom_point()`).</span>
 <span class="r-plt img"><img src="gf_rug-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"red"</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"green"</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (geom_point).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (`geom_point()`).</span>
 <span class="r-plt img"><img src="gf_rug-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"red"</span>, sides <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"green"</span>, sides <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (geom_point).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (`geom_point()`).</span>
 <span class="r-plt img"><img src="gf_rug-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># jitter requires both an x and a y, but we can turn off one or the other with sides</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_jitter.html">gf_jitter</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, sides <span class="op">=</span> <span class="st">"b"</span>, position <span class="op">=</span> <span class="st">"jitter"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (geom_point).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing missing values (`geom_point()`).</span>
 <span class="r-plt img"><img src="gf_rug-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># rugs work with some 1-varialbe plots as well.</span></span></span>
@@ -374,13 +378,13 @@ in another.</p>
 <span class="r-in"><span><span class="co"># using jitter with gf_histogram() requires manually setting the y value.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="fl">0</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"green"</span>, sides <span class="op">=</span> <span class="st">"b"</span>, position <span class="op">=</span> <span class="st">"jitter"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_bin).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_bin()`).</span>
 <span class="r-plt img"><img src="gf_rug-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># the choice of y value can affect how the plot looks.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rug</span><span class="op">(</span><span class="fl">0.5</span> <span class="op">~</span> <span class="va">bill_depth_mm</span>, data <span class="op">=</span> <span class="va">penguins</span>, color <span class="op">=</span> <span class="st">"green"</span>, sides <span class="op">=</span> <span class="st">"b"</span>, position <span class="op">=</span> <span class="st">"jitter"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (stat_bin).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 2 rows containing non-finite values (`stat_bin()`).</span>
 <span class="r-plt img"><img src="gf_rug-10.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -396,7 +400,7 @@ in another.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
