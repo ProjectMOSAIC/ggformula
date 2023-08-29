@@ -1173,7 +1173,7 @@ gf_dhistogram <-
       ),
     note =
         "y may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
-    aesthetics = aes(y = after_stat(density))
+    aesthetics = aes(y = ggplot2::after_stat(density))
   )
 
 #' Formula interface to stat_density()
@@ -1220,7 +1220,7 @@ gf_density <-
       # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = after_stat(density))
+    aesthetics = aes(y = ggplot2::after_stat(density))
   )
 
 #' @rdname gf_density
@@ -1237,7 +1237,7 @@ gf_dens <-
       # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = after_stat(density))
+    aesthetics = aes(y = ggplot2::after_stat(density))
   )
 
 #' @rdname gf_density
@@ -1254,7 +1254,7 @@ gf_dens2 <-
       # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
-    aesthetics = aes(y = after_stat(density))
+    aesthetics = aes(y = ggplot2::after_stat(density))
   )
 #' Formula interface to geom_dotplot()
 #'
@@ -1456,7 +1456,7 @@ gf_props <-
         # size = , # remove eventually?
         ylab = "proportion"
       ),
-    aesthetics = aes(y = after_stat(props_by_group(count, DENOM))),
+    aesthetics = aes(y = ggplot2::after_stat(props_by_group(count, DENOM))),
     # pre = { aesthetics[['y']][[2]][[2]][[3]] <- rlang::f_rhs(denom) },
     pre = {
       yaes_expr <- rlang::quo_get_expr(aesthetics[['y']]);
@@ -1478,7 +1478,7 @@ gf_percents <-
       # size = , # remove eventually?
       ylab = "percent"
     ),
-    aesthetics = aes(y = after_stat(percs_by_group(count, DENOM))),
+    aesthetics = aes(y = ggplot2::after_stat(percs_by_group(count, DENOM))),
     pre = {
       yaes_expr <- rlang::quo_get_expr(aesthetics[['y']]);
       yaes_expr[[2]][[3]] <- rlang::f_rhs(denom) ;

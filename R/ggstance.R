@@ -98,7 +98,7 @@ gf_propsh <-
         alpha = , color = , fill = , group = ,
         linetype = , linewidth = , xlab = "proportion"
       ),
-    aesthetics = aes(x = after_stat(props_by_group(count, DENOM))),
+    aesthetics = aes(x = ggplot2::after_stat(props_by_group(count, DENOM))),
     pre = {
       xaes_expr <- rlang::quo_get_expr(aesthetics[['x']]);
       xaes_expr[[2]][[3]] <- rlang::f_rhs(denom) ;
@@ -117,7 +117,7 @@ gf_percentsh <-
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = , xlab = "percent"
     ),
-    aesthetics = aes(x = after_stat(percs_by_group(count, DENOM))),
+    aesthetics = aes(x = ggplot2::after_stat(percs_by_group(count, DENOM))),
     pre = {
       xaes_expr <- rlang::quo_get_expr(aesthetics[['x']]);
       xaes_expr[[2]][[3]] <- rlang::f_rhs(denom) ;
@@ -243,7 +243,7 @@ gf_dhistogramh <-
     extras =
       alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , linewidth = ),
     note = "x may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
-    aesthetics = aes(x = after_stat(density))
+    aesthetics = aes(x = ggplot2::after_stat(density))
   )
 
 #' @rdname gf_linerange
