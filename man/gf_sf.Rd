@@ -117,16 +117,19 @@ in another.
 }
 
 \examples{
-gf_line()
-gf_point(age ~ sex, alpha = 0.25, data = mosaicData::HELPrct)
-gf_point(births ~ date, color = ~wday, data = mosaicData::Births78)
-# lines make the exceptions stand out more prominently
-gf_line(births ~ date, color = ~wday, data = mosaicData::Births78)
-gf_path()
-if (require(dplyr)) {
-  data.frame(t = seq(1, 10 * pi, length.out = 400)) |>
-    mutate(x = t * cos(t), y = t * sin(t)) |>
-    gf_path(y ~ x, color = ~t)
+
+if (requireNamespace('maps', quietly = TRUE)) {
+  library(maps)
+  world1 <- sf::st_as_sf(map('world', plot = FALSE, fill = TRUE))
+  gf_sf(data=world1)
+}
+
+if (requireNamespace('maps', quietly = TRUE)) {
+  world2 <- sf::st_transform(
+    world1,
+    "+proj=laea +y_0=0 +lon_0=155 +lat_0=-90 +ellps=WGS84 +no_defs"
+  )
+  gf_sf(data = world2)
 }
 }
 \seealso{

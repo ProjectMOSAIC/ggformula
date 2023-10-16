@@ -237,7 +237,6 @@ gf_path <-
 #' @param geom Geom for drawing ellipse.  Note: `"polygon"` allows fill; `"path"` does not;
 #'   on the other hand, `"path"` allows `alpha` to be applied to the border, while `"polygon"`
 #'   applies `alpha` only to the interior.
-#' @param
 #' @seealso [ggplot2::stat_ellipse()]
 #' @export
 #' @examples
@@ -2537,6 +2536,21 @@ gf_sina <-
 # #' @seealso [`ggplot2::geom_sf()`]
 #' @export
 #' @examples
+#'
+#' if (requireNamespace('maps', quietly = TRUE)) {
+#'   library(maps)
+#'   world1 <- sf::st_as_sf(map('world', plot = FALSE, fill = TRUE))
+#'   gf_sf(data = world1)
+#' }
+#'
+#' if (requireNamespace('maps', quietly = TRUE)) {
+#'   world2 <- sf::st_transform(
+#'     world1,
+#'     "+proj=laea +y_0=0 +lon_0=155 +lat_0=-90 +ellps=WGS84 +no_defs"
+#'   )
+#'   gf_sf(data = world2)
+#' }
+
 # \dontrun{
 # if (require(maps) && require(maptools) &&
 #   require(sf) && require(rgeos))
@@ -2563,6 +2577,8 @@ gf_sina <-
 #       scale_fill_continuous(name = "population (thousands)", trans = "log10")
 #     )
 # }
+
+
 gf_sf <-
     layer_factory(
       layer_fun = quo(ggplot2::geom_sf),
@@ -2581,8 +2597,6 @@ gf_sf <-
         }
       }
     )
-
-
 #' Create an "empty" plot
 #'
 #' This is primarily useful as a way to start a sequence of piped
