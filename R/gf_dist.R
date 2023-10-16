@@ -26,14 +26,14 @@ NA
 #' @param params a list of parameters for the distribution.
 #' @export
 #' @examples
-#' gf_dhistogram(~ rnorm(100), bins = 20) %>%
+#' gf_dhistogram(~ rnorm(100), bins = 20) |>
 #'   gf_dist("norm", color = "red")
 #'
 #' # shading tails -- but see pdist() for this
 #' gf_dist("norm", fill = ~ (abs(x) <= 2), geom = "area")
 #' gf_dist("norm", color = "red", kind = "cdf")
 #' gf_dist("norm", fill = "red", kind = "histogram")
-#' gf_dist("norm", color = "red", kind = "qqstep", resolution = 25) %>%
+#' gf_dist("norm", color = "red", kind = "qqstep", resolution = 25) |>
 #'   gf_dist("norm", color = "black", kind = "qq", resolution = 25, linewidth = 2, alpha = 0.5)
 #' # size is used as parameter for binomial distribution
 #' gf_dist("binom", size = 20, prob = 0.25)
@@ -96,8 +96,8 @@ gf_dist <-
       dparams <- c(unnamed(params), named_among(params, names(formals(ddist))))
       pparams <- c(unnamed(params), named_among(params, names(formals(pdist))))
       qparams <- c(unnamed(params), named_among(params, names(formals(qdist))))
-      dots[names(dparams) %>%
-             union(names(pparams)) %>%
+      dots[names(dparams) |>
+             union(names(pparams)) |>
              union(names(qparams))] <- NULL
     } else {
       dparams <- params
@@ -110,6 +110,9 @@ gf_dist <-
     #
     if ("object" %in% names(dots)) dots[["object"]] <- NULL
     if ("dist" %in% names(dots)) dots[["dist"]] <- NULL
+    # remove size for lines now that linewidth is used instead.
+    dots_for_lines <- dots
+    dots_for_lines[['size']] <- NULL
 
     # attempting to make evaluation of these arguments more intuitive
     env <- parent.frame()
@@ -188,7 +191,7 @@ gf_dist <-
                               rlang::set_env(density + 0 ~ x + x, parent.frame()),
                               data = data.frame(density = ydata, x = fewer_values)
                          ),
-                         dots
+                         dots_for_lines
                        )
                      ),
                      rlang::set_env(y ~ x, parent.frame()),
@@ -204,7 +207,7 @@ gf_dist <-
                    list(object, rlang::set_env(cumulative_density ~ x, parent.frame()),
                         data = data.frame(cumulative_density = ydata, x = cdfx)
                    ),
-                   dots
+                   dots_for_lines
                  )
                ),
              qq =
@@ -224,7 +227,7 @@ gf_dist <-
                    list(object, rlang::set_env(~x, parent.frame()),
                         data = data.frame(x = sample_values)
                    ),
-                   dots
+                   dots_for_lines
                  )
                ),
              histogram =
@@ -234,7 +237,7 @@ gf_dist <-
                    list(object, rlang::set_env( ~ x, parent.frame()),
                         data = data.frame(x = sample_values)
                    ),
-                   dots
+                   dots_for_lines
                  )
                )
       )
@@ -247,7 +250,7 @@ gf_dist <-
                    list(object, rlang::set_env(density ~ x, parent.frame()),
                         data = data.frame(density = ydata, x = fewer_values)
                    ),
-                   dots
+                   dots_for_lines
                  )
                ),
              cdf =
@@ -257,7 +260,7 @@ gf_dist <-
                    list(object, rlang::set_env(cumulative_density ~ x, parent.frame()),
                         data = data.frame(cumulative_density = ydata, x = cdfx)
                    ),
-                   dots
+                   dots_for_lines
                  )
                ),
              qq =
@@ -277,7 +280,7 @@ gf_dist <-
                    list(object, rlang::set_env(~x, parent.frame()),
                         data = data.frame(x = sample_values)
                    ),
-                   dots
+                   dots_for_lines
                  )
                ),
              histogram =
@@ -287,7 +290,7 @@ gf_dist <-
                    list(object, rlang::set_env( ~ x, parent.frame()),
                         data = data.frame(x = sample_values)
                    ),
-                   dots
+                   dots_for_lines
                  )
                )
       )
