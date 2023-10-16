@@ -346,7 +346,7 @@ add_aes <- function(mapping, new, envir = parent.frame()) {
       }
     }
   }
-  new <- do.call(aes, new) %>% aes_env(envir)
+  new <- do.call(aes, new) |> aes_env(envir)
   res <- modifyList(mapping, new)
   res
 }
@@ -775,7 +775,11 @@ gf_ingredients <-
           if (is.null(fs[["condition"]])) {
             NULL
           } else {
-            do.call(fs[["facet_type"]], list(facets = fs[["condition"]]))
+            switch(
+              fs[["facet_type"]],
+              "facet_wrap" =  do.call(fs[["facet_type"]], list(facets = fs[["condition"]])),
+              "facet_grid" =  do.call(fs[["facet_type"]], list(rows = fs[["condition"]]))
+            )
           },
         params = modifyList(set_list, extras)
       )
@@ -929,11 +933,11 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     return(x)
   }
 
-  parts <- formula_slots(formula) %>%
-    rapply(get_leaf, how = "replace") %>%
+  parts <- formula_slots(formula) |>
+    rapply(get_leaf, how = "replace") |>
     unlist()
-  aes_names <- formula_slots(aes_form) %>%
-    rapply(get_leaf, how = "replace") %>%
+  aes_names <- formula_slots(aes_form) |>
+    rapply(get_leaf, how = "replace") |>
     unlist()
 
   # trim leading/trailing blanks and turn `some name` into "`some name`"
