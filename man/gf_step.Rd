@@ -152,8 +152,8 @@ if (require(survival) && require(broom)) {
   surv_df <- tidy(surv_fit)
   head(surv_df)
   # now create a plot
-  surv_df \%>\%
-    gf_step(estimate ~ time) \%>\%
+  surv_df |>
+    gf_step(estimate ~ time) |>
     gf_ribbon(conf.low + conf.high ~ time, alpha = 0.2)
 }
 }

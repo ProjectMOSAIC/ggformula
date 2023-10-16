@@ -247,9 +247,9 @@ in another.
 gf_jitter(avg_drinks ~ age,
   alpha = 0.2, data = mosaicData::HELPrct,
   width = 0.4, height = 0.4
-) \%>\%
+) |>
   gf_density_2d(avg_drinks ~ age, data = mosaicData::HELPrct)
-gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) \%>\%
+gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) |>
   gf_jitter(avg_drinks ~ age,
     alpha = 0.3, data = mosaicData::HELPrct,
     width = 0.4, height = 0.4,
@@ -258,9 +258,9 @@ gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend =
 gf_jitter(avg_drinks ~ age,
   alpha = 0.2, data = mosaicData::HELPrct,
   width = 0.4, height = 0.4
-) \%>\%
+) |>
   gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct)
-gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) \%>\%
+gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) |>
   gf_jitter(avg_drinks ~ age,
     alpha = 0.4, data = mosaicData::HELPrct,
     width = 0.4, height = 0.4,

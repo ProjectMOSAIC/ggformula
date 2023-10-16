@@ -28,14 +28,14 @@ chaining syntax.
 }
 \details{
 \code{gf_refine()} provides a mechanism to replace \code{+} with the
-chaining operator from \pkg{magrittr}.
+chaining/pipe operator \verb{|>}.
 Each of its \verb{\\dots} arguments is added in turn to the
 base plot in \code{object}.  The other functions are thin wrappers around
 specific \code{ggplot2} refinement functions and pass their \verb{\\dots}
 arguments through to the similarly named \code{ggplot2} functions.
 }
 \examples{
-gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) \%>\%
+gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) |>
   gf_labs(
     title = "Center for Epidemiologic Studies Depression measure",
     subtitle = "(at baseline)",
@@ -43,8 +43,8 @@ gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) 
     x = "CESD score",
     y = "",
     caption = "Source: HELPrct"
-  ) \%>\%
-  gf_theme(theme_classic()) \%>\%
+  ) |>
+  gf_theme(theme_classic()) |>
   gf_theme(
     axis.text.y = element_blank(),
     legend.position = "top",
@@ -53,16 +53,16 @@ gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) 
   )
 
 gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5)
-gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5) \%>\%
+gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5) |>
   gf_lims(x = c(65, NA), y = c(3, NA))
 
 # modify scales using gf_refine()
 data(penguins, package = "palmerpenguins")
-gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) \%>\%
-  gf_refine(scale_color_brewer(type = "qual", palette = 3)) \%>\%
+gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) |>
+  gf_refine(scale_color_brewer(type = "qual", palette = 3)) |>
   gf_theme(theme_bw())
 
-gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) \%>\%
-  gf_refine(scale_color_manual(values = c("red", "navy", "limegreen"))) \%>\%
+gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) |>
+  gf_refine(scale_color_manual(values = c("red", "navy", "limegreen"))) |>
   gf_theme(theme_bw())
 }

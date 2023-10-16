@@ -151,7 +151,7 @@ stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
 \code{"stat_count"})}
 
 \item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function. Cannot be jointy specified with
+a call to a position adjustment function. Cannot be jointly specified with
 \code{nudge_x} or \code{nudge_y}.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
@@ -214,8 +214,8 @@ gf_text(bill_length_mm ~ bill_depth_mm,
   data = penguins,
   label = ~species, color = ~species, size = 2, angle = 30
 )
-penguins \%>\%
-gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) \%>\%
+penguins |>
+gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) |>
   gf_text(bill_length_mm ~ bill_depth_mm,
     label = ~species, color = ~species,
     size = 2, angle = 0, hjust = 0, nudge_x = 0.1, nudge_y = 0.1
@@ -223,10 +223,10 @@ gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) \%>\%
 if (require(dplyr)) {
   data(penguins, package = "palmerpenguins")
   penguins_means <-
-    penguins \%>\%
-    group_by(species) \%>\%
+    penguins |>
+    group_by(species) |>
     summarise(bill_length_mm = mean(bill_length_mm), bill_depth_mm = mean(bill_depth_mm))
-  gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) \%>\%
+  gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) |>
     gf_label(bill_length_mm ~ bill_depth_mm,
       data = penguins_means,
       label = ~species, color = ~species, size = 2, alpha = 0.7

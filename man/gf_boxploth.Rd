@@ -215,15 +215,15 @@ gf_boxploth(substance ~ age, data = mosaicData::HELPrct, color = ~sex, outlier.c
 gf_boxploth(substance ~ age, data = mosaicData::HELPrct, color = ~sex, coef = 2)
 # Note: height for boxplots is full width of box.
 #   For jittering, it is the half-height.
-gf_boxploth(substance ~ age | sex, data = mosaicData::HELPrct, coef = 5, height = 0.4) \%>\%
+gf_boxploth(substance ~ age | sex, data = mosaicData::HELPrct, coef = 5, height = 0.4) |>
   gf_jitter(height = 0.2, alpha = 0.3)
 
 # combining boxplots and histograms
-gf_histogram(~eruptions, data = faithful) \%>\%
+gf_histogram(~eruptions, data = faithful) |>
   gf_boxploth(0 ~ eruptions, alpha = 0, width = 2)
-gf_histogram(~eruptions, data = faithful) \%>\%
+gf_histogram(~eruptions, data = faithful) |>
   gf_boxploth(-2 ~ eruptions, alpha = 0, width = 2)
-gf_histogram(~eruptions, data = faithful) \%>\%
+gf_histogram(~eruptions, data = faithful) |>
   gf_boxploth(32 ~ eruptions, alpha = 0, width = 2)
 }
 \seealso{

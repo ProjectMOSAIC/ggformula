@@ -276,73 +276,73 @@ faceted plots. As an alternative, you can set \code{stat = "density"} to use
 data.frame(
   x = rep(1:5, 3), y = c(rep(0, 5), rep(1, 5), rep(3, 5)),
   height = c(0, 1, 3, 4, 0, 1, 2, 3, 5, 4, 0, 5, 4, 4, 1)
-) \%>\%
+) |>
   gf_ridgeline(y ~ x, height = ~ height, group = ~y, fill = "lightblue", alpha = 0.7)
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(cut ~ price,
-    scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(clarity ~ price | cut,
-    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
 \dontrun{
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(clarity ~ price | cut, height = ~after_stat(density), stat = "density",
-    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
 }
 \dontrun{
-diamonds \%>\%
-  gf_density_ridges2(cut ~ price, scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+diamonds |>
+  gf_density_ridges2(cut ~ price, scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
 }
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(cut ~ price,
-    scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ cut, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(clarity ~ price | cut,
-    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
 \dontrun{
-diamonds \%>\%
+diamonds |>
   gf_density_ridges(clarity ~ price | cut, height = ~ after_stat(density), stat = "density",
-    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) \%>\%
-  gf_theme(theme_ridges()) \%>\%
+    scale = 2, fill = ~ clarity, alpha = 0.6, show.legend = FALSE) |>
+  gf_theme(theme_ridges()) |>
   gf_refine(
     scale_y_discrete(expand = c(0.01, 0)),
     scale_x_continuous(expand = c(0.01, 0))
   )
 }
 \dontrun{
-mosaicData::Weather \%>\%
+mosaicData::Weather |>
   gf_density_ridges_gradient(month ~ high_temp | city ~ ., fill = ~stat(x),
-    group = ~ month, show.legend = FALSE, rel_min_height = 0.02) \%>\%
+    group = ~ month, show.legend = FALSE, rel_min_height = 0.02) |>
   gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
 }
 }

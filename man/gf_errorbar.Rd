@@ -108,8 +108,8 @@ of \code{ymax}.
 }
 \examples{
 if (require(mosaicData) && require(dplyr)) {
-  HELP2 <- HELPrct \%>\%
-    group_by(substance, sex) \%>\%
+  HELP2 <- HELPrct |>
+    group_by(substance, sex) |>
     summarise(
       mean.age = mean(age),
       median.age = median(age),
@@ -121,19 +121,19 @@ if (require(mosaicData) && require(dplyr)) {
     )
 
   gf_jitter(age ~ substance, data = HELPrct,
-      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2,
-      inherit = FALSE) \%>\%
+      inherit = FALSE) |>
     gf_facet_grid(~sex)
 
   gf_jitter(age ~ substance, data = HELPrct,
-      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
-    gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) \%>\%
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+    gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
     gf_facet_grid(~sex)
   gf_jitter(age ~ substance, data = HELPrct,
-      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
-    gf_boxplot(age ~ substance, data = HELPrct, color = "red") \%>\%
-    gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2) \%>\%
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+    gf_boxplot(age ~ substance, data = HELPrct, color = "red") |>
+    gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2) |>
     gf_facet_grid(~sex)
 }
 }

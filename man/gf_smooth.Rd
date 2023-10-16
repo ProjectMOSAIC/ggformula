@@ -194,7 +194,7 @@ gf_smooth(births ~ date,
 gf_lm(length ~ width,
   data = mosaicData::KidsFeet,
   color = ~biggerfoot, alpha = 0.2
-) \%>\%
+) |>
   gf_point()
 gf_lm(length ~ width,
   data = mosaicData::KidsFeet,
@@ -204,33 +204,33 @@ gf_point()
 gf_lm(length ~ width,
   color = ~sex, data = mosaicData::KidsFeet,
   formula = y ~ poly(x, 2), linetype = "dashed"
-) \%>\%
+) |>
   gf_point()
 gf_lm(length ~ width,
   color = ~sex, data = mosaicData::KidsFeet,
   formula = log(y) ~ x, backtrans = exp
-) \%>\%
+) |>
   gf_point()
 
 gf_lm(hwy ~ displ,
   data = mpg,
   formula = log(y) ~ poly(x, 3), backtrans = exp,
   interval = "prediction", fill = "skyblue"
-) \%>\%
+) |>
   gf_lm(
     formula = log(y) ~ poly(x, 3), backtrans = exp,
     interval = "confidence", color = "red"
-  ) \%>\%
+  ) |>
   gf_point()
 
   clotting <- data.frame(
    u = c(5,10,15,20,30,40,60,80,100),
    lot1 = c(118,58,42,35,27,25,21,19,18),
    lot2 = c(69,35,26,21,18,16,13,12,12))
-  gf_point(lot1 ~ u, data = clotting) \%>\%
+  gf_point(lot1 ~ u, data = clotting) |>
     gf_smooth(formula = y ~ log(x), method = "glm",
               method.args = list(family = Gamma))
-  gf_point(lot2 ~ u, data = clotting) \%>\%
+  gf_point(lot2 ~ u, data = clotting) |>
     gf_smooth(formula = y ~ log(x), color = "red", method = "glm",
               method.args = list(family = Gamma))
 

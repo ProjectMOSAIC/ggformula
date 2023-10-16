@@ -137,7 +137,7 @@ in another.
 }
 
 \examples{
-gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) \%>\%
+gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) |>
   gf_refine(scale_fill_viridis_c(begin = 0.1, end = 0.9))
 }
 \seealso{

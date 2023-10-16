@@ -163,8 +163,8 @@ gf_point(births ~ date, color = ~wday, data = mosaicData::Births78)
 gf_line(births ~ date, color = ~wday, data = mosaicData::Births78)
 gf_path()
 if (require(dplyr)) {
-  data.frame(t = seq(1, 10 * pi, length.out = 400)) \%>\%
-    mutate(x = t * cos(t), y = t * sin(t)) \%>\%
+  data.frame(t = seq(1, 10 * pi, length.out = 400)) |>
+    mutate(x = t * cos(t), y = t * sin(t)) |>
     gf_path(y ~ x, color = ~t)
 }
 }

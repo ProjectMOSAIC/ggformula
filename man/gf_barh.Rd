@@ -166,7 +166,7 @@ gf_percents(~substance, data = mosaicData::HELPrct, fill = ~sex,
 
 if (require(scales)) {
   gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex,
-    position = position_dodge()) \%>\%
+    position = position_dodge()) |>
       gf_refine(scale_y_continuous(labels = scales::percent))
 }
 }

@@ -124,13 +124,13 @@ gf_point((10 * ((1:25) \%/\% 10)) ~ ((1:25) \%\% 10),
 )
 gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars)
 # faceting -- two ways
-gf_point(mpg ~ hp, data = mtcars) \%>\%
+gf_point(mpg ~ hp, data = mtcars) |>
   gf_facet_wrap(~am)
 gf_point(mpg ~ hp | am, group = ~cyl, data = mtcars)
 gf_point(mpg ~ hp | ~am, group = ~cyl, data = mtcars)
 gf_point(mpg ~ hp | am ~ ., group = ~cyl, data = mtcars)
 # Chaining in the data
-mtcars \%>\% gf_point(mpg ~ wt)
+mtcars |> gf_point(mpg ~ wt)
 
 # short cuts for main labels in the plot
 gf_point(births ~ date,

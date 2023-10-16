@@ -185,7 +185,7 @@ gf_boxplot(age ~ substance,
 gf_boxplot(age ~ substance | sex,
   data = mosaicData::HELPrct,
   coef = 5, width = 0.4
-) \%>\%
+) |>
   gf_jitter(width = 0.2, alpha = 0.3)
 # move boxplots away a bit by adjusting dodge
 gf_boxplot(age ~ substance,

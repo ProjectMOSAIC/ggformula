@@ -43,8 +43,8 @@ gf_qqline(
   title,
   subtitle,
   caption,
-  geom = "line",
-  stat = "qqline",
+  geom = "path",
+  stat = "qq_line",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -179,9 +179,9 @@ in another.
 \examples{
 gf_qq(~ rnorm(100))
 data(penguins, package = "palmerpenguins")
-gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline()
-gf_qq(~ bill_length_mm | species, data = penguins) \%>\% gf_qqline(tail = 0.10)
-gf_qq(~bill_length_mm, color = ~species, data = penguins) \%>\%
+gf_qq(~ bill_length_mm | species, data = penguins) |> gf_qqline()
+gf_qq(~ bill_length_mm | species, data = penguins) |> gf_qqline(tail = 0.10)
+gf_qq(~bill_length_mm, color = ~species, data = penguins) |>
   gf_qqstep(~bill_length_mm, color = ~species, data = penguins)
 }
 \seealso{

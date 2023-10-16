@@ -244,7 +244,7 @@ gf_histogram(~x, bins = 30)
 gf_dhistogram(~x, bins = 30)
 gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black")
 gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black")
-gf_dhistogram(~x, bins = 30) \%>\%
+gf_dhistogram(~x, bins = 30) |>
   gf_fitdistr(dist = "dnorm") # see help for gf_fitdistr() for more info.
 
 gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)

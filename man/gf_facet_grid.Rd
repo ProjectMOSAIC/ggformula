@@ -21,18 +21,18 @@ These functions provide more control over faceting than is possible using
 the formula interface.
 }
 \examples{
-gf_histogram(~avg_drinks, data = mosaicData::HELPrct) \%>\%
+gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
   gf_facet_grid(~substance)
-gf_histogram(~avg_drinks, data = mosaicData::HELPrct) \%>\%
+gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
   gf_facet_grid(~substance, scales = "free")
-gf_histogram(~avg_drinks, data = mosaicData::HELPrct) \%>\%
+gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
   gf_facet_grid(~substance, scales = "free", space = "free")
-gf_line(births ~ date, data = mosaicData::Births, color = ~wday) \%>\%
-  gf_facet_wrap(~year, scales = "free_x", nrow = 5) \%>\%
+gf_line(births ~ date, data = mosaicData::Births, color = ~wday) |>
+  gf_facet_wrap(~year, scales = "free_x", nrow = 5) |>
   gf_theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(), axis.ticks.x = element_blank()
-  ) \%>\%
+  ) |>
   gf_labs(color = "Day")
 }
 \seealso{

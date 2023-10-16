@@ -121,10 +121,10 @@ in another.
 }
 
 \examples{
-gf_fitdistr(~length, data = mosaicData::KidsFeet, inherit = FALSE) \%>\%
+gf_fitdistr(~length, data = mosaicData::KidsFeet, inherit = FALSE) |>
   gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25)
 
-gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25) \%>\%
+gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25) |>
   gf_fitdistr()
 
 set.seed(12345)
@@ -132,13 +132,13 @@ Dat <- data.frame(
   f = rf(500, df1 = 3, df2 = 47),
   g = rgamma(500, 3, 10)
 )
-gf_dhistogram(~g, data = Dat) \%>\%
+gf_dhistogram(~g, data = Dat) |>
   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
 
-gf_dhistogram(~g, data = Dat) \%>\%
+gf_dhistogram(~g, data = Dat) |>
   gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 
-gf_dhistogram(~f, data = Dat) \%>\%
+gf_dhistogram(~f, data = Dat) |>
   gf_fitdistr(dist = "df", start = list(df1 = 2, df2 = 50))
 
 # fitted parameters are default argument values

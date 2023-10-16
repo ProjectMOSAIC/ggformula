@@ -96,19 +96,19 @@ of \code{ymax}.
 \examples{
 gf_ribbon()
 
-gf_ribbon(low_temp + high_temp ~ date, data = mosaicData::Weather, fill = ~city, alpha = 0.4) \%>\%
+gf_ribbon(low_temp + high_temp ~ date, data = mosaicData::Weather, fill = ~city, alpha = 0.4) |>
   gf_theme(theme = theme_minimal())
 gf_linerange(
   low_temp + high_temp ~ date | city ~ .,
   color = ~high_temp,
   data = mosaicData::Weather
-) \%>\%
+) |>
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 # Chaining in the data
 \dontrun{
-mosaicData::Weather \%>\%
-  gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) \%>\%
+mosaicData::Weather |>
+  gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) |>
   gf_facet_grid(city ~ .)
 }
 }

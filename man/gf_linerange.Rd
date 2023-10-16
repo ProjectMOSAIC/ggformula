@@ -229,25 +229,25 @@ gf_linerange()
 gf_ribbon(low_temp + high_temp ~ date,
   data = mosaicData::Weather,
   fill = ~city, alpha = 0.4
-) \%>\%
+) |>
   gf_theme(theme = theme_minimal())
 gf_linerange(
   low_temp + high_temp ~ date | city ~ .,
   data = mosaicData::Weather,
   color = ~ ((low_temp + high_temp) / 2)
-) \%>\%
-  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) \%>\%
+) |>
+  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) |>
   gf_labs(color = "mid-temp")
 
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 
 # Chaining in the data
-mosaicData::Weather \%>\%
-  gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) \%>\%
+mosaicData::Weather |>
+  gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) |>
   gf_facet_grid(city ~ .)
 if (require(mosaicData) && require(dplyr)) {
-  HELP2 <- HELPrct \%>\%
-    group_by(substance, sex) \%>\%
+  HELP2 <- HELPrct |>
+    group_by(substance, sex) |>
     summarise(
       age = NA,
       mean.age = mean(age),
@@ -260,36 +260,36 @@ if (require(mosaicData) && require(dplyr)) {
     )
 
   gf_jitter(age ~ substance, data = HELPrct,
-      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
-    gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) \%>\%
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+    gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) |>
     gf_facet_grid(~sex)
 
   gf_jitter(age ~ substance, data = HELPrct,
-    alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
-    gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) \%>\%
+    alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+    gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
     gf_facet_grid(~sex)
 
   # width is defined differently for gf_boxplot() and gf_jitter()
   #   * for gf_boxplot() it is the full width of the box.
   #   * for gf_jitter() it is half that -- the maximum amount added or subtracted.
-  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) \%>\%
+  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) |>
     gf_jitter(width = 0.4, height = 0, color = "skyblue", alpha = 0.5)
 
-  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) \%>\%
+  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) |>
     gf_jitter(width = 0.2, height = 0, color = "skyblue", alpha = 0.5)
 }
 p <- gf_jitter(mpg ~ cyl, data = mtcars, height = 0, width = 0.15); p
-p \%>\% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
+p |> gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
 # You can supply individual functions to summarise the value at
 # each x:
-p \%>\% gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
-p \%>\%
-  gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") \%>\%
+p |> gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
+p |>
+  gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") |>
   gf_summary(fun.y = mean, geom = "line")
-p \%>\%
+p |>
   gf_summary(fun.y = mean, fun.ymin = min, fun.ymax = max, color = "red")
 \dontrun{
-  p \%>\%
+  p |>
   gf_summary(fun.ymin = min, fun.ymax = max, color = "red", geom = "linerange")
 }
 
@@ -300,19 +300,19 @@ gf_col(price ~ cut, data = diamonds, stat = "summary_bin", fun.y = "mean")
 # data away
 p <- gf_summary(mpg ~ cyl, data = mtcars, fun.y = "mean", geom = "point")
 p
-p \%>\% gf_lims(y = c(15, 30))
+p |> gf_lims(y = c(15, 30))
 # Instead use coord_cartesian()
-p \%>\% gf_refine(coord_cartesian(ylim = c(15, 30)))
+p |> gf_refine(coord_cartesian(ylim = c(15, 30)))
 # A set of useful summary functions is provided from the Hmisc package.
 \dontrun{
 p <- gf_jitter(mpg ~ cyl, data = mtcars, width = 0.15, height = 0); p
-p \%>\% gf_summary(fun.data = mean_cl_boot, color = "red")
-p \%>\% gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
-p \%>\% gf_summary(fun.data = mean_sdl, group = ~ cyl, color = "red",
+p |> gf_summary(fun.data = mean_cl_boot, color = "red")
+p |> gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
+p |> gf_summary(fun.data = mean_sdl, group = ~ cyl, color = "red",
                    geom = "crossbar", width = 0.3)
-p \%>\% gf_summary(group = ~ cyl, color = "red", geom = "crossbar", width = 0.3,
+p |> gf_summary(group = ~ cyl, color = "red", geom = "crossbar", width = 0.3,
         fun.data = mean_sdl, fun.args = list(mult = 1))
-p \%>\% gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
+p |> gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
         geom = "crossbar", width = 0.3)
 }
 
@@ -321,9 +321,9 @@ if (require("ggplot2movies")) {
   set.seed(596)
   Mov <- movies[sample(nrow(movies), 1000), ]
   m2 <- gf_jitter(votes ~ factor(round(rating)), data = Mov, width = 0.15, height = 0, alpha = 0.3)
-  m2 <- m2 \%>\%
+  m2 <- m2 |>
     gf_summary(fun.data = "mean_cl_boot", geom = "crossbar",
-               colour = "red", width = 0.3) \%>\%
+               colour = "red", width = 0.3) |>
     gf_labs(x = "rating")
   m2
   # Notice how the overplotting skews off visual perception of the mean
@@ -333,31 +333,31 @@ if (require("ggplot2movies")) {
 
   # Transforming the scale means the data are transformed
   # first, after which statistics are computed:
-  m2 \%>\% gf_refine(scale_y_log10())
+  m2 |> gf_refine(scale_y_log10())
   # Transforming the coordinate system occurs after the
   # statistic has been computed. This means we're calculating the summary on the raw data
   # and stretching the geoms onto the log scale.  Compare the widths of the
   # standard errors.
-  m2 \%>\% gf_refine(coord_trans(y="log10"))
+  m2 |> gf_refine(coord_trans(y="log10"))
 }
 \dontrun{
 gf_linerangeh(date ~ low_temp + high_temp | ~city,
   data = mosaicData::Weather,
   color = ~avg_temp
-  ) \%>\%
+  ) |>
   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 gf_linerange(date ~ low_temp + high_temp | ~city,
   data = mosaicData::Weather,
   color = ~avg_temp,
   orientation = 'y'
-  ) \%>\%
+  ) |>
   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 }
 \dontrun{
   gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
     data = Weather,
     color = ~avg_temp
-    ) \%>\%
+    ) |>
     gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 }
 }

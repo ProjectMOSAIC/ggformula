@@ -5,9 +5,9 @@
 \alias{gf_fun}
 \title{Layers displaying graphs of functions}
 \usage{
-gf_function(object = NULL, fun, xlim, ..., inherit = FALSE)
+gf_function(object = NULL, fun, data = NULL, ..., inherit = FALSE)
 
-gf_fun(object = NULL, formula, xlim, ..., inherit = FALSE)
+gf_fun(object = NULL, formula, data = NULL, ..., inherit = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -16,10 +16,12 @@ See details and examples.}
 
 \item{fun}{A function.}
 
-\item{xlim}{A numeric vector providing the extent of the x-axis when creating
-the first layer in a plot.  Ignored when creating a subsequent layer.}
+\item{data}{A data frame with the variables to be plotted.}
 
-\item{...}{Other arguments such as \code{position="dodge"}.}
+\item{...}{Additional arguments passed as \code{params} to \code{layer()}. This includes \code{xlim},
+a numeric vector providing the extent of
+the x-axis values used to evaluate \code{fun} for plotting. By default, \code{xlim} is not used for
+other layers.}
 
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
@@ -31,7 +33,7 @@ interfaces for creating a layer that contains the graph of a function.
 }
 \examples{
 gf_function(fun = sqrt, xlim = c(0, 10))
-gf_dhistogram(~age, data = mosaicData::HELPrct, binwidth = 3, alpha = 0.6) \%>\%
+gf_dhistogram(~age, data = mosaicData::HELPrct, binwidth = 3, alpha = 0.6) |>
   gf_function(
     fun = stats::dnorm,
     args = list(mean = mean(mosaicData::HELPrct$age), sd = sd(mosaicData::HELPrct$age)),
@@ -40,6 +42,6 @@ gf_dhistogram(~age, data = mosaicData::HELPrct, binwidth = 3, alpha = 0.6) \%>\%
 gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0, 2))
 # Utility bill is quadratic in month?
 f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
-gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) \%>\%
+gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) |>
   gf_fun(f(m) ~ m, color = "red")
 }

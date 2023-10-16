@@ -20,7 +20,7 @@ expss or any other system that stores a label in the \code{label} attribute of a
 }
 \examples{
 KF <-
-  mosaicData::KidsFeet \%>\%
+  mosaicData::KidsFeet |>
   set_variable_labels(
       length      = 'foot length (cm)',
       width       = 'foot width (cm)',
@@ -29,7 +29,7 @@ KF <-
       biggerfoot  = 'bigger foot',
       domhand     = 'dominant hand'
   )
-KF \%>\%
+KF |>
   gf_point(length ~ width, color = ~ domhand)
 get_variable_labels(KF)
 }

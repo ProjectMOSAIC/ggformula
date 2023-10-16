@@ -117,31 +117,16 @@ in another.
 }
 
 \examples{
-\dontrun{
-if (require(maps) && require(maptools) &&
-  require(sf) && require(rgeos))
-  US <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
-  gf_sf(fill = ~ factor(nchar(ID)), data = US) \%>\%
-    gf_refine(coord_sf())
-
-  # We can specify shape data and external data separately using geometry
-  MI <- sf::st_as_sf(maps::map("county", "michigan", plot = FALSE, fill = TRUE))
-  MIgeom <- MI$geom
-  gf_sf(
-    fill = ~ log10(population), data = MIpop \%>\% dplyr::arrange(county),
-    geometry = ~MIgeom, color = "white"
-  ) \%>\%
-    gf_refine(coord_sf(), theme_bw())
-
-  # alternatively we can merge external data and shape data into one data frame.
-  MI \%>\%
-    dplyr::mutate(county = gsub("michigan,", "", ID)) \%>\%
-    dplyr::left_join(MIpop \%>\% dplyr::mutate(county = tolower(county))) \%>\%
-    gf_sf(fill = ~ population / 1e3) \%>\%
-    gf_refine(
-      coord_sf(), theme_bw(),
-      scale_fill_continuous(name = "population (thousands)", trans = "log10")
-    )
+gf_line()
+gf_point(age ~ sex, alpha = 0.25, data = mosaicData::HELPrct)
+gf_point(births ~ date, color = ~wday, data = mosaicData::Births78)
+# lines make the exceptions stand out more prominently
+gf_line(births ~ date, color = ~wday, data = mosaicData::Births78)
+gf_path()
+if (require(dplyr)) {
+  data.frame(t = seq(1, 10 * pi, length.out = 400)) |>
+    mutate(x = t * cos(t), y = t * sin(t)) |>
+    gf_path(y ~ x, color = ~t)
 }
 }
 \seealso{

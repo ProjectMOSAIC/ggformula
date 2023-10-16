@@ -396,7 +396,7 @@ if (require(scales)) {
     data = mosaicData::HELPrct, fill = ~sex,
     position = position_dodge(),
     denom = ~ x,
-  ) \%>\%
+  ) |>
     gf_refine(scale_y_continuous(labels = scales::percent))
 }
 }

@@ -217,9 +217,9 @@ gf_dens2(~bill_length_mm, color = ~species, fill = ~species, data = penguins)
 gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 # Chaining in the data
 data(penguins, package = "palmerpenguins")
-penguins \%>\% gf_dens(~bill_length_mm, color = ~species)
+penguins |> gf_dens(~bill_length_mm, color = ~species)
 # horizontal orientation
-penguins \%>\% gf_dens(bill_length_mm ~ ., color = ~species)
+penguins |> gf_dens(bill_length_mm ~ ., color = ~species)
 }
 \seealso{
 \code{\link[=gf_ash]{gf_ash()}}, \code{\link[ggplot2:geom_density]{ggplot2::geom_density()}}

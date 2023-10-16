@@ -120,14 +120,14 @@ Plot functions of two variables as tile and/or contour plots.
 }
 \examples{
 theme_set(theme_bw())
-gf_function_2d(fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) \%>\%
+gf_function_2d(fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) |>
   gf_refine(scale_fill_viridis_c())
 gf_function_2d(fun = function(x, y) x + y, contour = FALSE)
-gf_function_tile(fun = function(x, y) x * y) \%>\%
-  gf_function_contour(fun = function(x, y) x * y, color = "white") \%>\%
+gf_function_tile(fun = function(x, y) x * y) |>
+  gf_function_contour(fun = function(x, y) x * y, color = "white") |>
   gf_refine(scale_fill_viridis_c())
-gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) \%>\%
-  gf_fun_contour(x * y ~ x + y, color = "white") \%>\%
-  gf_refine(scale_fill_viridis_c()) \%>\%
+gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) |>
+  gf_fun_contour(x * y ~ x + y, color = "white") |>
+  gf_refine(scale_fill_viridis_c()) |>
   gf_labs(fill = "product")
 }

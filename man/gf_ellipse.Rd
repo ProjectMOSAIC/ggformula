@@ -93,32 +93,32 @@ Formula interface to \code{\link[ggplot2:stat_ellipse]{ggplot2::stat_ellipse()}}
 }
 \examples{
 gf_ellipse()
-gf_point(eruptions ~ waiting, data = faithful) \%>\%
+gf_point(eruptions ~ waiting, data = faithful) |>
   gf_ellipse(alpha = 0.5)
 
-gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) \%>\%
+gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
   gf_ellipse(alpha = 0.5)
 
-gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) \%>\%
-  gf_ellipse(type = "norm", linetype = ~ "norm") \%>\%
+gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
+  gf_ellipse(type = "norm", linetype = ~ "norm") |>
   gf_ellipse(type = "t",    linetype = ~ "t")
 
-gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) \%>\%
-  gf_ellipse(type = "norm",   linetype = ~ "norm") \%>\%
-  gf_ellipse(type = "euclid", linetype = ~ "euclid", level = 3) \%>\%
+gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
+  gf_ellipse(type = "norm",   linetype = ~ "norm") |>
+  gf_ellipse(type = "euclid", linetype = ~ "euclid", level = 3) |>
   gf_refine(coord_fixed())
 
 # Use geom = "polygon" to enable fill
-gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) \%>\%
+gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) |>
   gf_ellipse(geom = "polygon", alpha = 0.3, color = "black")
 
-gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) \%>\%
-  gf_ellipse(geom = "polygon", alpha = 0.3) \%>\%
+gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) |>
+  gf_ellipse(geom = "polygon", alpha = 0.3) |>
   gf_ellipse(alpha = 0.3, color = "black")
 
 gf_ellipse(eruptions ~ waiting, data = faithful, show.legend = FALSE,
-  alpha = 0.3, fill = ~ (eruptions > 3), geom = "polygon") \%>\%
-  gf_ellipse(level = 0.68, geom = "polygon", alpha = 0.3) \%>\%
+  alpha = 0.3, fill = ~ (eruptions > 3), geom = "polygon") |>
+  gf_ellipse(level = 0.68, geom = "polygon", alpha = 0.3) |>
   gf_point(data = faithful, color = ~ (eruptions > 3), show.legend = FALSE)
 }
 \seealso{

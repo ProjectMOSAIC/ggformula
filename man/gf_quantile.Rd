@@ -151,7 +151,7 @@ in another.
 }
 
 \examples{
-gf_point((1 / hwy) ~ displ, data = mpg) \%>\%
+gf_point((1 / hwy) ~ displ, data = mpg) |>
   gf_quantile((1 / hwy) ~ displ)
 }
 \seealso{
