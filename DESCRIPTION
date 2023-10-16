@@ -40,8 +40,6 @@ Suggests:
     survival,
     broom,
     maps,
-    maptools,
-    rgeos,
     sf,
     purrr,
     ggthemes,
