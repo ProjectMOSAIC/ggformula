@@ -5,7 +5,7 @@
 #' chaining syntax.
 #'
 #' `gf_refine()` provides a mechanism to replace `+` with the
-#' chaining operator from \pkg{magrittr}.
+#' chaining/pipe operator `|>`.
 #' Each of its `\dots` arguments is added in turn to the
 #' base plot in `object`.  The other functions are thin wrappers around
 #' specific `ggplot2` refinement functions and pass their `\dots`

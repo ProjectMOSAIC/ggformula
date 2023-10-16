@@ -1,8 +1,5 @@
 # This allows us to use these functions without attaching the packages they come from.
 
-#' @importFrom magrittr |>
-#' @export
-magrittr::`|>`
 
 #' @importFrom mosaicCore makeFun
 #' @export

@@ -28,7 +28,6 @@
 #'   gf_fun_contour(x * y ~ x + y, color = "white") |>
 #'   gf_refine(scale_fill_viridis_c()) |>
 #'   gf_labs(fill = "product")
-#' @importFrom magrittr |>
 #' @export
 #'
 gf_function_2d <-
