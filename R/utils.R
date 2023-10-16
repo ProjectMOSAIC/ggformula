@@ -135,3 +135,23 @@ one_upto <- function(n) {
   if (n > 0) 1:n else integer(0)
 }
 
+# slightly modified version of similar function in ggplot2
+# using tibble() directly rather than wrapping as data_frame0
+
+#' @importFrom tibble tibble
+
+ensure_nonempty_data <- function (data)
+{
+  if (empty(data)) {
+    tibble::tibble(group = 1, .size = 1, .name_repair = "minimal")
+  }
+  else {
+    data
+  }
+}
+
+empty <- function (df)
+{
+  is.null(df) || nrow(df) == 0 || ncol(df) == 0 || inherits(df, "waiver")
+}
+
