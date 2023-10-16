@@ -18,17 +18,17 @@
 #' @rdname gf_function2d
 #' @examples
 #' theme_set(theme_bw())
-#' gf_function_2d(fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) %>%
+#' gf_function_2d(fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) |>
 #'   gf_refine(scale_fill_viridis_c())
 #' gf_function_2d(fun = function(x, y) x + y, contour = FALSE)
-#' gf_function_tile(fun = function(x, y) x * y) %>%
-#'   gf_function_contour(fun = function(x, y) x * y, color = "white") %>%
+#' gf_function_tile(fun = function(x, y) x * y) |>
+#'   gf_function_contour(fun = function(x, y) x * y, color = "white") |>
 #'   gf_refine(scale_fill_viridis_c())
-#' gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) %>%
-#'   gf_fun_contour(x * y ~ x + y, color = "white") %>%
-#'   gf_refine(scale_fill_viridis_c()) %>%
+#' gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) |>
+#'   gf_fun_contour(x * y ~ x + y, color = "white") |>
+#'   gf_refine(scale_fill_viridis_c()) |>
 #'   gf_labs(fill = "product")
-#' @importFrom magrittr %>%
+#' @importFrom magrittr |>
 #' @export
 #'
 gf_function_2d <-
@@ -64,20 +64,20 @@ gf_function_2d <-
       expand.grid(
         x = seq(xlim[1], xlim[2], length.out = resolution[1]),
         y = seq(ylim[1], ylim[2], length.out = resolution[2])
-      ) %>%
+      ) |>
       dplyr::mutate(value = fun(x, y))
 
     res <- object
     if (tile) {
       res <-
-        res %>%
-        gf_tile(value ~ x + y, data = Layer_Data, ...) %>%
+        res |>
+        gf_tile(value ~ x + y, data = Layer_Data, ...) |>
         gf_labs(fill = "")
     }
     if (contour) {
       res <-
-        res %>%
-        gf_contour(value ~ x + y, data = Layer_Data, ...) %>%
+        res |>
+        gf_contour(value ~ x + y, data = Layer_Data, ...) |>
         gf_labs(fill = "")
     }
     class(res) <- unique(c('gf_ggplot', class(res)))

@@ -11,9 +11,9 @@
 #' @examples
 #' x <- rbinom(100, 100, 0.4)
 #' p <- gf_bar( ~ x)
-#' p %>% gf_refine(scale_x_continuous(breaks = discrete_breaks()))
-#' p %>% gf_refine(scale_x_continuous(breaks = discrete_breaks(5)))
-#' p %>% gf_refine(scale_x_continuous(breaks = discrete_breaks(2)))
+#' p |> gf_refine(scale_x_continuous(breaks = discrete_breaks()))
+#' p |> gf_refine(scale_x_continuous(breaks = discrete_breaks(5)))
+#' p |> gf_refine(scale_x_continuous(breaks = discrete_breaks(2)))
 
 discrete_breaks <- function(resolution = 1) {
   res <-

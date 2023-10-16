@@ -25,12 +25,12 @@ test_that(
   "gf_relabel() works", {
     wrapped_expect_doppelganger(
       "using a list",
-      gf_point(mpg ~ hp, color = ~ cyl, data = mtcars) %>%
+      gf_point(mpg ~ hp, color = ~ cyl, data = mtcars) |>
         gf_relabel(list(hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders"))
     )
     wrapped_expect_doppelganger(
       "using ...",
-      gf_point(mpg ~ hp, color = ~ cyl, data = mtcars) %>%
+      gf_point(mpg ~ hp, color = ~ cyl, data = mtcars) |>
         gf_relabel(hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders")
     )
   }
@@ -42,13 +42,13 @@ test_that(
     # wrapped_expect_doppelganger(
     #   "set_variable_labels() with list",
     #   set_variable_labels(mtcars,
-    #              list(hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders")) %>%
+    #              list(hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders")) |>
     #   gf_point(mpg ~ hp, color = ~ cyl, data = mtcars)
     # )
     wrapped_expect_doppelganger(
       "set_variable_labels() without list",
       set_variable_labels(mtcars,
-                 hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders") %>%
+                 hp = "horsepower", mpg = "mileage (miles/gallon)", cyl = "cylinders") |>
       gf_point(mpg ~ hp, color = ~ cyl, data = mtcars)
     )
   }

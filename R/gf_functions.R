@@ -118,13 +118,13 @@ NA
 #' )
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars)
 #' # faceting -- two ways
-#' gf_point(mpg ~ hp, data = mtcars) %>%
+#' gf_point(mpg ~ hp, data = mtcars) |>
 #'   gf_facet_wrap(~am)
 #' gf_point(mpg ~ hp | am, group = ~cyl, data = mtcars)
 #' gf_point(mpg ~ hp | ~am, group = ~cyl, data = mtcars)
 #' gf_point(mpg ~ hp | am ~ ., group = ~cyl, data = mtcars)
 #' # Chaining in the data
-#' mtcars %>% gf_point(mpg ~ wt)
+#' mtcars |> gf_point(mpg ~ wt)
 #'
 #' # short cuts for main labels in the plot
 #' gf_point(births ~ date,
@@ -212,8 +212,8 @@ gf_line <-
 #' @examples
 #' gf_path()
 #' if (require(dplyr)) {
-#'   data.frame(t = seq(1, 10 * pi, length.out = 400)) %>%
-#'     mutate(x = t * cos(t), y = t * sin(t)) %>%
+#'   data.frame(t = seq(1, 10 * pi, length.out = 400)) |>
+#'     mutate(x = t * cos(t), y = t * sin(t)) |>
 #'     gf_path(y ~ x, color = ~t)
 #' }
 gf_path <-
@@ -242,32 +242,32 @@ gf_path <-
 #' @export
 #' @examples
 #' gf_ellipse()
-#' gf_point(eruptions ~ waiting, data = faithful) %>%
+#' gf_point(eruptions ~ waiting, data = faithful) |>
 #'   gf_ellipse(alpha = 0.5)
 #'
-#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) %>%
+#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
 #'   gf_ellipse(alpha = 0.5)
 #'
-#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) %>%
-#'   gf_ellipse(type = "norm", linetype = ~ "norm") %>%
+#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
+#'   gf_ellipse(type = "norm", linetype = ~ "norm") |>
 #'   gf_ellipse(type = "t",    linetype = ~ "t")
 #'
-#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) %>%
-#'   gf_ellipse(type = "norm",   linetype = ~ "norm") %>%
-#'   gf_ellipse(type = "euclid", linetype = ~ "euclid", level = 3) %>%
+#' gf_point(eruptions ~ waiting, data = faithful, color = ~ (eruptions > 3)) |>
+#'   gf_ellipse(type = "norm",   linetype = ~ "norm") |>
+#'   gf_ellipse(type = "euclid", linetype = ~ "euclid", level = 3) |>
 #'   gf_refine(coord_fixed())
 #'
 #' # Use geom = "polygon" to enable fill
-#' gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) %>%
+#' gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) |>
 #'   gf_ellipse(geom = "polygon", alpha = 0.3, color = "black")
 #'
-#' gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) %>%
-#'   gf_ellipse(geom = "polygon", alpha = 0.3) %>%
+#' gf_point(eruptions ~ waiting, data = faithful, fill = ~ (eruptions > 3)) |>
+#'   gf_ellipse(geom = "polygon", alpha = 0.3) |>
 #'   gf_ellipse(alpha = 0.3, color = "black")
 #'
 #' gf_ellipse(eruptions ~ waiting, data = faithful, show.legend = FALSE,
-#'   alpha = 0.3, fill = ~ (eruptions > 3), geom = "polygon") %>%
-#'   gf_ellipse(level = 0.68, geom = "polygon", alpha = 0.3) %>%
+#'   alpha = 0.3, fill = ~ (eruptions > 3), geom = "polygon") |>
+#'   gf_ellipse(level = 0.68, geom = "polygon", alpha = 0.3) |>
 #'   gf_point(data = faithful, color = ~ (eruptions > 3), show.legend = FALSE)
 
 gf_ellipse <-
@@ -291,21 +291,21 @@ gf_ellipse <-
 #' @examples
 #' gf_polygon()
 #' if (require(maps) && require(ggthemes) && require(dplyr)) {
-#'   US <- map_data("state") %>%
+#'   US <- map_data("state") |>
 #'     dplyr::mutate(name_length = nchar(region))
-#'   States <- US %>%
-#'     dplyr::group_by(region) %>%
-#'     dplyr::summarise(lat = mean(range(lat)), long = mean(range(long))) %>%
+#'   States <- US |>
+#'     dplyr::group_by(region) |>
+#'     dplyr::summarise(lat = mean(range(lat)), long = mean(range(long))) |>
 #'     dplyr::mutate(name = abbreviate(region, 3))
 #'
 #'   gf_polygon(lat ~ long,
 #'     data = US, group = ~group,
 #'     fill = ~name_length, color = "white"
-#'   ) %>%
+#'   ) |>
 #'     gf_text(lat ~ long,
 #'       label = ~name, data = States,
 #'       color = "gray70", inherit = FALSE
-#'     ) %>%
+#'     ) |>
 #'     gf_refine(ggthemes::theme_map())
 #' }
 #' @export
@@ -352,7 +352,7 @@ gf_polygon <-
 #' gf_lm(length ~ width,
 #'   data = mosaicData::KidsFeet,
 #'   color = ~biggerfoot, alpha = 0.2
-#' ) %>%
+#' ) |>
 #'   gf_point()
 #' gf_lm(length ~ width,
 #'   data = mosaicData::KidsFeet,
@@ -362,33 +362,33 @@ gf_polygon <-
 #' gf_lm(length ~ width,
 #'   color = ~sex, data = mosaicData::KidsFeet,
 #'   formula = y ~ poly(x, 2), linetype = "dashed"
-#' ) %>%
+#' ) |>
 #'   gf_point()
 #' gf_lm(length ~ width,
 #'   color = ~sex, data = mosaicData::KidsFeet,
 #'   formula = log(y) ~ x, backtrans = exp
-#' ) %>%
+#' ) |>
 #'   gf_point()
 #'
 #' gf_lm(hwy ~ displ,
 #'   data = mpg,
 #'   formula = log(y) ~ poly(x, 3), backtrans = exp,
 #'   interval = "prediction", fill = "skyblue"
-#' ) %>%
+#' ) |>
 #'   gf_lm(
 #'     formula = log(y) ~ poly(x, 3), backtrans = exp,
 #'     interval = "confidence", color = "red"
-#'   ) %>%
+#'   ) |>
 #'   gf_point()
 #'
 #'   clotting <- data.frame(
 #'    u = c(5,10,15,20,30,40,60,80,100),
 #'    lot1 = c(118,58,42,35,27,25,21,19,18),
 #'    lot2 = c(69,35,26,21,18,16,13,12,12))
-#'   gf_point(lot1 ~ u, data = clotting) %>%
+#'   gf_point(lot1 ~ u, data = clotting) |>
 #'     gf_smooth(formula = y ~ log(x), method = "glm",
 #'               method.args = list(family = Gamma))
-#'   gf_point(lot2 ~ u, data = clotting) %>%
+#'   gf_point(lot2 ~ u, data = clotting) |>
 #'     gf_smooth(formula = y ~ log(x), color = "red", method = "glm",
 #'               method.args = list(family = Gamma))
 #'
@@ -497,7 +497,7 @@ gf_raster <-
 #' @seealso [ggplot2::geom_quantile()]
 #' @export
 #' @examples
-#' gf_point((1 / hwy) ~ displ, data = mpg) %>%
+#' gf_point((1 / hwy) ~ displ, data = mpg) |>
 #'   gf_quantile((1 / hwy) ~ displ)
 gf_quantile <-
   layer_factory(
@@ -529,7 +529,7 @@ gf_quantile <-
 #' gf_jitter(avg_drinks ~ age,
 #'   alpha = 0.2, data = mosaicData::HELPrct,
 #'   width = 0.4, height = 0.4
-#' ) %>%
+#' ) |>
 #'   gf_density_2d(avg_drinks ~ age, data = mosaicData::HELPrct)
 gf_density_2d <-
   layer_factory(
@@ -547,7 +547,7 @@ gf_density_2d <-
 #' @rdname gf_density_2d
 #' @export
 #' @examples
-#' gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) %>%
+#' gf_density_2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) |>
 #'   gf_jitter(avg_drinks ~ age,
 #'     alpha = 0.3, data = mosaicData::HELPrct,
 #'     width = 0.4, height = 0.4,
@@ -573,7 +573,7 @@ gf_density_2d_filled <-
 #' gf_jitter(avg_drinks ~ age,
 #'   alpha = 0.2, data = mosaicData::HELPrct,
 #'   width = 0.4, height = 0.4
-#' ) %>%
+#' ) |>
 #'   gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct)
 gf_density2d <-
   layer_factory(
@@ -592,7 +592,7 @@ gf_density2d <-
 #' @rdname gf_density_2d
 #' @export
 #' @examples
-#' gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) %>%
+#' gf_density2d_filled(avg_drinks ~ age, data = mosaicData::HELPrct, show.legend = FALSE) |>
 #'   gf_jitter(avg_drinks ~ age,
 #'     alpha = 0.4, data = mosaicData::HELPrct,
 #'     width = 0.4, height = 0.4,
@@ -624,7 +624,7 @@ gf_density2d_filled <-
 #' @seealso [ggplot2::geom_hex()]
 #' @export
 #' @examples
-#' gf_hex(avg_drinks ~ age, data = mosaicData::HELPrct, bins = 15) %>%
+#' gf_hex(avg_drinks ~ age, data = mosaicData::HELPrct, bins = 15) |>
 #'   gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct, color = "red", alpha = 0.5)
 gf_hex <-
   layer_factory(
@@ -679,7 +679,7 @@ gf_hex <-
 #' gf_boxplot(age ~ substance | sex,
 #'   data = mosaicData::HELPrct,
 #'   coef = 5, width = 0.4
-#' ) %>%
+#' ) |>
 #'   gf_jitter(width = 0.2, alpha = 0.3)
 #' # move boxplots away a bit by adjusting dodge
 #' gf_boxplot(age ~ substance,
@@ -727,8 +727,8 @@ gf_boxplot <-
 #'   data = penguins,
 #'   label = ~species, color = ~species, size = 2, angle = 30
 #' )
-#' penguins %>%
-#' gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) %>%
+#' penguins |>
+#' gf_point(bill_length_mm ~ bill_depth_mm, color = ~species, alpha = 0.5) |>
 #'   gf_text(bill_length_mm ~ bill_depth_mm,
 #'     label = ~species, color = ~species,
 #'     size = 2, angle = 0, hjust = 0, nudge_x = 0.1, nudge_y = 0.1
@@ -757,10 +757,10 @@ gf_text <-
 #' if (require(dplyr)) {
 #'   data(penguins, package = "palmerpenguins")
 #'   penguins_means <-
-#'     penguins %>%
-#'     group_by(species) %>%
+#'     penguins |>
+#'     group_by(species) |>
 #'     summarise(bill_length_mm = mean(bill_length_mm), bill_depth_mm = mean(bill_depth_mm))
-#'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) %>%
+#'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species) |>
 #'     gf_label(bill_length_mm ~ bill_depth_mm,
 #'       data = penguins_means,
 #'       label = ~species, color = ~species, size = 2, alpha = 0.7
@@ -805,17 +805,17 @@ gf_label <-
 #' @export
 #' @examples
 #' if (require(dplyr) && require(mosaicData)) {
-#'   Temps <- Weather %>%
+#'   Temps <- Weather |>
 #'     filter(city == "Chicago", year == 2016, month <= 4)
 #'   gf_linerange(low_temp + high_temp ~ date, color = ~high_temp, data = Temps)
 #'   gf_ribbon(low_temp + high_temp ~ date, data = Temps, color = "navy", alpha = 0.3)
 #'   gf_area(high_temp ~ date, data = Temps, color = "navy", alpha = 0.3)
 #'
-#'   gf_ribbon(low_temp + high_temp ~ date, data = Weather, alpha = 0.3) %>%
+#'   gf_ribbon(low_temp + high_temp ~ date, data = Weather, alpha = 0.3) |>
 #'     gf_facet_grid(city ~ .)
 #'
-#'   gf_linerange(low_temp + high_temp ~ date, color = ~high_temp, data = Weather) %>%
-#'     gf_facet_grid(city ~ .) %>%
+#'   gf_linerange(low_temp + high_temp ~ date, color = ~high_temp, data = Weather) |>
+#'     gf_facet_grid(city ~ .) |>
 #'     gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' }
 gf_area <-
@@ -884,10 +884,10 @@ gf_violin <-
 #' SomeData$angle <- runif(100, 0, 2 * pi)
 #' SomeData$speed <- runif(100, 0, sqrt(0.1 * SomeData$x))
 #'
-#' gf_point(y ~ x, data = SomeData) %>%
+#' gf_point(y ~ x, data = SomeData) |>
 #'   gf_spoke(y ~ x, angle = ~angle, radius = 0.5)
 #'
-#' gf_point(y ~ x, data = SomeData) %>%
+#' gf_point(y ~ x, data = SomeData) |>
 #'   gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
 gf_spoke <-
   layer_factory(
@@ -927,8 +927,8 @@ gf_spoke <-
 #'   surv_df <- tidy(surv_fit)
 #'   head(surv_df)
 #'   # now create a plot
-#'   surv_df %>%
-#'     gf_step(estimate ~ time) %>%
+#'   surv_df |>
+#'     gf_step(estimate ~ time) |>
 #'     gf_ribbon(conf.low + conf.high ~ time, alpha = 0.2)
 #' }
 gf_step <-
@@ -984,7 +984,7 @@ gf_tile <-
 #' @seealso [`ggplot2::geom_bin2d()`], [`gf_tile()`]
 #' @export
 #' @examples
-#' gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) %>%
+#' gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) |>
 #'   gf_refine(scale_fill_viridis_c(begin = 0.1, end = 0.9))
 gf_bin2d <-
   layer_factory(
@@ -1014,7 +1014,7 @@ gf_bin2d <-
 #' # counts of zero would be given size 0. This doesn't make much difference
 #' # here because the smallest count is already close to 0.
 #'
-#' gf_count(hwy ~ cty, data = mpg, alpha = 0.3) %>%
+#' gf_count(hwy ~ cty, data = mpg, alpha = 0.3) |>
 #'   gf_refine(scale_size_area())
 gf_count <-
   layer_factory(
@@ -1046,18 +1046,18 @@ gf_count <-
 #' # A Pareto chart
 #'
 #' if (require(dplyr) && require(mosaicData)) {
-#'   HELPrct %>%
-#'     group_by(substance) %>%
-#'     summarise(count = n()) %>%
-#'     ungroup() %>%
-#'     dplyr::arrange(-count) %>%
+#'   HELPrct |>
+#'     group_by(substance) |>
+#'     summarise(count = n()) |>
+#'     ungroup() |>
+#'     dplyr::arrange(-count) |>
 #'     mutate(
 #'       cumcount = cumsum(count),
 #'       substance = reorder(substance, -count)
-#'     ) %>%
-#'     gf_col(count ~ substance, fill = "skyblue") %>%
-#'     gf_point(cumcount ~ substance) %>%
-#'     gf_line(cumcount ~ substance, group = 1) %>%
+#'     ) |>
+#'     gf_col(count ~ substance, fill = "skyblue") |>
+#'     gf_point(cumcount ~ substance) |>
+#'     gf_line(cumcount ~ substance, group = 1) |>
 #'     gf_refine(
 #'       scale_y_continuous(sec.axis = sec_axis(~ . / nrow(HELPrct)))
 #'     )
@@ -1090,7 +1090,7 @@ gf_col <-
 #' gf_frame((c(0, 1)) ~ (c(0, 5)))
 #' gf_blank((c(0, 1)) ~ (c(0, 5)))
 #' # gf_blank() can be used to expand the view
-#' gf_point((c(0, 1)) ~ (c(0, 5))) %>%
+#' gf_point((c(0, 1)) ~ (c(0, 5))) |>
 #'   gf_blank((c(0, 3)) ~ (c(-2, 7)))
 gf_blank <-
   layer_factory(geom = "blank", check.aes = FALSE)
@@ -1122,7 +1122,7 @@ gf_frame <-
 #' gf_dhistogram(~x, bins = 30)
 #' gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black")
 #' gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black")
-#' gf_dhistogram(~x, bins = 30) %>%
+#' gf_dhistogram(~x, bins = 30) |>
 #'   gf_fitdistr(dist = "dnorm") # see help for gf_fitdistr() for more info.
 #'
 #' gf_histogram(~x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
@@ -1206,9 +1206,9 @@ gf_dhistogram <-
 #' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 15)
 #' # Chaining in the data
 #' data(penguins, package = "palmerpenguins")
-#' penguins %>% gf_dens(~bill_length_mm, color = ~species)
+#' penguins |> gf_dens(~bill_length_mm, color = ~species)
 #' # horizontal orientation
-#' penguins %>% gf_dens(bill_length_mm ~ ., color = ~species)
+#' penguins |> gf_dens(bill_length_mm ~ ., color = ~species)
 gf_density <-
   layer_factory(
     geom = "area", stat = "density",
@@ -1376,7 +1376,7 @@ gf_dotplot <-
 #'     data = mosaicData::HELPrct, fill = ~sex,
 #'     position = position_dodge(),
 #'     denom = ~ x,
-#'   ) %>%
+#'   ) |>
 #'     gf_refine(scale_y_continuous(labels = scales::percent))
 #' }
 gf_bar <-
@@ -1427,9 +1427,9 @@ gf_counts <-
 
 percs_by_group <-
   function(x, group) {
-    tibble(x, group = rep(!!group, length.out = length(x))) %>%
-      dplyr::group_by(group) %>%
-      dplyr::mutate(s = sum(x), p = 100 * x / s) %>%
+    tibble(x, group = rep(!!group, length.out = length(x))) |>
+      dplyr::group_by(group) |>
+      dplyr::mutate(s = sum(x), p = 100 * x / s) |>
       dplyr::pull(p)
   }
 
@@ -1437,9 +1437,9 @@ percs_by_group <-
 #' @export
 props_by_group <-
   function(x, group) {
-    tibble(x, group = rep(!!group, length.out = length(x))) %>%
-      dplyr::group_by(group) %>%
-      dplyr::mutate(s = sum(x), p = x / s) %>%
+    tibble(x, group = rep(!!group, length.out = length(x))) |>
+      dplyr::group_by(group) |>
+      dplyr::mutate(s = sum(x), p = x / s) |>
       dplyr::pull(p)
   }
 
@@ -1503,10 +1503,10 @@ gf_percents <-
 #' @export
 #' @examples
 #' data(penguins, package = "palmerpenguins")
-#' gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) %>%
+#' gf_histogram(~ bill_length_mm | species, alpha = 0.2, data = penguins, bins = 20) |>
 #'   gf_freqpoly(~bill_length_mm, data = penguins, color = ~species, bins = 20)
 #' gf_freqpoly(~bill_length_mm, color = ~species, data = penguins, bins = 20)
-#' gf_dens(~bill_length_mm, data = penguins, color = "navy") %>%
+#' gf_dens(~bill_length_mm, data = penguins, color = "navy") |>
 #'   gf_freqpoly(after_stat(density) ~ bill_length_mm,
 #'     data = penguins,
 #'     color = "red", bins = 20
@@ -1546,9 +1546,9 @@ gf_freqpoly <-
 #' @examples
 #' gf_qq(~ rnorm(100))
 #' data(penguins, package = "palmerpenguins")
-#' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline()
-#' gf_qq(~ bill_length_mm | species, data = penguins) %>% gf_qqline(tail = 0.10)
-#' gf_qq(~bill_length_mm, color = ~species, data = penguins) %>%
+#' gf_qq(~ bill_length_mm | species, data = penguins) |> gf_qqline()
+#' gf_qq(~ bill_length_mm | species, data = penguins) |> gf_qqline(tail = 0.10)
+#' gf_qq(~bill_length_mm, color = ~species, data = penguins) |>
 #'   gf_qqstep(~bill_length_mm, color = ~species, data = penguins)
 gf_qq <-
   layer_factory(
@@ -1561,7 +1561,7 @@ gf_qq <-
 
 gf_qqline <-
   layer_factory(
-    geom = "line", stat = "qqline",
+    geom = "path", stat = "qq_line",
     aes_form = ~sample,
     extras = alist(
       group = , distribution = stats::qnorm, dparams = list(),
@@ -1633,46 +1633,46 @@ gf_ecdf <-
 #' @export
 #' @examples
 #' data(penguins, package = "palmerpenguins")
-#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) |>
 #'   gf_rug(bill_length_mm ~ bill_depth_mm)
 #'
 #' # There are several ways to control x- and y-rugs separately
-#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-#'   gf_rugx(~bill_depth_mm, data = penguins, color = "red") %>%
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) |>
+#'   gf_rugx(~bill_depth_mm, data = penguins, color = "red") |>
 #'   gf_rugy(bill_length_mm ~ ., data = penguins, color = "green")
 #'
-#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", inherit = FALSE) %>%
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) |>
+#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", inherit = FALSE) |>
 #'   gf_rug(bill_length_mm ~ ., data = penguins, color = "green", inherit = FALSE)
 #'
-#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
-#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", sides = "b") %>%
+#' gf_point(bill_length_mm ~ bill_depth_mm, data = penguins) |>
+#'   gf_rug(. ~ bill_depth_mm, data = penguins, color = "red", sides = "b") |>
 #'   gf_rug(bill_length_mm ~ ., data = penguins, color = "green", sides = "l")
 #'
 #' # jitter requires both an x and a y, but we can turn off one or the other with sides
-#' gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) %>%
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) |>
 #'   gf_rug(color = "green", sides = "b", position = "jitter")
 #'
 #' # rugs work with some 1-varialbe plots as well.
-#' gf_histogram(~eruptions, data = faithful) %>%
-#'   gf_rug(~eruptions, data = faithful, color = "red") %>%
+#' gf_histogram(~eruptions, data = faithful) |>
+#'   gf_rug(~eruptions, data = faithful, color = "red") |>
 #'   gf_rug(~eruptions, data = faithful, color = "navy", sides = "t")
 #'
 #' # we can take advantage of inheritance to shorten the code
-#' gf_histogram(~eruptions, data = faithful) %>%
-#'   gf_rug(color = "red") %>%
+#' gf_histogram(~eruptions, data = faithful) |>
+#'   gf_rug(color = "red") |>
 #'   gf_rug(color = "navy", sides = "t")
 #'
 #' # Need to turn off inheritance when using gf_dhistogram:
-#' gf_dhistogram(~eruptions, data = faithful) %>%
+#' gf_dhistogram(~eruptions, data = faithful) |>
 #'   gf_rug(~eruptions, data = faithful, color = "red", inherit = FALSE)
 #'
 #' # using jitter with gf_histogram() requires manually setting the y value.
-#' gf_dhistogram(~bill_depth_mm, data = penguins) %>%
+#' gf_dhistogram(~bill_depth_mm, data = penguins) |>
 #'   gf_rug(0 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 #'
 #' # the choice of y value can affect how the plot looks.
-#' gf_dhistogram(~bill_depth_mm, data = penguins) %>%
+#' gf_dhistogram(~bill_depth_mm, data = penguins) |>
 #'   gf_rug(0.5 ~ bill_depth_mm, data = penguins, color = "green", sides = "b", position = "jitter")
 gf_rug <-
   layer_factory(
@@ -1743,7 +1743,7 @@ gf_rugy <-
 #' @seealso [ggplot2::geom_contour()], [gf_density_2d()]
 #' @export
 #' @examples
-#' gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") %>%
+#' gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") |>
 #'   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
 gf_contour <-
   layer_factory(
@@ -1755,7 +1755,7 @@ gf_contour <-
 #' @export
 #' @examples
 #' gf_contour_filled(density ~ waiting + eruptions, data = faithfuld, bins = 10,
-#'     show.legend = FALSE) %>%
+#'     show.legend = FALSE) |>
 #'   gf_jitter(eruptions ~ waiting, data = faithful, color = "white", alpha = 0.5,
 #'     inherit = FALSE)
 gf_contour_filled <-
@@ -1781,19 +1781,19 @@ gf_contour_filled <-
 #' @examples
 #' gf_ribbon()
 #'
-#' gf_ribbon(low_temp + high_temp ~ date, data = mosaicData::Weather, fill = ~city, alpha = 0.4) %>%
+#' gf_ribbon(low_temp + high_temp ~ date, data = mosaicData::Weather, fill = ~city, alpha = 0.4) |>
 #'   gf_theme(theme = theme_minimal())
 #' gf_linerange(
 #'   low_temp + high_temp ~ date | city ~ .,
 #'   color = ~high_temp,
 #'   data = mosaicData::Weather
-#' ) %>%
+#' ) |>
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 #' # Chaining in the data
 #' \dontrun{
-#' mosaicData::Weather %>%
-#'   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) %>%
+#' mosaicData::Weather |>
+#'   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) |>
 #'   gf_facet_grid(city ~ .)
 #' }
 gf_ribbon <-
@@ -1818,8 +1818,8 @@ gf_ribbon <-
 #' @export
 #' @examples
 #' D <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
-#' gf_point(mpg ~ wt, data = mtcars) %>%
-#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") %>%
+#' gf_point(mpg ~ wt, data = mtcars) |>
+#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") |>
 #'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 gf_curve <-
   layer_factory(
@@ -1846,8 +1846,8 @@ gf_curve <-
 #' @export
 #' @examples
 #' D <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
-#' gf_point(mpg ~ wt, data = mtcars) %>%
-#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") %>%
+#' gf_point(mpg ~ wt, data = mtcars) |>
+#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") |>
 #'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 gf_segment <-
   layer_factory(
@@ -1880,21 +1880,21 @@ gf_segment <-
 #' gf_ribbon(low_temp + high_temp ~ date,
 #'   data = mosaicData::Weather,
 #'   fill = ~city, alpha = 0.4
-#' ) %>%
+#' ) |>
 #'   gf_theme(theme = theme_minimal())
 #' gf_linerange(
 #'   low_temp + high_temp ~ date | city ~ .,
 #'   data = mosaicData::Weather,
 #'   color = ~ ((low_temp + high_temp) / 2)
-#' ) %>%
-#'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) %>%
+#' ) |>
+#'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) |>
 #'   gf_labs(color = "mid-temp")
 #'
 #' gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = mosaicData::Weather)
 #'
 #' # Chaining in the data
-#' mosaicData::Weather %>%
-#'   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) %>%
+#' mosaicData::Weather |>
+#'   gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) |>
 #'   gf_facet_grid(city ~ .)
 gf_linerange <-
   layer_factory(
@@ -1914,8 +1914,8 @@ gf_linerange <-
 #' @export
 #' @examples
 #' if (require(mosaicData) && require(dplyr)) {
-#'   HELP2 <- HELPrct %>%
-#'     group_by(substance, sex) %>%
+#'   HELP2 <- HELPrct |>
+#'     group_by(substance, sex) |>
 #'     summarise(
 #'       age = NA,
 #'       mean.age = mean(age),
@@ -1928,22 +1928,22 @@ gf_linerange <-
 #'     )
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) %>%
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'     alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) %>%
+#'     alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   # width is defined differently for gf_boxplot() and gf_jitter()
 #'   #   * for gf_boxplot() it is the full width of the box.
 #'   #   * for gf_jitter() it is half that -- the maximum amount added or subtracted.
-#'   gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) %>%
+#'   gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) |>
 #'     gf_jitter(width = 0.4, height = 0, color = "skyblue", alpha = 0.5)
 #'
-#'   gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) %>%
+#'   gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) |>
 #'     gf_jitter(width = 0.2, height = 0, color = "skyblue", alpha = 0.5)
 #' }
 gf_pointrange <-
@@ -1965,20 +1965,20 @@ gf_pointrange <-
 #' @export
 #' @examples
 #' p <- gf_jitter(mpg ~ cyl, data = mtcars, height = 0, width = 0.15); p
-#' p %>% gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
+#' p |> gf_summary(fun.data = "mean_cl_boot", color = "red", size = 2, linewidth = 1.3)
 
 #' # You can supply individual functions to summarise the value at
 #' # each x:
-#' p %>% gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
-#' p %>%
-#'   gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") %>%
+#' p |> gf_summary(fun.y = "median", color = "red", size = 3, geom = "point")
+#' p |>
+#'   gf_summary(fun.y = "mean", color = "red", size = 3, geom = "point") |>
 #'   gf_summary(fun.y = mean, geom = "line")
 
-#' p %>%
+#' p |>
 #'   gf_summary(fun.y = mean, fun.ymin = min, fun.ymax = max, color = "red")
 
 #' \dontrun{
-#'   p %>%
+#'   p |>
 #'   gf_summary(fun.ymin = min, fun.ymax = max, color = "red", geom = "linerange")
 #' }
 #'
@@ -1989,20 +1989,20 @@ gf_pointrange <-
 #' # data away
 #' p <- gf_summary(mpg ~ cyl, data = mtcars, fun.y = "mean", geom = "point")
 #' p
-#' p %>% gf_lims(y = c(15, 30))
+#' p |> gf_lims(y = c(15, 30))
 #' # Instead use coord_cartesian()
-#' p %>% gf_refine(coord_cartesian(ylim = c(15, 30)))
+#' p |> gf_refine(coord_cartesian(ylim = c(15, 30)))
 
 #' # A set of useful summary functions is provided from the Hmisc package.
 #' \dontrun{
 #' p <- gf_jitter(mpg ~ cyl, data = mtcars, width = 0.15, height = 0); p
-#' p %>% gf_summary(fun.data = mean_cl_boot, color = "red")
-#' p %>% gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
-#' p %>% gf_summary(fun.data = mean_sdl, group = ~ cyl, color = "red",
+#' p |> gf_summary(fun.data = mean_cl_boot, color = "red")
+#' p |> gf_summary(fun.data = mean_cl_boot, color = "red", geom = "crossbar")
+#' p |> gf_summary(fun.data = mean_sdl, group = ~ cyl, color = "red",
 #'                    geom = "crossbar", width = 0.3)
-#' p %>% gf_summary(group = ~ cyl, color = "red", geom = "crossbar", width = 0.3,
+#' p |> gf_summary(group = ~ cyl, color = "red", geom = "crossbar", width = 0.3,
 #'         fun.data = mean_sdl, fun.args = list(mult = 1))
-#' p %>% gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
+#' p |> gf_summary(fun.data = median_hilow, group = ~ cyl, color = "red",
 #'         geom = "crossbar", width = 0.3)
 #' }
 #'
@@ -2012,9 +2012,9 @@ gf_pointrange <-
 #'   set.seed(596)
 #'   Mov <- movies[sample(nrow(movies), 1000), ]
 #'   m2 <- gf_jitter(votes ~ factor(round(rating)), data = Mov, width = 0.15, height = 0, alpha = 0.3)
-#'   m2 <- m2 %>%
+#'   m2 <- m2 |>
 #'     gf_summary(fun.data = "mean_cl_boot", geom = "crossbar",
-#'                colour = "red", width = 0.3) %>%
+#'                colour = "red", width = 0.3) |>
 #'     gf_labs(x = "rating")
 #'   m2
 #'   # Notice how the overplotting skews off visual perception of the mean
@@ -2024,12 +2024,12 @@ gf_pointrange <-
 #'
 #'   # Transforming the scale means the data are transformed
 #'   # first, after which statistics are computed:
-#'   m2 %>% gf_refine(scale_y_log10())
+#'   m2 |> gf_refine(scale_y_log10())
 #'   # Transforming the coordinate system occurs after the
 #'   # statistic has been computed. This means we're calculating the summary on the raw data
 #'   # and stretching the geoms onto the log scale.  Compare the widths of the
 #'   # standard errors.
-#'   m2 %>% gf_refine(coord_trans(y="log10"))
+#'   m2 |> gf_refine(coord_trans(y="log10"))
 #' }
 
 gf_summary <-
@@ -2062,8 +2062,8 @@ gf_summary <-
 #' @export
 #' @examples
 #' if (require(mosaicData) && require(dplyr)) {
-#'   HELP2 <- HELPrct %>%
-#'     group_by(substance, sex) %>%
+#'   HELP2 <- HELPrct |>
+#'     group_by(substance, sex) |>
 #'     summarise(
 #'       mean.age   = mean(age),
 #'       median.age = median(age),
@@ -2075,25 +2075,25 @@ gf_summary <-
 #'     )
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) %>%
+#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue")  %>%
-#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) %>%
+#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue")  |>
+#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue") %>%
+#'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue") |>
 #'     gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2,
-#'       fill = "transparent") %>%
+#'       fill = "transparent") |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(substance ~ age, data = HELPrct,
-#'       alpha = 0.7, height = 0.2, width = 0, color = "skyblue") %>%
+#'       alpha = 0.7, height = 0.2, width = 0, color = "skyblue") |>
 #'     gf_crossbarh(substance ~ mean.age + lo + hi, data = HELP2,
-#'       fill = "transparent", color = "red") %>%
+#'       fill = "transparent", color = "red") |>
 #'     gf_facet_grid(~sex)
 #' }
 #'
@@ -2123,8 +2123,8 @@ gf_crossbar <-
 #' @export
 #' @examples
 #' if (require(mosaicData) && require(dplyr)) {
-#'   HELP2 <- HELPrct %>%
-#'     group_by(substance, sex) %>%
+#'   HELP2 <- HELPrct |>
+#'     group_by(substance, sex) |>
 #'     summarise(
 #'       mean.age = mean(age),
 #'       median.age = median(age),
@@ -2136,19 +2136,19 @@ gf_crossbar <-
 #'     )
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
 #'     gf_pointrange(mean.age + lo + hi ~ substance, data = HELP2,
-#'       inherit = FALSE) %>%
+#'       inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) %>%
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #'   gf_jitter(age ~ substance, data = HELPrct,
-#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_boxplot(age ~ substance, data = HELPrct, color = "red") %>%
-#'     gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2) %>%
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_boxplot(age ~ substance, data = HELPrct, color = "red") |>
+#'     gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2) |>
 #'     gf_facet_grid(~sex)
 #' }
 gf_errorbar <-
@@ -2185,10 +2185,10 @@ gf_errorbar <-
 #' gf_rect(1 + 2 ~ 3 + 4, alpha = 0.3, color = "red")
 #' # use data = data.frame() so we get 1 rectangle and not 1 per row of faithful
 #' # use inherit = FALSE because we are not reusing eruptions and waiting
-#' gf_point(eruptions ~ waiting, data = faithful) %>%
+#' gf_point(eruptions ~ waiting, data = faithful) |>
 #'   gf_rect(1.5 + 3 ~ 45 + 68,
 #'     fill = "red", alpha = 0.2,
-#'     data = data.frame(), inherit = FALSE) %>%
+#'     data = data.frame(), inherit = FALSE) |>
 #'   gf_rect(3 + 5.5 ~ 68 + 100,
 #'     fill = "green", alpha = 0.2,
 #'     data = data.frame(), inherit = FALSE)
@@ -2226,52 +2226,52 @@ gf_rect <-
 #' @export
 #' @examples
 #' mtcars2 <- df_stats(wt ~ cyl, data = mtcars, median_wt = median)
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) |>
 #'   gf_abline(slope = ~0, intercept = ~median_wt, color = ~cyl, data = mtcars2)
 #'
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) |>
 #'   gf_abline(slope = 0, intercept = 3, color = "green")
 #'
 #' # avoid warnings by using formulas:
 #'
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) |>
 #'   gf_abline(slope = ~0, intercept = ~3, color = "green")
 #'
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) |>
 #'   gf_hline(yintercept = ~median_wt, color = ~cyl, data = mtcars2)
 #'
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) |>
 #'   gf_abline(color = "red", slope = ~ - 0.10, intercept = ~ 35)
 #'
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) |>
 #'   gf_abline(
 #'     color = "red", slope = ~slope, intercept = ~intercept,
 #'     data = data.frame(slope = -0.10, intercept = 33:35)
 #'   )
 #'
 #' # We can set the color of the guidelines while mapping color in other layers
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~ wt, data = mtcars) %>%
-#'   gf_hline(color = "navy", yintercept = ~ c(20, 25), data = NA) %>%
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~ wt, data = mtcars) |>
+#'   gf_hline(color = "navy", yintercept = ~ c(20, 25), data = NA) |>
 #'   gf_vline(color = "brown", xintercept = ~ c(200, 300), data = NA)
 #'
 #' # If we want to map the color of the guidelines, it must work with the
 #' # scale of the other colors in the plot.
-#' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = ~"horizontal", yintercept = ~ c(20, 25), data = NA) %>%
+#' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) |>
+#'   gf_hline(color = ~"horizontal", yintercept = ~ c(20, 25), data = NA) |>
 #'   gf_vline(color = ~"vertical", xintercept = ~ c(100, 200, 300), data = NA)
 #'
-#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = "orange", yintercept = ~ 20) %>%
+#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) |>
+#'   gf_hline(color = "orange", yintercept = ~ 20) |>
 #'   gf_vline(color = ~ c("4", "6", "8"), xintercept = ~ c(80, 120, 250), data = NA)
 #'
-#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = "orange", yintercept = ~ 20) %>%
+#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) |>
+#'   gf_hline(color = "orange", yintercept = ~ 20) |>
 #'   gf_vline(color = c("green", "red", "blue"), xintercept = ~ c(80, 120, 250),
 #'     data = NA)
 #'
 #' # reversing the layers requires using inherit = FALSE
-#' gf_hline(color = "orange", yintercept = ~ 20) %>%
-#'   gf_vline(color = ~ c("4", "6", "8"), xintercept = ~ c(80, 120, 250), data = NA) %>%
+#' gf_hline(color = "orange", yintercept = ~ 20) |>
+#'   gf_vline(color = ~ c("4", "6", "8"), xintercept = ~ c(80, 120, 250), data = NA) |>
 #'   gf_point(mpg ~ hp,
 #'     size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
 #'     inherit = FALSE
@@ -2351,20 +2351,23 @@ utils::globalVariables(c("x"))
 #' @export
 #' @examples
 #' gf_function(fun = sqrt, xlim = c(0, 10))
-#' gf_dhistogram(~age, data = mosaicData::HELPrct, binwidth = 3, alpha = 0.6) %>%
+#' gf_dhistogram(~age, data = mosaicData::HELPrct, binwidth = 3, alpha = 0.6) |>
 #'   gf_function(
 #'     fun = stats::dnorm,
 #'     args = list(mean = mean(mosaicData::HELPrct$age), sd = sd(mosaicData::HELPrct$age)),
 #'     color = "red"
 #'   )
-gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
+gf_function <- function(object = NULL, fun, data = NULL, ..., inherit = FALSE) {
   if (rlang::is_function(object) || rlang::is_character(object)) {
     fun <- object
     object <- NULL
   }
+  if (is.null(data)) {
+    data <- ensure_nonempty_data
+  }
   if (is.null(object)) {
-    object <- ggplot(data = data.frame(x = xlim), aes(x))
-    inherit <- TRUE
+    object <- ggplot() # data = data.frame(x = xlim), aes(x))
+    # inherit <- TRUE
   }
   qdots <- rlang::quos(...)
   afq <- aes_from_qdots(qdots)
@@ -2375,7 +2378,7 @@ gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
         geom = "path", stat = "function", position = "identity",
         mapping = afq$mapping,
         inherit.aes = inherit,
-        data = if (missing(xlim)) NULL else data.frame(x = xlim),
+        data = data, # if (missing(xlim)) NULL else data.frame(x = xlim),
         params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
@@ -2385,25 +2388,32 @@ gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
 
 #' @rdname gf_function
 #' @param formula A formula describing a function.  See examples and [mosaicCore::makeFun()].
-#' @param xlim A numeric vector providing the extent of the x-axis when creating
-#'   the first layer in a plot.  Ignored when creating a subsequent layer.
+#' @param ... Additional arguments passed as `params` to `layer()`. This includes `xlim`,
+#'   a numeric vector providing the extent of
+#'   the x-axis values used to evaluate `fun` for plotting. By default, `xlim` is not used for
+#'   other layers.
 #' @export
 #' @examples
 #' gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0, 2))
 #' # Utility bill is quadratic in month?
 #' f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
-#' gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) %>%
+#' gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) |>
 #'   gf_fun(f(m) ~ m, color = "red")
-gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
+gf_fun <- function(object = NULL, formula, data = NULL, ..., inherit = FALSE) {
   if (rlang::is_formula(object) && missing(formula)) {
     formula <- object
     object <- NULL
   }
 
-  if (is.null(object)) {
-    object <- ggplot(data = data.frame(x = xlim), aes(x))
-    inherit <- TRUE
+  if (is.null(data)) {
+    data <- ensure_nonempty_data
   }
+
+  if (is.null(object)) {
+    object <- ggplot() # data = data.frame(x = xlim), aes(x))
+    # inherit <- TRUE
+  }
+
   qdots <- rlang::quos(...)
   fun <- function(x, ...) mosaicCore::makeFun(formula)(x, ...)
   afq <- aes_from_qdots(qdots)
@@ -2414,7 +2424,7 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
         geom = "path", stat = "function", position = "identity",
         mapping = afq$mapping,
         inherit.aes = inherit,
-        data = if (missing(xlim)) NULL else data.frame(x = xlim),
+        data = data, # if (missing(xlim)) NULL else data.frame(x = xlim),
         params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
@@ -2453,10 +2463,10 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' @seealso [mosaicCore::fit_distr_fun()]
 #' @export
 #' @examples
-#' gf_fitdistr(~length, data = mosaicData::KidsFeet, inherit = FALSE) %>%
+#' gf_fitdistr(~length, data = mosaicData::KidsFeet, inherit = FALSE) |>
 #'   gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25)
 #'
-#' gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25) %>%
+#' gf_dhistogram(~length, data = mosaicData::KidsFeet, binwidth = 0.5, alpha = 0.25) |>
 #'   gf_fitdistr()
 #'
 #' set.seed(12345)
@@ -2464,13 +2474,13 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'   f = rf(500, df1 = 3, df2 = 47),
 #'   g = rgamma(500, 3, 10)
 #' )
-#' gf_dhistogram(~g, data = Dat) %>%
+#' gf_dhistogram(~g, data = Dat) |>
 #'   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
 #'
-#' gf_dhistogram(~g, data = Dat) %>%
+#' gf_dhistogram(~g, data = Dat) |>
 #'   gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 #'
-#' gf_dhistogram(~f, data = Dat) %>%
+#' gf_dhistogram(~f, data = Dat) |>
 #'   gf_fitdistr(dist = "df", start = list(df1 = 2, df2 = 50))
 #'
 #' # fitted parameters are default argument values
@@ -2531,23 +2541,23 @@ gf_sina <-
 #' if (require(maps) && require(maptools) &&
 #'   require(sf) && require(rgeos))
 #'   US <- sf::st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
-#'   gf_sf(fill = ~ factor(nchar(ID)), data = US) %>%
+#'   gf_sf(fill = ~ factor(nchar(ID)), data = US) |>
 #'     gf_refine(coord_sf())
 #'
 #'   # We can specify shape data and external data separately using geometry
 #'   MI <- sf::st_as_sf(maps::map("county", "michigan", plot = FALSE, fill = TRUE))
 #'   MIgeom <- MI$geom
 #'   gf_sf(
-#'     fill = ~ log10(population), data = MIpop %>% dplyr::arrange(county),
+#'     fill = ~ log10(population), data = MIpop |> dplyr::arrange(county),
 #'     geometry = ~MIgeom, color = "white"
-#'   ) %>%
+#'   ) |>
 #'     gf_refine(coord_sf(), theme_bw())
 #'
 #'   # alternatively we can merge external data and shape data into one data frame.
-#'   MI %>%
-#'     dplyr::mutate(county = gsub("michigan,", "", ID)) %>%
-#'     dplyr::left_join(MIpop %>% dplyr::mutate(county = tolower(county))) %>%
-#'     gf_sf(fill = ~ population / 1e3) %>%
+#'   MI |>
+#'     dplyr::mutate(county = gsub("michigan,", "", ID)) |>
+#'     dplyr::left_join(MIpop |> dplyr::mutate(county = tolower(county))) |>
+#'     gf_sf(fill = ~ population / 1e3) |>
 #'     gf_refine(
 #'       coord_sf(), theme_bw(),
 #'       scale_fill_continuous(name = "population (thousands)", trans = "log10")
@@ -2583,7 +2593,7 @@ gf_sf <-
 #' @examples
 #' gf_empty()
 #' data(penguins, package = "palmerpenguins")
-#' gf_empty() %>%
+#' gf_empty() |>
 #'   gf_point(bill_length_mm ~ bill_depth_mm, data = penguins, color = ~species)
 #' @export
 gf_empty <- function(environment = parent.frame()) {

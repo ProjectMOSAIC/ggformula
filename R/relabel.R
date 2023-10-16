@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' KF <-
-#'   mosaicData::KidsFeet %>%
+#'   mosaicData::KidsFeet |>
 #'   set_variable_labels(
 #'       length      = 'foot length (cm)',
 #'       width       = 'foot width (cm)',
@@ -22,7 +22,7 @@
 #'       biggerfoot  = 'bigger foot',
 #'       domhand     = 'dominant hand'
 #'   )
-#' KF %>%
+#' KF |>
 #'   gf_point(length ~ width, color = ~ domhand)
 #' get_variable_labels(KF)
 get_variable_labels <- function(...)
@@ -44,18 +44,18 @@ get_variable_labels <- function(...)
 #' # labeling using a list
 #' labels <- list(width = "width of foot (cm)", length = "length of foot (cm)",
 #'   domhand = "dominant hand")
-#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) %>%
+#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) |>
 #'   gf_relabel(labels)
 #'
 #' # labeling using ...
-#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) %>%
+#' gf_point(length ~ width, color = ~domhand, data = mosaicData::KidsFeet) |>
 #'   gf_relabel(
 #'     width = "width of foot (cm)",
 #'    length = "length of foot (cm)",
 #'    domhand = "dominant hand")
 #'
 #' # Alternatively, we can store labels with data.
-#' KF <- mosaicData::KidsFeet %>%
+#' KF <- mosaicData::KidsFeet |>
 #'   set_variable_labels(
 #'     length = 'foot length (cm)',
 #'     width = 'foot width (cm)'

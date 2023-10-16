@@ -48,7 +48,7 @@
 #'
 #' if (require(scales)) {
 #'   gf_props(~substance, data = mosaicData::HELPrct, fill = ~sex,
-#'     position = position_dodge()) %>%
+#'     position = position_dodge()) |>
 #'       gf_refine(scale_y_continuous(labels = scales::percent))
 #' }
 gf_barh <-
@@ -177,15 +177,15 @@ gf_percentsh <-
 #' gf_boxploth(substance ~ age, data = mosaicData::HELPrct, color = ~sex, coef = 2)
 #' # Note: height for boxplots is full width of box.
 #' #   For jittering, it is the half-height.
-#' gf_boxploth(substance ~ age | sex, data = mosaicData::HELPrct, coef = 5, height = 0.4) %>%
+#' gf_boxploth(substance ~ age | sex, data = mosaicData::HELPrct, coef = 5, height = 0.4) |>
 #'   gf_jitter(height = 0.2, alpha = 0.3)
 #'
 #' # combining boxplots and histograms
-#' gf_histogram(~eruptions, data = faithful) %>%
+#' gf_histogram(~eruptions, data = faithful) |>
 #'   gf_boxploth(0 ~ eruptions, alpha = 0, width = 2)
-#' gf_histogram(~eruptions, data = faithful) %>%
+#' gf_histogram(~eruptions, data = faithful) |>
 #'   gf_boxploth(-2 ~ eruptions, alpha = 0, width = 2)
-#' gf_histogram(~eruptions, data = faithful) %>%
+#' gf_histogram(~eruptions, data = faithful) |>
 #'   gf_boxploth(32 ~ eruptions, alpha = 0, width = 2)
 gf_boxploth <-
   layer_factory(
@@ -253,13 +253,13 @@ gf_dhistogramh <-
 #' gf_linerangeh(date ~ low_temp + high_temp | ~city,
 #'   data = mosaicData::Weather,
 #'   color = ~avg_temp
-#'   ) %>%
+#'   ) |>
 #'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 #' gf_linerange(date ~ low_temp + high_temp | ~city,
 #'   data = mosaicData::Weather,
 #'   color = ~avg_temp,
 #'   orientation = 'y'
-#'   ) %>%
+#'   ) |>
 #'   gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 #' }
 gf_linerangeh <-
@@ -276,7 +276,7 @@ gf_linerangeh <-
 #'   gf_pointrangeh(date ~ avg_temp + low_temp + high_temp | ~city,
 #'     data = Weather,
 #'     color = ~avg_temp
-#'     ) %>%
+#'     ) |>
 #'     gf_refine(scale_color_viridis_c(begin = 0.1, end = 0.9, option = "C"))
 #' }
 
@@ -333,8 +333,8 @@ gf_violinh <-
 #' @export
 #' @examples
 #' if (require(dplyr)) {
-#'   HELP2 <- mosaicData::HELPrct %>%
-#'     group_by(substance, sex) %>%
+#'   HELP2 <- mosaicData::HELPrct |>
+#'     group_by(substance, sex) |>
 #'     summarise(
 #'       mean.age = mean(age),
 #'       median.age = median(age),
@@ -346,13 +346,13 @@ gf_violinh <-
 #'     )
 #'
 #'   gf_jitter(substance ~ age, data = mosaicData::HELPrct,
-#'       alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
-#'     gf_errorbarh(substance ~ lo + hi, data = HELP2, inherit = FALSE) %>%
+#'       alpha = 0.5, height = 0.2, width = 0, color = "skyblue") |>
+#'     gf_errorbarh(substance ~ lo + hi, data = HELP2, inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(age ~ substance, data = mosaicData::HELPrct,
-#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
-#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) %>%
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") |>
+#'     gf_errorbar(lo + hi ~ substance, data = HELP2, inherit = FALSE) |>
 #'     gf_facet_grid(~sex)
 #' }
 gf_errorbarh <-

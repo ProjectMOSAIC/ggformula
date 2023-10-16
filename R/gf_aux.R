@@ -19,7 +19,7 @@
 #' @rdname gf_aux
 #' @export
 #' @examples
-#' gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) %>%
+#' gf_dens(~cesd, color = ~substance, linewidth = 1.5, data = mosaicData::HELPrct) |>
 #'   gf_labs(
 #'     title = "Center for Epidemiologic Studies Depression measure",
 #'     subtitle = "(at baseline)",
@@ -27,8 +27,8 @@
 #'     x = "CESD score",
 #'     y = "",
 #'     caption = "Source: HELPrct"
-#'   ) %>%
-#'   gf_theme(theme_classic()) %>%
+#'   ) |>
+#'   gf_theme(theme_classic()) |>
 #'   gf_theme(
 #'     axis.text.y = element_blank(),
 #'     legend.position = "top",
@@ -37,17 +37,17 @@
 #'   )
 #'
 #' gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5)
-#' gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5) %>%
+#' gf_point(eruptions ~ waiting, data = faithful, alpha = 0.5) |>
 #'   gf_lims(x = c(65, NA), y = c(3, NA))
 #'
 #' # modify scales using gf_refine()
 #' data(penguins, package = "palmerpenguins")
-#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) %>%
-#'   gf_refine(scale_color_brewer(type = "qual", palette = 3)) %>%
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) |>
+#'   gf_refine(scale_color_brewer(type = "qual", palette = 3)) |>
 #'   gf_theme(theme_bw())
 #'
-#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) %>%
-#'   gf_refine(scale_color_manual(values = c("red", "navy", "limegreen"))) %>%
+#' gf_jitter(bill_length_mm ~ bill_depth_mm, color = ~species, data = penguins) |>
+#'   gf_refine(scale_color_manual(values = c("red", "navy", "limegreen"))) |>
 #'   gf_theme(theme_bw())
 gf_labs <- function(object, ...) {
   object + ggplot2::labs(...)
@@ -95,18 +95,18 @@ gf_theme <- function(object, theme, ...) {
 #'
 #' @seealso [ggplot2::facet_grid()], [ggplot2::facet_wrap()].
 #' @examples
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) %>%
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
 #'   gf_facet_grid(~substance)
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) %>%
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
 #'   gf_facet_grid(~substance, scales = "free")
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) %>%
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
 #'   gf_facet_grid(~substance, scales = "free", space = "free")
-#' gf_line(births ~ date, data = mosaicData::Births, color = ~wday) %>%
-#'   gf_facet_wrap(~year, scales = "free_x", nrow = 5) %>%
+#' gf_line(births ~ date, data = mosaicData::Births, color = ~wday) |>
+#'   gf_facet_wrap(~year, scales = "free_x", nrow = 5) |>
 #'   gf_theme(
 #'     axis.title.x = element_blank(),
 #'     axis.text.x = element_blank(), axis.ticks.x = element_blank()
-#'   ) %>%
+#'   ) |>
 #'   gf_labs(color = "Day")
 #' @rdname gf_facet_grid
 #' @export

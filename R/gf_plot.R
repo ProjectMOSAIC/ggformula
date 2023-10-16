@@ -9,8 +9,8 @@
 #' @return a gg object
 #' @export
 #' @examples
-#' gf_plot(mtcars, x = ~ wt, y = ~ mpg, color = ~ factor(cyl)) %>%
-#'   gf_density_2d() %>%
+#' gf_plot(mtcars, x = ~ wt, y = ~ mpg, color = ~ factor(cyl)) |>
+#'   gf_density_2d() |>
 #'   gf_point()
 #'
 gf_plot <- function(...) {
