@@ -19,7 +19,6 @@ Depends:
 Imports:
     mosaicCore (>= 0.7.0),
     rlang,
-    magrittr,
     tibble,
     stringr,
     ggforce,
