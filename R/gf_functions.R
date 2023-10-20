@@ -2518,7 +2518,10 @@ gf_fitdistr <-
 
 gf_sina <-
   layer_factory(
-    geom = "point", stat = "sina", position = "identity",
+    pre = {if (!requireNamespace("ggforce", quietly = TRUE)) {
+    stop("The ggforce package is required.  Please install and try again.")
+  }},
+    geom = "point", stat = ggforce::StatSina, position = "identity",
     extras = alist(alpha = , color = , size = , fill = , group = )
   )
 

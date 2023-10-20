@@ -21,7 +21,6 @@ Imports:
     rlang,
     tibble,
     stringr,
-    ggforce,
     grid,
     labelled
 Suggests:

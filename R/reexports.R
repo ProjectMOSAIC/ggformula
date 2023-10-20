@@ -13,15 +13,16 @@ mosaicCore::df_stats
 #' @export
 mosaicCore::na.warn
 
-#' @importFrom ggforce stat_sina StatSina
-#' @export
-ggforce::stat_sina
-#' @export
-ggforce::StatSina
-
-#' @importFrom ggforce geom_sina
-#' @export
-ggforce::geom_sina
+# #
+# #' @importFrom ggforce stat_sina StatSina
+# #' @export
+# ggforce::stat_sina
+# #' @export
+# ggforce::StatSina
+# #
+# #' @importFrom ggforce geom_sina
+# #' @export
+# ggforce::geom_sina
 
 
 #' @importFrom labelled var_label
