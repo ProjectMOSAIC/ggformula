@@ -121,7 +121,7 @@ in another.
 if (requireNamespace('maps', quietly = TRUE)) {
   library(maps)
   world1 <- sf::st_as_sf(map('world', plot = FALSE, fill = TRUE))
-  gf_sf(data=world1)
+  gf_sf(data = world1)
 }
 
 if (requireNamespace('maps', quietly = TRUE)) {

@@ -135,7 +135,10 @@ in another.
 }
 
 \examples{
-gf_sina(age ~ substance, data = mosaicData::HELPrct)
+\dontrun{
+  library(ggforce)
+  gf_sina(age ~ substance, data = mosaicData::HELPrct)
+}
 
 }
 \seealso{

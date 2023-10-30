@@ -6,9 +6,6 @@
 \alias{makeFun}
 \alias{df_stats}
 \alias{na.warn}
-\alias{stat_sina}
-\alias{StatSina}
-\alias{geom_sina}
 \alias{var_label}
 \alias{var_label<-}
 \alias{set_variable_labels}
@@ -19,8 +16,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggforce}{\code{\link[ggforce:ggforce-extensions]{StatSina}}, \code{\link[ggforce]{geom_sina}}, \code{\link[ggforce:geom_sina]{stat_sina}}}
-
   \item{labelled}{\code{\link[labelled:var_label]{set_variable_labels}}, \code{\link[labelled]{var_label}}, \code{\link[labelled:var_label]{var_label<-}}}
 
   \item{mosaicCore}{\code{\link[mosaicCore]{df_stats}}, \code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{na.warn}}}
