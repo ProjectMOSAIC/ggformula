@@ -64,6 +64,10 @@ layer_factory <-
 
   pre <- substitute(pre)
 
+  geom <- enexpr(geom)
+  stat <- enexpr(stat)
+  position <- enexpr(position)
+
   if (!is.logical(inherit.aes)) {
     inherited.aes <- inherit.aes
     inherit.aes <- FALSE
@@ -80,6 +84,10 @@ layer_factory <-
       environment = parent.frame(),
       ...) {
 
+      # pre will be placed in the function environment so it is available here
+      eval(pre)
+
+
       # evaluate quosures
       geom      = rlang::eval_tidy(geom)
       stat      = rlang::eval_tidy(stat)
@@ -89,7 +97,6 @@ layer_factory <-
       function_name <- as.character(match.call()[1])
       orig_args <- as.list(match.call())[-1]
 
-      eval(pre)  # pre will be placed in the function environment so it is available here
 
       # make sure we have a list of formulas here
       if (!is.list(aes_form)) aes_form <- list(aes_form)
@@ -365,11 +372,14 @@ grab_formals <- function(f, type = "stat") {
   }
 }
 
+#' @importFrom rlang enexpr !!
+
 create_formals <-
   function(extras = list(), layer_fun,
            geom, stat, position, inherit.aes = TRUE)
   {
     layer_fun <- rlang::eval_tidy(layer_fun)
+
     res <-
       c(
         list(object = NULL, gformula = NULL, data = NULL),
@@ -402,7 +412,9 @@ create_formals <-
           list(caption = extras[["caption"]])
         },
         list(
-          geom = geom, stat = stat, position = position,
+          geom = geom,
+          stat = stat,
+          position = position,
           show.legend = NA,
           show.help = NULL,
           inherit = inherit.aes,

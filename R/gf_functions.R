@@ -5,48 +5,6 @@ utils::globalVariables(c('s', 'p'))
 
 NA
 
-#' Formula interface to ggplot2
-#'
-#' @section The ggformula system:
-#'
-#' The functions in \pkg{ggformula} provide a formula interface to \pkg{ggplot2} layer
-#' functions and a system for working with pipes to create multi-layer
-#' plots and to refine plots.
-#' For plots with just one layer, the formula interface
-#' is more compact than native \pkg{ggplot2} code and is consistent with modeling
-#' functions like [stats::lm()] that use a formula interface and with the
-#' numerical summary functions in the \pkg{mosaic} package.
-#'
-#' @section Specifying plot attributes:
-#'
-#' Positional attributes (a.k.a aesthetics) are typically specified using a formula
-#' (see the `gformula` argument).
-#' Setting and mapping of additional attributes can be done through the use of additional arguments.
-#' Attributes can be set can be set using arguments of the form `attribute = value` or
-#' mapped using arguments of the form `attribute = ~ expression`.
-#' A (sometimes partial) list of available attributes can be obtained by executing
-#' plotting functions with no arguments.
-#'
-#' In formulas of the form `A | B`, `B` will be used to form facets using
-#' [facet_wrap()] or [facet_grid()].
-#' This provides an alternative to [gf_facet_wrap()] and
-#' [gf_facet_grid()] that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' @section Evaluation:
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment specified
-#' by `environment`. This will typically do the right thing, but is exposed
-#' in case some non-standard behavior is desired. In earlier versions,
-#' the environment of the formula was used, but since some functions in
-#' the package do not require a formula, a separate argument is used now.
-#'
-#' @rdname ggformula
-#' @name ggformula
-#' @examples
-#' apropos("gf_")
-#' gf_point()
-NA
-
 #' Formula interface to geom_point()
 #'
 #' Scatterplots in `ggformula`.
@@ -1121,6 +1079,7 @@ gf_frame <-
 #' gf_dhistogram(~x, bins = 30)
 #' gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black")
 #' gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black")
+#' gf_dhistogramh(x ~ ., binwidth = 0.5, boundary = 0, color = "black")
 #' gf_dhistogram(~x, bins = 30) |>
 #'   gf_fitdistr(dist = "dnorm") # see help for gf_fitdistr() for more info.
 #'
@@ -1167,7 +1126,6 @@ gf_dhistogram <-
     extras =
       alist(
         bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
-        # size = # remove eventually?
         linetype = , linewidth =
       ),
     note =
@@ -1175,6 +1133,21 @@ gf_dhistogram <-
     aesthetics = aes(y = ggplot2::after_stat(density))
   )
 
+#' @rdname gf_histogram
+#' @export
+gf_dhistogramh <-
+  layer_factory(
+    geom = "bar", stat = "bin", position = "stack",
+    aes_form = list(y ~ x,  y ~ .),
+    extras =
+      alist(
+        bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
+        linetype = , linewidth =
+      ),
+    note =
+        "x may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
+    aesthetics = aes(x = ggplot2::after_stat(density))
+  )
 #' Formula interface to stat_density()
 #'
 #' Computes and draws a kernel density estimate, which is a smoothed version of the
@@ -1335,9 +1308,9 @@ gf_dotplot <-
 #'   position = position_dodge(),
 #'   orientation = 'y'
 #' )
-#' gf_propsh(substance ~ .,
+#' gf_props(substance ~ .,
 #'   data = mosaicData::HELPrct, fill = ~sex,
-#'   position = position_dodgev(),
+#'   position = "dodge"
 #' )
 #'
 #' gf_percents(~substance,
@@ -2062,8 +2035,7 @@ gf_summary <-
 #' @examples
 #' if (require(mosaicData) && require(dplyr)) {
 #'   HELP2 <- HELPrct |>
-#'     group_by(substance, sex) |>
-#'     summarise(
+#'     summarise(.by = c(substance, sex),
 #'       mean.age   = mean(age),
 #'       median.age = median(age),
 #'       max.age    = max(age),
@@ -2091,7 +2063,7 @@ gf_summary <-
 #'
 #'   gf_jitter(substance ~ age, data = HELPrct,
 #'       alpha = 0.7, height = 0.2, width = 0, color = "skyblue") |>
-#'     gf_crossbarh(substance ~ mean.age + lo + hi, data = HELP2,
+#'     gf_crossbar(substance ~ mean.age + lo + hi, data = HELP2,
 #'       fill = "transparent", color = "red") |>
 #'     gf_facet_grid(~sex)
 #' }
@@ -2512,16 +2484,22 @@ gf_fitdistr <-
 #'
 #' @seealso [ggforce::geom_sina()]
 #' @examples
-#' gf_sina(age ~ substance, data = mosaicData::HELPrct)
+#' \dontrun{
+#'   library(ggforce)
+#'   gf_sina(age ~ substance, data = mosaicData::HELPrct)
+#' }
 #'
 #' @export
 
 gf_sina <-
   layer_factory(
-    pre = {if (!requireNamespace("ggforce", quietly = TRUE)) {
-    stop("The ggforce package is required.  Please install and try again.")
-  }},
-    geom = "point", stat = ggforce::StatSina, position = "identity",
+    pre = {
+      if (!requireNamespace("ggforce", quietly = TRUE))
+        stop("The ggforce package is required.  Please install and try again.")
+      if (! "package:ggforce" %in% search())
+        stop("To use gf_sina(), the ggforce package must be loaded.\n    Try, for example, `library(ggforce)`.")
+  },
+    geom = "point", stat = "sina", position = "identity",
     extras = alist(alpha = , color = , size = , fill = , group = )
   )
 

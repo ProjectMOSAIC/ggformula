@@ -2,7 +2,7 @@ Package: ggformula
 Title: Formula Interface to the Grammar of Graphics
 Description: Provides a formula interface to 'ggplot2' graphics.
 Type: Package
-Version: 0.10.4
+Version: 0.12.0
 Authors@R: c(
     person("Daniel", "Kaplan", email = "kaplan@macalester.edu", role = c("aut")),
     person("Randall", "Pruim", email = "rpruim@calvin.edu", role = c("aut","cre"))
@@ -13,7 +13,6 @@ LazyLoad: TRUE
 Depends:
     R (>= 4.1),
     ggplot2 (>= 3.3),
-    ggstance (>= 0.3.4),
     scales,
     ggridges
 Imports:
@@ -60,7 +59,6 @@ Collate:
     'gf_function2d.R'
     'gf_functions.R'
     'gf_plot.R'
-    'ggstance.R'
     'ggridges.R'
     'ggstrings.R'
     'newplots.R'
@@ -69,4 +67,6 @@ Collate:
     'utils.R'
     'relabel.R'
     'vdiffr.R'
+    'ggstance-deprecated.R'
+    'ggformula-package.R'
     'zzz.R'
