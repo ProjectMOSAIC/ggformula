@@ -6,6 +6,13 @@ This is a relatively minor update to the package. The main issues addressed are
 * migration to |> from %>%
 * migration away from some deprecated tidyverse/ggplot2 functions
 
+We are submitting four packages in parallel:
+
+* mosaicCore
+* mosaicData
+* mosaic
+* ggformula
+
 
 
 ## Test environments
