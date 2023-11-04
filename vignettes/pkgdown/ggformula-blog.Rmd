@@ -46,7 +46,7 @@ approach is the better of two prevalent options for teaching beginners:
 1) "Base R first": teach syntax such as `$` and `[[ ]]`, use built-in 
 functions like `ave()` and `tapply()`, and use base graphics.
 
-2) "Tidyverse first": start from scratch with pipes (`%>%`), leverage `dplyr`
+2) "Tidyverse first": start from scratch with pipes (`|>`), leverage `dplyr`
 for data transformations and summarization, and use `ggplot2` for graphics.
 
 As his title suggests, David prefers the second option and makes a strong case for it.
@@ -92,8 +92,8 @@ so compelling.
 ```{r results = "hide", fig.keep = "none"}
 # diamonds2 was called `recoded' in Nick's post
 library(dplyr)
-diamonds2 <- diamonds %>% 
-  filter(color == "D" | color == "J") %>%
+diamonds2 <- diamonds |> 
+  filter(color == "D" | color == "J") |>
   mutate(col = as.character(color))
 
   mean(price ~ col, data = diamonds2)  
@@ -146,11 +146,11 @@ gf_violin(price ~ col, data = diamonds2)
 ```
 
 If we like, we can even overlay these two types of plots to see how they compare.  To
-do so, we simply place the then operator (`%>%`, also called a pipe) between the
+do so, we simply place the then operator (`|>`, also called a pipe) between the
 two layers and adjust the transparency so we can see both where they overlap.
 
 ```{r}
-gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) %>%
+gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) |>
 gf_violin(price ~ col, data = diamonds2, alpha = 0.3, fill = "navy", col = NA)
 ```
 
@@ -166,7 +166,7 @@ fill scale for the plot, and this scale can be modified by
 the user who doesn't like the default scale choice.)
 
 ```{r}
-gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) %>%
+gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) |>
   gf_violin(price ~ col, data = diamonds2, alpha = 0.3, fill = ~ col)
 ```
 
@@ -181,7 +181,7 @@ for the largest diamonds.)
 ```{r}
 xyplot(price ~ carat, groups = col, data = diamonds2,
        auto.key = TRUE, type = c("p", "r"), alpha = 0.5) 
-gf_point(price ~ carat, color = ~ col, data = diamonds2, alpha = 0.5) %>%
+gf_point(price ~ carat, color = ~ col, data = diamonds2, alpha = 0.5) |>
    gf_lm(price ~ carat, color = ~ col, data = diamonds2, alpha = 0.5) 
 ```
 
@@ -231,9 +231,9 @@ than to overlay subgroups in the same space.  `ggformula` provides two ways
 to create these facets.  The first uses `|` very much like `lattice` does.
 
 ```{r fig.width = 7}
-gf_point(price ~ carat | col, data = diamonds2, alpha = 0.2) %>%
+gf_point(price ~ carat | col, data = diamonds2, alpha = 0.2) |>
   gf_lm()
-gf_point(price ~ carat | col ~ clarity, data = diamonds2, alpha = 0.2) %>%
+gf_point(price ~ carat | col ~ clarity, data = diamonds2, alpha = 0.2) |>
   gf_lm()
 ```
 
@@ -245,12 +245,12 @@ The second way to adds facets with `gf_facet_wrap()` or `gf_facet_grid()`.
 The commands below create the same plots as those above.
 
 ```{r fig.keep = "none"}
-gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) %>%
-  gf_lm(alpha = 0.5) %>%
+gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) |>
+  gf_lm(alpha = 0.5) |>
   gf_facet_wrap( ~ color)
 
-gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) %>%
-  gf_lm(alpha = 0.5) %>%
+gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) |>
+  gf_lm(alpha = 0.5) |>
   gf_facet_grid( color ~ clarity)
 ```
 
@@ -266,14 +266,14 @@ For the rest, we offer `gf_refine()` which allows us to make any
 
 ```{r, fig.width = 5}
 gf_point(price ~ carat, data = diamonds2, 
-         color = ~ col, alpha = 0.2, size = 0.5) %>%
-  gf_lm(alpha = 0.5) %>%
-  gf_facet_wrap( ~ color) %>%
+         color = ~ col, alpha = 0.2, size = 0.5) |>
+  gf_lm(alpha = 0.5) |>
+  gf_facet_wrap( ~ color) |>
   gf_labs(title = "Price vs Size", subtitle = "(2 colors of diamonds)",
           caption = "source: ggplot2::diamonds",
           x = "size (carat)", y = "price (US dollars)"
-  ) %>%
-  gf_refine(scale_color_manual(values = c("red", "navy"), guide = "none")) %>%
+  ) |>
+  gf_refine(scale_color_manual(values = c("red", "navy"), guide = "none")) |>
   gf_theme(theme_minimal())
 ```
 
@@ -287,13 +287,13 @@ features can be customized one line at a time.
 `ggformala` also fits into a tidyverse-style workflow (arguably better than
 `ggplot2` itself does).
 Data can be piped into the initial call to a `ggformula` function and there 
-is no need to switch between `%>%` and `+` when moving from data transformations
+is no need to switch between `|>` and `+` when moving from data transformations
 to plot operations.
 
 ```{r}
-diamonds %>%
-  filter(color %in% c("D", "G", "J")) %>%
-  mutate(col = as.character(color)) %>%
+diamonds |>
+  filter(color %in% c("D", "G", "J")) |>
+  mutate(col = as.character(color)) |>
   gf_bar( ~ col)
 ```
 

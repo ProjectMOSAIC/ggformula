@@ -21,9 +21,9 @@ if (require(NHANES)) {
   data(NHANES, package = "NHANES")
 }
 for (y in unique(Births$year)) {
-  assign(paste0("Births",y),  Births %>% filter(year == y))
+  assign(paste0("Births",y),  Births |> filter(year == y))
 }
-Births1978 <- Births %>% filter(year == 1978)
+Births1978 <- Births |> filter(year == 1978)
 data(penguins, package = "palmerpenguins")
 knitr::opts_chunk$set(
   echo = FALSE,
@@ -150,7 +150,7 @@ shortly.)
 ```{r, labs-demo, exercise = TRUE}
 gf_linerange(low_temp + high_temp
           ~ date | city ~ ., data = Weather, 
-             color = ~ avg_temp) %>%
+             color = ~ avg_temp) |>
   gf_labs(
     title = "Temperatures in five cities",
     subtitle = "2016-2017 data",
@@ -175,15 +175,15 @@ Arbitrary text can be placed on a plot using `gf_text()` or `gf_label()`.
 
 ```{r, labels, exercise = TRUE, fig.bill_length_mm = 4.5}
 # summary data used to create annotation
-LabData <- Weather %>% group_by(city) %>%
+LabData <- Weather |> group_by(city) |>
   summarise(date = date[which.max(high_temp)],
             high_temp = max (high_temp), 
             description = paste("Highest Hi:", high_temp, "on", format(date)))
 
 gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-             color = ~ avg_temp)  %>%
+             color = ~ avg_temp)  |>
   gf_text((high_temp + 6) ~ date, data = LabData, 
-          label = ~ description, size = 3, inherit = FALSE) %>% 
+          label = ~ description, size = 3, inherit = FALSE) |> 
   gf_labs(
     title = "Temperatures in five cities",
     subtitle = "2016-17 data",
@@ -204,7 +204,7 @@ p + foo(...)
 ```
 
 ```{r, refine2, eval = FALSE, echo = TRUE}
-p %>% gf_refine(foo(...))
+p |> gf_refine(foo(...))
 ```
 
 For those not already familiar with `ggplot2`, in the remainder of this tutorial, 
@@ -242,7 +242,7 @@ in this case five colors selected using the `rainbow()` function.
 
 ```{r, scales, exercise = TRUE, fig.bill_length_mm = 4.0}
 gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-             color = ~ avg_temp) %>%
+             color = ~ avg_temp) |>
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 ```
 
@@ -254,7 +254,7 @@ colors above.
 
 ```{r, scales2, exercise = TRUE, fig.bill_length_mm = 4.0}
 gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-             color = ~ avg_temp) %>%
+             color = ~ avg_temp) |>
   gf_refine(scale_colour_gradientn(colors = c("navy", "red")))
 ```
 
@@ -272,7 +272,7 @@ in the example with five of your own choosing.
 
 ```{r, scales3, exercise = TRUE, fig.bill_length_mm = 4.5}
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-          fill = ~ city, alpha = 0.6)  %>%
+          fill = ~ city, alpha = 0.6)  |>
   gf_refine(scale_fill_manual(values = c("red", "blue", "orange", "navy", "gray50")))
 ```
 
@@ -309,10 +309,10 @@ Experiment with different colors by choosing different values for
 `type` and `palette`.
 
 ```{r, brewer, exercise = TRUE, fig.bill_length_mm = 4.0}
-gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, fill = ~ city, alpha = 0.5) %>%
+gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, fill = ~ city, alpha = 0.5) |>
   gf_refine(scale_fill_brewer(type = "qual", palette = 2))
 
-gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, color = ~ avg_temp)  %>%
+gf_linerange(low_temp + high_temp ~ date | city ~ ., data = Weather, color = ~ avg_temp)  |>
   gf_refine(scale_color_distiller(type = "div", palette = 3))
 ```
 
@@ -333,7 +333,7 @@ Make horizontal violin plots by inserting `coord_flip()` into `gf_refine()`.
 Change the plot to boxplots if you prefer those.
 
 ```{r, flip-violin, exercise = TRUE}
-gf_violin(high_temp ~ city, data = Weather) %>%
+gf_violin(high_temp ~ city, data = Weather) |>
   gf_refine()
 ```
 
@@ -347,7 +347,7 @@ an identity line to have a true 45 degree slope.
 
 Use `coord_equal()` to force equally-sized coordinate scales in the plot below.
 ```{r, coord_equal, example = TRUE}
-gf_point(high_temp ~ low_temp | city, data = Weather, alpha = 0.5) %>%
+gf_point(high_temp ~ low_temp | city, data = Weather, alpha = 0.5) |>
   gf_abline(slope = 1, intercept = 0) 
 ```
 
@@ -361,8 +361,8 @@ The example below isn't very useful, but demonstrates two of the
 transformations that are available.  Find out more with `?coord_trans()`.
 
 ```{r, coord_trans, exercise = TRUE}
-gf_point(high_temp ~ low_temp | city, data = Weather, alpha = 0.5) %>%
-  gf_abline(slope = 1, intercept = 0)  %>%
+gf_point(high_temp ~ low_temp | city, data = Weather, alpha = 0.5) |>
+  gf_abline(slope = 1, intercept = 0)  |>
   gf_refine(coord_trans(x = "reciprocal", y = "log"))
 ```
 
@@ -413,9 +413,9 @@ In this section we will use a different data set.  `penguins` contains
 data collected by Palmer recording measurements of some penguins.
 
 ```{r, penguins}
-penguins %>% head(3)
-penguins %>%
-  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) %>%
+penguins |> head(3)
+penguins |>
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) |>
   gf_lm(bill_length_mm ~ bill_depth_mm)
 ```
 
@@ -424,9 +424,9 @@ penguins %>%
 
 
 ```{r, filter, exercise = TRUE}
-SmallPenguins <- penguins %>% filter(bill_depth_mm < 17)
-SmallPenguins %>% 
-  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) %>%
+SmallPenguins <- penguins |> filter(bill_depth_mm < 17)
+SmallPenguins |> 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) |>
   gf_lm(bill_length_mm ~ bill_depth_mm) 
 ```
 
@@ -435,9 +435,9 @@ SmallPenguins %>%
 
 
 ```{r, gf_lims, exercise = TRUE}
-penguins %>% 
-  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) %>%
-  gf_lm(bill_length_mm ~ bill_depth_mm) %>%
+penguins |> 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) |>
+  gf_lm(bill_length_mm ~ bill_depth_mm) |>
   gf_lims(x = c(NA, 17))
 ```
 
@@ -445,9 +445,9 @@ penguins %>%
 ### Using scales to limit the view
 
 ```{r, scale_lims, exercise = TRUE}
-penguins %>% 
-  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) %>%
-  gf_lm(bill_length_mm ~ bill_depth_mm) %>%
+penguins |> 
+  gf_point(bill_length_mm ~ bill_depth_mm, color = ~species) |>
+  gf_lm(bill_length_mm ~ bill_depth_mm) |>
   gf_refine(scale_x_continuous(limits = c(NA, 17)))
 ```
 
@@ -484,8 +484,8 @@ The theme can be set for an individual plot using `gf_theme()`.
 
 ```{r, gf_theme, exercise = TRUE}
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-          fill = ~ city, alpha = 0.5) %>%
-  gf_labs(title = "Themes can change overall look of a plot") %>%
+          fill = ~ city, alpha = 0.5) |>
+  gf_labs(title = "Themes can change overall look of a plot") |>
   gf_theme(theme = theme_fivethirtyeight())
 ```
 
@@ -500,8 +500,8 @@ the elements and how to change them.
 
 ```{r, gf_theme_elements, exercise = TRUE}
 gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather, 
-          fill = ~ city, alpha = 0.5) %>%
-  gf_labs(title = "Temperatures in Five Cities") %>%
+          fill = ~ city, alpha = 0.5) |>
+  gf_labs(title = "Temperatures in Five Cities") |>
   gf_theme(text = element_text(color = "red"), 
            plot.title = element_text(hjust = 0.5),
            axis.text = element_text(color = "goldenrod", face = "italic"))
@@ -544,7 +544,7 @@ Other non-identity stats that get used with particular functions include
 # Plot highest high temperature each month
 gf_point(high_temp
          ~ (month(date, label = TRUE)), color = ~ city, data = Weather, 
-         stat = "summary", fun.y = max) %>%
+         stat = "summary", fun.y = max) |>
   gf_labs(x = "month", title = "Highest temperature each month in five cities") 
 ```
 
@@ -558,7 +558,7 @@ gf_pointrange(high_temp
           + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, data = Weather, 
               position = position_dodge(width = 0.2),
               stat = "summary", 
-              fun.y = median, fun.ymin = min, fun.ymax = max) %>%
+              fun.y = median, fun.ymin = min, fun.ymax = max) |>
   gf_labs(x = "month", 
           title = "Median, min, and max high temperature each month in five cities",
           caption = "jitter used to avoid overplotting") 
@@ -570,7 +570,7 @@ computes the mean, and the mean one standard errors added and subtracted.
 ```{r, mean_se, exercise = TRUE}
 gf_pointrange(high_temp
           + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, 
-              data = Weather, stat = "summary", position = position_dodge(width = 0.3)) %>%
+              data = Weather, stat = "summary", position = position_dodge(width = 0.3)) |>
   gf_labs(x = "month", caption = "mean +/- one SE")
 ```
 
@@ -595,7 +595,7 @@ gf_pointrange(high_temp
           + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, 
               data = Weather, stat = "summary", fun.data = median_quantiles,
               fun.args = list(central = 0.6),
-              position = position_dodge(width = 0.3)) %>%
+              position = position_dodge(width = 0.3)) |>
   gf_labs(x = "month", 
           title = "High temperatures by month in five cities",
           caption = "median and central 60% of data"

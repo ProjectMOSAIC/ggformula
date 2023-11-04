@@ -23,9 +23,9 @@ if (require(NHANES)) {
   data(NHANES, package = "NHANES")
 } 
 for (y in unique(Births$year)) {
-  assign(paste0("Births",y),  Births %>% filter(year == y))
+  assign(paste0("Births",y),  Births |> filter(year == y))
 }
-Births1978 <- Births %>% filter(year == 1978)
+Births1978 <- Births |> filter(year == 1978)
 # knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
 knitr::opts_chunk$set(
   echo = FALSE,
@@ -226,7 +226,7 @@ Note: R is case sensitive, so watch your capitalization.
 For the record, here are the first few rows of `Births1978`.
   
 ```{r, top-of-data}
-Births1978 %>% head(3) %>% select(births, date, day_of_year)
+Births1978 |> head(3) |> select(births, date, day_of_year)
 ```
 
 ## Using formulas to describe plots
@@ -260,7 +260,7 @@ knitr::include_graphics("images/keyboard-tilde.png")
 <!-- t1 <- find_call("whatever ~ whatever", message = "do you have a tilde (~)?  Does your formula have two sides?") -->
 <!-- t2 <- find_call("births ~ date", message = "you need to have the y-axis variable on the left and the x-axis variable on the right") -->
 
-<!-- USER_CODE %>% t1 %>% t2  -->
+<!-- USER_CODE |> t1 |> t2  -->
 <!-- ``` -->
 
 
@@ -409,18 +409,18 @@ Curious to know all the available color names? Run this code.
 colors()
 ```
 
-## Multiple layers with %>%
+## Multiple layers with |>
 
 We said that `gf_point()` creates a plot with points. 
 This isn't quite true. Technically, it creates a **layer** with points.
 A plot may have multiple layers.  To create a multi-layered plot, simply
-append `%>%` at the end of the code for one layer and follow that with
+append `|>` at the end of the code for one layer and follow that with
 another layer.
 
 #### Exercise
 
  1. If you run the following code as is, you will get three separate plots.
- 2. Combine these three layers into a single plot by appending `%>%` at
+ 2. Combine these three layers into a single plot by appending `|>` at
 the end of the first two lines.
  3. That's pretty ugly.  Now change the x-axis variable to `day_of_year` so 
  that all three years are aligned.
@@ -493,10 +493,10 @@ our formula.
 gf_point(births ~ day_of_year | year, data = Births, size = 0.5)
 ```
 
-The second way is to add on a facet command using `%>%`:
+The second way is to add on a facet command using `|>`:
 
 ```{r, births-facets-wrap, exercise = TRUE, fig.height = 6}
-gf_point(births ~ day_of_year, data = Births, size = 0.5) %>%
+gf_point(births ~ day_of_year, data = Births, size = 0.5) |>
   gf_facet_wrap( ~ year)
 ```
 
@@ -657,7 +657,7 @@ Modify the code above to compute some other summaries of your choosing.
 ### Chaining with df_stats()
 
 ```{r, df_stats03, exercise = TRUE}
-Births1978 %>% 
+Births1978 |> 
   df_stats(births ~ wday, median, iqr)
 ```
 
@@ -671,9 +671,9 @@ See if you can figure out what this does before your execute it.
 ```{r, df_stats04, exercise = TRUE, fig.height = 4}
 Births_summary <- 
   df_stats(births ~ wday, data = Births1978)
-gf_boxplot(births ~ wday, data = Births1978) %>%
-  gf_point(mean ~ wday, color = "red",           data = Births_summary) %>%
-  gf_label(6400 ~ wday, label = ~ round(median), data = Births_summary) %>%
+gf_boxplot(births ~ wday, data = Births1978) |>
+  gf_point(mean ~ wday, color = "red",           data = Births_summary) |>
+  gf_label(6400 ~ wday, label = ~ round(median), data = Births_summary) |>
   gf_text( 6700 ~ wday, label = ~ round(mean),   data = Births_summary, 
            color = "red")
 ```

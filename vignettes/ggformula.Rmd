@@ -52,7 +52,7 @@ There are several excellent graphics packages provided for R. The
 `ggformula` package currently builds on one of them, `ggplot2`, but
 provides a very different user interface for creating plots. The interface
 is based on formulas (much like the `lattice` interface) and the use of 
-the chaining operator (`%>%`) to build more complex graphics from simpler 
+the chaining operator (`|>`) to build more complex graphics from simpler 
 components.
 
 
@@ -80,7 +80,7 @@ gf_plottype(formula, data = mydata)
 or, equivalently, 
 
 ```{r, plottype2, eval = FALSE}
-mydata %>% gf_plottype(formula)
+mydata |> gf_plottype(formula)
 ```
 
 where 
@@ -105,7 +105,7 @@ Here is a simple example:
 ```{r, simple-example}
 library(ggformula)
 gf_point(mpg ~ hp, data = mtcars)
-mtcars %>% gf_point(mpg ~ hp)
+mtcars |> gf_point(mpg ~ hp)
 ```
 
 
@@ -196,13 +196,13 @@ examples below, since there are only three values for `carb`, it is easier to re
 graph if we tell R to treat `cyl` as a categorical variable by converting to a factor (or to 
 a string).  Except for the labeling of the legend, these two plots are the same.
 In the second example, we see how the ggformula works well with data tranformations
-using `%>%`.
+using `|>`.
 
 ```{r, on-the-fly}
 library(dplyr)
 gf_point(mpg ~ hp,  color = ~ factor(cyl), size = ~ carb, alpha = 0.75, data = mtcars)
-mtcars %>% 
-  mutate(cylinders = factor(cyl)) %>% 
+mtcars |> 
+  mutate(cylinders = factor(cyl)) |> 
   gf_point(mpg ~ hp,  color = ~ cylinders, size = ~ carb, alpha = 0.75)
 ```
 
@@ -232,9 +232,9 @@ case, `adjust` can be used to increase or decrease the amount of smoothing.
 
 ```{r, dens}
 # less smoothing
-penguins %>% gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 0.25)  
+penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 0.25)  
 # more smoothing
-penguins %>% gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 4)     
+penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 4)     
 ```
 
 ## Learning more
