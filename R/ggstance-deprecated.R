@@ -20,14 +20,16 @@
 
 gf_barh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_bar() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_bar() instead.  See `?ggstance'.")
+    gf_bar(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_countsh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_counts() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_counts() instead.  See `?ggstance'.")
+    gf_counts(...)
   }
 
 #' @rdname ggstance
@@ -35,28 +37,32 @@ gf_countsh <-
 #' @export
 gf_colh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_col() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_col() instead.  See `?ggstance'.")
+    gf_col(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_propsh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_props() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_props() instead.  See `?ggstance'.")
+    gf_props(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_percentsh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_percents() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_percents() instead.  See `?ggstance'.")
+    gf_percents(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_boxploth <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_boxplot() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_boxplot() instead.  See `?ggstance'.")
+    gf_boxplot(...)
   }
 #
 # #' @rdname ggstance
@@ -72,33 +78,38 @@ gf_boxploth <-
 #' @export
 gf_linerangeh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_linerange() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_linerange() instead.  See `?ggstance'.")
+    gf_linerange(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_pointrangeh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_pointrange() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_pointrange() instead.  See `?ggstance'.")
+    gf_pointrange(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_crossbarh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_crossbar() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_crossbar() instead.  See `?ggstance'.")
+    gf_crossbar(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_violinh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_violin() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_violin() instead.  See `?ggstance'.")
+    gf_violin(...)
   }
 #' @rdname ggstance
 #' @aliases ggstance
 #' @export
 gf_errorbarh <-
   function(...) {
-    .Defunct(msg = "This function has been deprecated.  Use gf_errorbar() instead.  See `?ggstance'.")
+    .Deprecated(msg = "This function has been deprecated.  Use gf_errorbar() instead.  See `?ggstance'.")
+    gf_errorbar(...)
   }
