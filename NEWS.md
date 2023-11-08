@@ -1,5 +1,15 @@
 # ggformula
 
+# ggformula 0.12.0
+
+* Removed dependency on ggstance so that ggformula can work with WebR
+* Deprecated horizontal versions of many plotting functions to remove dependence on ggstance and
+because ggplot2 now supports horizontal versions of most geoms.
+* Examples have been updated to use `|>` rather than `%>%`
+* Updates to documentation (formatting mostly)
+* Bug fix: found one remaining use of `stat()` and changed to `after_stat()`
+
+
 # ggformula 0.10.4
 
 * Updated the re-export of a few functions from `labelled`. (#160)
