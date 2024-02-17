@@ -9,7 +9,6 @@ because ggplot2 now supports horizontal versions of most geoms.
 * Updates to documentation (formatting mostly)
 * Bug fix: found one remaining use of `stat()` and changed to `after_stat()`
 
-
 # ggformula 0.10.4
 
 * Updated the re-export of a few functions from `labelled`. (#160)

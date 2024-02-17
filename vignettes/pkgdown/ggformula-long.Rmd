@@ -6,7 +6,7 @@ output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Formula Interface for ggplot2}
+  %\VignetteIndexEntry{Formula Interface for ggplot2 (full version)}
 ---
 
 ```{r setup, include = FALSE}
@@ -483,10 +483,12 @@ values into one of a few different bins.
 
 ```{r, violin-sina}
 Penguins |> gf_violin(bill_length_mm ~  species)
-Penguins |> gf_sina(bill_length_mm ~  species, alpha = 0.5)
-Penguins |>
-  gf_violin(bill_length_mm ~  species) |>
-  gf_sina(bill_length_mm ~  species, alpha = 0.5, color = ~ island)
+if (require(ggforce)) {
+  Penguins |> gf_sina(bill_length_mm ~  species, alpha = 0.5)
+  Penguins |>
+    gf_violin(bill_length_mm ~  species) |>
+    gf_sina(bill_length_mm ~  species, alpha = 0.5, color = ~ island)
+}
 ```
 
 ### Ridge plots

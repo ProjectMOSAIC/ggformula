@@ -18,7 +18,7 @@ are connected in the order in which they appear in data."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -250,10 +250,10 @@ in another.</p>
 <span class="r-plt img"><img src="gf_rect-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># use data = data.frame() so we get 1 rectangle and not 1 per row of faithful</span></span></span>
 <span class="r-in"><span><span class="co"># use inherit = FALSE because we are not reusing eruptions and waiting</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">eruptions</span> <span class="op">~</span> <span class="va">waiting</span>, data <span class="op">=</span> <span class="va">faithful</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">eruptions</span> <span class="op">~</span> <span class="va">waiting</span>, data <span class="op">=</span> <span class="va">faithful</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rect</span><span class="op">(</span><span class="fl">1.5</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">~</span> <span class="fl">45</span> <span class="op">+</span> <span class="fl">68</span>,</span></span>
 <span class="r-in"><span>    fill <span class="op">=</span> <span class="st">"red"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>,</span></span>
-<span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_rect</span><span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">5.5</span> <span class="op">~</span> <span class="fl">68</span> <span class="op">+</span> <span class="fl">100</span>,</span></span>
 <span class="r-in"><span>    fill <span class="op">=</span> <span class="st">"green"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>

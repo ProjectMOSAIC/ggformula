@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -105,8 +105,8 @@ formula notation: <code>aesthetic = ~ expression</code>.  See examples.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gf_plot</span><span class="op">(</span><span class="va">mtcars</span>, x <span class="op">=</span> <span class="op">~</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="op">~</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gf_plot</span><span class="op">(</span><span class="va">mtcars</span>, x <span class="op">=</span> <span class="op">~</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="op">~</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gf_density_2d.html">gf_density_2d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_plot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

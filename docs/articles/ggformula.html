@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ and Randall Pruim</h4>
 <code>ggplot2</code>, but provides a very different user interface for
 creating plots. The interface is based on formulas (much like the
 <code>lattice</code> interface) and the use of the chaining operator
-(<code>%&gt;%</code>) to build more complex graphics from simpler
+(<code>|&gt;</code>) to build more complex graphics from simpler
 components.</p>
 <p>The <code>ggformula</code> graphics were designed with several user
 groups in mind:</p>
@@ -152,7 +152,7 @@ is</p>
 <code class="sourceCode R"><span><span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="va">mydata</span><span class="op">)</span></span></code></pre></div>
 <p>or, equivalently,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mydata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mydata</span> <span class="op">|&gt;</span> <span class="fu">gf_plottype</span><span class="op">(</span><span class="va">formula</span><span class="op">)</span></span></code></pre></div>
 <p>where</p>
 <ul>
 <li><p><code>plottype</code> describes the type of plot (layer) desired
@@ -177,7 +177,7 @@ arguments.</p>
 <span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula_files/figure-html/simple-example-1.png" width="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula_files/figure-html/simple-example-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -297,14 +297,14 @@ the graph if we tell R to treat <code>cyl</code> as a categorical
 variable by converting to a factor (or to a string). Except for the
 labeling of the legend, these two plots are the same. In the second
 example, we see how the ggformula works well with data tranformations
-using <code>%&gt;%</code>.</p>
+using <code>|&gt;</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula_files/figure-html/on-the-fly-1.png" width="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cylinders <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cylinders <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>,  color <span class="op">=</span> <span class="op">~</span> <span class="va">cylinders</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">carb</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula_files/figure-html/on-the-fly-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
@@ -342,12 +342,12 @@ aspect of the plot. In this case, <code>adjust</code> can be used to
 increase or decrease the amount of smoothing.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># less smoothing</span></span>
-<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>  </span></code></pre></div>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>  </span></code></pre></div>
 <pre><code><span><span class="co">## Warning: Removed 2 rows containing non-finite values (`stat_density()`).</span></span></code></pre>
 <p><img src="ggformula_files/figure-html/dens-1.png" width="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># more smoothing</span></span>
-<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>     </span></code></pre></div>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gf_density.html">gf_dens</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">species</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, adjust <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>     </span></code></pre></div>
 <pre><code><span><span class="co">## Warning: Removed 2 rows containing non-finite values (`stat_density()`).</span></span></code></pre>
 <p><img src="ggformula_files/figure-html/dens-2.png" width="60%" style="display: block; margin: auto;"></p>
 </div>

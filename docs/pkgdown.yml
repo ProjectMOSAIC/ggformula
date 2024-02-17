@@ -1,4 +1,4 @@
-pandoc: 3.0.1
+pandoc: 3.1.6.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -6,5 +6,5 @@ articles:
   ggformula-blog: pkgdown/ggformula-blog.html
   ggformula-long: pkgdown/ggformula-long.html
   learn-more: pkgdown/learn-more.html
-last_built: 2023-04-12T02:18Z
+last_built: 2023-11-09T12:55Z
 

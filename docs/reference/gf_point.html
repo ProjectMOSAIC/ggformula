@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -264,7 +264,7 @@ in another.</p>
 <span class="r-in"><span><span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span>, size <span class="op">=</span> <span class="op">~</span><span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_point-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># faceting -- two ways</span></span></span>
-<span class="r-in"><span><span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_point-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">|</span> <span class="va">am</span>, group <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
@@ -274,7 +274,7 @@ in another.</p>
 <span class="r-in"><span><span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">|</span> <span class="va">am</span> <span class="op">~</span> <span class="va">.</span>, group <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_point-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Chaining in the data</span></span></span>
-<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">gf_point</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gf_point-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># short cuts for main labels in the plot</span></span></span>

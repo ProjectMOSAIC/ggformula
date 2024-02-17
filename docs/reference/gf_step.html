@@ -21,7 +21,7 @@ connected together."><meta property="og:image" content="/logo.png"><!-- mathjax 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -284,8 +284,8 @@ in another.</p>
 <span class="r-in"><span>  <span class="va">surv_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">surv_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">surv_df</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># now create a plot</span></span></span>
-<span class="r-in"><span>  <span class="va">surv_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu">gf_step</span><span class="op">(</span><span class="va">estimate</span> <span class="op">~</span> <span class="va">time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">surv_df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu">gf_step</span><span class="op">(</span><span class="va">estimate</span> <span class="op">~</span> <span class="va">time</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="gf_ribbon.html">gf_ribbon</a></span><span class="op">(</span><span class="va">conf.low</span> <span class="op">+</span> <span class="va">conf.high</span> <span class="op">~</span> <span class="va">time</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: survival</span>

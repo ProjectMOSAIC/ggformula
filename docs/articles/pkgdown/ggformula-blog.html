@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.0</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@ in R to Beginners</h1>
                         <h4 data-toc-skip class="author">Randall
 Pruim</h4>
             
-            <h4 data-toc-skip class="date">2023-04-11</h4>
+            <h4 data-toc-skip class="date">2023-11-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ProjectMOSAIC/ggformula/blob/HEAD/vignettes/pkgdown/ggformula-blog.Rmd" class="external-link"><code>vignettes/pkgdown/ggformula-blog.Rmd</code></a></small>
       <div class="hidden name"><code>ggformula-blog.Rmd</code></div>
@@ -149,7 +149,7 @@ options for teaching beginners:</p>
 <code>[[ ]]</code>, use built-in functions like <code><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave()</a></code> and
 <code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply()</a></code>, and use base graphics.</p></li>
 <li><p>“Tidyverse first”: start from scratch with pipes
-(<code>%&gt;%</code>), leverage <code>dplyr</code> for data
+(<code>|&gt;</code>), leverage <code>dplyr</code> for data
 transformations and summarization, and use <code>ggplot2</code> for
 graphics.</p></li>
 </ol>
@@ -195,8 +195,8 @@ model are what make this approach so compelling.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># diamonds2 was called `recoded' in Nick's post</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="va">diamonds2</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"D"</span> <span class="op">|</span> <span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">diamonds2</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"D"</span> <span class="op">|</span> <span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">color</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span>  </span></code></pre></div>
@@ -253,10 +253,10 @@ boxplots made with <code>lattice</code> in Nick’s post.</p>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-1.png" width="288"><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-2.png" width="288"></p>
 <p>If we like, we can even overlay these two types of plots to see how
 they compare. To do so, we simply place the then operator
-(<code>%&gt;%</code>, also called a pipe) between the two layers and
+(<code>|&gt;</code>, also called a pipe) between the two layers and
 adjust the transparency so we can see both where they overlap.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="st">"navy"</span>, col <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-3-1.png" width="288"></p>
 </div>
@@ -274,7 +274,7 @@ is indicated by an additional <code>~</code>. One can read
 by the fill scale for the plot, and this scale can be modified by the
 user who doesn’t like the default scale choice.)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-4-1.png" width="288"></p>
 <p>A more interesting use of mapping colors occurs when elements of each
@@ -286,10 +286,13 @@ that the simple linear fit is poor for the largest diamonds.)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">xyplot</span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, groups <span class="op">=</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>,</span>
 <span>       auto.key <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"r"</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Using the `size` aesthietic with geom_line was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` aesthetic instead.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Using the `size` aesthetic with geom_line was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` aesthetic instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-1.png" width="288"><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-2.png" width="288"></p>
 <p>In <code>lattice</code>, this requires us to manually turn on a
 legend with <code>auto.key = TRUE</code> and to introduce the
@@ -346,9 +349,9 @@ rather than to overlay subgroups in the same space.
 <code>ggformula</code> provides two ways to create these facets. The
 first uses <code>|</code> very much like <code>lattice</code> does.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span> <span class="op">~</span> <span class="va">clarity</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span> <span class="op">~</span> <span class="va">clarity</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-1.png" width="672"><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
 <p>Notice that the <code><a href="../../reference/gf_smooth.html">gf_lm()</a></code> layer inherits information from
@@ -358,12 +361,12 @@ typing when the information is the same in multiple layers.</p>
 <code><a href="../../reference/gf_facet_grid.html">gf_facet_grid()</a></code>. The commands below create the same plots
 as those above.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span><span class="op">(</span> <span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -379,14 +382,14 @@ any <code>ggplot2</code> refinements without resorting to the
 <code>+</code> syntax used by <code>ggformula</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, </span>
-<span>         color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>         color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Price vs Size"</span>, subtitle <span class="op">=</span> <span class="st">"(2 colors of diamonds)"</span>,</span>
 <span>          caption <span class="op">=</span> <span class="st">"source: ggplot2::diamonds"</span>,</span>
 <span>          x <span class="op">=</span> <span class="st">"size (carat)"</span>, y <span class="op">=</span> <span class="st">"price (US dollars)"</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"navy"</span><span class="op">)</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"navy"</span><span class="op">)</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
 <p>Although this example uses a lot of customization, it is completely
@@ -399,13 +402,12 @@ features can be customized one line at a time.</p>
 <p><code>ggformala</code> also fits into a tidyverse-style workflow
 (arguably better than <code>ggplot2</code> itself does). Data can be
 piped into the initial call to a <code>ggformula</code> function and
-there is no need to switch between <code>%&gt;%</code> and
-<code>+</code> when moving from data transformations to plot
-operations.</p>
+there is no need to switch between <code>|&gt;</code> and <code>+</code>
+when moving from data transformations to plot operations.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"G"</span>, <span class="st">"J"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"G"</span>, <span class="st">"J"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/gf_bar.html">gf_bar</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggformula-blog_files/figure-html/unnamed-chunk-11-1.png" width="288"></p>
 </div>
