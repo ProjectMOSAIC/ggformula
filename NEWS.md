@@ -1,5 +1,9 @@
 # ggformula
 
+# ggformaul 0.12.1
+
+* Bug fix in gf_dist()
+
 # ggformula 0.12.0
 
 * Removed dependency on ggstance so that ggformula can work with WebR

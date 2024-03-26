@@ -2,8 +2,8 @@
 % Please edit documentation in R/ggformula-package.R
 \docType{package}
 \name{ggformula}
-\alias{ggformula}
 \alias{ggformula-package}
+\alias{ggformula}
 \title{ggformula: Formula Interface to the Grammar of Graphics}
 \description{
 Provides a formula interface to 'ggplot2' graphics.

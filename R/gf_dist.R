@@ -112,7 +112,7 @@ gf_dist <-
     if ("dist" %in% names(dots)) dots[["dist"]] <- NULL
     # remove size for lines now that linewidth is used instead.
     dots_for_lines <- dots
-    dots_for_lines[['size']] <- NULL
+    if ('size' %in% names(dots_for_lines)) dots_for_lines[['size']] <- NULL
 
     # attempting to make evaluation of these arguments more intuitive
     env <- parent.frame()
