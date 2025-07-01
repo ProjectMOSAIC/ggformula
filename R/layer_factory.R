@@ -31,7 +31,7 @@ NA
 #' @param extras An alist of additional arguments (potentially with defaults)
 #' @param note A note to add to the quick help.
 #' @param aesthetics Additional aesthetics (typically created using
-#'   [`ggplot2::aes()`]) set rather than inferred from formula.
+#'   [ggplot2::aes()]) set rather than inferred from formula.
 #'   `gf_dhistogram()` uses this to set the y aesthetic to `stat(density)`,
 #'   for example.
 #' @param inherit.aes A logical indicating whether aesthetics should be
@@ -551,11 +551,13 @@ as_formula <- function(x, ...) {
   UseMethod("as_formula", x)
 }
 
+#` @exportS3method
 as_formula.formula <- function(x, ...) {
   x
 }
 
 
+#` @exportS3method
 as_formula.call <- function(x, ...) {
   res <- ~ x
   # environment(res) <- env
@@ -563,6 +565,7 @@ as_formula.call <- function(x, ...) {
   res
 }
 
+#` @exportS3method
 as_formula.name <- function(x, env = parent.frame(), ...) {
   res <- ~ x
   environment(res) <- env

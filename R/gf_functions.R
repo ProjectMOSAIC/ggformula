@@ -60,10 +60,10 @@ NA
 #'   of the attributes of the layer are mapped.
 #' @param show.help If `TRUE`, display some minimal help.
 #' @param inherit A logical indicating whether default attributes are inherited.
-#' @param xlab Label for x-axis. See also [`gf_labs()`].
-#' @param ylab Label for y-axis. See also [`gf_labs()`].
+#' @param xlab Label for x-axis. See also [gf_labs()].
+#' @param ylab Label for y-axis. See also [gf_labs()].
 #' @param title,subtitle,caption Title, sub-title, and caption for the plot.
-#'   See also [`gf_labs()`].
+#'   See also [gf_labs()].
 #'
 #' @return a gg object
 #' @seealso [ggplot2::geom_point()], [gf_line()], [gf_jitter()]
@@ -928,8 +928,8 @@ gf_tile <-
 
 #' Formula interface to geom_bin2d()
 #'
-#' `geom_bin2d()` uses [`ggplot2::stat_bin2d()`] to bin the data before using
-#' [`gf_tile()`] to display the results.
+#' `geom_bin2d()` uses [ggplot2::stat_bin2d()] to bin the data before using
+#' [gf_tile()] to display the results.
 #'
 #' @inherit ggplot2::geom_tile references
 #' @inherit gf_tile
@@ -938,7 +938,7 @@ gf_tile <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#' @seealso [`ggplot2::geom_bin2d()`], [`gf_tile()`]
+#' @seealso [ggplot2::geom_bin2d()], [gf_tile()]
 #' @export
 #' @examples
 #' gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) |>
@@ -1167,7 +1167,7 @@ gf_dhistogramh <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#' @seealso [`gf_ash()`], [`ggplot2::geom_density()`]
+#' @seealso [gf_ash()], [ggplot2::geom_density()]
 #' @export
 #' @examples
 #' gf_dens()
@@ -2415,7 +2415,7 @@ gf_fun <- function(object = NULL, formula, data = NULL, ..., inherit = FALSE) {
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
 #' @param dist A quoted name of a distribution function.
-#'   See [`mosaicCore::fit_distr_fun()`] for more details about allowable distributions.
+#'   See [mosaicCore::fit_distr_fun()] for more details about allowable distributions.
 #' @param size size aesthetic for dots in pmf plots.
 #' @param start Starting value(s) for the search for MLE.  (See [MASS::fitdistr].)
 #' @param environment An environment in which to look for variables not found in `data`.
@@ -2514,7 +2514,7 @@ gf_sina <-
 #' @param geometry A column of class sfc containing simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
-# #' @seealso [`ggplot2::geom_sf()`]
+# #' @seealso [ggplot2::geom_sf()]
 #' @export
 #' @examples
 #'
@@ -2583,7 +2583,7 @@ gf_sf <-
 #' This is primarily useful as a way to start a sequence of piped
 #' plot layers.
 #'
-#' @param environment An environment passed to [`ggplot2::ggplot()`]
+#' @param environment An environment passed to [ggplot2::ggplot()]
 #' @return A plot with now layers.
 #' @examples
 #' gf_empty()

@@ -9,11 +9,11 @@
 #' @inheritParams ggridges::geom_ridgeline
 #' @inheritParams ggridges::geom_density_ridges
 #' @inheritParams ggridges::geom_density_ridges_gradient
-#' @seealso [`ggridges::geom_density_ridges()`]
-#' @seealso [`ggridges::geom_ridgeline()`]
-#' @seealso [`ggridges::geom_density_ridges_gradient()`]
+#' @seealso [ggridges::geom_density_ridges()]
+#' @seealso [ggridges::geom_ridgeline()]
+#' @seealso [ggridges::geom_density_ridges_gradient()]
 #' @param height The height of each ridgeline at the respective x value.
-#'   Automatically calculated and provided by [`ggridges::stat_density_ridges()`]
+#'   Automatically calculated and provided by [ggridges::stat_density_ridges()]
 #'   if the default stat is not changed.
 #' @param scale
 #'   A scaling factor to scale the height of the ridgelines relative to the
@@ -28,7 +28,7 @@
 #'   cutoff is applied before any height scaling is applied via the scale
 #'   aesthetic. Default is 0, so negative values are removed.
 #' @param point_shape,point_colour,point_size,point_fill,point_alpha,point_stroke
-#'   As in [`ggridges::geom_ridgeline()`].
+#'   As in [ggridges::geom_ridgeline()].
 #' @export
 #' @examples
 #' data.frame(
@@ -49,10 +49,10 @@ gf_ridgeline <-
 
 #' @rdname ggridges
 #' @section Details:
-#' Note that the [`ggridges::stat_density_ridges()`] makes joint density estimation
+#' Note that the [ggridges::stat_density_ridges()] makes joint density estimation
 #' across all datasets. This may not generate the desired result when using
 #' faceted plots. As an alternative, you can set `stat = "density"` to use
-#' [`ggplot2::stat_density()`]. In this case, it is required to add the aesthetic mapping
+#' [ggplot2::stat_density()]. In this case, it is required to add the aesthetic mapping
 #' `height = after_stat(density)` (see examples).
 #'
 #' @export

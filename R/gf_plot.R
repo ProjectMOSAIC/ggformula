@@ -4,7 +4,7 @@
 #' Create a new ggplot and (optionally) set default dataset aesthetics mapping.
 #'
 #' @param ... arguments that can include `data` (a data frame or something that can be
-#'   [`ggplot2::fortify()`]ed to become one) and aesthetics specified using the following
+#'   [ggplot2::fortify()]ed to become one) and aesthetics specified using the following
 #'   formula notation: `aesthetic = ~ expression`.  See examples.
 #' @return a gg object
 #' @export
