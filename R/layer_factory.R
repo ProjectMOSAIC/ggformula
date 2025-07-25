@@ -551,13 +551,13 @@ as_formula <- function(x, ...) {
   UseMethod("as_formula", x)
 }
 
-#` @exportS3method
+#' @export
 as_formula.formula <- function(x, ...) {
   x
 }
 
 
-#` @exportS3method
+#' @export
 as_formula.call <- function(x, ...) {
   res <- ~ x
   # environment(res) <- env
@@ -565,7 +565,7 @@ as_formula.call <- function(x, ...) {
   res
 }
 
-#` @exportS3method
+#' @export
 as_formula.name <- function(x, env = parent.frame(), ...) {
   res <- ~ x
   environment(res) <- env
