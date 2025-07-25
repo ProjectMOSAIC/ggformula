@@ -82,6 +82,78 @@ gf_theme <- function(object, theme, ...) {
   }
 }
 
+#' Guides for ggformula
+#'
+#' Guides for each scale can be set scale-by-scale with the `guide` argument,
+#'   or en masse with `gf_guides()`.
+#'
+#'
+#' @rdname gf_guides
+#' @param object a gg object
+#' @inheritDotParams ggplot2::guides
+#' @return a modified gg object
+#' @export
+#' @seealso [ggplot2::guides()]
+#' @examples
+#'
+#' dat <-
+#'   data.frame(
+#'     x = 1:5, y = 1:5,
+#'     p = 1:5, q = factor(1:5), r = factor(1:5)
+#'  )
+#'
+#' p <-
+#'   dat |>
+#'   gf_point( y ~ x, colour = ~ p, size = ~ q, shape = ~r)
+#'
+#' # without guide specification
+#' p
+#'
+#' # Show colorbar guide for colour.
+#' # All these examples below have a same effect.
+#'
+#' p |> gf_guides(colour = "colorbar", size = "legend", shape = "legend")
+#' p |> gf_guides(colour = guide_colorbar(), size = guide_legend(),
+#'            shape = guide_legend())
+#' p +
+#'   scale_colour_continuous(guide = "colorbar") +
+#'   scale_size_discrete(guide = "legend") +
+#'   scale_shape(guide = "legend")
+#'
+#' # Remove some guides
+#' p |> gf_guides(colour = "none")
+#' p |> gf_guides(colour = "colorbar",size = "none")
+#'
+#' # Guides are integrated where possible
+#'
+#' p |>
+#'   gf_guides(
+#'     colour = guide_legend("title"),
+#'     size = guide_legend("title"),
+#'     shape = guide_legend("title")
+#'   )
+# same as
+#' g <- guide_legend("title")
+#' p |> gf_guides(colour = g, size = g, shape = g)
+#'
+#' p |> gf_theme(legend.position = "bottom")
+#'
+#' # position of guides
+#'
+#' # Set order for multiple guides
+#' mpg |>
+#'   gf_point(cty ~ displ, size = ~hwy, shape = ~ drv) |>
+#'   gf_guides(
+#'     colour = guide_colourbar(order = 1),
+#'     shape = guide_legend(order = 2),
+#'     size = guide_legend(order = 3)
+#'   )
+
+
+gf_guides <- function(object, ...) {
+      object + ggplot2::guides(...)
+}
+
 #' Add facets to a plot
 #'
 #' These functions provide more control over faceting than is possible using
@@ -125,3 +197,54 @@ gf_facet_grid <- function(object, ...) {
 gf_refine <- function(object, ...) {
   Reduce(`+`, list(...), init = object)
 }
+
+#' Add an annotation layer to a graphic
+#'
+#' @inherit ggplot2::annotate
+#' @inheritParams ggplot2::annotate
+#' @param object a gg object
+#'
+#' @examples
+#' p <- gf_point(mpg ~wt, data = mtcars)
+#' p |> gf_annotate("text", x = 4, y = 25, label = "Some text")
+#' p |> gf_annotate("text", x = 2:5, y = 25, label = "Some text")
+#' p |> gf_annotate("rect", xmin = 3, xmax = 4.2, ymin = 12, ymax = 21,
+#'              alpha = .2)
+#' p |> gf_annotate("segment", x = 2.5, xend = 4, y = 15, yend = 25,
+#'              colour = "blue")
+#' p |> gf_annotate("pointrange", x = 3.5, y = 20, ymin = 12, ymax = 28,
+#'              colour = "red", size = 2.5, linewidth = 1.5)
+#'
+#' p |> gf_annotate("text", x = 2:3, y = 20:21, label = c("my label", "label 2"))
+#'
+#' p |> gf_annotate("text", x = 4, y = 25, label = "italic(R) ^ 2 == 0.75",
+#'              parse = TRUE)
+#' p |> gf_annotate("text", x = 4, y = 25,
+#'              label = "paste(italic(R) ^ 2, \" = .75\")", parse = TRUE)
+#'
+#' @export
+
+gf_annotate <-
+  function(
+    object, geom = "text",
+    x = NULL,
+    y = NULL,
+    xmin = NULL,
+    xmax = NULL,
+    ymin = NULL,
+    ymax = NULL,
+    xend = NULL,
+    yend = NULL,
+    ...,
+    na.rm = FALSE
+  ) {
+    object +
+      ggplot2::annotate(
+        geom = geom, x = x, y = y,
+        xmin = xmin, xmax = xmax,
+        ymin = ymin, ymax = ymax,
+        xend = xend, yend = yend,
+        ...,
+        na.rm = na.rm
+      )
+  }
