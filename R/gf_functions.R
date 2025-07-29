@@ -18,7 +18,7 @@ NA
 #' mapped using arguments of the form `attribute = ~ expression`.
 #'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
-#' [facet_wrap()] or [facet_grid()].
+#' [ggplot2::facet_wrap()] or [ggplot2::facet_grid()].
 #' This provides an alternative to
 #' [gf_facet_wrap()] and
 #' [gf_facet_grid()] that is terser and may feel more familiar to users
@@ -589,7 +589,6 @@ gf_hex <-
     stat = "binhex",
     extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = ,
                    linetype = , linewidth =
-                   #size =  # remove eventually?
     )
   )
 
@@ -652,11 +651,11 @@ gf_boxplot <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       coef = ,
       outlier.color = NULL, outlier.fill = NULL,
       outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5,
-      outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE
+      outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
+      orientation = NA # , show.legend = NA
     )
   )
 
@@ -671,6 +670,8 @@ gf_boxplot <-
 #' @param hjust,vjust Numbers between 0 and 1 indicating how to justify
 #'   text relative the the specified location.
 #' @param lineheight Line height.
+#' @param nudge_x,nudge_y Passed to [ggplot2::position_nudge()] to nudge text or labels
+#'        horizontally or vertically.
 #' @param fontface One of `"plain"`, `"bold"`, `"italic"`, or `"bold italic"`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -703,7 +704,7 @@ gf_text <-
       label = , alpha = , angle = , color = ,
       family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = , parse = FALSE,
-      nudge_x = 0, nudge_y = 0,
+      nudge_x = 0, nudge_y = 0,   # change in ggplot2?
       check_overlap = FALSE
     )
   )
@@ -740,11 +741,10 @@ gf_label <-
       label = , alpha = , angle = , color = ,
       family = , fontface = ,
       group = , hjust = , vjust = ,
-      lineheight = , size = ,
+      size = ,
       parse = ,
       nudge_x = 0, nudge_y = 0,
-      label.padding = unit(0.25, "lines"), label.r = unit(0.15, "lines"),
-      label.size = 0.25
+      label.padding = unit(0.25, "lines"), label.r = unit(0.15, "lines")
     )
   )
 
@@ -1109,7 +1109,7 @@ gf_histogram <-
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ ., y ~ x),
     extras = alist(
-      bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
+      bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
       # size = # remove eventually?
       linetype = , linewidth =
     ),
@@ -1125,7 +1125,7 @@ gf_dhistogram <-
     aes_form = list(~x, y ~ x,  y ~ .),
     extras =
       alist(
-        bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
+        bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
         linetype = , linewidth =
       ),
     note =
@@ -1141,7 +1141,7 @@ gf_dhistogramh <-
     aes_form = list(y ~ x,  y ~ .),
     extras =
       alist(
-        bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = ,
+        bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
         linetype = , linewidth =
       ),
     note =
@@ -1838,8 +1838,9 @@ gf_segment <-
 #' @inherit ggplot2::geom_linerange description references
 #' @inherit gf_ribbon
 #' @inheritParams ggplot2::geom_linerange
-#' @inheritParams gf_line
-#'
+#' @param group Use to set or map group.
+#' @param linetype,linewidth Set or map style of the line.
+#' @param color Set or map color.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
@@ -1875,7 +1876,6 @@ gf_linerange <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth =
-      # size =  # remove eventually?
     )
   )
 
@@ -1889,7 +1889,6 @@ gf_linerange <-
 #'   HELP2 <- HELPrct |>
 #'     group_by(substance, sex) |>
 #'     summarise(
-#'       age = NA,
 #'       mean.age = mean(age),
 #'       median.age = median(age),
 #'       max.age = max(age),
@@ -1925,8 +1924,7 @@ gf_pointrange <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      size = ,
-      fatten = 2
+      size =
     )
   )
 
@@ -2011,10 +2009,9 @@ gf_summary <-
     aes_form = y ~ x,
     extras = alist(
       alpha = , color = , group = ,
-      linetype = , linewidth = ,
+      linetype = , linewidth = 1,
       size = , # now separate from linewidth
-      fun.y = NULL, fun.ymax = NULL, fun.ymin = NULL, fun.args = list(),
-      fatten = 2
+      fun.y = NULL, fun.ymax = NULL, fun.ymin = NULL, fun.args = list()
     )
   )
 
@@ -2026,6 +2023,11 @@ gf_summary <-
 #'
 #' @param gformula A formula with shape `y + ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
+#' @param middle.linetype,middle.colour,middle.color,middle.linewidth
+#'   Arguments to control the middle line.
+#' @param box.colour,box.color,box.linetype,box.linewidth
+#'   Arguments to control the box.
+#'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
@@ -2058,7 +2060,7 @@ gf_summary <-
 #'   gf_jitter(age ~ substance, data = HELPrct,
 #'       alpha = 0.7, width = 0.2, height = 0, color = "skyblue") |>
 #'     gf_crossbar(mean.age + lo + hi ~ substance, data = HELP2,
-#'       fill = "transparent") |>
+#'       fill = "transparent", middle.linewidth = 1, middle.color = "red") |>
 #'     gf_facet_grid(~sex)
 #'
 #'   gf_jitter(substance ~ age, data = HELPrct,
@@ -2074,9 +2076,13 @@ gf_crossbar <-
     aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
     extras = alist(
       alpha = , color = , group = ,
-      linetype = , linewidth = ,
-      # size = , # remove eventually?
-      fatten = 2.5
+      middle.linetype = ,
+      middle.colour = NULL, middle.color = NULL, middle.linetype = NULL,
+      middle.linewidth = NULL, box.colour = NULL, box.color = NULL,
+      box.linetype = NULL, box.linewidth = NULL,
+      na.rm = FALSE,
+      orientation = NA, # show.legend = NA,
+      inherit.aes = TRUE
     )
   )
 
@@ -2370,19 +2376,15 @@ gf_function <- function(object = NULL, fun, data = NULL, ..., inherit = FALSE) {
 #' f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
 #' gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) |>
 #'   gf_fun(f(m) ~ m, color = "red")
-gf_fun <- function(object = NULL, formula, data = NULL, ..., inherit = FALSE) {
+gf_fun <- function(object = NULL, formula, # data = NULL,
+                   ..., inherit = FALSE) {
   if (rlang::is_formula(object) && missing(formula)) {
     formula <- object
     object <- NULL
   }
 
-  if (is.null(data)) {
-    data <- ensure_nonempty_data
-  }
-
   if (is.null(object)) {
-    object <- ggplot() # data = data.frame(x = xlim), aes(x))
-    # inherit <- TRUE
+    object <- ggplot()
   }
 
   qdots <- rlang::quos(...)
@@ -2390,17 +2392,20 @@ gf_fun <- function(object = NULL, formula, data = NULL, ..., inherit = FALSE) {
   afq <- aes_from_qdots(qdots)
   p <- object +
     do.call(
-      ggplot2::layer,
-      list(
-        geom = "path", stat = "function", position = "identity",
-        mapping = afq$mapping,
-        inherit.aes = inherit,
-        data = data, # if (missing(xlim)) NULL else data.frame(x = xlim),
-        params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
+      "stat_function",
+      c(
+        list(
+          geom = "path", position = "identity",
+          mapping = afq$mapping,
+          inherit.aes = inherit,
+          # data = data,
+          fun = fun
+        ),
+        lapply(afq$qdots, rlang::f_rhs)
       )
     )
   class(p) <- unique(c('gf_ggplot', class(p)))
-  p
+  return(p)
 }
 
 #' Plot density function based on fit to data
@@ -2447,9 +2452,10 @@ gf_fun <- function(object = NULL, formula, data = NULL, ..., inherit = FALSE) {
 #' )
 #' gf_dhistogram(~g, data = Dat) |>
 #'   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
-#'
+#
+#' fitted_density <- mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma")
 #' gf_dhistogram(~g, data = Dat) |>
-#'   gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
+#'   gf_fun(fitted_density(x) ~ x, inherit = FALSE)
 #'
 #' gf_dhistogram(~f, data = Dat) |>
 #'   gf_fitdistr(dist = "df", start = list(df1 = 2, df2 = 50))
