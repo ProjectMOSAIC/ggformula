@@ -48,8 +48,8 @@ geom_spline(
 )
 }
 \arguments{
-\item{mapping}{An aesthetic mapping produced with \code{\link[=aes]{aes()}} or
-\code{\link[=aes_string]{aes_string()}}.}
+\item{mapping}{An aesthetic mapping produced with ggplot2::aes()] or
+ggplot2::aes_string()].}
 
 \item{data}{A data frame.}
 
@@ -109,7 +109,7 @@ When \code{NULL}, \code{IQR(x) * 10e-6} is used.}
 \item{stat}{A stat.}
 }
 \description{
-Similar to \link{geom_smooth}, this adds spline fits to plots.
+Similar to \link[ggplot2:geom_smooth]{ggplot2::geom_smooth}, this adds spline fits to plots.
 }
 \examples{
 if (require(mosaicData)) {

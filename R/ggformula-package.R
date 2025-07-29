@@ -22,7 +22,7 @@
 #' plotting functions with no arguments.
 #'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
-#' [facet_wrap()] or [facet_grid()].
+#' [ggplot2::facet_wrap()] or [ggplot2::facet_grid()].
 #' This provides an alternative to [gf_facet_wrap()] and
 #' [gf_facet_grid()] that is terser and may feel more familiar to users
 #' of \pkg{lattice}.

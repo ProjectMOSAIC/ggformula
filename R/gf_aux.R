@@ -65,7 +65,7 @@ gf_lims <- function(object, ...) {
 #'
 #' @rdname gf_theme
 #' @param object a gg object
-#' @param theme a ggplot2 theme function like [theme_minimal()].
+#' @param theme a ggplot2 theme function like [ggplot2::theme_minimal()].
 #' @param ... If `theme` is missing, then these additional arguments are theme elements
 #'   of the sort handled by [ggplot2::theme()].
 #' @return a modified gg object
@@ -90,7 +90,7 @@ gf_theme <- function(object, theme, ...) {
 #'
 #' @rdname gf_guides
 #' @param object a gg object
-#' @inheritDotParams ggplot2::guides
+#' @param ... arguments passed to [ggplot2::guides()].
 #' @return a modified gg object
 #' @export
 #' @seealso [ggplot2::guides()]
@@ -160,7 +160,7 @@ gf_guides <- function(object, ...) {
 #' the formula interface.
 #'
 #' @param object A ggplot object
-#' @param ... Additional arguments passed to [facet_wrap()] or [facet_grid()].
+#' @param ... Additional arguments passed to [ggplot2::facet_wrap()] or [ggplot2::facet_grid()].
 #'   This typically includes an unnamed formula argument describing the facets.
 #'   `scales` and `space` are additional useful arguments.  See the examples.
 #'

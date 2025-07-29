@@ -122,14 +122,12 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display. To include legend keys for all levels, even
-when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
-but unobserved levels are omitted.}
+display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \description{
 Adds linear model fits to plots. \code{geom_lm()} and \code{stat_lm()} are essentially
@@ -148,7 +146,7 @@ ggplot(data = mosaicData::KidsFeet, aes(y = length, x = width, color = sex)) +
   geom_lm(interval = "prediction", color = "skyblue") +
   geom_lm(interval = "confidence") +
   geom_point() +
-  facet_wrap(~sex)
+  ggplot2::facet_wrap(~sex)
 # non-standard display
 ggplot(data = mosaicData::KidsFeet, aes(y = length, x = width, color = sex)) +
   stat_lm(aes(fill = sex),
@@ -156,7 +154,7 @@ ggplot(data = mosaicData::KidsFeet, aes(y = length, x = width, color = sex)) +
     alpha = 0.2
   ) +
   geom_point() +
-  facet_wrap(~sex)
+  ggplot2::facet_wrap(~sex)
 ggplot(mpg, aes(displ, hwy)) +
   geom_lm(
     formula = log(y) ~ poly(x, 3), backtrans = exp,

@@ -12,7 +12,7 @@ gf_facet_grid(object, ...)
 \arguments{
 \item{object}{A ggplot object}
 
-\item{...}{Additional arguments passed to \code{\link[=facet_wrap]{facet_wrap()}} or \code{\link[=facet_grid]{facet_grid()}}.
+\item{...}{Additional arguments passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} or \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}.
 This typically includes an unnamed formula argument describing the facets.
 \code{scales} and \code{space} are additional useful arguments.  See the examples.}
 }

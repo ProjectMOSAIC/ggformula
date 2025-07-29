@@ -70,15 +70,14 @@ gf_function_2d <-
     if (tile) {
       res <-
         res |>
-        gf_tile(value ~ x + y, data = Layer_Data, ...) |>
-        gf_labs(fill = "")
+        gf_tile(value ~ x + y, data = Layer_Data, ...)
     }
     if (contour) {
       res <-
         res |>
-        gf_contour(value ~ x + y, data = Layer_Data, ...) |>
-        gf_labs(fill = "")
+        gf_contour(value ~ x + y, data = Layer_Data, ...)
     }
+    res <- res |> gf_labs(fill = "")
     class(res) <- unique(c('gf_ggplot', class(res)))
     res
   }

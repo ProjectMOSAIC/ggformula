@@ -1,6 +1,11 @@
 # ggformula
 
-# ggformaul 0.12.1
+# ggformula 0.12.2
+
+* Added `gf_guides()` and `gf_annotate()`.
+* Updated documentation according to new CRAN policies.
+
+# ggformula 0.12.1
 
 * Bug fix in gf_dist()
 

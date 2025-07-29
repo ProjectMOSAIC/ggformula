@@ -107,8 +107,8 @@ of the attributes of the layer are mapped.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
-\item{mapping}{set of aesthetic mappings created by \code{\link[=aes]{aes()}}
-or \code{\link[=aes_]{aes_()}}.}
+\item{mapping}{set of aesthetic mappings created by ggplot2::aes()]
+or \code{\link[ggplot2:aes_]{ggplot2::aes_()}}.}
 
 \item{na.rm}{If FALSE (the default), removes missing values with a warning.
 If TRUE silently removes missing values.}
@@ -140,7 +140,7 @@ Attributes can be set can be set using arguments of the form \code{attribute = v
 mapped using arguments of the form \code{attribute = ~ expression}.
 
 In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-\code{\link[=facet_wrap]{facet_wrap()}} or \code{\link[=facet_grid]{facet_grid()}}.
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} or \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}.
 This provides an alternative to
 \code{\link[=gf_facet_wrap]{gf_facet_wrap()}} and
 \code{\link[=gf_facet_grid]{gf_facet_grid()}} that is terser and may feel more familiar to users
@@ -172,5 +172,5 @@ ggplot(faithful, aes(x = eruptions)) +
   theme_minimal()
 }
 \seealso{
-\code{\link[=geom_histogram]{geom_histogram()}}, \code{link{gf_histogram}()}.
+\code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}, \code{\link[=gf_histogram]{gf_histogram()}}.
 }

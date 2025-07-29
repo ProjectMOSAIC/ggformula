@@ -7,7 +7,7 @@
 \usage{
 gf_function(object = NULL, fun, data = NULL, ..., inherit = FALSE)
 
-gf_fun(object = NULL, formula, data = NULL, ..., inherit = FALSE)
+gf_fun(object = NULL, formula, ..., inherit = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

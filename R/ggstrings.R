@@ -36,7 +36,7 @@ facet_string <- function(var) {
   if (var == "") {
     ""
   } else {
-    sprintf("+ facet_wrap( ~ %s)", var)
+    sprintf("+ ggplot2::facet_wrap( ~ %s)", var)
   }
 }
 

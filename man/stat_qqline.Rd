@@ -18,8 +18,8 @@ stat_qqline(
 )
 }
 \arguments{
-\item{mapping}{An aesthetic mapping produced with \code{\link[=aes]{aes()}} or
-\code{\link[=aes_string]{aes_string()}}.}
+\item{mapping}{An aesthetic mapping produced with ggplot2::aes()] or
+ggplot2::aes_string()].}
 
 \item{data}{A data frame.}
 
@@ -53,5 +53,5 @@ data(penguins, package = "palmerpenguins")
 ggplot(data = penguins, aes(sample = bill_length_mm)) +
   geom_qq() +
   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +
-  facet_wrap(~species)
+  ggplot2::facet_wrap(~species)
 }

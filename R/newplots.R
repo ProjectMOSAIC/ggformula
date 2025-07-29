@@ -43,7 +43,7 @@ NA
 #' @param inherit A logical indicating whether default attributes are inherited.
 #' @param inherit.aes A logical indicating whether default aesthetics are inherited.
 #' @return a gg object
-#' @seealso [geom_histogram()], \code{link{gf_histogram}()}.
+#' @seealso [ggplot2::geom_histogram()], [gf_histogram()].
 #' @param binwidth the width of the histogram bins.  If `NULL` (the default) the
 #'   binwidth will be chosen so that approximately 10 bins cover the data.  `adjust`
 #'   can be used to to increase or decrease `binwidth`.
@@ -118,8 +118,8 @@ stat_ash <-
 # )
 
 #' @rdname gf_ash
-#' @param mapping set of aesthetic mappings created by [aes()]
-#' or [aes_()].
+#' @param mapping set of aesthetic mappings created by ggplot2::aes()]
+#' or [ggplot2::aes_()].
 #' @param na.rm	 If FALSE (the default), removes missing values with a warning.
 #' If TRUE silently removes missing values.
 #' @export
@@ -178,11 +178,11 @@ StatSpline <-
 
 #' Geoms and stats for spline smoothing
 #'
-#' Similar to [geom_smooth], this adds spline fits to plots.
+#' Similar to [ggplot2::geom_smooth], this adds spline fits to plots.
 #'
 #' @rdname geom_spline
-#' @param mapping An aesthetic mapping produced with [aes()] or
-#' [aes_string()].
+#' @param mapping An aesthetic mapping produced with ggplot2::aes()] or
+#' ggplot2::aes_string()].
 #' @param data A data frame.
 #' @param geom A geom.
 #' @param stat A stat.
@@ -284,7 +284,7 @@ qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
 #' @rdname ggformula-ggproto
 #' @format NULL
 #' @export
-#' @seealso [stat_qq()]
+#' @seealso [ggplot2::stat_qq()]
 #' @seealso [gf_qq()]
 StatQqline <- ggproto("StatQqline", Stat,
   required_aes = c("sample"),
@@ -308,8 +308,8 @@ StatQqline <- ggproto("StatQqline", Stat,
 #' This stat computes quantiles of the sample and theoretical distribution for
 #' the purpose of providing reference lines for QQ-plots.
 #'
-#' @param mapping An aesthetic mapping produced with [aes()] or
-#' [aes_string()].
+#' @param mapping An aesthetic mapping produced with ggplot2::aes()] or
+#' ggplot2::aes_string()].
 #' @param data A data frame.
 #' @param geom A geom.
 #' @param position A position object.
@@ -334,7 +334,7 @@ StatQqline <- ggproto("StatQqline", Stat,
 #' ggplot(data = penguins, aes(sample = bill_length_mm)) +
 #'   geom_qq() +
 #'   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +
-#'   facet_wrap(~species)
+#'   ggplot2::facet_wrap(~species)
 stat_qqline <-
   function(mapping = NULL, data = NULL, geom = "line",
              position = "identity", ...,
@@ -498,7 +498,7 @@ predictdf <-
 #'   geom_lm(interval = "prediction", color = "skyblue") +
 #'   geom_lm(interval = "confidence") +
 #'   geom_point() +
-#'   facet_wrap(~sex)
+#'   ggplot2::facet_wrap(~sex)
 #' # non-standard display
 #' ggplot(data = mosaicData::KidsFeet, aes(y = length, x = width, color = sex)) +
 #'   stat_lm(aes(fill = sex),
@@ -506,7 +506,7 @@ predictdf <-
 #'     alpha = 0.2
 #'   ) +
 #'   geom_point() +
-#'   facet_wrap(~sex)
+#'   ggplot2::facet_wrap(~sex)
 #' ggplot(mpg, aes(displ, hwy)) +
 #'   geom_lm(
 #'     formula = log(y) ~ poly(x, 3), backtrans = exp,

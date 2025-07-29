@@ -40,7 +40,7 @@ These are typically accessed through their associated \verb{geom_*}, \verb{stat_
 
 \code{\link[=gf_spline]{gf_spline()}}
 
-\code{\link[=stat_qq]{stat_qq()}}
+\code{\link[ggplot2:geom_qq]{ggplot2::stat_qq()}}
 
 \code{\link[=gf_qq]{gf_qq()}}
 

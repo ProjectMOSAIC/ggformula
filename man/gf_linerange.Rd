@@ -41,7 +41,6 @@ gf_pointrange(
   linetype,
   linewidth,
   size,
-  fatten = 2,
   xlab,
   ylab,
   title,
@@ -65,13 +64,12 @@ gf_summary(
   color,
   group,
   linetype,
-  linewidth,
+  linewidth = 1,
   size,
   fun.y = NULL,
   fun.ymax = NULL,
   fun.ymin = NULL,
   fun.args = list(),
-  fatten = 2,
   xlab,
   ylab,
   title,
@@ -116,14 +114,11 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{color}{A color or a formula used for mapping color.}
+\item{color}{Set or map color.}
 
-\item{group}{Used for grouping.}
+\item{group}{Use to set or map group.}
 
-\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
-for mapping linetype.}
-
-\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
+\item{linetype, linewidth}{Set or map style of the line.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -147,7 +142,7 @@ give the geom as \code{"point"}.
 
 \item{stat}{The statistical transformation to use on the data for this layer.
 When using a \verb{geom_*()} function to construct a layer, the \code{stat}
-argument can be used to override the default coupling between geoms and
+argument can be used the override the default coupling between geoms and
 stats. The \code{stat} argument accepts the following:
 \itemize{
 \item A \code{Stat} ggproto subclass, for example \code{StatCount}.
@@ -175,9 +170,7 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display. To include legend keys for all levels, even
-when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
-but unobserved levels are omitted.}
+display.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -186,10 +179,6 @@ but unobserved levels are omitted.}
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{size}{size aesthetic for points (\code{gf_pointrange()}).}
-
-\item{fatten}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  A multiplicative factor
-used to increase the size of the middle bar in \code{geom_crossbar()} and the
-middle point in \code{geom_pointrange()}.}
 
 \item{fun.ymin, fun.y, fun.ymax}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the
 versions specified above instead.}
@@ -226,7 +215,6 @@ if (require(mosaicData) && require(dplyr)) {
   HELP2 <- HELPrct |>
     group_by(substance, sex) |>
     summarise(
-      age = NA,
       mean.age = mean(age),
       median.age = median(age),
       max.age = max(age),

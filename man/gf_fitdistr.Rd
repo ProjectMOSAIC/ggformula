@@ -104,7 +104,7 @@ Attributes can be set can be set using arguments of the form \code{attribute = v
 mapped using arguments of the form \code{attribute = ~ expression}.
 
 In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-\code{\link[=facet_wrap]{facet_wrap()}} or \code{\link[=facet_grid]{facet_grid()}}.
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} or \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}.
 This provides an alternative to
 \code{\link[=gf_facet_wrap]{gf_facet_wrap()}} and
 \code{\link[=gf_facet_grid]{gf_facet_grid()}} that is terser and may feel more familiar to users
@@ -134,9 +134,9 @@ Dat <- data.frame(
 )
 gf_dhistogram(~g, data = Dat) |>
   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
-
+fitted_density <- mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma")
 gf_dhistogram(~g, data = Dat) |>
-  gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
+  gf_fun(fitted_density(x) ~ x, inherit = FALSE)
 
 gf_dhistogram(~f, data = Dat) |>
   gf_fitdistr(dist = "df", start = list(df1 = 2, df2 = 50))
