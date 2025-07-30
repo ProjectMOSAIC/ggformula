@@ -574,7 +574,7 @@ GeomLm <- ggproto("GeomLm", Geom,
   optional_aes = c("ymin", "ymax"),
 
   default_aes = aes(
-    colour = "#3366FF", fill = "grey60", size = 0.7,
+    colour = "#3366FF", fill = "grey60", linewidth = 0.7,
     linetype = 1, weight = 1, alpha = 0.3
   )
 )
