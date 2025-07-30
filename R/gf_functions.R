@@ -1665,7 +1665,7 @@ gf_rugx <-
     geom = "rug",
     aes_form = list( ~ x, y ~ x, NULL),
     check.aes = FALSE,
-    inherit = FALSE,
+    inherit.aes = FALSE,
     extras = alist(
       sides = "b", alpha = , color = , group = ,
       linetype = , linewidth = ,
@@ -1686,7 +1686,7 @@ gf_rugy <-
   layer_factory(
     geom = "rug",
     aes_form = list(~y, y ~ ., NULL),
-    inherit = FALSE,
+    inherit.aes = FALSE,
     extras = alist(
       sides = "l", alpha = , color = , group = ,
       linetype = , linewidth = ,
