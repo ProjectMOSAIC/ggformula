@@ -159,7 +159,6 @@ gf_line <-
     geom = "line",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , linewidth =,
-      # size = ,  # remove eventually?
       lineend = , linejoin = , linemitre = , arrow =
       )
   )
@@ -180,7 +179,6 @@ gf_path <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL
     )
   )
@@ -270,7 +268,6 @@ gf_polygon <-
   layer_factory(
     geom = "polygon",
     extras = alist(alpha = , color = , linewidth =,
-                   # size = , # remove eventually?
                    shape = , fill = , group = , stroke = )
   )
 
@@ -372,7 +369,14 @@ gf_lm <-
     geom = "lm",
     stat = "lm",
     aes_form = y ~ x,
-    extras = alist(alpha = 0.3, lm.args = list(), interval = "none", level = 0.95, fullrange = TRUE)
+    extras = alist(
+      alpha = 0.3, 
+      linewidth = 1,
+      linetype = ,
+      lm.args = list(), 
+      interval = "none", 
+      level = 0.95, 
+      fullrange = TRUE)
   )
 
 #' Formula interface to geom_spline()
@@ -399,7 +403,6 @@ gf_spline <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       weight = , df = , spar = , tol =
       )
   )
@@ -434,7 +437,6 @@ gf_raster <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       hjust = 0.5, vjust = 0.5, interpolate = FALSE
     )
   )
@@ -463,7 +465,6 @@ gf_quantile <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       lineend = "butt", linejoin = "round", linemitre = 1, quantiles = ,
       formula = , method = , method.args =
       )
@@ -495,7 +496,6 @@ gf_density_2d <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL, lineend = "butt", linejoin = "round",
       linemitre = 1
     )
@@ -517,7 +517,6 @@ gf_density_2d_filled <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL, lineend = "butt", linejoin = "round",
       linemitre = 1
     )
@@ -539,7 +538,6 @@ gf_density2d <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL,
       lineend = "butt", linejoin = "round",
       linemitre = 1
@@ -562,7 +560,6 @@ gf_density2d_filled <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       contour = TRUE, n = 100, h = NULL,
       lineend = "butt", linejoin = "round",
       linemitre = 1
@@ -780,7 +777,6 @@ gf_area <-
     geom = "area",
     extras = alist(
       alpha = , color = , fill = , group = ,
-      # size = , # remove eventually?
       linetype = , linewidth =
     )
   )
@@ -812,7 +808,6 @@ gf_violin <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       weight = , draw_quantiles = NULL, trim = TRUE,
       scale = "area", bw = , adjust = 1, kernel = "gaussian"
     )
@@ -852,7 +847,6 @@ gf_spoke <-
     extras = alist(
       angle = , radius = ,
       alpha = , color = , group = ,
-      # size = , # remove eventually?
       linetype = , linewidth =
       ),
     note = "Note: angle and radius must be set or mapped."
@@ -894,7 +888,6 @@ gf_step <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       direction = "hv")
   )
 
@@ -921,7 +914,6 @@ gf_tile <-
     aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(
       alpha = , color = , fill = , group = ,
-      # size = , # remove eventually?
       linetype = , linewidth =
     )
   )
@@ -950,7 +942,6 @@ gf_bin2d <-
     aes_form = list(y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = ,
-      # size = , # remove eventually?
       linetype = , linewidth =
     )
   )
@@ -1025,7 +1016,6 @@ gf_col <-
     position = "stack",
     extras = alist(
       alpha = , color = , fill = , group = ,
-      # size = ,# remove eventually?
       linetype = , linewidth =
       )
   )
@@ -1110,7 +1100,6 @@ gf_histogram <-
     aes_form = list(~x, y ~ ., y ~ x),
     extras = alist(
       bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
-      # size = # remove eventually?
       linetype = , linewidth =
     ),
     note =
@@ -1189,7 +1178,6 @@ gf_density <-
       alpha = 0.5, color = , fill = ,
       group = ,
       linetype = , linewidth =,
-      # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
     aesthetics = aes(y = ggplot2::after_stat(density))
@@ -1206,7 +1194,6 @@ gf_dens <-
       alpha = 0.5, color = , fill = NA,
       group = ,
       linetype = , linewidth =,
-      # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
     aesthetics = aes(y = ggplot2::after_stat(density))
@@ -1223,7 +1210,6 @@ gf_dens2 <-
       alpha = 0.5, color = , fill = NA,
       group = ,
       linetype = , linewidth =,
-      # size = , # remove eventually?
       kernel = "gaussian", n = 512, trim = FALSE
     ),
     aesthetics = aes(y = ggplot2::after_stat(density))
@@ -1358,7 +1344,6 @@ gf_bar <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       width = NULL
     )
   )
@@ -1373,7 +1358,6 @@ gf_counts <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       width = NULL
     )
   )
@@ -1425,7 +1409,6 @@ gf_props <-
       alist(
         alpha = , color = , fill = , group = ,
         linetype = , linewidth = ,
-        # size = , # remove eventually?
         ylab = "proportion"
       ),
     aesthetics = aes(y = ggplot2::after_stat(props_by_group(count, DENOM))),
@@ -1447,7 +1430,6 @@ gf_percents <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       ylab = "percent"
     ),
     aesthetics = aes(y = ggplot2::after_stat(percs_by_group(count, DENOM))),
@@ -1490,7 +1472,6 @@ gf_freqpoly <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       binwidth = , bins = , center = , boundary =
       ),
     note =
@@ -1652,7 +1633,6 @@ gf_rug <-
     aes_form = list(~x, y ~ x, NULL),
     extras = alist(
       sides = "bl", alpha = , color = , group = ,
-      # size =  # remove eventually?
       linetype = , linewidth =
     )
   )
@@ -1669,7 +1649,6 @@ gf_rugx <-
     extras = alist(
       sides = "b", alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       height = 0),
     pre = {
       if (inherits(object, "gg")) {
@@ -1690,7 +1669,6 @@ gf_rugy <-
     extras = alist(
       sides = "l", alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       width = 0),
     pre = {
       if (inherits(object, "gg")) {
@@ -1799,7 +1777,6 @@ gf_curve <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       curvature = 0.5, angle = 90, ncp = 5, arrow = NULL, lineend = "butt"
     )
   )
@@ -1828,7 +1805,6 @@ gf_segment <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       arrow = NULL, lineend = "butt"
     )
   )
@@ -2137,7 +2113,6 @@ gf_errorbar <-
     extras = alist(
       alpha = , color = , group = ,
       linetype = , linewidth =
-      # size = # remove eventually?
       )
   )
 
@@ -2176,7 +2151,6 @@ gf_rect <-
     extras = alist(
       alpha = , color = , fill = , group = ,
       linetype = , linewidth =
-      # size = # remove eventually?
     )
   )
 
@@ -2260,7 +2234,6 @@ gf_abline <-
     extras = alist(
       slope = , intercept = , color = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       alpha = ),
     inherit.aes = FALSE,
     data = NA,
@@ -2276,7 +2249,6 @@ gf_hline <-
     extras = alist(
       yintercept = , color = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       alpha = ),
     inherit.aes = FALSE,
     data = NA,
@@ -2292,7 +2264,6 @@ gf_vline <-
     extras = alist(
       xintercept = , color = ,
       linetype = , linewidth = ,
-      # size = , # remove eventually?
       alpha = ),
     inherit.aes = FALSE,
     data = NA,
@@ -2575,7 +2546,6 @@ gf_sf <-
       extras = alist(
         alpha = , color = , fill = , group = ,
         linetype = , linewidth = ,
-        # size = , # remove eventually?
         geometry =
         ),
       pre = {
