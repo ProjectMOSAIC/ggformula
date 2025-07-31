@@ -3,6 +3,8 @@
 # ggformula 0.12.2
 
 * Added `gf_guides()` and `gf_annotate()`.
+* Bug fix in GeomLm to avoid warning about deprecated size aesthetic.
+* Deprecated functions that relied on ggstance (no longer supported) have been made defunct.
 * Updated documentation according to new CRAN policies.
 
 # ggformula 0.12.1
