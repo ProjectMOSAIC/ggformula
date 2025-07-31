@@ -167,11 +167,11 @@ gf_guides <- function(object, ...) {
 #'
 #' @seealso [ggplot2::facet_grid()], [ggplot2::facet_wrap()].
 #' @examples
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct, bins =25) |>
 #'   gf_facet_grid(~substance)
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct, bins =25) |>
 #'   gf_facet_grid(~substance, scales = "free")
-#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct) |>
+#' gf_histogram(~avg_drinks, data = mosaicData::HELPrct, bins =25) |>
 #'   gf_facet_grid(~substance, scales = "free", space = "free")
 #' gf_line(births ~ date, data = mosaicData::Births, color = ~wday) |>
 #'   gf_facet_wrap(~year, scales = "free_x", nrow = 5) |>

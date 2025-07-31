@@ -3,7 +3,6 @@
 \name{gf_histogram}
 \alias{gf_histogram}
 \alias{gf_dhistogram}
-\alias{gf_dhistogramh}
 \title{Formula interface to geom_histogram()}
 \usage{
 gf_histogram(
@@ -34,33 +33,6 @@ gf_histogram(
 )
 
 gf_dhistogram(
-  object = NULL,
-  gformula = NULL,
-  data = NULL,
-  ...,
-  bins,
-  binwidth,
-  alpha = 0.5,
-  color,
-  fill,
-  group,
-  linetype,
-  linewidth,
-  xlab,
-  ylab,
-  title,
-  subtitle,
-  caption,
-  geom = "bar",
-  stat = "bin",
-  position = "stack",
-  show.legend = NA,
-  show.help = NULL,
-  inherit = TRUE,
-  environment = parent.frame()
-)
-
-gf_dhistogramh(
   object = NULL,
   gformula = NULL,
   data = NULL,
@@ -216,9 +188,9 @@ in another.
 x <- rnorm(1000)
 gf_histogram(~x, bins = 30)
 gf_dhistogram(~x, bins = 30)
-gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black")
-gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black")
-gf_dhistogramh(x ~ ., binwidth = 0.5, boundary = 0, color = "black")
+gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black", bins = 30)
+gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black", bins = 30)
+gf_dhistogram(x ~ ., binwidth = 0.5, boundary = 0, color = "black", bins = 30)
 gf_dhistogram(~x, bins = 30) |>
   gf_fitdistr(dist = "dnorm") # see help for gf_fitdistr() for more info.
 

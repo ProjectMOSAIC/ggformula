@@ -234,12 +234,12 @@ gf_jitter(bill_length_mm ~ bill_depth_mm, data = penguins) |>
   gf_rug(color = "green", sides = "b", position = "jitter")
 
 # rugs work with some 1-varialbe plots as well.
-gf_histogram(~eruptions, data = faithful) |>
+gf_histogram(~eruptions, data = faithful, bins = 25) |>
   gf_rug(~eruptions, data = faithful, color = "red") |>
   gf_rug(~eruptions, data = faithful, color = "navy", sides = "t")
 
 # we can take advantage of inheritance to shorten the code
-gf_histogram(~eruptions, data = faithful) |>
+gf_histogram(~eruptions, data = faithful, bins = 25) |>
   gf_rug(color = "red") |>
   gf_rug(color = "navy", sides = "t")
 

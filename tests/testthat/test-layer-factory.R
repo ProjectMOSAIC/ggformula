@@ -563,7 +563,7 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_fitdistr2",
-      gf_dhistogram(~g, data = Dat) |>
+      gf_dhistogram(~g, data = Dat, bins = 30) |>
         gf_fitdistr(dist = "dgamma")
     )
   }
@@ -573,7 +573,7 @@ test_that(
   "gf_freqpoly()", {
     wrapped_expect_doppelganger(
       "gf_freqpoly1",
-      gf_freqpoly(~bill_length_mm, color = ~species, data = penguins2)
+      gf_freqpoly(~bill_length_mm, color = ~species, data = penguins2, bins = 30)
     )
     wrapped_expect_doppelganger(
       "gf_freqpoly2",
@@ -660,7 +660,7 @@ test_that(
   "gf_histogram() and gf_dhistogram", {
     wrapped_expect_doppelganger(
       "gf_histogram1",
-      gf_histogram(~bill_length_mm, data = penguins2)
+      gf_histogram(~bill_length_mm, data = penguins2, bins = 30)
     )
     wrapped_expect_doppelganger(
       "gf_histogram2",
@@ -671,23 +671,15 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_dhistogram1",
-      gf_dhistogram(~bill_length_mm, data = penguins2)
+      gf_dhistogram(~bill_length_mm, data = penguins2, bins = 30)
     )
     wrapped_expect_doppelganger(
       "gf_dhistogramh1",
-      gf_dhistogramh(bill_length_mm ~ ., data = penguins2)
-    )
-    wrapped_expect_doppelganger(
-      "gf_dhistogramh1a",
-      gf_dhistogramh(bill_length_mm ~ ., data = penguins2)
+      gf_dhistogram(bill_length_mm ~ ., data = penguins2, bins = 30)
     )
     wrapped_expect_doppelganger(
       "gf_dhistogramh2",
-      gf_dhistogramh(bill_length_mm ~ after_stat(ndensity), data = penguins2)
-    )
-    wrapped_expect_doppelganger(
-      "gf_dhistogramh2a",
-      gf_dhistogram(bill_length_mm ~ after_stat(ndensity), data = penguins2)
+      gf_dhistogram(bill_length_mm ~ after_stat(ndensity), data = penguins2, bins = 30)
     )
   }
 )
@@ -864,24 +856,24 @@ test_that(
     wrapped_expect_doppelganger(
       "gf_rugx() without jitter",
       penguins2 |>
-      gf_dhistogram( ~ bill_length_mm) |>
+      gf_dhistogram( ~ bill_length_mm, bins = 30) |>
         gf_rugx(~ bill_length_mm, alpha = 0.4, color = "red", seed = 123)
     )
     wrapped_expect_doppelganger(
       "gf_rugx() with jitter",
       penguins2 |>
-      gf_dhistogram( ~ bill_length_mm) |>
+      gf_dhistogram( ~ bill_length_mm, bins = 30) |>
         gf_rugx(0 ~ bill_length_mm, position = "jitter", alpha = 0.4, color = "red",
                 seed = 123)
     )
     wrapped_expect_doppelganger(
       "gf_rugy()",
-      gf_dhistogram( bill_length_mm ~ ., data = penguins2) |>
+      gf_dhistogram( bill_length_mm ~ ., data = penguins2, bins = 30) |>
         gf_rugy( ~ bill_length_mm , alpha = 0.4, color = "navy", seed = 123)
     )
     wrapped_expect_doppelganger(
       "gf_rug() on y only but with jitter",
-      gf_dhistogram( bill_length_mm ~ ., data = penguins2) |>
+      gf_dhistogram( bill_length_mm ~ ., data = penguins2, bins = 30) |>
         gf_rug( bill_length_mm ~ 0, alpha = 0.4, color = "navy", seed = 123)
     )
 
@@ -907,34 +899,34 @@ test_that(
     # rugs work with some 1-varialbe plots as well.
     wrapped_expect_doppelganger(
       "gf_rug #4",
-      gf_histogram(~eruptions, data = faithful) |>
+      gf_histogram(~eruptions, data = faithful, bins = 30) |>
         gf_rug(~eruptions, data = faithful, color = "red") |>
         gf_rug(~eruptions, data = faithful, color = "navy", sides = "t")
     )
     # we can take advantage of inheritance to shorten the code
     wrapped_expect_doppelganger(
       "gf_rug #5",
-      gf_histogram(~eruptions, data = faithful) |>
+      gf_histogram(~eruptions, data = faithful, bins = 30) |>
         gf_rug(color = "red") |>
         gf_rug(color = "navy", sides = "t")
     )
     # Need to turn off inheritance when using gf_dhistogram:
     wrapped_expect_doppelganger(
       "gf_rug() #6",
-      gf_dhistogram(~eruptions, data = faithful) |>
+      gf_dhistogram(~eruptions, data = faithful, bins = 30) |>
         gf_rug(~eruptions, data = faithful, color = "red", inherit = FALSE)
     )
     # using jitter with gf_histogram() requires manually setting the y value.
     wrapped_expect_doppelganger(
       "gf_rug() #7",
-      gf_dhistogram(~bill_depth_mm, data = penguins2) |>
+      gf_dhistogram(~bill_depth_mm, data = penguins2, bins = 30) |>
         gf_rug(0 ~ bill_depth_mm, data = penguins2, color = "green", sides = "b",
                position = "jitter", seed = 123)
     )
     # the choice of y value can affect how the plot looks.
     wrapped_expect_doppelganger(
       "gf_rug() #8",
-      gf_dhistogram(~bill_depth_mm, data = penguins2) |>
+      gf_dhistogram(~bill_depth_mm, data = penguins2, bins = 30) |>
         gf_rug(0.5 ~ bill_depth_mm, data = penguins2, color = "green", sides = "b",
                position = "jitter", seed = 123)
     )
@@ -945,12 +937,12 @@ test_that(
   "discrete_breaks()", {
     wrapped_expect_doppelganger(
       "discrete_breaks -- default",
-      gf_histogram( ~ bill_length_mm, data = penguins2) |>
+      gf_histogram( ~ bill_length_mm, data = penguins2, bins = 30) |>
         gf_refine(scale_x_continuous(breaks = discrete_breaks()))
     )
     wrapped_expect_doppelganger(
       "discrete_breaks -- 2.0",
-      gf_histogram( ~ bill_length_mm, data = penguins2) |>
+      gf_histogram( ~ bill_length_mm, data = penguins2, bins = 30) |>
         gf_refine(scale_x_continuous(breaks = discrete_breaks(2)))
     )
   }
@@ -965,7 +957,7 @@ test_that(
     )
     wrapped_expect_doppelganger(
       "gf_histogram() with facets",
-      gf_histogram(~ `bill depth` | `sex of penguin` ~ ., data = penguins3)
+      gf_histogram(~ `bill depth` | `sex of penguin` ~ ., data = penguins3, bins = 30)
     )
     wrapped_expect_doppelganger(
       "gf_density() with fill",

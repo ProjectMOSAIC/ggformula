@@ -38,6 +38,8 @@ gf_lm(
   data = NULL,
   ...,
   alpha = 0.3,
+  linewidth = 1,
+  linetype,
   lm.args = list(),
   interval = "none",
   level = 0.95,
@@ -138,6 +140,11 @@ of the attributes of the layer are mapped.}
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
 
 \item{lm.args}{A list of arguments to \code{\link[stats:lm]{stats::lm()}}.}
 

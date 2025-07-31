@@ -1067,9 +1067,9 @@ gf_frame <-
 #' x <- rnorm(1000)
 #' gf_histogram(~x, bins = 30)
 #' gf_dhistogram(~x, bins = 30)
-#' gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black")
-#' gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black")
-#' gf_dhistogramh(x ~ ., binwidth = 0.5, boundary = 0, color = "black")
+#' gf_dhistogram(~x, binwidth = 0.5, center = 0, color = "black", bins = 30)
+#' gf_dhistogram(~x, binwidth = 0.5, boundary = 0, color = "black", bins = 30)
+#' gf_dhistogram(x ~ ., binwidth = 0.5, boundary = 0, color = "black", bins = 30)
 #' gf_dhistogram(~x, bins = 30) |>
 #'   gf_fitdistr(dist = "dnorm") # see help for gf_fitdistr() for more info.
 #'
@@ -1122,21 +1122,23 @@ gf_dhistogram <-
     aesthetics = aes(y = ggplot2::after_stat(density))
   )
 
-#' @rdname gf_histogram
-#' @export
-gf_dhistogramh <-
-  layer_factory(
-    geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(y ~ x,  y ~ .),
-    extras =
-      alist(
-        bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
-        linetype = , linewidth =
-      ),
-    note =
-        "x may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
-    aesthetics = aes(x = ggplot2::after_stat(density))
-  )
+# #' @rdname gf_histogram
+# #' @export
+# gf_dhistogramh <-
+#   layer_factory(
+#     geom = "bar", stat = "bin", position = "stack",
+#     aes_form = list(y ~ x,  y ~ .),
+#     extras =
+#       alist(
+#         bins = , binwidth = , alpha = 0.5, color = , fill = , group = ,
+#         linetype = , linewidth =
+#       ),
+#     note =
+#         "x may be after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)",
+#     aesthetics = aes(x = ggplot2::after_stat(density))
+#   )
+
+
 #' Formula interface to stat_density()
 #'
 #' Computes and draws a kernel density estimate, which is a smoothed version of the
@@ -1607,12 +1609,12 @@ gf_ecdf <-
 #'   gf_rug(color = "green", sides = "b", position = "jitter")
 #'
 #' # rugs work with some 1-varialbe plots as well.
-#' gf_histogram(~eruptions, data = faithful) |>
+#' gf_histogram(~eruptions, data = faithful, bins = 25) |>
 #'   gf_rug(~eruptions, data = faithful, color = "red") |>
 #'   gf_rug(~eruptions, data = faithful, color = "navy", sides = "t")
 #'
 #' # we can take advantage of inheritance to shorten the code
-#' gf_histogram(~eruptions, data = faithful) |>
+#' gf_histogram(~eruptions, data = faithful, bins = 25) |>
 #'   gf_rug(color = "red") |>
 #'   gf_rug(color = "navy", sides = "t")
 #'
