@@ -2,36 +2,36 @@
 
 # describe object x
 obj_desc <-
-  function (x)
-  {
+  function(x) {
     if (isS4(x)) {
       paste0("an S4 object with class ", class(x)[[1]])
-    }
-    else if (is.object(x)) {
+    } else if (is.object(x)) {
       if (is.data.frame(x)) {
         "a data frame"
-      }
-      else if (is.factor(x)) {
+      } else if (is.factor(x)) {
         "a factor"
+      } else {
+        paste0("an S3 object with class ", paste(class(x), collapse = "/"))
       }
-      else {
-        paste0("an S3 object with class ", paste(class(x),
-                                                 collapse = "/"))
-      }
-    }
-    else {
-      switch(typeof(x), `NULL` = "a NULL", character = "a character vector",
-             integer = "an integer vector", logical = "a logical vector",
-             double = "a numeric vector", list = "a list", closure = "a function",
-             paste0("a base object of type", typeof(x)))
+    } else {
+      switch(
+        typeof(x),
+        `NULL` = "a NULL",
+        character = "a character vector",
+        integer = "an integer vector",
+        logical = "a logical vector",
+        double = "a numeric vector",
+        list = "a list",
+        closure = "a function",
+        paste0("a base object of type", typeof(x))
+      )
     }
   }
 
 # modified to add search in ggformula namespace
 
 find_global <-
-  function (name, env, mode = "any")
-  {
+  function(name, env, mode = "any") {
     if (exists(name, envir = env, mode = mode)) {
       return(get(name, envir = env, mode = mode))
     }
@@ -47,41 +47,43 @@ find_global <-
   }
 
 check_subclass <-
-  function (x, subclass, argname = tolower(subclass), env = parent.frame())
-  {
+  function(x, subclass, argname = tolower(subclass), env = parent.frame()) {
     if (inherits(x, subclass)) {
       x
-    }
-    else if (is.character(x) && length(x) == 1) {
-      name <-  paste0(subclass, camelize(x, first = TRUE))
-        paste0(subclass, camelize(x, first = TRUE))
+    } else if (is.character(x) && length(x) == 1) {
+      name <- paste0(subclass, camelize(x, first = TRUE))
+      paste0(subclass, camelize(x, first = TRUE))
       obj <- find_global(name, env = env)
       if (is.null(obj) || !inherits(obj, subclass)) {
-        stop("Can't find `", argname, "` called \"", x, "\"",
-             call. = FALSE)
-      }
-      else {
+        stop("Can't find `", argname, "` called \"", x, "\"", call. = FALSE)
+      } else {
         obj
       }
-    }
-    else {
-      stop("`", argname, "` must be either a string or a ",
-           subclass, " object, ", "not ", obj_desc(x), call. = FALSE)
+    } else {
+      stop(
+        "`",
+        argname,
+        "` must be either a string or a ",
+        subclass,
+        " object, ",
+        "not ",
+        obj_desc(x),
+        call. = FALSE
+      )
     }
   }
 
 camelize <-
-  function (x, first = FALSE)
-  {
+  function(x, first = FALSE) {
     x <- gsub("_(.)", "\\U\\1", x, perl = TRUE)
-    if (first)
+    if (first) {
       x <- firstUpper(x)
+    }
     x
   }
 
 firstUpper <-
-  function (s)
-  {
+  function(s) {
     paste(toupper(substring(s, 1, 1)), substring(s, 2), sep = "")
   }
 
@@ -140,18 +142,14 @@ one_upto <- function(n) {
 
 #' @importFrom tibble tibble
 
-ensure_nonempty_data <- function (data)
-{
+ensure_nonempty_data <- function(data) {
   if (empty(data)) {
     tibble::tibble(group = 1, .size = 1, .name_repair = "minimal")
-  }
-  else {
+  } else {
     data
   }
 }
 
-empty <- function (df)
-{
+empty <- function(df) {
   is.null(df) || nrow(df) == 0 || ncol(df) == 0 || inherits(df, "waiver")
 }
-

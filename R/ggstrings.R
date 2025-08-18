@@ -2,7 +2,6 @@
 #
 # Internals: nothing to export here!
 
-
 frame_string <- function(data = NULL, x = NULL, y = NULL, aes_pairs = NULL) {
   ystring <- ifelse(is.null(y), "", paste0(", y = ", y))
   for (nm in names(aes_pairs)) {
@@ -12,17 +11,44 @@ frame_string <- function(data = NULL, x = NULL, y = NULL, aes_pairs = NULL) {
   res
 }
 
-density_string <- function(data_name = NULL, var_names, type, xframe, position, color, fill, ...) {
+density_string <- function(
+  data_name = NULL,
+  var_names,
+  type,
+  xframe,
+  position,
+  color,
+  fill,
+  ...
+) {
   one <- frame_string(data = data_name, xframe)
-  two <- layer_string(var_names, geom = type, position = position, color = color, fill = fill, ...)
+  two <- layer_string(
+    var_names,
+    geom = type,
+    position = position,
+    color = color,
+    fill = fill,
+    ...
+  )
   paste(one, two, sep = "+")
 }
 
-map_string <- function(map_name, location, zoom, source, type, extent = "normal", ...) {
+map_string <- function(
+  map_name,
+  location,
+  zoom,
+  source,
+  type,
+  extent = "normal",
+  ...
+) {
   map_source <- if (length(map_name) == 0) {
     sprintf(
       "ggmap::get_map(location = '%s', zoom = %d, source = '%s', maptype = '%s', crop=FALSE)",
-      location, zoom, source, type
+      location,
+      zoom,
+      source,
+      type
     )
   } else {
     map_name
@@ -49,29 +75,98 @@ legend_position_string <- function(where) {
 # The aesthetics for each supported geom
 .aesthetics. <- list(
   point = list(
-    x = NULL, y = NULL, alpha = NULL, color = NULL, colour = NULL,
-    fill = NULL, shape = NULL, size = NULL, stroke = NULL
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    color = NULL,
+    colour = NULL,
+    fill = NULL,
+    shape = NULL,
+    size = NULL,
+    stroke = NULL
   ),
-  line = list(x = NULL, y = NULL, alpha = NULL, group = NULL, color = NULL, colour = NULL, linetype = NULL, size = NULL),
-  path = list(x = NULL, y = NULL, alpha = NULL, group = NULL, color = NULL, colour = NULL, linetype = NULL, size = NULL),
+  line = list(
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    group = NULL,
+    color = NULL,
+    colour = NULL,
+    linetype = NULL,
+    size = NULL
+  ),
+  path = list(
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    group = NULL,
+    color = NULL,
+    colour = NULL,
+    linetype = NULL,
+    size = NULL
+  ),
   boxplot = list(
-    x = NULL, y = NULL, alpha = NULL, group = NULL, fill = NULL,
-    color = NULL, colour = NULL, linetype = NULL, size = NULL
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    group = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    linetype = NULL,
+    size = NULL
   ),
   violin = list(
-    x = NULL, y = NULL, alpha = NULL, group = NULL, fill = NULL,
-    color = NULL, colour = NULL, linetype = NULL, size = NULL
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    group = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    linetype = NULL,
+    size = NULL
   ),
 
   # single variable plot types
-  density = list(x = NULL, alpha = NULL, fill = NULL, color = NULL, colour = NULL, position = NULL),
-  freqpoly = list(x = NULL, alpha = NULL, fill = NULL, color = NULL, colour = NULL, position = NULL),
-  histogram = list(x = NULL, alpha = NULL, fill = NULL, color = NULL, colour = NULL, position = NULL),
-  bar = list(x = NULL, y = NULL, alpha = NULL, fill = NULL, color = NULL, colour = NULL, position = NULL)
+  density = list(
+    x = NULL,
+    alpha = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    position = NULL
+  ),
+  freqpoly = list(
+    x = NULL,
+    alpha = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    position = NULL
+  ),
+  histogram = list(
+    x = NULL,
+    alpha = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    position = NULL
+  ),
+  bar = list(
+    x = NULL,
+    y = NULL,
+    alpha = NULL,
+    fill = NULL,
+    color = NULL,
+    colour = NULL,
+    position = NULL
+  )
 )
 
 model_string <- function(which) {
-  res <- switch(which,
+  res <- switch(
+    which,
     none = "",
     linear = " + stat_smooth(method=lm, se=FALSE)",
     smoother = " + stat_smooth(method=loess, se=FALSE)",
@@ -99,8 +194,15 @@ log_axes_string <- function(which = c("none", "both", "x", "y")) {
   }
 }
 
-layer_string <- function(var_names, geom = "point", extras = "", details = NULL,
-                         data_name = NULL, formula = NULL, ...) {
+layer_string <- function(
+  var_names,
+  geom = "point",
+  extras = "",
+  details = NULL,
+  data_name = NULL,
+  formula = NULL,
+  ...
+) {
   map_list <- map_list <- list()
   if (!is.null(formula)) {
     nms <- all.vars(formula)
@@ -118,7 +220,9 @@ layer_string <- function(var_names, geom = "point", extras = "", details = NULL,
   candidate_names <- names(candidates)
   if (length(candidates) > 0) {
     for (k in 1:length(candidates)) {
-      if (candidates[[k]] == "") next # skip it!
+      if (candidates[[k]] == "") {
+        next
+      } # skip it!
       if (!candidate_names[k] %in% c(aes_names, "data")) {
         warning("<", candidate_names[k], "> not in geom_", geom)
       } else if (candidates[[k]] %in% var_names) {
@@ -127,16 +231,14 @@ layer_string <- function(var_names, geom = "point", extras = "", details = NULL,
         # for set_list
         val <- candidates[[k]]
         as_number <- suppressWarnings(as.numeric(val))
-        if (is.na(as_number)) { # val should be quoted
+        if (is.na(as_number)) {
+          # val should be quoted
           val <- paste0("'", val, "'")
         } else {
           val <- as_number
         }
         set_list[candidate_names[k]] <-
-          ifelse(candidate_names[[k]] == "data",
-            candidates[[k]],
-            val
-          )
+          ifelse(candidate_names[[k]] == "data", candidates[[k]], val)
       }
     }
   }
@@ -150,10 +252,13 @@ layer_string <- function(var_names, geom = "point", extras = "", details = NULL,
     paste(
       collapse = ", ",
       paste(names(map_list), map_list, sep = " = ")
-    ), ")"
+    ),
+    ")"
   )
   res <- paste0(
-    "geom_", geom, "(",
+    "geom_",
+    geom,
+    "(",
     ifelse(length(map_list) > 0, map_string, ""),
     ifelse(length(map_list) > 0 & length(set_list) != 0, ", ", ""),
     ifelse(length(set_list) > 0, set_string, ""),
@@ -172,13 +277,17 @@ capture_extras <- function(...) {
   if (length(extras) > 0) {
     for (k in seq_along(extras)) {
       as_number <- suppressWarnings(as.numeric(extras[[k]]))
-      if (is.na(as_number)) { # val should be quoted
+      if (is.na(as_number)) {
+        # val should be quoted
         values[k] <- paste0("'", extras[[k]], "'")
       } else {
         values[k] <- as_number
       }
     }
-    res <- paste(paste(names(extras), unlist(values), sep = " = "), collapse = ", ")
+    res <- paste(
+      paste(names(extras), unlist(values), sep = " = "),
+      collapse = ", "
+    )
   }
   res
 }

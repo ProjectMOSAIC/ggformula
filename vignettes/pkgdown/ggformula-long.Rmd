@@ -780,9 +780,9 @@ if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
     
   gf_sf(fill = ~ factor(name_length), color = "white", data = USshape, alpha = 0.5) |>
     gf_sf(data = sf::st_centroid(USshape), color = "white", alpha = 0.5, size = 3) |>
-    gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) |>
+    # gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) |>
     gf_labs(x = "", y = "") |>
-    gf_refine(coord_sf(), mosaic::theme_map()) |>
+    # gf_refine(coord_sf(), mosaic::theme_map()) |>
     gf_labs(fill = "name length")
 }
 ```

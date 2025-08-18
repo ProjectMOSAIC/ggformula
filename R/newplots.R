@@ -1,4 +1,3 @@
-
 # for predictdf()
 
 utils::globalVariables(c("x", "y", "ymin", "ymax"))
@@ -8,7 +7,6 @@ utils::globalVariables(c("x", "y", "ymin", "ymax"))
 #' @importFrom stats quantile
 
 NA
-
 
 
 #' Average Shifted Histograms
@@ -59,7 +57,9 @@ NA
 #' gf_ash(~bill_length_mm, color = ~species, data = penguins, binwidth = 1, adjust = 2)
 gf_ash <-
   layer_factory(
-    geom = "line", stat = "ash", position = "identity",
+    geom = "line",
+    stat = "ash",
+    position = "identity",
     aes_form = list(~x, y ~ x),
     extras = alist(alpha = , color = , group = , linetype = , linewidth = )
   )
@@ -76,7 +76,9 @@ gf_ash <-
 #' @seealso [gf_ash()]
 
 StatAsh <-
-  ggproto("StatAsh", Stat,
+  ggproto(
+    "StatAsh",
+    Stat,
     compute_group = function(data, scales, binwidth = NULL, adjust = NULL) {
       ash_points(data$x, binwidth = binwidth, adjust = adjust)
     },
@@ -86,12 +88,26 @@ StatAsh <-
 #' @rdname gf_ash
 #' @export
 stat_ash <-
-  function(mapping = NULL, data = NULL, geom = "line",
-             position = "identity", na.rm = FALSE, show.legend = NA,
-             inherit.aes = TRUE, binwidth = NULL, adjust = 1, ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    geom = "line",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    binwidth = NULL,
+    adjust = 1,
+    ...
+  ) {
     ggplot2::layer(
-      stat = StatAsh, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+      stat = StatAsh,
+      data = data,
+      mapping = mapping,
+      geom = geom,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
       params = list(na.rm = na.rm, binwidth = binwidth, adjust = adjust, ...)
     )
   }
@@ -133,12 +149,25 @@ stat_ash <-
 #'   geom_ash(colour = "navy", adjust = 1 / 2) +
 #'   theme_minimal()
 geom_ash <-
-  function(mapping = NULL, data = NULL, stat = "ash",
-             position = "identity", na.rm = FALSE, show.legend = NA,
-             inherit.aes = TRUE, binwidth = NULL, adjust = 1, ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    stat = "ash",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    binwidth = NULL,
+    adjust = 1,
+    ...
+  ) {
     ggplot2::layer(
-      stat = stat, geom = ggplot2::GeomLine, data = data, mapping = mapping,
-      position = position, show.legend = show.legend,
+      stat = stat,
+      geom = ggplot2::GeomLine,
+      data = data,
+      mapping = mapping,
+      position = position,
+      show.legend = show.legend,
       inherit.aes = inherit.aes,
       params = list(na.rm = na.rm, binwidth = binwidth, adjust = adjust, ...)
     )
@@ -150,24 +179,53 @@ geom_ash <-
 #' @seealso [stat_spline()]
 #' @seealso [gf_spline()]
 StatSpline <-
-  ggproto("StatSpline", Stat,
-    compute_group = function(data, scales, weight = NULL, df = NULL, spar = NULL,
-                                 cv = FALSE, all.knots = FALSE, nknots = stats::.nknots.smspl,
-                                 df.offset = 0, penalty = 1, control.spar = list(),
-                                 tol = NULL) {
-      if (is.null(tol)) tol <- 1e-6 * IQR(data$x)
+  ggproto(
+    "StatSpline",
+    Stat,
+    compute_group = function(
+      data,
+      scales,
+      weight = NULL,
+      df = NULL,
+      spar = NULL,
+      cv = FALSE,
+      all.knots = FALSE,
+      nknots = stats::.nknots.smspl,
+      df.offset = 0,
+      penalty = 1,
+      control.spar = list(),
+      tol = NULL
+    ) {
+      if (is.null(tol)) {
+        tol <- 1e-6 * IQR(data$x)
+      }
       SS <- if (is.null(df)) {
-        smooth.spline(data$x, data$y,
-          w = weight, spar = spar,
-          cv = cv, all.knots = all.knots, nknots = nknots,
-          df.offset = df.offset, penalty = penalty, control.spar = control.spar,
+        smooth.spline(
+          data$x,
+          data$y,
+          w = weight,
+          spar = spar,
+          cv = cv,
+          all.knots = all.knots,
+          nknots = nknots,
+          df.offset = df.offset,
+          penalty = penalty,
+          control.spar = control.spar,
           tol = tol
         )
       } else {
-        smooth.spline(data$x, data$y,
-          w = weight, df = df, spar = spar,
-          cv = cv, all.knots = all.knots, nknots = nknots,
-          df.offset = df.offset, penalty = penalty, control.spar = control.spar,
+        smooth.spline(
+          data$x,
+          data$y,
+          w = weight,
+          df = df,
+          spar = spar,
+          cv = cv,
+          all.knots = all.knots,
+          nknots = nknots,
+          df.offset = df.offset,
+          penalty = penalty,
+          control.spar = control.spar,
           tol = tol
         )
       }
@@ -229,20 +287,47 @@ StatSpline <-
 #'   ggplot(Births) + geom_spline(aes(x = date, y = births, colour = wday), nknots = 10)
 #' }
 stat_spline <-
-  function(mapping = NULL, data = NULL, geom = "line",
-             position = "identity", na.rm = FALSE, show.legend = NA,
-             inherit.aes = TRUE, weight = NULL, df = NULL, spar = NULL,
-             cv = FALSE, all.knots = FALSE, nknots = stats::.nknots.smspl,
-             df.offset = 0, penalty = 1, control.spar = list(),
-             tol = NULL, ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    geom = "line",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    weight = NULL,
+    df = NULL,
+    spar = NULL,
+    cv = FALSE,
+    all.knots = FALSE,
+    nknots = stats::.nknots.smspl,
+    df.offset = 0,
+    penalty = 1,
+    control.spar = list(),
+    tol = NULL,
+    ...
+  ) {
     ggplot2::layer(
-      stat = StatSpline, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+      stat = StatSpline,
+      data = data,
+      mapping = mapping,
+      geom = geom,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
       params = list(
-        na.rm = na.rm, weight = weight, df = df, spar = spar,
-        cv = cv, all.knots = all.knots, nknots = nknots,
-        df.offset = df.offset, penalty = penalty,
-        control.spar = control.spar, tol = tol, ...
+        na.rm = na.rm,
+        weight = weight,
+        df = df,
+        spar = spar,
+        cv = cv,
+        all.knots = all.knots,
+        nknots = nknots,
+        df.offset = df.offset,
+        penalty = penalty,
+        control.spar = control.spar,
+        tol = tol,
+        ...
       )
     )
   }
@@ -250,21 +335,47 @@ stat_spline <-
 #' @rdname geom_spline
 #' @export
 geom_spline <-
-  function(mapping = NULL, data = NULL, stat = "spline",
-             position = "identity", na.rm = FALSE, show.legend = NA,
-             inherit.aes = TRUE, weight = NULL, df = NULL, spar = NULL,
-             cv = FALSE, all.knots = FALSE, nknots = stats::.nknots.smspl,
-             df.offset = 0, penalty = 1, control.spar = list(),
-             tol = NULL, ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    stat = "spline",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    weight = NULL,
+    df = NULL,
+    spar = NULL,
+    cv = FALSE,
+    all.knots = FALSE,
+    nknots = stats::.nknots.smspl,
+    df.offset = 0,
+    penalty = 1,
+    control.spar = list(),
+    tol = NULL,
+    ...
+  ) {
     ggplot2::layer(
-      stat = stat, geom = ggplot2::GeomLine, data = data, mapping = mapping,
-      position = position, show.legend = show.legend,
+      stat = stat,
+      geom = ggplot2::GeomLine,
+      data = data,
+      mapping = mapping,
+      position = position,
+      show.legend = show.legend,
       inherit.aes = inherit.aes,
       params = list(
-        na.rm = na.rm, weight = weight, df = df, spar = spar,
-        cv = cv, all.knots = all.knots, nknots = nknots,
-        df.offset = df.offset, penalty = penalty,
-        control.spar = control.spar, tol = tol, ...
+        na.rm = na.rm,
+        weight = weight,
+        df = df,
+        spar = spar,
+        cv = cv,
+        all.knots = all.knots,
+        nknots = nknots,
+        df.offset = df.offset,
+        penalty = penalty,
+        control.spar = control.spar,
+        tol = tol,
+        ...
       )
     )
   }
@@ -286,13 +397,18 @@ qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
 #' @export
 #' @seealso [ggplot2::stat_qq()]
 #' @seealso [gf_qq()]
-StatQqline <- ggproto("StatQqline", Stat,
+StatQqline <- ggproto(
+  "StatQqline",
+  Stat,
   required_aes = c("sample"),
-  compute_group = function(data, scales,
-                             distribution = stats::qnorm,
-                             dparams = list(),
-                             tail = 0.25,
-                             na.rm = FALSE) {
+  compute_group = function(
+    data,
+    scales,
+    distribution = stats::qnorm,
+    dparams = list(),
+    tail = 0.25,
+    na.rm = FALSE
+  ) {
     qdist <- function(p) do.call(distribution, c(list(p = p), dparams))
 
     n <- length(data$sample)
@@ -336,48 +452,73 @@ StatQqline <- ggproto("StatQqline", Stat,
 #'   stat_qqline(alpha = 0.7, color = "red", linetype = "dashed") +
 #'   ggplot2::facet_wrap(~species)
 stat_qqline <-
-  function(mapping = NULL, data = NULL, geom = "line",
-             position = "identity", ...,
-             distribution = stats::qnorm,
-             dparams = list(),
-             na.rm = FALSE,
-             show.legend = NA,
-             inherit.aes = TRUE) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    geom = "line",
+    position = "identity",
+    ...,
+    distribution = stats::qnorm,
+    dparams = list(),
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE
+  ) {
     layer(
-      stat = StatQqline, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+      stat = StatQqline,
+      data = data,
+      mapping = mapping,
+      geom = geom,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
       params = list(
         distribution = distribution,
         dparams = dparams,
-        na.rm = na.rm, ...
+        na.rm = na.rm,
+        ...
       )
     )
   }
-
 
 
 #' @rdname geom_lm
 #' @export
 stat_lm <-
   function(
-             mapping = NULL, data = NULL, geom = "lm",
-             position = "identity",
-             interval = c("none", "prediction", "confidence"),
-             level = 0.95,
-             formula = y ~ x, lm.args = list(), backtrans = identity,
-             ...,
-             na.rm = FALSE,
-             show.legend = NA,
-             inherit.aes = TRUE) {
+    mapping = NULL,
+    data = NULL,
+    geom = "lm",
+    position = "identity",
+    interval = c("none", "prediction", "confidence"),
+    level = 0.95,
+    formula = y ~ x,
+    lm.args = list(),
+    backtrans = identity,
+    ...,
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE
+  ) {
     interval <- match.arg(interval)
     params <- list(
-      interval = interval, level = level, formula = formula,
-      lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...
+      interval = interval,
+      level = level,
+      formula = formula,
+      lm.args = lm.args,
+      na.rm = na.rm,
+      backtrans = backtrans,
+      ...
     )
 
     layer(
-      stat = StatLm, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+      stat = StatLm,
+      data = data,
+      mapping = mapping,
+      geom = geom,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
       params = params
     )
   }
@@ -388,7 +529,9 @@ stat_lm <-
 #' @seealso [stat_lm()]
 #' @seealso [gf_lm()]
 StatLm <-
-  ggproto("StatLm", Stat,
+  ggproto(
+    "StatLm",
+    Stat,
     setup_params = function(data, params) {
       if (identical(params$interval, "none")) {
         params$se <- FALSE
@@ -397,11 +540,21 @@ StatLm <-
       }
       params
     },
-    compute_group = function(data, scales, formula = y ~ x,
-                                 n = 80, span = 0.75, fullrange = TRUE,
-                                 xseq = NULL, level = 0.95, interval = "confidence",
-                                 lm.args = list(), na.rm = FALSE, se = NULL,
-                                 backtrans = identity) {
+    compute_group = function(
+      data,
+      scales,
+      formula = y ~ x,
+      n = 80,
+      span = 0.75,
+      fullrange = TRUE,
+      xseq = NULL,
+      level = 0.95,
+      interval = "confidence",
+      lm.args = list(),
+      na.rm = FALSE,
+      se = NULL,
+      backtrans = identity
+    ) {
       model <- NULL
       interval <- match.arg(interval, c("none", "confidence", "prediction"))
 
@@ -411,7 +564,9 @@ StatLm <-
         if (length(unique(data$x)) < 2) {
           return(data.frame())
         }
-        if (is.null(data$weight)) data$weight <- 1
+        if (is.null(data$weight)) {
+          data$weight <- 1
+        }
         # figure out x-values
         if (is.null(xseq)) {
           if (is.integer(data$x)) {
@@ -429,11 +584,22 @@ StatLm <-
             xseq <- seq(range[1], range[2], length.out = n)
           }
         }
-        base.args <- list(formula = formula, data = quote(data), weights = quote(weight))
+        base.args <- list(
+          formula = formula,
+          data = quote(data),
+          weights = quote(weight)
+        )
         model <- do.call(stats::lm, c(base.args, lm.args))
       }
 
-      predictdf(model, xseq = xseq, level = level, interval = interval, se = se, backtrans = backtrans)
+      predictdf(
+        model,
+        xseq = xseq,
+        level = level,
+        interval = interval,
+        se = se,
+        backtrans = backtrans
+      )
     },
     required_aes = c("x", "y")
   )
@@ -447,17 +613,27 @@ predictdf <-
       stop("Model must be created using lm()")
     }
 
-    if (interval == "none") interval <- "confidence"
+    if (interval == "none") {
+      interval <- "confidence"
+    }
 
     pred <- suppressWarnings(
-      stats::predict(model,
+      stats::predict(
+        model,
         newdata = data.frame(x = xseq),
-        se.fit = TRUE, level = level, interval = interval
+        se.fit = TRUE,
+        level = level,
+        interval = interval
       )
     )
     fit <- as.data.frame(pred$fit)
     names(fit) <- c("y", "ymin", "ymax")
-    fit <- transform(fit, y = backtrans(y), ymin = backtrans(ymin), ymax = backtrans(ymax))
+    fit <- transform(
+      fit,
+      y = backtrans(y),
+      ymin = backtrans(ymin),
+      ymax = backtrans(ymax)
+    )
     if (se) {
       data.frame(x = xseq, fit, se = pred$se.fit, se_param = TRUE)
     } else {
@@ -519,19 +695,29 @@ predictdf <-
 #'   geom_point()
 geom_lm <-
   function(
-             mapping = NULL, data = NULL, stat = "lm",
-             position = "identity",
-             interval = c("none", "prediction", "confidence"),
-             level = 0.95,
-             formula = y ~ x, lm.args = list(), backtrans = identity,
-             ...,
-             na.rm = FALSE,
-             show.legend = NA,
-             inherit.aes = TRUE) {
+    mapping = NULL,
+    data = NULL,
+    stat = "lm",
+    position = "identity",
+    interval = c("none", "prediction", "confidence"),
+    level = 0.95,
+    formula = y ~ x,
+    lm.args = list(),
+    backtrans = identity,
+    ...,
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE
+  ) {
     interval <- match.arg(interval)
     params <- list(
-      interval = interval, level = level, formula = formula,
-      lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...
+      interval = interval,
+      level = level,
+      formula = formula,
+      lm.args = lm.args,
+      na.rm = na.rm,
+      backtrans = backtrans,
+      ...
     )
 
     layer(
@@ -552,7 +738,9 @@ geom_lm <-
 #' @seealso [geom_lm()]
 #' @seealso [gf_lm()]
 
-GeomLm <- ggproto("GeomLm", Geom,
+GeomLm <- ggproto(
+  "GeomLm",
+  Geom,
   setup_data = function(data, params) {
     GeomLine$setup_data(data, params)
   },
@@ -574,8 +762,12 @@ GeomLm <- ggproto("GeomLm", Geom,
   optional_aes = c("ymin", "ymax"),
 
   default_aes = aes(
-    colour = "#3366FF", fill = "grey60", linewidth = 0.7,
-    linetype = 1, weight = 1, alpha = 0.3
+    colour = "#3366FF",
+    fill = "grey60",
+    linewidth = 0.7,
+    linetype = 1,
+    weight = 1,
+    alpha = 0.3
   )
 )
 
@@ -591,7 +783,9 @@ GeomLm <- ggproto("GeomLm", Geom,
 #' @seealso [gf_ash()]
 
 StatAsh <-
-  ggproto("StatAsh", Stat,
+  ggproto(
+    "StatAsh",
+    Stat,
     compute_group = function(data, scales, binwidth = NULL, adjust = NULL) {
       ash_points(data$x, binwidth = binwidth, adjust = adjust)
     },
@@ -611,40 +805,46 @@ StatAsh <-
 #     )
 #   }
 
-
 #' @rdname ggformula-ggproto
 #' @format NULL
 #' @export
 
 StatFitdistr <-
   ggproto(
-    "StatFitdistr", Stat,
+    "StatFitdistr",
+    Stat,
     default_aes = aes(y = calc(y)),
     required_aes = c("x"),
-    compute_group =
-      function(data, scales, dist = "dnorm", start = NULL,
-                     xlim = NULL, n = 101, args = list()) {
-        # range <- xlim %||% scales$x$dimension()
-        range <- if (is.null(xlim)) scales$x$dimension() else xlim
-        xseq <- seq(range[1], range[2], length.out = n)
+    compute_group = function(
+      data,
+      scales,
+      dist = "dnorm",
+      start = NULL,
+      xlim = NULL,
+      n = 101,
+      args = list()
+    ) {
+      # range <- xlim %||% scales$x$dimension()
+      range <- if (is.null(xlim)) scales$x$dimension() else xlim
+      xseq <- seq(range[1], range[2], length.out = n)
 
-        if (scales$x$is_discrete()) {
-          x_trans <- xseq
-        } else {
-          # For continuous scales, need to back transform from transformed range
-          # to original values
-          x_trans <- scales$x$trans$inverse(xseq)
-        }
-
-        ddist <- do.call(
-          mosaicCore::fit_distr_fun,
-          c(list(~x, data = data, dist = dist, start = start), args)
-        )
-        data.frame(
-          x = xseq,
-          y = do.call(ddist, c(list(quote(x_trans))))
-        )
+      if (scales$x$is_discrete()) {
+        x_trans <- xseq
+      } else {
+        # For continuous scales, need to back transform from transformed range
+        # to original values
+        x_trans <- scales$x$trans$inverse(xseq)
       }
+
+      ddist <- do.call(
+        mosaicCore::fit_distr_fun,
+        c(list(~x, data = data, dist = dist, start = start), args)
+      )
+      data.frame(
+        x = xseq,
+        y = do.call(ddist, c(list(quote(x_trans))))
+      )
+    }
   )
 
 
@@ -673,16 +873,32 @@ StatFitdistr <-
 #' @export
 
 stat_fitdistr <-
-  function(mapping = NULL, data = NULL, geom = "path",
-             position = "identity", na.rm = FALSE, show.legend = NA,
-             inherit.aes = TRUE, dist = "dnorm", start = NULL, ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    geom = "path",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    dist = "dnorm",
+    start = NULL,
+    ...
+  ) {
     #    mapping[["y"]] <- NULL
     dist_name <- deparse(substitute(dist))
-    if (!is.character(dist)) dist <- dist_name
+    if (!is.character(dist)) {
+      dist <- dist_name
+    }
 
     ggplot2::layer(
-      stat = StatFitdistr, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+      stat = StatFitdistr,
+      data = data,
+      mapping = mapping,
+      geom = geom,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
       params = list(dist = dist, start = start, ...)
     )
   }

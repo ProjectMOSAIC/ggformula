@@ -25,8 +25,9 @@
 #' KF |>
 #'   gf_point(length ~ width, color = ~ domhand)
 #' get_variable_labels(KF)
-get_variable_labels <- function(...)
+get_variable_labels <- function(...) {
   labelled::var_label(...)
+}
 
 #' Modify plot labeling
 #'

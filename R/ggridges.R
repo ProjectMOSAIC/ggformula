@@ -1,4 +1,3 @@
-
 #' Formula interface to ggridges plots
 #'
 #' Formula interface to ggridges plots
@@ -39,12 +38,27 @@
 
 gf_ridgeline <-
   layer_factory(
-    geom = "ridgeline", stat = "identity", position = "identity",
+    geom = "ridgeline",
+    stat = "identity",
+    position = "identity",
     aes_form = y ~ x,
-    extras = alist(height =, scale = 1, min_height = 0, color = , fill = , alpha = ,
-                   group =, linetype = , linewidth = ,
-                   point_size =, point_shape = , point_colour = , point_fill = ,
-                   point_alpha = , point_stroke =)
+    extras = alist(
+      height = ,
+      scale = 1,
+      min_height = 0,
+      color = ,
+      fill = ,
+      alpha = ,
+      group = ,
+      linetype = ,
+      linewidth = ,
+      point_size = ,
+      point_shape = ,
+      point_colour = ,
+      point_fill = ,
+      point_alpha = ,
+      point_stroke =
+    )
   )
 
 #' @rdname ggridges
@@ -86,13 +100,28 @@ gf_ridgeline <-
 
 gf_density_ridges <-
   layer_factory(
-    geom = "density_ridges", stat = "density_ridges", position = "points_sina",
+    geom = "density_ridges",
+    stat = "density_ridges",
+    position = "points_sina",
     aes_form = y ~ x,
-    extras = alist(height =, scale = 1, rel_min_height = 0,
-                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
-                   point_size =, point_shape = , point_colour = , point_fill = ,
-                   point_alpha = , point_stroke =,
-                   panel_scaling = TRUE)
+    extras = alist(
+      height = ,
+      scale = 1,
+      rel_min_height = 0,
+      color = ,
+      fill = ,
+      alpha = ,
+      group = ,
+      linetype = ,
+      linewidth = ,
+      point_size = ,
+      point_shape = ,
+      point_colour = ,
+      point_fill = ,
+      point_alpha = ,
+      point_stroke = ,
+      panel_scaling = TRUE
+    )
   )
 
 
@@ -111,13 +140,28 @@ gf_density_ridges <-
 
 gf_density_ridges2 <-
   layer_factory(
-    geom = "density_ridges2", stat = "density_ridges", position = "points_sina",
+    geom = "density_ridges2",
+    stat = "density_ridges",
+    position = "points_sina",
     aes_form = y ~ x,
-    extras = alist(height =, scale = 1, rel_min_height = 0,
-                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
-                   point_size =, point_shape = , point_colour = , point_fill = ,
-                   point_alpha = , point_stroke =,
-                   panel_scaling = TRUE)
+    extras = alist(
+      height = ,
+      scale = 1,
+      rel_min_height = 0,
+      color = ,
+      fill = ,
+      alpha = ,
+      group = ,
+      linetype = ,
+      linewidth = ,
+      point_size = ,
+      point_shape = ,
+      point_colour = ,
+      point_fill = ,
+      point_alpha = ,
+      point_stroke = ,
+      panel_scaling = TRUE
+    )
   )
 
 #' @rdname ggridges
@@ -152,11 +196,20 @@ gf_density_ridges2 <-
 
 gf_density_ridgeline_gradient <-
   layer_factory(
-    geom = "ridgeline_gradient", stat = "identity", position = "identity",
+    geom = "ridgeline_gradient",
+    stat = "identity",
+    position = "identity",
     aes_form = y ~ x,
-    extras = alist(height =,
-                   color = , fill = , alpha = , group =, linetype = , linewidth = ,
-                   gradient_lwd = 0.5)
+    extras = alist(
+      height = ,
+      color = ,
+      fill = ,
+      alpha = ,
+      group = ,
+      linetype = ,
+      linewidth = ,
+      gradient_lwd = 0.5
+    )
   )
 
 #' @rdname ggridges
@@ -169,12 +222,21 @@ gf_density_ridgeline_gradient <-
 #'   gf_refine(scale_fill_viridis_c(option = "B"), theme_bw())
 #' }
 
-
 gf_density_ridges_gradient <-
   layer_factory(
-    geom = "density_ridges_gradient", stat = "density_ridges", position = "points_sina",
+    geom = "density_ridges_gradient",
+    stat = "density_ridges",
+    position = "points_sina",
     aes_form = y ~ x,
-    extras = alist(height =, panel_scaling = TRUE,
-                   color = , fill = ~stat(x), alpha = , group =, linetype = , linewidth = ,
-                   gradient_lwd = 0.5)
+    extras = alist(
+      height = ,
+      panel_scaling = TRUE,
+      color = ,
+      fill = ~ stat(x),
+      alpha = ,
+      group = ,
+      linetype = ,
+      linewidth = ,
+      gradient_lwd = 0.5
+    )
   )

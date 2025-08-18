@@ -1,4 +1,3 @@
-
 #' Formula interface to ggplot()
 #'
 #' Create a new ggplot and (optionally) set default dataset aesthetics mapping.

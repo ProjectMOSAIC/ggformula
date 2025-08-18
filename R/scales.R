@@ -1,4 +1,3 @@
-
 #' Discrete Breaks
 #'
 #' Creates a function that can be passed to scales for creating discrete breaks

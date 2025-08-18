@@ -20,7 +20,9 @@
 
 gf_barh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_bar() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_bar() instead.  See `?ggstance'."
+    )
     gf_bar(...)
   }
 #' @rdname ggstance
@@ -28,7 +30,9 @@ gf_barh <-
 #' @export
 gf_countsh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_counts() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_counts() instead.  See `?ggstance'."
+    )
     gf_counts(...)
   }
 
@@ -37,7 +41,9 @@ gf_countsh <-
 #' @export
 gf_colh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_col() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_col() instead.  See `?ggstance'."
+    )
     gf_col(...)
   }
 #' @rdname ggstance
@@ -45,7 +51,9 @@ gf_colh <-
 #' @export
 gf_propsh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_props() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_props() instead.  See `?ggstance'."
+    )
     gf_props(...)
   }
 #' @rdname ggstance
@@ -53,7 +61,9 @@ gf_propsh <-
 #' @export
 gf_percentsh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_percents() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_percents() instead.  See `?ggstance'."
+    )
     gf_percents(...)
   }
 #' @rdname ggstance
@@ -61,7 +71,9 @@ gf_percentsh <-
 #' @export
 gf_boxploth <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_boxplot() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_boxplot() instead.  See `?ggstance'."
+    )
     gf_boxplot(...)
   }
 #
@@ -78,7 +90,9 @@ gf_boxploth <-
 #' @export
 gf_linerangeh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_linerange() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_linerange() instead.  See `?ggstance'."
+    )
     gf_linerange(...)
   }
 #' @rdname ggstance
@@ -86,7 +100,9 @@ gf_linerangeh <-
 #' @export
 gf_pointrangeh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_pointrange() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_pointrange() instead.  See `?ggstance'."
+    )
     gf_pointrange(...)
   }
 #' @rdname ggstance
@@ -94,7 +110,9 @@ gf_pointrangeh <-
 #' @export
 gf_crossbarh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_crossbar() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_crossbar() instead.  See `?ggstance'."
+    )
     gf_crossbar(...)
   }
 #' @rdname ggstance
@@ -102,7 +120,9 @@ gf_crossbarh <-
 #' @export
 gf_violinh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_violin() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_violin() instead.  See `?ggstance'."
+    )
     gf_violin(...)
   }
 #' @rdname ggstance
@@ -110,6 +130,8 @@ gf_violinh <-
 #' @export
 gf_errorbarh <-
   function(...) {
-    .Defunct(msg = "This function has been removed from the ggformula.  Use gf_errorbar() instead.  See `?ggstance'.")
+    .Defunct(
+      msg = "This function has been removed from the ggformula.  Use gf_errorbar() instead.  See `?ggstance'."
+    )
     gf_errorbar(...)
   }

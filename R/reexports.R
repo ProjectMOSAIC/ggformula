@@ -1,6 +1,5 @@
 # This allows us to use these functions without attaching the packages they come from.
 
-
 #' @importFrom mosaicCore makeFun
 #' @export
 mosaicCore::makeFun
@@ -23,7 +22,6 @@ mosaicCore::na.warn
 # #' @importFrom ggforce geom_sina
 # #' @export
 # ggforce::geom_sina
-
 
 #' @importFrom labelled var_label
 #' @export

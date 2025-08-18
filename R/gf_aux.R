@@ -149,9 +149,8 @@ gf_theme <- function(object, theme, ...) {
 #'     size = guide_legend(order = 3)
 #'   )
 
-
 gf_guides <- function(object, ...) {
-      object + ggplot2::guides(...)
+  object + ggplot2::guides(...)
 }
 
 #' Add facets to a plot
@@ -226,7 +225,8 @@ gf_refine <- function(object, ...) {
 
 gf_annotate <-
   function(
-    object, geom = "text",
+    object,
+    geom = "text",
     x = NULL,
     y = NULL,
     xmin = NULL,
@@ -240,10 +240,15 @@ gf_annotate <-
   ) {
     object +
       ggplot2::annotate(
-        geom = geom, x = x, y = y,
-        xmin = xmin, xmax = xmax,
-        ymin = ymin, ymax = ymax,
-        xend = xend, yend = yend,
+        geom = geom,
+        x = x,
+        y = y,
+        xmin = xmin,
+        xmax = xmax,
+        ymin = ymin,
+        ymax = ymax,
+        xend = xend,
+        yend = yend,
         ...,
         na.rm = na.rm
       )
