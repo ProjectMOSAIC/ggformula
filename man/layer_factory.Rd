@@ -8,6 +8,8 @@ layer_factory(
   geom = "point",
   position = "identity",
   stat = "identity",
+  interactive = FALSE,
+  layer_func_interactive = "geom_point",
   pre = {
  },
   aes_form = y ~ x,
@@ -17,7 +19,12 @@ layer_factory(
   inherit.aes = TRUE,
   check.aes = TRUE,
   data = NULL,
-  layer_fun = quo(ggplot2::layer),
+  layer_fun = if (interactive) {
+     quo(layer_interactive)
+ } else {
+    
+    quo(ggplot2::layer)
+ },
   ...
 )
 }
@@ -30,6 +37,9 @@ layer_factory(
 
 \item{stat}{The stat function to use for the layer
 (may be specified as a string).}
+
+\item{layer_func_interactive}{The function used to create the layer when `interactive`` is TRUE
+(or a quosure that evaluates to such a function).}
 
 \item{pre}{code to run as a "pre-process".}
 
@@ -54,9 +64,6 @@ to inherit.}
 when aesthetics provided don't match what is expected.}
 
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
-
-\item{layer_fun}{The function used to create the layer or a quosure that evaluates
-to such a function.}
 
 \item{...}{Additional arguments.}
 }

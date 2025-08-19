@@ -2,9 +2,35 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_bin2d}
 \alias{gf_bin2d}
+\alias{gf_bin_2d}
 \title{Formula interface to geom_bin2d()}
 \usage{
 gf_bin2d(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  linewidth,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  geom = "tile",
+  stat = "bin2d",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_bin_2d(
   object = NULL,
   gformula = NULL,
   data = NULL,
@@ -86,7 +112,7 @@ a gg object
 }
 \description{
 \code{geom_bin2d()} uses \code{\link[ggplot2:geom_bin_2d]{ggplot2::stat_bin2d()}} to bin the data before using
-\code{\link[=gf_tile]{gf_tile()}} to display the results.
+\code{\link[=gf_tile]{gf_tile()}} to display the results. \code{gf_bin_2d()} is an alias.
 }
 \section{Specifying plot attributes}{
 

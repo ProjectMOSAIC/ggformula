@@ -13,8 +13,8 @@ knitr::opts_chunk$set(
 ```
 
 
-  
-# ggformula
+
+# ggformula <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 <!-- badges: start -->
 [![R build status](https://github.com/ProjectMOSAIC/ggformula/workflows/R-CMD-check/badge.svg)](https://github.com/ProjectMOSAIC/ggformula/actions)

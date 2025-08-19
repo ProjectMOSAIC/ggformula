@@ -6,6 +6,8 @@
 \alias{ggformula}
 \title{ggformula: Formula Interface to the Grammar of Graphics}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Provides a formula interface to 'ggplot2' graphics.
 }
 \section{The ggformula system}{

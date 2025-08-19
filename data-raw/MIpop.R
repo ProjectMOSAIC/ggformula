@@ -1,4 +1,3 @@
-
 MIpop <- readxl::read_excel("MIpop.xlsx")
 names(MIpop) <- tolower(names(MIpop))
 MIpop <-
