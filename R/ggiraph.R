@@ -37,9 +37,14 @@
 #'   `gf_*_interactive()` functions
 #' @export
 
-gf_girafe <- function(object, code, ...) {
-  code <- rlang::enquo(code)
-  ggiraph::girafe(code = {{ code }}, ggobj = object, ...)
+gf_girafe <- function(ggobj, code, ...) {
+  if (missing(code)) {
+    return(ggiraph::girafe(ggobj = ggobj, ...))
+  }
+  if (missing(ggobj)) {
+    return(ggiraph::girafe(code = code, ...))
+  }
+  ggiraph::girafe(code = code, ggobj = ggobj, ...)
 }
 
 interactive_layer_factory <- function(geom) {
@@ -83,3 +88,71 @@ cli::cli_h3("Skipped functions:")
 cli::cli_ul(skipped)
 cli::cli_h3("Created functions:")
 cli::cli_ul(created_funs)
+
+
+#' Interactive facets
+#'
+#' To create interactive facets, use `gf_facet_wrap_interactive()` or
+#' `gf_facet_grid_interactive()` and use [gf_labeller_interactive()]
+#' to create the `labeller`.
+#'
+#' @name interactive_facets
+#' @param object a ggplot graphic
+#' @param labeller a labeller created using [gf_labeller_interactive()]
+#' @param interactive_on one of "text" (strip text is made interactive),
+#'   "rect" (strip rectangles are made interactive), or "both". Can be abbreviated.
+#' @param ... additional arguments passed to `labeller` and to the
+#'   ggplot2 faceting function ([ggplot2::facet_wrap()] or [ggplot2::facet_grid()]).
+#' @seealso [ggplot2::facet_wrap()]
+#' @seealso [ggplot2::facet_grid()]
+#' @seealso [gf_labeller_interactive()]
+#' @export
+gf_facet_wrap_interactive <-
+  function(object, ..., labeller, interactive_on = c("text", "rect", "both")) {
+    qdots <- rlang::enquos(...)
+    interactive_on <- match.arg(interactive_on)
+    object +
+      ggiraph::facet_wrap_interactive(
+        ...,
+        labeller = labeller,
+        interactive_on = interactive_on
+      )
+  }
+
+#' @name interactive_facets
+#' @export
+gf_facet_grid_interactive <-
+  function(object, ..., labeller, interactive_on = c("text", "rect", "both")) {
+    interactive_on <- match.arg(interactive_on)
+    object +
+      ggiraph::facet_grid_interactive(
+        ...,
+        labeller = labeller,
+        interactive_on = interactive_on
+      )
+  }
+
+#' Create interactive labeller
+#'
+#' @param ... Arguments of the form `name = ~ expr` are used to create
+#'   `.mapping` (if `.mapping` is missing).  Other arguments (or all arguments
+#'    if `.mapping` is not missing) are passed through to [ggplot2::labeller()].
+#' @param .mapping An aesthetic mapping as could be created with
+#'   [ggplot2::aes()] or [ggplot2::aes_()].  If missing  (the typical use case),
+#'   `.mapping` is created from the arguments in `...` that have the form
+#'   `name = ~ expr`.
+#'
+#' @returns a labeller
+#'
+#' @export
+#'
+gf_labeller_interactive <- function(..., .mapping) {
+  qdots <- rlang::enquos(...)
+  aes <- aes_from_qdots(qdots)
+  if (missing(.mapping)) {
+    .mapping <- aes$mapping
+    qdots <- aes$qdots
+  }
+
+  labeller_interactive(.mapping = .mapping, !!!qdots)
+}

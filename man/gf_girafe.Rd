@@ -4,17 +4,17 @@
 \alias{gf_girafe}
 \title{Render interactive ggformula plots}
 \usage{
-gf_girafe(object, code, ...)
+gf_girafe(ggobj, code, ...)
 }
 \arguments{
-\item{object}{A ggplot object, typically created with a \verb{gf_*_interactive()}
-function.}
-
 \item{code}{R code to execute. This parameter is optional and rarely used
 in typical workflows.}
 
 \item{...}{Additional arguments passed to \code{\link[ggiraph:girafe]{ggiraph::girafe()}}, such as
 \code{width_svg}, \code{height_svg}, \code{options}, etc.}
+
+\item{object}{A ggplot object, typically created with a \verb{gf_*_interactive()}
+function.}
 }
 \value{
 An interactive HTML widget that can be displayed in RStudio Viewer,

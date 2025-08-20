@@ -44,8 +44,9 @@ Suggests:
     covr,
     ggplot2movies,
     interp,
-    quantreg
-VignetteBuilder: knitr
+    quantreg,
+    quarto
+VignetteBuilder: knitr, quarto
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
@@ -64,6 +65,7 @@ Collate:
     'ggstrings.R'
     'newplots.R'
     'ggiraph.R'
+    'ggiraph-themes.R'
     'ggiraph-documentation-gen.R'
     'ggiraph-documentation-with-examples.R'
     'reexports.R'
