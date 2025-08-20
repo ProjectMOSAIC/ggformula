@@ -1,0 +1,606 @@
+---
+title: "Interactive graphics with {ggformula}"
+subtitle: "Getting Started"
+draft: true
+date: last-modified
+author: Randall Pruim
+toc: true
+vignette: >
+  %\VignetteIndexEntry{Interactive graphics with {ggformula}}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+
+# Interactive geoms, scales, and facets
+
+```{r}
+#| label: setup
+#| include: false
+library(ggformula)
+library(dplyr)
+library(patchwork)
+```
+
+## Interactive geoms
+
+The {ggiraph} package provides a number of interactive geoms.  {ggformuala}
+makes these available via `gf_*_interactive()` functions.
+Interactive geoms provide several types of interaction.
+
+* hover actions
+    * easy tooltips using `tooltip = `
+    * restyling elements upon hover
+* selection of multiple elements at once 
+* linking items across multiple plots 
+* custom javascript to be applied when clicking on a graphical element with `onClick = `.
+
+Each type of interaction can be customized for both behavior and style.
+
+## First example: Interactive scatter plot
+
+```{r}
+#| label: load-ggformula
+library(ggformula)
+theme_set(theme_bw())
+```
+
+
+Tooltips can easily be added to scatter plots to help identify or provide additional
+information about individual points.
+
+```{r}
+data(mtcars)
+#| label: cars-scatter
+mtcars2 <- mtcars |>
+  tibble::rownames_to_column(var = "carname")
+
+cars_scatter <-
+  mtcars2 |>
+  gf_point_interactive(
+    wt ~ drat,
+    color = ~mpg,
+    tooltip = ~carname,
+    data_id = ~carname,
+    hover_nearest = TRUE,
+    size = 3
+  )
+
+# to display the graph with interactive compontents enabled, use
+# gf_girafe() to convert it to an HTML widget.
+
+gf_girafe(cars_scatter)
+
+```
+
+In the previous example, `data_id` was a unique identifier for the points.
+In the next example, `data_id` identifies groups of cars (those with the same number 
+of cylinders). The hover text identifies both the car name and the number of 
+cylinders.
+
+```{r}
+#| label: cars-scatter-tooltip
+cars_scatter_tooltip <-
+  mtcars2 |>
+  gf_point_interactive(
+    qsec ~ disp,
+    tooltip = ~ glue::glue("{carname} ({cyl} cylinders)"),
+    data_id = ~cyl,
+    size = 3,
+    hover_nearest = TRUE
+  )
+
+gf_girafe(cars_scatter_tooltip)
+
+```
+
+
+Here is an example where tool tips allow us to see how many items are 
+represented in each segment of a stacked bar plot.
+
+```{r}
+#| label: diamonds-bargraph
+data(diamonds)
+diamonds_bargraph <-
+  diamonds |>
+  gf_bar_interactive(
+    ~color,
+    fill = ~cut,
+    tooltip = ~ paste0("count: ", after_stat(count)),
+    data_id = ~cut,
+    size = 3
+  )
+
+diamonds_bargraph |> gf_girafe()
+```
+
+In examples like this, it can be handy to see what data are available after 
+the summarising statistic has been applied.  We can do this with `layer_data()`.
+
+```{r}
+#| label: layer_data
+
+diamonds_bargraph |> layer_data() |> head(3)
+```
+
+:::{.callout-warning}
+Note that in the previous graphic, the count displayed when hovering is 
+the count for a single segment, not for all of the segments that change color.
+The latter is determined by `data_id`, which `after_stat(count)` does not know about.
+:::
+
+To get finer control, we might prefer to summarise the data ourselves and use 
+`gf_col_interactive()`.
+
+```{r}
+#| label: diamonds-colgraph-1
+library(dplyr)
+diamonds |>
+  group_by(color, cut) |>
+  summarise(count = n()) |>
+  gf_col_interactive(
+    count ~ color,
+    fill = ~cut,
+    tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}"),
+    data_id = ~ glue::glue("{cut} - {color}")
+  ) |>
+  gf_girafe()
+```
+
+If we omit `data_id` in the previous example, we still get the hover text, but
+the bar segment we are hovering on does not change color.
+
+
+```{r}
+#| label: diamonds-col-graph-2
+diamonds |>
+  group_by(color, cut) |>
+  summarise(count = n()) |>
+  gf_col_interactive(
+    count ~ color,
+    fill = ~cut,
+    tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}")
+  ) |>
+  gf_girafe()
+```
+
+
+## Interactive scales
+
+Interactive scales can be used inside `gf_refine()`.
+
+```{r}
+#| label: interactive-scales
+diamonds_bargraph_2 <-
+  diamonds_bargraph |>
+  gf_refine(
+    scale_fill_viridis_d_interactive(
+      begin = 0.1,
+      end = 0.7,
+      option = "D",
+      data_id = function(x) x,
+      tooltip = function(x) x
+    )
+  )
+
+diamonds_bargraph_2 |>
+  gf_girafe()
+```
+
+By themselves, interactive scales are not that interesting.
+But key selections can be turned into reactive values for use in things
+like shiny apps. See <https://www.ardata.fr/ggiraph-book/shiny.html>.
+
+## Interactive faceting
+
+Interactive faceting requires three things:
+
+1. The use of `gf_facet_wrap_interacive()` or `gf_facet_grid_interactive()`, in
+place of `gf_facet_wrap()` or `gf_facet_grid()`;
+2. The use of an interactive labeller (`labeller = gf_labeller_interactive()`) to create the labels; and 
+3. A theme that enables facet text and/or strips to be interactive.
+
+
+```{r}
+#| label: faceting
+diamonds_bargraph_2 |>
+  gf_theme(
+    strip.text = element_text_interactive(),
+    strip.background = element_rect_interactive()
+  ) |>
+  gf_facet_wrap_interactive(
+    ~clarity, # or vars(clarity)
+    interactive_on = "both",
+    ncol = 2,
+    labeller = gf_labeller_interactive(
+      tooltip = ~ paste("this is clarity", clarity),
+      data_id = ~clarity
+    )
+  ) |>
+  gf_girafe()
+```
+
+## Interactive themes
+
+{ggiraph} provides 3 intereactive elements for use in interactive themes:
+
+* `element_text_interactive()`
+* `element_rect_interactive()` 
+* `element_line_interactive()` 
+
+These are drop-in replacements for their non-interactive counterparts.
+The can be used with `gf_theme()` to add interactive theme elements to
+an individual plot, as was done the previous example, they can be used with
+`set_girafe_defaults()`, 
+or they can be included in custom theme functions.
+{ggformula} provides a theme factory for adding interactive elements 
+for faceting to a theme of your choice.
+
+
+```{r}
+diamonds_bargraph_2 |>
+  gf_theme(theme_facets_interactive(theme_minimal())) |>
+  gf_facet_wrap_interactive(
+    ~clarity, # or vars(clarity)
+    interactive_on = "both",
+    ncol = 2,
+    labeller = gf_labeller_interactive(
+      tooltip = ~ paste("this is clarity", clarity),
+      data_id = ~clarity
+    )
+  ) |>
+  gf_girafe()
+```
+
+We'll return to this example later to see how to improve the hover interaction.
+
+## Click actions with JavaScript
+
+If you know some JavaScript, you can create click actions for interactive
+plot elements by passing the JavaScript that should be executed as `onClick`.
+In the example below, we use this to open a webpage with related information.
+
+```{r}
+
+```
+
+
+## Interacting with multiple plots using {patchwork}
+
+If we use {patchwork} to arrange multiple plots into a grid, selecting points
+in one plot will highlight them in both.
+
+```{r}
+#| label: patchwork
+library(patchwork)
+
+
+cars_scatter_2 <-
+  mtcars2 |>
+  gf_point_interactive(
+    disp ~ qsec,
+    color = ~mpg,
+    tooltip = ~carname,
+    data_id = ~carname,
+    hover_nearest = TRUE,
+    size = 3
+  )
+
+gf_girafe(cars_scatter / cars_scatter_2)
+```
+
+# Customizing girafe animations
+
+
+We can customize the interactive features of our plots in one of two ways:
+
+1. Setting `options = list( ... )` in the call to `gf_girafe()`, or 
+2. Using `set_girafe_defaults( ... )`.
+
+In either case we replace `...` with calls to one or more of the following:
+
+*  `fonts = list(...)`
+*  `opts_sizing = opts_sizing(...)`
+*  `opts_tooltip = opts_tooltip(...)`
+*  `opts_hover = opts_hover(...)`
+*  `opts_hover_key = opts_hover_key(...)`
+*  `opts_hover_inv = opts_hover_inv(...)`
+*  `opts_hover_theme = opts_hover_theme(...)`
+*  `opts_selection = opts_selection(...)`
+*  `opts_selection_inv = opts_selection_inv(...)`
+*  `opts_selection_key = opts_selection_key(...)`
+*  `opts_selection_theme = opts_selection_theme(...)`
+*  `opts_zoom = opts_zoom(...)`
+*  `opts_toolbar = opts_toolbar(...)`
+
+Girafe animations are produced in SVG (scalable vector graphics) format.
+We can customize how SVGs appear using CSS (cascading style sheets).
+So many of these functions are utilities to help us create the correct
+CSS. Some options require the user to provide some CSS as a string of semi-colon
+separated key-value pairs, where key-value pairs are separated by colons.
+But for many options we can avoid writing CSS directly using these 
+helper functions.
+
+
+## CSS styling
+
+The style of many interactive elements is determined by a character 
+string containing CSS styling.
+Each CSS declaration includes a property name and an associated value.
+Property names and values are separated by colons and name-value pairs 
+always end with a semicolon. Spaces can be added around delimeters to 
+improve readability.
+For example `color:gray; text-align:center;"`. 
+
+Common CSS properties include:
+
+* `color`: color for points, etc.
+* `stroke`: color for lines, text, etc.
+* `background-color`: background color for text
+* `fill`: fill color for points, rectangles, etc.
+* `border-style`, `border-width`, `border-color`: border properties for 
+rectangles, can be combined as in `border: 5px solid red;`
+* `width`, `height`: size (of tooltip, for example)
+* `padding`: space around content
+* `opacity`: opacity (a number between 0 and 1)
+
+:::{.callout-warning}
+### Color keys
+
+Notice that the names of the keys for setting color vary among the various
+kinds of elements.  To make things more confusing, text elements have both 
+stroke and fill.  Text will often look better if the stroke is removed, unless
+is is large enough to have substantial space within the stroke.
+:::
+
+:::{.callout-warning}
+### Don't include curly braces
+
+If you are familiar with CSS, you might be tempted to wrap your CSS string
+in curly braces.  `gf_girafe()` takes care of adding those for you, so
+don't include them in your string.
+:::
+
+## Hover options
+
+Use `opts_hover` to style hovered data elements, `opts_hover_inv` to style non-hovered 
+data elements, and `opts_hover_key` to style hovered guide elements.
+Common CSS properties for styling these elements include
+
+*  `fill`: background color
+*  `stroke`: color
+*  `stroke-width`: border width
+*  `r`: circle radius
+*  `opacity`: opacity (a number between 0 and 1)
+
+We can use opacity to improve our interactive facets.
+
+```{r}
+diamonds_bargraph_2 |>
+  gf_theme(theme_facets_interactive(theme_minimal())) |>
+  gf_facet_wrap_interactive(
+    ~clarity, # or vars(clarity)
+    interactive_on = "both",
+    ncol = 2,
+    labeller = gf_labeller_interactive(
+      tooltip = ~ paste("this is clarity", clarity),
+      data_id = ~clarity
+    )
+  ) |>
+  gf_girafe(
+    options = list(
+      opts_hover("fill:red; opacity: 0.5")
+    )
+  )
+```
+
+This still leaves room for some improvement as our hover option is affecting
+both the strip rectangle and the strip text.  
+
+
+### `girafe_css()`
+
+Sometimes we need finer control over what gets styled by our css. 
+For example, when using interactive facets or `gf_label_interactive()`, 
+the interactive elements include both text and rectangles, which we may 
+wish to style differently.
+`girafe_css()` provides this finer control. 
+The `css` argument provides a starting point which can be overridden 
+with the subsequent arguments: `text`, `point`, `line`, 
+`area` (used for rects, polygons, and paths), and `image`.
+
+```{r}
+diamonds_bargraph_2 |>
+  gf_theme(theme_facets_interactive(theme_minimal())) |>
+  gf_facet_wrap_interactive(
+    ~clarity, # or vars(clarity)
+    interactive_on = "both",
+    ncol = 2,
+    labeller = gf_labeller_interactive(
+      tooltip = ~ paste("this is clarity", clarity),
+      data_id = ~clarity
+    )
+  ) |>
+  gf_girafe(
+    options = list(
+      opts_hover(
+        css = girafe_css(
+          css = "fill:red; opacity:0.7; stroke:black; stroke-width:3px;",
+          text = "stroke:none; fill:white; opacity:0.9;"
+        )
+      )
+    )
+  )
+```
+
+Here is another example, this time using `gf_label_interactive()`.
+
+```{r}
+#| label: label-interactive
+mtcars2[1:6, ] |>
+  gf_label_interactive(qsec ~ disp, label = ~carname, data_id = ~carname) |>
+  gf_girafe(
+    options = list(
+      opts_hover(
+        css = girafe_css(
+          css = "fill:yellow;",
+          text = "stroke:none; fill:red;"
+        )
+      )
+    )
+  )
+```
+
+### Key and inverse hovering
+
+Styling hovering on a guide element (part of the legend or key) is handled
+with `opts_hover_key()` in the same way we used `opts_hover()`.  We can
+also style the non-selected elements with `opts_hover_inv()`.
+
+
+:::{.callout-tip}
+### Use low opacity in non-selected elements to make highlighted elements stand out.
+
+The use of low opacity in non-hovered elements can be used to highlight
+the selected elements.
+:::
+
+```{r}
+#| label: weather-hover-inv
+mosaicData::Weather |>
+  gf_line_interactive(
+    high_temp ~ date,
+    color = ~city,
+    show.legend = FALSE,
+    tooltip = ~city,
+    data_id = ~city
+  ) |>
+  gf_facet_wrap_interactive(
+    ~year,
+    ncol = 1,
+    scales = "free_x",
+    labeller = gf_labeller_interactive(
+      data_id = ~year,
+      tooltip = ~ glue::glue("This is the year {year}")
+    )
+  ) |>
+  gf_theme(theme_facets_interactive()) |>
+  gf_girafe(
+    options = list(
+      opts_hover_inv(css = "opacity:0.2;"),
+      opts_hover(css = "stroke-width:2;", nearest_distance = 40),
+      opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -30)
+    )
+  )
+
+```
+
+
+## Tooltip options
+
+### Position
+
+`opts_tooltip()` has three arguments for determining the position of the tooltip:
+
+* `use_cursor_pos` -- a logical indicating whether the tooltip position is 
+  relative to the cursor position (default) or to the upper left corner of the plot.
+* `offx`, `offy` -- the number of pixels to offset the tooltip from this base position.
+
+```{r}
+cars_scatter |>
+  gf_girafe(
+    options = list(
+      opts_tooltip(offx = 0, offy = -30, use_cursor_pos = FALSE)
+    )
+  )
+```
+
+### Style
+
+### Autocoloring
+
+If we set `use_fill = TRUE`, then the fil color of the tooltip will match the 
+color of the plot element it is associated to.
+
+```{r}
+diamonds_bargraph_2 |>
+  gf_girafe(
+    options = list(
+      opts_tooltip(
+        use_fill = TRUE,
+        offx = 0,
+        offy = 0,
+        use_cursor_pos = FALSE,
+        css = "border: 2px solid black; color: aliceblue;"
+      ),
+      opts_hover(css = "border: 4px solid black;")
+    )
+  )
+```
+
+:::{.callout-warning}
+### A downside of `use_fill = TRUE`
+
+Depending on your color scheme, you may find it hard to find a text color that works
+well over all the different fill colors.
+:::
+
+
+## Zoom
+
+We can enable panning and zooming by choosing a value of `max` greater than 1 in
+`opts_zoom()`.
+
+```{r}
+cars_scatter |>
+  gf_girafe(
+    options = list(opts_zoom(max = 5))
+  )
+```
+
+## Global options
+
+We can set options globally using `set_girafe_defaults()`
+
+```{r}
+#| label: girafe-defaults
+
+set_girafe_defaults(
+  # set colors for
+  opts_hover = opts_hover(
+    css = "fill:yellow;stroke:black;stroke-width:3px;r:10px;"
+  ),
+  opts_hover_inv = opts_hover_inv(css = "opacity:0.5"),
+  # allow zooming/panning up to 4x size
+  opts_zoom = opts_zoom(min = 1, max = 4),
+  opts_tooltip = opts_tooltip(
+    css = "padding: 2px; border: 4px solid navy; background-color: steelblue; color: white; border-radius: 8px"
+  ),
+  opts_sizing = opts_sizing(rescale = TRUE),
+  opts_toolbar = opts_toolbar(
+    saveaspng = FALSE,
+    position = "bottom",
+    delay_mouseout = 5000
+  )
+)
+
+cars_scatter |>
+  gf_girafe()
+
+cars_scatter |>
+  gf_girafe(
+    options = list(
+      opts_tooltip(offx = 0, offy = -25, use_cursor_pos = FALSE)
+    )
+  )
+```
+
+:::{.callout-warning}
+Notice that using `opts_tooltip()` in the `options` argument of `gf_girafe()` not only changes `offx`, `offy`, and `use_cursor_pos`, but also causes `css` to 
+revert to the package defaults rather than to the session defaults we set. 
+:::
+

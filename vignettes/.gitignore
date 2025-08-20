@@ -4,3 +4,6 @@ ggformula-lattice.pdf
 ggformula.R
 *.html
 *.R
+*_files
+
+/.quarto/
