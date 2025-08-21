@@ -102,10 +102,11 @@ gf_area_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-# #' # Interactive bar chart with counts
-# #' gf_bar_interactive(~ factor(cyl), data = mtcars,
-# #'                   tooltip = ~ paste("Cylinders:", cyl, "Count:", after_stat(count))) |>
-# #'   gf_girafe()
+#' # Interactive bar chart with counts
+#' gf_bar_interactive(
+#'   ~ cyl, data = mtcars,
+#'   tooltip = ~ paste("Cylinders:", x, "Count:", after_stat(count))) |>
+#'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -573,11 +574,16 @@ gf_density_2d_interactive
 #'
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
+
 #' @examples
-# #' # Interactive density plot
-# #' gf_density_interactive(~ mpg, data = mtcars,
-# #'                       tooltip = ~ paste("Density:", round(after_stat(density), 3))) |>
-# #'   gf_girafe()
+#' diamonds |>
+#'   gf_density_interactive(
+#'     ~ carat, 
+#'     fill = ~ cut, 
+#'     color = ~ cut, 
+#'     data_id = ~ cut, 
+#'     tooltip = ~ cut) |> 
+#'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -847,11 +853,13 @@ gf_hex_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-# #' # Interactive histogram with bin information
-# #' gf_histogram_interactive(~ mpg, data = mtcars,
-# #'                         tooltip = ~ paste("Count:", after_stat(count)),
-# #'                         bins = 15) |>
-# #'   gf_girafe()
+#' # Interactive histogram with bin information
+#' mtcars |> 
+#'   gf_histogram_interactive(
+#'     ~ mpg, 
+#'     tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1), '; Max: ', round(after_stat(xmax),1), '; Count: ', after_stat(count)),
+#'     bins = 15) |>
+#'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.

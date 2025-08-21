@@ -46,6 +46,14 @@ Creates an interactive plot using ggiraph. This function extends
 }
 }
 
+\examples{
+# Interactive bar chart with counts
+gf_bar_interactive(
+  ~ cyl, data = mtcars,
+  tooltip = ~ paste("Cylinders:", x, "Count:", after_stat(count))) |>
+  gf_girafe()
+
+}
 \seealso{
 \code{\link[=gf_bar]{gf_bar()}}, \code{\link[=gf_girafe]{gf_girafe()}}
 }

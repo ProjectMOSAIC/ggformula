@@ -182,11 +182,13 @@ create_interactive_docs_with_examples <- function(func_name) {
     ),
     "gf_histogram" = paste0(
       "#' @examples\n",
-      "# #' # Interactive histogram with bin information\n",
-      "# #' gf_histogram_interactive(~ mpg, data = mtcars,\n",
-      "# #'                         tooltip = ~ paste(\"Count:\", after_stat(count)),\n",
-      "# #'                         bins = 15) |>\n",
-      "# #'   gf_girafe()\n"
+      "#' # Interactive histogram with bin information\n",
+      "#' mtcars |> \n",
+      "#'   gf_histogram_interactive(\n",
+      "#'     ~ mpg, \n",
+      "#'     tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1), '; Max: ', round(after_stat(xmax),1), '; Count: ', after_stat(count)),\n",
+      "#'     bins = 15) |>\n",
+      "#'   gf_girafe()\n"
     ),
     "gf_boxplot" = paste0(
       "#' @examples\n",
@@ -197,10 +199,11 @@ create_interactive_docs_with_examples <- function(func_name) {
     ),
     "gf_bar" = paste0(
       "#' @examples\n",
-      "# #' # Interactive bar chart with counts\n",
-      "# #' gf_bar_interactive(~ factor(cyl), data = mtcars,\n",
-      "# #'                   tooltip = ~ paste(\"Cylinders:\", cyl, \"Count:\", after_stat(count))) |>\n",
-      "# #'   gf_girafe()\n"
+      "#' # Interactive bar chart with counts\n",
+      "#' gf_bar_interactive(\n",
+      "#'   ~ cyl, data = mtcars,\n",
+      "#'   tooltip = ~ paste(\"Cylinders:\", x, \"Count:\", after_stat(count))) |>\n",
+      "#'   gf_girafe()\n"
     ),
     "gf_col" = paste0(
       "#' @examples\n",
@@ -214,13 +217,17 @@ create_interactive_docs_with_examples <- function(func_name) {
       "#'     gf_girafe()\n",
       "#' }\n"
     ),
-    "gf_density" = paste0(
-      "#' @examples\n",
-      "# #' # Interactive density plot\n",
-      "# #' gf_density_interactive(~ mpg, data = mtcars,\n",
-      "# #'                       tooltip = ~ paste(\"Density:\", round(after_stat(density), 3))) |>\n",
-      "# #'   gf_girafe()\n"
-    ),
+    "gf_density" = "
+#' @examples
+#' diamonds |>
+#'   gf_density_interactive(
+#'     ~ carat, 
+#'     fill = ~ cut, 
+#'     color = ~ cut, 
+#'     data_id = ~ cut, 
+#'     tooltip = ~ cut) |> 
+#'   gf_girafe()
+",
     "gf_smooth" = paste0(
       "#' @examples\n",
       "#' # Interactive smooth line with confidence band\n",

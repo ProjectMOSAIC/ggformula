@@ -46,6 +46,16 @@ Creates an interactive plot using ggiraph. This function extends
 }
 }
 
+\examples{
+# Interactive histogram with bin information
+mtcars |> 
+  gf_histogram_interactive(
+    ~ mpg, 
+    tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1), '; Max: ', round(after_stat(xmax),1), '; Count: ', after_stat(count)),
+    bins = 15) |>
+  gf_girafe()
+
+}
 \seealso{
 \code{\link[=gf_histogram]{gf_histogram()}}, \code{\link[=gf_girafe]{gf_girafe()}}
 }
