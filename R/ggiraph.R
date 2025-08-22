@@ -84,10 +84,10 @@ for (g in geoms) {
   created_funs <- c(created_funs, gf)
 }
 
-cli::cli_h3("Skipped functions:")
-cli::cli_ul(skipped)
-cli::cli_h3("Created functions:")
-cli::cli_ul(created_funs)
+# cli::cli_h3("Skipped functions:")
+# cli::cli_ul(skipped)
+# cli::cli_h3("Created functions:")
+# cli::cli_ul(created_funs)
 
 
 #' Interactive facets
