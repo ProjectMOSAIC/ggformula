@@ -1,14 +1,18 @@
 ---
 title: "Interactive graphics with {ggformula}"
 subtitle: "Getting Started"
-draft: true
 date: last-modified
 author: Randall Pruim
+engine: knitr
 toc: true
 vignette: >
   %\VignetteIndexEntry{Interactive graphics with {ggformula}}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+execute:
+  engine: knitr
+  eval: true
+  echo: true
 knitr:
   opts_chunk:
     collapse: true

@@ -47,7 +47,8 @@ Suggests:
     interp,
     quantreg,
     quarto
-VignetteBuilder: knitr, quarto
+VignetteBuilder: 
+    quarto
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

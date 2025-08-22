@@ -2,16 +2,21 @@
 title: "Formula Interface for {ggplot2}"
 author: "Daniel Kaplan and Randall Pruim"
 date: "July, 2020"
+format: html
+engine: knitr
 toc: true
 vignette: >
   %\VignetteIndexEntry{Formula Interface to {ggplot2}}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+execute:
+  engine: knitr
+  eval: true
+  echo: true
 knitr:
   opts_chunk:
     collapse: true
     comment: '#>'
-engine: knitr
 ---
 
 ```{r setup, include = FALSE}
