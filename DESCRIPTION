@@ -24,6 +24,7 @@ Imports:
     grid,
     labelled
 Suggests:
+    here,
     tidyr,
     mosaicData,
     dplyr,
