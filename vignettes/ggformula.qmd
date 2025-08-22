@@ -11,6 +11,7 @@ knitr:
   opts_chunk:
     collapse: true
     comment: '#>'
+engine: knitr
 ---
 
 ```{r setup, include = FALSE}
