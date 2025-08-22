@@ -355,4 +355,4 @@ for (func in interactive_functions) {
   )
 }
 
-cli::cli_text("Documentation with examples written to:", doc_file_with_examples)
+# cli::cli_text("Documentation with examples written to:", doc_file_with_examples)
