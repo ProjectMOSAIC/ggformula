@@ -1,5 +1,9 @@
 # ggformula
 
+## ggformula 0.14.0
+
+* Added support for interactive graphics based on {ggiraph}.
+
 # ggformula 0.12.2
 
 * Added `gf_guides()` and `gf_annotate()`.

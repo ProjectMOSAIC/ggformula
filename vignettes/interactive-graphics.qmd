@@ -42,7 +42,7 @@ Interactive geoms provide several types of interaction.
     * restyling elements upon hover
 * selection of multiple elements at once 
 * linking items across multiple plots 
-* custom javascript to be applied when clicking on a graphical element with `onClick = `.
+* custom javascript to be applied when clicking on a graphical element with `onclick = `.
 
 Each type of interaction can be customized for both behavior and style.
 
@@ -393,16 +393,6 @@ diamonds_bargraph_3 |>
 
 We'll return to this example in @sec-customizing to see how to improve the hover interaction.
 
-## Click actions with JavaScript
-
-If you know some JavaScript, you can create click actions for interactive
-plot elements by passing the JavaScript that should be executed as `onClick`.
-In the example below, we use this to open a webpage with related information.
-
-```{r}
-
-```
-
 
 ## Interacting with multiple plots using {patchwork}
 
@@ -428,6 +418,44 @@ cars_scatter_2 <-
 gf_girafe(cars_scatter / cars_scatter_2)
 ```
 
+## Click actions with JavaScript
+
+If you know some JavaScript, you can create click actions for interactive
+plot elements by passing the JavaScript that should be executed as `onclick`.
+In this section we include just two example uses of JavaScript.
+
+### Alerts
+
+```{r}
+#| label: js-alert
+  mtcars2 |>
+  gf_point_interactive(
+    wt ~ drat,
+    color = ~mpg,
+    data_id = ~carname, 
+    onclick = ~glue::glue('alert("Here is some info for {carname} ...")'),
+    size = 3
+  ) |>
+    gf_girafe()
+```
+
+### Opening another webpage
+
+In the example below, we use this to open a webpage with related information.
+
+```{r}
+#| label: js-window-open
+  mtcars2 |>
+  gf_point_interactive(
+    wt ~ drat,
+    color = ~ mpg,
+    data_id = ~ carname, 
+    tooltip = ~ carname,
+    onclick = ~ glue::glue('window.open("https://en.wikipedia.org/w/index.php?search={carname}")'),
+    size = 3
+  ) |>
+    gf_girafe()
+```
 # Customizing girafe animations {#sec-customizing}
 
 
@@ -656,7 +684,6 @@ cars_scatter |>
   )
 ```
 
-### Style
 
 ### Autocoloring
 
