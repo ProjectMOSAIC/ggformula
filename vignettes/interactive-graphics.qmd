@@ -13,6 +13,10 @@ knitr:
   opts_chunk:
     collapse: true
     comment: '#>'
+fig-width: 6
+fig-height: 4
+number-sections: true
+number-depth: 3
 ---
 
 
@@ -21,6 +25,7 @@ knitr:
 ```{r}
 #| label: setup
 #| include: false
+set.seed(1234)
 library(ggformula)
 library(dplyr)
 library(patchwork)
@@ -41,7 +46,19 @@ Interactive geoms provide several types of interaction.
 
 Each type of interaction can be customized for both behavior and style.
 
-## First example: Interactive scatter plot
+Although not discussed here, 
+{ggiraph} transforms graphics into reactive objects, making
+various events and selections [available for shiny apps](https://www.ardata.fr/ggiraph-book/shiny.html).
+
+
+## First example: Scatter plot with tooltips
+
+Interactive geoms provide two new aesthetics that can be used
+used to help identify or provide additional
+information about individual points or sets of points.
+
+* `tooltip` provides the text (or HTML) to be displayed in the tooltip.
+* `data_id` provides and identifier for a selection.
 
 ```{r}
 #| label: load-ggformula
@@ -50,8 +67,6 @@ theme_set(theme_bw())
 ```
 
 
-Tooltips can easily be added to scatter plots to help identify or provide additional
-information about individual points.
 
 ```{r}
 data(mtcars)
@@ -64,8 +79,8 @@ cars_scatter <-
   gf_point_interactive(
     wt ~ drat,
     color = ~mpg,
-    tooltip = ~carname,
-    data_id = ~carname,
+    tooltip = ~carname, # show carname when hovering on a point
+    data_id = ~carname, # unique identifier -- selection is a single point
     hover_nearest = TRUE,
     size = 3
   )
@@ -99,7 +114,15 @@ gf_girafe(cars_scatter_tooltip)
 ```
 
 
-Here is an example where tool tips allow us to see how many items are 
+## Dealing with stats in interactive bar graphs
+
+Many graphics -- bar graphs, histograms, boxplots, density plots, etc. -- 
+are built not from our original data
+but from some transformation of the data.
+Understanding the role of data transformations computed by 
+statistics and scales can be important to creating graphics.
+
+Here is an example where tooltips allow us to see how many items are 
 represented in each segment of a stacked bar plot.
 
 ```{r}
@@ -108,18 +131,37 @@ data(diamonds)
 diamonds_bargraph <-
   diamonds |>
   gf_bar_interactive(
-    ~color,
-    fill = ~cut,
-    tooltip = ~ paste0("count: ", after_stat(count)),
-    data_id = ~cut,
+    ~ color,
+    fill = ~ cut,
+    tooltip = ~ after_stat(count),
+    data_id = ~ cut,
     size = 3
   )
 
 diamonds_bargraph |> gf_girafe()
 ```
 
-In examples like this, it can be handy to see what data are available after 
-the summarising statistic has been applied.  We can do this with `layer_data()`.
+:::{.callout-note}
+### `after_stat()`
+
+By default, when we map variables, the mapping uses the original
+data we provide for the layer. When a layer is created from summarised 
+data (bars defined by counts, boxplots defined by 5-number summaries,
+densities for density plots, etc.),
+we have the option to do mapping after the summarising statistic
+as been applied.  That's what `after_stat()` is doing here. 
+
+We don't have a column named `count` in our data, 
+but the stat used by `gf_bar()` and `gf_bar_interactive()` computes 
+these counts (and some additional things),
+storing the counts in a column called `count`, which is only available
+after the statistic has been computed.
+`tooltip = ~ after_stat(count)` creates the tooltip variable after
+`count` has been calculated.
+
+In examples like this, it can be handy to know what data are available 
+after the summarising statistic has been applied. We can inspect this with `layer_data()`.^[Technically, we are seeing the data after both
+the statistic and the scale have been applied. See below.]
 
 ```{r}
 #| label: layer_data
@@ -127,14 +169,33 @@ the summarising statistic has been applied.  We can do this with `layer_data()`.
 diamonds_bargraph |> layer_data() |> head(3)
 ```
 
+Some things to notice:
+
+* There is one row for each of the bars.
+* We have access to some new columns that provide information about each
+of our bars: `count`, `ymin`, `ymax`, `xmin`, `xmax`.  These have been computed by the stat.
+* We can see that our `tooltip` and `data_id` also appear here.
+* We no longer have access to columns like `color` (it has been mapped to `x` with values 1, 2, 3, ...) or `cut` (instead we have `fill` which shows
+that actual color being used to fill the bars).  These values are 
+computed by scales in a third stage of data transformation.
+:::
+
 :::{.callout-warning}
 Note that in the previous graphic, the count displayed when hovering is 
 the count for a single segment, not for all of the segments that change color.
-The latter is determined by `data_id`, which `after_stat(count)` does not know about.
+The latter is determined by `data_id`, which `after_stat(count)` does not know about. If this is not desireable, we will need to refine either
+`tooltip` or `data_id` to make them match.  See @sec-finer-control.
 :::
 
-To get finer control, we might prefer to summarise the data ourselves and use 
-`gf_col_interactive()`.
+### Finer control {#sec-finer-control}
+
+There are several ways to get finer control over what is highlited and 
+what information appears in the tooltip when we hover.
+
+#### Method 1: Summarising before plotting
+
+Sometimes it is better to summarise the data ourselves before 
+creating a graphic. `gf_col_interactive()` is similar to `gf_bar_interacive()`, but is designed to work with data that have already been summarised.
 
 ```{r}
 #| label: diamonds-colgraph-1
@@ -151,6 +212,7 @@ diamonds |>
   gf_girafe()
 ```
 
+Our use of `data_id` here limits the hover highlighting to one bar segment (defined by cut and color).
 If we omit `data_id` in the previous example, we still get the hover text, but
 the bar segment we are hovering on does not change color.
 
@@ -168,26 +230,79 @@ diamonds |>
   gf_girafe()
 ```
 
+#### Method 2: Using `stage()`
+
+Alternatively, we might prefer to let `gf_bar_interactive()` take care 
+of the data summarising for us, but still have finer control over the 
+highliting and tooltip text.
+
+```{r}
+diamonds_bargraph_2 <-
+  diamonds |>
+  gf_bar_interactive(
+    ~color,
+    fill = ~cut,
+    tooltip = ~ stage(
+      start = glue::glue("color: {color}; cut: {cut}"),
+      after_stat = glue::glue("{tooltip}; count = {count}")
+    ),
+    data_id = ~ glue::glue("{cut} -- {color}"),
+    size = 3
+  )
+diamonds_bargraph_2 |>
+  gf_girafe()
+```
+
+:::{.callout-note}
+### `stage()`
+
+As mentioned above, when ggplot2 graphics are built, the data goes through a sequence of transformations. We can do mapping at three **stages** along 
+the way.
+
+1. **start**: 
+The process begins with the original data that we provide.
+By default, this is where mapping happens.
+
+2. **after_stat**: The starting data are transformed by a statistic (or stat) that computes any summaries of the data. 
+
+3. **after_scale**: The after_stat data is further transformed by
+scales that compute the specific positions, colors, etc. that are 
+used.
+
+The use of `stage()` allows us to map the same quantity to different
+values at different stages in this process. In our example,
+
+* `start = cut` creates a column named `tooltip` that contains the 
+value of `cut`.
+
+* `after_stat = glue::glue("cut: {tooltip}; count = {count}"))` uses
+this `tooltip` value to create a new `tooltip` column after the stat
+has been calculated.
+
+If you have not encountered `stage()` before, you can learn more
+in the [documentation for `stage()`](https://ggplot2.tidyverse.org/reference/aes_eval.html).
+
+:::
 
 ## Interactive scales
 
-Interactive scales can be used inside `gf_refine()`.
+Interactive scales can be used inside `gf_refine()` and generate interactive guides (legends, axes, etc.).
 
 ```{r}
 #| label: interactive-scales
-diamonds_bargraph_2 <-
-  diamonds_bargraph |>
+diamonds_bargraph_3 <-
+  diamonds_bargraph_2 |>
   gf_refine(
     scale_fill_viridis_d_interactive(
       begin = 0.1,
       end = 0.7,
       option = "D",
-      data_id = function(x) x,
-      tooltip = function(x) x
+      data_id = function(breaks) as.character(breaks),
+      tooltip = function(breaks) as.character(breaks)
     )
   )
 
-diamonds_bargraph_2 |>
+diamonds_bargraph_3 |>
   gf_girafe()
 ```
 
@@ -207,7 +322,8 @@ place of `gf_facet_wrap()` or `gf_facet_grid()`;
 
 ```{r}
 #| label: faceting
-diamonds_bargraph_2 |>
+diamonds_bargraph_4 <-
+  diamonds_bargraph_3 |>
   gf_theme(
     strip.text = element_text_interactive(),
     strip.background = element_rect_interactive()
@@ -220,9 +336,26 @@ diamonds_bargraph_2 |>
       tooltip = ~ paste("this is clarity", clarity),
       data_id = ~clarity
     )
-  ) |>
-  gf_girafe()
+  ) 
+
+  diamonds_bargraph_4 |> gf_girafe()
 ```
+
+:::{.callout-warning}
+Now that we have added facets, we again have the situation 
+where the counts displayed are for an individual bar segment, even 
+though segments in other facets are also being highlited.
+This is because faceting further partitions the data before the 
+stat is applied.  This is required so that each facet knows the 
+size of the bar segments to display.
+
+Note the `PANEL` and `group` columns in the layer data.
+
+```{r}
+diamonds_bargraph_4 |> layer_data() |> slice_sample(n=4)
+```
+
+:::
 
 ## Interactive themes
 
@@ -233,16 +366,18 @@ diamonds_bargraph_2 |>
 * `element_line_interactive()` 
 
 These are drop-in replacements for their non-interactive counterparts.
-The can be used with `gf_theme()` to add interactive theme elements to
-an individual plot, as was done the previous example, they can be used with
-`set_girafe_defaults()`, 
-or they can be included in custom theme functions.
-{ggformula} provides a theme factory for adding interactive elements 
-for faceting to a theme of your choice.
+
+*  They can be used with `gf_theme()` to add interactive theme elements to
+an individual plot, as was done the previous example;
+*  They can be used with `set_girafe_defaults()`; or
+*  They can be included in custom theme functions.
+
+   {ggformula} provides `theme_facets_interactive()` for adding 
+   interactive elements for faceting to a theme of your choice.
 
 
 ```{r}
-diamonds_bargraph_2 |>
+diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
     ~clarity, # or vars(clarity)
@@ -256,7 +391,7 @@ diamonds_bargraph_2 |>
   gf_girafe()
 ```
 
-We'll return to this example later to see how to improve the hover interaction.
+We'll return to this example in @sec-customizing to see how to improve the hover interaction.
 
 ## Click actions with JavaScript
 
@@ -293,7 +428,7 @@ cars_scatter_2 <-
 gf_girafe(cars_scatter / cars_scatter_2)
 ```
 
-# Customizing girafe animations
+# Customizing girafe animations {#sec-customizing}
 
 
 We can customize the interactive features of our plots in one of two ways:
@@ -367,6 +502,8 @@ don't include them in your string.
 
 ## Hover options
 
+### Hover CSS
+
 Use `opts_hover` to style hovered data elements, `opts_hover_inv` to style non-hovered 
 data elements, and `opts_hover_key` to style hovered guide elements.
 Common CSS properties for styling these elements include
@@ -380,7 +517,7 @@ Common CSS properties for styling these elements include
 We can use opacity to improve our interactive facets.
 
 ```{r}
-diamonds_bargraph_2 |>
+diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
     ~clarity, # or vars(clarity)
@@ -414,7 +551,7 @@ with the subsequent arguments: `text`, `point`, `line`,
 `area` (used for rects, polygons, and paths), and `image`.
 
 ```{r}
-diamonds_bargraph_2 |>
+diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
     ~clarity, # or vars(clarity)
@@ -527,7 +664,7 @@ If we set `use_fill = TRUE`, then the fil color of the tooltip will match the
 color of the plot element it is associated to.
 
 ```{r}
-diamonds_bargraph_2 |>
+diamonds_bargraph_3 |>
   gf_girafe(
     options = list(
       opts_tooltip(
@@ -535,9 +672,8 @@ diamonds_bargraph_2 |>
         offx = 0,
         offy = 0,
         use_cursor_pos = FALSE,
-        css = "border: 2px solid black; color: aliceblue;"
-      ),
-      opts_hover(css = "border: 4px solid black;")
+        css = "border: 2px solid black; color: aliceblue; border-radius: 4px; padding: 6px;"
+      )
     )
   )
 ```
@@ -550,7 +686,7 @@ well over all the different fill colors.
 :::
 
 
-## Zoom
+## Zoom options
 
 We can enable panning and zooming by choosing a value of `max` greater than 1 in
 `opts_zoom()`.
