@@ -1,12 +1,16 @@
 ---
-title: "Formula Interface for ggplot2"
+title: "Formula Interface for {ggplot2}"
 author: "Daniel Kaplan and Randall Pruim"
 date: "July, 2020"
-output:  rmarkdown::html_vignette
+toc: true
 vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Formula Interface to {ggplot2}}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Formula Interface for ggplot2}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
 ---
 
 ```{r setup, include = FALSE}
@@ -17,15 +21,13 @@ have_packages <-
   require(mosaicData) &&
   require(maps) &&
   require(palmerpenguins) &&
-  requireNamespace("mosaic") 
-
-have_extra_packages <- 
-  require(maps) && require(sf) && require(purrr)  
+  requireNamespace("mosaic")
 
 knitr::opts_chunk$set(
   fig.show = "asis",
   fig.align = "center",
-  fig.width = 6, fig.height = 4,
+  fig.width = 6,
+  fig.height = 4,
   out.width = "60%",
   eval = have_packages
 )
@@ -34,7 +36,7 @@ theme_set(theme_light())
 
 ```{r, eval = ! have_packages, echo = FALSE, results = 'asis'}
 cat(
-"
+  "
 ## Warning: Missing packages
 
 Because one or more of 
@@ -185,7 +187,7 @@ The following plot, for instance,
  all glyphs in this layer.
  
 ```{r, mapping-setting}
-gf_point(mpg ~ hp, color = ~ cyl, size = ~ carb, alpha = 0.50, data = mtcars) 
+gf_point(mpg ~ hp, color = ~cyl, size = ~carb, alpha = 0.50, data = mtcars)
 ```
 
 ### On-the-fly calculations
@@ -200,10 +202,16 @@ using `|>`.
 
 ```{r, on-the-fly}
 library(dplyr)
-gf_point(mpg ~ hp,  color = ~ factor(cyl), size = ~ carb, alpha = 0.75, data = mtcars)
-mtcars |> 
-  mutate(cylinders = factor(cyl)) |> 
-  gf_point(mpg ~ hp,  color = ~ cylinders, size = ~ carb, alpha = 0.75)
+gf_point(
+  mpg ~ hp,
+  color = ~ factor(cyl),
+  size = ~carb,
+  alpha = 0.75,
+  data = mtcars
+)
+mtcars |>
+  mutate(cylinders = factor(cyl)) |>
+  gf_point(mpg ~ hp, color = ~cylinders, size = ~carb, alpha = 0.75)
 ```
 
 
@@ -216,14 +224,19 @@ To illustrate, we'll use density plots, but the same ideas apply to
 *Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.*
 
 ```{r penguins, warning=FALSE}
-data(penguins, package = "palmerpenguins")   
-gf_density( ~ bill_length_mm, data = penguins)
-gf_density( ~ bill_length_mm,  fill = ~ species,  alpha = 0.5, data = penguins)
+data(penguins, package = "palmerpenguins")
+gf_density(~bill_length_mm, data = penguins)
+gf_density(~bill_length_mm, fill = ~species, alpha = 0.5, data = penguins)
 # gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable
-gf_dens( ~ bill_length_mm, color = ~ species,  alpha = 0.7, data = penguins)
+gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, data = penguins)
 # gf_dens2() is like gf_dens() but is fillable
-gf_dens2( ~ bill_length_mm, fill = ~ species, data = penguins,
-          color = "gray50", alpha = 0.4) 
+gf_dens2(
+  ~bill_length_mm,
+  fill = ~species,
+  data = penguins,
+  color = "gray50",
+  alpha = 0.4
+)
 ```
 
 Several of the plotting functions include additional arguments that do not modify
@@ -232,9 +245,10 @@ case, `adjust` can be used to increase or decrease the amount of smoothing.
 
 ```{r, dens}
 # less smoothing
-penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 0.25)  
+penguins |>
+  gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, adjust = 0.25)
 # more smoothing
-penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 4)     
+penguins |> gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, adjust = 4)
 ```
 
 ## Learning more
