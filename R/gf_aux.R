@@ -176,7 +176,8 @@ gf_guides <- function(object, ...) {
 #'   gf_facet_wrap(~year, scales = "free_x", nrow = 5) |>
 #'   gf_theme(
 #'     axis.title.x = element_blank(),
-#'     axis.text.x = element_blank(), axis.ticks.x = element_blank()
+#'     axis.text.x = element_blank(), 
+#'     axis.ticks.x = element_blank()
 #'   ) |>
 #'   gf_labs(color = "Day")
 #' @rdname gf_facet_grid
