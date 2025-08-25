@@ -5,8 +5,8 @@
 #' and tooltips.
 #'
 #' @param base_theme A theme that will will be modified
-#' @param interacive_text A logical indicating whether text elements of strips should be interactive.
-#' @param interacive_rects A logical indicating whether rect elements of strips should be interactive.
+#' @param interactive_text A logical indicating whether text elements of strips should be interactive.
+#' @param interactive_rects A logical indicating whether rect elements of strips should be interactive.
 #'
 #' @param strip_text_color Color for strip text (or NULL to retain settings from `base_theme`)
 #' @param strip_background_color Color for strip background (or NULL to retain settings from `base_theme`)
@@ -26,22 +26,22 @@ theme_facets_interactive <- function(
     ggplot2::theme(
       # Make strip text interactive-friendly
       strip.text.x = if (interactive_text) {
-        element_text_interactive()
+        ggiraph::element_text_interactive()
       } else {
-        element_text()
+        ggplot2::element_text()
       },
       strip.text.y = if (interactive_text) {
-        element_text_interactive()
+        ggiraph::element_text_interactive()
       } else {
-        element_text()
+        ggplot2::element_text()
       },
       strip.text.color = strip_text_color,
       strip.text.size = strip_text_size,
 
       strip.background = if (interactive_rects) {
-        element_rect_interactive()
+        ggiraph::element_rect_interactive()
       } else {
-        element_rect()
+        ggplot2::element_rect()
       },
       strip.background.color = strip_background_color,
 
