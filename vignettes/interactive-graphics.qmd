@@ -23,7 +23,6 @@ number-sections: true
 number-depth: 3
 ---
 
-
 # Interactive geoms, scales, and facets
 
 ```{r}
@@ -73,8 +72,8 @@ theme_set(theme_bw())
 
 
 ```{r}
-data(mtcars)
 #| label: cars-scatter
+data(mtcars)
 mtcars2 <- mtcars |>
   tibble::rownames_to_column(var = "carname")
 
@@ -135,11 +134,10 @@ data(diamonds)
 diamonds_bargraph <-
   diamonds |>
   gf_bar_interactive(
-    ~ color,
-    fill = ~ cut,
+    ~color,
+    fill = ~cut,
     tooltip = ~ after_stat(count),
-    data_id = ~ cut,
-    size = 3
+    data_id = ~ as.character(cut)
   )
 
 diamonds_bargraph |> gf_girafe()
@@ -241,6 +239,7 @@ of the data summarising for us, but still have finer control over the
 highliting and tooltip text.
 
 ```{r}
+#| label: diamonds-bargraph2
 diamonds_bargraph_2 <-
   diamonds |>
   gf_bar_interactive(
@@ -276,12 +275,13 @@ used.
 The use of `stage()` allows us to map the same quantity to different
 values at different stages in this process. In our example,
 
-* `start = cut` creates a column named `tooltip` that contains the 
-value of `cut`.
+* `start = glue::glue("color: {color}; cut: {cut}"),`
+creates a column named `tooltip` that contains the text identifying the
+color and cut of a diamond.
 
 * `after_stat = glue::glue("cut: {tooltip}; count = {count}"))` uses
-this `tooltip` value to create a new `tooltip` column after the stat
-has been calculated.
+`tooltip` value created at the start stage to create a new `tooltip` column 
+after the stat has been calculated and `count` is available.
 
 If you have not encountered `stage()` before, you can learn more
 in the [documentation for `stage()`](https://ggplot2.tidyverse.org/reference/aes_eval.html).
@@ -295,14 +295,14 @@ Interactive scales can be used inside `gf_refine()` and generate interactive gui
 ```{r}
 #| label: interactive-scales
 diamonds_bargraph_3 <-
-  diamonds_bargraph_2 |>
+  diamonds_bargraph |>
   gf_refine(
     scale_fill_viridis_d_interactive(
       begin = 0.1,
       end = 0.7,
       option = "D",
       data_id = function(breaks) as.character(breaks),
-      tooltip = function(breaks) as.character(breaks)
+      tooltip = function(breaks) glue::glue("break: {as.character(breaks)}")
     )
   )
 
@@ -356,6 +356,7 @@ size of the bar segments to display.
 Note the `PANEL` and `group` columns in the layer data.
 
 ```{r}
+#| label: diamonds-bargraph4
 diamonds_bargraph_4 |> layer_data() |> slice_sample(n=4)
 ```
 
@@ -381,6 +382,7 @@ an individual plot, as was done the previous example;
 
 
 ```{r}
+#| label: theme-facets-interactive
 diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
@@ -549,6 +551,7 @@ Common CSS properties for styling these elements include
 We can use opacity to improve our interactive facets.
 
 ```{r}
+#| label: hover-css
 diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
@@ -583,6 +586,7 @@ with the subsequent arguments: `text`, `point`, `line`,
 `area` (used for rects, polygons, and paths), and `image`.
 
 ```{r}
+#| label: girafe-css
 diamonds_bargraph_3 |>
   gf_theme(theme_facets_interactive(theme_minimal())) |>
   gf_facet_wrap_interactive(
@@ -680,6 +684,7 @@ mosaicData::Weather |>
 * `offx`, `offy` -- the number of pixels to offset the tooltip from this base position.
 
 ```{r}
+#| label: tooltip-position
 cars_scatter |>
   gf_girafe(
     options = list(
@@ -695,6 +700,7 @@ If we set `use_fill = TRUE`, then the fil color of the tooltip will match the
 color of the plot element it is associated to.
 
 ```{r}
+#| label: autocoloring
 diamonds_bargraph_3 |>
   gf_girafe(
     options = list(
@@ -723,6 +729,7 @@ We can enable panning and zooming by choosing a value of `max` greater than 1 in
 `opts_zoom()`.
 
 ```{r}
+#| label: zoom
 cars_scatter |>
   gf_girafe(
     options = list(opts_zoom(max = 5))
