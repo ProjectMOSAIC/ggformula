@@ -25,3 +25,6 @@ cran-comments.md
 ^CRAN-SUBMISSION$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
+^_quarto\.yml$
+^air\.toml$
+^\.quarto$
