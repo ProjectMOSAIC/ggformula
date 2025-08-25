@@ -24,9 +24,13 @@
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_abline_interactive(mpg ~ wt, data = mtcars,
-#'                      tooltip = ~ paste("MPG:", mpg)) |>
+#' mtcars |>
+#'   gf_point(mpg ~ wt) |>
+#'   gf_abline_interactive(
+#'     slope = ~ -2,
+#'     intercept = ~ 35,
+#'     tooltip = ~ "slope: -2; intercept: 35",
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -63,10 +67,28 @@ gf_abline_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_area_interactive(mpg ~ wt, data = mtcars,
-#'                    tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+#' Huron <-
+#'   data.frame(
+#'     year = 1875:1972,
+#'     level = as.vector(LakeHuron)
+#'   )
+#'
+#' Huron |>
+#'   gf_area_interactive(
+#'     level ~ year,
+#'     tooltip = ~ "This is the area.",
+#'     data_id = "id:area",
+#'     fill = "skyblue"
+#'     ) |>
+#'   gf_line_interactive(
+#'     tooltip = ~ "This is the line.",
+#'     data_id = "id:line"
+#'   ) |>
+#'   gf_girafe(
+#'     list(
+#'       options = list(opts_tooltip(css = "fill: steelblue;"))
+#'     )
+#'   )
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -102,10 +124,18 @@ gf_area_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive bar chart with counts
-#' gf_bar_interactive(
-#'   ~ cyl, data = mtcars,
-#'   tooltip = ~ paste("Cylinders:", x, "Count:", after_stat(count))) |>
+#'
+#' diamonds |>
+#'   gf_bar_interactive(
+#'     ~color,
+#'     fill = ~cut,
+#'     tooltip = ~ stage(
+#'       start = glue::glue("color: {color}; cut: {cut}"),
+#'       after_stat = glue::glue("{tooltip}; count = {count}")
+#'     ),
+#'     data_id = ~ glue::glue("{cut} -- {color}"),
+#'     size = 3
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -142,7 +172,6 @@ gf_bar_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_bin_2d_interactive(mpg ~ wt, data = mtcars,
 #'                      tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -181,7 +210,6 @@ gf_bin_2d_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_bin2d_interactive(mpg ~ wt, data = mtcars,
 #'                     tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -259,13 +287,18 @@ gf_boxplot_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive column chart with pre-computed values
-#' if (require(dplyr)) {#'   mtcars |> 
-#'     group_by(cyl) |>
-#'     summarise(avg_mpg = mean(mpg)) |>
-#'     gf_col_interactive(avg_mpg ~ factor(cyl),
-#'                       tooltip = ~ paste("Avg MPG:", round(avg_mpg, 1))) |>
-#'     gf_girafe()
+#' if (require(dplyr)) {
+#'   library(dplyr)
+#'   diamonds |>
+#'     group_by(color, cut) |>
+#'     summarise(count = n()) |>
+#'     gf_col_interactive(
+#'       count ~ color,
+#'       fill = ~cut,
+#'       tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}"),
+#'       data_id = ~ glue::glue("{cut} - {color}")
+#'     ) |>
+#'   gf_girafe()
 #' }
 #'
 #' @section Additional interactive features:
@@ -278,10 +311,12 @@ gf_boxplot_interactive
 
 gf_col_interactive
 
-#' Interactive contour_filled plots
+#' Interactive 2-demensional contour plots
 #'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_contour_filled()] with interactive features like tooltips and clickable elements.
+#' Creates an interactive plot using ggiraph. These functions extend
+#' [gf_contour()] and
+#' [gf_contour_filled()]
+#' with interactive features like tooltips and clickable elements.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #'   of the chain. Most users can safely ignore this argument.
@@ -302,59 +337,41 @@ gf_col_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_contour_filled_interactive(mpg ~ wt, data = mtcars,
-#'                              tooltip = ~ paste("MPG:", mpg)) |>
+#' faithfuld |>
+#'   gf_contour_interactive(
+#'     density ~ waiting + eruptions,
+#'     color = ~ after_stat(level),
+#'     tooltip = ~ after_stat(paste0("density: ", level)),
+#'     data_id = ~ after_stat(level),
+#'     hover_css = "stroke: red;",
+#'     hover_nearest = TRUE,
+#'     bins = 10, show.legend = FALSE) |>
 #'   gf_girafe()
 #'
-#' @section Additional interactive features:
-#' * `onclick`: JavaScript code (as character string) executed when clicking elements.
-#' * Additional ggiraph aesthetics may be available depending on the geom.
-#'
-#' @seealso [gf_contour_filled()], [gf_girafe()]
-#' @export
+#' faithfuld |>
+#'   gf_contour_filled_interactive(
+#'     density ~ waiting + eruptions,
+#'     fill = ~ after_stat(level),
+#'     tooltip = ~ after_stat(paste0("density: ", level)),
+#'     data_id = ~ after_stat(level),
+#'     hover_css = "fill: red; opacity: 0.5",
+#'     hover_nearest = TRUE,
+#'     bins = 10, show.legend = FALSE) |>
+#'   gf_girafe()
+#
+#' @rdname gf_contour_interactive
 #' @name gf_contour_filled_interactive
+#' @export
 
 gf_contour_filled_interactive
 
-#' Interactive contour plots
-#'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_contour()] with interactive features like tooltips and clickable elements.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain. Most users can safely ignore this argument.
-#' @param gformula A formula with shape `y ~ x`. Faceting can be achieved by
-#'   including `|` in the formula.
-#' @param data The data to be displayed in this layer.
-#' @param tooltip A formula specifying a variable for tooltips, or a character vector.
-#' @param data_id A formula or character vector specifying data identifiers
-#'   for interactive selection.
-#' @param ... Additional arguments passed to the underlying geom.
-#' @param alpha,color,size,shape,fill,group,stroke Aesthetics passed to the geom.
-#' @param xlab,ylab,title,subtitle,caption Labels for the plot.
-#' @param show.legend Logical. Should this layer be included in the legends?
-#' @param show.help Logical. If `TRUE`, display some minimal help.
-#' @param inherit Logical. If `TRUE`, inherit aesthetics from previous layers.
-#' @param environment An environment in which to evaluate the formula.
-#'
-#' @return A gg object that can be displayed with [gf_girafe()].
-#'
-#' @examples
-#' # Basic interactive plot
-#' gf_contour_interactive(mpg ~ wt, data = mtcars,
-#'                       tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
-#'
-#' @section Additional interactive features:
-#' * `onclick`: JavaScript code (as character string) executed when clicking elements.
-#' * Additional ggiraph aesthetics may be available depending on the geom.
-#'
-#' @seealso [gf_contour()], [gf_girafe()]
-#' @export
+
+#' @rdname gf_contour_interactive
 #' @name gf_contour_interactive
+#' @export
 
 gf_contour_interactive
+
 
 #' Interactive count plots
 #'
@@ -380,17 +397,22 @@ gf_contour_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_count_interactive(mpg ~ wt, data = mtcars,
-#'                     tooltip = ~ paste("MPG:", mpg)) |>
+#' diamonds |>
+#'   gf_count_interactive(
+#'     clarity ~ cut,
+#'     size = ~ after_stat(n),
+#'     tooltip = ~ after_stat(paste0("count: ", n)),
+#'     show.legend = FALSE
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
 #' * Additional ggiraph aesthetics may be available depending on the geom.
 #'
-#' @seealso [gf_count()], [gf_girafe()]
+#' @seealso [gf_count()], [gf_density2d_interactive()], [gf_girafe()]
 #' @export
+#' @rdname gf_count_interactive
 #' @name gf_count_interactive
 
 gf_count_interactive
@@ -419,9 +441,25 @@ gf_count_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_crossbar_interactive(mpg ~ wt, data = mtcars,
-#'                        tooltip = ~ paste("MPG:", mpg)) |>
+#'
+#' diamonds |>
+#'   dplyr::filter(carat < 1.1, carat > 0.9) |>
+#'   dplyr::group_by(color, cut) |>
+#'   dplyr::summarise(
+#'     median_price = median(price) |> round(),
+#'     lower = quantile(price, 0.25) |> round(),
+#'     upper = quantile(price, 0.75) |> round(),
+#'     iqr = upper - lower
+#'   ) |>
+#'   gf_crossbar_interactive(
+#'     cut ~ median_price + lower + upper | color,
+#'     color = ~ cut,
+#'     tooltip = ~ paste0(
+#'       "75th percentile: ", upper,
+#'       "\nmedian: ", median_price,
+#'       "\n25th percentile: ", lower
+#'       )
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -431,13 +469,15 @@ gf_count_interactive
 #' @seealso [gf_crossbar()], [gf_girafe()]
 #' @export
 #' @name gf_crossbar_interactive
+#' @rdname gf_crossbar_interactive
 
 gf_crossbar_interactive
 
 #' Interactive curve plots
 #'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_curve()] with interactive features like tooltips and clickable elements.
+#' Creates an interactive plot using ggiraph. These functions extend
+#' [gf_segment()] and  [gf_curve()] with interactive features like tooltips and
+#' clickable elements.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #'   of the chain. Most users can safely ignore this argument.
@@ -458,10 +498,25 @@ gf_crossbar_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_curve_interactive(mpg ~ wt, data = mtcars,
-#'                     tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+#'   gf_curve_interactive(
+#'     1 + 2 ~ 0 + 4, color = "red", curvature = - 0.2,
+#'     tooltip = ~ "curvature: -0.2",
+#'     data_id = 0.2
+#'   ) |>
+#'   gf_curve_interactive(
+#'     1 + 2 ~ 0 + 4, color = "blue", curvature = 0.4,
+#'     tooltip = ~ "curvature: 0.4",
+#'     data_id = 0.4) |>
+#'   gf_segment_interactive(
+#'     1 + 2 ~ 0 + 4, color = "green",
+#'     tooltip = ~ "curvature: 0",
+#'     data_id = 0
+#'   ) |>
+#'   gf_girafe(
+#'     options = list(
+#'       opts_hover(css = "stroke: black; stroke-width: 3;", nearest_distance = 10)
+#'     )
+#'   )
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -473,10 +528,14 @@ gf_crossbar_interactive
 
 gf_curve_interactive
 
-#' Interactive density_2d_filled plots
+#' Interactive 2-demensional density plots
 #'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_density_2d_filled()] with interactive features like tooltips and clickable elements.
+#' Creates an interactive plot using ggiraph. These functions extend
+#' [gf_density2d()],
+#' [gf_density_2d()],
+#' [gf_density2d_filled()], and
+#' [gf_density_2d_filled()]
+#' with interactive features like tooltips and clickable elements.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #'   of the chain. Most users can safely ignore this argument.
@@ -494,60 +553,42 @@ gf_curve_interactive
 #' @param inherit Logical. If `TRUE`, inherit aesthetics from previous layers.
 #' @param environment An environment in which to evaluate the formula.
 #'
-#' @return A gg object that can be displayed with [gf_girafe()].
-#'
-#' @examples
-#' # Basic interactive plot
-#' gf_density_2d_filled_interactive(mpg ~ wt, data = mtcars,
-#'                                 tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
-#'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
 #' * Additional ggiraph aesthetics may be available depending on the geom.
 #'
-#' @seealso [gf_density_2d_filled()], [gf_girafe()]
-#' @export
+#' @return A gg object that can be displayed with [gf_girafe()].
+#' @seealso [gf_density_2d_filled()], [gf_density_2d()], [gf_contour_interactive()],
+#'   [gf_girafe()]
+#'
+#' @examples
+#' faithful |>
+#'   gf_density2d_filled_interactive(
+#'     eruptions ~ waiting,
+#'     tooltip = ~ after_stat(level),
+#'     data_id = ~ after_stat(level),
+#'     show.legend = FALSE
+#'   ) |>
+#'   gf_girafe()
+#'
+#' faithful |>
+#'   gf_density2d_interactive(
+#'     eruptions ~ waiting,
+#'     tooltip = ~ after_stat(level),
+#'     data_id = ~ after_stat(level),
+#'     show.legend = FALSE
+#'   ) |>
+#'   gf_girafe()
+#'
+#' @rdname gf_density2d_interactive
 #' @name gf_density_2d_filled_interactive
+#' @export
 
 gf_density_2d_filled_interactive
 
-#' Interactive density_2d plots
-#'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_density_2d()] with interactive features like tooltips and clickable elements.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain. Most users can safely ignore this argument.
-#' @param gformula A formula with shape `y ~ x`. Faceting can be achieved by
-#'   including `|` in the formula.
-#' @param data The data to be displayed in this layer.
-#' @param tooltip A formula specifying a variable for tooltips, or a character vector.
-#' @param data_id A formula or character vector specifying data identifiers
-#'   for interactive selection.
-#' @param ... Additional arguments passed to the underlying geom.
-#' @param alpha,color,size,shape,fill,group,stroke Aesthetics passed to the geom.
-#' @param xlab,ylab,title,subtitle,caption Labels for the plot.
-#' @param show.legend Logical. Should this layer be included in the legends?
-#' @param show.help Logical. If `TRUE`, display some minimal help.
-#' @param inherit Logical. If `TRUE`, inherit aesthetics from previous layers.
-#' @param environment An environment in which to evaluate the formula.
-#'
-#' @return A gg object that can be displayed with [gf_girafe()].
-#'
-#' @examples
-#' # Basic interactive plot
-#' gf_density_2d_interactive(mpg ~ wt, data = mtcars,
-#'                          tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
-#'
-#' @section Additional interactive features:
-#' * `onclick`: JavaScript code (as character string) executed when clicking elements.
-#' * Additional ggiraph aesthetics may be available depending on the geom.
-#'
-#' @seealso [gf_density_2d()], [gf_girafe()]
-#' @export
+#' @rdname gf_density2d_interactive
 #' @name gf_density_2d_interactive
+#' @export
 
 gf_density_2d_interactive
 
@@ -574,102 +615,37 @@ gf_density_2d_interactive
 #'
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
-
-#' @examples
-#' diamonds |>
-#'   gf_density_interactive(
-#'     ~ carat, 
-#'     fill = ~ cut, 
-#'     color = ~ cut, 
-#'     data_id = ~ cut, 
-#'     tooltip = ~ cut) |> 
-#'   gf_girafe()
-#'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
 #' * Additional ggiraph aesthetics may be available depending on the geom.
 #'
 #' @seealso [gf_density()], [gf_girafe()]
+
+#' @examples
+#' diamonds |>
+#'   gf_density_interactive(
+#'     ~ carat,
+#'     fill = ~ cut,
+#'     color = ~ cut,
+#'     data_id = ~ cut,
+#'     tooltip = ~ cut) |>
+#'   gf_girafe()
+#'
 #' @export
+#' @rdname gf_density_interactive
 #' @name gf_density_interactive
 
 gf_density_interactive
 
-#' Interactive density2d_filled plots
-#'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_density2d_filled()] with interactive features like tooltips and clickable elements.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain. Most users can safely ignore this argument.
-#' @param gformula A formula with shape `y ~ x`. Faceting can be achieved by
-#'   including `|` in the formula.
-#' @param data The data to be displayed in this layer.
-#' @param tooltip A formula specifying a variable for tooltips, or a character vector.
-#' @param data_id A formula or character vector specifying data identifiers
-#'   for interactive selection.
-#' @param ... Additional arguments passed to the underlying geom.
-#' @param alpha,color,size,shape,fill,group,stroke Aesthetics passed to the geom.
-#' @param xlab,ylab,title,subtitle,caption Labels for the plot.
-#' @param show.legend Logical. Should this layer be included in the legends?
-#' @param show.help Logical. If `TRUE`, display some minimal help.
-#' @param inherit Logical. If `TRUE`, inherit aesthetics from previous layers.
-#' @param environment An environment in which to evaluate the formula.
-#'
-#' @return A gg object that can be displayed with [gf_girafe()].
-#'
-#' @examples
-#' # Basic interactive plot
-#' gf_density2d_filled_interactive(mpg ~ wt, data = mtcars,
-#'                                tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
-#'
-#' @section Additional interactive features:
-#' * `onclick`: JavaScript code (as character string) executed when clicking elements.
-#' * Additional ggiraph aesthetics may be available depending on the geom.
-#'
-#' @seealso [gf_density2d_filled()], [gf_girafe()]
-#' @export
+#' @rdname gf_density2d_interactive
 #' @name gf_density2d_filled_interactive
+#' @export
 
 gf_density2d_filled_interactive
 
-#' Interactive density2d plots
-#'
-#' Creates an interactive plot using ggiraph. This function extends
-#' [gf_density2d()] with interactive features like tooltips and clickable elements.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain. Most users can safely ignore this argument.
-#' @param gformula A formula with shape `y ~ x`. Faceting can be achieved by
-#'   including `|` in the formula.
-#' @param data The data to be displayed in this layer.
-#' @param tooltip A formula specifying a variable for tooltips, or a character vector.
-#' @param data_id A formula or character vector specifying data identifiers
-#'   for interactive selection.
-#' @param ... Additional arguments passed to the underlying geom.
-#' @param alpha,color,size,shape,fill,group,stroke Aesthetics passed to the geom.
-#' @param xlab,ylab,title,subtitle,caption Labels for the plot.
-#' @param show.legend Logical. Should this layer be included in the legends?
-#' @param show.help Logical. If `TRUE`, display some minimal help.
-#' @param inherit Logical. If `TRUE`, inherit aesthetics from previous layers.
-#' @param environment An environment in which to evaluate the formula.
-#'
-#' @return A gg object that can be displayed with [gf_girafe()].
-#'
-#' @examples
-#' # Basic interactive plot
-#' gf_density2d_interactive(mpg ~ wt, data = mtcars,
-#'                         tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
-#'
-#' @section Additional interactive features:
-#' * `onclick`: JavaScript code (as character string) executed when clicking elements.
-#' * Additional ggiraph aesthetics may be available depending on the geom.
-#'
-#' @seealso [gf_density2d()], [gf_girafe()]
-#' @export
+#' @rdname gf_density2d_interactive
 #' @name gf_density2d_interactive
+#' @export
 
 gf_density2d_interactive
 
@@ -696,11 +672,7 @@ gf_density2d_interactive
 #'
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
-#' @examples
-#' # Basic interactive plot
-#' gf_dotplot_interactive(mpg ~ wt, data = mtcars,
-#'                       tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+# TODO: Example here
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -725,7 +697,8 @@ gf_dotplot_interactive
 #' @param tooltip A formula specifying a variable for tooltips, or a character vector.
 #' @param data_id A formula or character vector specifying data identifiers
 #'   for interactive selection.
-#' @param ... Additional arguments passed to the underlying geom.
+#' @param ... Additional arguments passed to the underlying geom, plus any
+#'   [ggiraph::interactive_parameters](interactive parameters).
 #' @param alpha,color,size,shape,fill,group,stroke Aesthetics passed to the geom.
 #' @param xlab,ylab,title,subtitle,caption Labels for the plot.
 #' @param show.legend Logical. Should this layer be included in the legends?
@@ -736,9 +709,24 @@ gf_dotplot_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_errorbar_interactive(mpg ~ wt, data = mtcars,
-#'                        tooltip = ~ paste("MPG:", mpg)) |>
+#' diamonds |>
+#'   dplyr::filter(carat < 1.1, carat > 0.9) |>
+#'   dplyr::group_by(color, cut) |>
+#'   dplyr::summarise(
+#'     median_price = median(price) |> round(),
+#'     lower = quantile(price, 0.25) |> round(),
+#'     upper = quantile(price, 0.75) |> round(),
+#'     iqr = upper - lower
+#'   ) |>
+#'   gf_errorbar_interactive(
+#'     cut ~ lower + upper | color,
+#'     color = ~ cut,
+#'     tooltip = ~ paste0(
+#'       "75th percentile: ", upper,
+#'       "\nmedian: ", median_price,
+#'       "\n25th percentile: ", lower
+#'       )
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -775,7 +763,6 @@ gf_errorbar_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_freqpoly_interactive(mpg ~ wt, data = mtcars,
 #'                        tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -814,7 +801,6 @@ gf_freqpoly_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_hex_interactive(mpg ~ wt, data = mtcars,
 #'                   tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -854,10 +840,12 @@ gf_hex_interactive
 #'
 #' @examples
 #' # Interactive histogram with bin information
-#' mtcars |> 
+#' mtcars |>
 #'   gf_histogram_interactive(
-#'     ~ mpg, 
-#'     tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1), '; Max: ', round(after_stat(xmax),1), '; Count: ', after_stat(count)),
+#'     ~ mpg,
+#'     tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1),
+#'                      '; Max: ', round(after_stat(xmax),1),
+#'                      '; Count: ', after_stat(count)),
 #'     bins = 15) |>
 #'   gf_girafe()
 #'
@@ -976,9 +964,12 @@ gf_jitter_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_label_interactive(mpg ~ wt, data = mtcars,
-#'                     tooltip = ~ paste("MPG:", mpg)) |>
+#' mtcars |>
+#'   gf_label_interactive(
+#'     mpg ~ wt,
+#'     label = rownames(mtcars),
+#'     size = 3,
+#'     tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1015,11 +1006,24 @@ gf_label_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive line plot with tooltips
-#' economics |>
-#'   gf_line_interactive(unemploy ~ date,
-#'                      tooltip = ~ paste("Date:", date, "Unemployed:", unemploy)) |>
-#'   gf_girafe()
+#' if (require(mosaicData)) {
+#'   Weather |>
+#'   gf_line_interactive(
+#'     high_temp ~ date,
+#'     color = ~city,
+#'     show.legend = FALSE,
+#'     tooltip = ~city,
+#'     data_id = ~city
+#'   ) |>
+#'   gf_girafe(
+#'     width = 8, height = 3,
+#'     options = list(
+#'       opts_hover_inv(css = "opacity:0.4;"),
+#'       opts_hover(css = "stroke-width:2;", nearest_distance = 40),
+#'       opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -10)
+#'     )
+#'   )
+#' }
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1055,9 +1059,24 @@ gf_line_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_linerange_interactive(mpg ~ wt, data = mtcars,
-#'                         tooltip = ~ paste("MPG:", mpg)) |>
+#' diamonds |>
+#'   dplyr::filter(carat < 1.1, carat > 0.9) |>
+#'   dplyr::group_by(color, cut) |>
+#'   dplyr::summarise(
+#'     median_price = median(price) |> round(),
+#'     lower = quantile(price, 0.25) |> round(),
+#'     upper = quantile(price, 0.75) |> round(),
+#'     iqr = upper - lower
+#'   ) |>
+#'   gf_linerange_interactive(
+#'     cut ~ lower + upper | color,
+#'     color = ~ cut,
+#'     tooltip = ~ paste0(
+#'       "75th percentile: ", upper,
+#'       "\nmedian: ", median_price,
+#'       "\n25th percentile: ", lower
+#'       )
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1094,7 +1113,6 @@ gf_linerange_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_path_interactive(mpg ~ wt, data = mtcars,
 #'                    tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -1133,11 +1151,10 @@ gf_path_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive scatter plot
 #' gf_point_interactive(mpg ~ wt, data = mtcars,
 #'                     tooltip = ~ paste("Model:", rownames(mtcars))) |>
 #'   gf_girafe()
-#'   
+#'
 #' # With color mapping and data_id for selection
 #' gf_point_interactive(mpg ~ wt, data = mtcars,
 #'                     color = ~ factor(cyl),
@@ -1179,9 +1196,24 @@ gf_point_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_pointrange_interactive(mpg ~ wt, data = mtcars,
-#'                          tooltip = ~ paste("MPG:", mpg)) |>
+#' diamonds |>
+#'   dplyr::filter(carat < 1.1, carat > 0.9) |>
+#'   dplyr::group_by(color, cut) |>
+#'   dplyr::summarise(
+#'     median_price = median(price) |> round(),
+#'     lower = quantile(price, 0.25) |> round(),
+#'     upper = quantile(price, 0.75) |> round(),
+#'     iqr = upper - lower
+#'   ) |>
+#'   gf_pointrange_interactive(
+#'     cut ~ median_price + lower + upper | color,
+#'     color = ~ cut,
+#'     tooltip = ~ paste0(
+#'       "75th percentile: ", upper,
+#'       "\nmedian: ", median_price,
+#'       "\n25th percentile: ", lower
+#'       )
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1218,7 +1250,6 @@ gf_pointrange_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_polygon_interactive(mpg ~ wt, data = mtcars,
 #'                       tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -1257,7 +1288,6 @@ gf_polygon_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_quantile_interactive(mpg ~ wt, data = mtcars,
 #'                        tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -1296,7 +1326,6 @@ gf_quantile_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
 #' gf_raster_interactive(mpg ~ wt, data = mtcars,
 #'                      tooltip = ~ paste("MPG:", mpg)) |>
 #'   gf_girafe()
@@ -1335,10 +1364,46 @@ gf_raster_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_rect_interactive(mpg ~ wt, data = mtcars,
-#'                    tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+#' rect_data <-
+#'   data.frame(
+#'     x1 = c(1, 3, 1, 5, 4),
+#'     x2 = c(2, 4, 3, 6, 6),
+#'     y1 = c(1, 1, 4, 1, 3),
+#'     y2 = c(2, 2, 5, 3, 5),
+#'     t = c('a', 'a', 'a', 'b', 'b'),
+#'     r = c(1, 2, 3, 4, 5),
+#'     tooltip = c("ID 1", "ID 2", "ID 3", "ID 4", "ID 5"),
+#'     uid = c("ID 1", "ID 2", "ID 3", "ID 4", "ID 5"),
+#'     oc = rep("alert(this.getAttribute(\"data-id\"))", 5)
+#'   )
+#'
+#' p <- rect_data |>
+#'   gf_rect_interactive(
+#'     y1 + y2 ~ x1 + x2,
+#'     fill = t,
+#'     tooltip = ~ tooltip,
+#'     onclick = ~ oc,
+#'     data_id = ~ uid,
+#'     color = "black",
+#'     alpha = 0.5,
+#'     linejoin = "bevel",
+#'     lineend = "round"
+#'   ) |>
+#'   gf_text(
+#'     (y1 + (y2 - y1) / 2) ~ (x1 + (x2 - x1) / 2),
+#'     label = ~ r,
+#'     size = 4
+#'     )
+#'
+#' if (interactive()) {
+#'  p |> gf_girafe()
+#' }
+#'
+#'
+# @examples
+# gf_rect_interactive(mpg ~ wt, data = mtcars,
+#                    tooltip = ~ paste("MPG:", mpg)) |>
+#   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1374,10 +1439,27 @@ gf_rect_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_ribbon_interactive(mpg ~ wt, data = mtcars,
-#'                      tooltip = ~ paste("MPG:", mpg)) |>
+#'
+#' Huron <-
+#'   data.frame(
+#'     year = 1875:1972,
+#'     level = as.vector(LakeHuron)
+#'   )
+#'
+#' Huron |>
+#'   gf_ribbon_interactive(
+#'     (level - 1) + (level + 1) ~ year,
+#'     tooltip = ~ "This is the ribbon.",
+#'     fill = "skyblue",
+#'     data_id = "id:ribbon"
+#'     ) |>
+#'   gf_line_interactive(
+#'     level  ~ year,
+#'     tooltip = ~ "This is the line.",
+#'     data_id = "id:line"
+#'   ) |>
 #'   gf_girafe()
+#'
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1411,12 +1493,8 @@ gf_ribbon_interactive
 #' @param environment An environment in which to evaluate the formula.
 #'
 #' @return A gg object that can be displayed with [gf_girafe()].
+#' @rdname gf_curve_interactive
 #'
-#' @examples
-#' # Basic interactive plot
-#' gf_segment_interactive(mpg ~ wt, data = mtcars,
-#'                       tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1451,11 +1529,6 @@ gf_segment_interactive
 #'
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
-#' @examples
-#' # Basic interactive plot
-#' gf_sf_interactive(mpg ~ wt, data = mtcars,
-#'                  tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1492,8 +1565,9 @@ gf_sf_interactive
 #'
 #' @examples
 #' # Interactive smooth line with confidence band
-#' gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.5, se = TRUE) |>
-#'   gf_smooth_interactive(tooltip = ~ "loess line") |>
+#' mtcars |>
+#'   gf_point_interactive(mpg ~ wt, alpha = 0.5) |>
+#'   gf_smooth_interactive(tooltip = ~ "loess line with confidence band", se = TRUE, alpha = 0.5) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1530,10 +1604,27 @@ gf_smooth_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_spoke_interactive(mpg ~ wt, data = mtcars,
-#'                     tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+#' if (require(dplyr)) {
+#'   expand.grid(x = 0:10, y = 0:10) |>
+#'     mutate(
+#'       direction = round(x * y / 100 * 2 * pi, 1),
+#'       size = (20 + x + y) / 50
+#'       ) |>
+#'     gf_spoke_interactive(
+#'       y ~ x, angle = ~ direction, radius = ~ size,
+#'       tooltip = ~ paste(
+#'         "angle:", round(direction / 2 / pi * 360, 1),
+#'         "degrees; size =", size),
+#'       data_id = ~ paste(x, "-", y),
+#'       hover_nearest = TRUE
+#'       ) |>
+#'     gf_point() |>
+#'     gf_girafe(
+#'       options = list(
+#'         opts_hover(css = "stroke: red; stroke-width: 2;", nearest_distance = 10)
+#'       )
+#'     )
+#' }
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1569,10 +1660,20 @@ gf_spoke_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_step_interactive(mpg ~ wt, data = mtcars,
-#'                    tooltip = ~ paste("MPG:", mpg)) |>
-#'   gf_girafe()
+#' if (require(dplyr)) {
+#'   mtcars |>
+#'     group_by(cyl) |>
+#'     mutate(ecdf = ecdf(mpg)(mpg)) |>
+#'     gf_step_interactive(
+#'       ecdf ~ mpg,
+#'       group = ~ cyl,
+#'       color = ~ factor(cyl),
+#'       tooltip = ~ paste(cyl, "cylinders"),
+#'       data_id = ~ mpg,
+#'       hover_nearest = TRUE) |>
+#'     gf_labs(color = "cylinders") |>
+#'     gf_girafe()
+#' }
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1608,11 +1709,18 @@ gf_step_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive text annotations
-#' gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.7) |>
+#' gf_point_interactive(
+#'   mpg ~ wt, data = mtcars, alpha = 0.4, size = 3,
+#'   tooltip = ~ rownames(mtcars),
+#'   data_id = 1:nrow(mtcars)
+#' ) |>
 #'   gf_text_interactive(mpg ~ wt, data = mtcars[1:5, ],
 #'                      label = ~ rownames(mtcars)[1:5],
-#'                      tooltip = ~ paste("Car:", rownames(mtcars)[1:5])) |>
+#'                      size = 3,
+#'                      angle = 20,
+#'                      data_id = 1:5,
+#'                      tooltip = ~ paste(rownames(mtcars)[1:5], "\nmpg:", mpg, "wt: ", wt)
+#'   ) |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1649,9 +1757,12 @@ gf_text_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Basic interactive plot
-#' gf_tile_interactive(mpg ~ wt, data = mtcars,
-#'                    tooltip = ~ paste("MPG:", mpg)) |>
+#' expand.grid(x = 1:10, y = 1:10) |>
+#'   gf_tile_interactive(
+#'     (x+y) ~ x + y,
+#'     tooltip = ~ paste("x + y =", x + y)
+#'   ) |>
+#'   gf_labs(fill = "sum") |>
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
@@ -1688,10 +1799,20 @@ gf_tile_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive violin plot
-#' gf_violin_interactive(mpg ~ factor(cyl), data = mtcars,
-#'                      tooltip = ~ paste("Cylinders:", cyl)) |>
-#'   gf_girafe()
+#' p <-
+#'   mtcars |>
+#'   gf_violin_interactive(
+#'     mpg ~ factor(cyl),
+#'     alpha = 0.5,
+#'     fill = "skyblue",
+#'     tooltip = ~ paste("Cylinders:", cyl)
+#'   )
+#'
+#' if (require(ggforce)) {
+#'   p |> gf_sina(color = "red", alpha = 0.8) |> gf_girafe()
+#' } else {
+#'   p |> gf_girafe()
+#' }
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
@@ -1727,12 +1848,17 @@ gf_violin_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive vertical reference line
-#' gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.7) |>
+#' gf_point(mpg ~ wt, data = mtcars, alpha = 0.7) |>
 #'   gf_vline_interactive(xintercept = ~ mean(wt),
 #'                       tooltip = ~ paste("Mean Weight:", round(mean(wt), 1)),
-#'                       color = "blue", linetype = "dashed") |>
-#'   gf_girafe()
+#'                       color = "blue", linetype = "dashed",
+#'                       data_id = 1,
+#'                       hover_nearest = TRUE) |>
+#'   gf_girafe(
+#'     options =
+#'       list(
+#'         opts_hover(nearest_distance = 10, css = "stroke: red; stroke-width: 3")
+#'   ))
 #'
 #' @section Additional interactive features:
 #' * `onclick`: JavaScript code (as character string) executed when clicking elements.
