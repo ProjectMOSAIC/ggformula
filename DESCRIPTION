@@ -24,8 +24,9 @@ Imports:
     grid,
     labelled
 Suggests:
-    here,
     tidyr,
+    patchwork,
+    glue,
     mosaicData,
     dplyr,
     lattice,
@@ -38,6 +39,7 @@ Suggests:
     lubridate,
     survival,
     broom,
+    hexbin,
     maps,
     sf,
     purrr,
@@ -46,6 +48,7 @@ Suggests:
     ggplot2movies,
     interp,
     quantreg,
+    ggforce,
     quarto
 VignetteBuilder: 
     quarto
@@ -68,7 +71,6 @@ Collate:
     'newplots.R'
     'ggiraph.R'
     'ggiraph-themes.R'
-    'ggiraph-documentation-gen.R'
     'ggiraph-documentation-with-examples.R'
     'reexports.R'
     'scales.R'
