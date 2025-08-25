@@ -14,7 +14,23 @@ utils::globalVariables("role")
 #'
 NA
 
-layer_interactive <- ggiraph:::layer_interactive
+layer_interactive <- function(
+    layer_func, stat = NULL, position = NULL, ...,
+    interactive_geom = NULL, extra_interactive_params = NULL) {
+
+  dots <- list(...)
+  if (is.null(position)) {
+    ggiraph:::layer_interactive(
+      layer_func, stat = stat, ...,
+      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
+    )
+  } else {
+    ggiraph:::layer_interactive(
+      layer_func, stat = stat, position = position, ...,
+      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
+    )
+  }
+}
 
 #' Create a ggformula layer function
 #'
@@ -27,6 +43,10 @@ layer_interactive <- ggiraph:::layer_interactive
 #'   (may be specified as a string).
 #' @param stat The stat function to use for the layer
 #'   (may be specified as a string).
+#' @param interactive A logical indicating whether this is being used
+#'   to create an interactive layer.
+#' @param layer_func_interactive layer function passed to call of
+#'   the internal function `layer_interactive()`.
 #' @param pre code to run as a "pre-process".
 #' @param aes_form A single formula or a list of formulas specifying
 #'   how attributes are inferred from the formula.  Use `NULL` if the
@@ -45,6 +65,9 @@ layer_interactive <- ggiraph:::layer_interactive
 #' @param data A data frame or `NULL` or `NA`.
 #' @param layer_func_interactive The function used to create the layer when `interactive`` is TRUE
 #'   (or a quosure that evaluates to such a function).
+#' @param layer_fun function used to create a layer. The default value is anticipated
+#'   to work in most (all?) cases.
+#'
 #' @param ... Additional arguments.
 #' @return A function.
 #' @export

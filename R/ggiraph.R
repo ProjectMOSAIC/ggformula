@@ -4,7 +4,7 @@
 #' HTML widget using ggiraph. This function is a wrapper around
 #' [ggiraph::girafe()] tailored for ggformula interactive plots.
 #'
-#' @param object A ggplot object, typically created with a `gf_*_interactive()`
+#' @param ggobj A ggplot object, typically created with a `gf_*_interactive()`
 #'   function.
 #' @param code R code to execute. This parameter is optional and rarely used
 #'   in typical workflows.
@@ -47,8 +47,16 @@ gf_girafe <- function(ggobj, code, ...) {
   ggiraph::girafe(code = code, ggobj = ggobj, ...)
 }
 
-interactive_layer_factory <- function(geom) {
-  geom_noninteractive <- gsub("_interactive", "", geom, fixed = TRUE)
+#' Create an interactive ggformula layer function
+#'
+#' Primarily intended for package developers, this function factory
+#' is used to create layer functions in the ggformula package.
+#'
+#' @param geom_fun A character string naming an interactive geom (example: "geom_point_interactive")
+#'
+interactive_layer_factory <- function(geom_fun) {
+  stopifnot(is.character(geom_fun))
+  geom_noninteractive <- gsub("_interactive", "", geom_fun, fixed = TRUE)
   gf_noninteractive <- gsub("geom_", "gf_", geom_noninteractive, fixed = TRUE)
   gfenv <- tryCatch(
     environment(get(gf_noninteractive)),
@@ -58,20 +66,40 @@ interactive_layer_factory <- function(geom) {
     return(NULL)
   }
 
-  aes_form <- rlang::env_get(gfenv, "aes_form", default = NULL)
-  extras <- rlang::env_get(gfenv, "extras", default = alist())
+  aes_form_from_env <- rlang::env_get(gfenv, "aes_form", default = NULL)
+  extras_from_env <- rlang::env_get(gfenv, "extras", default = alist())
+  geom_from_env <- rlang::env_get(gfenv, "geom", default = "point")
+  stat_from_env <- rlang::env_get(gfenv, "stat", default = "identity")
+  position_from_env <- rlang::env_get(gfenv, "position", default = "identity")
+  inherit_from_env <- rlang::env_get(gfenv, "inherit.aes", default = TRUE)
+  aesthetics_from_env <- rlang::env_get(gfenv, "aesthetics", default = aes())
+  check_aes_from_env <- rlang::env_get(gfenv, "check.aes", default = TRUE)
 
-  layer_factory(
-    interactive = TRUE,
-    layer_func_interactive = geom,
-    aes_form = aes_form,
-    extras = extras
+  do.call(
+    layer_factory,
+    list(
+      geom = geom_from_env,
+      position = position_from_env,
+      stat = stat_from_env,
+      interactive = TRUE,
+      layer_func_interactive = geom_fun,
+      # pre,
+      aes_form = aes_form_from_env,
+      extras = extras_from_env,
+      # note,
+      aesthetics = aesthetics_from_env,
+      inherit.aes = inherit_from_env,
+      check.aes = check_aes_from_env,
+      layer_fun = layer_interactive
+    )
   )
 }
 
 geoms <- apropos('geom_.*_interactive')
 
-skipped <- created_funs <- c()
+# geoms <- c('geom_contour_filled_interactive')
+
+skipped <- created_funs <- character(0)
 
 for (g in geoms) {
   gf <- sub("geom_", "gf_", g)
@@ -84,10 +112,10 @@ for (g in geoms) {
   created_funs <- c(created_funs, gf)
 }
 
-# cli::cli_h3("Skipped functions:")
-# cli::cli_ul(skipped)
-# cli::cli_h3("Created functions:")
-# cli::cli_ul(created_funs)
+cli::cli_h3("Skipped functions:")
+cli::cli_ul(skipped)
+cli::cli_h3("Created functions:")
+cli::cli_ul(created_funs)
 
 
 #' Interactive facets
@@ -106,6 +134,34 @@ for (g in geoms) {
 #' @seealso [ggplot2::facet_wrap()]
 #' @seealso [ggplot2::facet_grid()]
 #' @seealso [gf_labeller_interactive()]
+#' @examples
+#'
+#' mosaicData::Weather |>
+#' gf_line_interactive(
+#'   high_temp ~ date,
+#'   color = ~city,
+#'   show.legend = FALSE,
+#'   tooltip = ~city,
+#'   data_id = ~city
+#' ) |>
+#'   gf_facet_wrap_interactive(
+#'     ~year,
+#'     ncol = 1,
+#'     scales = "free_x",
+#'     labeller = gf_labeller_interactive(
+#'       data_id = ~year,
+#'       tooltip = ~ glue::glue("This is the year {year}")
+#'     )
+#'   ) |>
+#'   gf_theme(theme_facets_interactive()) |>
+#'   gf_girafe(
+#'     options = list(
+#'       opts_hover_inv(css = "opacity:0.2;"),
+#'       opts_hover(css = "stroke-width:2;", nearest_distance = 40),
+#'       opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -30)
+#'     )
+#'   )
+#'
 #' @export
 gf_facet_wrap_interactive <-
   function(object, ..., labeller, interactive_on = c("text", "rect", "both")) {
@@ -154,5 +210,5 @@ gf_labeller_interactive <- function(..., .mapping) {
     qdots <- aes$qdots
   }
 
-  labeller_interactive(.mapping = .mapping, !!!qdots)
+  ggiraph::labeller_interactive(.mapping = .mapping, !!!qdots)
 }
