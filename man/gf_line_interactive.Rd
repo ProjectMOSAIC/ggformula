@@ -47,11 +47,24 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive line plot with tooltips
-economics |>
-  gf_line_interactive(unemploy ~ date,
-                     tooltip = ~ paste("Date:", date, "Unemployed:", unemploy)) |>
-  gf_girafe()
+if (require(mosaicData)) {
+  Weather |>
+  gf_line_interactive(
+    high_temp ~ date,
+    color = ~city,
+    show.legend = FALSE,
+    tooltip = ~city,
+    data_id = ~city
+  ) |>
+  gf_girafe(
+    width = 8, height = 3,
+    options = list(
+      opts_hover_inv(css = "opacity:0.4;"),
+      opts_hover(css = "stroke-width:2;", nearest_distance = 40),
+      opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -10)
+    )
+  )
+}
 
 }
 \seealso{

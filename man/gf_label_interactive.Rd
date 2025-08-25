@@ -47,9 +47,12 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_label_interactive(mpg ~ wt, data = mtcars,
-                    tooltip = ~ paste("MPG:", mpg)) |>
+mtcars |>
+  gf_label_interactive(
+    mpg ~ wt,
+    label = rownames(mtcars),
+    size = 3,
+    tooltip = ~ paste("MPG:", mpg)) |>
   gf_girafe()
 
 }

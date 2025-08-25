@@ -117,16 +117,16 @@ create_interactive_docs <- function(func_name) {
 
 # Generate documentation for all functions
 
-if (FALSE) {
-  here::i_am("R/ggiraph-documentation-gen.R")
-  doc_file <- here::here("R", "ggiraph-documentation.R")
+# if (FALSE) {
+#   here::i_am("R/ggiraph-documentation-gen.R")
+#   doc_file <- here::here("R", "ggiraph-documentation.R")
 
-  cat("# Roxygen generated in ggiraph-documentation-gen.R\n\n", file = doc_file)
+#   cat("# Roxygen generated in ggiraph-documentation-gen.R\n\n", file = doc_file)
 
-  for (func in interactive_functions) {
-    cat(create_interactive_docs(func), file = doc_file, append = TRUE)
-  }
-}
+#   for (func in interactive_functions) {
+#     cat(create_interactive_docs(func), file = doc_file, append = TRUE)
+#   }
+# }
 
 # Function to create roxygen documentation with examples for each interactive function
 create_interactive_docs_with_examples <- function(func_name) {

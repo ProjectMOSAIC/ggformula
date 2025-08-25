@@ -36,6 +36,35 @@ To create interactive facets, use \code{gf_facet_wrap_interactive()} or
 \code{gf_facet_grid_interactive()} and use \code{\link[=gf_labeller_interactive]{gf_labeller_interactive()}}
 to create the \code{labeller}.
 }
+\examples{
+
+mosaicData::Weather |>
+gf_line_interactive(
+  high_temp ~ date,
+  color = ~city,
+  show.legend = FALSE,
+  tooltip = ~city,
+  data_id = ~city
+) |>
+  gf_facet_wrap_interactive(
+    ~year,
+    ncol = 1,
+    scales = "free_x",
+    labeller = gf_labeller_interactive(
+      data_id = ~year,
+      tooltip = ~ glue::glue("This is the year {year}")
+    )
+  ) |>
+  gf_theme(theme_facets_interactive()) |>
+  gf_girafe(
+    options = list(
+      opts_hover_inv(css = "opacity:0.2;"),
+      opts_hover(css = "stroke-width:2;", nearest_distance = 40),
+      opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -30)
+    )
+  )
+
+}
 \seealso{
 \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}
 

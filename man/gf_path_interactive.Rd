@@ -47,7 +47,6 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
 gf_path_interactive(mpg ~ wt, data = mtcars,
                    tooltip = ~ paste("MPG:", mpg)) |>
   gf_girafe()

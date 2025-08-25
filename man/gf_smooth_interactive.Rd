@@ -48,8 +48,9 @@ Creates an interactive plot using ggiraph. This function extends
 
 \examples{
 # Interactive smooth line with confidence band
-gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.5, se = TRUE) |>
-  gf_smooth_interactive(tooltip = ~ "loess line") |>
+mtcars |>
+  gf_point_interactive(mpg ~ wt, alpha = 0.5) |>
+  gf_smooth_interactive(tooltip = ~ "loess line with confidence band", se = TRUE, alpha = 0.5) |>
   gf_girafe()
 
 }

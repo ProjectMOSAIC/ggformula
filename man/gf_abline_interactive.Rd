@@ -47,9 +47,13 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_abline_interactive(mpg ~ wt, data = mtcars,
-                     tooltip = ~ paste("MPG:", mpg)) |>
+mtcars |>
+  gf_point(mpg ~ wt) |>
+  gf_abline_interactive(
+    slope = ~ -2,
+    intercept = ~ 35,
+    tooltip = ~ "slope: -2; intercept: 35",
+  ) |>
   gf_girafe()
 
 }

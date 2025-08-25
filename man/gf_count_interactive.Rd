@@ -47,12 +47,16 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_count_interactive(mpg ~ wt, data = mtcars,
-                    tooltip = ~ paste("MPG:", mpg)) |>
+diamonds |>
+  gf_count_interactive(
+    clarity ~ cut,
+    size = ~ after_stat(n),
+    tooltip = ~ after_stat(paste0("count: ", n)),
+    show.legend = FALSE
+  ) |>
   gf_girafe()
 
 }
 \seealso{
-\code{\link[=gf_count]{gf_count()}}, \code{\link[=gf_girafe]{gf_girafe()}}
+\code{\link[=gf_count]{gf_count()}}, \code{\link[=gf_density2d_interactive]{gf_density2d_interactive()}}, \code{\link[=gf_girafe]{gf_girafe()}}
 }

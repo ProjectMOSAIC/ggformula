@@ -2,6 +2,7 @@
 % Please edit documentation in R/ggiraph-documentation-with-examples.R
 \name{gf_curve_interactive}
 \alias{gf_curve_interactive}
+\alias{gf_segment_interactive}
 \title{Interactive curve plots}
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -33,12 +34,24 @@ for interactive selection.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.
+
+A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.
 }
 \description{
+Creates an interactive plot using ggiraph. These functions extend
+\code{\link[=gf_segment]{gf_segment()}} and  \code{\link[=gf_curve]{gf_curve()}} with interactive features like tooltips and
+clickable elements.
+
 Creates an interactive plot using ggiraph. This function extends
-\code{\link[=gf_curve]{gf_curve()}} with interactive features like tooltips and clickable elements.
+\code{\link[=gf_segment]{gf_segment()}} with interactive features like tooltips and clickable elements.
 }
 \section{Additional interactive features}{
+
+\itemize{
+\item \code{onclick}: JavaScript code (as character string) executed when clicking elements.
+\item Additional ggiraph aesthetics may be available depending on the geom.
+}
+
 
 \itemize{
 \item \code{onclick}: JavaScript code (as character string) executed when clicking elements.
@@ -47,12 +60,29 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_curve_interactive(mpg ~ wt, data = mtcars,
-                    tooltip = ~ paste("MPG:", mpg)) |>
-  gf_girafe()
+  gf_curve_interactive(
+    1 + 2 ~ 0 + 4, color = "red", curvature = - 0.2,
+    tooltip = ~ "curvature: -0.2",
+    data_id = 0.2
+  ) |>
+  gf_curve_interactive(
+    1 + 2 ~ 0 + 4, color = "blue", curvature = 0.4,
+    tooltip = ~ "curvature: 0.4",
+    data_id = 0.4) |>
+  gf_segment_interactive(
+    1 + 2 ~ 0 + 4, color = "green",
+    tooltip = ~ "curvature: 0",
+    data_id = 0
+  ) |>
+  gf_girafe(
+    options = list(
+      opts_hover(css = "stroke: black; stroke-width: 3;", nearest_distance = 10)
+    )
+  )
 
 }
 \seealso{
 \code{\link[=gf_curve]{gf_curve()}}, \code{\link[=gf_girafe]{gf_girafe()}}
+
+\code{\link[=gf_segment]{gf_segment()}}, \code{\link[=gf_girafe]{gf_girafe()}}
 }

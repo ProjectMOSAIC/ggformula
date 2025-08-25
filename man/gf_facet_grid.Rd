@@ -31,7 +31,8 @@ gf_line(births ~ date, data = mosaicData::Births, color = ~wday) |>
   gf_facet_wrap(~year, scales = "free_x", nrow = 5) |>
   gf_theme(
     axis.title.x = element_blank(),
-    axis.text.x = element_blank(), axis.ticks.x = element_blank()
+    axis.text.x = element_blank(), 
+    axis.ticks.x = element_blank()
   ) |>
   gf_labs(color = "Day")
 }

@@ -48,10 +48,12 @@ Creates an interactive plot using ggiraph. This function extends
 
 \examples{
 # Interactive histogram with bin information
-mtcars |> 
+mtcars |>
   gf_histogram_interactive(
-    ~ mpg, 
-    tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1), '; Max: ', round(after_stat(xmax),1), '; Count: ', after_stat(count)),
+    ~ mpg,
+    tooltip = ~ paste0('Min: ', round(after_stat(xmin), 1),
+                     '; Max: ', round(after_stat(xmax),1),
+                     '; Count: ', after_stat(count)),
     bins = 15) |>
   gf_girafe()
 

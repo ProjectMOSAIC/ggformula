@@ -16,15 +16,15 @@ theme_facets_interactive(
 \arguments{
 \item{base_theme}{A theme that will will be modified}
 
+\item{interactive_text}{A logical indicating whether text elements of strips should be interactive.}
+
+\item{interactive_rects}{A logical indicating whether rect elements of strips should be interactive.}
+
 \item{strip_text_color}{Color for strip text (or NULL to retain settings from \code{base_theme})}
 
 \item{strip_background_color}{Color for strip background (or NULL to retain settings from \code{base_theme})}
 
 \item{strip_text_size}{Size for strip text (or NULL to retain settings from \code{base_theme})}
-
-\item{interacive_text}{A logical indicating whether text elements of strips should be interactive.}
-
-\item{interacive_rects}{A logical indicating whether rect elements of strips should be interactive.}
 }
 \value{
 A ggplot2 theme object

@@ -47,13 +47,18 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive column chart with pre-computed values
-if (require(dplyr)) {#'   mtcars |> 
-    group_by(cyl) |>
-    summarise(avg_mpg = mean(mpg)) |>
-    gf_col_interactive(avg_mpg ~ factor(cyl),
-                      tooltip = ~ paste("Avg MPG:", round(avg_mpg, 1))) |>
-    gf_girafe()
+if (require(dplyr)) {
+  library(dplyr)
+  diamonds |>
+    group_by(color, cut) |>
+    summarise(count = n()) |>
+    gf_col_interactive(
+      count ~ color,
+      fill = ~cut,
+      tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}"),
+      data_id = ~ glue::glue("{cut} - {color}")
+    ) |>
+  gf_girafe()
 }
 
 }

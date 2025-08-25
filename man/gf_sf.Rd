@@ -118,6 +118,7 @@ in another.
 
 \examples{
 
+\dontrun{
 if (requireNamespace('maps', quietly = TRUE)) {
   library(maps)
   world1 <- sf::st_as_sf(map('world', plot = FALSE, fill = TRUE))
@@ -130,6 +131,7 @@ if (requireNamespace('maps', quietly = TRUE)) {
     "+proj=laea +y_0=0 +lon_0=155 +lat_0=-90 +ellps=WGS84 +no_defs"
   )
   gf_sf(data = world2)
+}
 }
 }
 \seealso{

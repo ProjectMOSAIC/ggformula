@@ -47,9 +47,25 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_crossbar_interactive(mpg ~ wt, data = mtcars,
-                       tooltip = ~ paste("MPG:", mpg)) |>
+
+diamonds |>
+  dplyr::filter(carat < 1.1, carat > 0.9) |>
+  dplyr::group_by(color, cut) |>
+  dplyr::summarise(
+    median_price = median(price) |> round(),
+    lower = quantile(price, 0.25) |> round(),
+    upper = quantile(price, 0.75) |> round(),
+    iqr = upper - lower
+  ) |>
+  gf_crossbar_interactive(
+    cut ~ median_price + lower + upper | color,
+    color = ~ cut,
+    tooltip = ~ paste0(
+      "75th percentile: ", upper,
+      "\nmedian: ", median_price,
+      "\n25th percentile: ", lower
+      )
+  ) |>
   gf_girafe()
 
 }

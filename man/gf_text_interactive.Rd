@@ -47,11 +47,18 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive text annotations
-gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.7) |>
+gf_point_interactive(
+  mpg ~ wt, data = mtcars, alpha = 0.4, size = 3,
+  tooltip = ~ rownames(mtcars),
+  data_id = 1:nrow(mtcars)
+) |>
   gf_text_interactive(mpg ~ wt, data = mtcars[1:5, ],
                      label = ~ rownames(mtcars)[1:5],
-                     tooltip = ~ paste("Car:", rownames(mtcars)[1:5])) |>
+                     size = 3,
+                     angle = 20,
+                     data_id = 1:5,
+                     tooltip = ~ paste(rownames(mtcars)[1:5], "\nmpg:", mpg, "wt: ", wt)
+  ) |>
   gf_girafe()
 
 }

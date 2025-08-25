@@ -47,10 +47,20 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive violin plot
-gf_violin_interactive(mpg ~ factor(cyl), data = mtcars,
-                     tooltip = ~ paste("Cylinders:", cyl)) |>
-  gf_girafe()
+p <-
+  mtcars |>
+  gf_violin_interactive(
+    mpg ~ factor(cyl),
+    alpha = 0.5,
+    fill = "skyblue",
+    tooltip = ~ paste("Cylinders:", cyl)
+  )
+
+if (require(ggforce)) {
+  p |> gf_sina(color = "red", alpha = 0.8) |> gf_girafe()
+} else {
+  p |> gf_girafe()
+}
 
 }
 \seealso{

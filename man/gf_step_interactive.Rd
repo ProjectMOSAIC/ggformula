@@ -47,10 +47,20 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_step_interactive(mpg ~ wt, data = mtcars,
-                   tooltip = ~ paste("MPG:", mpg)) |>
-  gf_girafe()
+if (require(dplyr)) {
+  mtcars |>
+    group_by(cyl) |>
+    mutate(ecdf = ecdf(mpg)(mpg)) |>
+    gf_step_interactive(
+      ecdf ~ mpg,
+      group = ~ cyl,
+      color = ~ factor(cyl),
+      tooltip = ~ paste(cyl, "cylinders"),
+      data_id = ~ mpg,
+      hover_nearest = TRUE) |>
+    gf_labs(color = "cylinders") |>
+    gf_girafe()
+}
 
 }
 \seealso{

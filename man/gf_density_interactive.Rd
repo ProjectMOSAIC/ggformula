@@ -49,11 +49,11 @@ Creates an interactive plot using ggiraph. This function extends
 \examples{
 diamonds |>
   gf_density_interactive(
-    ~ carat, 
-    fill = ~ cut, 
-    color = ~ cut, 
-    data_id = ~ cut, 
-    tooltip = ~ cut) |> 
+    ~ carat,
+    fill = ~ cut,
+    color = ~ cut,
+    data_id = ~ cut,
+    tooltip = ~ cut) |>
   gf_girafe()
 
 }

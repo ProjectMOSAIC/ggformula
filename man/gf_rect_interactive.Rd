@@ -47,10 +47,42 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_rect_interactive(mpg ~ wt, data = mtcars,
-                   tooltip = ~ paste("MPG:", mpg)) |>
-  gf_girafe()
+rect_data <-
+  data.frame(
+    x1 = c(1, 3, 1, 5, 4),
+    x2 = c(2, 4, 3, 6, 6),
+    y1 = c(1, 1, 4, 1, 3),
+    y2 = c(2, 2, 5, 3, 5),
+    t = c('a', 'a', 'a', 'b', 'b'),
+    r = c(1, 2, 3, 4, 5),
+    tooltip = c("ID 1", "ID 2", "ID 3", "ID 4", "ID 5"),
+    uid = c("ID 1", "ID 2", "ID 3", "ID 4", "ID 5"),
+    oc = rep("alert(this.getAttribute(\"data-id\"))", 5)
+  )
+
+p <- rect_data |>
+  gf_rect_interactive(
+    y1 + y2 ~ x1 + x2,
+    fill = t,
+    tooltip = ~ tooltip,
+    onclick = ~ oc,
+    data_id = ~ uid,
+    color = "black",
+    alpha = 0.5,
+    linejoin = "bevel",
+    lineend = "round"
+  ) |>
+  gf_text(
+    (y1 + (y2 - y1) / 2) ~ (x1 + (x2 - x1) / 2),
+    label = ~ r,
+    size = 4
+    )
+
+if (interactive()) {
+ p |> gf_girafe()
+}
+
+
 
 }
 \seealso{

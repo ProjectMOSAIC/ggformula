@@ -47,10 +47,27 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_ribbon_interactive(mpg ~ wt, data = mtcars,
-                     tooltip = ~ paste("MPG:", mpg)) |>
+
+Huron <-
+  data.frame(
+    year = 1875:1972,
+    level = as.vector(LakeHuron)
+  )
+
+Huron |>
+  gf_ribbon_interactive(
+    (level - 1) + (level + 1) ~ year,
+    tooltip = ~ "This is the ribbon.",
+    fill = "skyblue",
+    data_id = "id:ribbon"
+    ) |>
+  gf_line_interactive(
+    level  ~ year,
+    tooltip = ~ "This is the line.",
+    data_id = "id:line"
+  ) |>
   gf_girafe()
+
 
 }
 \seealso{

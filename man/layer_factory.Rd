@@ -38,6 +38,9 @@ layer_factory(
 \item{stat}{The stat function to use for the layer
 (may be specified as a string).}
 
+\item{interactive}{A logical indicating whether this is being used
+to create an interactive layer.}
+
 \item{layer_func_interactive}{The function used to create the layer when `interactive`` is TRUE
 (or a quosure that evaluates to such a function).}
 
@@ -64,6 +67,9 @@ to inherit.}
 when aesthetics provided don't match what is expected.}
 
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
+
+\item{layer_fun}{function used to create a layer. The default value is anticipated
+to work in most (all?) cases.}
 
 \item{...}{Additional arguments.}
 }

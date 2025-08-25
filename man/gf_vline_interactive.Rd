@@ -47,12 +47,17 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive vertical reference line
-gf_point_interactive(mpg ~ wt, data = mtcars, alpha = 0.7) |>
+gf_point(mpg ~ wt, data = mtcars, alpha = 0.7) |>
   gf_vline_interactive(xintercept = ~ mean(wt),
                       tooltip = ~ paste("Mean Weight:", round(mean(wt), 1)),
-                      color = "blue", linetype = "dashed") |>
-  gf_girafe()
+                      color = "blue", linetype = "dashed",
+                      data_id = 1,
+                      hover_nearest = TRUE) |>
+  gf_girafe(
+    options =
+      list(
+        opts_hover(nearest_distance = 10, css = "stroke: red; stroke-width: 3")
+  ))
 
 }
 \seealso{

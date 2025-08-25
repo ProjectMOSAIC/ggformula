@@ -47,10 +47,27 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_spoke_interactive(mpg ~ wt, data = mtcars,
-                    tooltip = ~ paste("MPG:", mpg)) |>
-  gf_girafe()
+if (require(dplyr)) {
+  expand.grid(x = 0:10, y = 0:10) |>
+    mutate(
+      direction = round(x * y / 100 * 2 * pi, 1),
+      size = (20 + x + y) / 50
+      ) |>
+    gf_spoke_interactive(
+      y ~ x, angle = ~ direction, radius = ~ size,
+      tooltip = ~ paste(
+        "angle:", round(direction / 2 / pi * 360, 1),
+        "degrees; size =", size),
+      data_id = ~ paste(x, "-", y),
+      hover_nearest = TRUE
+      ) |>
+    gf_point() |>
+    gf_girafe(
+      options = list(
+        opts_hover(css = "stroke: red; stroke-width: 2;", nearest_distance = 10)
+      )
+    )
+}
 
 }
 \seealso{

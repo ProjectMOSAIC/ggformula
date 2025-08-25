@@ -47,9 +47,12 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive plot
-gf_tile_interactive(mpg ~ wt, data = mtcars,
-                   tooltip = ~ paste("MPG:", mpg)) |>
+expand.grid(x = 1:10, y = 1:10) |>
+  gf_tile_interactive(
+    (x+y) ~ x + y,
+    tooltip = ~ paste("x + y =", x + y)
+  ) |>
+  gf_labs(fill = "sum") |>
   gf_girafe()
 
 }

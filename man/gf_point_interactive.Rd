@@ -47,11 +47,10 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Basic interactive scatter plot
 gf_point_interactive(mpg ~ wt, data = mtcars,
                     tooltip = ~ paste("Model:", rownames(mtcars))) |>
   gf_girafe()
-  
+
 # With color mapping and data_id for selection
 gf_point_interactive(mpg ~ wt, data = mtcars,
                     color = ~ factor(cyl),

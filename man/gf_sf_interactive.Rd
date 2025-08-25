@@ -46,13 +46,6 @@ Creates an interactive plot using ggiraph. This function extends
 }
 }
 
-\examples{
-# Basic interactive plot
-gf_sf_interactive(mpg ~ wt, data = mtcars,
-                 tooltip = ~ paste("MPG:", mpg)) |>
-  gf_girafe()
-
-}
 \seealso{
 \code{\link[=gf_sf]{gf_sf()}}, \code{\link[=gf_girafe]{gf_girafe()}}
 }

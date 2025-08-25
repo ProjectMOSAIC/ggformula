@@ -47,10 +47,18 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive bar chart with counts
-gf_bar_interactive(
-  ~ cyl, data = mtcars,
-  tooltip = ~ paste("Cylinders:", x, "Count:", after_stat(count))) |>
+
+diamonds |>
+  gf_bar_interactive(
+    ~color,
+    fill = ~cut,
+    tooltip = ~ stage(
+      start = glue::glue("color: {color}; cut: {cut}"),
+      after_stat = glue::glue("{tooltip}; count = {count}")
+    ),
+    data_id = ~ glue::glue("{cut} -- {color}"),
+    size = 3
+  ) |>
   gf_girafe()
 
 }
