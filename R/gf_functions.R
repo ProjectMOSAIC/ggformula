@@ -761,8 +761,8 @@ gf_boxplot <-
       outlier.alpha = NULL,
       notch = FALSE,
       notchwidth = 0.5,
-      varwidth = FALSE,
-      orientation = NA # , show.legend = NA
+      varwidth = FALSE
+      # orientation = NA # , show.legend = NA
     )
   )
 
