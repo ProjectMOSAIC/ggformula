@@ -47,9 +47,11 @@ Creates an interactive plot using ggiraph. This function extends
 }
 
 \examples{
-# Interactive boxplot with group information
-gf_boxplot_interactive(mpg ~ factor(cyl), data = mtcars,
-                      tooltip = ~ paste("Cylinders:", cyl)) |>
+mtcars |>
+  gf_boxplot_interactive(
+    mpg ~ factor(cyl),
+    tooltip = ~ paste("Cylinders:", cyl),
+    orientation = "x") |>
   gf_girafe()
 
 }

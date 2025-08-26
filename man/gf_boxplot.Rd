@@ -25,7 +25,6 @@ gf_boxplot(
   notch = FALSE,
   notchwidth = 0.5,
   varwidth = FALSE,
-  orientation = NA,
   xlab,
   ylab,
   title,
@@ -106,11 +105,6 @@ the body (defaults to \code{notchwidth = 0.5}).}
 square-roots of the number of observations in the groups (possibly
 weighted, using the \code{weight} aesthetic).}
 
-\item{orientation}{The orientation of the layer. The default (\code{NA})
-automatically determines the orientation from the aesthetic mapping. In the
-rare event that this fails it can be given explicitly by setting \code{orientation}
-to either \code{"x"} or \code{"y"}. See the \emph{Orientation} section for more detail.}
-
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -140,7 +134,9 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

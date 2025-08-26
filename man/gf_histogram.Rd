@@ -90,10 +90,9 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value
-or as a function that calculates width from unscaled x. Here, "unscaled x"
-refers to the original x values in the data, before application of any
-scale transformation. When specifying a function along with a grouping
-structure, the function will be called once per group.
+or as a function that takes x after scale transformation as input and
+returns a single numeric value. When specifying a function along with a
+grouping structure, the function will be called once per group.
 The default is to use the number of bins in \code{bins},
 covering the range of the data. You should always override
 this value, exploring multiple widths to find the best to illustrate the
@@ -144,7 +143,9 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

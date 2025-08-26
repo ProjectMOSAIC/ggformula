@@ -80,8 +80,8 @@ for mapping linetype.}
 \item{weight}{Useful for summarized data, \code{weight} provides a count
 of the number of values with the given combination of \code{x} and \code{y} values.}
 
-\item{draw_quantiles}{If \code{not(NULL)} (default), draw horizontal lines
-at the given quantiles of the density estimate.}
+\item{draw_quantiles}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Previous
+specification of drawing quantiles.}
 
 \item{trim}{If \code{TRUE} (default), trim the tails of the violins
 to the range of the data. If \code{FALSE}, don't trim the tails.}
@@ -131,7 +131,9 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

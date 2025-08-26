@@ -59,11 +59,19 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
-\item{bins}{numeric vector giving number of bins in both vertical and
-horizontal directions. Set to 30 by default.}
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
-\item{binwidth}{Numeric vector giving bin width in both vertical and
-horizontal directions. Overrides \code{bins} if both set.}
+\item{binwidth}{The width of the bins. Can be specified as a numeric value
+or as a function that takes x after scale transformation as input and
+returns a single numeric value. When specifying a function along with a
+grouping structure, the function will be called once per group.
+The default is to use the number of bins in \code{bins},
+covering the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.
+
+The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -106,7 +114,9 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

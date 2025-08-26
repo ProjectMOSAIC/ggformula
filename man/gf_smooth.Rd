@@ -95,7 +95,7 @@ model that \code{method = NULL} would use, then set
 \code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000
 observations and \code{formula = y ~ s(x, bs = "cs")} otherwise.}
 
-\item{se}{Display confidence interval around smooth? (\code{TRUE} by default, see
+\item{se}{Display confidence band around smooth? (\code{TRUE} by default, see
 \code{level} to control.)}
 
 \item{method.args}{List of additional arguments passed on to the modelling
@@ -113,7 +113,7 @@ observations.}
 potentially beyond the data. This does not extend the line into any additional padding
 created by \code{expansion}.}
 
-\item{level}{Level of confidence interval to use (0.95 by default).}
+\item{level}{Level of confidence band to use (0.95 by default).}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

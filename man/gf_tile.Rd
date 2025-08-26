@@ -86,12 +86,11 @@ a gg object
 }
 \description{
 \code{geom_rect()} and \code{geom_tile()} do the same thing, but are
-parameterised differently: \code{geom_rect()} uses the locations of the four
-corners (\code{xmin}, \code{xmax}, \code{ymin} and \code{ymax}), while
-\code{geom_tile()} uses the center of the tile and its size (\code{x},
-\code{y}, \code{width}, \code{height}). \code{geom_raster()} is a high
-performance special case for when all the tiles are the same size, and no
-pattern fills are applied.
+parameterised differently: \code{geom_tile()} uses the center of the tile and its
+size (\code{x}, \code{y}, \code{width}, \code{height}), while \code{geom_rect()} can use those or the
+locations of the corners (\code{xmin}, \code{xmax}, \code{ymin} and \code{ymax}).
+\code{geom_raster()} is a high performance special case for when all the tiles
+are the same size, and no pattern fills are applied.
 }
 \section{Specifying plot attributes}{
 
