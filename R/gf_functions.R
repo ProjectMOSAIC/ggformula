@@ -2362,7 +2362,7 @@ gf_crossbar <-
       box.linetype = NULL,
       box.linewidth = NULL,
       na.rm = FALSE,
-      orientation = NA, # show.legend = NA,
+      # orientation = NA, # show.legend = NA,
       inherit.aes = TRUE
     )
   )
