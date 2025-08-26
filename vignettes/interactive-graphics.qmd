@@ -21,6 +21,7 @@ fig-width: 6
 fig-height: 4
 number-sections: true
 number-depth: 3
+embed-resources: true
 ---
 
 # Interactive geoms, scales, and facets
