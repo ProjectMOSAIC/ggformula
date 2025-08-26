@@ -248,9 +248,11 @@ gf_bin2d_interactive
 #' @return A gg object that can be displayed with [gf_girafe()].
 #'
 #' @examples
-#' # Interactive boxplot with group information
-#' gf_boxplot_interactive(mpg ~ factor(cyl), data = mtcars,
-#'                       tooltip = ~ paste("Cylinders:", cyl)) |>
+#' mtcars |>
+#'   gf_boxplot_interactive(
+#'     mpg ~ factor(cyl),
+#'     tooltip = ~ paste("Cylinders:", cyl)
+#'   ) |> 
 #'   gf_girafe()
 #'
 #' @section Additional interactive features:
