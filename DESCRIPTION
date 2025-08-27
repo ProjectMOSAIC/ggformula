@@ -23,7 +23,7 @@ Imports:
     stringr,
     grid,
     labelled
-Remotes: github::davidgohel/ggiraph@for-ggplotv4
+Remotes: github::davidgohel/ggiraph
 Suggests:
     tidyr,
     patchwork,
