@@ -18,7 +18,7 @@ are connected in the order in which they appear in data."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2.9000</span>
       </span>
     </div>
 
@@ -40,6 +40,9 @@ are connected in the order in which they appear in data."><meta property="og:ima
     </li>
     <li>
       <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/interactive-graphics.html">Interactive graphics with {ggformula}</a>
     </li>
     <li>
       <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
@@ -152,13 +155,20 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 
 
 <dt id="arg-bins">bins<a class="anchor" aria-label="anchor" href="#arg-bins"></a></dt>
-<dd><p>numeric vector giving number of bins in both vertical and
-horizontal directions. Set to 30 by default.</p></dd>
+<dd><p>Number of bins. Overridden by <code>binwidth</code>. Defaults to 30.</p></dd>
 
 
 <dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
-<dd><p>Numeric vector giving bin width in both vertical and
-horizontal directions. Overrides <code>bins</code> if both set.</p></dd>
+<dd><p>The width of the bins. Can be specified as a numeric value
+or as a function that takes x after scale transformation as input and
+returns a single numeric value. When specifying a function along with a
+grouping structure, the function will be called once per group.
+The default is to use the number of bins in <code>bins</code>,
+covering the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.</p>
+<p>The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
@@ -223,7 +233,9 @@ to use <code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.ht
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.</p></dd>
+display. To include legend keys for all levels, even
+when no data exists, use <code>TRUE</code>.  If <code>NA</code>, all levels are shown in legend,
+but unobserved levels are omitted.</p></dd>
 
 
 <dt id="arg-show-help">show.help<a class="anchor" aria-label="anchor" href="#arg-show-help"></a></dt>

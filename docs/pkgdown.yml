@@ -5,5 +5,6 @@ articles:
   pkgdown/ggformula-blog: pkgdown/ggformula-blog.html
   pkgdown/ggformula-long: pkgdown/ggformula-long.html
   ggformula: ggformula.html
+  interactive-graphics: interactive-graphics.html
   pkgdown/learn-more: pkgdown/learn-more.html
-last_built: 2025-08-01T15:47Z
+last_built: 2025-08-27T16:26Z

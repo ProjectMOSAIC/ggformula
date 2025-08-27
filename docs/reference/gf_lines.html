@@ -19,7 +19,7 @@ as input for describing positional attributes of the plot."><meta property="og:i
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2.9000</span>
       </span>
     </div>
 
@@ -41,6 +41,9 @@ as input for describing positional attributes of the plot."><meta property="og:i
     </li>
     <li>
       <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/interactive-graphics.html">Interactive graphics with {ggformula}</a>
     </li>
     <li>
       <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
@@ -126,6 +129,7 @@ as input for describing positional attributes of the plot.</p>
 <span>  <span class="va">title</span>,</span>
 <span>  <span class="va">subtitle</span>,</span>
 <span>  <span class="va">caption</span>,</span>
+<span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  show.help <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  inherit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -147,6 +151,7 @@ as input for describing positional attributes of the plot.</p>
 <span>  <span class="va">title</span>,</span>
 <span>  <span class="va">subtitle</span>,</span>
 <span>  <span class="va">caption</span>,</span>
+<span>  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  show.help <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  inherit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -226,7 +231,9 @@ See also <code><a href="gf_aux.html">gf_labs()</a></code>.</p></dd>
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.</p></dd>
+display. To include legend keys for all levels, even
+when no data exists, use <code>TRUE</code>.  If <code>NA</code>, all levels are shown in legend,
+but unobserved levels are omitted.</p></dd>
 
 
 <dt id="arg-show-help">show.help<a class="anchor" aria-label="anchor" href="#arg-show-help"></a></dt>
@@ -239,6 +246,19 @@ display.</p></dd>
 
 <dt id="arg-environment">environment<a class="anchor" aria-label="anchor" href="#arg-environment"></a></dt>
 <dd><p>An environment in which to look for variables not found in <code>data</code>.</p></dd>
+
+
+<dt id="arg-position">position<a class="anchor" aria-label="anchor" href="#arg-position"></a></dt>
+<dd><p>A position adjustment to use on the data for this layer. This
+can be used in various ways, including to prevent overplotting and
+improving the display. The <code>position</code> argument accepts the following:</p><ul><li><p>The result of calling a position function, such as <code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter()</a></code>.
+This method allows for passing extra arguments to the position.</p></li>
+<li><p>A string naming the position adjustment. To give the position as a
+string, strip the function name of the <code>position_</code> prefix. For example,
+to use <code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">position_jitter()</a></code>, give the position as <code>"jitter"</code>.</p></li>
+<li><p>For more information and other ways to specify the position, see the
+<a href="https://ggplot2.tidyverse.org/reference/layer_positions.html" class="external-link">layer position</a> documentation.</p></li>
+</ul></dd>
 
 
 <dt id="arg-xintercept-yintercept-slope-intercept">xintercept, yintercept, slope, intercept<a class="anchor" aria-label="anchor" href="#arg-xintercept-yintercept-slope-intercept"></a></dt>
@@ -298,6 +318,12 @@ position of the line. If these are set, <code>data</code>, <code>mapping</code> 
 <span class="r-in"><span><span class="fu"><a href="gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span>, size <span class="op">=</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_hline</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"navy"</span>, yintercept <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">25</span><span class="op">)</span>, data <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_vline</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"brown"</span>, xintercept <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span>, data <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`aes_string()` was deprecated in ggplot2 3.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use tidy evaluation idioms with `aes()`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> See also `vignette("ggplot2-in-packages")` for more information.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">ggformula</span> package.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB; font-style: italic;">&lt;</span><a href="https://github.com/ProjectMOSAIC/ggformula/issues" class="external-link"><span style="color: #0000BB; font-style: italic;">https://github.com/ProjectMOSAIC/ggformula/issues</span></a><span style="color: #0000BB; font-style: italic;">&gt;</span>.</span>
 <span class="r-plt img"><img src="gf_lines-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If we want to map the color of the guidelines, it must work with the</span></span></span>

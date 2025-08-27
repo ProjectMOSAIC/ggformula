@@ -18,7 +18,7 @@ distributions and the resulting density curve is displayed."><meta property="og:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2.9000</span>
       </span>
     </div>
 
@@ -40,6 +40,9 @@ distributions and the resulting density curve is displayed."><meta property="og:
     </li>
     <li>
       <a href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
+    </li>
+    <li>
+      <a href="../articles/interactive-graphics.html">Interactive graphics with {ggformula}</a>
     </li>
     <li>
       <a href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
@@ -273,17 +276,17 @@ in another.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">g</span>, data <span class="op">=</span> <span class="va">Dat</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_fitdistr</span><span class="op">(</span>dist <span class="op">=</span> <span class="st">"dgamma"</span>, linewidth <span class="op">=</span> <span class="fl">1.4</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="gf_fitdistr-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">fitted_density</span> <span class="op">&lt;-</span> <span class="fu">mosaicCore</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/fit_distr_fun.html" class="external-link">fit_distr_fun</a></span><span class="op">(</span><span class="op">~</span><span class="va">g</span>, data <span class="op">=</span> <span class="va">Dat</span>, dist <span class="op">=</span> <span class="st">"dgamma"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">g</span>, data <span class="op">=</span> <span class="va">Dat</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gf_function.html">gf_fun</a></span><span class="op">(</span><span class="fu">fitted_density</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">~</span> <span class="va">x</span>, inherit <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="gf_fitdistr-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="gf_histogram.html">gf_dhistogram</a></span><span class="op">(</span><span class="op">~</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">Dat</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">gf_fitdistr</span><span class="op">(</span>dist <span class="op">=</span> <span class="st">"df"</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>df1 <span class="op">=</span> <span class="fl">2</span>, df2 <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="gf_fitdistr-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># fitted parameters are default argument values</span></span></span>
