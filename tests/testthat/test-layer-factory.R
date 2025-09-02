@@ -1,5 +1,8 @@
 context("layer factory")
 
+skip_if_not_installed("palmerpenguins")
+skip_if_not_installed("mosaic")
+
 mtcars2 <- df_stats(wt ~ cyl, data = mtcars, median_wt = median)
 data(penguins, package = "palmerpenguins")
 penguins2 <-
