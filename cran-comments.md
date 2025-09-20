@@ -1,12 +1,15 @@
 ## Submission notes
 
-This is a relatively minor update to the package. The main issues addressed are
+This release
 
-* updating documentation to new CRAN standards
-* bug fix in GeomLm
-* moving some deprecated functions to defunct (to avoid ggstance, which is no longer supported)
-* adding two new (simple) auxiliary functions: gf_annotate() and gf_guides() which thinly wrap ggplot2::annotate() and ggplot2::guides()
+* addresses issues caused by the update of {ggplot2}
+* adds interactive features based on {ggiraph}, which has also been updated subsequent to {ggplot2}.
 
+I am aware of the use of ::: to access ggiraph:::layer_interactive().  
+I have a request out for that function to be exported by the package.
+I'm hoping that will happen soonish. If it does not, I'll likely just copy
+the function into {ggformula}, but I'd rather not do that if it can be 
+avoided.
 
 ## Test environments
 
@@ -17,4 +20,3 @@ This is a relatively minor update to the package. The main issues addressed are
 
 * WinBuilder
   * `devtools::check_win_devel()`
-  * `devtools::check_win_release()`

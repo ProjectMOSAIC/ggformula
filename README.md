@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggformula
+# ggformula <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 <!-- badges: start -->
 
@@ -62,11 +62,14 @@ penguins |>
     legend.position = 'top',
     text = element_text(colour = "navy", face = "italic")
   )
-#> Warning: Removed 2 rows containing non-finite values (`stat_density2d()`).
-#> Warning: Computation failed in `stat_density2d()`
-#> Caused by error in `if (any(h <= 0)) ...`:
-#> ! missing value where TRUE/FALSE needed
-#> Warning: Removed 2 rows containing missing values (`geom_point()`).
+#> Warning: Removed 2 rows containing non-finite outside the scale range
+#> (`stat_density2d()`).
+#> Warning: Computation failed in `stat_density2d()`.
+#> Caused by error in `precompute_2d_bw()`:
+#> ! The bandwidth argument `h` must contain numbers larger than 0.
+#> ℹ Please set the `h` argument to stricly positive numbers manually.
+#> Warning: Removed 2 rows containing missing values or values outside the scale range
+#> (`geom_point()`).
 ```
 
 ![](README-example-1.png)<!-- -->
