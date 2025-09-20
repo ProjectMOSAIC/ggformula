@@ -4,123 +4,95 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>ggformula: Another Option for Teaching Graphics in R to Beginners • ggformula</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../../favicon.ico">
 <link rel="manifest" href="../../site.webmanifest">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
-<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="ggformula: Another Option for Teaching Graphics in R to Beginners">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../../lightswitch.js"></script><script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../../deps/headroom-0.11.0/headroom.min.js"></script><script src="../../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../../deps/search-1.0.0/fuse.min.js"></script><script src="../../deps/search-1.0.0/mark.min.js"></script><script src="ggformula-blog_files/libs/quarto-html/popper.min.js"></script><script src="ggformula-blog_files/libs/quarto-html/tippy.umd.min.js"></script><link href="ggformula-blog_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ggformula-blog_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggformula: Another Option for Teaching Graphics in R to Beginners">
+<meta property="og:image" content="/logo.png">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">ggformula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.12.2</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../../articles/ggformula.html">Get started</a>
-</li>
-<li>
-  <a href="../../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    <a class="navbar-brand me-2" href="../../index.html">ggformula</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a>
-    </li>
-    <li>
-      <a href="../../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a>
-    </li>
-    <li>
-      <a href="../../articles/pkgdown/learn-more.html">Learn More About ggformula</a>
-    </li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.2.9000</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggformula.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a></li>
+    <li><a class="dropdown-item" href="../../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a></li>
+    <li><a class="dropdown-item" href="../../articles/interactive-graphics.html">Interactive graphics with {ggformula}</a></li>
+    <li><a class="dropdown-item" href="../../articles/pkgdown/learn-more.html">Learn More About ggformula</a></li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Tutorials
-
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../../tutorials/introduction.html">Plotting with Formulas</a>
-    </li>
-    <li>
-      <a href="../../tutorials/refining.html">Refining ggformula Plots</a>
-    </li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-tutorials" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-tutorials">
+<li><a class="dropdown-item" href="../../tutorials/introduction.html">Plotting with Formulas</a></li>
+    <li><a class="dropdown-item" href="../../tutorials/refining.html">Refining ggformula Plots</a></li>
   </ul>
 </li>
-<li>
-  <a href="../../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../../news/index.html">Changelog</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/ProjectMOSAIC/ggformula/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-
-  </a>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ProjectMOSAIC/ggformula/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-quarto">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../../logo.png" class="logo" alt=""><h1>ggformula: Another Option for Teaching Graphics in R to Beginners</h1>
 
+      <p class="author">Randall Pruim</p>
+      <p class="date">2020-07-01</p>
 
-
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>ggformula: Another Option for Teaching Graphics
-in R to Beginners</h1>
-                        <h4 data-toc-skip class="author">Randall
-Pruim</h4>
-            
-            <h4 data-toc-skip class="date">2025-08-01</h4>
-      
-      <small class="dont-index">Source: <a href="https://github.com/ProjectMOSAIC/ggformula/blob/HEAD/vignettes/pkgdown/ggformula-blog.Rmd" class="external-link"><code>vignettes/pkgdown/ggformula-blog.Rmd</code></a></small>
-      <div class="hidden name"><code>ggformula-blog.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/ProjectMOSAIC/ggformula/blob/HEAD/vignettes/pkgdown/ggformula-blog.qmd" class="external-link"><code>vignettes/pkgdown/ggformula-blog.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<style type="text/css">
+
+
+
+
+
+    <style type="text/css">
 span.boxed {
   border:5px solid gray;
   border-radius:10px;
@@ -137,304 +109,351 @@ table, td, th
 border:0px;
 }
 </style>
-<p>David Robinson’s excellent blog entry “Teach the tidyverse to
-beginners” (<a href="http://varianceexplained.org/r/teach-tidyverse" class="external-link uri">http://varianceexplained.org/r/teach-tidyverse</a>) argues
-that a <code>tidyverse</code> approach is the better of two prevalent
-options for teaching beginners:</p>
-<ol style="list-style-type: decimal">
-<li><p>“Base R first”: teach syntax such as <code>$</code> and
-<code>[[ ]]</code>, use built-in functions like <code><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave()</a></code> and
-<code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply()</a></code>, and use base graphics.</p></li>
-<li><p>“Tidyverse first”: start from scratch with pipes
-(<code>|&gt;</code>), leverage <code>dplyr</code> for data
-transformations and summarization, and use <code>ggplot2</code> for
-graphics.</p></li>
+<p>David Robinson’s excellent blog entry “Teach the tidyverse to beginners” (http://varianceexplained.org/r/teach-tidyverse) argues that a <code>tidyverse</code> approach is the better of two prevalent options for teaching beginners:</p>
+<ol type="1">
+<li><p>“Base R first”: teach syntax such as <code>$</code> and <code>[[ ]]</code>, use built-in functions like <code><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave()</a></code> and <code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply()</a></code>, and use base graphics.</p></li>
+<li><p>“Tidyverse first”: start from scratch with pipes (<code>|&gt;</code>), leverage <code>dplyr</code> for data transformations and summarization, and use <code>ggplot2</code> for graphics.</p></li>
 </ol>
-<p>As his title suggests, David prefers the second option and makes a
-strong case for it. Indeed, if those were the only two options, I’d
-probably choose <code>tidyverse</code> as well.</p>
-<div class="section level2">
-<h2 id="a-third-way">A third way<a class="anchor" aria-label="anchor" href="#a-third-way"></a>
+<p>As his title suggests, David prefers the second option and makes a strong case for it. Indeed, if those were the only two options, I’d probably choose <code>tidyverse</code> as well.</p>
+<section class="level2"><h2 id="a-third-way">A third way<a class="anchor" aria-label="anchor" href="#a-third-way"></a>
 </h2>
-<p>But these are not the only options. Nick Horton’s “Options for
-teaching R to beginners: a false dichotomy?”(<a href="http://sas-and-r.blogspot.com/2017/07/options-for-teaching-r-to-beginners.html" class="external-link uri">http://sas-and-r.blogspot.com/2017/07/options-for-teaching-r-to-beginners.html</a>)
-describes a third alternative that also “get[s] students doing powerful
-things quickly”, as David desires. This third way is based on a formula
-interface provided by the combination of</p>
+<p>But these are not the only options. Nick Horton’s “Options for teaching R to beginners: a false dichotomy?”(http://sas-and-r.blogspot.com/2017/07/options-for-teaching-r-to-beginners.html) describes a third alternative that also “get[s] students doing powerful things quickly”, as David desires. This third way is based on a formula interface provided by the combination of</p>
 <ul>
 <li>the <code>lattice</code> package for graphics,</li>
-<li>several functions from the <code>stats</code> package for modeling
-(e.g., <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test()</a></code>), and</li>
-<li>the <code>mosaic</code> package for numerical summaries and for
-smoothing over edge cases and inconsistencies in the other two
-components.</li>
+<li>several functions from the <code>stats</code> package for modeling (e.g., <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test()</a></code>), and</li>
+<li>the <code>mosaic</code> package for numerical summaries and for smoothing over edge cases and inconsistencies in the other two components.</li>
 </ul>
-<p>Important in this approach is the syntactic similarity that the
-following “formula template” brings to all of these operations.</p>
+<p>Important in this approach is the syntactic similarity that the following “formula template” brings to all of these operations.</p>
 <p> </p>
 <center>
 <h2>
-<strong><span class="boxed">goal</span> ( <span class="boxed">y</span> ~
-<span class="boxed">x</span> , data = <span class="boxed">mydata</span>,
-… )</strong>
+<strong><span class="boxed">goal</span> ( <span class="boxed">y</span> ~ <span class="boxed">x</span> , data = <span class="boxed">mydata</span>, … )</strong>
 </h2>
 </center>
 <p> </p>
-<p>Many important data analysis operations can be executed by filling in
-the four boxes with the appropriate information for the desired task.
-This allows students to become fluent quickly with a powerful, coherant
-toolkit for data analysis.</p>
-<p>Nick’s post illustrates this with an investigation of how the price
-of diamonds depends on (among other things) color. The similarity among
-the commands to compute mean price for each of two colors, to create
-side-by-side boxplots, to run a two-sample t test, and to fit a linear
-model are what make this approach so compelling.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<p>Many important data analysis operations can be executed by filling in the four boxes with the appropriate information for the desired task. This allows students to become fluent quickly with a powerful, coherant toolkit for data analysis.</p>
+<p>Nick’s post illustrates this with an investigation of how the price of diamonds depends on (among other things) color. The similarity among the commands to compute mean price for each of two colors, to create side-by-side boxplots, to run a two-sample t test, and to fit a linear model are what make this approach so compelling.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># diamonds2 was called `recoded' in Nick's post</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="va">diamonds2</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"D"</span> <span class="op">|</span> <span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">color</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span>  </span></code></pre></div>
-<pre><code><span><span class="co">## Warning in mean.default(price ~ col, data = diamonds2): argument is not numeric</span></span>
-<span><span class="co">## or logical: returning NA</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bwplot</span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span>  </span>
+<span><span class="co">#&gt; Warning in mean.default(price ~ col, data = diamonds2): argument is not numeric</span></span>
+<span><span class="co">#&gt; or logical: returning NA</span></span>
+<span><span class="fu">bwplot</span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span></code></pre></div>
-<p>This “Less Volume, More Creativity” approach is outlined in more
-detail in a recent <a href="https://journal.r-project.org/archive/2017/RJ-2017-024/" class="external-link"><em>R
-Journal</em> article</a> and has worked well for a growing number of
-instructors in first (and subsequent) courses (see for example Wang et
-al., “Data Viz on Day One: bringing big ideas into intro stats early and
-often” (2017), TISE).</p>
 </div>
-<div class="section level2">
-<h2 id="trouble-in-paradise">Trouble in paradise<a class="anchor" aria-label="anchor" href="#trouble-in-paradise"></a>
+<p>This “Less Volume, More Creativity” approach is outlined in more detail in a recent <a href="https://journal.r-project.org/archive/2017/RJ-2017-024/" class="external-link"><em>R Journal</em> article</a> and has worked well for a growing number of instructors in first (and subsequent) courses (see for example Wang et al., “Data Viz on Day One: bringing big ideas into intro stats early and often” (2017), TISE).</p>
+</section><section class="level2"><h2 id="trouble-in-paradise">Trouble in paradise<a class="anchor" aria-label="anchor" href="#trouble-in-paradise"></a>
 </h2>
-<p>But as Nick hinted in his blog post, the use of <code>lattice</code>
-has some drawbacks. While basic graphs like histograms, boxplots,
-scatterplots, and quantile-quantile plots are simple to make with
-<code>lattice</code>, it is challenging to combine these simple plots
-into more complex plots or to plot data from multiple data sources.
-Splitting data into subgroups and either overlaying with multiple colors
-or separating into sub-plots (facets) is easy, but the labeling of such
-plots is not as convenient (and takes more space) that the equivalent
-plots made with <code>ggplot2</code>. And in our experience, students
-generally find the look of <code>ggplot2</code> graphics more
-appealing.</p>
-<p>On the other hand, introducing <code>ggplot2</code> into a first
-course is challenging. The syntax is more verbose, so it takes up more
-of the limited space on projected images and course handouts. More
-importantly, the syntax is entirely unrelated to the syntax used for
-other aspects of the course. For those adopting a “Less Volume, More
-Creativity” approach, <code>ggplot2</code> is tough to justify.</p>
+<p>But as Nick hinted in his blog post, the use of <code>lattice</code> has some drawbacks. While basic graphs like histograms, boxplots, scatterplots, and quantile-quantile plots are simple to make with <code>lattice</code>, it is challenging to combine these simple plots into more complex plots or to plot data from multiple data sources. Splitting data into subgroups and either overlaying with multiple colors or separating into sub-plots (facets) is easy, but the labeling of such plots is not as convenient (and takes more space) that the equivalent plots made with <code>ggplot2</code>. And in our experience, students generally find the look of <code>ggplot2</code> graphics more appealing.</p>
+<p>On the other hand, introducing <code>ggplot2</code> into a first course is challenging. The syntax is more verbose, so it takes up more of the limited space on projected images and course handouts. More importantly, the syntax is entirely unrelated to the syntax used for other aspects of the course. For those adopting a “Less Volume, More Creativity” approach, <code>ggplot2</code> is tough to justify.</p>
+</section><section class="level2"><h2 id="ggformula-the-third-and-a-half-way">ggformula: The third-and-a half way<a class="anchor" aria-label="anchor" href="#ggformula-the-third-and-a-half-way"></a>
+</h2>
+<p>Danny Kaplan and I recently introduced <code>ggformula</code>, a package that provides a formula interface to <code>ggplot2</code> graphics. Our hope is that this provides the best aspects of <code>lattice</code> (the formula interface and lighter syntax) and <code>ggplot2</code> (modularity, layering, and better visual aesthetics).</p>
+<p>For simple plots, the only thing that changes is the name of the plotting function. Each of these functions begins with <code>gf</code>. Here are two examples, either of which could replace the side-by-side boxplots made with <code>lattice</code> in Nick’s post.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-1.png" width="288"></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="ggformula-the-third-and-a-half-way">ggformula: The third-and-a half way<a class="anchor" aria-label="anchor" href="#ggformula-the-third-and-a-half-way"></a>
-</h2>
-<p>Danny Kaplan and I recently introduced <code>ggformula</code>, a
-package that provides a formula interface to <code>ggplot2</code>
-graphics. Our hope is that this provides the best aspects of
-<code>lattice</code> (the formula interface and lighter syntax) and
-<code>ggplot2</code> (modularity, layering, and better visual
-aesthetics).</p>
-<p>For simple plots, the only thing that changes is the name of the
-plotting function. Each of these functions begins with <code>gf</code>.
-Here are two examples, either of which could replace the side-by-side
-boxplots made with <code>lattice</code> in Nick’s post.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-1.png" width="288"><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-2.png" width="288"></p>
-<p>If we like, we can even overlay these two types of plots to see how
-they compare. To do so, we simply place the then operator
-(<code>|&gt;</code>, also called a pipe) between the two layers and
-adjust the transparency so we can see both where they overlap.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="st">"navy"</span>, col <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-3-1.png" width="288"></p>
 </div>
-<div class="section level2">
-<h2 id="setting-and-mapping-attributes-of-a-plot">Setting and mapping attributes of a plot<a class="anchor" aria-label="anchor" href="#setting-and-mapping-attributes-of-a-plot"></a>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-2-2.png" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If we like, we can even overlay these two types of plots to see how they compare. To do so, we simply place the then operator (<code>|&gt;</code>, also called a pipe) between the two layers and adjust the transparency so we can see both where they overlap.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="fu"><a href="../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="st">"navy"</span>, col <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-3-1.png" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h2 id="setting-and-mapping-attributes-of-a-plot">Setting and mapping attributes of a plot<a class="anchor" aria-label="anchor" href="#setting-and-mapping-attributes-of-a-plot"></a>
 </h2>
-<p>In the example above, we set certain attributes (fill, color,
-opacity) to constants (<code>"navy"</code>, <code>NA</code>,
-<code>0.3</code>). Often we want the values of these attributes to be
-determined by the data, this is called mapping rather than setting and
-is indicated by an additional <code>~</code>. One can read
-<code>fill = "navy"</code> as “fill is (or equals) navy” and
-<code>fill = ~ col</code> as “fill <em>is determined by</em>
-<code>col</code>. (Which colors get used for which values is controled
-by the fill scale for the plot, and this scale can be modified by the
-user who doesn’t like the default scale choice.)</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-4-1.png" width="288"></p>
-<p>A more interesting use of mapping colors occurs when elements of each
-color overlap. For example, a scatterplot with overlaid regression fits
-shows that although the price of J diamonds tends to be higher overall,
-after taking into consideration the number of carats, the D color
-diamonds tend to sell for more than the J color diamonds. (It also shows
-that the simple linear fit is poor for the largest diamonds.)</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>In the example above, we set certain attributes (fill, color, opacity) to constants (<code>"navy"</code>, <code>NA</code>, <code>0.3</code>). Often we want the values of these attributes to be determined by the data, this is called mapping rather than setting and is indicated by an additional <code>~</code>. One can read <code>fill = "navy"</code> as “fill is (or equals) navy” and <code>fill = ~ col</code> as “fill <em>is determined by</em> <code>col</code>. (Which colors get used for which values is controled by the fill scale for the plot, and this scale can be modified by the user who doesn’t like the default scale choice.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_boxplot.html">gf_boxplot</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-4-1.png" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A more interesting use of mapping colors occurs when elements of each color overlap. For example, a scatterplot with overlaid regression fits shows that although the price of J diamonds tends to be higher overall, after taking into consideration the number of carats, the D color diamonds tend to sell for more than the J color diamonds. (It also shows that the simple linear fit is poor for the largest diamonds.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">xyplot</span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, groups <span class="op">=</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>,</span>
 <span>       auto.key <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"r"</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>   <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-1.png" width="288"><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-2.png" width="288"></p>
-<p>In <code>lattice</code>, this requires us to manually turn on a
-legend with <code>auto.key = TRUE</code> and to introduce the
-<code>type</code> argument and the <code><a href="https://rdrr.io/r/base/c.html" class="external-link">c()</a></code> function to get both
-layers. In <code>ggplot2</code>, we simply put one layer over the other
-(so no new syntax to learn). The (improved) legend is generated
-automatically, and the portion of the plot devoted to the data is
-substantially larger than for the <code>lattice</code> plot. So the
-<code>ggformula</code> plot is both technically better and syntactically
-simpler than its <code>lattice</code> counterpart.</p>
+<span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>   <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-1.png" width="288"></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="getting-a-little-help">Getting a little help<a class="anchor" aria-label="anchor" href="#getting-a-little-help"></a>
+</div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-5-2.png" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In <code>lattice</code>, this requires us to manually turn on a legend with <code>auto.key = TRUE</code> and to introduce the <code>type</code> argument and the <code><a href="https://rdrr.io/r/base/c.html" class="external-link">c()</a></code> function to get both layers. In <code>ggplot2</code>, we simply put one layer over the other (so no new syntax to learn). The (improved) legend is generated automatically, and the portion of the plot devoted to the data is substantially larger than for the <code>lattice</code> plot. So the <code>ggformula</code> plot is both technically better and syntactically simpler than its <code>lattice</code> counterpart.</p>
+</section><section class="level2"><h2 id="getting-a-little-help">Getting a little help<a class="anchor" aria-label="anchor" href="#getting-a-little-help"></a>
 </h2>
-<p>Everyone forgets some details from time to time. The
-<code>ggformula</code> functions provide a mechanism for obtaining a bit
-of help without going to the full help page for the function: simply
-execute the function with no arguments.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## gf_violin() uses </span></span>
-<span><span class="co">##     * a formula with shape y ~ x. </span></span>
-<span><span class="co">##     * geom:  violin </span></span>
-<span><span class="co">##     * stat:  ydensity </span></span>
-<span><span class="co">##     * position:  dodge </span></span>
-<span><span class="co">##     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,</span></span>
-<span><span class="co">##                    draw_quantiles = NULL, trim = TRUE,</span></span>
-<span><span class="co">##                    scale = "area", bw, adjust = 1, kernel =</span></span>
-<span><span class="co">##                    "gaussian"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## For more information, try ?gf_violin</span></span></code></pre>
-<p>This terse help describes how the formula is used. (For those already
-familiar with <code>ggplot2</code>, the formula shape shows how the
-formula is converted into <code>ggplot2</code> aesthetics.) Also listed
-are the geom (type of mark drawn), any non-identity stats and positions,
-and the main attributes that can be mapped or set to refine the plot.
-Just this much help lets us quickly (a) thinken the lines, (b) make the
-violins less (or more) smooth, (c) add lines at the quartiles of the
-data, and scale the area of the violins according the number of
-observations represented.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>,</span>
+<p>Everyone forgets some details from time to time. The <code>ggformula</code> functions provide a mechanism for obtaining a bit of help without going to the full help page for the function: simply execute the function with no arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; gf_violin() uses </span></span>
+<span><span class="co">#&gt;     * a formula with shape y ~ x. </span></span>
+<span><span class="co">#&gt;     * geom:  violin </span></span>
+<span><span class="co">#&gt;     * stat:  ydensity </span></span>
+<span><span class="co">#&gt;     * position:  dodge </span></span>
+<span><span class="co">#&gt;     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,</span></span>
+<span><span class="co">#&gt;                    draw_quantiles = NULL, trim = TRUE,</span></span>
+<span><span class="co">#&gt;                    scale = "area", bw, adjust = 1, kernel =</span></span>
+<span><span class="co">#&gt;                    "gaussian"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; For more information, try ?gf_violin</span></span></code></pre></div>
+</div>
+<p>This terse help describes how the formula is used. (For those already familiar with <code>ggplot2</code>, the formula shape shows how the formula is converted into <code>ggplot2</code> aesthetics.) Also listed are the geom (type of mark drawn), any non-identity stats and positions, and the main attributes that can be mapped or set to refine the plot. Just this much help lets us quickly (a) thinken the lines, (b) make the violins less (or more) smooth, (c) add lines at the quartiles of the data, and scale the area of the violins according the number of observations represented.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_violin.html">gf_violin</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>,</span>
 <span>          color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, fill <span class="op">=</span> <span class="op">~</span><span class="va">col</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>          scale <span class="op">=</span> <span class="st">"count"</span>,</span>
 <span>          draw_quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.8</span>,</span>
-<span>          adjust <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
+<span>          adjust <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
+<span><span class="co">#&gt; ℹ The deprecated feature was likely used in the base package.</span></span>
+<span><span class="co">#&gt;   Please report the issue to the authors.</span></span>
+<span><span class="co">#&gt; Warning: The `draw_quantiles` argument of `stat_ydensity()` is deprecated as of ggplot2</span></span>
+<span><span class="co">#&gt; 4.0.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use the `quantiles` argument instead.</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="facets">Facets<a class="anchor" aria-label="anchor" href="#facets"></a>
+</div>
+</div>
+</section><section class="level2"><h2 id="facets">Facets<a class="anchor" aria-label="anchor" href="#facets"></a>
 </h2>
-<p>Sometimes it is preferable to create multiple plot arranged in a grid
-rather than to overlay subgroups in the same space.
-<code>ggformula</code> provides two ways to create these facets. The
-first uses <code>|</code> very much like <code>lattice</code> does.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span> <span class="op">~</span> <span class="va">clarity</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-1.png" width="672"><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
-<p>Notice that the <code><a href="../../reference/gf_smooth.html">gf_lm()</a></code> layer inherits information from
-the the <code>gf_points()</code> layer in these plots, saving some
-typing when the information is the same in multiple layers.</p>
-<p>The second way to adds facets with <code><a href="../../reference/gf_facet_grid.html">gf_facet_wrap()</a></code> or
-<code><a href="../../reference/gf_facet_grid.html">gf_facet_grid()</a></code>. The commands below create the same plots
-as those above.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span></span>
+<p>Sometimes it is preferable to create multiple plot arranged in a grid rather than to overlay subgroups in the same space. <code>ggformula</code> provides two ways to create these facets. The first uses <code>|</code> very much like <code>lattice</code> does.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">|</span> <span class="va">col</span> <span class="op">~</span> <span class="va">clarity</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that the <code><a href="../reference/gf_smooth.html">gf_lm()</a></code> layer inherits information from the the <code>gf_points()</code> layer in these plots, saving some typing when the information is the same in multiple layers.</p>
+<p>The second way to adds facets with <code><a href="../reference/gf_facet_grid.html">gf_facet_wrap()</a></code> or <code><a href="../reference/gf_facet_grid.html">gf_facet_grid()</a></code>. The commands below create the same plots as those above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_grid</a></span><span class="op">(</span> <span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_facet_grid.html">gf_facet_grid</a></span><span class="op">(</span> <span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="refinements">Refinements<a class="anchor" aria-label="anchor" href="#refinements"></a>
+</section><section class="level2"><h2 id="refinements">Refinements<a class="anchor" aria-label="anchor" href="#refinements"></a>
 </h2>
-<p>The full power to modify plot limits, titles, scales, theme elements,
-etc. is inherited by <code>ggformula</code> from <code>ggplot2</code>.
-For the most common of these we offer the functions
-<code><a href="../../reference/gf_aux.html">gf_lims()</a></code>, <code><a href="../../reference/gf_aux.html">gf_labs()</a></code>, and
-<code><a href="../../reference/gf_theme.html">gf_theme()</a></code>.<br>
-For the rest, we offer <code><a href="../../reference/gf_aux.html">gf_refine()</a></code> which allows us to make
-any <code>ggplot2</code> refinements without resorting to the
-<code>+</code> syntax used by <code>ggformula</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, </span>
+<p>The full power to modify plot limits, titles, scales, theme elements, etc. is inherited by <code>ggformula</code> from <code>ggplot2</code>. For the most common of these we offer the functions <code><a href="../reference/gf_aux.html">gf_lims()</a></code>, <code><a href="../reference/gf_aux.html">gf_labs()</a></code>, and <code><a href="../reference/gf_theme.html">gf_theme()</a></code>.<br>
+For the rest, we offer <code><a href="../reference/gf_aux.html">gf_refine()</a></code> which allows us to make any <code>ggplot2</code> refinements without resorting to the <code>+</code> syntax used by <code>ggformula</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gf_point.html">gf_point</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds2</span>, </span>
 <span>         color <span class="op">=</span> <span class="op">~</span> <span class="va">col</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_aux.html">gf_labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Price vs Size"</span>, subtitle <span class="op">=</span> <span class="st">"(2 colors of diamonds)"</span>,</span>
+<span>  <span class="fu"><a href="../reference/gf_smooth.html">gf_lm</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_facet_grid.html">gf_facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_aux.html">gf_labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Price vs Size"</span>, subtitle <span class="op">=</span> <span class="st">"(2 colors of diamonds)"</span>,</span>
 <span>          caption <span class="op">=</span> <span class="st">"source: ggplot2::diamonds"</span>,</span>
 <span>          x <span class="op">=</span> <span class="st">"size (carat)"</span>, y <span class="op">=</span> <span class="st">"price (US dollars)"</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"navy"</span><span class="op">)</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
-<p>Although this example uses a lot of customization, it is completely
-modular. Any line of the customization can be omitted, or additional
-features can be customized one line at a time.</p>
+<span>  <span class="fu"><a href="../reference/gf_aux.html">gf_refine</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"navy"</span><span class="op">)</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/gf_theme.html">gf_theme</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="fitting-into-the-tidyverse-work-flow">Fitting into the tidyverse work flow<a class="anchor" aria-label="anchor" href="#fitting-into-the-tidyverse-work-flow"></a>
+</div>
+</div>
+<p>Although this example uses a lot of customization, it is completely modular. Any line of the customization can be omitted, or additional features can be customized one line at a time.</p>
+</section><section class="level2"><h2 id="fitting-into-the-tidyverse-work-flow">Fitting into the tidyverse work flow<a class="anchor" aria-label="anchor" href="#fitting-into-the-tidyverse-work-flow"></a>
 </h2>
-<p><code>ggformala</code> also fits into a tidyverse-style workflow
-(arguably better than <code>ggplot2</code> itself does). Data can be
-piped into the initial call to a <code>ggformula</code> function and
-there is no need to switch between <code>|&gt;</code> and <code>+</code>
-when moving from data transformations to plot operations.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p><code>ggformala</code> also fits into a tidyverse-style workflow (arguably better than <code>ggplot2</code> itself does). Data can be piped into the initial call to a <code>ggformula</code> function and there is no need to switch between <code>|&gt;</code> and <code>+</code> when moving from data transformations to plot operations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"G"</span>, <span class="st">"J"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/gf_bar.html">gf_bar</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggformula-blog_files/figure-html/unnamed-chunk-11-1.png" width="288"></p>
+<span>  <span class="fu"><a href="../reference/gf_bar.html">gf_bar</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-11-1.png" width="288"></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</div>
+</div>
+</section><section class="level2"><h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
-<p>The “Less Volume, More Creativity” approach based on a common formula
-template has served well for several years, but the arrival of
-<code>ggformula</code> strengthens this approach by bringing a richer
-graphical system into reach for beginners without introducing new
-syntactical structures.</p>
+<p>The “Less Volume, More Creativity” approach based on a common formula template has served well for several years, but the arrival of <code>ggformula</code> strengthens this approach by bringing a richer graphical system into reach for beginners without introducing new syntactical structures.</p>
+</section><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'light-border',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config);
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
-  </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
-
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Daniel Kaplan, Randall Pruim.</p>
 </div>
 
-
-
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Daniel Kaplan, Randall Pruim.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+    </footer>
 </div>
-
-      </footer>
-</div>
-
 
 
 

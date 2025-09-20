@@ -210,5 +210,5 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 box plots. The American Statistician 32, 12-16.
 }
 \seealso{
-\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}, \code{\link[=fivenum]{fivenum()}}, \code{\link[=df_stats]{df_stats()}}
+\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}, \code{\link[mosaic:aggregating]{mosaic::fivenum()}}, \code{\link[=df_stats]{df_stats()}}
 }

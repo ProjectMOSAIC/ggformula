@@ -50,8 +50,8 @@ Creates an interactive plot using ggiraph. This function extends
 mtcars |>
   gf_boxplot_interactive(
     mpg ~ factor(cyl),
-    tooltip = ~ paste("Cylinders:", cyl),
-    orientation = "x") |>
+    tooltip = ~ paste("Cylinders:", cyl)
+  ) |> 
   gf_girafe()
 
 }

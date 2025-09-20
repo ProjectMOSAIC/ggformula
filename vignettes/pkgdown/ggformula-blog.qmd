@@ -1,12 +1,22 @@
 ---
 title: "ggformula: Another Option for Teaching Graphics in R to Beginners"
 author: "Randall Pruim"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+date: "July 2020"
+format: html
+engine: knitr
+toc: true
 vignette: >
   %\VignetteIndexEntry{ggformula: Another Option for Teaching Graphics in R to Beginners}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+execute:
+  engine: knitr
+  eval: true
+  echo: true
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
 ---
 
 <style type="text/css">

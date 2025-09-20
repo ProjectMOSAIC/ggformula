@@ -6,3 +6,8 @@ tutorials:
 - name: refining
   title: Refining ggformula Plots
   url: https://rsconnect.calvin.edu/ggformula/refining/
+template:
+  bootstrap: 5
+  light-switch: true
+  theme: github-light
+  theme-dark: github-dark

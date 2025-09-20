@@ -1,12 +1,21 @@
 ---
 title: "Learn More About ggformula"
 author: "R Pruim"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+date: "July 2020"
+engine: knitr
+toc: true
 vignette: >
-  %\VignetteIndexEntry{Learn More About ggformula}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Interactive graphics with {ggformula}}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+execute:
+  engine: knitr
+  eval: true
+  echo: true
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
 ---
 
 ```{r setup, include = FALSE}

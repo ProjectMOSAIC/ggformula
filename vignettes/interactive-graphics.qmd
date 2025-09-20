@@ -37,7 +37,7 @@ library(patchwork)
 
 ## Interactive geoms
 
-The {ggiraph} package provides a number of interactive geoms.  {ggformuala}
+The {ggiraph} package provides a number of interactive geoms.  {ggformula}
 makes these available via `gf_*_interactive()` functions.
 Interactive geoms provide several types of interaction.
 
