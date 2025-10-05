@@ -38,6 +38,7 @@
 #' @export
 
 gf_girafe <- function(ggobj, code, ...) {
+
   if (missing(code)) {
     return(ggiraph::girafe(ggobj = ggobj, ...))
   }
@@ -212,3 +213,201 @@ gf_labeller_interactive <- function(..., .mapping) {
 
   ggiraph::labeller_interactive(.mapping = .mapping, !!!qdots)
 }
+
+###############################################################################
+##
+## modified version of function in ggiraph, branching based on whether position
+## is specified.
+
+layer_interactive <- function(
+    layer_func, stat = NULL, position = NULL, ...,
+    interactive_geom = NULL, extra_interactive_params = NULL) {
+
+  dots <- list(...)
+  if (is.null(position)) {
+    ggiraph_layer_interactive(
+      layer_func, stat = stat, ...,
+      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
+    )
+  } else {
+    ggiraph_layer_interactive(
+      layer_func, stat = stat, position = position, ...,
+      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
+    )
+  }
+}
+
+
+##########################################################################
+## Functions copied from ggiraph because they are not (yet) exported there.
+
+ggiraph_layer_interactive <-
+  function (layer_func, ..., interactive_geom = NULL, extra_interactive_params = NULL)
+  {
+    args <- rlang::list2(...)
+    interactive_mapping <- NULL
+    interactive_params <- NULL
+    index <- purrr::detect_index(args, function(x) {
+      inherits(x, "uneval")
+    })
+    ipar <- ggiraph_get_default_ipar(extra_interactive_params)
+    if (index > 0 && ggiraph_has_interactive_attrs(args[[index]], ipar = ipar)) {
+      interactive_mapping <- ggiraph_get_interactive_attrs(args[[index]],
+                                                           ipar = ipar)
+      args[[index]] <- ggiraph_remove_interactive_attrs(args[[index]],
+                                                        ipar = ipar)
+    }
+    if (ggiraph_has_interactive_attrs(args, ipar = ipar)) {
+      interactive_params <- ggiraph_get_interactive_attrs(args, ipar = ipar)
+      args <- ggiraph_remove_interactive_attrs(args, ipar = ipar)
+    }
+    result <- do.call(layer_func, args)
+    layer_ <- NULL
+    if (is.list(result)) {
+      index <- purrr::detect_index(result, function(x) {
+        inherits(x, "LayerInstance")
+      })
+      if (index > 0) {
+        layer_ <- result[[index]]
+      }
+    }
+    else if (inherits(result, "LayerInstance")) {
+      layer_ <- result
+    }
+    if (!is.null(layer_)) {
+      if (is.null(interactive_geom)) {
+        interactive_geom <- ggiraph_find_interactive_class(layer_$geom)
+      }
+      layer_$geom <- interactive_geom
+      if (!is.null(interactive_mapping)) {
+        layer_$mapping <- ggiraph_append_aes(layer_$mapping, interactive_mapping)
+      }
+      if (!is.null(interactive_params)) {
+        layer_$aes_params <- append(layer_$aes_params, interactive_params)
+      }
+      layer_$geom_params <- append(layer_$geom_params, list(.ipar = ipar))
+      default_aes_names <- names(layer_$geom$default_aes)
+      missing_names <- setdiff(ipar, default_aes_names)
+      if (length(missing_names) > 0) {
+        defaults <- Map(missing_names, f = function(x) NULL)
+        layer_$geom$default_aes <- ggiraph_append_aes(layer_$geom$default_aes,
+                                                      defaults)
+      }
+      if (is.list(result)) {
+        result[[index]] <- layer_
+      }
+      else {
+        result <- layer_
+      }
+    }
+    result
+  }
+
+ggiraph_get_ineteractive_attrs <-
+  function (x = rlang::caller_env(), ipar = ggiraph_IPAR_NAMES)
+  {
+    if (is.environment(x)) {
+      rlang::env_get_list(env = x, ipar, NULL)
+    }
+    else {
+      if (!is.null(attr(x, "interactive"))) {
+        x <- attr(x, "interactive")
+      }
+      x[ggiraph_get_interactive_attr_names(x, ipar = ipar)]
+    }
+  }
+
+ggiraph_get_default_ipar <-
+  function (extra_names = NULL)
+  {
+    if (is.character(extra_names) && length(extra_names) > 0) {
+      extra_names <- Filter(x = extra_names, function(x) {
+        !is.na(x) && nzchar(trimws(x))
+      })
+    }
+    unique(c(ggiraph_IPAR_NAMES, extra_names))
+  }
+
+ggiraph_get_interactive_attrs <-
+  function (x = rlang::caller_env(), ipar = ggiraph_IPAR_NAMES)
+  {
+    if (is.environment(x)) {
+      rlang::env_get_list(env = x, ipar, NULL)
+    }
+    else {
+      if (!is.null(attr(x, "interactive"))) {
+        x <- attr(x, "interactive")
+      }
+      x[ggiraph_get_interactive_attr_names(x, ipar = ipar)]
+    }
+  }
+
+ggiraph_get_interactive_attr_names <-
+  function (x, ipar = ggiraph_IPAR_NAMES)
+  {
+    intersect(names(x), ipar)
+  }
+
+ggiraph_remove_interactive_attrs <-
+  function (x, ipar = ggiraph_IPAR_NAMES)
+  {
+    for (a in ipar) {
+      x[[a]] <- NULL
+    }
+    x
+  }
+
+ggiraph_find_interactive_class <-
+  function (gg, baseclass = c("Geom", "Guide"), env = parent.frame())
+  {
+    baseclass <- rlang::arg_match(baseclass)
+    if (inherits(gg, baseclass)) {
+      name <- class(gg)[1]
+    }
+    else if (is.character(gg) && length(gg) == 1) {
+      name <- gg
+      if (name == "histogram") {
+        name <- "bar"
+      }
+    }
+    else {
+      rlang::abort(paste0("`gg` must be either a string or a ", baseclass,
+                          "* object, not ", obj_desc(gg)), call = NULL)
+    }
+    if (!startsWith(name, baseclass)) {
+      name <- paste0(baseclass, camelize(name, first = TRUE))
+    }
+    baseinteractive <- paste0(baseclass, "Interactive")
+    if (!startsWith(name, baseinteractive)) {
+      name <- sub(baseclass, baseinteractive, name)
+    }
+    obj <- find_global(name, env = env)
+    if (is.null(obj) || !inherits(obj, baseclass)) {
+      rlang::abort(paste0("Can't find interactive ", baseclass, " function based on ",
+                          as_label(gg)), call = NULL)
+    }
+    else {
+      obj
+    }
+  }
+
+ggiraph_has_interactive_attrs <-
+  function (x, ipar = ggiraph_IPAR_NAMES)
+  {
+    length(intersect(names(x), ipar)) > 0
+  }
+
+ggiraph_append_aes <-
+  function (mapping, lst)
+  {
+    mapping[names(lst)] <- lst
+    mapping
+  }
+
+ggiraph_IPAR_NAMES <-
+  c(
+    "data_id", "tooltip", "onclick", "hover_css", "selected_css",
+    "tooltip_fill", "hover_nearest")
+
+
+###############################################################################

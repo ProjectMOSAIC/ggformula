@@ -14,23 +14,6 @@ utils::globalVariables("role")
 #'
 NA
 
-layer_interactive <- function(
-    layer_func, stat = NULL, position = NULL, ...,
-    interactive_geom = NULL, extra_interactive_params = NULL) {
-
-  dots <- list(...)
-  if (is.null(position)) {
-    ggiraph:::layer_interactive(
-      layer_func, stat = stat, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  } else {
-    ggiraph:::layer_interactive(
-      layer_func, stat = stat, position = position, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  }
-}
 
 #' Create a ggformula layer function
 #'
@@ -122,7 +105,7 @@ layer_factory <-
         environment = parent.frame(),
         ...
       ) {
-        # pre will be placed in the function environment so it is available here
+        # pre and will be placed in the function environment so available here
         eval(pre)
 
         # evaluate quosures
