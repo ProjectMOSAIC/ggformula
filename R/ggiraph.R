@@ -47,55 +47,6 @@ gf_girafe <- function(ggobj, code, ...) {
   }
   ggiraph::girafe(code = code, ggobj = ggobj, ...)
 }
-
-#' Create an interactive ggformula layer function
-#'
-#' Primarily intended for package developers, this function factory
-#' is used to create layer functions in the ggformula package.
-#'
-#' @param geom_fun A character string naming an interactive geom (example: "geom_point_interactive")
-#'
-interactive_layer_factory <- function(geom_fun) {
-  stopifnot(is.character(geom_fun))
-  geom_noninteractive <- gsub("_interactive", "", geom_fun, fixed = TRUE)
-  gf_noninteractive <- gsub("geom_", "gf_", geom_noninteractive, fixed = TRUE)
-  gfenv <- tryCatch(
-    environment(get(gf_noninteractive)),
-    error = function(e) NULL
-  )
-  if (is.null(gfenv)) {
-    return(NULL)
-  }
-
-  aes_form_from_env <- rlang::env_get(gfenv, "aes_form", default = NULL)
-  extras_from_env <- rlang::env_get(gfenv, "extras", default = alist())
-  geom_from_env <- rlang::env_get(gfenv, "geom", default = "point")
-  stat_from_env <- rlang::env_get(gfenv, "stat", default = "identity")
-  position_from_env <- rlang::env_get(gfenv, "position", default = "identity")
-  inherit_from_env <- rlang::env_get(gfenv, "inherit.aes", default = TRUE)
-  aesthetics_from_env <- rlang::env_get(gfenv, "aesthetics", default = aes())
-  check_aes_from_env <- rlang::env_get(gfenv, "check.aes", default = TRUE)
-
-  do.call(
-    layer_factory,
-    list(
-      geom = geom_from_env,
-      position = position_from_env,
-      stat = stat_from_env,
-      interactive = TRUE,
-      layer_func_interactive = geom_fun,
-      # pre,
-      aes_form = aes_form_from_env,
-      extras = extras_from_env,
-      # note,
-      aesthetics = aesthetics_from_env,
-      inherit.aes = inherit_from_env,
-      check.aes = check_aes_from_env,
-      layer_fun = layer_interactive
-    )
-  )
-}
-
 geoms <- apropos('geom_.*_interactive')
 
 # geoms <- c('geom_contour_filled_interactive')
@@ -212,29 +163,6 @@ gf_labeller_interactive <- function(..., .mapping) {
   }
 
   ggiraph::labeller_interactive(.mapping = .mapping, !!!qdots)
-}
-
-###############################################################################
-##
-## modified version of function in ggiraph, branching based on whether position
-## is specified.
-
-layer_interactive <- function(
-    layer_func, stat = NULL, position = NULL, ...,
-    interactive_geom = NULL, extra_interactive_params = NULL) {
-
-  dots <- list(...)
-  if (is.null(position)) {
-    ggiraph_layer_interactive(
-      layer_func, stat = stat, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  } else {
-    ggiraph_layer_interactive(
-      layer_func, stat = stat, position = position, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  }
 }
 
 

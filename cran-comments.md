@@ -5,6 +5,8 @@ This release
 * addresses issues caused by the update of {ggplot2}
 * adds interactive features based on {ggiraph}, which has also been updated subsequent to {ggplot2}.
 
+I'll check on mosaic and fastR2 once this package is resolved.
+
 ## Test environments
 
 * local
