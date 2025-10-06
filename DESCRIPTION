@@ -2,7 +2,7 @@ Package: ggformula
 Title: Formula Interface to the Grammar of Graphics
 Description: Provides a formula interface to 'ggplot2' graphics.
 Type: Package
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: c(
     person("Daniel", "Kaplan", email = "kaplan@macalester.edu", role = c("aut")),
     person("Randall", "Pruim", email = "rpruim@calvin.edu", role = c("aut","cre"))

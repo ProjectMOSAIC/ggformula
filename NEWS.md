@@ -1,3 +1,5 @@
+# ggformula (development version)
+
 # ggformula 1.0.0
 
 * Added support for interactive graphics based on {ggiraph}.
