@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggformula</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="ggformula">ggformula<a class="anchor" aria-label="anchor" href="#ggformula"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="ggformula-">ggformula <a class="anchor" aria-label="anchor" href="#ggformula-"></a>
 </h1>
 </div>
 <!-- badges: start -->
@@ -111,6 +111,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/ggformula" class="external-link">ggformula</a></span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">penguins</span>, package <span class="op">=</span> <span class="st">"palmerpenguins"</span><span class="op">)</span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># to avoid erros with default bandwidth calculation in stat_density_2d</span></span>
 <span>  <span class="fu"><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span>
 <span>    bill_length_mm <span class="op">=</span> <span class="st">"bill length (mm)"</span>,</span>
 <span>    bill_depth_mm <span class="op">=</span> <span class="st">"bill depth (mm)"</span></span>
@@ -126,12 +127,7 @@
 <span>  <span class="fu"><a href="reference/gf_theme.html">gf_theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">'top'</span>,</span>
 <span>    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"navy"</span>, face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing non-finite values (`stat_density2d()`).</span></span>
-<span><span class="co">#&gt; Warning: Computation failed in `stat_density2d()`</span></span>
-<span><span class="co">#&gt; Caused by error in `if (any(h &lt;= 0)) ...`:</span></span>
-<span><span class="co">#&gt; ! missing value where TRUE/FALSE needed</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="README-example-1.png"><!-- --></p>
 <div class="section level3">
 <h3 id="more-information">More Information<a class="anchor" aria-label="anchor" href="#more-information"></a>

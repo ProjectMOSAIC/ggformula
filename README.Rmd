@@ -55,6 +55,7 @@ The following example illustrates a typical plot constructed with ggformula.
 suppressPackageStartupMessages(library(ggformula))
 data(penguins, package = "palmerpenguins")
 penguins |> 
+  tidyr::drop_na() |> # to avoid erros with default bandwidth calculation in stat_density_2d
   set_variable_labels(
     bill_length_mm = "bill length (mm)",
     bill_depth_mm = "bill depth (mm)"
