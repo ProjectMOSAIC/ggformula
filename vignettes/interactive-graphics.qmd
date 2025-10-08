@@ -89,7 +89,7 @@ cars_scatter <-
     size = 3
   )
 
-# to display the graph with interactive compontents enabled, use
+# to display the graph with interactive components enabled, use
 # gf_girafe() to convert it to an HTML widget.
 
 gf_girafe(cars_scatter)
@@ -186,13 +186,13 @@ computed by scales in a third stage of data transformation.
 :::{.callout-warning}
 Note that in the previous graphic, the count displayed when hovering is 
 the count for a single segment, not for all of the segments that change color.
-The latter is determined by `data_id`, which `after_stat(count)` does not know about. If this is not desireable, we will need to refine either
+The latter is determined by `data_id`, which `after_stat(count)` does not know about. If this is not desirable, we will need to refine either
 `tooltip` or `data_id` to make them match.  See @sec-finer-control.
 :::
 
 ### Finer control {#sec-finer-control}
 
-There are several ways to get finer control over what is highlited and 
+There are several ways to get finer control over what is highlighted and 
 what information appears in the tooltip when we hover.
 
 #### Method 1: Summarising before plotting
@@ -237,7 +237,7 @@ diamonds |>
 
 Alternatively, we might prefer to let `gf_bar_interactive()` take care 
 of the data summarising for us, but still have finer control over the 
-highliting and tooltip text.
+highlighting and tooltip text.
 
 ```{r}
 #| label: diamonds-bargraph2
@@ -349,7 +349,7 @@ diamonds_bargraph_4 <-
 :::{.callout-warning}
 Now that we have added facets, we again have the situation 
 where the counts displayed are for an individual bar segment, even 
-though segments in other facets are also being highlited.
+though segments in other facets are also being highlighted.
 This is because faceting further partitions the data before the 
 stat is applied.  This is required so that each facet knows the 
 size of the bar segments to display.
@@ -365,7 +365,7 @@ diamonds_bargraph_4 |> layer_data() |> slice_sample(n=4)
 
 ## Interactive themes
 
-{ggiraph} provides 3 intereactive elements for use in interactive themes:
+{ggiraph} provides 3 interactive elements for use in interactive themes:
 
 * `element_text_interactive()`
 * `element_rect_interactive()` 
@@ -502,7 +502,7 @@ The style of many interactive elements is determined by a character
 string containing CSS styling.
 Each CSS declaration includes a property name and an associated value.
 Property names and values are separated by colons and name-value pairs 
-always end with a semicolon. Spaces can be added around delimeters to 
+always end with a semicolon. Spaces can be added around delimiters to 
 improve readability.
 For example `color:gray; text-align:center;"`. 
 
@@ -697,7 +697,7 @@ cars_scatter |>
 
 ### Autocoloring
 
-If we set `use_fill = TRUE`, then the fil color of the tooltip will match the 
+If we set `use_fill = TRUE`, then the fill color of the tooltip will match the 
 color of the plot element it is associated to.
 
 ```{r}
