@@ -12,7 +12,7 @@ LazyData: TRUE
 LazyLoad: TRUE
 Depends:
     R (>= 4.1),
-    ggplot2 (>= 3.3),
+    ggplot2 (>= 4.0),
     scales,
     ggiraph,
     ggridges
