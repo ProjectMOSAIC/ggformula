@@ -1,4 +1,4 @@
-# ggformula (development version)
+# ggformula 1.0.1
 
 # ggformula 1.0.0
 
