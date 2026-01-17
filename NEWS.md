@@ -1,5 +1,7 @@
 # ggformula 1.0.1
 
+* Fixes issues with documentation after an update to {ggplot2}.
+
 # ggformula 1.0.0
 
 * Added support for interactive graphics based on {ggiraph}.
