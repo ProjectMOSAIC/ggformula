@@ -23,6 +23,7 @@ gf_abline(
   title,
   subtitle,
   caption,
+  stat = "identity",
   show.legend = NA,
   show.help = NULL,
   inherit = FALSE,
@@ -44,6 +45,7 @@ gf_hline(
   title,
   subtitle,
   caption,
+  stat = "identity",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -66,6 +68,7 @@ gf_vline(
   title,
   subtitle,
   caption,
+  stat = "identity",
   position = "identity",
   show.legend = NA,
   show.help = NULL,
@@ -117,6 +120,19 @@ for mapping linetype.}
 
 \item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{The statistical transformation to use on the data for this layer.
+When using a \verb{geom_*()} function to construct a layer, the \code{stat}
+argument can be used to override the default coupling between geoms and
+stats. The \code{stat} argument accepts the following:
+\itemize{
+\item A \code{Stat} ggproto subclass, for example \code{StatCount}.
+\item A string naming the stat. To give the stat as a string, strip the
+function name of the \code{stat_} prefix. For example, to use \code{stat_count()},
+give the stat as \code{"count"}.
+\item For more information and other ways to specify the stat, see the
+\link[ggplot2:layer_stats]{layer stat} documentation.
+}}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.

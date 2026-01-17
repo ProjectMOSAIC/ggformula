@@ -87,7 +87,7 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-This is a variant \code{\link[ggplot2:geom_point]{geom_point()}} that counts the number of
+This is a variant of \code{\link[ggplot2:geom_point]{geom_point()}} that counts the number of
 observations at each location, then maps the count to point area. It
 useful when you have discrete data and overplotting.
 }
