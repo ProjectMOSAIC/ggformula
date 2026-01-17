@@ -1,10 +1,9 @@
 .onAttach <- function(libname, pkgname) {
+  # # attach ggiraph for interactive functions
+  # if (requireNamespace("ggiraph", quietly = TRUE)) {
+  #   library(ggiraph, warn.conflicts = FALSE)
+  # }
 
-    # attach ggiraph for interactive functions
-    if (requireNamespace("ggiraph", quietly = TRUE)) {
-      library(ggiraph, warn.conflicts = FALSE)
-    }
-  
   packageStartupMessage(
     paste(
       "\nNew to ggformula?  Try the tutorials: ",
