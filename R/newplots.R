@@ -589,6 +589,9 @@ StatLm <-
           data = quote(data),
           weights = quote(weight)
         )
+        # lm.args may supply its own formula (e.g. y ~ poly(x, 2)); if so,
+        # drop base.args$formula to avoid "matched by multiple actual arguments"
+        if (!is.null(lm.args$formula)) base.args$formula <- NULL
         model <- do.call(stats::lm, c(base.args, lm.args))
       }
 
