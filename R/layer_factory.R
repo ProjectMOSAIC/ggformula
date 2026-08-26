@@ -589,13 +589,7 @@ create_extras_and_dots <-
     # remove args not used by stat or geom and not in extras
     for (n in setdiff(
       names(formals),
-      union(
-        union(
-          stat_formals,
-          geom_formals
-        ),
-        names(extras)
-      )
+      names(stat_formals) |> union(names(geom_formals)) |> union(names(extras))
     )) {
       extras_and_dots[[n]] <- NULL
     }
