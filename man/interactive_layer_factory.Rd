@@ -13,3 +13,14 @@ interactive_layer_factory(geom_fun)
 Primarily intended for package developers, this function factory
 is used to create layer functions in the ggformula package.
 }
+\details{
+Given \code{"geom_point_interactive"}, this looks up the corresponding
+non-interactive function (\code{gf_point()}) and reads its
+\code{\link[=ggformula_spec]{ggformula_spec()}} to determine the \code{geom}, \code{stat}, \code{position},
+\code{aes_form}, \code{extras}, \code{aesthetics}, \code{inherit.aes}, and \code{check.aes} to
+reuse when building the interactive counterpart, rather than
+introspecting \code{gf_point()}'s internals directly. This makes it robust to
+\verb{gf_*} functions built by other packages, as long as they were created
+with \code{\link[=layer_factory]{layer_factory()}} (and therefore carry a \code{"ggformula_spec"}
+attribute).
+}

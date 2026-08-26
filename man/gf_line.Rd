@@ -169,5 +169,5 @@ if (require(dplyr)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}
+\code{\link[ggplot2:geom_line]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}
 }

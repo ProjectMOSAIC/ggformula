@@ -179,5 +179,5 @@ gf_point(mpg ~ wt, data = mtcars) |>
   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 }
 \seealso{
-\code{\link[ggplot2:geom_segment]{ggplot2::geom_curve()}}
+\code{\link[ggplot2:geom_curve]{ggplot2::geom_curve()}}
 }

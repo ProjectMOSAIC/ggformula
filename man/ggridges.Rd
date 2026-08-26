@@ -280,7 +280,7 @@ Formula interface to ggridges plots
 Note that the \code{\link[ggridges:stat_density_ridges]{ggridges::stat_density_ridges()}} makes joint density estimation
 across all datasets. This may not generate the desired result when using
 faceted plots. As an alternative, you can set \code{stat = "density"} to use
-\code{\link[ggplot2:geom_density]{ggplot2::stat_density()}}. In this case, it is required to add the aesthetic mapping
+\code{\link[ggplot2:stat_density]{ggplot2::stat_density()}}. In this case, it is required to add the aesthetic mapping
 \code{height = after_stat(density)} (see examples).
 }
 
@@ -363,5 +363,5 @@ mosaicData::Weather |>
 
 \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}
 
-\code{\link[ggridges:geom_ridgeline_gradient]{ggridges::geom_density_ridges_gradient()}}
+\code{\link[ggridges:geom_density_ridges_gradient]{ggridges::geom_density_ridges_gradient()}}
 }

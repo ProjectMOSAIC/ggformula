@@ -153,5 +153,5 @@ if (require(dplyr) && require(mosaicData)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_ribbon]{ggplot2::geom_area()}}
+\code{\link[ggplot2:geom_area]{ggplot2::geom_area()}}
 }

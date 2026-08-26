@@ -183,5 +183,5 @@ gf_dens(~bill_length_mm, data = penguins, color = "navy") |>
   )
 }
 \seealso{
-\code{\link[ggplot2:geom_histogram]{ggplot2::geom_freqpoly()}}
+\code{\link[ggplot2:geom_freqpoly]{ggplot2::geom_freqpoly()}}
 }

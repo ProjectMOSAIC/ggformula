@@ -16,8 +16,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{labelled}{\code{\link[labelled:var_label]{set_variable_labels}}, \code{\link[labelled]{var_label}}, \code{\link[labelled:var_label]{var_label<-}}}
+  \item{labelled}{\code{\link[labelled:set_variable_labels]{set_variable_labels()}}, \code{\link[labelled:var_label]{var_label()}}, \code{\link[labelled:var_label<-]{var_label<-()}}}
 
-  \item{mosaicCore}{\code{\link[mosaicCore]{df_stats}}, \code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{na.warn}}}
+  \item{mosaicCore}{\code{\link[mosaicCore:df_stats]{df_stats()}}, \code{\link[mosaicCore:makeFun]{makeFun()}}, \code{\link[mosaicCore:na.warn]{na.warn()}}}
 }}
 

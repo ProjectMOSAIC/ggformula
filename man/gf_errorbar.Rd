@@ -165,5 +165,5 @@ if (require(mosaicData) && require(dplyr)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}
 }

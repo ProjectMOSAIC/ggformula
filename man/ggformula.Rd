@@ -66,6 +66,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Randall Pruim \email{rpruim@calvin.edu}
   \item Daniel Kaplan \email{kaplan@macalester.edu}
 }
 

@@ -34,5 +34,5 @@ KF |>
 get_variable_labels(KF)
 }
 \seealso{
-\code{\link[labelled:var_label]{labelled::var_label()}}, \code{\link[labelled:var_label]{labelled::set_variable_labels()}}
+\code{\link[labelled:var_label]{labelled::var_label()}}, \code{\link[labelled:set_variable_labels]{labelled::set_variable_labels()}}
 }
