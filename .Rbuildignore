@@ -20,8 +20,7 @@ cran-comments.md
 ^_pkgdown\.yml$
 ^pkgdown$
 ^vignettes/pkgdown$
-^\.github/workflows/R-CMD-check\.yaml$
-^\.github/workflows/pr-commands\.yaml$
+^\.github$
 ^CRAN-SUBMISSION$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
