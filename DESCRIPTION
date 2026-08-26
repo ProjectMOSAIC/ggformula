@@ -59,7 +59,6 @@ URL: https://github.com/ProjectMOSAIC/ggformula
 BugReports: https://github.com/ProjectMOSAIC/ggformula/issues
 Collate: 
     'MIpop-doc.R'
-    'formula2aes.R'
     'gf_aux.R'
     'gf_dist.R'
     'layer_factory.R'
@@ -67,7 +66,6 @@ Collate:
     'gf_functions.R'
     'gf_plot.R'
     'ggridges.R'
-    'ggstrings.R'
     'newplots.R'
     'ggiraph.R'
     'ggiraph-themes.R'

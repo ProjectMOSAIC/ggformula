@@ -947,6 +947,12 @@ test_that("gf_qq(), gf_qqstep(), gf_qqline()", {
 
 
 test_that("gf_quantile()", {
+  # stat_quantile() silently omits the quantile lines (rather than
+  # erroring) when {quantreg} isn't installed, which previously let an
+  # incomplete-looking plot get baselined as the vdiffr snapshot. Skip
+  # explicitly so the snapshot is only ever generated/compared when the
+  # full computation can run, keeping it consistent across environments.
+  skip_if_not_installed("quantreg")
   wrapped_expect_doppelganger(
     "gf_quantile",
     gf_point((1 / hwy) ~ displ, data = mpg) |>

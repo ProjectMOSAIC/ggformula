@@ -1,3 +1,44 @@
+# ggformula (development version)
+
+* New feature: aesthetics that are normally supplied via the formula can
+  now also be supplied as named arguments using formula syntax, e.g.
+  `gf_point(x = ~var1, y = ~var2, data = df)` works like
+  `gf_point(var2 ~ var1, data = df)`. This generalizes to every `gf_*`
+  function's formula "roles", not just `x`/`y` (for example
+  `gf_ribbon(ymin = ~lo, ymax = ~hi, x = ~t, data = df)` works like
+  `gf_ribbon(lo + hi ~ t, data = df)`). If a role is supplied both via a
+  literal formula and as a named argument, the named argument wins and a
+  warning is emitted.
+* Bug fix: `gf_hline()`, `gf_vline()`, `gf_abline()`, and similar functions
+  used with `data = NA` (i.e., with all values supplied directly rather
+  than from a data frame) could error or silently pass duplicated/incorrect
+  arguments (such as `position`) down to the underlying geom, because
+  argument names shared with ggplot2's `geom_*()`/`stat_*()` constructors
+  (`data`, `mapping`, `position`, `show.legend`, `inherit.aes`, `geom`,
+  `stat`) were incorrectly treated as generic settable parameters. This
+  also fixed a related failure in some `gf_*_interactive()` layers (e.g.
+  `gf_jitter_interactive(width = ...)`) that could error with "Both
+  `position` and `width`/`height` were supplied."
+* Bug fix: replaced remaining internal use of the removed/deprecated
+  `aes_string()` (used only in the `data = NA` code path above) with a
+  tidy-eval equivalent.
+* Internal refactor: the body of the function created by `layer_factory()`
+  (used to build every `gf_*` function) has been decomposed into small,
+  individually documented helper functions, one per stage of the
+  "formula -> ggplot2 layer" pipeline. This is intended to make the code
+  easier to read, test, and extend; no behavior changes are intended from
+  this refactor alone.
+* Internal: every function created by `layer_factory()` now carries an
+  explicit, documented `"ggformula_spec"` attribute (see the new
+  `ggformula_spec()`) recording the `geom`, `stat`, `position`, `aes_form`,
+  `extras`, `aesthetics`, `inherit.aes`, and `check.aes` it was built with.
+  `interactive_layer_factory()` now uses this instead of inspecting a
+  `gf_*` function's environment, and extension packages can use it too.
+* Removed unused internal code: `R/ggstrings.R` (unused string-based
+  ggplot2-code generators from an earlier design), `formula_shape0()`
+  (superseded by `formula_shape()`), and `formula2aes()`/`list2aes()`
+  (unused, and relied on the deprecated `aes_()`).
+
 # ggformula 1.0.1
 
 * Fixes issues with documentation after an update to {ggplot2}.

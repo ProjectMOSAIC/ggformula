@@ -15,6 +15,298 @@ utils::globalVariables("role")
 NA
 
 
+###############################################################################
+## Helper functions used by the body of the function that `layer_factory()`
+## generates (see `res` below). Each one handles a single stage of the
+## "formula -> ggplot2 layer" pipeline:
+##
+##   1. resolve_object_arg()        figure out what `object` is (a formula,
+##                                   a data frame, or a previous `gg` plot)
+##   2. resolve_aes_form_and_roles() match/derive the formula "shape" that
+##                                   applies to this call, folding in any
+##                                   `x = ~var1`-style role arguments (d)
+##   3. collect_layer_extras()      gather stat/geom parameters from the
+##                                   call, and resolve `position`
+##   4. extract_formula_aesthetics() turn any remaining `arg = ~expr`
+##                                   arguments into aesthetics
+##   5. build_layer_args()          assemble the argument list for
+##                                   `layer_fun` (usually `ggplot2::layer()`)
+##   6. assemble_plot()             combine the new layer (and any facet)
+##                                   with `object` or a fresh `ggplot()`
+##   7. apply_plot_labels()         attach xlab/ylab/title/subtitle/caption
+##
+## Splitting these out keeps the generated function's body (further below)
+## readable as a linear sequence of named stages, and makes each stage
+## separately testable.
+
+# Stage 1: what kind of thing was passed as the first argument?
+# Returns the (possibly updated) `gformula`, `data`, and `object`.
+#
+# `gformula` is itself a formal of the generated function (typically bound
+# positionally, e.g. `df |> gf_point(y ~ x)` binds `df` to `object` and
+# `y ~ x` to `gformula`), so its incoming value must be preserved except
+# when `object` turns out to *also* be a formula (e.g. `gf_point(y ~ x)`
+# with no data frame supplied positionally).
+resolve_object_arg <- function(object, gformula, data) {
+  if (inherits(object, "formula")) {
+    gformula <- object
+    object <- NULL
+  }
+  if (inherits(object, "data.frame")) {
+    data <- object
+    object <- NULL
+  }
+  list(gformula = gformula, data = data, object = object)
+}
+
+# Stage 2: resolve which `aes_form` template applies (if any), folding in
+# `x = ~var1`-style named role arguments (see `formula_role_names()` and
+# `extract_role_formula_args()`). Returns the matched `aes_form` (a single
+# formula, or `NULL`), the `role_overrides` to pass on to `gf_ingredients()`,
+# and the remaining `orig_args` (with any consumed role arguments removed).
+resolve_aes_form_and_roles <-
+  function(
+    gformula,
+    aes_form,
+    orig_args,
+    object,
+    inherit,
+    inherited.aes,
+    function_name
+  ) {
+    # convert y ~ 1 into ~ y if a 1-sided formula is an option and 2-sided is not
+    gformula <- response2explanatory(gformula, aes_form)
+
+    all_roles <- formula_role_names(aes_form)
+    role_formula_args <- extract_role_formula_args(orig_args, all_roles)
+    role_overrides <- role_formula_args[["role_exprs"]]
+    orig_args <- role_formula_args[["args"]]
+
+    # If there's no literal formula but the named role arguments fully
+    # cover the roles required by at least one candidate `aes_form`,
+    # that's a valid call on its own -- `first_matching_formula()`
+    # doesn't need to find a literal match in that case.
+    role_args_cover_a_template <-
+      is.null(gformula) &&
+      length(role_overrides) > 0 &&
+      any(sapply(aes_form, function(f) {
+        !is.null(f) && all(all.vars(f) %in% names(role_overrides))
+      }))
+
+    aes_form <-
+      first_matching_formula(
+        gformula,
+        aes_form,
+        object,
+        inherit,
+        inherited.aes,
+        function_name,
+        allow_null = role_args_cover_a_template
+      )
+
+    # If both a literal formula and named role arguments supply the same
+    # role (e.g. `gf_point(var2 ~ var1, x = ~var3)`), the named argument
+    # wins; warn about the duplication.
+    if (!is.null(aes_form) && length(role_overrides) > 0) {
+      overridden_roles <- intersect(names(role_overrides), all.vars(aes_form))
+      if (length(overridden_roles) > 0) {
+        warning(
+          function_name,
+          "(): ",
+          paste(overridden_roles, collapse = ", "),
+          " specified in both the formula and as named argument(s); ",
+          "using the named argument value(s).",
+          call. = FALSE
+        )
+      }
+    }
+
+    list(
+      gformula = gformula,
+      aes_form = aes_form,
+      role_overrides = role_overrides,
+      orig_args = orig_args
+    )
+  }
+
+# Stage 3: gather stat/geom parameters and other "extra" arguments from the
+# call, and resolve a character `position` (e.g. "jitter") into a `Position`
+# object using whichever of those extras apply.
+collect_layer_extras <-
+  function(orig_args, formals_snapshot, stat, geom, extras, envir, position) {
+    stat_formals <- grab_formals(stat, "stat")
+    geom_formals <- grab_formals(geom, "geom")
+    extras_and_dots <-
+      create_extras_and_dots(
+        args = orig_args,
+        formals = formals_snapshot,
+        stat_formals = stat_formals,
+        geom_formals = geom_formals,
+        extras = extras,
+        env = envir
+      )
+
+    if (is.character(position)) {
+      position_fun <- paste0("position_", position)
+      pdots <-
+        extras_and_dots[intersect(
+          names(extras_and_dots),
+          names(formals(position_fun))
+        )]
+      position <- do.call(position_fun, pdots)
+    }
+
+    # remove symbols from extras_and_dots (why?)
+    if (length(extras_and_dots) > 0) {
+      extras_and_dots <-
+        extras_and_dots[sapply(extras_and_dots, function(x) !is.symbol(x))]
+    }
+
+    list(extras_and_dots = extras_and_dots, position = position)
+  }
+
+# Stage 4: look for remaining arguments of the form `argument = ~ something`
+# and turn them into aesthetics (e.g. `color = ~group`). This is the more
+# general, longstanding mechanism that `resolve_aes_form_and_roles()`'s
+# role-specific handling (goal (d)) deliberately runs before, so that
+# formula-valued `x`/`y`/etc. role arguments are handled there instead.
+extract_formula_aesthetics <- function(extras_and_dots, aesthetics, envir) {
+  if (length(extras_and_dots) > 0) {
+    w <- which(
+      sapply(extras_and_dots, function(x) {
+        rlang::is_formula(x) && length(x) == 2L
+      })
+    )
+    aesthetics <- add_aes(aesthetics, extras_and_dots[w], envir)
+    extras_and_dots[w] <- NULL
+  }
+  list(aesthetics = aesthetics, extras_and_dots = extras_and_dots)
+}
+
+# Stage 5: assemble the argument list to pass to `layer_fun` (typically
+# `ggplot2::layer()`, or `layer_interactive()` for ggiraph layers).
+build_layer_args <-
+  function(
+    layer_fun,
+    geom,
+    stat,
+    position,
+    ingredients,
+    check.aes,
+    show.legend,
+    inherit,
+    interactive,
+    layer_func_interactive
+  ) {
+    # layer has a params argument, geoms and stats do not
+    if ("params" %in% names(formals(layer_fun))) {
+      layer_args <-
+        list(
+          geom = geom,
+          stat = stat,
+          data = ingredients[["data"]],
+          mapping = ingredients[["mapping"]],
+          position = position,
+          params = remove_from_list(ingredients[["params"]], "inherit"),
+          check.aes = check.aes,
+          check.param = FALSE,
+          show.legend = show.legend,
+          inherit.aes = inherit
+        )
+    } else {
+      layer_args <-
+        c(
+          list(
+            geom = geom,
+            stat = stat,
+            data = ingredients[["data"]],
+            mapping = ingredients[["mapping"]],
+            show.legend = show.legend
+            # arguments below are not used by geom_abline() and friends, so don't include them.
+            # check.aes = TRUE, check.param = FALSE,
+            # inherit.aes = inherit
+          ),
+          # these become regular arguments for other layer functions
+          remove_from_list(ingredients[["params"]], "inherit")
+        )
+    }
+
+    # If no ..., be sure to remove things not in the formals list
+    if (!"..." %in% names(formals(layer_fun))) {
+      layer_args <- cull_list(layer_args, names(formals(layer_fun)))
+    }
+
+    # remove additional arguments that layer_fun doesn't use, even if we have ...
+    # this is here to avoid unused arguments in gf_abline(), gf_hline(), and gf_vline()
+    for (f in c("geom", "stat", "position")) {
+      if (!f %in% names(formals(layer_fun))) {
+        layer_args[[f]] <- NULL
+      }
+    }
+
+    # remove any duplicated arguments
+    layer_args <- layer_args[unique(names(layer_args))]
+
+    # remove mapping and data if mapping is empty -- to avoid warnings from gf_abline() and friends
+    if (length(layer_args[["mapping"]]) < 1) {
+      layer_args[["mapping"]] <- NULL
+      layer_args[["data"]] <- NULL
+    }
+
+    if (interactive) {
+      layer_args <- c(list(layer_func = layer_func_interactive), layer_args)
+    }
+    layer_args
+  }
+
+# Stage 6: combine the new layer (and, if present, a facet spec) with
+# either `object` (when adding to an existing plot) or a freshly created
+# `ggplot()`.
+assemble_plot <- function(object, add, new_layer, ingredients, envir) {
+  base_plot <- function() {
+    do.call(
+      ggplot,
+      list(data = ingredients$data, mapping = ingredients[["mapping"]]),
+      envir = envir
+    )
+  }
+
+  if (is.null(ingredients[["facet"]])) {
+    if (add) {
+      object + new_layer
+    } else {
+      base_plot() + new_layer
+    }
+  } else {
+    if (add) {
+      object + new_layer + ingredients[["facet"]]
+    } else {
+      base_plot() + new_layer + ingredients[["facet"]]
+    }
+  }
+}
+
+# Stage 7: attach any of the label-related arguments that were supplied.
+apply_plot_labels <- function(p, xlab, ylab, title, subtitle, caption) {
+  if (!rlang::is_missing(ylab)) {
+    p <- p + ggplot2::ylab(ylab)
+  }
+  if (!rlang::is_missing(xlab)) {
+    p <- p + ggplot2::xlab(xlab)
+  }
+  if (!rlang::is_missing(title)) {
+    p <- p + ggplot2::labs(title = title)
+  }
+  if (!rlang::is_missing(subtitle)) {
+    p <- p + ggplot2::labs(subtitle = subtitle)
+  }
+  if (!rlang::is_missing(caption)) {
+    p <- p + ggplot2::labs(caption = caption)
+  }
+  p
+}
+
+
 #' Create a ggformula layer function
 #'
 #' Primarily intended for package developers, this function factory
@@ -109,11 +401,11 @@ layer_factory <-
         eval(pre)
 
         # evaluate quosures
-        geom = rlang::eval_tidy(geom)
-        stat = rlang::eval_tidy(stat)
-        position = rlang::eval_tidy(position)
-        layer_fun = rlang::eval_tidy(layer_fun)
-        layer_func_interactive = rlang::eval_tidy(layer_func_interactive)
+        geom <- rlang::eval_tidy(geom)
+        stat <- rlang::eval_tidy(stat)
+        position <- rlang::eval_tidy(position)
+        layer_fun <- rlang::eval_tidy(layer_fun)
+        layer_func_interactive <- rlang::eval_tidy(layer_func_interactive)
 
         function_name <- as.character(match.call()[1])
         orig_args <- as.list(match.call())[-1]
@@ -141,70 +433,45 @@ layer_factory <-
           return(invisible(NULL))
         }
 
-        # figure out what sort of object is first and adjust args as required
-        if (inherits(object, "formula")) {
-          gformula <- object
-          object <- NULL
-        }
+        # Stage 1: what kind of thing was passed as `object`?
+        # (not sure whether we should use the environment recorded in
+        # `object` or not, but this is how/where to do it, if so:
+        #   if (inherits(object, "gg")) environment <- object$plot_env)
+        resolved_object <- resolve_object_arg(object, gformula, data)
+        gformula <- resolved_object[["gformula"]]
+        data <- resolved_object[["data"]]
+        object <- resolved_object[["object"]]
 
-        if (inherits(object, "data.frame")) {
-          data <- object
-          object <- NULL
-        }
-
-        # not sure whether we should use the environment recorded in object or not,
-        # but this is how/where to do it.
-
-        # if (inherits(object, "gg")) {
-        #   environment <- object$plot_env
-        # }
-
-        # convert y ~ 1 into ~ y if a 1-sided formula is an option and 2-sided is not
-        gformula <- response2explanatory(gformula, aes_form)
-
-        # find matching formula shape
-        aes_form <-
-          first_matching_formula(
+        # Stage 2: which `aes_form` template applies, folding in any
+        # `x = ~var1`-style named role arguments (goal (d))?
+        resolved_aes_form <-
+          resolve_aes_form_and_roles(
             gformula,
             aes_form,
+            orig_args,
             object,
             inherit,
             inherited.aes,
             function_name
           )
+        aes_form <- resolved_aes_form[["aes_form"]]
+        role_overrides <- resolved_aes_form[["role_overrides"]]
+        orig_args <- resolved_aes_form[["orig_args"]]
+        gformula <- resolved_aes_form[["gformula"]]
 
-        ############# create extras_and_dots ############
-        # collect arguments
-        #  * remove those that are "missing"
-        #  * remove function args not for layer, stat, or geom
-
-        stat_formals <- grab_formals(stat, "stat")
-        geom_formals <- grab_formals(geom, "geom")
-        extras_and_dots <-
-          create_extras_and_dots(
-            args = orig_args,
-            formals = formals(),
-            stat_formals = stat_formals,
-            geom_formals = geom_formals,
-            extras = extras,
-            env = environment
+        # Stage 3: collect stat/geom parameters and resolve `position`.
+        collected_extras <-
+          collect_layer_extras(
+            orig_args,
+            formals(),
+            stat,
+            geom,
+            extras,
+            environment,
+            position
           )
-        # turn character position into a position object using any available arguments
-        if (is.character(position)) {
-          position_fun <- paste0("position_", position)
-          pdots <-
-            extras_and_dots[intersect(
-              names(extras_and_dots),
-              names(formals(position_fun))
-            )]
-          position <- do.call(position_fun, pdots)
-        }
-
-        # remove symbols from extras_and_dots (why?)
-        if (length(extras_and_dots) > 0) {
-          extras_and_dots <-
-            extras_and_dots[sapply(extras_and_dots, function(x) !is.symbol(x))]
-        }
+        extras_and_dots <- collected_extras[["extras_and_dots"]]
+        position <- collected_extras[["position"]]
 
         add <- inherits(object, c("gg", "ggplot"))
 
@@ -215,17 +482,12 @@ layer_factory <-
           }
         }
 
-        # look for arguments of the form argument = ~ something and turn them
-        # into aesthetics
-        if (length(extras_and_dots) > 0) {
-          w <- which(
-            sapply(extras_and_dots, function(x) {
-              rlang::is_formula(x) && length(x) == 2L
-            })
-          )
-          aesthetics <- add_aes(aesthetics, extras_and_dots[w], environment)
-          extras_and_dots[w] <- NULL
-        }
+        # Stage 4: fold any remaining `arg = ~expr` arguments into aesthetics.
+        extracted_aesthetics <-
+          extract_formula_aesthetics(extras_and_dots, aesthetics, environment)
+        aesthetics <- extracted_aesthetics[["aesthetics"]]
+        extras_and_dots <- extracted_aesthetics[["extras_and_dots"]]
+
         ingredients <-
           gf_ingredients(
             formula = gformula,
@@ -234,117 +496,32 @@ layer_factory <-
             extras = extras_and_dots,
             aes_form = aes_form,
             aesthetics = aesthetics,
-            envir = environment
+            envir = environment,
+            role_overrides = role_overrides
           )
 
-        # layer has a params argument, geoms and stats do not
-        if ("params" %in% names(formals(layer_fun))) {
-          layer_args <-
-            list(
-              geom = geom,
-              stat = stat,
-              data = ingredients[["data"]],
-              mapping = ingredients[["mapping"]],
-              position = position,
-              params = remove_from_list(ingredients[["params"]], "inherit"),
-              check.aes = check.aes,
-              check.param = FALSE,
-              show.legend = show.legend,
-              inherit.aes = inherit
-            )
-        } else {
-          layer_args <-
-            c(
-              list(
-                geom = geom,
-                stat = stat,
-                data = ingredients[["data"]],
-                mapping = ingredients[["mapping"]],
-                show.legend = show.legend
-                # arguments below are not used by geom_abline() and friends, so don't include them.
-                # check.aes = TRUE, check.param = FALSE,
-                # inherit.aes = inherit
-              ),
-              # these become regular arguments for other layer functions
-              remove_from_list(ingredients[["params"]], "inherit")
-            )
-        }
-
-        # If no ..., be sure to remove things not in the formals list
-        if (!"..." %in% names(formals(layer_fun))) {
-          layer_args <- cull_list(layer_args, names(formals(layer_fun)))
-        }
-
-        # remove additional arguments that layer_fun doesn't use, even if we have ...
-        # this is here to avoid unused arguments in gf_abline(), gf_hline(), and gf_vline()
-        for (f in c("geom", "stat", "position")) {
-          if (!f %in% names(formals(layer_fun))) {
-            layer_args[[f]] <- NULL
-          }
-        }
-
-        # remove any duplicated arguments
-        layer_args <- layer_args[unique(names(layer_args))]
-
-        # remove mapping and data if mapping is empty -- to avoid warnings from gf_abline() and friends
-        if (length(layer_args[['mapping']]) < 1) {
-          layer_args[['mapping']] <- NULL
-          layer_args[['data']] <- NULL
-        }
-
-        if (interactive) {
-          layer_args <- c(list(layer_func = layer_func_interactive), layer_args)
-        }
+        # Stage 5: assemble the arguments for `layer_fun` and create the layer.
+        layer_args <-
+          build_layer_args(
+            layer_fun,
+            geom,
+            stat,
+            position,
+            ingredients,
+            check.aes,
+            show.legend,
+            inherit,
+            interactive,
+            layer_func_interactive
+          )
         new_layer <- do.call(layer_fun, layer_args, envir = environment)
 
-        if (is.null(ingredients[["facet"]])) {
-          if (add) {
-            p <- object + new_layer
-          } else {
-            p <-
-              do.call(
-                ggplot,
-                list(
-                  data = ingredients$data,
-                  mapping = ingredients[["mapping"]]
-                ),
-                envir = environment
-              ) +
-              new_layer
-          }
-        } else {
-          if (add) {
-            p <- object + new_layer + ingredients[["facet"]]
-          } else {
-            p <-
-              do.call(
-                ggplot,
-                list(
-                  data = ingredients$data,
-                  mapping = ingredients[["mapping"]]
-                ),
-                envir = environment
-              ) +
-              new_layer +
-              ingredients[["facet"]]
-          }
-        }
+        # Stage 6: combine the layer with `object` or a fresh `ggplot()`.
+        p <- assemble_plot(object, add, new_layer, ingredients, environment)
 
-        if (!rlang::is_missing(ylab)) {
-          p <- p + ggplot2::ylab(ylab)
-        }
-        if (!rlang::is_missing(xlab)) {
-          p <- p + ggplot2::xlab(xlab)
-        }
-        if (!rlang::is_missing(title)) {
-          p <- p + ggplot2::labs(title = title)
-        }
-        if (!rlang::is_missing(subtitle)) {
-          p <- p + ggplot2::labs(subtitle = subtitle)
-        }
-        if (!rlang::is_missing(caption)) {
-          p <- p + ggplot2::labs(caption = caption)
-        }
+        # Stage 7: attach labels, if any were supplied.
+        p <- apply_plot_labels(p, xlab, ylab, title, subtitle, caption)
+
         class(p) <- unique(c("gf_ggplot", class(p)))
         p
       }
@@ -365,8 +542,45 @@ layer_factory <-
     assign("check.aes", check.aes, environment(res))
     assign("pre", pre, environment(res))
     assign("extras", extras, environment(res))
+
+    # Attach the arguments used to build this function as an explicit,
+    # documented "spec" attribute (see `ggformula_spec()`). This is what
+    # `interactive_layer_factory()` uses to build the `_interactive`
+    # counterpart of a `gf_*` function, and is also the recommended way
+    # for extension packages to introspect a `gf_*` function's geom/stat/
+    # formula-shape/etc. without relying on `layer_factory()`'s internals.
+    attr(res, "ggformula_spec") <-
+      list(
+        geom = geom,
+        stat = stat,
+        position = position,
+        aes_form = aes_form,
+        extras = extras,
+        aesthetics = aesthetics,
+        inherit.aes = inherit.aes,
+        check.aes = check.aes
+      )
     res
   }
+
+#' Retrieve the specification used to build a `gf_*` function
+#'
+#' Every function created by [layer_factory()] carries a `"ggformula_spec"`
+#' attribute recording the arguments (`geom`, `stat`, `position`, `aes_form`,
+#' `extras`, `aesthetics`, `inherit.aes`, `check.aes`) it was built with.
+#' `ggformula_spec()` retrieves this attribute, which is the recommended way
+#' for extension packages (or `ggformula` itself, e.g. when building
+#' `_interactive` counterparts) to introspect a `gf_*` function without
+#' depending on the internals of [layer_factory()].
+#'
+#' @param gf_fun A function created by [layer_factory()] (e.g. `gf_point`).
+#' @return A list with components `geom`, `stat`, `position`, `aes_form`,
+#'   `extras`, `aesthetics`, `inherit.aes`, and `check.aes`, or `NULL` if
+#'   `gf_fun` was not created by [layer_factory()].
+#' @export
+ggformula_spec <- function(gf_fun) {
+  attr(gf_fun, "ggformula_spec")
+}
 
 ###############################################################################
 ##
@@ -399,44 +613,42 @@ layer_interactive <- function(
 #' Primarily intended for package developers, this function factory
 #' is used to create layer functions in the ggformula package.
 #'
+#' Given `"geom_point_interactive"`, this looks up the corresponding
+#' non-interactive function (`gf_point()`) and reads its
+#' [ggformula_spec()] to determine the `geom`, `stat`, `position`,
+#' `aes_form`, `extras`, `aesthetics`, `inherit.aes`, and `check.aes` to
+#' reuse when building the interactive counterpart, rather than
+#' introspecting `gf_point()`'s internals directly. This makes it robust to
+#' `gf_*` functions built by other packages, as long as they were created
+#' with [layer_factory()] (and therefore carry a `"ggformula_spec"`
+#' attribute).
+#'
 #' @param geom_fun A character string naming an interactive geom (example: "geom_point_interactive")
 #'
 interactive_layer_factory <- function(geom_fun) {
   stopifnot(is.character(geom_fun))
   geom_noninteractive <- gsub("_interactive", "", geom_fun, fixed = TRUE)
   gf_noninteractive <- gsub("geom_", "gf_", geom_noninteractive, fixed = TRUE)
-  gfenv <- tryCatch(
-    environment(get(gf_noninteractive)),
-    error = function(e) NULL
-  )
-  if (is.null(gfenv)) {
+
+  gf_fun <- tryCatch(get(gf_noninteractive), error = function(e) NULL)
+  spec <- ggformula_spec(gf_fun)
+  if (is.null(spec)) {
     return(NULL)
   }
-
-  aes_form_from_env <- rlang::env_get(gfenv, "aes_form", default = NULL)
-  extras_from_env <- rlang::env_get(gfenv, "extras", default = alist())
-  geom_from_env <- rlang::env_get(gfenv, "geom", default = "point")
-  stat_from_env <- rlang::env_get(gfenv, "stat", default = "identity")
-  position_from_env <- rlang::env_get(gfenv, "position", default = "identity")
-  inherit_from_env <- rlang::env_get(gfenv, "inherit.aes", default = TRUE)
-  aesthetics_from_env <- rlang::env_get(gfenv, "aesthetics", default = aes())
-  check_aes_from_env <- rlang::env_get(gfenv, "check.aes", default = TRUE)
 
   do.call(
     layer_factory,
     list(
-      geom = geom_from_env,
-      position = position_from_env,
-      stat = stat_from_env,
+      geom = spec[["geom"]] %||% "point",
+      position = spec[["position"]] %||% "identity",
+      stat = spec[["stat"]] %||% "identity",
       interactive = TRUE,
       layer_func_interactive = geom_fun,
-      # pre,
-      aes_form = aes_form_from_env,
-      extras = extras_from_env,
-      # note,
-      aesthetics = aesthetics_from_env,
-      inherit.aes = inherit_from_env,
-      check.aes = check_aes_from_env,
+      aes_form = spec[["aes_form"]],
+      extras = spec[["extras"]] %||% alist(),
+      aesthetics = spec[["aesthetics"]] %||% aes(),
+      inherit.aes = spec[["inherit.aes"]] %||% TRUE,
+      check.aes = spec[["check.aes"]] %||% TRUE,
       layer_fun = layer_interactive
     )
   )
@@ -485,6 +697,21 @@ add_aes <- function(mapping, new, envir = parent.frame()) {
   res
 }
 
+
+# Structural/layer-machinery argument names that must never be treated as
+# generic "extra" geom/stat parameters. ggplot2's geom_*()/stat_*()
+# constructors all declare formals with these names (see e.g.
+# formals(geom_hline)), but ggformula always handles them explicitly
+# elsewhere in the pipeline: `data` and `mapping` are built from the
+# formula/data frame, `position` is resolved from the `position` argument,
+# and `show.legend`/`inherit.aes`/`geom`/`stat` are already separate,
+# explicit formals of the generated gf_* function. If these names are
+# allowed to also flow through as "extras" (merely because a geom/stat
+# constructor happens to declare a same-named formal), they can leak into
+# the parameter/data-frame construction used for `data = NA` calls and
+# produce duplicated or malformed arguments (see #<issue>).
+reserved_layer_arg_names <-
+  c("mapping", "data", "geom", "stat", "position", "show.legend", "inherit.aes")
 
 # grab formals from a stat or geom (or similar)
 
@@ -586,11 +813,18 @@ create_extras_and_dots <-
           function(x) is.symbol(x) && identical(as.character(x), "")
         )
       ]
-    # remove args not used by stat or geom and not in extras
-    for (n in setdiff(
-      names(formals),
-      names(stat_formals) |> union(names(geom_formals)) |> union(names(extras))
-    )) {
+    # remove args not used by stat or geom and not in extras; always drop
+    # the reserved structural names regardless of whether the stat/geom
+    # constructor happens to also declare a formal with that name (see
+    # `reserved_layer_arg_names`)
+    allowed_extra_names <-
+      setdiff(
+        names(stat_formals) |>
+          union(names(geom_formals)) |>
+          union(names(extras)),
+        reserved_layer_arg_names
+      )
+    for (n in setdiff(names(formals), allowed_extra_names)) {
       extras_and_dots[[n]] <- NULL
     }
 
@@ -604,13 +838,30 @@ create_extras_and_dots <-
 
 # Find first matching formula shape.
 # Emit error message when no good matches.
+#
+# `allow_null` bypasses the "no match" error even when there is nothing to
+# inherit from a prior layer. This is used when named arguments like
+# `x = ~var1, y = ~var2` (see `extract_role_formula_args()`) already supply
+# every role required by at least one candidate `aes_form`, so there is no
+# literal formula to match but the call is still well-formed.
 
 first_matching_formula <-
-  function(gformula, aes_form, object, inherit, inherited.aes, function_name) {
+  function(
+    gformula,
+    aes_form,
+    object,
+    inherit,
+    inherited.aes,
+    function_name,
+    allow_null = FALSE
+  ) {
     fmatches <- formula_match(gformula, aes_form = aes_form)
 
     if (!any(fmatches)) {
-      if (inherits(object, "gg") && (inherit || length(inherited.aes) > 0)) {
+      if (
+        allow_null ||
+          (inherits(object, "gg") && (inherit || length(inherited.aes) > 0))
+      ) {
         return(NULL)
       } else {
         stop("Invalid formula type for ", function_name, ".", call. = FALSE)
@@ -657,6 +908,57 @@ response2explanatory <-
     formula
   }
 
+###############################################################################
+## Support for `gf_point(x = ~var1, y = ~var2, ...)` as an alternative to
+## `gf_point(var2 ~ var1, ...)`.
+##
+## The general idea: every `aes_form` template (e.g. `y ~ x`, `~x`, or
+## `low + high ~ x`) names a set of "roles". If the caller supplies a named
+## argument matching one of those role names whose value is a one-sided
+## formula (e.g. `x = ~var1`), we treat it exactly like the corresponding
+## slot of a literal formula. This works two ways:
+##  * If no literal formula was supplied at all, and the named role
+##    arguments fully cover the roles of some candidate `aes_form`
+##    template, we skip the (otherwise required) formula entirely.
+##  * If a literal formula *and* overlapping named role arguments are both
+##    supplied, the named arguments win and a warning names the roles that
+##    were overridden.
+
+# All of the role names (e.g. c("y", "x"), or c("low", "high", "x")) used
+# across every candidate formula in `aes_form` (a list of template
+# formulas, some of which may be `NULL` for functions that also allow no
+# formula at all).
+formula_role_names <- function(aes_form) {
+  unique(unlist(lapply(aes_form, function(f) {
+    if (is.null(f)) character(0) else all.vars(f)
+  })))
+}
+
+# Pull out named arguments in `args` whose name is one of `candidate_roles`
+# and whose value is a one-sided formula (`~ expr`). Returns the extracted
+# expressions (as a named list of unevaluated language objects, matching
+# the representation `formula_to_df()` uses internally) together with the
+# remaining arguments (so the extracted ones aren't later treated as plain
+# geom/stat parameters or re-processed as generic formula-valued
+# aesthetics).
+extract_role_formula_args <- function(args, candidate_roles) {
+  is_role_formula <- function(x) rlang::is_formula(x) && length(x) == 2L
+  candidate_names <- intersect(names(args), candidate_roles)
+  if (length(candidate_names) > 0) {
+    candidate_names <-
+      candidate_names[
+        vapply(args[candidate_names], is_role_formula, logical(1))
+      ]
+  }
+
+  role_exprs <- lapply(args[candidate_names], function(f) f[[2]])
+  names(role_exprs) <- candidate_names
+
+  list(
+    role_exprs = role_exprs,
+    args = args[setdiff(names(args), candidate_names)]
+  )
+}
 
 # The actual graphing functions are created dynamically.
 #  See the functions at the bottom of this file
@@ -892,27 +1194,6 @@ formula_split <- function(formula) {
   list(formula = formula, condition = condition, facet_type = facet_type)
 }
 
-#  #' @export
-#  match_call <- function(n = 1L, include_missing = FALSE) {
-#    call <- evalq(match.call(), parent.frame(n))
-#    formals <- evalq(formals(), parent.frame(n))
-#
-#    for(i in setdiff(names(formals), names(call))) {
-#      if (include_missing || !rlang::is_missing(formals[[i]])) {
-#        call[i] <- list( formals[[i]] )
-#      }
-#    }
-#    match.call(sys.function(sys.parent()), call)
-#  }
-#
-#  #' @export
-#  have_arg <-
-#    function(arg, n = 1L,
-#             call = evalq(match_call(include_missing = FALSE), parent.frame(n))
-#    ) {
-#    arg %in% names(call)
-#  }
-
 gf_ingredients <-
   function(
     formula = NULL,
@@ -921,7 +1202,8 @@ gf_ingredients <-
     aes_form = y ~ x,
     aesthetics = aes(),
     gg_object = NULL,
-    envir = NULL
+    envir = NULL,
+    role_overrides = list()
   ) {
     if (is.null(envir)) {
       if (inherits(formula, "formula")) envir <- environment(formula)
@@ -949,12 +1231,24 @@ gf_ingredients <-
     # . is placeholder for "no aesthetic mapping", so remove the dots
     mapped_list[mapped_list == "."] <- NULL
 
-    mapping <- modifyList(aesthetics, do.call(aes, mapped_list)) # was aes_string
+    # `role_overrides` comes from named arguments like `x = ~var1` (see
+    # `extract_role_formula_args()`); these take priority over anything
+    # supplied via the formula for the same role (a warning is emitted by
+    # the caller when both are present), and can also supply roles when no
+    # formula was given at all.
+    if (length(role_overrides) > 0) {
+      mapped_list <- modifyList(mapped_list, role_overrides)
+    }
+
+    mapping <- modifyList(aesthetics, do.call(aes, mapped_list))
     mapping <- aes_env(mapping, envir)
     mapping <- remove_dot_from_mapping(mapping)
 
     set_list <- as.list(aes_df[["expr"]][!aes_df$map])
     names(set_list) <- aes_df[["role"]][!aes_df$map]
+    if (length(role_overrides) > 0) {
+      set_list[names(role_overrides)] <- NULL
+    }
     set_list <- modifyList(extras, set_list)
 
     res <-
@@ -992,7 +1286,9 @@ gf_ingredients <-
       res$params[names(res$mapping)] <- NULL # remove mapped attributes
       aes_list <- as.list(intersect(names(res$data), names(res$mapping)))
       names(aes_list) <- aes_list
-      res$mapping <- do.call(aes_string, aes_list)
+      # tidy-eval replacement for the deprecated/removed `aes_string()`:
+      # build aes(role = role, ...) from symbols rather than from strings
+      res$mapping <- do.call(aes, lapply(aes_list, as.name))
       res$setting <- as.list(res$data)[names(res$setting)]
       res$params[names(res$setting)] <- res$setting
     }
@@ -1009,61 +1305,6 @@ remove_dot_from_mapping <- function(mapping) {
   }
   mapping
 }
-
-formula_shape0 <- function(x) {
-  if (length(x) < 2) {
-    return(0)
-  }
-  arity <- length(x) - 1
-  if (as.character(x[[1]]) %in% c("(")) {
-    return(0)
-  }
-  if (as.character(x[[1]]) %in% c(":", "(")) {
-    return(0) # was -1 when supporting attribute:value
-  }
-  # stop if we hit a name that isn't + or ~
-  if (is.name(x[[1]]) && !as.character(x[[1]]) %in% c("+", "~")) {
-    return(0)
-  }
-
-  # if (as.character(x[[1]]) %in% c("|")){
-  #   return(formula_shape0(x[[2]]))
-  # }
-
-  if (arity == 1L) {
-    right_shape0 <- formula_shape0(x[[2]])
-    arity <- arity - (right_shape0[1] < 0)
-    if (arity == 0) {
-      return(arity)
-    }
-    return(right_shape0)
-  }
-  if (arity == 2L) {
-    right_shape0 <- formula_shape0(x[[3]])
-    left_shape0 <- formula_shape0(x[[2]])
-    if (left_shape0[1] < 0 && right_shape0 < 0) {
-      return(0)
-    }
-    if (left_shape0[1] < 0) {
-      if (right_shape0[1] == 1L) {
-        return(right_shape0[-1])
-      }
-      return(right_shape0)
-    }
-    if (right_shape0[1] < 0) {
-      if (left_shape0[1] == 1L) {
-        return(left_shape0[-1])
-      }
-      return(left_shape0)
-    }
-    return(c(2, left_shape0, right_shape0))
-  }
-  stop("Bug: problems determining formula shape (0).")
-
-  c(length(x) - 1, unlist(sapply(x[-1], formula_shape0)))
-  # list(length(x) - 1, lapply(x[-1], formula_shape0))
-}
-
 
 formula_shape <- function(x) {
   if (is.null(x)) {
@@ -1148,31 +1389,9 @@ formula_to_df <- function(
     rapply(get_leaf, how = "replace") |>
     unlist()
 
-  # trim leading/trailing blanks and turn `some name` into "`some name`"
-  # parts <- gsub("^\\s+|\\s+$", "", parts)
+  parts_list <- parts
 
-  # # split into pairs/nonpairs
-  # pairs <- parts[grepl(":+", parts)]
-  # nonpairs <- parts[ !grepl(":+", parts)]
-
-  # ## !! turning off support for attribute:value !!
-  # pairs <- parts[FALSE]
-  # nonpairs <- parts[TRUE]
-
-  # pair_list <- list()
-  # mapped_pairs <- character(0)
-  # for (pair in pairs) {
-  #   this_pair <- stringr::str_split(pair, ":+", n = 2)[[1]]
-  #   pair_list[this_pair[1]] <- this_pair[2]
-  #   if (stringr::str_match(pair, ":+") == "::") {
-  #     mapped_pairs <- c(mapped_pairs, this_pair[1])
-  #   }
-  # }
-
-  parts_list <- parts # nonpairs
-
-  # remove items specified explicitly
-  aes_names <- all.vars(aes_form) # setdiff(all.vars(aes_form), names(pair_list))
+  aes_names <- all.vars(aes_form)
   names(parts_list) <- head(aes_names, length(parts_list))
 
   if (length(parts_list) > length(aes_names)) {
@@ -1190,13 +1409,11 @@ formula_to_df <- function(
     )
   }
 
-  # res <- c(parts_list, pair_list)
-
   res <-
     tibble::tibble(
       role = names(parts_list),
       expr = unlist(parts_list),
-      map = unlist(parts_list) %in% c(data_names) | role %in% aes_names #  | role %in% mapped_pairs
+      map = unlist(parts_list) %in% c(data_names) | role %in% aes_names
     )
   row.names(res) <- NULL
   res

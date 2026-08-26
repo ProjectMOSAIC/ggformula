@@ -16,7 +16,10 @@ gf_violin(
   linetype,
   linewidth,
   weight,
-  draw_quantiles = NULL,
+  quantile.colour = NULL,
+  quantile.color = NULL,
+  quantile.linetype = 0L,
+  quantile.linewidth = NULL,
   trim = TRUE,
   scale = "area",
   bw,
@@ -80,8 +83,10 @@ for mapping linetype.}
 \item{weight}{Useful for summarized data, \code{weight} provides a count
 of the number of values with the given combination of \code{x} and \code{y} values.}
 
-\item{draw_quantiles}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Previous
-specification of drawing quantiles.}
+\item{quantile.colour, quantile.color, quantile.linewidth, quantile.linetype}{Default aesthetics for the quantile lines. Set to \code{NULL} to inherit from
+the data's aesthetics. By default, quantile lines are hidden and can be
+turned on by changing \code{quantile.linetype}. Quantile values can be set
+using the \code{quantiles} argument when using \code{stat = "ydensity"} (default).}
 
 \item{trim}{If \code{TRUE} (default), trim the tails of the violins
 to the range of the data. If \code{FALSE}, don't trim the tails.}
