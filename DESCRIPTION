@@ -49,6 +49,8 @@ Suggests:
     interp,
     quantreg,
     ggforce,
+    ggrepel,
+    ggdist,
     quarto
 VignetteBuilder: 
     quarto

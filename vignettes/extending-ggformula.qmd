@@ -1,0 +1,339 @@
+---
+title: "Extending {ggformula}"
+author: "Randall Pruim"
+date: last-modified
+format: html
+engine: knitr
+toc: true
+vignette: >
+  %\VignetteIndexEntry{Extending ggformula}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+execute:
+  engine: knitr
+  eval: true
+  echo: true
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+```{r setup, include = FALSE}
+have_packages <-
+  require(ggformula) &&
+  require(ggplot2) &&
+  requireNamespace("ggrepel") &&
+  requireNamespace("ggdist")
+
+knitr::opts_chunk$set(
+  fig.show = "asis",
+  fig.align = "center",
+  fig.width = 6,
+  fig.height = 4,
+  out.width = "60%",
+  eval = have_packages
+)
+theme_set(theme_light())
+```
+
+```{r missing-packages-warning, eval = !have_packages, echo = FALSE, results = 'asis'}
+cat(
+  "
+## Warning: Missing packages
+
+Because one or more of `ggformula`, `ggplot2`, `ggrepel`, and `ggdist`
+appears to be missing, this vignette is compiling without executing any
+code.
+
+"
+)
+```
+
+Every `gf_*` function in `ggformula` -- `gf_point()`, `gf_boxplot()`,
+`gf_ribbon()`, and around a hundred more -- is built by a single function
+factory, `layer_factory()`. This vignette explains how that factory works
+well enough that you can use it to add your own `gf_*` wrapper around a
+`geom`/`stat` from another package, and walks through two worked examples:
+labeling points without overlap using [ggrepel](https://ggrepel.slowkow.com/),
+and half-eye/raincloud-style distribution plots using
+[ggdist](https://mjskay.github.io/ggdist/).
+
+You do not need to be a `ggformula` developer to follow along -- this is
+meant for anyone who wants a formula-based wrapper around a geom or stat
+that `ggformula` doesn't already provide.
+
+## How `layer_factory()` works
+
+Every `gf_*` function is created by calling `layer_factory()` with a small
+set of arguments describing the geom/stat it wraps. Here, roughly, is how
+`gf_point()` is defined inside `ggformula` itself:
+
+```r
+gf_point <-
+  layer_factory(
+    geom = "point",
+    aes_form = y ~ x,   # this is the default value
+    extras = alist(
+      alpha = , color = , size = , shape = , fill = , group = , stroke =
+    )
+  )
+```
+
+The important arguments are:
+
+- **`geom`** / **`stat`** / **`position`** -- the (usually low-level)
+  `ggplot2` geom, stat, and position to use, given either as strings (e.g.
+  `"point"`, which resolves to `GeomPoint`) or as actual objects/functions.
+- **`aes_form`** -- a formula, or a list of formulas, describing the
+  formula shape(s) the function accepts. It defaults to `y ~ x`, which is
+  why `gf_point(mpg ~ wt, data = mtcars)` maps `wt` to `x` and `mpg` to
+  `y`. Some functions need more than one shape -- `gf_ribbon()`, for
+  example, uses `list(ymin + ymax ~ x, y ~ xmin + xmax)`.
+- **`extras`** -- an `alist()` of additional arguments the function should
+  accept, with defaults where relevant (an empty default, as in
+  `alpha = `, means "no default; only include this if the user supplies
+  it"). Each of these can be *set* (`color = "red"`) or *mapped*
+  (`color = ~species`) when the function is called.
+- **`layer_fun`** -- the function ultimately used to build the layer.
+  This defaults to `ggplot2::layer()`, which is the right choice when
+  `geom`/`stat` name registered `Geom*`/`Stat*` ggproto objects. If you
+  instead want to reuse an existing high-level constructor function (like
+  `ggrepel::geom_text_repel()` or `ggdist::stat_halfeye()`) rather than
+  re-implementing its logic, you point `layer_fun` at that function
+  instead -- more on this below.
+
+You can inspect the arguments any existing `gf_*` function was built with
+via `ggformula_spec()`:
+
+```{r inspect-spec}
+str(ggformula_spec(gf_ribbon))
+```
+
+## Two patterns for wrapping a new geom or stat
+
+There are two ways to plug an extension package's geom or stat into
+`layer_factory()`, and which one you want depends on how that package
+exposes its functionality.
+
+### Pattern 1: point at the registered ggproto object by name
+
+If the extension package registers a `Stat*`/`Geom*` ggproto object (most
+`ggplot2` extension packages do), you can use the low-level
+`geom =`/`stat =` arguments.  This is how `ggformula` defines `gf_sina()`
+as a wrapper around `ggforce`'s sina-plot jitter, for example:
+
+```r
+gf_sina <-
+  layer_factory(
+    pre = {
+      if (!requireNamespace("ggforce", quietly = TRUE)) {
+        stop("The ggforce package is required.  Please install and try again.")
+      }
+      if (!"package:ggforce" %in% search()) {
+        stop(
+          "To use gf_sina(), the ggforce package must be loaded.\n    Try, for example, `library(ggforce)`."
+        )
+      }
+    },
+    geom = "point",
+    stat = "sina",
+    position = "identity",
+    extras = alist(alpha = , color = , size = , fill = , group = )
+  )
+```
+
+The `pre` code isn't strictly required, but it's good practice: because
+this pattern resolves `stat = "sina"` to `StatSina` by searching the
+*attached* packages (not just installed ones), the extension package must
+be loaded with `library()`, not merely installed, for this to work. The
+`pre` block gives a clear error message instead of a confusing one if a
+user forgets.
+
+### Pattern 2: wrap an existing constructor function
+
+Many extension packages expose their functionality only (or best) through
+a full constructor function -- 
+like `ggplot2::geom_abline()`, `ggrepel::geom_text_repel()`, 
+or `ggdist::stat_halfeye()` -- 
+rather than a bare ggproto object you're expected to assemble yourself. 
+In that case, point `layer_fun` at that function directly, and set 
+`geom`/`stat` to a string with the same name (no `geom_`/`stat_` prefix) 
+purely so that `layer_factory()` can look up that function's own formals 
+to figure out which extra arguments to allow:
+
+```r
+gf_abline <-
+  layer_factory(
+    geom = "abline",
+    aes_form = NULL,
+    extras = 
+      alist(slope = , intercept = , color = , linetype = , linewidth = , alpha = ),
+    inherit.aes = FALSE,
+    data = NA,
+    layer_fun = rlang::quo(ggplot2::geom_abline)
+  )
+```
+
+This is the pattern used for both examples below.
+
+## Example: labeling points without overlap with {ggrepel}
+
+[ggrepel](https://ggrepel.slowkow.com/) provides `geom_text_repel()` and
+`geom_label_repel()`, drop-in replacements for `ggplot2::geom_text()`/
+`geom_label()` that nudge overlapping labels apart. `ggformula` already
+has `gf_text()` and `gf_label()`; here's a `gf_text_repel()` built the
+same way, but pointed at `ggrepel::geom_text_repel()`.
+
+```{r gf-text-repel-definition}
+library(ggrepel)
+
+gf_text_repel <-
+  layer_factory(
+    geom = "text_repel",
+    layer_fun = rlang::quo(ggrepel::geom_text_repel),
+    extras = alist(
+      label = ,
+      alpha = ,
+      color = ,
+      size = ,
+      fontface = ,
+      family = ,
+      box.padding = 0.25,
+      point.padding = 1e-06,
+      min.segment.length = 0.5,
+      max.overlaps = 10,
+      nudge_x = 0,
+      nudge_y = 0,
+      seed = NA,
+      direction = "both"
+    )
+  )
+```
+
+A few things to note:
+
+- `geom = "text_repel"` doesn't correspond to a real `Geom*` object; it's
+  only used to fetch `formals(geom_text_repel)` so those argument names
+  (`box.padding`, `max.overlaps`, etc.) are recognized automatically, in
+  addition to the ones listed explicitly in `extras`.
+- Because of this, `layer_fun` is required here and tells `ggformula` where to
+locate the function used to create a plot layer.
+- `aes_form` was left at its default, `y ~ x`, which is exactly what we
+  want here.
+- `label` is listed in `extras` with no default, the same way `gf_text()`
+  handles it, so it can be set (`label = "winner"`) or mapped
+  (`label = ~name`).
+
+Using it looks just like using `gf_text()`:
+
+```{r gf-text-repel-example}
+df <- data.frame(
+  x = c(1, 2, 3, 2.9, 5),
+  y = c(3, 1, 4, 4.1, 5),
+  name = c("apple", "banana", "cherry", "date", "elderberry")
+)
+
+gf_point(y ~ x, data = df) |>
+  gf_text_repel(y ~ x, label = ~name, seed = 1234)
+```
+
+Compare that to `gf_text()`, which lets the labels overlap:
+
+```{r gf-text-example}
+gf_point(y ~ x, data = df) |>
+  gf_text(y ~ x, label = ~name, nudge_y = 0.3)
+```
+
+## Example: half-eye plots with {ggdist}
+
+[ggdist](https://mjskay.github.io/ggdist/) provides "raincloud"-style
+`stat_halfeye()`, which draws a half-violin density alongside a point
+estimate and one or more uncertainty intervals -- a richer alternative to
+`gf_violin()`/`gf_boxplot()`. `stat_halfeye()` is itself a high-level
+constructor (its default `geom` is `"slabinterval"`), so this again uses
+Pattern 2.
+
+```{r gf-halfeye-definition}
+library(ggdist)
+
+gf_halfeye <-
+  layer_factory(
+    geom = "slabinterval",
+    stat = "halfeye",
+    layer_fun = rlang::quo(ggdist::stat_halfeye),
+    extras = alist(
+      fill = ,
+      color = ,
+      alpha = ,
+      adjust = 1,
+      point_interval = "median_qi",
+      .width = c(0.66, 0.95),
+      side = "top",
+      justification = NULL
+    )
+  )
+```
+
+Setting `stat = "halfeye"` here means `layer_factory()` looks up
+`formals(stat_halfeye)` itself (since `stat_halfeye()` is both the
+constructor we're calling *and* the thing we're using to discover valid
+arguments), which automatically permits arguments like `point_interval`,
+`.width`, `density`, and `breaks` without having to list every one of them
+in `extras`.
+
+```{r gf-halfeye-example}
+set.seed(202)
+scores <- data.frame(
+  section = rep(c("A", "B", "C"), each = 30),
+  score = c(rnorm(30, 78, 6), rnorm(30, 82, 9), rnorm(30, 75, 5))
+)
+
+gf_halfeye(score ~ section, data = scores, fill = ~section, show.legend = FALSE)
+```
+
+`stat_halfeye()` sets its own default of `show.legend = c(size = FALSE)`
+when called directly, to avoid an unwanted legend for its point-size
+aesthetic; because `layer_factory()`-built functions always pass an
+explicit `show.legend` through to `layer_fun` (`NA` by default), that
+sensible default gets overridden. Passing `show.legend = FALSE` explicitly,
+as above, avoids the stray legend entry.
+
+## Wrapping interactive geoms from `ggiraph`
+
+If you'd like an `_interactive` counterpart of your new function (for use
+with `gf_girafe()`), you generally don't need to do anything extra:
+`interactive_layer_factory()` builds one automatically from any function's
+`ggformula_spec()`, as long as [ggiraph](https://davidgohel.github.io/ggiraph/)
+provides an interactive version of the same geom (e.g.
+`ggiraph::geom_text_repel_interactive()`). See `vignette("interactive-graphics")`
+for more on interactive plots in general.
+
+## Tips and things to watch for
+
+- **Attach vs. install.** If you use Pattern 1 (a bare `geom =`/`stat =`
+  name), the extension package must be *attached* with `library()`, not
+  merely installed, because `ggplot2` resolves those names by searching
+  attached namespaces. Pattern 2 (`layer_fun = `) doesn't have this
+  restriction, since you're calling the extension's function directly.
+- **`check.aes`.** By default, `layer_factory()` warns if you supply an
+  aesthetic that isn't among the geom's/stat's known aesthetics. Set
+  `check.aes = FALSE` if you need to pass an aesthetic that
+  `layer_factory()` can't discover automatically (this is rarely
+  necessary if you list the relevant names in `extras`).
+- **`pre` for guardrails.** The `pre` argument lets you run arbitrary code
+  before the layer is built -- useful for clear error messages when an
+  optional dependency isn't attached (as in the `gf_sina()` example
+  above), or for small argument-massaging steps like the `nudge_x`/
+  `nudge_y` handling used internally by `gf_text()`.
+- **Testing.** `ggformula`'s own test suite uses
+  `vdiffr::expect_doppelganger()` (wrapped as `wrapped_expect_doppelganger()`
+  internally) to catch unintended rendering changes; the same approach
+  works well for testing a new wrapper you've written.
+
+## Further reading
+
+- `?layer_factory` for the full list of arguments.
+- `?ggformula_spec` for introspecting existing `gf_*` functions.
+- `vignette("ggformula")` for the base formula syntax that every `gf_*`
+  function (including ones you build yourself) inherits for free.
