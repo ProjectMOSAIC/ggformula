@@ -134,6 +134,7 @@ Dat <- data.frame(
 )
 gf_dhistogram(~g, data = Dat) |>
   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
+
 fitted_density <- mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma")
 gf_dhistogram(~g, data = Dat) |>
   gf_fun(fitted_density(x) ~ x, inherit = FALSE)

@@ -2752,7 +2752,6 @@ gf_fun <- function(
 #' @param start Starting value(s) for the search for MLE.  (See [MASS::fitdistr].)
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments
-####  to [MASS::fitdistr()].
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2779,7 +2778,7 @@ gf_fun <- function(
 #' )
 #' gf_dhistogram(~g, data = Dat) |>
 #'   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
-#
+#'
 #' fitted_density <- mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma")
 #' gf_dhistogram(~g, data = Dat) |>
 #'   gf_fun(fitted_density(x) ~ x, inherit = FALSE)
