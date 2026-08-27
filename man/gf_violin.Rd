@@ -20,7 +20,6 @@ gf_violin(
   quantile.color = NULL,
   quantile.linetype = 0L,
   quantile.linewidth = NULL,
-  quantile_gp = quantile_gp,
   trim = TRUE,
   scale = "area",
   bw,
@@ -31,7 +30,6 @@ gf_violin(
   title,
   subtitle,
   caption,
-  geom = "violin",
   stat = "ydensity",
   position = "dodge",
   show.legend = NA,
@@ -115,10 +113,7 @@ For example, \code{adjust = 1/2} means use half of the default bandwidth.}
 \item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{geom, stat}{Use to override the default connection between
-\code{geom_violin()} and \code{stat_ydensity()}. For more information about
-overriding these connections, see how the \link[ggplot2:layer_stats]{stat} and
-\link[ggplot2:layer_geoms]{geom} arguments work.}
+\item{stat}{A character string naming the stat used to make the layer.}
 
 \item{position}{A position adjustment to use on the data for this layer. This
 can be used in various ways, including to prevent overplotting and

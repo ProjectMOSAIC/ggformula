@@ -11,17 +11,27 @@ ggformula_spec(gf_fun)
 }
 \value{
 A list with components \code{geom}, \code{stat}, \code{position}, \code{aes_form},
-\code{extras}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes},
+\code{extras}, \code{pre}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes},
 \code{required_packages}, and \code{installed_packages}, or \code{NULL} if \code{gf_fun}
 was not created by \code{\link[=layer_factory]{layer_factory()}}.
 }
 \description{
 Every function created by \code{\link[=layer_factory]{layer_factory()}} carries a \code{"ggformula_spec"}
 attribute recording the arguments (\code{geom}, \code{stat}, \code{position}, \code{aes_form},
-\code{extras}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes}, \code{required_packages},
-\code{installed_packages}) it was built with. \code{ggformula_spec()} retrieves
-this attribute, which is the recommended way for extension packages (or
-\code{ggformula} itself, e.g. when building \verb{_interactive} counterparts) to
-introspect a \verb{gf_*} function without depending on the internals of
-\code{\link[=layer_factory]{layer_factory()}}.
+\code{extras}, \code{pre}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes},
+\code{required_packages}, \code{installed_packages}) it was built with.
+\code{ggformula_spec()} retrieves this attribute, which is the recommended
+way for extension packages (or \code{ggformula} itself, e.g. when building
+\verb{_interactive} counterparts) to introspect a \verb{gf_*} function without
+depending on the internals of \code{\link[=layer_factory]{layer_factory()}}.
+}
+\details{
+Note that \code{pre} is included precisely so that
+\code{interactive_layer_factory()} (and similar tools) can replay it: some
+\verb{gf_*} functions (e.g. \code{gf_text()}, whose \code{nudge_x}/\code{nudge_y} handling
+lives in \code{pre}, or \code{gf_violin()}, whose \code{quantile_gp} default is only
+valid after \code{pre} computes it) depend on \code{pre} having already run
+before any of their \code{extras} defaults are evaluated. Building a
+variant without replaying \code{pre} can therefore produce broken or even
+self-referential defaults.
 }
