@@ -11,15 +11,17 @@ ggformula_spec(gf_fun)
 }
 \value{
 A list with components \code{geom}, \code{stat}, \code{position}, \code{aes_form},
-\code{extras}, \code{aesthetics}, \code{inherit.aes}, and \code{check.aes}, or \code{NULL} if
-\code{gf_fun} was not created by \code{\link[=layer_factory]{layer_factory()}}.
+\code{extras}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes},
+\code{required_packages}, and \code{installed_packages}, or \code{NULL} if \code{gf_fun}
+was not created by \code{\link[=layer_factory]{layer_factory()}}.
 }
 \description{
 Every function created by \code{\link[=layer_factory]{layer_factory()}} carries a \code{"ggformula_spec"}
 attribute recording the arguments (\code{geom}, \code{stat}, \code{position}, \code{aes_form},
-\code{extras}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes}) it was built with.
-\code{ggformula_spec()} retrieves this attribute, which is the recommended way
-for extension packages (or \code{ggformula} itself, e.g. when building
-\verb{_interactive} counterparts) to introspect a \verb{gf_*} function without
-depending on the internals of \code{\link[=layer_factory]{layer_factory()}}.
+\code{extras}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes}, \code{required_packages},
+\code{installed_packages}) it was built with. \code{ggformula_spec()} retrieves
+this attribute, which is the recommended way for extension packages (or
+\code{ggformula} itself, e.g. when building \verb{_interactive} counterparts) to
+introspect a \verb{gf_*} function without depending on the internals of
+\code{\link[=layer_factory]{layer_factory()}}.
 }

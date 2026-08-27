@@ -1,5 +1,21 @@
 # ggformula (development version)
 
+* New feature: `layer_factory()` gains a `required_packages` argument for
+  extension-package authors. Naming one or more packages there (e.g.
+  `required_packages = "ggforce"`) checks, before anything else runs
+  (including `pre`), that each is both installed and attached (via
+  `library()`), raising an informative error otherwise. This replaces the
+  hand-written `pre`-block checks previously used internally, e.g. in
+  `gf_sina()`; see the new "Extending ggformula" vignette
+  (`vignette("extending-ggformula")`) for details. `required_packages` is
+  also recorded in a function's `ggformula_spec()`.
+* New feature: `layer_factory()` also gains `installed_packages`, a
+  lighter-weight sibling of `required_packages` that only checks that a
+  package is installed, not that it's attached -- the right fit for
+  functions (built with the `layer_fun = ` pattern) that call an
+  extension package's function directly via `pkg::fun()`. `gf_sf()` now
+  uses `installed_packages = "sf"` instead of its hand-written `pre`
+  check. Also recorded in `ggformula_spec()`.
 * New feature: aesthetics that are normally supplied via the formula can
   now also be supplied as named arguments using formula syntax, e.g.
   `gf_point(x = ~var1, y = ~var2, data = df)` works like

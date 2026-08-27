@@ -19,6 +19,8 @@ layer_factory(
   inherit.aes = TRUE,
   check.aes = TRUE,
   data = NULL,
+  required_packages = character(0),
+  installed_packages = character(0),
   layer_fun = if (interactive) {
      quo(layer_interactive)
  } else {
@@ -67,6 +69,27 @@ to inherit.}
 when aesthetics provided don't match what is expected.}
 
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
+
+\item{required_packages}{A character vector naming packages that must be
+both installed and attached (via \code{\link[=library]{library()}}) for the resulting
+function to work -- typically because \code{geom}/\code{stat} are given as
+strings that must be resolved against an attached package's namespace
+(see the "Extending ggformula" vignette). Each named package is
+checked before \code{pre} runs, and an informative error is raised if a
+package is missing or not attached. Use \code{character(0)} (the default)
+if there are no such requirements, or if a \code{layer_fun} is used that
+calls the extension package's own function directly (in which case
+the package usually only needs to be installed, not attached, in
+which case \code{installed_packages} is the better fit).}
+
+\item{installed_packages}{A character vector naming packages that must
+be installed (but need not be attached via \code{\link[=library]{library()}}) for the
+resulting function to work -- typically because \code{layer_fun} calls the
+extension package's own function directly (e.g. via \code{pkg::fun()}),
+which doesn't require the package to be attached. Each named package
+is checked before \code{pre} runs (alongside \code{required_packages}), and an
+informative error is raised if a package is missing. Use
+\code{character(0)} (the default) if there is no such requirement.}
 
 \item{layer_fun}{function used to create a layer. The default value is anticipated
 to work in most (all?) cases.}

@@ -338,6 +338,25 @@ apply_plot_labels <- function(p, xlab, ylab, title, subtitle, caption) {
 #' @param check.aes A logical indicating whether a warning should be emited
 #'   when aesthetics provided don't match what is expected.
 #' @param data A data frame or `NULL` or `NA`.
+#' @param required_packages A character vector naming packages that must be
+#'   both installed and attached (via [library()]) for the resulting
+#'   function to work -- typically because `geom`/`stat` are given as
+#'   strings that must be resolved against an attached package's namespace
+#'   (see the "Extending ggformula" vignette). Each named package is
+#'   checked before `pre` runs, and an informative error is raised if a
+#'   package is missing or not attached. Use `character(0)` (the default)
+#'   if there are no such requirements, or if a `layer_fun` is used that
+#'   calls the extension package's own function directly (in which case
+#'   the package usually only needs to be installed, not attached, in
+#'   which case `installed_packages` is the better fit).
+#' @param installed_packages A character vector naming packages that must
+#'   be installed (but need not be attached via [library()]) for the
+#'   resulting function to work -- typically because `layer_fun` calls the
+#'   extension package's own function directly (e.g. via `pkg::fun()`),
+#'   which doesn't require the package to be attached. Each named package
+#'   is checked before `pre` runs (alongside `required_packages`), and an
+#'   informative error is raised if a package is missing. Use
+#'   `character(0)` (the default) if there is no such requirement.
 #' @param layer_func_interactive The function used to create the layer when `interactive`` is TRUE
 #'   (or a quosure that evaluates to such a function).
 #' @param layer_fun function used to create a layer. The default value is anticipated
@@ -362,6 +381,8 @@ layer_factory <-
     inherit.aes = TRUE,
     check.aes = TRUE,
     data = NULL,
+    required_packages = character(0),
+    installed_packages = character(0),
     layer_fun = if (interactive) {
       quo(layer_interactive)
     } else {
@@ -397,6 +418,14 @@ layer_factory <-
         environment = parent.frame(),
         ...
       ) {
+        function_name <- as.character(match.call()[1])
+
+        # confirm any packages this function depends on are installed
+        # (and, for `required_packages`, also attached) before running
+        # `pre` or anything else
+        check_required_packages(required_packages, function_name)
+        check_installed_packages(installed_packages, function_name)
+
         # pre and will be placed in the function environment so available here
         eval(pre)
 
@@ -407,7 +436,6 @@ layer_factory <-
         layer_fun <- rlang::eval_tidy(layer_fun)
         layer_func_interactive <- rlang::eval_tidy(layer_func_interactive)
 
-        function_name <- as.character(match.call()[1])
         orig_args <- as.list(match.call())[-1]
 
         # make sure we have a list of formulas here
@@ -542,6 +570,8 @@ layer_factory <-
     assign("check.aes", check.aes, environment(res))
     assign("pre", pre, environment(res))
     assign("extras", extras, environment(res))
+    assign("required_packages", required_packages, environment(res))
+    assign("installed_packages", installed_packages, environment(res))
 
     # Attach the arguments used to build this function as an explicit,
     # documented "spec" attribute (see `ggformula_spec()`). This is what
@@ -556,9 +586,12 @@ layer_factory <-
         position = position,
         aes_form = aes_form,
         extras = extras,
+        pre = pre,
         aesthetics = aesthetics,
         inherit.aes = inherit.aes,
-        check.aes = check.aes
+        check.aes = check.aes,
+        required_packages = required_packages,
+        installed_packages = installed_packages
       )
     res
   }
@@ -567,16 +600,18 @@ layer_factory <-
 #'
 #' Every function created by [layer_factory()] carries a `"ggformula_spec"`
 #' attribute recording the arguments (`geom`, `stat`, `position`, `aes_form`,
-#' `extras`, `aesthetics`, `inherit.aes`, `check.aes`) it was built with.
-#' `ggformula_spec()` retrieves this attribute, which is the recommended way
-#' for extension packages (or `ggformula` itself, e.g. when building
-#' `_interactive` counterparts) to introspect a `gf_*` function without
-#' depending on the internals of [layer_factory()].
+#' `extras`, `aesthetics`, `inherit.aes`, `check.aes`, `required_packages`,
+#' `installed_packages`) it was built with. `ggformula_spec()` retrieves
+#' this attribute, which is the recommended way for extension packages (or
+#' `ggformula` itself, e.g. when building `_interactive` counterparts) to
+#' introspect a `gf_*` function without depending on the internals of
+#' [layer_factory()].
 #'
 #' @param gf_fun A function created by [layer_factory()] (e.g. `gf_point`).
 #' @return A list with components `geom`, `stat`, `position`, `aes_form`,
-#'   `extras`, `aesthetics`, `inherit.aes`, and `check.aes`, or `NULL` if
-#'   `gf_fun` was not created by [layer_factory()].
+#'   `extras`, `aesthetics`, `inherit.aes`, `check.aes`,
+#'   `required_packages`, and `installed_packages`, or `NULL` if `gf_fun`
+#'   was not created by [layer_factory()].
 #' @export
 ggformula_spec <- function(gf_fun) {
   attr(gf_fun, "ggformula_spec")
@@ -649,6 +684,8 @@ interactive_layer_factory <- function(geom_fun) {
       aesthetics = spec[["aesthetics"]] %||% aes(),
       inherit.aes = spec[["inherit.aes"]] %||% TRUE,
       check.aes = spec[["check.aes"]] %||% TRUE,
+      required_packages = spec[["required_packages"]] %||% character(0),
+      installed_packages = spec[["installed_packages"]] %||% character(0),
       layer_fun = layer_interactive
     )
   )
@@ -697,6 +734,51 @@ add_aes <- function(mapping, new, envir = parent.frame()) {
   res
 }
 
+
+# Check that each package named in `required_packages` is both installed
+# and currently attached (i.e. loaded via `library()`), raising an
+# actionable error otherwise. This generalizes the check historically
+# hand-written in `pre` blocks like `gf_sina()`'s (see the "Extending
+# ggformula" vignette): most extension packages need to be *attached*,
+# not just installed, because `layer_factory()`'s `geom =`/`stat =`
+# strings are resolved by searching attached namespaces.
+check_required_packages <- function(required_packages, function_name) {
+  for (pkg in required_packages) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      stop(
+        "The ", pkg, " package is required for ", function_name, "().",
+        "  Please install and try again.",
+        call. = FALSE
+      )
+    }
+    if (!paste0("package:", pkg) %in% search()) {
+      stop(
+        "To use ", function_name, "(), the ", pkg, " package must be loaded.\n",
+        "    Try, for example, `library(", pkg, ")`.",
+        call. = FALSE
+      )
+    }
+  }
+  invisible(NULL)
+}
+
+# Like `check_required_packages()`, but only confirms that each package is
+# installed -- not that it is attached. This is the right check for
+# functions that call an extension package's own function directly (via
+# `pkg::fun()` in `layer_fun`), which doesn't require the package to be
+# attached with `library()`.
+check_installed_packages <- function(installed_packages, function_name) {
+  for (pkg in installed_packages) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      stop(
+        "The ", pkg, " package is required for ", function_name, "().",
+        "  Please install and try again.",
+        call. = FALSE
+      )
+    }
+  }
+  invisible(NULL)
+}
 
 # Structural/layer-machinery argument names that must never be treated as
 # generic "extra" geom/stat parameters. ggplot2's geom_*()/stat_*()

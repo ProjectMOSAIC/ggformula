@@ -65,36 +65,43 @@ that `ggformula` doesn't already provide.
 
 ## How `layer_factory()` works
 
-Every `gf_*` function is created by calling `layer_factory()` with a small
-set of arguments describing the geom/stat it wraps. Here, roughly, is how
-`gf_point()` is defined inside `ggformula` itself:
+Every `gf_*` function is created by calling 
+`layer_factory()` or `interactive_layer_factory()` with a small
+set of arguments describing the geom, stat, and position being wrapped. 
+Here, roughly, is how `gf_point()` is created inside `ggformula` itself:^[For emphasis, we 
+explicitly define three arguments that take on their default values so could be omitted.]
 
 ```r
 gf_point <-
   layer_factory(
     geom = "point",
-    aes_form = y ~ x,   # this is the default value
+    stat = "identity",      # default value
+    position = "identity",  # default value
+    aes_form = y ~ x,       # default value
     extras = alist(
-      alpha = , color = , size = , shape = , fill = , group = , stroke =
-    )
+      alpha = , color = , size = , shape = , fill = , group = , stroke = )
   )
 ```
 
 The important arguments are:
 
-- **`geom`** / **`stat`** / **`position`** -- the (usually low-level)
-  `ggplot2` geom, stat, and position to use, given either as strings (e.g.
-  `"point"`, which resolves to `GeomPoint`) or as actual objects/functions.
+- **`geom`** / **`stat`** / **`position`** -- the geom, stat, and position to use, 
+given either as strings (e.g. `"point"`, which resolves to `GeomPoint`) or 
+as actual objects/functions.
 - **`aes_form`** -- a formula, or a list of formulas, describing the
   formula shape(s) the function accepts. It defaults to `y ~ x`, which is
   why `gf_point(mpg ~ wt, data = mtcars)` maps `wt` to `x` and `mpg` to
-  `y`. Some functions need more than one shape -- `gf_ribbon()`, for
+  `y`. Some functions allow more than one shape -- `gf_ribbon()`, for
   example, uses `list(ymin + ymax ~ x, y ~ xmin + xmax)`.
 - **`extras`** -- an `alist()` of additional arguments the function should
   accept, with defaults where relevant (an empty default, as in
   `alpha = `, means "no default; only include this if the user supplies
   it"). Each of these can be *set* (`color = "red"`) or *mapped*
-  (`color = ~species`) when the function is called.
+  (`color = ~species`) when the function is called. It is not required that 
+  every possible argument be listed here, but the list should include any
+  arguments that will be given a different default value and any that you want
+  listed in the short documentation provided when a `gf_` function is called
+  with no arguments.
 - **`layer_fun`** -- the function ultimately used to build the layer.
   This defaults to `ggplot2::layer()`, which is the right choice when
   `geom`/`stat` name registered `Geom*`/`Stat*` ggproto objects. If you
@@ -107,8 +114,31 @@ You can inspect the arguments any existing `gf_*` function was built with
 via `ggformula_spec()`:
 
 ```{r inspect-spec}
-str(ggformula_spec(gf_ribbon))
+ggformula_spec(gf_point) |> str()
 ```
+
+Three arguments not demonstrated in this example may be important, especially when 
+using stats and geoms from packages other than `ggplot2`:
+
+- **`required_packages`** -- a character vector of package names that must
+  be installed *and* attached (via `library()`) for the function to work.
+  If any are missing, the user gets an informative error before anything
+  else runs -- more on this below.
+- **`installed_packages`** -- like `required_packages`, but only checks
+  that each package is installed, not that it's attached. This may be the
+  right choice when `layer_fun` calls the extension package's own
+  function directly (via `pkg::fun()`), since that often doesn't require the
+  package to be attached -- more on this below.
+- **`pre`** -- R code to run after checking for required/installed packages.
+  In earlier versions of `ggformula`, this was used to check for packages, but
+  `required_packages` and `installed_packages` are preferred for that purpose now,
+  but `pre` remains for cases where other code needs to be executed before continuing
+  with the standard `layer_factory()` processing.  See `gf_text()` as an example.
+
+```{r}
+ggformula_spec(gf_text) |> getElement('pre')
+```
+
 
 ## Two patterns for wrapping a new geom or stat
 
@@ -116,7 +146,7 @@ There are two ways to plug an extension package's geom or stat into
 `layer_factory()`, and which one you want depends on how that package
 exposes its functionality.
 
-### Pattern 1: point at the registered ggproto object by name
+### Pattern 1: Point at the registered ggproto object by name
 
 If the extension package registers a `Stat*`/`Geom*` ggproto object (most
 `ggplot2` extension packages do), you can use the low-level
@@ -126,16 +156,7 @@ as a wrapper around `ggforce`'s sina-plot jitter, for example:
 ```r
 gf_sina <-
   layer_factory(
-    pre = {
-      if (!requireNamespace("ggforce", quietly = TRUE)) {
-        stop("The ggforce package is required.  Please install and try again.")
-      }
-      if (!"package:ggforce" %in% search()) {
-        stop(
-          "To use gf_sina(), the ggforce package must be loaded.\n    Try, for example, `library(ggforce)`."
-        )
-      }
-    },
+    required_packages = "ggforce",
     geom = "point",
     stat = "sina",
     position = "identity",
@@ -143,20 +164,29 @@ gf_sina <-
   )
 ```
 
-The `pre` code isn't strictly required, but it's good practice: because
-this pattern resolves `stat = "sina"` to `StatSina` by searching the
-*attached* packages (not just installed ones), the extension package must
-be loaded with `library()`, not merely installed, for this to work. The
-`pre` block gives a clear error message instead of a confusing one if a
-user forgets.
+Because this pattern resolves `stat = "sina"` to `StatSina` by searching
+the *attached* packages (not just installed ones), the extension package
+must be loaded with `library()`, not merely installed, for this to work.
+`required_packages = "ggforce"` checks exactly that -- both that `ggforce`
+is installed and that it's currently attached -- and raises an actionable
+error otherwise, such as:
 
-### Pattern 2: wrap an existing constructor function
+```
+To use gf_sina(), the ggforce package must be loaded.
+    Try, for example, `library(ggforce)`.
+```
+
+`required_packages` is checked before anything else runs, including
+`pre`, so you don't need to write this check by hand the way earlier
+versions of `gf_sina()` did.
+
+### Pattern 2: Wrap an existing constructor function
 
 Many extension packages expose their functionality only (or best) through
 a full constructor function -- 
 like `ggplot2::geom_abline()`, `ggrepel::geom_text_repel()`, 
 or `ggdist::stat_halfeye()` -- 
-rather than a bare ggproto object you're expected to assemble yourself. 
+rather than through a bare ggproto object you're expected to assemble yourself. 
 In that case, point `layer_fun` at that function directly, and set 
 `geom`/`stat` to a string with the same name (no `geom_`/`stat_` prefix) 
 purely so that `layer_factory()` can look up that function's own formals 
@@ -172,6 +202,24 @@ gf_abline <-
     inherit.aes = FALSE,
     data = NA,
     layer_fun = rlang::quo(ggplot2::geom_abline)
+  )
+```
+
+Because Pattern 2 calls the extension package's function directly, the
+package may only need to be *installed*, not attached, in which case we can use
+`installed_packages` (rather than `required_packages`) to check for
+that. `gf_sf()`, which wraps `ggplot2::geom_sf()`, is a simple example:
+
+```r
+gf_sf <-
+  layer_factory(
+    layer_fun = quo(ggplot2::geom_sf),
+    installed_packages = "sf",
+    geom = "sf",
+    stat = "sf",
+    position = "identity",
+    aes_form = list(NULL),
+    extras = alist(alpha = , color = , fill = , group = , linetype = , linewidth = , geometry = )
   )
 ```
 
@@ -230,7 +278,7 @@ Using it looks just like using `gf_text()`:
 ```{r gf-text-repel-example}
 df <- data.frame(
   x = c(1, 2, 3, 2.9, 5),
-  y = c(3, 1, 4, 4.1, 5),
+  y = c(3, 1, 4, 4, 5),
   name = c("apple", "banana", "cherry", "date", "elderberry")
 )
 
@@ -238,7 +286,7 @@ gf_point(y ~ x, data = df) |>
   gf_text_repel(y ~ x, label = ~name, seed = 1234)
 ```
 
-Compare that to `gf_text()`, which lets the labels overlap:
+Compare that to `gf_text()`, which lets the labels overlap or spill off of the graphic:
 
 ```{r gf-text-example}
 gf_point(y ~ x, data = df) |>
@@ -314,22 +362,35 @@ for more on interactive plots in general.
 - **Attach vs. install.** If you use Pattern 1 (a bare `geom =`/`stat =`
   name), the extension package must be *attached* with `library()`, not
   merely installed, because `ggplot2` resolves those names by searching
-  attached namespaces. Pattern 2 (`layer_fun = `) doesn't have this
-  restriction, since you're calling the extension's function directly.
+  attached namespaces.  Use `required_packages` to enforce this, as in
+  the `gf_sina()` example above. Pattern 2 (`layer_fun = `) doesn't have
+  this restriction, since you're calling the extension's function
+  directly; `installed_packages` may be sufficient, as in the `gf_sf()` example
+  above, to check only that the package is installed.
+  In general, if you can get by without attaching a package, that is preferable.
 - **`check.aes`.** By default, `layer_factory()` warns if you supply an
   aesthetic that isn't among the geom's/stat's known aesthetics. Set
   `check.aes = FALSE` if you need to pass an aesthetic that
   `layer_factory()` can't discover automatically (this is rarely
   necessary if you list the relevant names in `extras`).
-- **`pre` for guardrails.** The `pre` argument lets you run arbitrary code
-  before the layer is built -- useful for clear error messages when an
-  optional dependency isn't attached (as in the `gf_sina()` example
-  above), or for small argument-massaging steps like the `nudge_x`/
-  `nudge_y` handling used internally by `gf_text()`.
+- **`pre` for other guardrails.** The `pre` argument lets you run
+  arbitrary code before the layer is built -- useful for small
+  argument-massaging steps like the `nudge_x`/`nudge_y` handling used
+  internally by `gf_text()`.  You will typically want to surround your 
+  code with curly braces: `{ }`.
+  `required_packages` and `installed_packages` are always checked first, 
+  before `pre` runs.
 - **Testing.** `ggformula`'s own test suite uses
   `vdiffr::expect_doppelganger()` (wrapped as `wrapped_expect_doppelganger()`
   internally) to catch unintended rendering changes; the same approach
   works well for testing a new wrapper you've written.
+
+- Some packages use `ggplot2` in "non-standard" ways.  Rather than creating and exporting
+new Stats or Geoms and corresponding `stat_` and `geom_`functions and following
+`ggplot2`'s general grammar of graphics approach, they follow some 
+other convention and provide functions that use the information provided to
+construct a `ggplot2` plot in some other way.  `ggformula` is not designed to 
+work with packages of this type.  
 
 ## Further reading
 

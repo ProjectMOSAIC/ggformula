@@ -2822,16 +2822,7 @@ gf_fitdistr <-
 
 gf_sina <-
   layer_factory(
-    pre = {
-      if (!requireNamespace("ggforce", quietly = TRUE)) {
-        stop("The ggforce package is required.  Please install and try again.")
-      }
-      if (!"package:ggforce" %in% search()) {
-        stop(
-          "To use gf_sina(), the ggforce package must be loaded.\n    Try, for example, `library(ggforce)`."
-        )
-      }
-    },
+    required_packages = "ggforce",
     geom = "point",
     stat = "sina",
     position = "identity",
@@ -2896,6 +2887,7 @@ gf_sina <-
 gf_sf <-
   layer_factory(
     layer_fun = quo(ggplot2::geom_sf),
+    installed_packages = "sf",
     geom = "sf",
     stat = "sf",
     position = "identity",
@@ -2908,12 +2900,7 @@ gf_sf <-
       linetype = ,
       linewidth = ,
       geometry =
-    ),
-    pre = {
-      if (!requireNamespace("sf", quietly = TRUE)) {
-        stop("The sf package is required.  Please install and try again.")
-      }
-    }
+    )
   )
 #' Create an "empty" plot
 #'
