@@ -943,14 +943,18 @@ gf_violin <-
     geom = "violin",
     stat = "ydensity",
     position = "dodge",
-    pre = {
-      quantile_gp <-
-        list(
-          colour = quantile.color %||% quantile.colour,
-          linetype = quantile.linetype,
-          linewidth = quantile.linewidth
-        )
-    },
+    # `ggplot2::geom_violin()` itself (not the low-level `GeomViolin`
+    # ggproto) is what turns `quantile.colour`/`quantile.color`/
+    # `quantile.linetype`/`quantile.linewidth` into the `quantile_gp`
+    # grid graphical-parameters list that `GeomViolin$draw_group()`
+    # actually reads. Using it directly as `layer_fun` (rather than the
+    # default `ggplot2::layer()`, which would bypass that computation
+    # entirely) means we don't have to duplicate that logic ourselves --
+    # which previously caused a `quantile_gp` value to be computed twice
+    # and forwarded twice, producing a "Duplicated aesthetics after name
+    # standardisation" warning for `gf_violin_interactive()` (since the
+    # interactive path already goes through `geom_violin()` internally).
+    layer_fun = quo(ggplot2::geom_violin),
     extras = alist(
       alpha = ,
       color = ,
@@ -963,7 +967,6 @@ gf_violin <-
       quantile.color = NULL,
       quantile.linetype = 0L,
       quantile.linewidth = NULL,
-      quantile_gp = quantile_gp,
       trim = TRUE,
       scale = "area",
       bw = ,

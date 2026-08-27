@@ -488,7 +488,6 @@ layer_factory <-
         gformula <- resolved_aes_form[["gformula"]]
 
         # Stage 3: collect stat/geom parameters and resolve `position`.
-
         collected_extras <-
           collect_layer_extras(
             orig_args,
@@ -601,16 +600,25 @@ layer_factory <-
 #'
 #' Every function created by [layer_factory()] carries a `"ggformula_spec"`
 #' attribute recording the arguments (`geom`, `stat`, `position`, `aes_form`,
-#' `extras`, `aesthetics`, `inherit.aes`, `check.aes`, `required_packages`,
-#' `installed_packages`) it was built with. `ggformula_spec()` retrieves
-#' this attribute, which is the recommended way for extension packages (or
-#' `ggformula` itself, e.g. when building `_interactive` counterparts) to
-#' introspect a `gf_*` function without depending on the internals of
-#' [layer_factory()].
+#' `extras`, `pre`, `aesthetics`, `inherit.aes`, `check.aes`,
+#' `required_packages`, `installed_packages`) it was built with.
+#' `ggformula_spec()` retrieves this attribute, which is the recommended
+#' way for extension packages (or `ggformula` itself, e.g. when building
+#' `_interactive` counterparts) to introspect a `gf_*` function without
+#' depending on the internals of [layer_factory()].
+#'
+#' Note that `pre` is included precisely so that
+#' `interactive_layer_factory()` (and similar tools) can replay it: some
+#' `gf_*` functions (e.g. `gf_text()`, whose `nudge_x`/`nudge_y` handling
+#' lives in `pre`, or `gf_violin()`, whose `quantile_gp` default is only
+#' valid after `pre` computes it) depend on `pre` having already run
+#' before any of their `extras` defaults are evaluated. Building a
+#' variant without replaying `pre` can therefore produce broken or even
+#' self-referential defaults.
 #'
 #' @param gf_fun A function created by [layer_factory()] (e.g. `gf_point`).
 #' @return A list with components `geom`, `stat`, `position`, `aes_form`,
-#'   `extras`, `aesthetics`, `inherit.aes`, `check.aes`,
+#'   `extras`, `pre`, `aesthetics`, `inherit.aes`, `check.aes`,
 #'   `required_packages`, and `installed_packages`, or `NULL` if `gf_fun`
 #'   was not created by [layer_factory()].
 #' @export
@@ -682,6 +690,7 @@ interactive_layer_factory <- function(geom_fun) {
       layer_func_interactive = geom_fun,
       aes_form = spec[["aes_form"]],
       extras = spec[["extras"]] %||% alist(),
+      pre = spec[["pre"]] %||% quote({}),
       aesthetics = spec[["aesthetics"]] %||% aes(),
       inherit.aes = spec[["inherit.aes"]] %||% TRUE,
       check.aes = spec[["check.aes"]] %||% TRUE,
