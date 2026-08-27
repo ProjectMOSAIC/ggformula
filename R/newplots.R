@@ -380,11 +380,28 @@ geom_spline <-
     )
   }
 
-# Based on an example found at
-#  * https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/
-#  * and stackoverflow.com/a/4357932/1346276
-
-qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
+#' Compute a reference line for a QQ-plot
+#'
+#' Given a sample and a theoretical quantile function, compute the
+#' slope and intercept of the line connecting the `tail` and `1 - tail`
+#' quantiles of the sample to the corresponding theoretical quantiles.
+#' This is the line drawn by [StatQqline] (and so, indirectly, by
+#' [gf_qqline()]) -- an approach based on
+#' <https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/>
+#' and <https://stackoverflow.com/a/4357932/1346276>.
+#'
+#' @param sample A numeric vector of sample values.
+#' @param qdist A quantile function (e.g. [stats::qnorm()]) taking a
+#'   vector of probabilities and returning theoretical quantiles.
+#' @param na.rm A logical indicating whether `NA`s should be removed from
+#'   `sample` before computing quantiles.
+#' @param tail A tail probability; the line connects the `tail` and
+#'   `1 - tail` quantiles of the sample and theoretical distributions.
+#'
+#' @return A list with components `slope` and `intercept`.
+#'
+#' @noRd
+qq_line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
   q.sample <- stats::quantile(sample, c(tail, 1 - tail), na.rm = na.rm)
   q.theory <- qdist(c(tail, 1 - tail))
   slope <- diff(q.sample) / diff(q.theory)
@@ -413,7 +430,7 @@ StatQqline <- ggproto(
 
     n <- length(data$sample)
     theoretical <- qdist(stats::ppoints(n))
-    qq <- qq.line(data$sample, qdist = qdist, tail = tail, na.rm = na.rm)
+    qq <- qq_line(data$sample, qdist = qdist, tail = tail, na.rm = na.rm)
 
     data.frame(x = theoretical, y = qq$intercept + theoretical * qq$slope)
   }

@@ -4,7 +4,7 @@
 \name{ggformula}
 \alias{ggformula-package}
 \alias{ggformula}
-\title{ggformula: Formula Interface to the Grammar of Graphics}
+\title{Formula interface to ggplot2}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
@@ -71,8 +71,4 @@ Authors:
 }
 
 }
-\keyword{Formula}
-\keyword{ggplot2}
-\keyword{interface}
 \keyword{internal}
-\keyword{to}

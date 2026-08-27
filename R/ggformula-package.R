@@ -1,5 +1,5 @@
 #' @keywords internal
-#' Formula interface to ggplot2
+#' @title Formula interface to ggplot2
 #'
 #' @section The ggformula system:
 #'

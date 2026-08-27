@@ -711,7 +711,7 @@ gf_hex <-
 #'   hides them, so the range calculated for the y-axis will be the same with outliers shown
 #'   and outliers hidden.
 #'
-#' @seealso [ggplot2::geom_boxplot()], [fivenum()], [df_stats()]
+#' @seealso [ggplot2::geom_boxplot()], [stats::fivenum()], [df_stats()]
 #' @export
 #' @examples
 #' gf_boxplot(age ~ substance, data = mosaicData::HELPrct)
@@ -943,6 +943,14 @@ gf_violin <-
     geom = "violin",
     stat = "ydensity",
     position = "dodge",
+    pre = {
+      quantile_gp <-
+        list(
+          colour = quantile.color %||% quantile.colour,
+          linetype = quantile.linetype,
+          linewidth = quantile.linewidth
+        )
+    },
     extras = alist(
       alpha = ,
       color = ,
@@ -955,6 +963,7 @@ gf_violin <-
       quantile.color = NULL,
       quantile.linetype = 0L,
       quantile.linewidth = NULL,
+      quantile_gp = quantile_gp,
       trim = TRUE,
       scale = "area",
       bw = ,
