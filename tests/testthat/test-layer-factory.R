@@ -170,7 +170,7 @@ test_that("gf_bar() and gf_col()", {
   )
 })
 
-if (FALSE) {
+if (TRUE) {
   test_that("gf_barh() and gf_colh()", {
     SomeData <- data.frame(
       group = LETTERS[1:3],
@@ -307,7 +307,7 @@ test_that("gf_contour(), gf_density_2d(), gf_density2d()", {
   )
 })
 
-if (FALSE) {
+if (TRUE) {
   test_that("gf_countsh(), gf_percentsh(), gf_propsh()", {
     wrapped_expect_doppelganger(
       "gf_countsh1a",
@@ -454,7 +454,7 @@ test_that("gf_crossbar(), gf_errorbar(), gf_pointrange()", {
   )
 })
 
-if (FALSE) {
+if (TRUE) {
   test_that("gf_crossbarh(), gf_errorbarh(), gf_pointrangeh()", {
     HELP2 <- mosaicData::HELPrct |>
       dplyr::group_by(substance, sex) |>
@@ -465,7 +465,8 @@ if (FALSE) {
         min.age = min(age),
         sd.age = sd(age),
         lo = mean.age - sd.age,
-        hi = mean.age + sd.age
+        hi = mean.age + sd.age,
+        .groups = "drop_last"
       )
 
     wrapped_expect_doppelganger(
@@ -545,7 +546,7 @@ if (FALSE) {
         width = 0,
         color = "skyblue"
       ) |>
-        gf_crossbarh(
+        gf_crossbar(
           substance ~ mean.age + lo + hi,
           data = HELP2,
           inherit = FALSE
