@@ -1,5 +1,7 @@
 # ggformula (development version)
 
+# ggformula 1.1.0
+
 * New feature: `layer_factory()` gains a `required_packages` argument for
   extension-package authors. Naming one or more packages there (e.g.
   `required_packages = "ggforce"`) checks, before anything else runs
