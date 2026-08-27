@@ -1,0 +1,72 @@
+# Learn More About ggformula
+
+Want to learn more about ggformula? Here are some places to look.
+
+## mosaic Package Vignettes
+
+The `mosaic` package includes a number of vignettes. These are available
+
+- from within R
+- from <https://cran.r-project.org/package=mosaic>
+- from <http://www.mosaic-web.org/mosaic/>
+
+One of these is a [side-by-side comparison of lattice and
+ggfromula](http://www.mosaic-web.org/mosaic/articles/ggformula-lattice.md)
+
+## Textbook-Related Resources
+
+Several text books either use ggformula or have accompanying
+documentation that demonstrate how to use ggformula.
+
+- *Foundations and Applications of Statistics: An Introduction Using R*
+  (R Pruim, second edition) is an R-infused probability and mathematical
+  statistics text that emphasizes connections between probability and
+  statistics. The first edition of the book predates the `ggformula`
+  package, but the the second edition is supported by the `fastR2`
+  package and uses `ggformula` for plotting.
+
+  - <https://bookstore.ams.org/amstext-28>
+  - [www.ams.org/publications/authors/books/postpub/amstext-28](http://www.ams.org/publications/authors/books/postpub/amstext-28)
+
+- *Introduction to the Practice of Statistics in R* (NJ Horton and BS
+  Baumer) describes how to undertake analyses in R that are introduced
+  as examples in *Introduction to the Practice of Statistics*, by David
+  Moore, George McCabe, and Bruce Craig.
+
+  - [9th edition:
+    nhorton.people.amherst.edu/ips9](http://nhorton.people.amherst.edu/ips9)
+
+- *Statistics: Unlocking the Power of Data* (Lock, Lock, Lock, Lock, and
+  Lock) is an introductory statistics textbook that embraces a
+  resampling approach.
+
+  An annotated companion to the examples in the book implemented using R
+  can be found at
+
+  - [github.com/rpruim/Lock5withR/](https://github.com/rpruim/Lock5withR/blob/ggformula/Book/Lock5withR.pdf)
+
+  and the `Lock5withR` R package provides all the data sets used in the
+  text.
+
+  - [lock5stat.com](http://lock5stat.com)
+
+- *Stats: Data and Models* (NJ Horton) describes how to undertake
+  analyses in R for the examples in the Fourth Edition of *Stats: Data
+  and Models* (2015), by Dick De Veaux, Paul Velleman, and Dave Bock.
+
+  - [nhorton.people.amherst.edu/sdm4](http://nhorton.people.amherst.edu/sdm4)
+
+- *Intro Stats* (P Frenett and NJ Horton) describes how to undertake
+  analyses in R for the examples in the Fifth Edition of *Intro Stats*
+  (2013), by Dick De Veaux, Paul Velleman, and Dave Bock.
+
+  - [5th edition:
+    nhorton.people.amherst.edu/is5](http://nhorton.people.amherst.edu/is5)
+
+- [Open Intro Stats](https://www.openintro.org/stat/labs.php)
+
+  OpenIntro Stats now has versions of their labs designed for use with
+  the `mosaic` package.\
+  The `mosaic` labs were adapted by Ben Baumer and Galen Long of Smith
+  College and updated to `ggformula` by Bonnie Lin and Nicholas Horton
+  of Amherst College.

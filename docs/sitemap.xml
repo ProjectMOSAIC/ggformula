@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
 <url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/extending-ggformula.html</loc></url>
 <url><loc>/articles/ggformula-blog.html</loc></url>
 <url><loc>/articles/ggformula.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
@@ -115,6 +116,7 @@
 <url><loc>/reference/gf_vline_interactive.html</loc></url>
 <url><loc>/reference/ggformula-ggproto.html</loc></url>
 <url><loc>/reference/ggformula.html</loc></url>
+<url><loc>/reference/ggformula_spec.html</loc></url>
 <url><loc>/reference/ggridges.html</loc></url>
 <url><loc>/reference/ggstance.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
