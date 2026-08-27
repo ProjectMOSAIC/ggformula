@@ -20,6 +20,7 @@ gf_violin(
   quantile.color = NULL,
   quantile.linetype = 0L,
   quantile.linewidth = NULL,
+  quantile_gp = quantile_gp,
   trim = TRUE,
   scale = "area",
   bw,

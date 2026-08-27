@@ -488,10 +488,11 @@ layer_factory <-
         gformula <- resolved_aes_form[["gformula"]]
 
         # Stage 3: collect stat/geom parameters and resolve `position`.
+
         collected_extras <-
           collect_layer_extras(
             orig_args,
-            formals(),
+            eval_pairlist(formals()),
             stat,
             geom,
             extras,

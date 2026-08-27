@@ -1,3 +1,31 @@
+#' Evaluate the non-missing entries of a pairlist
+#'
+#' Given a pairlist -- typically one produced by [formals()] -- evaluate
+#' each entry that is not "missing" (i.e. does not use the empty symbol R
+#' uses to represent an argument with no default), returning a plain
+#' list. This is useful for turning something like `formals(some_fun)`
+#' into a list of actual default values, without erroring on arguments
+#' that have no default to evaluate.
+#'
+#' @param pl A pairlist (or list), typically the result of calling
+#'   [formals()] on a function.
+#' @param envir The environment in which to evaluate each non-missing
+#'   entry. Defaults to the caller's environment, i.e. the environment
+#'   from which `eval_pairlist()` was called.
+#'
+#' @return A list with the same names as `pl`. Each non-missing entry of
+#'   `pl` is evaluated in `envir`; each missing entry (an argument with no
+#'   default) is returned as-is -- i.e. as R's empty symbol -- since
+#'   evaluating it directly would raise "argument is missing, with no
+#'   default".
+#'
+#' @noRd
+eval_pairlist <- function(pl, envir = parent.frame()) {
+  as.list(pl) |> lapply(function(x) {
+    if (rlang::is_missing(x)) x else eval(x, envir = envir)
+  })
+}
+
 ## Functions not exported from ggplot2
 
 # describe object x
