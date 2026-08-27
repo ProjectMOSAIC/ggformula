@@ -5,7 +5,7 @@ Type: Package
 Version: 1.1.0.9000
 Authors@R: c(
     person("Daniel", "Kaplan", email = "kaplan@macalester.edu", role = c("aut")),
-    person("Randall", "Pruim", email = "rpruim@calvin.edu", role = c("aut","cre"))
+    person("Randall", "Pruim", email = "rpruim@gmail.com", role = c("aut","cre"))
     )
 License: MIT + file LICENSE
 LazyData: TRUE
