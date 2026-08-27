@@ -16,11 +16,9 @@
   for (pkg in c("scales", "ggiraph", "ggridges", "ggplot2")) {
     search_term <- paste0("package:", pkg)
     if (!search_term %in% search()) {
-      library(
-        pkg,
-        character.only = TRUE,
-        quietly = TRUE,
-        warn.conflicts = FALSE
+      do.call(
+        "library",
+        list(pkg, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)
       )
     }
   }
