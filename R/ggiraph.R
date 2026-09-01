@@ -74,6 +74,7 @@ for (g in geoms) {
   created_funs <- c(created_funs, gf)
 }
 
+#' @importFrom cli cli_h3 cli_ul
 cli::cli_h3("Skipped functions:")
 cli::cli_ul(skipped)
 cli::cli_h3("Created functions:")
