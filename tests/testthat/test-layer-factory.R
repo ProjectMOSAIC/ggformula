@@ -400,7 +400,8 @@ test_that("gf_crossbar(), gf_errorbar(), gf_pointrange()", {
       min.age = min(age),
       sd.age = sd(age),
       lo = mean.age - sd.age,
-      hi = mean.age + sd.age
+      hi = mean.age + sd.age,
+      .groups = "drop_last"
     )
 
   wrapped_expect_doppelganger(
