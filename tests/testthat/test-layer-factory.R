@@ -130,28 +130,26 @@ test_that("gf_ash()", {
   )
 })
 
-# if (require(ggforce)) {
-#   test_that(
-#     "gf_sina()", {
-#       set.seed(1234)
-#       wrapped_expect_doppelganger(
-#         "gf_sina",
-#         gf_sina(bill_length_mm ~ species, data = penguins2)
-#       )
-#       wrapped_expect_doppelganger(
-#         "gf_sina2",
-#         gf_sina(bill_length_mm ~ species, data = penguins2, color = ~species)
-#       )
-#       wrapped_expect_doppelganger(
-#         "gf_sina3",
-#         midwest |>
-#           dplyr::mutate(area = cut_number(area, 5)) |>
-#           gf_sina(popdensity ~ area, color = ~area, show.legend = FALSE) |>
-#           gf_refine(scale_y_log10())
-#       )
-#     }
-#   )
-# }
+if (require(ggforce)) {
+  test_that("gf_sina()", {
+    set.seed(1234)
+    wrapped_expect_doppelganger(
+      "gf_sina",
+      gf_sina(bill_length_mm ~ species, data = penguins2)
+    )
+    wrapped_expect_doppelganger(
+      "gf_sina2",
+      gf_sina(bill_length_mm ~ species, data = penguins2, color = ~species)
+    )
+    wrapped_expect_doppelganger(
+      "gf_sina3",
+      midwest |>
+        dplyr::mutate(area = cut_number(area, 5)) |>
+        gf_sina(popdensity ~ area, color = ~area, show.legend = FALSE) |>
+        gf_refine(scale_y_log10())
+    )
+  })
+}
 
 test_that("gf_bar() and gf_col()", {
   wrapped_expect_doppelganger(
