@@ -1630,6 +1630,7 @@ gf_counts <-
 
 percs_by_group <-
   function(x, group) {
+    check_installed_packages("dplyr", "percs_by_group")
     tibble(x, group = rep(!!group, length.out = length(x))) |>
       dplyr::group_by(group) |>
       dplyr::mutate(s = sum(x), p = 100 * x / s) |>
@@ -1640,6 +1641,7 @@ percs_by_group <-
 #' @export
 props_by_group <-
   function(x, group) {
+    check_installed_packages("dplyr", "props_by_group")
     tibble(x, group = rep(!!group, length.out = length(x))) |>
       dplyr::group_by(group) |>
       dplyr::mutate(s = sum(x), p = x / s) |>

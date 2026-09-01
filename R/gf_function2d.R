@@ -41,6 +41,11 @@ gf_function_2d <-
     contour = TRUE,
     resolution = 50
   ) {
+    # {dplyr} is used only for the `mutate()` below, so it stays in
+    # Suggests; check up front to fail with an actionable message rather
+    # than a "there is no package called 'dplyr'" error mid-pipeline.
+    check_installed_packages("dplyr", "gf_function_2d")
+
     if (is.function(object)) {
       fun <- object
       object <- NULL
@@ -161,7 +166,10 @@ gf_fun_2d <-
 
     gf_function_2d(
       object,
-      fun = mosaic::makeFun(formula),
+      # `mosaic::makeFun` is the same object as `mosaicCore::makeFun`,
+      # which ggformula already imports (and re-exports). Calling it here
+      # avoids requiring the much heavier {mosaic} at run time.
+      fun = mosaicCore::makeFun(formula),
       xlim = xlim,
       ylim = ylim,
       contour = contour,

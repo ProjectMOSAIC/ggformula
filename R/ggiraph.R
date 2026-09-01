@@ -185,9 +185,12 @@ ggiraph_layer_interactive <-
     args <- rlang::list2(...)
     interactive_mapping <- NULL
     interactive_params <- NULL
-    index <- purrr::detect_index(args, function(x) {
-      inherits(x, "uneval")
-    })
+    # `Position(..., nomatch = 0L)` is the base-R equivalent of
+    # `purrr::detect_index()`: the first index satisfying the predicate,
+    # or 0 when there is none. Used so {purrr} can stay in Suggests --
+    # this code runs for every interactive layer, so an unconditional
+    # `purrr::` call here would make it a hard dependency.
+    index <- Position(function(x) inherits(x, "uneval"), args, nomatch = 0L)
     ipar <- ggiraph_get_default_ipar(extra_interactive_params)
     if (index > 0 && ggiraph_has_interactive_attrs(args[[index]], ipar = ipar)) {
       interactive_mapping <- ggiraph_get_interactive_attrs(args[[index]],
@@ -202,9 +205,8 @@ ggiraph_layer_interactive <-
     result <- do.call(layer_func, args)
     layer_ <- NULL
     if (is.list(result)) {
-      index <- purrr::detect_index(result, function(x) {
-        inherits(x, "LayerInstance")
-      })
+      index <-
+        Position(function(x) inherits(x, "LayerInstance"), result, nomatch = 0L)
       if (index > 0) {
         layer_ <- result[[index]]
       }
