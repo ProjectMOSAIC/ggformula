@@ -412,5 +412,9 @@ if (require("ggplot2movies")) {
   m2 |> gf_refine(coord_trans(y="log10"))
 }
 #> Loading required package: ggplot2movies
-#> Warning: there is no package called ‘ggplot2movies’
+#> Warning: `coord_trans()` was deprecated in ggplot2 4.0.0.
+#> ℹ Please use `coord_transform()` instead.
+#> Warning: Computation failed in `stat_summary()`.
+#> Caused by error in `fun.data()`:
+#> ! The package "Hmisc" is required.
 ```

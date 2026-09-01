@@ -189,5 +189,4 @@ if (require(maps) && require(ggthemes) && require(dplyr)) {
 }
 #> Loading required package: maps
 #> Loading required package: ggthemes
-#> Warning: there is no package called ‘ggthemes’
 ```

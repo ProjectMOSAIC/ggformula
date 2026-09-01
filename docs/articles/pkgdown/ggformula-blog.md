@@ -198,9 +198,9 @@ gf_violin()
 #>     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,
 #>                    quantile.colour = NULL, quantile.color =
 #>                    NULL, quantile.linetype = 0,
-#>                    quantile.linewidth = NULL, quantile_gp,
-#>                    trim = TRUE, scale = "area", bw, adjust
-#>                    = 1, kernel = "gaussian"
+#>                    quantile.linewidth = NULL, trim = TRUE,
+#>                    scale = "area", bw, adjust = 1, kernel =
+#>                    "gaussian"
 #> 
 #> For more information, try ?gf_violin
 ```
@@ -222,13 +222,11 @@ gf_violin(price ~ col, data = diamonds2,
           scale = "count",
           draw_quantiles = c(0.25, 0.5, 0.75), size = 0.8,
           adjust = 1/2)
+#> Warning: The `draw_quantiles` argument of `geom_violin()` is deprecated as of ggplot2
+#> 4.0.0.
+#> ℹ Please use the `quantiles.linetype` argument instead.
 #> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 #> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the base package.
-#>   Please report the issue to the authors.
-#> Warning: The `draw_quantiles` argument of `stat_ydensity()` is deprecated as of ggplot2
-#> 4.0.0.
-#> ℹ Please use the `quantiles` argument instead.
 ```
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-7-1.png)

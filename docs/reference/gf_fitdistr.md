@@ -193,6 +193,7 @@ gf_dhistogram(~g, data = Dat) |>
   gf_fitdistr(dist = "dgamma", linewidth = 1.4)
 #> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 
+
 fitted_density <- mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma")
 gf_dhistogram(~g, data = Dat) |>
   gf_fun(fitted_density(x) ~ x, inherit = FALSE)

@@ -217,7 +217,4 @@ environment are used to create plots in another.
 ``` r
 gf_hex(avg_drinks ~ age, data = mosaicData::HELPrct, bins = 15) |>
   gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct, color = "red", alpha = 0.5)
-#> Warning: Computation failed in `stat_binhex()`.
-#> Caused by error in `compute_group()`:
-#> ! The package "hexbin" is required for `stat_bin_hex()`.
 ```

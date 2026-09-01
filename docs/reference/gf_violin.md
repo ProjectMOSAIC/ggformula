@@ -27,7 +27,6 @@ gf_violin(
   quantile.color = NULL,
   quantile.linetype = 0L,
   quantile.linewidth = NULL,
-  quantile_gp = quantile_gp,
   trim = TRUE,
   scale = "area",
   bw,
@@ -38,7 +37,6 @@ gf_violin(
   title,
   subtitle,
   caption,
-  geom = "violin",
   stat = "ydensity",
   position = "dodge",
   show.legend = NA,
@@ -169,16 +167,9 @@ gf_violin(
   Title, sub-title, and caption for the plot. See also
   [`gf_labs()`](gf_aux.md).
 
-- geom, stat:
+- stat:
 
-  Use to override the default connection between
-  [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html)
-  and
-  [`stat_ydensity()`](https://ggplot2.tidyverse.org/reference/geom_violin.html).
-  For more information about overriding these connections, see how the
-  [stat](https://ggplot2.tidyverse.org/reference/layer_stats.html) and
-  [geom](https://ggplot2.tidyverse.org/reference/layer_geoms.html)
-  arguments work.
+  A character string naming the stat used to make the layer.
 
 - position:
 

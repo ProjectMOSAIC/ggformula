@@ -236,9 +236,9 @@ border:0px;
 <span><span class="co">#&gt;     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,</span></span>
 <span><span class="co">#&gt;                    quantile.colour = NULL, quantile.color =</span></span>
 <span><span class="co">#&gt;                    NULL, quantile.linetype = 0,</span></span>
-<span><span class="co">#&gt;                    quantile.linewidth = NULL, quantile_gp,</span></span>
-<span><span class="co">#&gt;                    trim = TRUE, scale = "area", bw, adjust</span></span>
-<span><span class="co">#&gt;                    = 1, kernel = "gaussian"</span></span>
+<span><span class="co">#&gt;                    quantile.linewidth = NULL, trim = TRUE,</span></span>
+<span><span class="co">#&gt;                    scale = "area", bw, adjust = 1, kernel =</span></span>
+<span><span class="co">#&gt;                    "gaussian"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; For more information, try ?gf_violin</span></span></code></pre></div>
 </div>
@@ -250,13 +250,11 @@ border:0px;
 <span>          scale <span class="op">=</span> <span class="st">"count"</span>,</span>
 <span>          draw_quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>          adjust <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
-<span><span class="co">#&gt; ℹ The deprecated feature was likely used in the base package.</span></span>
-<span><span class="co">#&gt;   Please report the issue to the authors.</span></span>
-<span><span class="co">#&gt; Warning: The `draw_quantiles` argument of `stat_ydensity()` is deprecated as of ggplot2</span></span>
+<span><span class="co">#&gt; Warning: The `draw_quantiles` argument of `geom_violin()` is deprecated as of ggplot2</span></span>
 <span><span class="co">#&gt; 4.0.0.</span></span>
-<span><span class="co">#&gt; ℹ Please use the `quantiles` argument instead.</span></span></code></pre></div>
+<span><span class="co">#&gt; ℹ Please use the `quantiles.linetype` argument instead.</span></span>
+<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure><p><img src="ggformula-blog_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>

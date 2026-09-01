@@ -832,11 +832,6 @@ Penguins |> gf_density_2d_filled(bill_length_mm ~ bill_depth_mm | species)
 Penguins |> gf_hex(bill_length_mm ~ bill_depth_mm | species, binwidth = 1)
 #> Warning: Removed 2 rows containing non-finite outside the scale range
 #> (`stat_binhex()`).
-#> Warning: Computation failed in `stat_binhex()`.
-#> Computation failed in `stat_binhex()`.
-#> Computation failed in `stat_binhex()`.
-#> Caused by error in `compute_group()`:
-#> ! The package "hexbin" is required for `stat_bin_hex()`.
 ```
 
 ![](ggformula-long_files/figure-html/density2d-hex-3.png)
@@ -1347,6 +1342,7 @@ gf_dhistogram( ~ x, alpha = 0.3) |>
   gf_fitdistr(dist = "dweibull", color = ~ "Weibull") |> 
   gf_labs(color = "")
 #> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
 #> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
 #> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
 #> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced

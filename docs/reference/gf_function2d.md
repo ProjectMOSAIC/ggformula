@@ -159,9 +159,6 @@ gf_fun_tile(x * y ~ x + y, xlim = c(-3, 3), ylim = c(-2, 2)) |>
   gf_fun_contour(x * y ~ x + y, color = "white") |>
   gf_refine(scale_fill_viridis_c()) |>
   gf_labs(fill = "product")
-#> Registered S3 method overwritten by 'mosaic':
-#>   method                           from   
-#>   fortify.SpatialPolygonsDataFrame ggplot2
 #> Warning: The following aesthetics were dropped during statistical transformation: fill.
 #> ℹ This can happen when ggplot fails to infer the correct grouping structure in
 #>   the data.

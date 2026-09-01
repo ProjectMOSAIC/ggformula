@@ -26,4 +26,4 @@ non-interactive function ([`gf_point()`](gf_point.md)) and reads its
 than introspecting [`gf_point()`](gf_point.md)'s internals directly.
 This makes it robust to `gf_*` functions built by other packages, as
 long as they were created with [`layer_factory()`](layer_factory.md)
-(and therefore carry a `"ggformula_spec"` attribute).
+(and therefore have a spec to read).

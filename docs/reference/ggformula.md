@@ -50,11 +50,11 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Randall Pruim <rpruim@calvin.edu>
+**Maintainer**: Randall Pruim <rpruim@gmail.com>
 
 Authors:
 
-- Randall Pruim <rpruim@calvin.edu>
+- Randall Pruim <rpruim@gmail.com>
 
 - Daniel Kaplan <kaplan@macalester.edu>
 
