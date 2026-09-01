@@ -18,6 +18,32 @@ test_that("check_installed_packages() errors informatively when a package isn't 
   )
 })
 
+test_that("interactive layers require ggiraph to be installed, not attached", {
+  skip_if_not_installed("ggiraph")
+
+  # Interactive layers look ggiraph's constructors and ggproto objects up
+  # in its namespace, so installation is enough; the requirement is
+  # recorded so that a missing ggiraph produces an informative error at
+  # call time rather than a lookup failure deep in the layer machinery.
+  expect_true(
+    "ggiraph" %in% ggformula_spec(gf_point_interactive)$installed_packages
+  )
+  expect_equal(
+    ggformula_spec(gf_point_interactive)$required_packages,
+    character(0)
+  )
+})
+
+test_that("ggiraph_fun() errors informatively for an unknown constructor", {
+  skip_if_not_installed("ggiraph")
+
+  expect_error(
+    ggformula:::ggiraph_fun("geom_not_a_real_thing_interactive"),
+    "does not export"
+  )
+  expect_true(is.function(ggformula:::ggiraph_fun("geom_point_interactive")))
+})
+
 # test_that("check_installed_packages() does not require the package to be attached", {
 #   skip_if_not_installed("MASS")
 #   was_attached <- "package:MASS" %in% search()

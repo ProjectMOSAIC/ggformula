@@ -22,7 +22,8 @@ Imports:
     tibble,
     stringr,
     grid,
-    labelled
+    labelled,
+    cli
 Suggests:
     tidyr,
     patchwork,

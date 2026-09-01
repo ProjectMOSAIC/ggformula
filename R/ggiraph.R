@@ -47,7 +47,17 @@ gf_girafe <- function(ggobj, code, ...) {
   }
   ggiraph::girafe(code = code, ggobj = ggobj, ...)
 }
-geoms <- apropos('geom_.*_interactive')
+# The set of interactive geoms to wrap is determined when this package is
+# built. Read it from {ggiraph}'s namespace rather than with `apropos()`,
+# which searches the *search path* and so silently depended on {ggiraph}
+# happening to be attached at build time (and would have picked up
+# similarly-named functions from any other attached package).
+geoms <-
+  sort(grep(
+    "^geom_.*_interactive$",
+    getNamespaceExports("ggiraph"),
+    value = TRUE
+  ))
 
 # geoms <- c('geom_contour_filled_interactive')
 
@@ -285,6 +295,43 @@ ggiraph_remove_interactive_attrs <-
     x
   }
 
+# Retrieve an exported {ggiraph} function by name, with an actionable
+# error if {ggiraph} is unavailable. Used to resolve the interactive
+# layer constructors that `interactive_layer_factory()` records by name,
+# without relying on {ggiraph} being attached to the search path.
+ggiraph_fun <- function(name) {
+  check_installed_packages("ggiraph", "gf_*_interactive")
+  if (!name %in% getNamespaceExports("ggiraph")) {
+    stop(
+      "The installed version of ggiraph does not export ",
+      name,
+      "().",
+      call. = FALSE
+    )
+  }
+  getExportedValue("ggiraph", name)
+}
+
+# Like `find_global()`, but also consults {ggiraph}'s namespace. The
+# interactive ggproto objects (`GeomInteractivePoint` and friends) live
+# there, and `find_global()` searches only `env` (whose parent chain
+# reaches the search path), ggformula, and ggplot2 -- so without this,
+# interactive layers worked only when {ggiraph} was attached, not merely
+# installed.
+find_global_ggiraph <- function(name, env, mode = "any") {
+  obj <- find_global(name, env = env, mode = mode)
+  if (!is.null(obj)) {
+    return(obj)
+  }
+  if (requireNamespace("ggiraph", quietly = TRUE)) {
+    nsenv <- asNamespace("ggiraph")
+    if (exists(name, envir = nsenv, mode = mode)) {
+      return(get(name, envir = nsenv, mode = mode))
+    }
+  }
+  NULL
+}
+
 ggiraph_find_interactive_class <-
   function (gg, baseclass = c("Geom", "Guide"), env = parent.frame())
   {
@@ -309,7 +356,7 @@ ggiraph_find_interactive_class <-
     if (!startsWith(name, baseinteractive)) {
       name <- sub(baseclass, baseinteractive, name)
     }
-    obj <- find_global(name, env = env)
+    obj <- find_global_ggiraph(name, env = env)
     if (is.null(obj) || !inherits(obj, baseclass)) {
       rlang::abort(paste0("Can't find interactive ", baseclass, " function based on ",
                           as_label(gg)), call = NULL)

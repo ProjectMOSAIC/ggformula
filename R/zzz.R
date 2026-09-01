@@ -1,27 +1,25 @@
 .onAttach <- function(libname, pkgname) {
-  # Make sure our Depends packages are actually attached (on the search
-  # path), not merely loaded. Normally R attaches a package's Depends
-  # automatically the first time that package's namespace is loaded via
-  # library()/require(). But if something else has already loaded
-  # ggformula's namespace as one of *its own* Imports (e.g. loading
-  # {mosaic}, which imports {ggformula}), that first-time Depends
-  # attachment never happens -- only ggformula's own namespace gets
-  # loaded, not attached, and none of *its* Depends get attached either.
-  # A later, explicit library(ggformula) then finds the namespace already
-  # loaded and doesn't retroactively attach ggformula's Depends. Since
-  # .onAttach() runs every time ggformula itself is attached (regardless
-  # of how/when its namespace was first loaded), re-attaching here is a
-  # reliable, idempotent fix: `library()` on an already-attached package
-  # is a no-op, so this is safe to run unconditionally.
-  for (pkg in c("scales", "ggiraph", "ggridges", "ggplot2")) {
-    search_term <- paste0("package:", pkg)
-    if (!search_term %in% search()) {
-      do.call(
-        "library",
-        list(pkg, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)
-      )
-    }
-  }
+  # Note: ggformula deliberately does *not* attach its Depends
+  # (ggplot2, scales, ggiraph, ggridges) from here.
+  #
+  # It used to, to work around this: {mosaic} lists ggformula under its
+  # own `Imports:`, so `library(mosaic)` loads ggformula's namespace
+  # without going through the top-level `library()` path that attaches
+  # ggformula's Depends. A later `library(ggformula)` finds the namespace
+  # already loaded and does not retroactively attach them, leaving
+  # {ggiraph} off the search path -- which used to break
+  # `gf_*_interactive()`, because those layers resolved ggiraph's
+  # constructors and ggproto objects by name via the search path.
+  #
+  # Calling `library()` from `.onAttach()` fixes the symptom but is
+  # discouraged (see "Writing R Extensions": packages should not modify
+  # the search path), and it imposes four attachments on every user to
+  # compensate for one downstream package's DESCRIPTION choice. The cause
+  # is now addressed directly instead: interactive layers look ggiraph up
+  # in its namespace (see `ggiraph_fun()` and `find_global_ggiraph()`),
+  # so ggiraph need only be installed. ggplot2, scales, and ggridges are
+  # `import()`ed wholesale in NAMESPACE, so ggformula's own code has
+  # never depended on their being attached either.
 
   packageStartupMessage(
     paste(

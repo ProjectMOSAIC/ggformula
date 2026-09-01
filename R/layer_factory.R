@@ -692,8 +692,9 @@ is_ggformula_spec <- function(x) {
 
 ###############################################################################
 ##
-## modified version of function in ggiraph, branching based on whether position
-## is specified.
+## modified version of a function in ggiraph: it omits optional arguments
+## that were not supplied, and resolves the interactive layer constructor
+## from ggiraph's namespace rather than the search path.
 
 layer_interactive <- function(
   layer_func,
@@ -704,6 +705,15 @@ layer_interactive <- function(
   interactive_geom = NULL,
   extra_interactive_params = NULL
 ) {
+  # `interactive_layer_factory()` records the interactive constructor by
+  # name (e.g. "geom_point_interactive"). Resolve it from {ggiraph}'s
+  # namespace here rather than leaving it to `do.call()`, whose character
+  # lookup falls through to the search path -- which would require
+  # {ggiraph} to be attached rather than merely installed.
+  if (is.character(layer_func)) {
+    layer_func <- ggiraph_fun(layer_func)
+  }
+
   # `inherit.aes` is declared explicitly (rather than left to `...`) so
   # that `build_layer_args()` -- which forwards `inherit.aes` only to
   # layer functions whose signature declares it -- knows it is safe to
@@ -780,7 +790,15 @@ interactive_layer_factory <- function(geom_fun) {
       inherit.aes = spec[["inherit.aes"]] %||% TRUE,
       check.aes = spec[["check.aes"]] %||% TRUE,
       required_packages = spec[["required_packages"]] %||% character(0),
-      installed_packages = spec[["installed_packages"]] %||% character(0),
+      # {ggiraph} need only be installed, not attached: the interactive
+      # constructor and its ggproto objects are looked up in its
+      # namespace (see `ggiraph_fun()`, `find_global_ggiraph()`).
+      # Checking here gives an actionable error at call time rather than
+      # a lookup failure deep inside the layer machinery.
+      installed_packages = union(
+        spec[["installed_packages"]] %||% character(0),
+        "ggiraph"
+      ),
       layer_fun = layer_interactive
     )
   )
