@@ -9,6 +9,14 @@
   that does not inherit the plot's aesthetics. `gf_abline()`,
   `gf_hline()`, and `gf_vline()` are unaffected: they are built with
   `inherit.aes = FALSE`, matching those geoms' own defaults.
+* Bug fix: relatedly, `inherit = FALSE` was ignored by every
+  `gf_*_interactive()` function, since those are built on
+  `layer_interactive()` rather than `ggplot2::layer()`.
+  `layer_interactive()` now accepts and forwards `inherit.aes`, so e.g.
+  `gf_point_interactive(..., inherit = FALSE)` behaves like
+  `gf_point(..., inherit = FALSE)`. When not supplied, `inherit.aes` is
+  omitted rather than forwarded as `NULL`, leaving the underlying geom's
+  own default in force.
 
 # ggformula 1.1.0
 

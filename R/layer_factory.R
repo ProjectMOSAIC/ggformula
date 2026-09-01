@@ -237,9 +237,10 @@ build_layer_args <-
           # friends: their own `inherit.aes` default is FALSE, and the
           # corresponding `gf_*()` functions are built with
           # `layer_factory(inherit.aes = FALSE)`, so `inherit` already
-          # carries that same default. Functions relying on `...`
-          # passthrough (e.g. `layer_interactive()`) declare no
-          # `inherit.aes` and so are unaffected.
+          # carries that same default. Layer functions that cannot make
+          # use of `inherit.aes` simply don't declare it and are left
+          # alone; `layer_interactive()` declares it precisely so that
+          # interactive layers opt in to this forwarding.
           # `check.aes`/`check.param` remain `ggplot2::layer()`-only.
           if ("inherit.aes" %in% layer_fun_formals) {
             list(inherit.aes = inherit)
@@ -695,21 +696,43 @@ is_ggformula_spec <- function(x) {
 ## is specified.
 
 layer_interactive <- function(
-    layer_func, stat = NULL, position = NULL, ...,
-    interactive_geom = NULL, extra_interactive_params = NULL) {
+  layer_func,
+  stat = NULL,
+  position = NULL,
+  ...,
+  inherit.aes = NULL,
+  interactive_geom = NULL,
+  extra_interactive_params = NULL
+) {
+  # `inherit.aes` is declared explicitly (rather than left to `...`) so
+  # that `build_layer_args()` -- which forwards `inherit.aes` only to
+  # layer functions whose signature declares it -- knows it is safe to
+  # pass along. Without it, `gf_*_interactive(inherit = FALSE)` was
+  # silently ignored. ggiraph's `geom_*_interactive()` functions are all
+  # `...`-passthrough wrappers around the corresponding ggplot2 geom
+  # (e.g. `geom_point_interactive(...)` calls `geom_point(...)`), so the
+  # value reaches a function that understands it.
+  #
+  # `position` and `inherit.aes` are omitted entirely when NULL rather
+  # than forwarded as NULL, since for those wrappers an explicit NULL is
+  # not the same as an absent argument (`position = NULL` in particular
+  # is an error). Omitting `inherit.aes` leaves the underlying geom's own
+  # default in force, which matters for `geom_abline()` and friends,
+  # whose default is FALSE rather than TRUE.
+  #
+  # `ggiraph_layer_interactive()` collects its `...` with `rlang::list2()`,
+  # so `!!!` splicing of the optional arguments works here.
+  optional <- list(position = position, inherit.aes = inherit.aes)
+  optional <- optional[!vapply(optional, is.null, logical(1))]
 
-  dots <- list(...)
-  if (is.null(position)) {
-    ggiraph_layer_interactive(
-      layer_func, stat = stat, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  } else {
-    ggiraph_layer_interactive(
-      layer_func, stat = stat, position = position, ...,
-      interactive_geom = interactive_geom, extra_interactive_params = extra_interactive_params
-    )
-  }
+  ggiraph_layer_interactive(
+    layer_func,
+    stat = stat,
+    !!!optional,
+    ...,
+    interactive_geom = interactive_geom,
+    extra_interactive_params = extra_interactive_params
+  )
 }
 
 

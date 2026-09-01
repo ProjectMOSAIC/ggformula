@@ -38,6 +38,87 @@ test_that("the ggplot2::layer() path (e.g. gf_boxplot()) is unchanged", {
   expect_false(p$layers[[2]]$inherit.aes)
 })
 
+test_that("gf_*_interactive() honors inherit = FALSE", {
+  skip_if_not_installed("ggiraph")
+
+  # Interactive layers go through `layer_interactive()` rather than
+  # `ggplot2::layer()`; it declares `inherit.aes` so that
+  # `build_layer_args()` forwards it on to ggiraph's `...`-passthrough
+  # `geom_*_interactive()` wrappers.
+  p <- gf_point(mpg ~ wt, data = mtcars) |>
+    gf_point_interactive(
+      hp ~ disp,
+      data = mtcars,
+      tooltip = ~hp,
+      inherit = FALSE
+    )
+
+  expect_false(p$layers[[2]]$inherit.aes)
+})
+
+test_that("gf_*_interactive() still inherits aesthetics by default", {
+  skip_if_not_installed("ggiraph")
+
+  p <- gf_point(mpg ~ wt, data = mtcars) |>
+    gf_point_interactive(hp ~ disp, data = mtcars, tooltip = ~hp)
+
+  expect_true(p$layers[[2]]$inherit.aes)
+})
+
+test_that("gf_hline_interactive() keeps inherit.aes = FALSE by default", {
+  skip_if_not_installed("ggiraph")
+
+  # Built from gf_hline()'s spec, so `inherit` defaults to FALSE, matching
+  # geom_hline()'s own default.
+  p <- gf_point(mpg ~ wt, data = mtcars) |>
+    gf_hline_interactive(yintercept = 20, tooltip = "cutoff")
+
+  expect_false(p$layers[[2]]$inherit.aes)
+})
+
+test_that("a range of interactive layers still build", {
+  skip_if_not_installed("ggiraph")
+
+  # `layer_interactive()` forwards an explicit `inherit.aes` to every
+  # interactive layer now, so check a spread of geoms/stats/positions
+  # rather than just gf_point_interactive().
+  expect_no_error(
+    gf_boxplot_interactive(mpg ~ factor(cyl), data = mtcars, tooltip = ~mpg)
+  )
+  expect_no_error(
+    gf_violin_interactive(mpg ~ factor(cyl), data = mtcars, tooltip = ~mpg)
+  )
+  expect_no_error(
+    gf_jitter_interactive(
+      mpg ~ factor(cyl),
+      data = mtcars,
+      tooltip = ~mpg,
+      width = 0.2
+    )
+  )
+  expect_no_error(
+    gf_histogram_interactive(~mpg, data = mtcars, tooltip = ~ after_stat(count))
+  )
+  expect_no_error(
+    gf_line_interactive(mpg ~ wt, data = mtcars, tooltip = ~mpg)
+  )
+  expect_no_error(
+    gf_smooth_interactive(mpg ~ wt, data = mtcars, tooltip = ~mpg)
+  )
+  expect_no_error(
+    gf_text_interactive(
+      mpg ~ wt,
+      label = ~ rownames(mtcars),
+      data = mtcars,
+      tooltip = ~mpg
+    )
+  )
+  expect_no_error(
+    gf_point(mpg ~ wt, data = mtcars) |>
+      gf_abline_interactive(slope = 0, intercept = 20, tooltip = "flat")
+  )
+})
+
 test_that("gf_abline() and friends keep inherit.aes = FALSE by default", {
   # These are built with `layer_factory(inherit.aes = FALSE)` to match
   # `geom_abline()`'s own default; forwarding `inherit.aes` by signature
