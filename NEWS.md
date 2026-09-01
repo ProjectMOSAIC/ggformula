@@ -1,5 +1,15 @@
 # ggformula (development version)
 
+* Bug fix: `inherit = FALSE` was silently ignored by `gf_*()` functions
+  built with an explicit `layer_fun` naming a `geom_*()` constructor
+  rather than the default `ggplot2::layer()` -- most visibly
+  `gf_violin()`, which adopted `layer_fun = ggplot2::geom_violin` in
+  1.1.0. `inherit.aes` is now forwarded whenever the layer function
+  declares it, so `gf_violin(..., inherit = FALSE)` again creates a layer
+  that does not inherit the plot's aesthetics. `gf_abline()`,
+  `gf_hline()`, and `gf_vline()` are unaffected: they are built with
+  `inherit.aes = FALSE`, matching those geoms' own defaults.
+
 # ggformula 1.1.0
 
 * New feature: `layer_factory()` gains a `required_packages` argument for
@@ -46,12 +56,14 @@
   "formula -> ggplot2 layer" pipeline. This is intended to make the code
   easier to read, test, and extend; no behavior changes are intended from
   this refactor alone.
-* Internal: every function created by `layer_factory()` now carries an
-  explicit, documented `"ggformula_spec"` attribute (see the new
-  `ggformula_spec()`) recording the `geom`, `stat`, `position`, `aes_form`,
-  `extras`, `aesthetics`, `inherit.aes`, and `check.aes` it was built with.
-  `interactive_layer_factory()` now uses this instead of inspecting a
-  `gf_*` function's environment, and extension packages can use it too.
+* Internal: every function created by `layer_factory()` now records an
+  explicit, documented specification (retrieved with the new
+  `ggformula_spec()`) of the `geom`, `stat`, `position`, `aes_form`,
+  `extras`, `pre`, `aesthetics`, `inherit.aes`, `check.aes`,
+  `required_packages`, and `installed_packages` it was built with.
+  `interactive_layer_factory()` now reads that single documented record
+  instead of scraping several loosely-related bindings out of a `gf_*`
+  function's environment, and extension packages can use it too.
 * Removed unused internal code: `R/ggstrings.R` (unused string-based
   ggplot2-code generators from an earlier design), `formula_shape0()`
   (superseded by `formula_shape()`), and `formula2aes()`/`list2aes()`

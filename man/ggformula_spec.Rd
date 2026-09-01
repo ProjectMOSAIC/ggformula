@@ -16,16 +16,21 @@ A list with components \code{geom}, \code{stat}, \code{position}, \code{aes_form
 was not created by \code{\link[=layer_factory]{layer_factory()}}.
 }
 \description{
-Every function created by \code{\link[=layer_factory]{layer_factory()}} carries a \code{"ggformula_spec"}
-attribute recording the arguments (\code{geom}, \code{stat}, \code{position}, \code{aes_form},
-\code{extras}, \code{pre}, \code{aesthetics}, \code{inherit.aes}, \code{check.aes},
-\code{required_packages}, \code{installed_packages}) it was built with.
-\code{ggformula_spec()} retrieves this attribute, which is the recommended
-way for extension packages (or \code{ggformula} itself, e.g. when building
-\verb{_interactive} counterparts) to introspect a \verb{gf_*} function without
-depending on the internals of \code{\link[=layer_factory]{layer_factory()}}.
+Every function created by \code{\link[=layer_factory]{layer_factory()}} records the arguments
+(\code{geom}, \code{stat}, \code{position}, \code{aes_form}, \code{extras}, \code{pre}, \code{aesthetics},
+\code{inherit.aes}, \code{check.aes}, \code{required_packages}, \code{installed_packages})
+it was built with. \code{ggformula_spec()} retrieves that record, which is
+the recommended way for extension packages (or \code{ggformula} itself, e.g.
+when building \verb{_interactive} counterparts) to introspect a \verb{gf_*}
+function without depending on the internals of \code{\link[=layer_factory]{layer_factory()}}.
 }
 \details{
+The spec is stored in the function's enclosing environment rather than
+as an attribute on the function, so that printing a \verb{gf_*} function at
+the console shows just the function. Use \code{ggformula_spec()} rather than
+reaching for the binding directly; its name and location are an
+implementation detail.
+
 Note that \code{pre} is included precisely so that
 \code{interactive_layer_factory()} (and similar tools) can replay it: some
 \verb{gf_*} functions (e.g. \code{gf_text()}, whose \code{nudge_x}/\code{nudge_y} handling

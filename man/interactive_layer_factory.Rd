@@ -21,6 +21,5 @@ non-interactive function (\code{gf_point()}) and reads its
 reuse when building the interactive counterpart, rather than
 introspecting \code{gf_point()}'s internals directly. This makes it robust to
 \verb{gf_*} functions built by other packages, as long as they were created
-with \code{\link[=layer_factory]{layer_factory()}} (and therefore carry a \code{"ggformula_spec"}
-attribute).
+with \code{\link[=layer_factory]{layer_factory()}} (and therefore have a spec to read).
 }

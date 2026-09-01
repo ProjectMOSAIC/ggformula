@@ -168,7 +168,7 @@ collect_layer_extras <-
 # Stage 4: look for remaining arguments of the form `argument = ~ something`
 # and turn them into aesthetics (e.g. `color = ~group`). This is the more
 # general, longstanding mechanism that `resolve_aes_form_and_roles()`'s
-# role-specific handling (goal (d)) deliberately runs before, so that
+# role-specific handling deliberately runs before, so that
 # formula-valued `x`/`y`/etc. role arguments are handled there instead.
 extract_formula_aesthetics <- function(extras_and_dots, aesthetics, envir) {
   if (length(extras_and_dots) > 0) {
@@ -214,6 +214,13 @@ build_layer_args <-
           inherit.aes = inherit
         )
     } else {
+      # `layer_fun` is a `geom_*()`/`stat_*()`-style constructor (e.g.
+      # `geom_violin()`, `geom_sf()`, `geom_abline()`), or an interactive
+      # wrapper, rather than `ggplot2::layer()`. Such functions declare
+      # their structural arguments individually and differ in which ones
+      # they accept, so consult `formals(layer_fun)` instead of assuming a
+      # particular signature.
+      layer_fun_formals <- names(formals(layer_fun))
       layer_args <-
         c(
           list(
@@ -222,10 +229,21 @@ build_layer_args <-
             data = ingredients[["data"]],
             mapping = ingredients[["mapping"]],
             show.legend = show.legend
-            # arguments below are not used by geom_abline() and friends, so don't include them.
-            # check.aes = TRUE, check.param = FALSE,
-            # inherit.aes = inherit
           ),
+          # `inherit.aes` must be forwarded when `layer_fun` declares it,
+          # or `gf_*(inherit = FALSE)` is silently ignored (as happened
+          # for `gf_violin()`, which uses `layer_fun = geom_violin`).
+          # Doing this by signature is safe for `geom_abline()` and
+          # friends: their own `inherit.aes` default is FALSE, and the
+          # corresponding `gf_*()` functions are built with
+          # `layer_factory(inherit.aes = FALSE)`, so `inherit` already
+          # carries that same default. Functions relying on `...`
+          # passthrough (e.g. `layer_interactive()`) declare no
+          # `inherit.aes` and so are unaffected.
+          # `check.aes`/`check.param` remain `ggplot2::layer()`-only.
+          if ("inherit.aes" %in% layer_fun_formals) {
+            list(inherit.aes = inherit)
+          },
           # these become regular arguments for other layer functions
           remove_from_list(ingredients[["params"]], "inherit")
         )
@@ -573,13 +591,23 @@ layer_factory <-
     assign("required_packages", required_packages, environment(res))
     assign("installed_packages", installed_packages, environment(res))
 
-    # Attach the arguments used to build this function as an explicit,
-    # documented "spec" attribute (see `ggformula_spec()`). This is what
+    # Record the arguments used to build this function as an explicit,
+    # documented "spec" (see `ggformula_spec()`). This is what
     # `interactive_layer_factory()` uses to build the `_interactive`
     # counterpart of a `gf_*` function, and is also the recommended way
     # for extension packages to introspect a `gf_*` function's geom/stat/
     # formula-shape/etc. without relying on `layer_factory()`'s internals.
-    attr(res, "ggformula_spec") <-
+    #
+    # It lives in the function's enclosing environment rather than in an
+    # attribute on the function itself: `print.function()` displays a
+    # function's attributes, so an attribute here would mean that merely
+    # typing `gf_point` at the console dumped the whole spec after the
+    # closure. The single dot-prefixed binding is deliberate -- it keeps
+    # the spec distinguishable from the individual values also assigned
+    # above (which exist because the function body references them at
+    # call time).
+    assign(
+      ".ggformula_spec",
       list(
         geom = geom,
         stat = stat,
@@ -592,20 +620,27 @@ layer_factory <-
         check.aes = check.aes,
         required_packages = required_packages,
         installed_packages = installed_packages
-      )
+      ),
+      environment(res)
+    )
     res
   }
 
 #' Retrieve the specification used to build a `gf_*` function
 #'
-#' Every function created by [layer_factory()] carries a `"ggformula_spec"`
-#' attribute recording the arguments (`geom`, `stat`, `position`, `aes_form`,
-#' `extras`, `pre`, `aesthetics`, `inherit.aes`, `check.aes`,
-#' `required_packages`, `installed_packages`) it was built with.
-#' `ggformula_spec()` retrieves this attribute, which is the recommended
-#' way for extension packages (or `ggformula` itself, e.g. when building
-#' `_interactive` counterparts) to introspect a `gf_*` function without
-#' depending on the internals of [layer_factory()].
+#' Every function created by [layer_factory()] records the arguments
+#' (`geom`, `stat`, `position`, `aes_form`, `extras`, `pre`, `aesthetics`,
+#' `inherit.aes`, `check.aes`, `required_packages`, `installed_packages`)
+#' it was built with. `ggformula_spec()` retrieves that record, which is
+#' the recommended way for extension packages (or `ggformula` itself, e.g.
+#' when building `_interactive` counterparts) to introspect a `gf_*`
+#' function without depending on the internals of [layer_factory()].
+#'
+#' The spec is stored in the function's enclosing environment rather than
+#' as an attribute on the function, so that printing a `gf_*` function at
+#' the console shows just the function. Use `ggformula_spec()` rather than
+#' reaching for the binding directly; its name and location are an
+#' implementation detail.
 #'
 #' Note that `pre` is included precisely so that
 #' `interactive_layer_factory()` (and similar tools) can replay it: some
@@ -623,7 +658,35 @@ layer_factory <-
 #'   was not created by [layer_factory()].
 #' @export
 ggformula_spec <- function(gf_fun) {
-  attr(gf_fun, "ggformula_spec")
+  if (!is.function(gf_fun)) {
+    return(NULL)
+  }
+
+  # Development versions between 1.1.0 and this one stored the spec as an
+  # attribute; honor that if we find it, so functions built by an older
+  # ggformula (or by an extension package built against one) still work.
+  spec <- attr(gf_fun, "ggformula_spec")
+
+  if (is.null(spec)) {
+    env <- environment(gf_fun)
+    # primitives (and functions stripped of their environment) have none
+    if (is.null(env)) {
+      return(NULL)
+    }
+    # `inherit = FALSE`: only the function's own enclosing environment --
+    # the one `layer_factory()` created -- counts as a match.
+    spec <-
+      rlang::env_get(env, ".ggformula_spec", default = NULL, inherit = FALSE)
+  }
+
+  if (is_ggformula_spec(spec)) spec else NULL
+}
+
+# Guards against mistaking some unrelated `.ggformula_spec` binding (or a
+# stale/partial one) for a real spec.
+is_ggformula_spec <- function(x) {
+  is.list(x) &&
+    all(c("geom", "stat", "position", "aes_form", "extras") %in% names(x))
 }
 
 ###############################################################################
@@ -664,8 +727,7 @@ layer_interactive <- function(
 #' reuse when building the interactive counterpart, rather than
 #' introspecting `gf_point()`'s internals directly. This makes it robust to
 #' `gf_*` functions built by other packages, as long as they were created
-#' with [layer_factory()] (and therefore carry a `"ggformula_spec"`
-#' attribute).
+#' with [layer_factory()] (and therefore have a spec to read).
 #'
 #' @param geom_fun A character string naming an interactive geom (example: "geom_point_interactive")
 #'

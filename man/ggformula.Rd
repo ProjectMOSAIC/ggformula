@@ -62,11 +62,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Randall Pruim \email{rpruim@calvin.edu}
+\strong{Maintainer}: Randall Pruim \email{rpruim@gmail.com}
 
 Authors:
 \itemize{
-  \item Randall Pruim \email{rpruim@calvin.edu}
+  \item Randall Pruim \email{rpruim@gmail.com}
   \item Daniel Kaplan \email{kaplan@macalester.edu}
 }
 
