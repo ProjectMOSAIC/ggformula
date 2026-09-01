@@ -1,5 +1,3 @@
-context("reserved layer argument names are never treated as extras")
-
 # Regression tests for the bug where argument names that ggplot2's
 # geom_*()/stat_*() constructors happen to declare (data, mapping,
 # position, show.legend, inherit.aes, geom, stat) leaked through as

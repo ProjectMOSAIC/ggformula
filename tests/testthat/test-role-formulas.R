@@ -1,5 +1,3 @@
-context("role-formula arguments (x = ~var, y = ~var, ...)")
-
 # These tests cover the `x = ~var1, y = ~var2` (and generalized role=)
 # mechanism described in NEWS.md. They intentionally avoid palmerpenguins/
 # mosaic so they always run.

@@ -1,5 +1,3 @@
-context("ggformula_spec()")
-
 test_that("ggformula_spec() returns the arguments a gf_* function was built with", {
   spec <- ggformula_spec(gf_point)
 

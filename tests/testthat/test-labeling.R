@@ -1,5 +1,3 @@
-context("labeling")
-
 mtcars2 <- df_stats(wt ~ cyl, data = mtcars, median_wt = median)
 
 test_that("HELPrct labels work", {

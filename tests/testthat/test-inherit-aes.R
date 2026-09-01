@@ -1,5 +1,3 @@
-context("inherit = is honored regardless of which layer function is used")
-
 # Regression tests for a bug in which `gf_*(inherit = FALSE)` was silently
 # ignored by any `gf_*()` function built with an explicit
 # `layer_fun = quo(ggplot2::geom_*)` (rather than the default

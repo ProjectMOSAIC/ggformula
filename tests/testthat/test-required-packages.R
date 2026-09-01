@@ -1,5 +1,3 @@
-context("layer_factory(required_packages = ...)")
-
 # These tests avoid palmerpenguins/mosaic so they always run.
 
 test_that("required_packages defaults to no restriction", {

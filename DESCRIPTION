@@ -81,3 +81,4 @@ Collate:
     'ggformula-package.R'
     'zzz.R'
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3

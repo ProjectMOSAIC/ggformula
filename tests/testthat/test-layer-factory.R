@@ -1,5 +1,3 @@
-context("layer factory")
-
 skip_if_not_installed("palmerpenguins")
 skip_if_not_installed("mosaic")
 
@@ -170,30 +168,28 @@ test_that("gf_bar() and gf_col()", {
   )
 })
 
-if (TRUE) {
-  test_that("gf_barh() and gf_colh()", {
-    SomeData <- data.frame(
-      group = LETTERS[1:3],
-      count = c(20, 25, 18)
-    )
-    wrapped_expect_doppelganger(
-      "gf_barh1",
-      gf_bar(substance ~ ., data = mosaicData::HELPrct)
-    )
-    wrapped_expect_doppelganger(
-      "gf_barh1a",
-      gf_bar(substance ~ ., data = mosaicData::HELPrct)
-    )
-    wrapped_expect_doppelganger(
-      "gf_colh1",
-      gf_col(group ~ count, data = SomeData)
-    )
-    wrapped_expect_doppelganger(
-      "gf_colh1a",
-      gf_col(group ~ count, data = SomeData)
-    )
-  })
-}
+test_that("gf_barh() and gf_colh()", {
+  SomeData <- data.frame(
+    group = LETTERS[1:3],
+    count = c(20, 25, 18)
+  )
+  wrapped_expect_doppelganger(
+    "gf_barh1",
+    gf_bar(substance ~ ., data = mosaicData::HELPrct)
+  )
+  wrapped_expect_doppelganger(
+    "gf_barh1a",
+    gf_bar(substance ~ ., data = mosaicData::HELPrct)
+  )
+  wrapped_expect_doppelganger(
+    "gf_colh1",
+    gf_col(group ~ count, data = SomeData)
+  )
+  wrapped_expect_doppelganger(
+    "gf_colh1a",
+    gf_col(group ~ count, data = SomeData)
+  )
+})
 
 test_that("gf_bin2d()", {
   wrapped_expect_doppelganger(
@@ -307,64 +303,62 @@ test_that("gf_contour(), gf_density_2d(), gf_density2d()", {
   )
 })
 
-if (TRUE) {
-  test_that("gf_countsh(), gf_percentsh(), gf_propsh()", {
-    wrapped_expect_doppelganger(
-      "gf_countsh1a",
-      gf_counts(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+test_that("gf_countsh(), gf_percentsh(), gf_propsh()", {
+  wrapped_expect_doppelganger(
+    "gf_countsh1a",
+    gf_counts(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-    wrapped_expect_doppelganger(
-      "gf_countsh2a",
-      gf_counts(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+  )
+  wrapped_expect_doppelganger(
+    "gf_countsh2a",
+    gf_counts(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-    wrapped_expect_doppelganger(
-      "gf_percentsh1a",
-      gf_percents(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+  )
+  wrapped_expect_doppelganger(
+    "gf_percentsh1a",
+    gf_percents(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-    wrapped_expect_doppelganger(
-      "gf_percentsh2a",
-      gf_percents(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+  )
+  wrapped_expect_doppelganger(
+    "gf_percentsh2a",
+    gf_percents(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-    wrapped_expect_doppelganger(
-      "gf_propsh1a",
-      gf_props(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+  )
+  wrapped_expect_doppelganger(
+    "gf_propsh1a",
+    gf_props(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-    wrapped_expect_doppelganger(
-      "gf_propsh2a",
-      gf_props(
-        substance ~ .,
-        data = mosaicData::HELPrct,
-        fill = ~sex,
-        position = "dodge"
-      )
+  )
+  wrapped_expect_doppelganger(
+    "gf_propsh2a",
+    gf_props(
+      substance ~ .,
+      data = mosaicData::HELPrct,
+      fill = ~sex,
+      position = "dodge"
     )
-  })
-}
+  )
+})
 
 test_that("gf__counts(), gf_props(), gf_percents()", {
   wrapped_expect_doppelganger(
@@ -454,125 +448,123 @@ test_that("gf_crossbar(), gf_errorbar(), gf_pointrange()", {
   )
 })
 
-if (TRUE) {
-  test_that("gf_crossbarh(), gf_errorbarh(), gf_pointrangeh()", {
-    HELP2 <- mosaicData::HELPrct |>
-      dplyr::group_by(substance, sex) |>
-      dplyr::summarise(
-        mean.age = mean(age),
-        median.age = median(age),
-        max.age = max(age),
-        min.age = min(age),
-        sd.age = sd(age),
-        lo = mean.age - sd.age,
-        hi = mean.age + sd.age,
-        .groups = "drop_last"
-      )
+test_that("gf_crossbarh(), gf_errorbarh(), gf_pointrangeh()", {
+  HELP2 <- mosaicData::HELPrct |>
+    dplyr::group_by(substance, sex) |>
+    dplyr::summarise(
+      mean.age = mean(age),
+      median.age = median(age),
+      max.age = max(age),
+      min.age = min(age),
+      sd.age = sd(age),
+      lo = mean.age - sd.age,
+      hi = mean.age + sd.age,
+      .groups = "drop_last"
+    )
 
-    wrapped_expect_doppelganger(
-      "gf_pointrangeh1",
-      gf_jitter(
-        substance ~ age,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
-      ) |>
-        gf_pointrange(
-          substance ~ mean.age + lo + hi,
-          inherit = FALSE,
-          linewidth = 1,
-          data = HELP2
-        ) |>
-        gf_facet_grid(sex ~ .)
-    )
-    wrapped_expect_doppelganger(
-      "gf_pointrangeh1a",
-      gf_jitter(
-        substance ~ age,
+  wrapped_expect_doppelganger(
+    "gf_pointrangeh1",
+    gf_jitter(
+      substance ~ age,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_pointrange(
+        substance ~ mean.age + lo + hi,
         inherit = FALSE,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
+        linewidth = 1,
+        data = HELP2
       ) |>
-        gf_pointrange(
-          substance ~ mean.age + lo + hi,
-          inherity = FALSE,
-          data = HELP2
-        ) |>
-        gf_facet_grid(sex ~ .)
-    )
-    wrapped_expect_doppelganger(
-      "gf_errorbarh1",
-      gf_jitter(
-        substance ~ age,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
+      gf_facet_grid(sex ~ .)
+  )
+  wrapped_expect_doppelganger(
+    "gf_pointrangeh1a",
+    gf_jitter(
+      substance ~ age,
+      inherit = FALSE,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_pointrange(
+        substance ~ mean.age + lo + hi,
+        inherity = FALSE,
+        data = HELP2
       ) |>
-        gf_errorbar(substance ~ lo + hi, data = HELP2, inherit = FALSE) |>
-        gf_facet_grid(sex ~ .)
-    )
-    wrapped_expect_doppelganger(
-      "gf_errorbarh1a",
-      gf_jitter(
-        substance ~ age,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
+      gf_facet_grid(sex ~ .)
+  )
+  wrapped_expect_doppelganger(
+    "gf_errorbarh1",
+    gf_jitter(
+      substance ~ age,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_errorbar(substance ~ lo + hi, data = HELP2, inherit = FALSE) |>
+      gf_facet_grid(sex ~ .)
+  )
+  wrapped_expect_doppelganger(
+    "gf_errorbarh1a",
+    gf_jitter(
+      substance ~ age,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_errorbar(substance ~ lo + hi, data = HELP2, inherit = FALSE) |>
+      gf_facet_grid(sex ~ .)
+  )
+  wrapped_expect_doppelganger(
+    "gf_crossbarh1",
+    gf_jitter(
+      substance ~ age,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_crossbar(
+        substance ~ mean.age + lo + hi,
+        data = HELP2,
+        inherit = FALSE
       ) |>
-        gf_errorbar(substance ~ lo + hi, data = HELP2, inherit = FALSE) |>
-        gf_facet_grid(sex ~ .)
-    )
-    wrapped_expect_doppelganger(
-      "gf_crossbarh1",
-      gf_jitter(
-        substance ~ age,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
+      gf_facet_grid(sex ~ .)
+  )
+  wrapped_expect_doppelganger(
+    "gf_crossbarh1a",
+    gf_jitter(
+      substance ~ age,
+      data = mosaicData::HELPrct,
+      seed = 123,
+      alpha = 0.5,
+      height = 0.2,
+      width = 0,
+      color = "skyblue"
+    ) |>
+      gf_crossbar(
+        substance ~ mean.age + lo + hi,
+        data = HELP2,
+        inherit = FALSE
       ) |>
-        gf_crossbar(
-          substance ~ mean.age + lo + hi,
-          data = HELP2,
-          inherit = FALSE
-        ) |>
-        gf_facet_grid(sex ~ .)
-    )
-    wrapped_expect_doppelganger(
-      "gf_crossbarh1a",
-      gf_jitter(
-        substance ~ age,
-        data = mosaicData::HELPrct,
-        seed = 123,
-        alpha = 0.5,
-        height = 0.2,
-        width = 0,
-        color = "skyblue"
-      ) |>
-        gf_crossbar(
-          substance ~ mean.age + lo + hi,
-          data = HELP2,
-          inherit = FALSE
-        ) |>
-        gf_facet_grid(sex ~ .)
-    )
-  })
-}
+      gf_facet_grid(sex ~ .)
+  )
+})
 
 test_that("gf_curve() and gf_segment()", {
   SomeData <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)

@@ -1,5 +1,3 @@
-context("interactive layers work when ggformula's Depends are not attached")
-
 # Regression test for a real-world failure mode: {mosaic} lists {ggformula}
 # under its own `Imports:` (not `Depends:`), so `library(mosaic)` loads
 # ggformula's *namespace* without going through the top-level

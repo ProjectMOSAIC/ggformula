@@ -1,5 +1,3 @@
-context("annotate")
-
 p <- gf_point(mpg ~ wt, data = mtcars)
 
 test_that("single text", {

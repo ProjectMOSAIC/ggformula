@@ -1,5 +1,3 @@
-context("layer_factory(installed_packages = ...)")
-
 # These tests avoid palmerpenguins/mosaic so they always run.
 
 test_that("installed_packages defaults to no restriction", {
@@ -44,29 +42,26 @@ test_that("ggiraph_fun() errors informatively for an unknown constructor", {
   expect_true(is.function(ggformula:::ggiraph_fun("geom_point_interactive")))
 })
 
-# test_that("check_installed_packages() does not require the package to be attached", {
-#   skip_if_not_installed("MASS")
-#   was_attached <- "package:MASS" %in% search()
-#   if (was_attached) {
-#     suppressWarnings(detach("package:MASS"))
-#   }
-#   on.exit(if (was_attached) library(MASS), add = TRUE)
+# The point of `installed_packages` is that, unlike `required_packages`,
+# it does *not* require the package to be attached. Showing that needs a
+# package which is installed but not on the search path: {MASS} ships with
+# R and nothing in ggformula or its tests attaches it. These tests skip
+# (rather than detaching MASS, which can fail when another attached
+# package depends on it) in the rare session where it is already attached.
 
-#   expect_false("package:MASS" %in% search())
-#   expect_no_error(ggformula:::check_installed_packages("MASS", "gf_fake"))
-# })
+test_that("check_installed_packages() does not require the package to be attached", {
+  skip_if_not_installed("MASS")
+  skip_if("package:MASS" %in% search(), "MASS is attached in this session")
 
-# test_that("check_required_packages() and check_installed_packages() differ on attachment", {
-#   skip_if_not_installed("MASS")
-#   was_attached <- "package:MASS" %in% search()
-#   if (was_attached) {
-#     suppressWarnings(detach("package:MASS"))
-#   }
-#   on.exit(if (was_attached) library(MASS), add = TRUE)
+  expect_no_error(ggformula:::check_installed_packages("MASS", "gf_fake"))
+})
 
-#   expect_no_error(ggformula:::check_installed_packages("MASS", "gf_fake"))
-#   expect_error(
-#     ggformula:::check_required_packages("MASS", "gf_fake"),
-#     "gf_fake.*MASS package must be loaded"
-#   )
-# })
+test_that("check_required_packages() additionally requires attachment", {
+  skip_if_not_installed("MASS")
+  skip_if("package:MASS" %in% search(), "MASS is attached in this session")
+
+  expect_error(
+    ggformula:::check_required_packages("MASS", "gf_fake"),
+    "gf_fake.*MASS package must be loaded"
+  )
+})

@@ -1,5 +1,3 @@
-context("gf_violin() quantile lines")
-
 # Regression tests for a bug where gf_violin()'s quantile.colour/
 # quantile.color/quantile.linetype/quantile.linewidth extras were
 # silently ignored (no quantile lines drawn), because gf_violin() used
