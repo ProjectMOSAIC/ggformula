@@ -1,6 +1,6 @@
 # ggformula (development version)
 
-* `layer_factory()` the core function that creates `gf_*()` functions has been largely refactored.  Most existing behavior 
+* `layer_factory()`, the core function that creates `gf_*()` functions, has been largely refactored. Most existing behavior 
 remains unchanged (aside from bug fixes).
 * It is now possible to specify all aesthetics with `name = ~ variable` syntax.  For example: `gf_point( x = ~ var`, y = ~ var2`, ...)` is equivalent to `gf_point(var2 ~ var 1)`.
 * It is now easier to create wrappers around additional
