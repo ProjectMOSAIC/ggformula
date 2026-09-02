@@ -6,6 +6,11 @@ remains unchanged (aside from bug fixes).
 * It is now easier to create wrappers around additional
   stats and geoms.  There is a vignette describing how to
   do so.
+* Attaching a package that imports 
+`ggformula` (e.g., `mosaic`) prevents dependencies of 
+`ggformula` from being attached, even when `ggformula` 
+is subsequently attached with `library(ggformula)`.  This
+caused some behavior to break with unclear messaging unless the user explicitly attached dependencies of `ggformula` (e.g., `ggiraph`). This should now be fixed via a combination of mechanisms.
 * Bug fix: `inherit = FALSE` was silently ignored by `gf_*()` functions
   built with an explicit `layer_fun` naming a `geom_*()` constructor
   rather than the default `ggplot2::layer()` -- most visibly
