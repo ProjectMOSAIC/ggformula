@@ -31,54 +31,48 @@ or sets of points.
 - `tooltip` provides the text (or HTML) to be displayed in the tooltip.
 - `data_id` provides and identifier for a selection.
 
-``` r
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggformula`](https://github.com/ProjectMOSAIC/ggformula)`)`\
+[`theme_set`](https://ggplot2.tidyverse.org/reference/get_theme.html)`(`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)`
 
-library(ggformula)
-theme_set(theme_bw())
-```
-
-``` r
-
-data(mtcars)
-mtcars2 <- mtcars |>
-  tibble::rownames_to_column(var = "carname")
-
-cars_scatter <-
-  mtcars2 |>
-  gf_point_interactive(
-    wt ~ drat,
-    color = ~mpg,
-    tooltip = ~carname, # show carname when hovering on a point
-    data_id = ~carname, # unique identifier -- selection is a single point
-    hover_nearest = TRUE,
-    size = 3
-  )
-
-# to display the graph with interactive components enabled, use
-# gf_girafe() to convert it to an HTML widget.
-
-gf_girafe(cars_scatter)
-```
+\
+[`data`](https://rdrr.io/r/utils/data.html)`(``mtcars``)`\
+`mtcars2`` ``<-`` ``mtcars`` ``|>`\
+`  ``tibble``::`[`rownames_to_column`](https://tibble.tidyverse.org/reference/rownames.html)`(``var ``=`` ``"carname"``)`\
+\
+`cars_scatter`` ``<-`\
+`  ``mtcars2`` ``|>`\
+`  `[`gf_point_interactive`](../reference/gf_point_interactive.md)`(`\
+`    ``wt`` ``~`` ``drat``,`\
+`    color ``=`` ``~``mpg``,`\
+`    tooltip ``=`` ``~``carname``, ``# show carname when hovering on a point`\
+`    data_id ``=`` ``~``carname``, ``# unique identifier -- selection is a single point`\
+`    hover_nearest ``=`` ``TRUE``,`\
+`    size ``=`` ``3`\
+`  ``)`\
+\
+`# to display the graph with interactive components enabled, use`\
+`# gf_girafe() to convert it to an HTML widget.`\
+\
+[`gf_girafe`](../reference/gf_girafe.md)`(``cars_scatter``)`
 
 In the previous example, `data_id` was a unique identifier for the
 points. In the next example, `data_id` identifies groups of cars (those
 with the same number of cylinders). The hover text identifies both the
 car name and the number of cylinders.
 
-``` r
-
-cars_scatter_tooltip <-
-  mtcars2 |>
-  gf_point_interactive(
-    qsec ~ disp,
-    tooltip = ~ glue::glue("{carname} ({cyl} cylinders)"),
-    data_id = ~cyl,
-    size = 3,
-    hover_nearest = TRUE
-  )
-
-gf_girafe(cars_scatter_tooltip)
-```
+\
+`cars_scatter_tooltip`` ``<-`\
+`  ``mtcars2`` ``|>`\
+`  `[`gf_point_interactive`](../reference/gf_point_interactive.md)`(`\
+`    ``qsec`` ``~`` ``disp``,`\
+`    tooltip ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"{carname} ({cyl} cylinders)"``)``,`\
+`    data_id ``=`` ``~``cyl``,`\
+`    size ``=`` ``3``,`\
+`    hover_nearest ``=`` ``TRUE`\
+`  ``)`\
+\
+[`gf_girafe`](../reference/gf_girafe.md)`(``cars_scatter_tooltip``)`
 
 ### 1.3 Dealing with stats in interactive bar graphs
 
@@ -90,20 +84,18 @@ statistics and scales can be important to creating graphics.
 Here is an example where tooltips allow us to see how many items are
 represented in each segment of a stacked bar plot.
 
-``` r
-
-data(diamonds)
-diamonds_bargraph <-
-  diamonds |>
-  gf_bar_interactive(
-    ~color,
-    fill = ~cut,
-    tooltip = ~ after_stat(count),
-    data_id = ~ as.character(cut)
-  )
-
-diamonds_bargraph |> gf_girafe()
-```
+\
+[`data`](https://rdrr.io/r/utils/data.html)`(``diamonds``)`\
+`diamonds_bargraph`` ``<-`\
+`  ``diamonds`` ``|>`\
+`  `[`gf_bar_interactive`](../reference/gf_bar_interactive.md)`(`\
+`    ``~``color``,`\
+`    fill ``=`` ``~``cut``,`\
+`    tooltip ``=`` ``~`` `[`after_stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``count``)``,`\
+`    data_id ``=`` ``~`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``cut``)`\
+`  ``)`\
+\
+`diamonds_bargraph`` ``|>`` `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 > **[`after_stat()`](https://ggplot2.tidyverse.org/reference/aes_eval.html)**
 >
@@ -128,18 +120,16 @@ diamonds_bargraph |> gf_girafe()
 > with
 > [`layer_data()`](https://ggplot2.tidyverse.org/reference/ggplot_build.html).[^1]
 >
-> ``` r
->
-> diamonds_bargraph |> layer_data() |> head(3)
-> #>   count prop x flipped_aes      fill data_id PANEL group tooltip    y ymin ymax
-> #> 1   163    1 1       FALSE #440154FF    Fair     1     1     163 6775 6612 6775
-> #> 2   224    1 2       FALSE #440154FF    Fair     1     2     224 9797 9573 9797
-> #> 3   312    1 3       FALSE #440154FF    Fair     1     3     312 9542 9230 9542
-> #>   xmin xmax colour linewidth linetype alpha width
-> #> 1 0.55 1.45     NA       0.5        1    NA   0.9
-> #> 2 1.55 2.45     NA       0.5        1    NA   0.9
-> #> 3 2.55 3.45     NA       0.5        1    NA   0.9
-> ```
+> \
+> `diamonds_bargraph`` ``|>`` `[`layer_data`](https://ggplot2.tidyverse.org/reference/ggplot_build.html)`(``)`` ``|>`` `[`head`](https://rdrr.io/r/utils/head.html)`(``3``)`\
+> `#>   count prop x flipped_aes      fill data_id PANEL group tooltip    y ymin ymax`\
+> `#> 1   163    1 1       FALSE #440154FF    Fair     1     1     163 6775 6612 6775`\
+> `#> 2   224    1 2       FALSE #440154FF    Fair     1     2     224 9797 9573 9797`\
+> `#> 3   312    1 3       FALSE #440154FF    Fair     1     3     312 9542 9230 9542`\
+> `#>   xmin xmax colour linewidth linetype alpha width`\
+> `#> 1 0.55 1.45     NA       0.5        1    NA   0.9`\
+> `#> 2 1.55 2.45     NA       0.5        1    NA   0.9`\
+> `#> 3 2.55 3.45     NA       0.5        1    NA   0.9`
 >
 > Some things to notice:
 >
@@ -175,50 +165,46 @@ graphic. [`gf_col_interactive()`](../reference/gf_col_interactive.md) is
 similar to `gf_bar_interacive()`, but is designed to work with data that
 have already been summarised.
 
-``` r
-
-library(dplyr)
-diamonds |>
-  group_by(color, cut) |>
-  summarise(count = n()) |>
-  gf_col_interactive(
-    count ~ color,
-    fill = ~cut,
-    tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}"),
-    data_id = ~ glue::glue("{cut} - {color}")
-  ) |>
-  gf_girafe()
-#> `summarise()` has regrouped the output.
-#> ℹ Summaries were computed grouped by color and cut.
-#> ℹ Output is grouped by color.
-#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-#> ℹ Use `summarise(.by = c(color, cut))` for per-operation grouping
-#>   (`?dplyr::dplyr_by`) instead.
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
+`diamonds`` ``|>`\
+`  `[`group_by`](https://dplyr.tidyverse.org/reference/group_by.html)`(``color``, ``cut``)`` ``|>`\
+`  `[`summarise`](https://dplyr.tidyverse.org/reference/summarise.html)`(``count ``=`` `[`n`](https://dplyr.tidyverse.org/reference/context.html)`(``)``)`` ``|>`\
+`  `[`gf_col_interactive`](../reference/gf_col_interactive.md)`(`\
+`    ``count`` ``~`` ``color``,`\
+`    fill ``=`` ``~``cut``,`\
+`    tooltip ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"color: {color}, cut: {cut}, count: {count}"``)``,`\
+`    data_id ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"{cut} - {color}"``)`\
+`  ``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`\
+`` #> `summarise()` has regrouped the output. ``\
+`#> ℹ Summaries were computed grouped by color and cut.`\
+`#> ℹ Output is grouped by color.`\
+`` #> ℹ Use `summarise(.groups = "drop_last")` to silence this message. ``\
+`` #> ℹ Use `summarise(.by = c(color, cut))` for per-operation grouping ``\
+`` #>   (`?dplyr::dplyr_by`) instead. ``
 
 Our use of `data_id` here limits the hover highlighting to one bar
 segment (defined by cut and color). If we omit `data_id` in the previous
 example, we still get the hover text, but the bar segment we are
 hovering on does not change color.
 
-``` r
-
-diamonds |>
-  group_by(color, cut) |>
-  summarise(count = n()) |>
-  gf_col_interactive(
-    count ~ color,
-    fill = ~cut,
-    tooltip = ~ glue::glue("color: {color}, cut: {cut}, count: {count}")
-  ) |>
-  gf_girafe()
-#> `summarise()` has regrouped the output.
-#> ℹ Summaries were computed grouped by color and cut.
-#> ℹ Output is grouped by color.
-#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-#> ℹ Use `summarise(.by = c(color, cut))` for per-operation grouping
-#>   (`?dplyr::dplyr_by`) instead.
-```
+\
+`diamonds`` ``|>`\
+`  `[`group_by`](https://dplyr.tidyverse.org/reference/group_by.html)`(``color``, ``cut``)`` ``|>`\
+`  `[`summarise`](https://dplyr.tidyverse.org/reference/summarise.html)`(``count ``=`` `[`n`](https://dplyr.tidyverse.org/reference/context.html)`(``)``)`` ``|>`\
+`  `[`gf_col_interactive`](../reference/gf_col_interactive.md)`(`\
+`    ``count`` ``~`` ``color``,`\
+`    fill ``=`` ``~``cut``,`\
+`    tooltip ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"color: {color}, cut: {cut}, count: {count}"``)`\
+`  ``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`\
+`` #> `summarise()` has regrouped the output. ``\
+`#> ℹ Summaries were computed grouped by color and cut.`\
+`#> ℹ Output is grouped by color.`\
+`` #> ℹ Use `summarise(.groups = "drop_last")` to silence this message. ``\
+`` #> ℹ Use `summarise(.by = c(color, cut))` for per-operation grouping ``\
+`` #>   (`?dplyr::dplyr_by`) instead. ``
 
 ##### Method 2: Using `stage()`
 
@@ -227,25 +213,23 @@ Alternatively, we might prefer to let
 of the data summarising for us, but still have finer control over the
 highlighting and tooltip text.
 
-``` r
-
-diamonds_bargraph_2 <-
-  diamonds |>
-  gf_bar_interactive(
-    ~color,
-    fill = ~cut,
-    tooltip = ~ stage(
-      start = glue::glue("color: {color}; cut: {cut}"),
-      after_stat = glue::glue("{tooltip}; count = {count}")
-    ),
-    data_id = ~ glue::glue("{cut} -- {color}"),
-    size = 3
-  )
-#> Warning in (function (mapping = NULL, data = NULL, stat = "count", position =
-#> "stack", : Ignoring unknown parameters: `size`
-diamonds_bargraph_2 |>
-  gf_girafe()
-```
+\
+`diamonds_bargraph_2`` ``<-`\
+`  ``diamonds`` ``|>`\
+`  `[`gf_bar_interactive`](../reference/gf_bar_interactive.md)`(`\
+`    ``~``color``,`\
+`    fill ``=`` ``~``cut``,`\
+`    tooltip ``=`` ``~`` `[`stage`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(`\
+`      start ``=`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"color: {color}; cut: {cut}"``)``,`\
+`      after_stat ``=`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"{tooltip}; count = {count}"``)`\
+`    ``)``,`\
+`    data_id ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"{cut} -- {color}"``)``,`\
+`    size ``=`` ``3`\
+`  ``)`\
+`#> Warning in (function (mapping = NULL, data = NULL, stat = "count", position =`\
+`` #> "stack", : Ignoring unknown parameters: `size` ``\
+`diamonds_bargraph_2`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 > **[`stage()`](https://ggplot2.tidyverse.org/reference/aes_eval.html)**
 >
@@ -287,23 +271,21 @@ Interactive scales can be used inside
 [`gf_refine()`](../reference/gf_aux.md) and generate interactive guides
 (legends, axes, etc.).
 
-``` r
-
-diamonds_bargraph_3 <-
-  diamonds_bargraph |>
-  gf_refine(
-    scale_fill_viridis_d_interactive(
-      begin = 0.1,
-      end = 0.7,
-      option = "D",
-      data_id = function(breaks) as.character(breaks),
-      tooltip = function(breaks) glue::glue("break: {as.character(breaks)}")
-    )
-  )
-
-diamonds_bargraph_3 |>
-  gf_girafe()
-```
+\
+`diamonds_bargraph_3`` ``<-`\
+`  ``diamonds_bargraph`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`\
+`    `[`scale_fill_viridis_d_interactive`](https://davidgohel.github.io/ggiraph/reference/scale_viridis_interactive.html)`(`\
+`      begin ``=`` ``0.1``,`\
+`      end ``=`` ``0.7``,`\
+`      option ``=`` ``"D"``,`\
+`      data_id ``=`` ``function``(``breaks``)`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``breaks``)``,`\
+`      tooltip ``=`` ``function``(``breaks``)`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"break: {as.character(breaks)}"``)`\
+`    ``)`\
+`  ``)`\
+\
+`diamonds_bargraph_3`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 By themselves, interactive scales are not that interesting. But key
 selections can be turned into reactive values for use in things like
@@ -321,26 +303,24 @@ Interactive faceting requires three things:
     (`labeller = gf_labeller_interactive()`) to create the labels; and
 3.  A theme that enables facet text and/or strips to be interactive.
 
-``` r
-
-diamonds_bargraph_4 <-
-  diamonds_bargraph_3 |>
-  gf_theme(
-    strip.text = element_text_interactive(),
-    strip.background = element_rect_interactive()
-  ) |>
-  gf_facet_wrap_interactive(
-    ~clarity, # or vars(clarity)
-    interactive_on = "both",
-    ncol = 2,
-    labeller = gf_labeller_interactive(
-      tooltip = ~ paste("this is clarity", clarity),
-      data_id = ~clarity
-    )
-  ) 
-
-  diamonds_bargraph_4 |> gf_girafe()
-```
+\
+`diamonds_bargraph_4`` ``<-`\
+`  ``diamonds_bargraph_3`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`\
+`    strip.text ``=`` `[`element_text_interactive`](https://davidgohel.github.io/ggiraph/reference/element_interactive.html)`(``)``,`\
+`    strip.background ``=`` `[`element_rect_interactive`](https://davidgohel.github.io/ggiraph/reference/element_interactive.html)`(``)`\
+`  ``)`` ``|>`\
+`  `[`gf_facet_wrap_interactive`](../reference/interactive_facets.md)`(`\
+`    ``~``clarity``, ``# or vars(clarity)`\
+`    interactive_on ``=`` ``"both"``,`\
+`    ncol ``=`` ``2``,`\
+`    labeller ``=`` `[`gf_labeller_interactive`](../reference/gf_labeller_interactive.md)`(`\
+`      tooltip ``=`` ``~`` `[`paste`](https://rdrr.io/r/base/paste.html)`(``"this is clarity"``, ``clarity``)``,`\
+`      data_id ``=`` ``~``clarity`\
+`    ``)`\
+`  ``)`` `\
+\
+`  ``diamonds_bargraph_4`` ``|>`` `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 > **Warning**
 >
@@ -353,20 +333,18 @@ diamonds_bargraph_4 <-
 >
 > Note the `PANEL` and `group` columns in the layer data.
 >
-> ``` r
->
-> diamonds_bargraph_4 |> layer_data() |> slice_sample(n=4)
-> #>   count prop x flipped_aes      fill data_id PANEL group tooltip   y ymin ymax
-> #> 1    41    1 4       FALSE #3B528BFF    Good     7    11      41 996  955  996
-> #> 2     1    1 7       FALSE #3B528BFF    Good     7    14       1  73   72   73
-> #> 3    53    1 7       FALSE #3B528BFF    Good     2    14      53 452  399  452
-> #> 4   879    1 3       FALSE #43BF71FF   Ideal     4    31     879 879    0  879
-> #>   xmin xmax colour linewidth linetype alpha width
-> #> 1 3.55 4.45     NA       0.5        1    NA   0.9
-> #> 2 6.55 7.45     NA       0.5        1    NA   0.9
-> #> 3 6.55 7.45     NA       0.5        1    NA   0.9
-> #> 4 2.55 3.45     NA       0.5        1    NA   0.9
-> ```
+> \
+> `diamonds_bargraph_4`` ``|>`` `[`layer_data`](https://ggplot2.tidyverse.org/reference/ggplot_build.html)`(``)`` ``|>`` `[`slice_sample`](https://dplyr.tidyverse.org/reference/slice.html)`(``n``=``4``)`\
+> `#>   count prop x flipped_aes      fill data_id PANEL group tooltip   y ymin ymax`\
+> `#> 1    41    1 4       FALSE #3B528BFF    Good     7    11      41 996  955  996`\
+> `#> 2     1    1 7       FALSE #3B528BFF    Good     7    14       1  73   72   73`\
+> `#> 3    53    1 7       FALSE #3B528BFF    Good     2    14      53 452  399  452`\
+> `#> 4   879    1 3       FALSE #43BF71FF   Ideal     4    31     879 879    0  879`\
+> `#>   xmin xmax colour linewidth linetype alpha width`\
+> `#> 1 3.55 4.45     NA       0.5        1    NA   0.9`\
+> `#> 2 6.55 7.45     NA       0.5        1    NA   0.9`\
+> `#> 3 6.55 7.45     NA       0.5        1    NA   0.9`\
+> `#> 4 2.55 3.45     NA       0.5        1    NA   0.9`
 
 ### 1.6 Interactive themes
 
@@ -393,21 +371,19 @@ These are drop-in replacements for their non-interactive counterparts.
   for adding interactive elements for faceting to a theme of your
   choice.
 
-``` r
-
-diamonds_bargraph_3 |>
-  gf_theme(theme_facets_interactive(theme_minimal())) |>
-  gf_facet_wrap_interactive(
-    ~clarity, # or vars(clarity)
-    interactive_on = "both",
-    ncol = 2,
-    labeller = gf_labeller_interactive(
-      tooltip = ~ paste("this is clarity", clarity),
-      data_id = ~clarity
-    )
-  ) |>
-  gf_girafe()
-```
+\
+`diamonds_bargraph_3`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`[`theme_facets_interactive`](../reference/theme_facets_interactive.md)`(`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)``)`` ``|>`\
+`  `[`gf_facet_wrap_interactive`](../reference/interactive_facets.md)`(`\
+`    ``~``clarity``, ``# or vars(clarity)`\
+`    interactive_on ``=`` ``"both"``,`\
+`    ncol ``=`` ``2``,`\
+`    labeller ``=`` `[`gf_labeller_interactive`](../reference/gf_labeller_interactive.md)`(`\
+`      tooltip ``=`` ``~`` `[`paste`](https://rdrr.io/r/base/paste.html)`(``"this is clarity"``, ``clarity``)``,`\
+`      data_id ``=`` ``~``clarity`\
+`    ``)`\
+`  ``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 We’ll return to this example in [Section 2](#sec-customizing) to see how
 to improve the hover interaction.
@@ -417,24 +393,22 @@ to improve the hover interaction.
 If we use {patchwork} to arrange multiple plots into a grid, selecting
 points in one plot will highlight them in both.
 
-``` r
-
-library(patchwork)
-
-
-cars_scatter_2 <-
-  mtcars2 |>
-  gf_point_interactive(
-    disp ~ qsec,
-    color = ~mpg,
-    tooltip = ~carname,
-    data_id = ~carname,
-    hover_nearest = TRUE,
-    size = 3
-  )
-
-gf_girafe(cars_scatter / cars_scatter_2)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`patchwork`](https://patchwork.data-imaginist.com)`)`\
+\
+\
+`cars_scatter_2`` ``<-`\
+`  ``mtcars2`` ``|>`\
+`  `[`gf_point_interactive`](../reference/gf_point_interactive.md)`(`\
+`    ``disp`` ``~`` ``qsec``,`\
+`    color ``=`` ``~``mpg``,`\
+`    tooltip ``=`` ``~``carname``,`\
+`    data_id ``=`` ``~``carname``,`\
+`    hover_nearest ``=`` ``TRUE``,`\
+`    size ``=`` ``3`\
+`  ``)`\
+\
+[`gf_girafe`](../reference/gf_girafe.md)`(``cars_scatter`` ``/`` ``cars_scatter_2``)`
 
 ### 1.8 Click actions with JavaScript
 
@@ -445,37 +419,33 @@ of JavaScript.
 
 #### 1.8.1 Alerts
 
-``` r
-
-  mtcars2 |>
-  gf_point_interactive(
-    wt ~ drat,
-    color = ~mpg,
-    data_id = ~carname, 
-    onclick = ~glue::glue('alert("Here is some info for {carname} ...")'),
-    size = 3
-  ) |>
-    gf_girafe()
-```
+\
+`  ``mtcars2`` ``|>`\
+`  `[`gf_point_interactive`](../reference/gf_point_interactive.md)`(`\
+`    ``wt`` ``~`` ``drat``,`\
+`    color ``=`` ``~``mpg``,`\
+`    data_id ``=`` ``~``carname``, `\
+`    onclick ``=`` ``~``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``'alert("Here is some info for {carname} ...")'``)``,`\
+`    size ``=`` ``3`\
+`  ``)`` ``|>`\
+`    `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 #### 1.8.2 Opening another webpage
 
 In the example below, we use this to open a webpage with related
 information.
 
-``` r
-
-  mtcars2 |>
-  gf_point_interactive(
-    wt ~ drat,
-    color = ~ mpg,
-    data_id = ~ carname, 
-    tooltip = ~ carname,
-    onclick = ~ glue::glue('window.open("https://en.wikipedia.org/w/index.php?search={carname}")'),
-    size = 3
-  ) |>
-    gf_girafe()
-```
+\
+`  ``mtcars2`` ``|>`\
+`  `[`gf_point_interactive`](../reference/gf_point_interactive.md)`(`\
+`    ``wt`` ``~`` ``drat``,`\
+`    color ``=`` ``~`` ``mpg``,`\
+`    data_id ``=`` ``~`` ``carname``, `\
+`    tooltip ``=`` ``~`` ``carname``,`\
+`    onclick ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``'window.open("https://en.wikipedia.org/w/index.php?search={carname}")'``)``,`\
+`    size ``=`` ``3`\
+`  ``)`` ``|>`\
+`    `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
 ## 2 Customizing girafe animations
 
@@ -563,25 +533,23 @@ guide elements. Common CSS properties for styling these elements include
 
 We can use opacity to improve our interactive facets.
 
-``` r
-
-diamonds_bargraph_3 |>
-  gf_theme(theme_facets_interactive(theme_minimal())) |>
-  gf_facet_wrap_interactive(
-    ~clarity, # or vars(clarity)
-    interactive_on = "both",
-    ncol = 2,
-    labeller = gf_labeller_interactive(
-      tooltip = ~ paste("this is clarity", clarity),
-      data_id = ~clarity
-    )
-  ) |>
-  gf_girafe(
-    options = list(
-      opts_hover("fill:red; opacity: 0.5")
-    )
-  )
-```
+\
+`diamonds_bargraph_3`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`[`theme_facets_interactive`](../reference/theme_facets_interactive.md)`(`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)``)`` ``|>`\
+`  `[`gf_facet_wrap_interactive`](../reference/interactive_facets.md)`(`\
+`    ``~``clarity``, ``# or vars(clarity)`\
+`    interactive_on ``=`` ``"both"``,`\
+`    ncol ``=`` ``2``,`\
+`    labeller ``=`` `[`gf_labeller_interactive`](../reference/gf_labeller_interactive.md)`(`\
+`      tooltip ``=`` ``~`` `[`paste`](https://rdrr.io/r/base/paste.html)`(``"this is clarity"``, ``clarity``)``,`\
+`      data_id ``=`` ``~``clarity`\
+`    ``)`\
+`  ``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_hover`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(``"fill:red; opacity: 0.5"``)`\
+`    ``)`\
+`  ``)`
 
 This still leaves room for some improvement as our hover option is
 affecting both the strip rectangle and the strip text.
@@ -599,49 +567,45 @@ point which can be overridden with the subsequent arguments: `text`,
 `point`, `line`, `area` (used for rects, polygons, and paths), and
 `image`.
 
-``` r
-
-diamonds_bargraph_3 |>
-  gf_theme(theme_facets_interactive(theme_minimal())) |>
-  gf_facet_wrap_interactive(
-    ~clarity, # or vars(clarity)
-    interactive_on = "both",
-    ncol = 2,
-    labeller = gf_labeller_interactive(
-      tooltip = ~ paste("this is clarity", clarity),
-      data_id = ~clarity
-    )
-  ) |>
-  gf_girafe(
-    options = list(
-      opts_hover(
-        css = girafe_css(
-          css = "fill:red; opacity:0.7; stroke:black; stroke-width:3px;",
-          text = "stroke:none; fill:white; opacity:0.9;"
-        )
-      )
-    )
-  )
-```
+\
+`diamonds_bargraph_3`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`[`theme_facets_interactive`](../reference/theme_facets_interactive.md)`(`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)``)`` ``|>`\
+`  `[`gf_facet_wrap_interactive`](../reference/interactive_facets.md)`(`\
+`    ``~``clarity``, ``# or vars(clarity)`\
+`    interactive_on ``=`` ``"both"``,`\
+`    ncol ``=`` ``2``,`\
+`    labeller ``=`` `[`gf_labeller_interactive`](../reference/gf_labeller_interactive.md)`(`\
+`      tooltip ``=`` ``~`` `[`paste`](https://rdrr.io/r/base/paste.html)`(``"this is clarity"``, ``clarity``)``,`\
+`      data_id ``=`` ``~``clarity`\
+`    ``)`\
+`  ``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_hover`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(`\
+`        css ``=`` `[`girafe_css`](https://davidgohel.github.io/ggiraph/reference/girafe_css.html)`(`\
+`          css ``=`` ``"fill:red; opacity:0.7; stroke:black; stroke-width:3px;"``,`\
+`          text ``=`` ``"stroke:none; fill:white; opacity:0.9;"`\
+`        ``)`\
+`      ``)`\
+`    ``)`\
+`  ``)`
 
 Here is another example, this time using
 [`gf_label_interactive()`](../reference/gf_label_interactive.md).
 
-``` r
-
-mtcars2[1:6, ] |>
-  gf_label_interactive(qsec ~ disp, label = ~carname, data_id = ~carname) |>
-  gf_girafe(
-    options = list(
-      opts_hover(
-        css = girafe_css(
-          css = "fill:yellow;",
-          text = "stroke:none; fill:red;"
-        )
-      )
-    )
-  )
-```
+\
+`mtcars2``[``1``:``6``, ``]`` ``|>`\
+`  `[`gf_label_interactive`](../reference/gf_label_interactive.md)`(``qsec`` ``~`` ``disp``, label ``=`` ``~``carname``, data_id ``=`` ``~``carname``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_hover`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(`\
+`        css ``=`` `[`girafe_css`](https://davidgohel.github.io/ggiraph/reference/girafe_css.html)`(`\
+`          css ``=`` ``"fill:yellow;"``,`\
+`          text ``=`` ``"stroke:none; fill:red;"`\
+`        ``)`\
+`      ``)`\
+`    ``)`\
+`  ``)`
 
 #### 2.2.3 Key and inverse hovering
 
@@ -659,34 +623,32 @@ We can also style the non-selected elements with
 > The use of low opacity in non-hovered elements can be used to
 > highlight the selected elements.
 
-``` r
-
-mosaicData::Weather |>
-  gf_line_interactive(
-    high_temp ~ date,
-    color = ~city,
-    show.legend = FALSE,
-    tooltip = ~city,
-    data_id = ~city
-  ) |>
-  gf_facet_wrap_interactive(
-    ~year,
-    ncol = 1,
-    scales = "free_x",
-    labeller = gf_labeller_interactive(
-      data_id = ~year,
-      tooltip = ~ glue::glue("This is the year {year}")
-    )
-  ) |>
-  gf_theme(theme_facets_interactive()) |>
-  gf_girafe(
-    options = list(
-      opts_hover_inv(css = "opacity:0.2;"),
-      opts_hover(css = "stroke-width:2;", nearest_distance = 40),
-      opts_tooltip(use_cursor_pos = FALSE, offx = 0, offy = -30)
-    )
-  )
-```
+\
+`mosaicData``::`[`Weather`](https://rdrr.io/pkg/mosaicData/man/Weather.html)` ``|>`\
+`  `[`gf_line_interactive`](../reference/gf_line_interactive.md)`(`\
+`    ``high_temp`` ``~`` ``date``,`\
+`    color ``=`` ``~``city``,`\
+`    show.legend ``=`` ``FALSE``,`\
+`    tooltip ``=`` ``~``city``,`\
+`    data_id ``=`` ``~``city`\
+`  ``)`` ``|>`\
+`  `[`gf_facet_wrap_interactive`](../reference/interactive_facets.md)`(`\
+`    ``~``year``,`\
+`    ncol ``=`` ``1``,`\
+`    scales ``=`` ``"free_x"``,`\
+`    labeller ``=`` `[`gf_labeller_interactive`](../reference/gf_labeller_interactive.md)`(`\
+`      data_id ``=`` ``~``year``,`\
+`      tooltip ``=`` ``~`` ``glue``::`[`glue`](https://glue.tidyverse.org/reference/glue.html)`(``"This is the year {year}"``)`\
+`    ``)`\
+`  ``)`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`[`theme_facets_interactive`](../reference/theme_facets_interactive.md)`(``)``)`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_hover_inv`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(``css ``=`` ``"opacity:0.2;"``)``,`\
+`      `[`opts_hover`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(``css ``=`` ``"stroke-width:2;"``, nearest_distance ``=`` ``40``)``,`\
+`      `[`opts_tooltip`](https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html)`(``use_cursor_pos ``=`` ``FALSE``, offx ``=`` ``0``, offy ``=`` ``-``30``)`\
+`    ``)`\
+`  ``)`
 
 ### 2.3 Tooltip options
 
@@ -701,36 +663,32 @@ has three arguments for determining the position of the tooltip:
 - `offx`, `offy` – the number of pixels to offset the tooltip from this
   base position.
 
-``` r
-
-cars_scatter |>
-  gf_girafe(
-    options = list(
-      opts_tooltip(offx = 0, offy = -30, use_cursor_pos = FALSE)
-    )
-  )
-```
+\
+`cars_scatter`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_tooltip`](https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html)`(``offx ``=`` ``0``, offy ``=`` ``-``30``, use_cursor_pos ``=`` ``FALSE``)`\
+`    ``)`\
+`  ``)`
 
 #### 2.3.2 Autocoloring
 
 If we set `use_fill = TRUE`, then the fill color of the tooltip will
 match the color of the plot element it is associated to.
 
-``` r
-
-diamonds_bargraph_3 |>
-  gf_girafe(
-    options = list(
-      opts_tooltip(
-        use_fill = TRUE,
-        offx = 0,
-        offy = 0,
-        use_cursor_pos = FALSE,
-        css = "border: 2px solid black; color: aliceblue; border-radius: 4px; padding: 6px;"
-      )
-    )
-  )
-```
+\
+`diamonds_bargraph_3`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_tooltip`](https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html)`(`\
+`        use_fill ``=`` ``TRUE``,`\
+`        offx ``=`` ``0``,`\
+`        offy ``=`` ``0``,`\
+`        use_cursor_pos ``=`` ``FALSE``,`\
+`        css ``=`` ``"border: 2px solid black; color: aliceblue; border-radius: 4px; padding: 6px;"`\
+`      ``)`\
+`    ``)`\
+`  ``)`
 
 > **A downside of `use_fill = TRUE`**
 >
@@ -743,54 +701,48 @@ We can enable panning and zooming by choosing a value of `max` greater
 than 1 in
 [`opts_zoom()`](https://davidgohel.github.io/ggiraph/reference/opts_zoom.html).
 
-``` r
-
-cars_scatter |>
-  gf_girafe(
-    options = list(opts_zoom(max = 5))
-  )
-```
+\
+`cars_scatter`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`opts_zoom`](https://davidgohel.github.io/ggiraph/reference/opts_zoom.html)`(``max ``=`` ``5``)``)`\
+`  ``)`
 
 ### 2.5 Global options
 
 We can set options globally using
 [`set_girafe_defaults()`](https://davidgohel.github.io/ggiraph/reference/set_girafe_defaults.html)
 
-``` r
+\
+[`set_girafe_defaults`](https://davidgohel.github.io/ggiraph/reference/set_girafe_defaults.html)`(`\
+`  ``# set colors for`\
+`  opts_hover ``=`` `[`opts_hover`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(`\
+`    css ``=`` ``"fill:yellow;stroke:black;stroke-width:3px;r:10px;"`\
+`  ``)``,`\
+`  opts_hover_inv ``=`` `[`opts_hover_inv`](https://davidgohel.github.io/ggiraph/reference/opts_hover.html)`(``css ``=`` ``"opacity:0.5"``)``,`\
+`  ``# allow zooming/panning up to 4x size`\
+`  opts_zoom ``=`` `[`opts_zoom`](https://davidgohel.github.io/ggiraph/reference/opts_zoom.html)`(``min ``=`` ``1``, max ``=`` ``4``)``,`\
+`  opts_tooltip ``=`` `[`opts_tooltip`](https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html)`(`\
+`    css ``=`` ``"padding: 2px; border: 4px solid navy; background-color: steelblue; color: white; border-radius: 8px"`\
+`  ``)``,`\
+`  opts_sizing ``=`` `[`opts_sizing`](https://davidgohel.github.io/ggiraph/reference/opts_sizing.html)`(``rescale ``=`` ``TRUE``)``,`\
+`  opts_toolbar ``=`` `[`opts_toolbar`](https://davidgohel.github.io/ggiraph/reference/opts_toolbar.html)`(`\
+`    saveaspng ``=`` ``FALSE``,`\
+`    position ``=`` ``"bottom"``,`\
+`    delay_mouseout ``=`` ``5000`\
+`  ``)`\
+`)`\
+\
+`cars_scatter`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(``)`
 
-set_girafe_defaults(
-  # set colors for
-  opts_hover = opts_hover(
-    css = "fill:yellow;stroke:black;stroke-width:3px;r:10px;"
-  ),
-  opts_hover_inv = opts_hover_inv(css = "opacity:0.5"),
-  # allow zooming/panning up to 4x size
-  opts_zoom = opts_zoom(min = 1, max = 4),
-  opts_tooltip = opts_tooltip(
-    css = "padding: 2px; border: 4px solid navy; background-color: steelblue; color: white; border-radius: 8px"
-  ),
-  opts_sizing = opts_sizing(rescale = TRUE),
-  opts_toolbar = opts_toolbar(
-    saveaspng = FALSE,
-    position = "bottom",
-    delay_mouseout = 5000
-  )
-)
-
-cars_scatter |>
-  gf_girafe()
-```
-
-``` r
-
-
-cars_scatter |>
-  gf_girafe(
-    options = list(
-      opts_tooltip(offx = 0, offy = -25, use_cursor_pos = FALSE)
-    )
-  )
-```
+\
+\
+`cars_scatter`` ``|>`\
+`  `[`gf_girafe`](../reference/gf_girafe.md)`(`\
+`    options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      `[`opts_tooltip`](https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html)`(``offx ``=`` ``0``, offy ``=`` ``-``25``, use_cursor_pos ``=`` ``FALSE``)`\
+`    ``)`\
+`  ``)`
 
 > **Warning**
 >

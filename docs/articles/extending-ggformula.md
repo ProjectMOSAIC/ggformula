@@ -26,18 +26,16 @@ being wrapped. Here, roughly, is how
 [`gf_point()`](../reference/gf_point.md) is created inside `ggformula`
 itself:[^1]
 
-``` r
-
-gf_point <-
-  layer_factory(
-    geom = "point",
-    stat = "identity",      # default value
-    position = "identity",  # default value
-    aes_form = y ~ x,       # default value
-    extras = alist(
-      alpha = , color = , size = , shape = , fill = , group = , stroke = )
-  )
-```
+\
+`gf_point`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    geom ``=`` ``"point"``,`\
+`    stat ``=`` ``"identity"``,      ``# default value`\
+`    position ``=`` ``"identity"``,  ``# default value`\
+`    aes_form ``=`` ``y`` ``~`` ``x``,       ``# default value`\
+`    extras ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(`\
+`      alpha ``=`` , color ``=`` , size ``=`` , shape ``=`` , fill ``=`` , group ``=`` , stroke ``=`` ``)`\
+`  ``)`
 
 The important arguments are:
 
@@ -75,36 +73,34 @@ The important arguments are:
 You can inspect the arguments any existing `gf_*` function was built
 with via [`ggformula_spec()`](../reference/ggformula_spec.md):
 
-``` r
-
-ggformula_spec(gf_point) |> str()
-#> List of 11
-#>  $ geom              : chr "point"
-#>  $ stat              : chr "identity"
-#>  $ position          : chr "identity"
-#>  $ aes_form          :Class 'formula'  language y ~ x
-#>   .. ..- attr(*, ".Environment")=<environment: 0x8412ae3f8> 
-#>  $ extras            :List of 7
-#>   ..$ alpha : symbol 
-#>   ..$ color : symbol 
-#>   ..$ size  : symbol 
-#>   ..$ shape : symbol 
-#>   ..$ fill  : symbol 
-#>   ..$ group : symbol 
-#>   ..$ stroke: symbol 
-#>  $ pre               : language { }
-#>   ..- attr(*, "srcref")=List of 1
-#>   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002
-#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x840e5bb98> 
-#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x840e5bb98> 
-#>   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002
-#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x840e5bb98> 
-#>  $ aesthetics        : <ggplot2::mapping>  Named list()
-#>  $ inherit.aes       : logi TRUE
-#>  $ check.aes         : logi TRUE
-#>  $ required_packages : chr(0) 
-#>  $ installed_packages: chr(0)
-```
+\
+[`ggformula_spec`](../reference/ggformula_spec.md)`(``gf_point``)`` ``|>`` `[`str`](https://rdrr.io/r/utils/str.html)`(``)`\
+`#> List of 11`\
+`#>  $ geom              : chr "point"`\
+`#>  $ stat              : chr "identity"`\
+`#>  $ position          : chr "identity"`\
+`#>  $ aes_form          :Class 'formula'  language y ~ x`\
+`#>   .. ..- attr(*, ".Environment")=<environment: 0x9998a5c78> `\
+`#>  $ extras            :List of 7`\
+`#>   ..$ alpha : symbol `\
+`#>   ..$ color : symbol `\
+`#>   ..$ size  : symbol `\
+`#>   ..$ shape : symbol `\
+`#>   ..$ fill  : symbol `\
+`#>   ..$ group : symbol `\
+`#>   ..$ stroke: symbol `\
+`#>  $ pre               : language { }`\
+`#>   ..- attr(*, "srcref")=List of 1`\
+`#>   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002`\
+`#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
+`#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
+`#>   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002`\
+`#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
+`#>  $ aesthetics        : <ggplot2::mapping>  Named list()`\
+`#>  $ inherit.aes       : logi TRUE`\
+`#>  $ check.aes         : logi TRUE`\
+`#>  $ required_packages : chr(0) `\
+`#>  $ installed_packages: chr(0)`
 
 Three arguments not demonstrated in this example may be important,
 especially when using stats and geoms from packages other than
@@ -128,15 +124,13 @@ especially when using stats and geoms from packages other than
   [`layer_factory()`](../reference/layer_factory.md) processing. See
   [`gf_text()`](../reference/gf_text.md) as an example.
 
-``` r
-
-ggformula_spec(gf_text) |> getElement('pre')
-#> {
-#>     if ((nudge_x != 0) || (nudge_y != 0)) {
-#>         position <- position_nudge(nudge_x, nudge_y)
-#>     }
-#> }
-```
+\
+[`ggformula_spec`](../reference/ggformula_spec.md)`(``gf_text``)`` ``|>`` `[`getElement`](https://rdrr.io/r/base/Extract.html)`(``'pre'``)`\
+`#> {`\
+`#>     if ((nudge_x != 0) || (nudge_y != 0)) {`\
+`#>         position <- position_nudge(nudge_x, nudge_y)`\
+`#>     }`\
+`#> }`
 
 ## Two patterns for wrapping a new geom or stat
 
@@ -152,17 +146,15 @@ If the extension package registers a `Stat*`/`Geom*` ggproto object
 [`gf_sina()`](../reference/gf_sina.md) as a wrapper around `ggforce`’s
 sina-plot jitter, for example:
 
-``` r
-
-gf_sina <-
-  layer_factory(
-    required_packages = "ggforce",
-    geom = "point",
-    stat = "sina",
-    position = "identity",
-    extras = alist(alpha = , color = , size = , fill = , group = )
-  )
-```
+\
+`gf_sina`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    required_packages ``=`` ``"ggforce"``,`\
+`    geom ``=`` ``"point"``,`\
+`    stat ``=`` ``"sina"``,`\
+`    position ``=`` ``"identity"``,`\
+`    extras ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` , color ``=`` , size ``=`` , fill ``=`` , group ``=`` ``)`\
+`  ``)`
 
 Because this pattern resolves `stat = "sina"` to `StatSina` by searching
 the *attached* packages (not just installed ones), the extension package
@@ -193,19 +185,17 @@ prefix) purely so that
 [`layer_factory()`](../reference/layer_factory.md) can look up that
 function’s own formals to figure out which extra arguments to allow:
 
-``` r
-
-gf_abline <-
-  layer_factory(
-    geom = "abline",
-    aes_form = NULL,
-    extras = 
-      alist(slope = , intercept = , color = , linetype = , linewidth = , alpha = ),
-    inherit.aes = FALSE,
-    data = NA,
-    layer_fun = rlang::quo(ggplot2::geom_abline)
-  )
-```
+\
+`gf_abline`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    geom ``=`` ``"abline"``,`\
+`    aes_form ``=`` ``NULL``,`\
+`    extras ``=`` `\
+`      `[`alist`](https://rdrr.io/r/base/list.html)`(``slope ``=`` , intercept ``=`` , color ``=`` , linetype ``=`` , linewidth ``=`` , alpha ``=`` ``)``,`\
+`    inherit.aes ``=`` ``FALSE``,`\
+`    data ``=`` ``NA``,`\
+`    layer_fun ``=`` ``rlang``::`[`quo`](https://rlang.r-lib.org/reference/defusing-advanced.html)`(``ggplot2``::`[`geom_abline`](https://ggplot2.tidyverse.org/reference/geom_abline.html)`)`\
+`  ``)`
 
 Because Pattern 2 calls the extension package’s function directly, the
 package may only need to be *installed*, not attached, in which case we
@@ -214,19 +204,17 @@ for that. [`gf_sf()`](../reference/gf_sf.md), which wraps
 [`ggplot2::geom_sf()`](https://ggplot2.tidyverse.org/reference/ggsf.html),
 is a simple example:
 
-``` r
-
-gf_sf <-
-  layer_factory(
-    layer_fun = quo(ggplot2::geom_sf),
-    installed_packages = "sf",
-    geom = "sf",
-    stat = "sf",
-    position = "identity",
-    aes_form = list(NULL),
-    extras = alist(alpha = , color = , fill = , group = , linetype = , linewidth = , geometry = )
-  )
-```
+\
+`gf_sf`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    layer_fun ``=`` `[`quo`](https://rlang.r-lib.org/reference/defusing-advanced.html)`(``ggplot2``::`[`geom_sf`](https://ggplot2.tidyverse.org/reference/ggsf.html)`)``,`\
+`    installed_packages ``=`` ``"sf"``,`\
+`    geom ``=`` ``"sf"``,`\
+`    stat ``=`` ``"sf"``,`\
+`    position ``=`` ``"identity"``,`\
+`    aes_form ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``NULL``)``,`\
+`    extras ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` , color ``=`` , fill ``=`` , group ``=`` , linetype ``=`` , linewidth ``=`` , geometry ``=`` ``)`\
+`  ``)`
 
 This is the pattern used for both examples below.
 
@@ -245,32 +233,30 @@ that nudge overlapping labels apart. `ggformula` already has
 built the same way, but pointed at
 [`ggrepel::geom_text_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html).
 
-``` r
-
-library(ggrepel)
-
-gf_text_repel <-
-  layer_factory(
-    geom = "text_repel",
-    layer_fun = rlang::quo(ggrepel::geom_text_repel),
-    extras = alist(
-      label = ,
-      alpha = ,
-      color = ,
-      size = ,
-      fontface = ,
-      family = ,
-      box.padding = 0.25,
-      point.padding = 1e-06,
-      min.segment.length = 0.5,
-      max.overlaps = 10,
-      nudge_x = 0,
-      nudge_y = 0,
-      seed = NA,
-      direction = "both"
-    )
-  )
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggrepel`](https://ggrepel.slowkow.com/)`)`\
+\
+`gf_text_repel`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    geom ``=`` ``"text_repel"``,`\
+`    layer_fun ``=`` ``rlang``::`[`quo`](https://rlang.r-lib.org/reference/defusing-advanced.html)`(``ggrepel``::`[`geom_text_repel`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)`)``,`\
+`    extras ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(`\
+`      label ``=`` ,`\
+`      alpha ``=`` ,`\
+`      color ``=`` ,`\
+`      size ``=`` ,`\
+`      fontface ``=`` ,`\
+`      family ``=`` ,`\
+`      box.padding ``=`` ``0.25``,`\
+`      point.padding ``=`` ``1e-06``,`\
+`      min.segment.length ``=`` ``0.5``,`\
+`      max.overlaps ``=`` ``10``,`\
+`      nudge_x ``=`` ``0``,`\
+`      nudge_y ``=`` ``0``,`\
+`      seed ``=`` ``NA``,`\
+`      direction ``=`` ``"both"`\
+`    ``)`\
+`  ``)`
 
 A few things to note:
 
@@ -288,28 +274,24 @@ A few things to note:
 
 Using it looks just like using [`gf_text()`](../reference/gf_text.md):
 
-``` r
-
-df <- data.frame(
-  x = c(1, 2, 3, 2.9, 5),
-  y = c(3, 1, 4, 4, 5),
-  name = c("apple", "banana", "cherry", "date", "elderberry")
-)
-
-gf_point(y ~ x, data = df) |>
-  gf_text_repel(y ~ x, label = ~name, seed = 1234)
-```
+\
+`df`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`  x ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``2``, ``3``, ``2.9``, ``5``)``,`\
+`  y ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``3``, ``1``, ``4``, ``4``, ``5``)``,`\
+`  name ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"apple"``, ``"banana"``, ``"cherry"``, ``"date"``, ``"elderberry"``)`\
+`)`\
+\
+[`gf_point`](../reference/gf_point.md)`(``y`` ``~`` ``x``, data ``=`` ``df``)`` ``|>`\
+`  ``gf_text_repel``(``y`` ``~`` ``x``, label ``=`` ``~``name``, seed ``=`` ``1234``)`
 
 ![](extending-ggformula_files/figure-html/gf-text-repel-example-1.png)
 
 Compare that to [`gf_text()`](../reference/gf_text.md), which lets the
 labels overlap or spill off of the graphic:
 
-``` r
-
-gf_point(y ~ x, data = df) |>
-  gf_text(y ~ x, label = ~name, nudge_y = 0.3)
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``y`` ``~`` ``x``, data ``=`` ``df``)`` ``|>`\
+`  `[`gf_text`](../reference/gf_text.md)`(``y`` ``~`` ``x``, label ``=`` ``~``name``, nudge_y ``=`` ``0.3``)`
 
 ![](extending-ggformula_files/figure-html/gf-text-example-1.png)
 
@@ -324,35 +306,33 @@ more uncertainty intervals – a richer alternative to
 is itself a high-level constructor (its default `geom` is
 `"slabinterval"`), so this again uses Pattern 2.
 
-``` r
-
-library(ggdist)
-#> 
-#> Attaching package: 'ggdist'
-#> The following objects are masked from 'package:ggridges':
-#> 
-#>     scale_point_color_continuous, scale_point_color_discrete,
-#>     scale_point_colour_continuous, scale_point_colour_discrete,
-#>     scale_point_fill_continuous, scale_point_fill_discrete,
-#>     scale_point_size_continuous
-
-gf_halfeye <-
-  layer_factory(
-    geom = "slabinterval",
-    stat = "halfeye",
-    layer_fun = rlang::quo(ggdist::stat_halfeye),
-    extras = alist(
-      fill = ,
-      color = ,
-      alpha = ,
-      adjust = 1,
-      point_interval = "median_qi",
-      .width = c(0.66, 0.95),
-      side = "top",
-      justification = NULL
-    )
-  )
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggdist`](https://mjskay.github.io/ggdist/)`)`\
+`#> `\
+`#> Attaching package: 'ggdist'`\
+`#> The following objects are masked from 'package:ggridges':`\
+`#> `\
+`#>     scale_point_color_continuous, scale_point_color_discrete,`\
+`#>     scale_point_colour_continuous, scale_point_colour_discrete,`\
+`#>     scale_point_fill_continuous, scale_point_fill_discrete,`\
+`#>     scale_point_size_continuous`\
+\
+`gf_halfeye`` ``<-`\
+`  `[`layer_factory`](../reference/layer_factory.md)`(`\
+`    geom ``=`` ``"slabinterval"``,`\
+`    stat ``=`` ``"halfeye"``,`\
+`    layer_fun ``=`` ``rlang``::`[`quo`](https://rlang.r-lib.org/reference/defusing-advanced.html)`(``ggdist``::`[`stat_halfeye`](https://mjskay.github.io/ggdist/reference/stat_halfeye.html)`)``,`\
+`    extras ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(`\
+`      fill ``=`` ,`\
+`      color ``=`` ,`\
+`      alpha ``=`` ,`\
+`      adjust ``=`` ``1``,`\
+`      point_interval ``=`` ``"median_qi"``,`\
+`      .width ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0.66``, ``0.95``)``,`\
+`      side ``=`` ``"top"``,`\
+`      justification ``=`` ``NULL`\
+`    ``)`\
+`  ``)`
 
 Setting `stat = "halfeye"` here means
 [`layer_factory()`](../reference/layer_factory.md) looks up
@@ -363,16 +343,14 @@ discover valid arguments), which automatically permits arguments like
 `point_interval`, `.width`, `density`, and `breaks` without having to
 list every one of them in `extras`.
 
-``` r
-
-set.seed(202)
-scores <- data.frame(
-  section = rep(c("A", "B", "C"), each = 30),
-  score = c(rnorm(30, 78, 6), rnorm(30, 82, 9), rnorm(30, 75, 5))
-)
-
-gf_halfeye(score ~ section, data = scores, fill = ~section, show.legend = FALSE)
-```
+\
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``202``)`\
+`scores`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`  section ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"A"``, ``"B"``, ``"C"``)``, each ``=`` ``30``)``,`\
+`  score ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rnorm`](https://rdrr.io/r/stats/Normal.html)`(``30``, ``78``, ``6``)``, `[`rnorm`](https://rdrr.io/r/stats/Normal.html)`(``30``, ``82``, ``9``)``, `[`rnorm`](https://rdrr.io/r/stats/Normal.html)`(``30``, ``75``, ``5``)``)`\
+`)`\
+\
+`gf_halfeye``(``score`` ``~`` ``section``, data ``=`` ``scores``, fill ``=`` ``~``section``, show.legend ``=`` ``FALSE``)`
 
 ![](extending-ggformula_files/figure-html/gf-halfeye-example-1.png)
 

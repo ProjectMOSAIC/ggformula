@@ -25,17 +25,13 @@ The `ggformula` graphics were designed with several user groups in mind:
 
 The basic template for creating a plot with `ggformula` is
 
-``` r
-
-gf_plottype(formula, data = mydata)
-```
+\
+`gf_plottype``(``formula``, data ``=`` ``mydata``)`
 
 or, equivalently,
 
-``` r
-
-mydata |> gf_plottype(formula)
-```
+\
+`mydata`` ``|>`` ``gf_plottype``(``formula``)`
 
 where
 
@@ -60,18 +56,14 @@ arguments.
 
 Here is a simple example:
 
-``` r
-
-library(ggformula)
-gf_point(mpg ~ hp, data = mtcars)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggformula`](https://github.com/ProjectMOSAIC/ggformula)`)`\
+[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``, data ``=`` ``mtcars``)`
 
 ![](ggformula-long_files/figure-html/simple-example-1.png)
 
-``` r
-
-mtcars |> gf_point(mpg ~ hp)
-```
+\
+`mtcars`` ``|>`` `[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``)`
 
 ![](ggformula-long_files/figure-html/simple-example-2.png)
 
@@ -167,10 +159,8 @@ The following plot, for instance,
 - We also **set** the transparency to 50%. The gives the same value of
   `alpha` to all glyphs in this layer.
 
-``` r
-
-gf_point(mpg ~ hp, color = ~ cyl, size = ~ carb, alpha = 0.50, data = mtcars) 
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``, color ``=`` ``~`` ``cyl``, size ``=`` ``~`` ``carb``, alpha ``=`` ``0.50``, data ``=`` ``mtcars``)`` `
 
 ![](ggformula-long_files/figure-html/mapping-setting-1.png)
 
@@ -185,20 +175,16 @@ string). Except for the labeling of the legend, these two plots are the
 same. In the second example, we see how the ggformula works well with
 data tranformations using `|>`.
 
-``` r
-
-library(dplyr)
-gf_point(mpg ~ hp,  color = ~ factor(cyl), size = ~ carb, alpha = 0.75, data = mtcars)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
+[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``,  color ``=`` ``~`` `[`factor`](https://rdrr.io/r/base/factor.html)`(``cyl``)``, size ``=`` ``~`` ``carb``, alpha ``=`` ``0.75``, data ``=`` ``mtcars``)`
 
 ![](ggformula-long_files/figure-html/on-the-fly-1.png)
 
-``` r
-
-mtcars |> 
-  mutate(cylinders = factor(cyl)) |> 
-  gf_point(mpg ~ hp,  color = ~ cylinders, size = ~ carb, alpha = 0.75)
-```
+\
+`mtcars`` ``|>`` `\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``cylinders ``=`` `[`factor`](https://rdrr.io/r/base/factor.html)`(``cyl``)``)`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``,  color ``=`` ``~`` ``cylinders``, size ``=`` ``~`` ``carb``, alpha ``=`` ``0.75``)`
 
 ![](ggformula-long_files/figure-html/on-the-fly-2.png)
 
@@ -213,35 +199,27 @@ as well. *Note that in the one-variable density graphics, the variable
 whose density is to be calculated goes to the right of the tilde, in the
 position reserved for the x-axis variable.*
 
-``` r
-
-data(penguins, package = "palmerpenguins")   
-gf_density( ~ bill_length_mm, data = penguins)
-```
+\
+[`data`](https://rdrr.io/r/utils/data.html)`(``penguins``, package ``=`` ``"palmerpenguins"``)``   `\
+[`gf_density`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, data ``=`` ``penguins``)`
 
 ![](ggformula-long_files/figure-html/penguins-1.png)
 
-``` r
-
-gf_density( ~ bill_length_mm,  fill = ~ species,  alpha = 0.5, data = penguins)
-```
+\
+[`gf_density`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``,  fill ``=`` ``~`` ``species``,  alpha ``=`` ``0.5``, data ``=`` ``penguins``)`
 
 ![](ggformula-long_files/figure-html/penguins-2.png)
 
-``` r
-
-# gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable
-gf_dens( ~ bill_length_mm, color = ~ species,  alpha = 0.7, data = penguins)
-```
+\
+`# gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable`\
+[`gf_dens`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, color ``=`` ``~`` ``species``,  alpha ``=`` ``0.7``, data ``=`` ``penguins``)`
 
 ![](ggformula-long_files/figure-html/penguins-3.png)
 
-``` r
-
-# gf_dens2() is like gf_dens() but is fillable
-gf_dens2( ~ bill_length_mm, fill = ~ species, data = penguins,
-          color = "gray50", alpha = 0.4) 
-```
+\
+`# gf_dens2() is like gf_dens() but is fillable`\
+[`gf_dens2`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, fill ``=`` ``~`` ``species``, data ``=`` ``penguins``,`\
+`          color ``=`` ``"gray50"``, alpha ``=`` ``0.4``)`` `
 
 ![](ggformula-long_files/figure-html/penguins-4.png)
 
@@ -250,23 +228,19 @@ not modify attributes of individual glyphs but control some other aspect
 of the plot. In this case, `adjust` can be used to increase or decrease
 the amount of smoothing.
 
-``` r
-
-# less smoothing
-penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 0.25)  
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density()`).
-```
+\
+`# less smoothing`\
+`penguins`` ``|>`` `[`gf_dens`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, color ``=`` ``~`` ``species``, alpha ``=`` ``0.7``, adjust ``=`` ``0.25``)``  `\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density()`). ``
 
 ![](ggformula-long_files/figure-html/dens-1.png)
 
-``` r
-
-# more smoothing
-penguins |> gf_dens( ~ bill_length_mm, color = ~ species, alpha = 0.7, adjust = 4)     
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density()`).
-```
+\
+`# more smoothing`\
+`penguins`` ``|>`` `[`gf_dens`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, color ``=`` ``~`` ``species``, alpha ``=`` ``0.7``, adjust ``=`` ``4``)``     `\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density()`). ``
 
 ![](ggformula-long_files/figure-html/dens-2.png)
 
@@ -281,20 +255,16 @@ the density across all groups, but it can be difficult to discern the
 shape of the distribution for the individual groups. The value `"fill"`
 produces a conditional probability graphic.
 
-``` r
-
-penguins |> 
-  gf_density( ~ bill_length_mm, fill = ~ species, color = NA, position = "stack") 
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_density`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, fill ``=`` ``~`` ``species``, color ``=`` ``NA``, position ``=`` ``"stack"``)`` `
 
 ![](ggformula-long_files/figure-html/position-1.png)
 
-``` r
-
-penguins |> 
-  gf_density( ~ bill_length_mm, fill = ~ species, color = NA, position = "fill", 
-              adjust = 2)
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_density`](../reference/gf_density.md)`(`` ``~`` ``bill_length_mm``, fill ``=`` ``~`` ``species``, color ``=`` ``NA``, position ``=`` ``"fill"``, `\
+`              adjust ``=`` ``2``)`
 
 ![](ggformula-long_files/figure-html/position-2.png)
 
@@ -313,41 +283,33 @@ chaining with [`gf_facet_grid()`](../reference/gf_facet_grid.md) or
 [`gf_facet_wrap()`](../reference/gf_facet_grid.md). These functions use
 formulas to specify which variable(s) are to be used for faceting.
 
-``` r
-
-penguins |> 
-  gf_density_2d(bill_length_mm ~ bill_depth_mm) |> 
-  gf_facet_grid( ~ species)
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_density_2d`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``)`` ``|>`` `\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(`` ``~`` ``species``)`
 
 ![](ggformula-long_files/figure-html/facets-1.png)
 
-``` r
-
-# the dot here is a bit strange, but required to make a valid formula
-penguins |> 
-  gf_density_2d(bill_length_mm ~ bill_depth_mm) |> 
-  gf_facet_grid( species ~ .)
-```
+\
+`# the dot here is a bit strange, but required to make a valid formula`\
+`penguins`` ``|>`` `\
+`  `[`gf_density_2d`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``)`` ``|>`` `\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(`` ``species`` ``~`` ``.``)`
 
 ![](ggformula-long_files/figure-html/facets-2.png)
 
-``` r
-
-penguins |> 
-  gf_density_2d(bill_length_mm ~ bill_depth_mm) |> 
-  gf_facet_grid(island ~ species)
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_density_2d`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``)`` ``|>`` `\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(``island`` ``~`` ``species``)`
 
 ![](ggformula-long_files/figure-html/facets-3.png)
 
-``` r
-
-penguins |> 
-  gf_density_2d_filled(bill_length_mm ~ bill_depth_mm, 
-                       show.legend = FALSE) |> 
-  gf_facet_wrap(island ~ species)
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_density_2d_filled`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``, `\
+`                       show.legend ``=`` ``FALSE``)`` ``|>`` `\
+`  `[`gf_facet_wrap`](../reference/gf_facet_grid.md)`(``island`` ``~`` ``species``)`
 
 ![](ggformula-long_files/figure-html/facets-4.png)
 
@@ -357,21 +319,17 @@ Here is another example using our weather data. The redundant use of the
 `y` and `color` attributes for temperature makes it easier to compare
 across facets.
 
-``` r
-
-Weather |> 
-  gf_ribbon(low_temp + high_temp ~ date | city ~ year, alpha = 0.3) 
-```
+\
+`Weather`` ``|>`` `\
+`  `[`gf_ribbon`](../reference/gf_ribbon.md)`(``low_temp`` ``+`` ``high_temp`` ``~`` ``date`` ``|`` ``city`` ``~`` ``year``, alpha ``=`` ``0.3``)`` `
 
 ![](ggformula-long_files/figure-html/facets02-1.png)
 
-``` r
-
-
-Weather |> 
-  gf_linerange(low_temp + high_temp ~ date | city ~ year, color = ~ avg_temp) |>
-  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
-```
+\
+\
+`Weather`` ``|>`` `\
+`  `[`gf_linerange`](../reference/gf_linerange.md)`(``low_temp`` ``+`` ``high_temp`` ``~`` ``date`` ``|`` ``city`` ``~`` ``year``, color ``=`` ``~`` ``avg_temp``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_colour_gradientn`](https://ggplot2.tidyverse.org/reference/scale_gradient.html)`(``colors ``=`` `[`rev`](https://rdrr.io/r/base/rev.html)`(`[`rainbow`](https://rdrr.io/r/grDevices/palettes.html)`(``5``)``)``)``)`
 
 ![](ggformula-long_files/figure-html/facets02-2.png)
 
@@ -380,22 +338,18 @@ to be freely adjusted in each column so that we don’t have so much
 unnecessary white space. We can do the latter using the `scales`
 argument to [`gf_facet_grid()`](../reference/gf_facet_grid.md).
 
-``` r
-
-Weather |> 
-  gf_ribbon(low_temp + high_temp ~ date | city ~ ., alpha = 0.3) 
-```
+\
+`Weather`` ``|>`` `\
+`  `[`gf_ribbon`](../reference/gf_ribbon.md)`(``low_temp`` ``+`` ``high_temp`` ``~`` ``date`` ``|`` ``city`` ``~`` ``.``, alpha ``=`` ``0.3``)`` `
 
 ![](ggformula-long_files/figure-html/facets03-1.png)
 
-``` r
-
-
-Weather |> 
-  gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp) |>
-  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) |>
-  gf_facet_grid(city ~ year, scales = "free_x")
-```
+\
+\
+`Weather`` ``|>`` `\
+`  `[`gf_linerange`](../reference/gf_linerange.md)`(``low_temp`` ``+`` ``high_temp`` ``~`` ``date``, color ``=`` ``~`` ``avg_temp``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_colour_gradientn`](https://ggplot2.tidyverse.org/reference/scale_gradient.html)`(``colors ``=`` `[`rev`](https://rdrr.io/r/base/rev.html)`(`[`rainbow`](https://rdrr.io/r/grDevices/palettes.html)`(``5``)``)``)``)`` ``|>`\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(``city`` ``~`` ``year``, scales ``=`` ``"free_x"``)`
 
 ![](ggformula-long_files/figure-html/facets03-2.png)
 
@@ -406,133 +360,125 @@ But in the previous example, our colorbar legend is labeled “avg temp
 (F)” even though the variable name is `avg_temp`. This is because the
 `Weather` data set is *labeled*.
 
-``` r
-
-get_variable_labels(Weather)
-#> $city
-#> NULL
-#> 
-#> $date
-#> NULL
-#> 
-#> $year
-#> NULL
-#> 
-#> $month
-#> NULL
-#> 
-#> $day
-#> NULL
-#> 
-#> $high_temp
-#> [1] "high temp (F)"
-#> 
-#> $avg_temp
-#> [1] "avg temp (F)"
-#> 
-#> $low_temp
-#> [1] "low temp (F)"
-#> 
-#> $high_dewpt
-#> [1] "high dew point (F)"
-#> 
-#> $avg_dewpt
-#> [1] "avg dew point (F)"
-#> 
-#> $low_dewpt
-#> [1] "low dew point (F)"
-#> 
-#> $high_humidity
-#> [1] "high relative humidity"
-#> 
-#> $avg_humidity
-#> [1] "avg relative humidity"
-#> 
-#> $low_humidity
-#> [1] "low relative humidity"
-#> 
-#> $high_hg
-#> [1] "high pressure (mm Hg)"
-#> 
-#> $avg_hg
-#> [1] "avg pressure (mm Hg)"
-#> 
-#> $low_hg
-#> [1] "low pressure (mm Hg)"
-#> 
-#> $high_vis
-#> [1] "high visibility (miles)"
-#> 
-#> $avg_vis
-#> [1] "avg visibility (miles)"
-#> 
-#> $low_vis
-#> [1] "low visibility (miles)"
-#> 
-#> $high_wind
-#> [1] "high wind speed (mph)"
-#> 
-#> $avg_wind
-#> [1] "avg wind speed (mph)"
-#> 
-#> $low_wind
-#> [1] "low wind speed (mph)"
-#> 
-#> $precip
-#> [1] "precipitation"
-#> 
-#> $events
-#> [1] "events"
-```
+\
+[`get_variable_labels`](../reference/labels.md)`(``Weather``)`\
+`#> $city`\
+`#> NULL`\
+`#> `\
+`#> $date`\
+`#> NULL`\
+`#> `\
+`#> $year`\
+`#> NULL`\
+`#> `\
+`#> $month`\
+`#> NULL`\
+`#> `\
+`#> $day`\
+`#> NULL`\
+`#> `\
+`#> $high_temp`\
+`#> [1] "high temp (F)"`\
+`#> `\
+`#> $avg_temp`\
+`#> [1] "avg temp (F)"`\
+`#> `\
+`#> $low_temp`\
+`#> [1] "low temp (F)"`\
+`#> `\
+`#> $high_dewpt`\
+`#> [1] "high dew point (F)"`\
+`#> `\
+`#> $avg_dewpt`\
+`#> [1] "avg dew point (F)"`\
+`#> `\
+`#> $low_dewpt`\
+`#> [1] "low dew point (F)"`\
+`#> `\
+`#> $high_humidity`\
+`#> [1] "high relative humidity"`\
+`#> `\
+`#> $avg_humidity`\
+`#> [1] "avg relative humidity"`\
+`#> `\
+`#> $low_humidity`\
+`#> [1] "low relative humidity"`\
+`#> `\
+`#> $high_hg`\
+`#> [1] "high pressure (mm Hg)"`\
+`#> `\
+`#> $avg_hg`\
+`#> [1] "avg pressure (mm Hg)"`\
+`#> `\
+`#> $low_hg`\
+`#> [1] "low pressure (mm Hg)"`\
+`#> `\
+`#> $high_vis`\
+`#> [1] "high visibility (miles)"`\
+`#> `\
+`#> $avg_vis`\
+`#> [1] "avg visibility (miles)"`\
+`#> `\
+`#> $low_vis`\
+`#> [1] "low visibility (miles)"`\
+`#> `\
+`#> $high_wind`\
+`#> [1] "high wind speed (mph)"`\
+`#> `\
+`#> $avg_wind`\
+`#> [1] "avg wind speed (mph)"`\
+`#> `\
+`#> $low_wind`\
+`#> [1] "low wind speed (mph)"`\
+`#> `\
+`#> $precip`\
+`#> [1] "precipitation"`\
+`#> `\
+`#> $events`\
+`#> [1] "events"`
 
 ggformula will detect these labels and use them on our plots. We can use
 [`set_variable_labels()`](https://larmarange.github.io/labelled/reference/var_label.html)
 to add custom labels to some or all of the variables in a data
 frame.[^1]
 
-``` r
-
-KF <- KidsFeet |> 
-  set_variable_labels(
-    length = "length (cm)", 
-    width = "width (cm)",
-    domhand = "dominant hand",
-    biggerfoot = "bigger foot"
-  )
-
-KidsFeet |> 
-  gf_point(width ~ length, color = ~domhand)
-```
+\
+`KF`` ``<-`` ``KidsFeet`` ``|>`` `\
+`  `[`set_variable_labels`](https://larmarange.github.io/labelled/reference/var_label.html)`(`\
+`    length ``=`` ``"length (cm)"``, `\
+`    width ``=`` ``"width (cm)"``,`\
+`    domhand ``=`` ``"dominant hand"``,`\
+`    biggerfoot ``=`` ``"bigger foot"`\
+`  ``)`\
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``width`` ``~`` ``length``, color ``=`` ``~``domhand``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-3-1.png)
 
-``` r
-
-KF |>
-  gf_point(width ~ length, color = ~domhand)
-```
+\
+`KF`` ``|>`\
+`  `[`gf_point`](../reference/gf_point.md)`(``width`` ``~`` ``length``, color ``=`` ``~``domhand``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-3-2.png)
 
-``` r
-
-
-Penguins <- penguins |>
-  set_variable_labels(
-    species = "Species",
-    island = "Island",
-    bill_length_mm = "Bill Length (mm)",
-    bill_depth_mm = "Bill Depth (mm)",
-    flipper_length_mm = "Flipper Length (mm)",
-    body_mass_g = "Body Mass (g)",
-    sex = "Sex"
-  )
-
-Penguins |>
-  gf_point(bill_length_mm ~ bill_depth_mm, color = ~ species) 
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+\
+`Penguins`` ``<-`` ``penguins`` ``|>`\
+`  `[`set_variable_labels`](https://larmarange.github.io/labelled/reference/var_label.html)`(`\
+`    species ``=`` ``"Species"``,`\
+`    island ``=`` ``"Island"``,`\
+`    bill_length_mm ``=`` ``"Bill Length (mm)"``,`\
+`    bill_depth_mm ``=`` ``"Bill Depth (mm)"``,`\
+`    flipper_length_mm ``=`` ``"Flipper Length (mm)"``,`\
+`    body_mass_g ``=`` ``"Body Mass (g)"``,`\
+`    sex ``=`` ``"Sex"`\
+`  ``)`\
+\
+`Penguins`` ``|>`\
+`  `[`gf_point`](../reference/gf_point.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``, color ``=`` ``~`` ``species``)`` `\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-3-3.png)
 
@@ -545,45 +491,37 @@ plot. This can be done in three ways:
   has arguments like `x`, `y`, `title`, etc.);
 - We can use the [`gf_relabel()`](../reference/gf_relabel.md) function.
 
-``` r
-
-KidsFeet |>
-  gf_point(width ~ length, color = ~domhand, xlab = "length (cm)", 
-           title = "Length and width of kids' feet")
-```
+\
+`KidsFeet`` ``|>`\
+`  `[`gf_point`](../reference/gf_point.md)`(``width`` ``~`` ``length``, color ``=`` ``~``domhand``, xlab ``=`` ``"length (cm)"``, `\
+`           title ``=`` ``"Length and width of kids' feet"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-4-1.png)
 
-``` r
-
-
-p <- KidsFeet |> gf_point(width ~ length, color = ~domhand)
-
-p |> 
-  gf_labs(x = "length (cm)", color = "dominant hand", title = "Some kids' feet")
-```
+\
+\
+`p`` ``<-`` ``KidsFeet`` ``|>`` `[`gf_point`](../reference/gf_point.md)`(``width`` ``~`` ``length``, color ``=`` ``~``domhand``)`\
+\
+`p`` ``|>`` `\
+`  `[`gf_labs`](../reference/gf_aux.md)`(``x ``=`` ``"length (cm)"``, color ``=`` ``"dominant hand"``, title ``=`` ``"Some kids' feet"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-4-2.png)
 
-``` r
-
-
-p |> 
-  gf_relabel(length = "length (cm)", width = "width (cm)", domhand = "dominant hand")
-```
+\
+\
+`p`` ``|>`` `\
+`  `[`gf_relabel`](../reference/gf_relabel.md)`(``length ``=`` ``"length (cm)"``, width ``=`` ``"width (cm)"``, domhand ``=`` ``"dominant hand"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-4-3.png)
 
-``` r
-
-
-# alternatively, we can use a list. 
-# this is handy if we have several data sets with the same variables.
-KFlabels <- 
-  list(length = "length (cm)", width = "width (cm)", domhand = "dominant hand")
-p |> 
-  gf_relabel(KFlabels)
-```
+\
+\
+`# alternatively, we can use a list. `\
+`# this is handy if we have several data sets with the same variables.`\
+`KFlabels`` ``<-`` `\
+`  `[`list`](https://rdrr.io/r/base/list.html)`(``length ``=`` ``"length (cm)"``, width ``=`` ``"width (cm)"``, domhand ``=`` ``"dominant hand"``)`\
+`p`` ``|>`` `\
+`  `[`gf_relabel`](../reference/gf_relabel.md)`(``KFlabels``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-4-4.png)
 
@@ -611,31 +549,27 @@ the same data as the first layer in the chain.
 The following plot illustrates how histograms and frequency polygons are
 related.
 
-``` r
-
-Penguins |> 
-  gf_histogram( ~ bill_length_mm, alpha = 0.3, fill = "navy", binwidth = 1) |>
-  gf_freqpoly( ~ bill_length_mm , binwidth = 1) |> 
-  gf_facet_grid(species ~ .)
-#> Warning: Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-#> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-```
+\
+`Penguins`` ``|>`` `\
+`  `[`gf_histogram`](../reference/gf_histogram.md)`(`` ``~`` ``bill_length_mm``, alpha ``=`` ``0.3``, fill ``=`` ``"navy"``, binwidth ``=`` ``1``)`` ``|>`\
+`  `[`gf_freqpoly`](../reference/gf_freqpoly.md)`(`` ``~`` ``bill_length_mm`` , binwidth ``=`` ``1``)`` ``|>`` `\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(``species`` ``~`` ``.``)`\
+`` #> Warning: Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``\
+`` #> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``
 
 ![](ggformula-long_files/figure-html/layers-1.png)
 
 A 2-d density plot can be augmented with a scatterplot.
 
-``` r
-
-Penguins |> 
-  gf_density_2d(bill_length_mm ~ bill_depth_mm) |>
-  gf_jitter(bill_length_mm ~ bill_depth_mm, alpha = 0.2, width = 0.2, height = 0.2) |>
-  gf_facet_wrap(~species)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density2d()`).
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`Penguins`` ``|>`` `\
+`  `[`gf_density_2d`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``)`` ``|>`\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm``, alpha ``=`` ``0.2``, width ``=`` ``0.2``, height ``=`` ``0.2``)`` ``|>`\
+`  `[`gf_facet_wrap`](../reference/gf_facet_grid.md)`(``~``species``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density2d()`). ``\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/layers02-1.png)
 
@@ -652,34 +586,28 @@ Using [`gf_jitter()`](../reference/gf_jitter.md) in place of
 [`gf_point()`](../reference/gf_point.md) will move the plotted points to
 reduce overlap. Jitter and transparency can be used together as well.
 
-``` r
-
-Penguins |> 
-  gf_point(bill_length_mm ~ species, alpha = 0.15)  
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`Penguins`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``bill_length_mm`` ``~`` ``species``, alpha ``=`` ``0.15``)``  `\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/jitter-1.png)
 
-``` r
-
-Penguins |>
-  gf_jitter(bill_length_mm ~ species, alpha = 0.35)
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`Penguins`` ``|>`\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``bill_length_mm`` ``~`` ``species``, alpha ``=`` ``0.35``)`\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/jitter-2.png)
 
-``` r
-
-# width and heigh control the amount of horizontal and vertical jitter
-Penguins |>
-  gf_jitter(bill_length_mm ~ species, alpha = 0.35, width = 0.2, height = 0)
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`# width and heigh control the amount of horizontal and vertical jitter`\
+`Penguins`` ``|>`\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``bill_length_mm`` ``~`` ``species``, alpha ``=`` ``0.35``, width ``=`` ``0.2``, height ``=`` ``0``)`\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/jitter-3.png)
 
@@ -693,31 +621,25 @@ boxplots using `ggplot2` you have to make vertical boxplots and then
 flip the coordinates with
 [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html).)
 
-``` r
-
-gf_boxplot(length ~ sex, color = "red", data = KF)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``length`` ``~`` ``sex``, color ``=`` ``"red"``, data ``=`` ``KF``)`
 
 ![](ggformula-long_files/figure-html/boxplot-1.png)
 
-``` r
-
-gf_boxplot(length ~ sex, color = ~biggerfoot , data = KF)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``length`` ``~`` ``sex``, color ``=`` ``~``biggerfoot`` , data ``=`` ``KF``)`
 
 ![](ggformula-long_files/figure-html/boxplot-2.png)
 
 This plot may surprise you.
 
-``` r
-
-Weather |> 
-  gf_boxplot(high_temp ~ month | city)
-#> Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-#> continuous. Picking default orientation 'x'.
-#> Warning: Continuous x aesthetic
-#> ℹ did you forget `aes(group = ...)`?
-```
+\
+`Weather`` ``|>`` `\
+`  `[`gf_boxplot`](../reference/gf_boxplot.md)`(``high_temp`` ``~`` ``month`` ``|`` ``city``)`\
+`#> Warning: Orientation is not uniquely specified when both the x and y aesthetics are`\
+`#> continuous. Picking default orientation 'x'.`\
+`#> Warning: Continuous x aesthetic`\
+`` #> ℹ did you forget `aes(group = ...)`? ``
 
 ![](ggformula-long_files/figure-html/boxplot02-1.png)
 
@@ -726,11 +648,9 @@ city). The warning message suggests that we need to tell R how to form
 the groups when using a quantitative variable for `x`. It suggests using
 the `group` aesthetic, and sometimes, this is just what we want.
 
-``` r
-
-Weather |>
-  gf_boxplot(high_temp ~ month |  city, group = ~ month)
-```
+\
+`Weather`` ``|>`\
+`  `[`gf_boxplot`](../reference/gf_boxplot.md)`(``high_temp`` ``~`` ``month`` ``|``  ``city``, group ``=`` ``~`` ``month``)`
 
 ![](ggformula-long_files/figure-html/boxplot03-1.png)
 
@@ -743,29 +663,25 @@ quantitative values into one of a few different bins.
 [`gf_sina()`](../reference/gf_sina.md) provide two alternatives to box
 and whisker plots.
 
-``` r
-
-Penguins |> gf_violin(bill_length_mm ~  species)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_ydensity()`).
-```
+\
+`Penguins`` ``|>`` `[`gf_violin`](../reference/gf_violin.md)`(``bill_length_mm`` ``~``  ``species``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_ydensity()`). ``
 
 ![](ggformula-long_files/figure-html/violin-sina-1.png)
 
-``` r
-
-if (require(ggforce)) {
-  Penguins |> gf_sina(bill_length_mm ~  species, alpha = 0.5)
-  Penguins |>
-    gf_violin(bill_length_mm ~  species) |>
-    gf_sina(bill_length_mm ~  species, alpha = 0.5, color = ~ island)
-}
-#> Loading required package: ggforce
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_ydensity()`).
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_sina()`).
-```
+\
+`if`` ``(`[`require`](https://rdrr.io/r/base/library.html)`(`[`ggforce`](https://ggforce.data-imaginist.com)`)``)`` ``{`\
+`  ``Penguins`` ``|>`` `[`gf_sina`](../reference/gf_sina.md)`(``bill_length_mm`` ``~``  ``species``, alpha ``=`` ``0.5``)`\
+`  ``Penguins`` ``|>`\
+`    `[`gf_violin`](../reference/gf_violin.md)`(``bill_length_mm`` ``~``  ``species``)`` ``|>`\
+`    `[`gf_sina`](../reference/gf_sina.md)`(``bill_length_mm`` ``~``  ``species``, alpha ``=`` ``0.5``, color ``=`` ``~`` ``island``)`\
+`}`\
+`#> Loading required package: ggforce`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_ydensity()`). ``\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_sina()`). ``
 
 ![](ggformula-long_files/figure-html/violin-sina-2.png)
 
@@ -774,33 +690,29 @@ if (require(ggforce)) {
 Ridge plots can be useful to displaying multiple density plots
 compactly.
 
-``` r
-
-Weather |>
-  gf_density_ridges(month ~ high_temp | city, group = ~month)
-#> Picking joint bandwidth of 1.09
-#> Picking joint bandwidth of 2.45
-#> Picking joint bandwidth of 3.79
-#> Picking joint bandwidth of 1.16
-#> Picking joint bandwidth of 1.7
-```
+\
+`Weather`` ``|>`\
+`  `[`gf_density_ridges`](../reference/ggridges.md)`(``month`` ``~`` ``high_temp`` ``|`` ``city``, group ``=`` ``~``month``)`\
+`#> Picking joint bandwidth of 1.09`\
+`#> Picking joint bandwidth of 2.45`\
+`#> Picking joint bandwidth of 3.79`\
+`#> Picking joint bandwidth of 1.16`\
+`#> Picking joint bandwidth of 1.7`
 
 ![](ggformula-long_files/figure-html/ridge-plots-1.png)
 
-``` r
-
-Weather |>
-  gf_density_ridges_gradient(month ~ high_temp | city, group = ~ month, 
-                             show.legend = FALSE) |> 
-  gf_refine(scale_fill_viridis_c(option = "B"))
-#> Warning: `stat(x)` was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `after_stat(x)` instead.
-#> Picking joint bandwidth of 1.09
-#> Picking joint bandwidth of 2.45
-#> Picking joint bandwidth of 3.79
-#> Picking joint bandwidth of 1.16
-#> Picking joint bandwidth of 1.7
-```
+\
+`Weather`` ``|>`\
+`  `[`gf_density_ridges_gradient`](../reference/ggridges.md)`(``month`` ``~`` ``high_temp`` ``|`` ``city``, group ``=`` ``~`` ``month``, `\
+`                             show.legend ``=`` ``FALSE``)`` ``|>`` `\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_fill_viridis_c`](https://ggplot2.tidyverse.org/reference/scale_viridis.html)`(``option ``=`` ``"B"``)``)`\
+`` #> Warning: `stat(x)` was deprecated in ggplot2 3.4.0. ``\
+`` #> ℹ Please use `after_stat(x)` instead. ``\
+`#> Picking joint bandwidth of 1.09`\
+`#> Picking joint bandwidth of 2.45`\
+`#> Picking joint bandwidth of 3.79`\
+`#> Picking joint bandwidth of 1.16`\
+`#> Picking joint bandwidth of 1.7`
 
 ![](ggformula-long_files/figure-html/ridge-plots-2.png)
 
@@ -809,30 +721,24 @@ Weather |>
 Two-dimensional plots of density also have both a left and right
 component to the formula.
 
-``` r
-
-Penguins |> gf_density_2d(bill_length_mm ~ bill_depth_mm | species)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density2d()`).
-```
+\
+`Penguins`` ``|>`` `[`gf_density_2d`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm`` ``|`` ``species``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density2d()`). ``
 
 ![](ggformula-long_files/figure-html/density2d-hex-1.png)
 
-``` r
-
-Penguins |> gf_density_2d_filled(bill_length_mm ~ bill_depth_mm | species)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density2d_filled()`).
-```
+\
+`Penguins`` ``|>`` `[`gf_density_2d_filled`](../reference/gf_density_2d.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm`` ``|`` ``species``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density2d_filled()`). ``
 
 ![](ggformula-long_files/figure-html/density2d-hex-2.png)
 
-``` r
-
-Penguins |> gf_hex(bill_length_mm ~ bill_depth_mm | species, binwidth = 1)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_binhex()`).
-```
+\
+`Penguins`` ``|>`` `[`gf_hex`](../reference/gf_hex.md)`(``bill_length_mm`` ``~`` ``bill_depth_mm`` ``|`` ``species``, binwidth ``=`` ``1``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_binhex()`). ``
 
 ![](ggformula-long_files/figure-html/density2d-hex-3.png)
 
@@ -849,10 +755,8 @@ Here’s an example where [`gf_line()`](../reference/gf_line.md) is
 useful. We begin with a scatter plot showing the number of live births
 in the US for each day of 1978.
 
-``` r
-
-Births78 |> gf_point(births ~ date)
-```
+\
+`Births78`` ``|>`` `[`gf_point`](../reference/gf_point.md)`(``births`` ``~`` ``date``)`
 
 ![](ggformula-long_files/figure-html/births01-1.png)
 
@@ -860,10 +764,8 @@ Can this interesting pattern be explained by a weekday/weekend effect?\
 Converting to a line plot and coloring by day of week highlights the
 pattern and makes it easy to spot the unusual days.
 
-``` r
-
-Births78 |> gf_line(births ~ date, color = ~ wday)
-```
+\
+`Births78`` ``|>`` `[`gf_line`](../reference/gf_line.md)`(``births`` ``~`` ``date``, color ``=`` ``~`` ``wday``)`
 
 ![](ggformula-long_files/figure-html/births03-1.png)
 
@@ -875,23 +777,19 @@ the plots below, the first connects days chronologically (because the
 data are sorted by date) and the second in order of their low
 temperature.
 
-``` r
-
-Weather |>
-  filter(month == 5, year == 2017, city == "Chicago") |>
-  gf_path(high_temp ~ low_temp | city ~ year, color = ~ day) |>
-  gf_refine(scale_color_viridis_c(option = "C", begin = 0.2, end = 0.8))
-```
+\
+`Weather`` ``|>`\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``month`` ``==`` ``5``, ``year`` ``==`` ``2017``, ``city`` ``==`` ``"Chicago"``)`` ``|>`\
+`  `[`gf_path`](../reference/gf_line.md)`(``high_temp`` ``~`` ``low_temp`` ``|`` ``city`` ``~`` ``year``, color ``=`` ``~`` ``day``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_color_viridis_c`](https://ggplot2.tidyverse.org/reference/scale_viridis.html)`(``option ``=`` ``"C"``, begin ``=`` ``0.2``, end ``=`` ``0.8``)``)`
 
 ![](ggformula-long_files/figure-html/paths-1.png)
 
-``` r
-
-Weather |>
-  filter(month == 5, year == 2017, city == "Chicago") |>
-  gf_line(high_temp ~ low_temp | city ~ year, color = ~ day) |>
-  gf_refine(scale_color_viridis_c(option = "C", begin = 0.2, end = 0.8))
-```
+\
+`Weather`` ``|>`\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``month`` ``==`` ``5``, ``year`` ``==`` ``2017``, ``city`` ``==`` ``"Chicago"``)`` ``|>`\
+`  `[`gf_line`](../reference/gf_line.md)`(``high_temp`` ``~`` ``low_temp`` ``|`` ``city`` ``~`` ``year``, color ``=`` ``~`` ``day``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_color_viridis_c`](https://ggplot2.tidyverse.org/reference/scale_viridis.html)`(``option ``=`` ``"C"``, begin ``=`` ``0.2``, end ``=`` ``0.8``)``)`
 
 ![](ggformula-long_files/figure-html/paths-2.png)
 
@@ -919,25 +817,21 @@ of the correct form. Here we will use
 [`gf_ribbon()`](../reference/gf_ribbon.md) to indicate the high and low
 temperatures in New York for the first few months of 2013.
 
-``` r
-
-Temps <-
-  Weather |>
-  filter(month <= 4, year <= 2016, city == "Chicago")
-
-Temps |> 
-  gf_pointrange(avg_temp + low_temp + high_temp  ~ date, color = ~ avg_temp) |> 
-  gf_refine(scale_color_gradientn(colors = c("blue", "green", "orange", "red")))
-```
+\
+`Temps`` ``<-`\
+`  ``Weather`` ``|>`\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``month`` ``<=`` ``4``, ``year`` ``<=`` ``2016``, ``city`` ``==`` ``"Chicago"``)`\
+\
+`Temps`` ``|>`` `\
+`  `[`gf_pointrange`](../reference/gf_linerange.md)`(``avg_temp`` ``+`` ``low_temp`` ``+`` ``high_temp``  ``~`` ``date``, color ``=`` ``~`` ``avg_temp``)`` ``|>`` `\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_color_gradientn`](https://ggplot2.tidyverse.org/reference/scale_gradient.html)`(``colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"blue"``, ``"green"``, ``"orange"``, ``"red"``)``)``)`
 
 ![](ggformula-long_files/figure-html/weather-1.png)
 
-``` r
-
-
-Temps |> 
-  gf_ribbon(low_temp + high_temp  ~ date, color = "navy", alpha = 0.3)
-```
+\
+\
+`Temps`` ``|>`` `\
+`  `[`gf_ribbon`](../reference/gf_ribbon.md)`(``low_temp`` ``+`` ``high_temp``  ``~`` ``date``, color ``=`` ``"navy"``, alpha ``=`` ``0.3``)`
 
 ![](ggformula-long_files/figure-html/weather-2.png)
 
@@ -954,12 +848,10 @@ Jittering adds some random noise and can be useful when many
 observations have the same value. Dodging moves groups of glyphs a fixed
 difference to make it easier to distinguish the groups.
 
-``` r
-
-KidsFeet |> 
-  gf_point(length ~ sex, color = ~ domhand, 
-           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.4))
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``length`` ``~`` ``sex``, color ``=`` ``~`` ``domhand``, `\
+`           position ``=`` `[`position_jitterdodge`](https://ggplot2.tidyverse.org/reference/position_jitterdodge.html)`(``jitter.width ``=`` ``0.2``, dodge.width ``=`` ``0.4``)``)`
 
 ![](ggformula-long_files/figure-html/KidsFeet-1.png)
 
@@ -973,11 +865,9 @@ is generated. Several of the plots we have seen have made use of stats.
   to bin the data and count the number of observations in each bin. It
   is equivalent to
 
-``` r
-
-HELPrct |> gf_bar( ~ age, stat = "bin")
-#> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
-```
+\
+`HELPrct`` ``|>`` `[`gf_bar`](../reference/gf_bar.md)`(`` ``~`` ``age``, stat ``=`` ``"bin"``)`\
+`` #> `stat_bin()` using `bins = 30`. Pick better value `binwidth`. ``
 
 ![](ggformula-long_files/figure-html/stats-1.png)
 
@@ -993,18 +883,14 @@ HELPrct |> gf_bar( ~ age, stat = "bin")
   [`gf_sina()`](../reference/gf_sina.md) uses the estimated density to
   jitter points.
 
-``` r
-
-gf_boxplot(age ~ substance, data = HELPrct)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``age`` ``~`` ``substance``, data ``=`` ``HELPrct``)`
 
 ![](ggformula-long_files/figure-html/boxplot-violin-sina-1.png)
 
-``` r
-
-gf_violin(age ~ substance, data = HELPrct) |>
-  gf_sina(alpha = 0.3)
-```
+\
+[`gf_violin`](../reference/gf_violin.md)`(``age`` ``~`` ``substance``, data ``=`` ``HELPrct``)`` ``|>`\
+`  `[`gf_sina`](../reference/gf_sina.md)`(``alpha ``=`` ``0.3``)`
 
 ![](ggformula-long_files/figure-html/boxplot-violin-sina-2.png)
 
@@ -1025,44 +911,36 @@ relationship between two variables.
 - [`gf_spline()`](../reference/gf_spline.md) plots a spline fit to the
   data.
 
-``` r
-
-KidsFeet |> 
-  gf_point(length ~ width, color = ~ sex) |>
-  gf_lm()
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``length`` ``~`` ``width``, color ``=`` ``~`` ``sex``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-5-1.png)
 
-``` r
-
-
-mosaicData::Births |>  
-  gf_point(births ~ date, color = ~wday, alpha = 0.15) |>
-  gf_smooth(method = "loess")
-```
+\
+\
+`mosaicData``::`[`Births`](https://rdrr.io/pkg/mosaicData/man/Births.html)` ``|>``  `\
+`  `[`gf_point`](../reference/gf_point.md)`(``births`` ``~`` ``date``, color ``=`` ``~``wday``, alpha ``=`` ``0.15``)`` ``|>`\
+`  `[`gf_smooth`](../reference/gf_smooth.md)`(``method ``=`` ``"loess"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-5-2.png)
 
-``` r
-
-
-mosaicData::Births |>  
-  gf_point(births ~ date, color = ~wday, alpha = 0.15) |>
-  gf_spline(spar = 1)
-```
+\
+\
+`mosaicData``::`[`Births`](https://rdrr.io/pkg/mosaicData/man/Births.html)` ``|>``  `\
+`  `[`gf_point`](../reference/gf_point.md)`(``births`` ``~`` ``date``, color ``=`` ``~``wday``, alpha ``=`` ``0.15``)`` ``|>`\
+`  `[`gf_spline`](../reference/gf_spline.md)`(``spar ``=`` ``1``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-5-3.png)
 
 Confidence or prediction bands can be added to these as well.
 
-``` r
-
-KidsFeet |> 
-  gf_point(length ~ width | sex, color = ~ sex) |>
-  gf_lm(interval = "prediction", fill = "red") |>
-  gf_lm(interval = "confidence", fill = "navy")
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``length`` ``~`` ``width`` ``|`` ``sex``, color ``=`` ``~`` ``sex``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``interval ``=`` ``"prediction"``, fill ``=`` ``"red"``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``interval ``=`` ``"confidence"``, fill ``=`` ``"navy"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-6-1.png)
 
@@ -1081,27 +959,23 @@ The default function applied in each group is
 which computes the mean (and the mean plus and minus one standard error)
 This makes it simple to create an “interaction plot”.
 
-``` r
-
-KidsFeet |> 
-  gf_jitter(length ~ sex, color = ~ domhand, width = 0.1, height = 0) |>
-  gf_line(length ~ sex, color = ~ domhand, group = ~ domhand, stat = "summary")
-#> No summary function supplied, defaulting to `mean_se()`
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``length`` ``~`` ``sex``, color ``=`` ``~`` ``domhand``, width ``=`` ``0.1``, height ``=`` ``0``)`` ``|>`\
+`  `[`gf_line`](../reference/gf_line.md)`(``length`` ``~`` ``sex``, color ``=`` ``~`` ``domhand``, group ``=`` ``~`` ``domhand``, stat ``=`` ``"summary"``)`\
+`` #> No summary function supplied, defaulting to `mean_se()` ``
 
 ![](ggformula-long_files/figure-html/stats02-1.png)
 
-``` r
-
-Penguins |> 
-  gf_jitter(body_mass_g ~ sex, color = ~ species, width = 0.1, height = 0) |>
-  gf_line(body_mass_g ~ sex, color = ~ species, group = ~ species, stat = "summary")
-#> No summary function supplied, defaulting to `mean_se()`
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_summary()`).
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`Penguins`` ``|>`` `\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``body_mass_g`` ``~`` ``sex``, color ``=`` ``~`` ``species``, width ``=`` ``0.1``, height ``=`` ``0``)`` ``|>`\
+`  `[`gf_line`](../reference/gf_line.md)`(``body_mass_g`` ``~`` ``sex``, color ``=`` ``~`` ``species``, group ``=`` ``~`` ``species``, stat ``=`` ``"summary"``)`\
+`` #> No summary function supplied, defaulting to `mean_se()` ``\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_summary()`). ``\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/stats02-2.png)
 
@@ -1110,29 +984,25 @@ The other two values computed by
 available (starting with `ggplot2` version 2.3) as `stat(ymin)` and
 `stat(ymax)`.
 
-``` r
-
-KidsFeet |> 
-  gf_jitter(length ~ sex, color = ~ domhand, width = 0.1, height = 0, alpha = 0.5) |>
-  gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
-                color = ~ domhand, group = ~ domhand, stat="summary")
-#> No summary function supplied, defaulting to `mean_se()`
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``length`` ``~`` ``sex``, color ``=`` ``~`` ``domhand``, width ``=`` ``0.1``, height ``=`` ``0``, alpha ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_pointrange`](../reference/gf_linerange.md)`(``length`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymin``)`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymax``)`` ``~`` ``sex``, `\
+`                color ``=`` ``~`` ``domhand``, group ``=`` ``~`` ``domhand``, stat``=``"summary"``)`\
+`` #> No summary function supplied, defaulting to `mean_se()` ``
 
 ![](ggformula-long_files/figure-html/stats03-1.png)
 
-``` r
-
-Penguins |> 
-  gf_jitter(body_mass_g ~ sex, color = ~ species, width = 0.1, height = 0, alpha = 0.3) |>
-  gf_pointrange(body_mass_g + stat(ymin) + stat(ymax) ~ sex, color = ~ species, 
-                group = ~ species, size = 1.5, stat="summary")
-#> No summary function supplied, defaulting to `mean_se()`
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_summary()`).
-#> Warning: Removed 2 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-```
+\
+`Penguins`` ``|>`` `\
+`  `[`gf_jitter`](../reference/gf_jitter.md)`(``body_mass_g`` ``~`` ``sex``, color ``=`` ``~`` ``species``, width ``=`` ``0.1``, height ``=`` ``0``, alpha ``=`` ``0.3``)`` ``|>`\
+`  `[`gf_pointrange`](../reference/gf_linerange.md)`(``body_mass_g`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymin``)`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymax``)`` ``~`` ``sex``, color ``=`` ``~`` ``species``, `\
+`                group ``=`` ``~`` ``species``, size ``=`` ``1.5``, stat``=``"summary"``)`\
+`` #> No summary function supplied, defaulting to `mean_se()` ``\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_summary()`). ``\
+`#> Warning: Removed 2 rows containing missing values or values outside the scale range`\
+`` #> (`geom_point()`). ``
 
 ![](ggformula-long_files/figure-html/stats03-2.png)
 
@@ -1140,17 +1010,15 @@ Custom functions can be used by defining `fun.y`, `fun.ymin`, and
 `fun.ymax`, or a single function `fun.data` that returns a data frame
 with variables named `y`, `ymin`, and `ymax`.
 
-``` r
-
-KidsFeet |> 
-  gf_point(length ~ sex, color = ~ domhand, width = 0.1, height = 0, alpha = 0.5,
-           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) |>
-  gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
-                color = ~ domhand, group = ~ domhand, stat="summary",
-                fun.y = median, fun.ymin = min, fun.ymax = max,
-                position = position_dodge(width = 0.6), size = 1.2)
-#> No summary function supplied, defaulting to `mean_se()`
-```
+\
+`KidsFeet`` ``|>`` `\
+`  `[`gf_point`](../reference/gf_point.md)`(``length`` ``~`` ``sex``, color ``=`` ``~`` ``domhand``, width ``=`` ``0.1``, height ``=`` ``0``, alpha ``=`` ``0.5``,`\
+`           position ``=`` `[`position_jitterdodge`](https://ggplot2.tidyverse.org/reference/position_jitterdodge.html)`(``jitter.width ``=`` ``0.2``, dodge.width ``=`` ``0.3``)``)`` ``|>`\
+`  `[`gf_pointrange`](../reference/gf_linerange.md)`(``length`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymin``)`` ``+`` `[`stat`](https://ggplot2.tidyverse.org/reference/aes_eval.html)`(``ymax``)`` ``~`` ``sex``, `\
+`                color ``=`` ``~`` ``domhand``, group ``=`` ``~`` ``domhand``, stat``=``"summary"``,`\
+`                fun.y ``=`` ``median``, fun.ymin ``=`` ``min``, fun.ymax ``=`` ``max``,`\
+`                position ``=`` `[`position_dodge`](https://ggplot2.tidyverse.org/reference/position_dodge.html)`(``width ``=`` ``0.6``)``, size ``=`` ``1.2``)`\
+`` #> No summary function supplied, defaulting to `mean_se()` ``
 
 ![](ggformula-long_files/figure-html/stats04-1.png)
 
@@ -1169,21 +1037,17 @@ one specifies the function to be plotted.
 If these are used as a first layer, the limits for the x-axis must be
 specified.
 
-``` r
-
-gf_function(fun = sqrt, xlim = c(0, 10)) |>
-  gf_fun(2 + 3 * cos(10 * x) ~ x, color = "red", n = 800)
-```
+\
+[`gf_function`](../reference/gf_function.md)`(``fun ``=`` ``sqrt``, xlim ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0``, ``10``)``)`` ``|>`\
+`  `[`gf_fun`](../reference/gf_function.md)`(``2`` ``+`` ``3`` ``*`` `[`cos`](https://rdrr.io/r/base/Trig.html)`(``10`` ``*`` ``x``)`` ``~`` ``x``, color ``=`` ``"red"``, n ``=`` ``800``)`
 
 ![](ggformula-long_files/figure-html/functions-1.png)
 
-``` r
-
-f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
-mosaicData::Utilities |>  
-  gf_point(totalbill ~ month, alpha = 0.6) |>
-  gf_fun(f(m) ~ m, color = "red")
-```
+\
+`f`` ``<-`` `[`makeFun`](https://rdrr.io/pkg/mosaicCore/man/makeFun.html)`(`[`lm`](https://rdrr.io/r/stats/lm.html)`(``totalbill`` ``~`` `[`poly`](https://rdrr.io/r/stats/poly.html)`(``month``, ``2``)``, data ``=`` ``mosaicData``::`[`Utilities`](https://rdrr.io/pkg/mosaicData/man/Utilities.html)`)``)`\
+`mosaicData``::`[`Utilities`](https://rdrr.io/pkg/mosaicData/man/Utilities.html)` ``|>``  `\
+`  `[`gf_point`](../reference/gf_point.md)`(``totalbill`` ``~`` ``month``, alpha ``=`` ``0.6``)`` ``|>`\
+`  `[`gf_fun`](../reference/gf_function.md)`(``f``(``m``)`` ``~`` ``m``, color ``=`` ``"red"``)`
 
 ![](ggformula-long_files/figure-html/functions-2.png)
 
@@ -1192,23 +1056,21 @@ mosaicData::Utilities |>
 Prior to `ggplot2` version 2.3, basic maps could be created using
 [`gf_polygon()`](../reference/gf_polygon.md).
 
-``` r
-
-if (require(maps) && require(dplyr)) {
-  US <- map_data("state") |>
-    dplyr::mutate(name_length = nchar(region))
-  States <- US |>
-    dplyr::group_by(region) |>
-    dplyr::summarise(lat = mean(range(lat)), long = mean(range(long))) |>
-    dplyr::mutate(name = abbreviate(region, 3))
-
-  gf_polygon(lat ~ long, data = US, group = ~ group,
-             fill = ~ name_length, color = "white") |>
-  gf_text(lat ~ long, label = ~ name, data = States,
-    color = "gray70", inherit = FALSE) |>
-  gf_refine(mosaic::theme_map())
-}
-```
+\
+`if`` ``(`[`require`](https://rdrr.io/r/base/library.html)`(`[`maps`](https://github.com/adeckmyn/maps)`)`` ``&&`` `[`require`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)``)`` ``{`\
+`  ``US`` ``<-`` `[`map_data`](https://ggplot2.tidyverse.org/reference/map_data.html)`(``"state"``)`` ``|>`\
+`    ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``name_length ``=`` `[`nchar`](https://rdrr.io/r/base/nchar.html)`(``region``)``)`\
+`  ``States`` ``<-`` ``US`` ``|>`\
+`    ``dplyr``::`[`group_by`](https://dplyr.tidyverse.org/reference/group_by.html)`(``region``)`` ``|>`\
+`    ``dplyr``::`[`summarise`](https://dplyr.tidyverse.org/reference/summarise.html)`(``lat ``=`` `[`mean`](https://rdrr.io/r/base/mean.html)`(`[`range`](https://rdrr.io/r/base/range.html)`(``lat``)``)``, long ``=`` `[`mean`](https://rdrr.io/r/base/mean.html)`(`[`range`](https://rdrr.io/r/base/range.html)`(``long``)``)``)`` ``|>`\
+`    ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``name ``=`` `[`abbreviate`](https://rdrr.io/r/base/abbreviate.html)`(``region``, ``3``)``)`\
+\
+`  `[`gf_polygon`](../reference/gf_polygon.md)`(``lat`` ``~`` ``long``, data ``=`` ``US``, group ``=`` ``~`` ``group``,`\
+`             fill ``=`` ``~`` ``name_length``, color ``=`` ``"white"``)`` ``|>`\
+`  `[`gf_text`](../reference/gf_text.md)`(``lat`` ``~`` ``long``, label ``=`` ``~`` ``name``, data ``=`` ``States``,`\
+`    color ``=`` ``"gray70"``, inherit ``=`` ``FALSE``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(``mosaic``::`[`theme_map`](https://www.mosaic-web.org/mosaic/reference/theme_map.html)`(``)``)`\
+`}`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-7-1.png)
 
@@ -1217,26 +1079,24 @@ files. This allows each row of a data frame to contain all the geometry
 information for a region in a single column. There is also better
 support for overlaying information from multiple shape files.
 
-``` r
-
-if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
-  USshape <- 
-    sf::st_as_sf(maps::map('state', plot = FALSE, fill = TRUE)) |>
-    dplyr::mutate(
-      name_length = nchar(as.character(ID)),
-      centroid = purrr::map(geom, st_centroid),
-      coords_x = purrr::map_dbl(centroid, 1),
-      coords_y = purrr::map_dbl(centroid, 2)
-    ) 
-    
-  gf_sf(fill = ~ factor(name_length), color = "white", data = USshape, alpha = 0.5) |>
-    gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) |>
-    gf_labs(x = "", y = "") |>
-    gf_refine(coord_sf()) |>
-    gf_theme(mosaic::theme_map()) |>
-    gf_labs(fill = "name length")
-}
-```
+\
+`if`` ``(`[`require`](https://rdrr.io/r/base/library.html)`(`[`maps`](https://github.com/adeckmyn/maps)`)`` ``&&`` `[`require`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` ``&&`` `[`require`](https://rdrr.io/r/base/library.html)`(`[`sf`](https://r-spatial.github.io/sf/)`)`` ``&&`` `[`require`](https://rdrr.io/r/base/library.html)`(`[`purrr`](https://purrr.tidyverse.org/)`)``)`` ``{`\
+`  ``USshape`` ``<-`` `\
+`    ``sf``::`[`st_as_sf`](https://r-spatial.github.io/sf/reference/st_as_sf.html)`(``maps``::`[`map`](https://rdrr.io/pkg/maps/man/map.html)`(``'state'``, plot ``=`` ``FALSE``, fill ``=`` ``TRUE``)``)`` ``|>`\
+`    ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(`\
+`      name_length ``=`` `[`nchar`](https://rdrr.io/r/base/nchar.html)`(`[`as.character`](https://rdrr.io/r/base/character.html)`(``ID``)``)``,`\
+`      centroid ``=`` ``purrr``::`[`map`](https://purrr.tidyverse.org/reference/map.html)`(``geom``, ``st_centroid``)``,`\
+`      coords_x ``=`` ``purrr``::`[`map_dbl`](https://purrr.tidyverse.org/reference/map.html)`(``centroid``, ``1``)``,`\
+`      coords_y ``=`` ``purrr``::`[`map_dbl`](https://purrr.tidyverse.org/reference/map.html)`(``centroid``, ``2``)`\
+`    ``)`` `\
+`    `\
+`  `[`gf_sf`](../reference/gf_sf.md)`(``fill ``=`` ``~`` `[`factor`](https://rdrr.io/r/base/factor.html)`(``name_length``)``, color ``=`` ``"white"``, data ``=`` ``USshape``, alpha ``=`` ``0.5``)`` ``|>`\
+`    `[`gf_text`](../reference/gf_text.md)`(``coords_y`` ``~`` ``coords_x``, label ``=`` ``~`` ``ID``, color ``=`` ``"gray20"``, size ``=`` ``2``)`` ``|>`\
+`    `[`gf_labs`](../reference/gf_aux.md)`(``x ``=`` ``""``, y ``=`` ``""``)`` ``|>`\
+`    `[`gf_refine`](../reference/gf_aux.md)`(`[`coord_sf`](https://ggplot2.tidyverse.org/reference/ggsf.html)`(``)``)`` ``|>`\
+`    `[`gf_theme`](../reference/gf_theme.md)`(``mosaic``::`[`theme_map`](https://www.mosaic-web.org/mosaic/reference/theme_map.html)`(``)``)`` ``|>`\
+`    `[`gf_labs`](../reference/gf_aux.md)`(``fill ``=`` ``"name length"``)`\
+`}`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-8-1.png)
 
@@ -1253,21 +1113,17 @@ Average shifted histograms can be created with
 over all histograms with the same bin width. ASH plots often work well
 with larger bin widths than you might use for an individual histogram.
 
-``` r
-
-HELPrct |> 
-  gf_ash( ~ age, data = HELPrct, binwidth = 2) |>
-  gf_dhistogram( ~ age, binwidth = 2, alpha = 0.3) 
-```
+\
+`HELPrct`` ``|>`` `\
+`  `[`gf_ash`](../reference/gf_ash.md)`(`` ``~`` ``age``, data ``=`` ``HELPrct``, binwidth ``=`` ``2``)`` ``|>`\
+`  `[`gf_dhistogram`](../reference/gf_histogram.md)`(`` ``~`` ``age``, binwidth ``=`` ``2``, alpha ``=`` ``0.3``)`` `
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-9-1.png)
 
-``` r
-
-HELPrct |> 
-  gf_ash( ~ age, binwidth = 10) |> 
-  gf_dhistogram( ~ age, binwidth = 2, alpha = 0.3) 
-```
+\
+`HELPrct`` ``|>`` `\
+`  `[`gf_ash`](../reference/gf_ash.md)`(`` ``~`` ``age``, binwidth ``=`` ``10``)`` ``|>`` `\
+`  `[`gf_dhistogram`](../reference/gf_histogram.md)`(`` ``~`` ``age``, binwidth ``=`` ``2``, alpha ``=`` ``0.3``)`` `
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-9-2.png)
 
@@ -1276,56 +1132,42 @@ HELPrct |>
 [`gf_dist()`](../reference/gf_dist.md) can be used to create plots of
 discrete and continuous distributions.
 
-``` r
-
-gf_dist("pois", lambda = 5)
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"pois"``, lambda ``=`` ``5``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-10-1.png)
 
-``` r
-
-gf_dist("pois", lambda = 5, kind = "cdf")
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"pois"``, lambda ``=`` ``5``, kind ``=`` ``"cdf"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-10-2.png)
 
-``` r
-
-gf_dist("gamma", shape = 3, rate = 4, geom = "area")
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"gamma"``, shape ``=`` ``3``, rate ``=`` ``4``, geom ``=`` ``"area"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-10-3.png)
 
-``` r
-
-gf_dist("gamma", shape = 3, rate = 4, geom = "area", fill = ~ (x <= 1))
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"gamma"``, shape ``=`` ``3``, rate ``=`` ``4``, geom ``=`` ``"area"``, fill ``=`` ``~`` ``(``x`` ``<=`` ``1``)``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-10-4.png)
 
-``` r
-
-gf_dist("gamma", shape = 3, rate = 4, kind = "cdf")
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"gamma"``, shape ``=`` ``3``, rate ``=`` ``4``, kind ``=`` ``"cdf"``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-10-5.png)
 
 When distribution parameters and plot attributes have the same name,
 there are two ways to avoid the name collision:
 
-``` r
-
-# size is used by the binomial distribution functions and when plotting
-gf_dist("binom", size = 20, prob = 0.25, plot_size = 5)
-```
+\
+`# size is used by the binomial distribution functions and when plotting`\
+[`gf_dist`](../reference/gf_dist.md)`(``"binom"``, size ``=`` ``20``, prob ``=`` ``0.25``, plot_size ``=`` ``5``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-11-1.png)
 
-``` r
-
-gf_dist("binom", params = list(size = 20, prob = 0.25), size = 3)
-```
+\
+[`gf_dist`](../reference/gf_dist.md)`(``"binom"``, params ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``size ``=`` ``20``, prob ``=`` ``0.25``)``, size ``=`` ``3``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-11-2.png)
 
@@ -1333,22 +1175,19 @@ gf_dist("binom", params = list(size = 20, prob = 0.25), size = 3)
 [`MASS::fitdistr()`](https://rdrr.io/pkg/MASS/man/fitdistr.html) for
 fitting distributions to data and displaying the resulting pdf.
 
-``` r
-
-x <- rgamma(1000, shape = 2, rate = 5)
-gf_dhistogram( ~ x, alpha = 0.3) |>
-  gf_fitdistr(dist = "dnorm", color = ~ "Normal") |> 
-  gf_fitdistr(dist = "dgamma", color = ~ "Gamma") |>
-  gf_fitdistr(dist = "dweibull", color = ~ "Weibull") |> 
-  gf_labs(color = "")
-#> `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced
-```
+\
+`x`` ``<-`` `[`rgamma`](https://rdrr.io/r/stats/GammaDist.html)`(``1000``, shape ``=`` ``2``, rate ``=`` ``5``)`\
+[`gf_dhistogram`](../reference/gf_histogram.md)`(`` ``~`` ``x``, alpha ``=`` ``0.3``)`` ``|>`\
+`  `[`gf_fitdistr`](../reference/gf_fitdistr.md)`(``dist ``=`` ``"dnorm"``, color ``=`` ``~`` ``"Normal"``)`` ``|>`` `\
+`  `[`gf_fitdistr`](../reference/gf_fitdistr.md)`(``dist ``=`` ``"dgamma"``, color ``=`` ``~`` ``"Gamma"``)`` ``|>`\
+`  `[`gf_fitdistr`](../reference/gf_fitdistr.md)`(``dist ``=`` ``"dweibull"``, color ``=`` ``~`` ``"Weibull"``)`` ``|>`` `\
+`  `[`gf_labs`](../reference/gf_aux.md)`(``color ``=`` ``""``)`\
+`` #> `stat_bin()` using `bins = 30`. Pick better value `binwidth`. ``\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-12-1.png)
 
@@ -1359,56 +1198,50 @@ adjusting labels, colors, fonts, etc. `ggformula` provides wrappers to
 the `ggplot2` functions for this so that the chaining syntax can be
 used.
 
-``` r
-
-penguins |> 
-  gf_histogram( ~ body_mass_g, alpha = 0.2, fill = "navy",
-              color = "gray50", binwidth = 200) |>
-  gf_freqpoly( ~ body_mass_g, binwidth = 200) |>
-  gf_facet_grid(species ~ .) |> 
-  gf_labs(x = "bill length (mm)", title = "Palmer Penguins") |>
-  gf_lims(x = c(2500, 6500)) |> 
-  gf_theme(theme = theme_minimal())
-#> Warning: Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-#> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_histogram`](../reference/gf_histogram.md)`(`` ``~`` ``body_mass_g``, alpha ``=`` ``0.2``, fill ``=`` ``"navy"``,`\
+`              color ``=`` ``"gray50"``, binwidth ``=`` ``200``)`` ``|>`\
+`  `[`gf_freqpoly`](../reference/gf_freqpoly.md)`(`` ``~`` ``body_mass_g``, binwidth ``=`` ``200``)`` ``|>`\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(``species`` ``~`` ``.``)`` ``|>`` `\
+`  `[`gf_labs`](../reference/gf_aux.md)`(``x ``=`` ``"bill length (mm)"``, title ``=`` ``"Palmer Penguins"``)`` ``|>`\
+`  `[`gf_lims`](../reference/gf_aux.md)`(``x ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2500``, ``6500``)``)`` ``|>`` `\
+`  `[`gf_theme`](../reference/gf_theme.md)`(``theme ``=`` `[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)`\
+`` #> Warning: Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``\
+`` #> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``
 
 ![](ggformula-long_files/figure-html/themes-1.png)
 
-``` r
-
-
-penguins |> 
-  gf_histogram( ~ body_mass_g | species ~ ., alpha = 0.5, fill = "white",
-              binwidth = 200, color = "gray40") |>
-  gf_freqpoly( ~ body_mass_g, color = "skyblue", 
-               binwidth = 200, size = 1.2, alpha = 0.8) |>
-  gf_labs(x = "bill length (mm)", title = "Palmer Penguins") |>
-  gf_lims(x = c(2500, 6500)) |> 
-  gf_theme(theme = theme_dark())
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-#> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`).
-#> ℹ The deprecated feature was likely used in the base package.
-#>   Please report the issue to the authors.
-```
+\
+\
+`penguins`` ``|>`` `\
+`  `[`gf_histogram`](../reference/gf_histogram.md)`(`` ``~`` ``body_mass_g`` ``|`` ``species`` ``~`` ``.``, alpha ``=`` ``0.5``, fill ``=`` ``"white"``,`\
+`              binwidth ``=`` ``200``, color ``=`` ``"gray40"``)`` ``|>`\
+`  `[`gf_freqpoly`](../reference/gf_freqpoly.md)`(`` ``~`` ``body_mass_g``, color ``=`` ``"skyblue"``, `\
+`               binwidth ``=`` ``200``, size ``=`` ``1.2``, alpha ``=`` ``0.8``)`` ``|>`\
+`  `[`gf_labs`](../reference/gf_aux.md)`(``x ``=`` ``"bill length (mm)"``, title ``=`` ``"Palmer Penguins"``)`` ``|>`\
+`  `[`gf_lims`](../reference/gf_aux.md)`(``x ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2500``, ``6500``)``)`` ``|>`` `\
+`  `[`gf_theme`](../reference/gf_theme.md)`(``theme ``=`` `[`theme_dark`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)`\
+`` #> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0. ``\
+`` #> ℹ Please use `linewidth` instead. ``\
+`` #> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``\
+`` #> Removed 2 rows containing non-finite outside the scale range (`stat_bin()`). ``\
+`#> ℹ The deprecated feature was likely used in the base package.`\
+`#>   Please report the issue to the authors.`
 
 ![](ggformula-long_files/figure-html/themes-2.png)
 
 For convenience, a few modifications can also be made directly in the
 original function call:
 
-``` r
-
-penguins |> 
-  gf_dhistogram( ~ body_mass_g | species ~ ., 
-                alpha = 0.5, fill = "skyblue", color = "navy", binwidth = 200, 
-                xlab = "body mass (g)", title = "Palmer Penguins"
-  ) 
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_bin()`).
-```
+\
+`penguins`` ``|>`` `\
+`  `[`gf_dhistogram`](../reference/gf_histogram.md)`(`` ``~`` ``body_mass_g`` ``|`` ``species`` ``~`` ``.``, `\
+`                alpha ``=`` ``0.5``, fill ``=`` ``"skyblue"``, color ``=`` ``"navy"``, binwidth ``=`` ``200``, `\
+`                xlab ``=`` ``"body mass (g)"``, title ``=`` ``"Palmer Penguins"`\
+`  ``)`` `\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_bin()`). ``
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-13-1.png)
 
@@ -1419,59 +1252,47 @@ direction. Often ggplot2 will correctly determine which orientation is
 intended. If not, set `orientation = 'x'` or `orientation = 'y'` to
 explicitly set the direction of the geom.
 
-``` r
-
-gf_boxplot(high_temp ~ city, data = Weather)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``high_temp`` ``~`` ``city``, data ``=`` ``Weather``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-1.png)
 
-``` r
-
-
-# auto-detected because city is discrete
-gf_boxplot(city ~ high_temp, data = Weather)
-```
+\
+\
+`# auto-detected because city is discrete`\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``city`` ``~`` ``high_temp``, data ``=`` ``Weather``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-2.png)
 
-``` r
-
-
-# auto-detected based on groups
-gf_boxplot(month ~ high_temp | ~ city, group = ~ month, data = Weather)
-```
+\
+\
+`# auto-detected based on groups`\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``month`` ``~`` ``high_temp`` ``|`` ``~`` ``city``, group ``=`` ``~`` ``month``, data ``=`` ``Weather``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-3.png)
 
-``` r
-
-gf_boxplot(high_temp ~ month | city ~ ., group = ~ month, data = Weather)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``high_temp`` ``~`` ``month`` ``|`` ``city`` ``~`` ``.``, group ``=`` ``~`` ``month``, data ``=`` ``Weather``)`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-4.png)
 
-``` r
-
-
-# defaults to veritcal without groups 
-gf_boxplot(month ~ high_temp | ~ city, data = Weather)
-#> Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-#> continuous. Picking default orientation 'x'.
-#> Warning: Continuous x aesthetic
-#> ℹ did you forget `aes(group = ...)`?
-```
+\
+\
+`# defaults to veritcal without groups `\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``month`` ``~`` ``high_temp`` ``|`` ``~`` ``city``, data ``=`` ``Weather``)`\
+`#> Warning: Orientation is not uniquely specified when both the x and y aesthetics are`\
+`#> continuous. Picking default orientation 'x'.`\
+`#> Warning: Continuous x aesthetic`\
+`` #> ℹ did you forget `aes(group = ...)`? ``
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-5.png)
 
-``` r
-
-
-# explicit horizontal orientation
-gf_boxplot(month ~ high_temp | city ~ ., data = Weather, orientation = 'y')
-#> Warning: Continuous y aesthetic
-#> ℹ did you forget `aes(group = ...)`?
-```
+\
+\
+`# explicit horizontal orientation`\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``month`` ``~`` ``high_temp`` ``|`` ``city`` ``~`` ``.``, data ``=`` ``Weather``, orientation ``=`` ``'y'``)`\
+`#> Warning: Continuous y aesthetic`\
+`` #> ℹ did you forget `aes(group = ...)`? ``
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-14-6.png)
 

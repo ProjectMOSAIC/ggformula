@@ -54,21 +54,19 @@ commands to compute mean price for each of two colors, to create
 side-by-side boxplots, to run a two-sample t test, and to fit a linear
 model are what make this approach so compelling.
 
-``` r
-
-# diamonds2 was called `recoded' in Nick's post
-library(dplyr)
-diamonds2 <- diamonds |> 
-  filter(color == "D" | color == "J") |>
-  mutate(col = as.character(color))
-
-  mean(price ~ col, data = diamonds2)  
-#> Warning in mean.default(price ~ col, data = diamonds2): argument is not numeric
-#> or logical: returning NA
-bwplot(price ~ col, data = diamonds2)
-t.test(price ~ col, data = diamonds2)
-    lm(price ~ col, data = diamonds2)
-```
+\
+`` # diamonds2 was called `recoded' in Nick's post ``\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
+`diamonds2`` ``<-`` ``diamonds`` ``|>`` `\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``color`` ``==`` ``"D"`` ``|`` ``color`` ``==`` ``"J"``)`` ``|>`\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``col ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``color``)``)`\
+\
+`  `[`mean`](https://rdrr.io/r/base/mean.html)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)``  `\
+`#> Warning in mean.default(price ~ col, data = diamonds2): argument is not numeric`\
+`#> or logical: returning NA`\
+`bwplot``(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)`\
+[`t.test`](https://rdrr.io/r/stats/t.test.html)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)`\
+`    `[`lm`](https://rdrr.io/r/stats/lm.html)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)`
 
 This “Less Volume, More Creativity” approach is outlined in more detail
 in a recent [*R Journal*
@@ -110,11 +108,9 @@ plotting function. Each of these functions begins with `gf`. Here are
 two examples, either of which could replace the side-by-side boxplots
 made with `lattice` in Nick’s post.
 
-``` r
-
-gf_boxplot(price ~ col, data = diamonds2)
-gf_violin(price ~ col, data = diamonds2)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)`\
+[`gf_violin`](../reference/gf_violin.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-2-1.png)
 
@@ -125,11 +121,9 @@ compare. To do so, we simply place the then operator (`|>`, also called
 a pipe) between the two layers and adjust the transparency so we can see
 both where they overlap.
 
-``` r
-
-gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) |>
-gf_violin(price ~ col, data = diamonds2, alpha = 0.3, fill = "navy", col = NA)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.05``)`` ``|>`\
+[`gf_violin`](../reference/gf_violin.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.3``, fill ``=`` ``"navy"``, col ``=`` ``NA``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-3-1.png)
 
@@ -144,11 +138,9 @@ than setting and is indicated by an additional `~`. One can read
 is controled by the fill scale for the plot, and this scale can be
 modified by the user who doesn’t like the default scale choice.)
 
-``` r
-
-gf_boxplot(price ~ col, data = diamonds2, alpha = 0.05) |>
-  gf_violin(price ~ col, data = diamonds2, alpha = 0.3, fill = ~ col)
-```
+\
+[`gf_boxplot`](../reference/gf_boxplot.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.05``)`` ``|>`\
+`  `[`gf_violin`](../reference/gf_violin.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.3``, fill ``=`` ``~`` ``col``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-4-1.png)
 
@@ -159,13 +151,11 @@ after taking into consideration the number of carats, the D color
 diamonds tend to sell for more than the J color diamonds. (It also shows
 that the simple linear fit is poor for the largest diamonds.)
 
-``` r
-
-xyplot(price ~ carat, groups = col, data = diamonds2,
-       auto.key = TRUE, type = c("p", "r"), alpha = 0.5) 
-gf_point(price ~ carat, color = ~ col, data = diamonds2, alpha = 0.5) |>
-   gf_lm(price ~ carat, color = ~ col, data = diamonds2, alpha = 0.5) 
-```
+\
+`xyplot``(``price`` ``~`` ``carat``, groups ``=`` ``col``, data ``=`` ``diamonds2``,`\
+`       auto.key ``=`` ``TRUE``, type ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"p"``, ``"r"``)``, alpha ``=`` ``0.5``)`` `\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat``, color ``=`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.5``)`` ``|>`\
+`   `[`gf_lm`](../reference/gf_smooth.md)`(``price`` ``~`` ``carat``, color ``=`` ``~`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.5``)`` `
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-5-1.png)
 
@@ -187,23 +177,21 @@ functions provide a mechanism for obtaining a bit of help without going
 to the full help page for the function: simply execute the function with
 no arguments.
 
-``` r
-
-gf_violin()
-#> gf_violin() uses 
-#>     * a formula with shape y ~ x. 
-#>     * geom:  violin 
-#>     * stat:  ydensity 
-#>     * position:  dodge 
-#>     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,
-#>                    quantile.colour = NULL, quantile.color =
-#>                    NULL, quantile.linetype = 0,
-#>                    quantile.linewidth = NULL, trim = TRUE,
-#>                    scale = "area", bw, adjust = 1, kernel =
-#>                    "gaussian"
-#> 
-#> For more information, try ?gf_violin
-```
+\
+[`gf_violin`](../reference/gf_violin.md)`(``)`\
+`#> gf_violin() uses `\
+`#>     * a formula with shape y ~ x. `\
+`#>     * geom:  violin `\
+`#>     * stat:  ydensity `\
+`#>     * position:  dodge `\
+`#>     * key attributes:  alpha, color, fill, group, linetype, linewidth, weight,`\
+`#>                    quantile.colour = NULL, quantile.color =`\
+`#>                    NULL, quantile.linetype = 0,`\
+`#>                    quantile.linewidth = NULL, trim = TRUE,`\
+`#>                    scale = "area", bw, adjust = 1, kernel =`\
+`#>                    "gaussian"`\
+`#> `\
+`#> For more information, try ?gf_violin`
 
 This terse help describes how the formula is used. (For those already
 familiar with `ggplot2`, the formula shape shows how the formula is
@@ -215,19 +203,17 @@ help lets us quickly (a) thinken the lines, (b) make the violins less
 the area of the violins according the number of observations
 represented.
 
-``` r
-
-gf_violin(price ~ col, data = diamonds2,
-          color = ~ col, fill = ~col, alpha = 0.2,
-          scale = "count",
-          draw_quantiles = c(0.25, 0.5, 0.75), size = 0.8,
-          adjust = 1/2)
-#> Warning: The `draw_quantiles` argument of `geom_violin()` is deprecated as of ggplot2
-#> 4.0.0.
-#> ℹ Please use the `quantiles.linetype` argument instead.
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-```
+\
+[`gf_violin`](../reference/gf_violin.md)`(``price`` ``~`` ``col``, data ``=`` ``diamonds2``,`\
+`          color ``=`` ``~`` ``col``, fill ``=`` ``~``col``, alpha ``=`` ``0.2``,`\
+`          scale ``=`` ``"count"``,`\
+`          draw_quantiles ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0.25``, ``0.5``, ``0.75``)``, size ``=`` ``0.8``,`\
+`          adjust ``=`` ``1``/``2``)`\
+`` #> Warning: The `draw_quantiles` argument of `geom_violin()` is deprecated as of ggplot2 ``\
+`#> 4.0.0.`\
+`` #> ℹ Please use the `quantiles.linetype` argument instead. ``\
+`` #> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0. ``\
+`` #> ℹ Please use `linewidth` instead. ``
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-7-1.png)
 
@@ -238,13 +224,11 @@ rather than to overlay subgroups in the same space. `ggformula` provides
 two ways to create these facets. The first uses `|` very much like
 `lattice` does.
 
-``` r
-
-gf_point(price ~ carat | col, data = diamonds2, alpha = 0.2) |>
-  gf_lm()
-gf_point(price ~ carat | col ~ clarity, data = diamonds2, alpha = 0.2) |>
-  gf_lm()
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat`` ``|`` ``col``, data ``=`` ``diamonds2``, alpha ``=`` ``0.2``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``)`\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat`` ``|`` ``col`` ``~`` ``clarity``, data ``=`` ``diamonds2``, alpha ``=`` ``0.2``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-8-1.png)
 
@@ -259,16 +243,14 @@ The second way to adds facets with
 [`gf_facet_grid()`](../reference/gf_facet_grid.md). The commands below
 create the same plots as those above.
 
-``` r
-
-gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) |>
-  gf_lm(alpha = 0.5) |>
-  gf_facet_wrap( ~ color)
-
-gf_point(price ~ carat, data = diamonds2, alpha = 0.2, size = 0.5) |>
-  gf_lm(alpha = 0.5) |>
-  gf_facet_grid( color ~ clarity)
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat``, data ``=`` ``diamonds2``, alpha ``=`` ``0.2``, size ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``alpha ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_facet_wrap`](../reference/gf_facet_grid.md)`(`` ``~`` ``color``)`\
+\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat``, data ``=`` ``diamonds2``, alpha ``=`` ``0.2``, size ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``alpha ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_facet_grid`](../reference/gf_facet_grid.md)`(`` ``color`` ``~`` ``clarity``)`
 
 ## Refinements
 
@@ -281,19 +263,17 @@ For the rest, we offer [`gf_refine()`](../reference/gf_aux.md) which
 allows us to make any `ggplot2` refinements without resorting to the `+`
 syntax used by `ggformula`.
 
-``` r
-
-gf_point(price ~ carat, data = diamonds2, 
-         color = ~ col, alpha = 0.2, size = 0.5) |>
-  gf_lm(alpha = 0.5) |>
-  gf_facet_wrap( ~ color) |>
-  gf_labs(title = "Price vs Size", subtitle = "(2 colors of diamonds)",
-          caption = "source: ggplot2::diamonds",
-          x = "size (carat)", y = "price (US dollars)"
-  ) |>
-  gf_refine(scale_color_manual(values = c("red", "navy"), guide = "none")) |>
-  gf_theme(theme_minimal())
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``price`` ``~`` ``carat``, data ``=`` ``diamonds2``, `\
+`         color ``=`` ``~`` ``col``, alpha ``=`` ``0.2``, size ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_lm`](../reference/gf_smooth.md)`(``alpha ``=`` ``0.5``)`` ``|>`\
+`  `[`gf_facet_wrap`](../reference/gf_facet_grid.md)`(`` ``~`` ``color``)`` ``|>`\
+`  `[`gf_labs`](../reference/gf_aux.md)`(``title ``=`` ``"Price vs Size"``, subtitle ``=`` ``"(2 colors of diamonds)"``,`\
+`          caption ``=`` ``"source: ggplot2::diamonds"``,`\
+`          x ``=`` ``"size (carat)"``, y ``=`` ``"price (US dollars)"`\
+`  ``)`` ``|>`\
+`  `[`gf_refine`](../reference/gf_aux.md)`(`[`scale_color_manual`](https://ggplot2.tidyverse.org/reference/scale_manual.html)`(``values ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"red"``, ``"navy"``)``, guide ``=`` ``"none"``)``)`` ``|>`\
+`  `[`gf_theme`](../reference/gf_theme.md)`(`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-10-1.png)
 
@@ -308,13 +288,11 @@ than `ggplot2` itself does). Data can be piped into the initial call to
 a `ggformula` function and there is no need to switch between `|>` and
 `+` when moving from data transformations to plot operations.
 
-``` r
-
-diamonds |>
-  filter(color %in% c("D", "G", "J")) |>
-  mutate(col = as.character(color)) |>
-  gf_bar( ~ col)
-```
+\
+`diamonds`` ``|>`\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``color`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"D"``, ``"G"``, ``"J"``)``)`` ``|>`\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``col ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``color``)``)`` ``|>`\
+`  `[`gf_bar`](../reference/gf_bar.md)`(`` ``~`` ``col``)`
 
 ![](ggformula-blog_files/figure-html/unnamed-chunk-11-1.png)
 

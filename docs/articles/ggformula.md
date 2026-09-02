@@ -25,17 +25,13 @@ The `ggformula` graphics were designed with several user groups in mind:
 
 The basic template for creating a plot with `ggformula` is
 
-``` r
-
-gf_plottype(formula, data = mydata)
-```
+\
+`gf_plottype``(``formula``, data ``=`` ``mydata``)`
 
 or, equivalently,
 
-``` r
-
-mydata |> gf_plottype(formula)
-```
+\
+`mydata`` ``|>`` ``gf_plottype``(``formula``)`
 
 where
 
@@ -60,18 +56,14 @@ arguments.
 
 Here is a simple example:
 
-``` r
-
-library(ggformula)
-gf_point(mpg ~ hp, data = mtcars)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggformula`](https://github.com/ProjectMOSAIC/ggformula)`)`\
+[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``, data ``=`` ``mtcars``)`
 
 ![](ggformula_files/figure-html/simple-example-1.png)
 
-``` r
-
-mtcars |> gf_point(mpg ~ hp)
-```
+\
+`mtcars`` ``|>`` `[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``)`
 
 ![](ggformula_files/figure-html/simple-example-2.png)
 
@@ -167,10 +159,8 @@ The following plot, for instance,
 - We also **set** the transparency to 50%. The gives the same value of
   `alpha` to all glyphs in this layer.
 
-``` r
-
-gf_point(mpg ~ hp, color = ~cyl, size = ~carb, alpha = 0.50, data = mtcars)
-```
+\
+[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``, color ``=`` ``~``cyl``, size ``=`` ``~``carb``, alpha ``=`` ``0.50``, data ``=`` ``mtcars``)`
 
 ![](ggformula_files/figure-html/mapping-setting-1.png)
 
@@ -185,26 +175,22 @@ string). Except for the labeling of the legend, these two plots are the
 same. In the second example, we see how the ggformula works well with
 data tranformations using `|>`.
 
-``` r
-
-library(dplyr)
-gf_point(
-  mpg ~ hp,
-  color = ~ factor(cyl),
-  size = ~carb,
-  alpha = 0.75,
-  data = mtcars
-)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
+[`gf_point`](../reference/gf_point.md)`(`\
+`  ``mpg`` ``~`` ``hp``,`\
+`  color ``=`` ``~`` `[`factor`](https://rdrr.io/r/base/factor.html)`(``cyl``)``,`\
+`  size ``=`` ``~``carb``,`\
+`  alpha ``=`` ``0.75``,`\
+`  data ``=`` ``mtcars`\
+`)`
 
 ![](ggformula_files/figure-html/on-the-fly-1.png)
 
-``` r
-
-mtcars |>
-  mutate(cylinders = factor(cyl)) |>
-  gf_point(mpg ~ hp, color = ~cylinders, size = ~carb, alpha = 0.75)
-```
+\
+`mtcars`` ``|>`\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``cylinders ``=`` `[`factor`](https://rdrr.io/r/base/factor.html)`(``cyl``)``)`` ``|>`\
+`  `[`gf_point`](../reference/gf_point.md)`(``mpg`` ``~`` ``hp``, color ``=`` ``~``cylinders``, size ``=`` ``~``carb``, alpha ``=`` ``0.75``)`
 
 ![](ggformula_files/figure-html/on-the-fly-2.png)
 
@@ -219,40 +205,32 @@ as well. *Note that in the one-variable density graphics, the variable
 whose density is to be calculated goes to the right of the tilde, in the
 position reserved for the x-axis variable.*
 
-``` r
-
-data(penguins, package = "palmerpenguins")
-gf_density(~bill_length_mm, data = penguins)
-```
+\
+[`data`](https://rdrr.io/r/utils/data.html)`(``penguins``, package ``=`` ``"palmerpenguins"``)`\
+[`gf_density`](../reference/gf_density.md)`(``~``bill_length_mm``, data ``=`` ``penguins``)`
 
 ![](ggformula_files/figure-html/penguins-1.png)
 
-``` r
-
-gf_density(~bill_length_mm, fill = ~species, alpha = 0.5, data = penguins)
-```
+\
+[`gf_density`](../reference/gf_density.md)`(``~``bill_length_mm``, fill ``=`` ``~``species``, alpha ``=`` ``0.5``, data ``=`` ``penguins``)`
 
 ![](ggformula_files/figure-html/penguins-2.png)
 
-``` r
-
-# gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable
-gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, data = penguins)
-```
+\
+`# gf_dens() is similar, but there is no line at bottom/sides and the plot is not fillable`\
+[`gf_dens`](../reference/gf_density.md)`(``~``bill_length_mm``, color ``=`` ``~``species``, alpha ``=`` ``0.7``, data ``=`` ``penguins``)`
 
 ![](ggformula_files/figure-html/penguins-3.png)
 
-``` r
-
-# gf_dens2() is like gf_dens() but is fillable
-gf_dens2(
-  ~bill_length_mm,
-  fill = ~species,
-  data = penguins,
-  color = "gray50",
-  alpha = 0.4
-)
-```
+\
+`# gf_dens2() is like gf_dens() but is fillable`\
+[`gf_dens2`](../reference/gf_density.md)`(`\
+`  ``~``bill_length_mm``,`\
+`  fill ``=`` ``~``species``,`\
+`  data ``=`` ``penguins``,`\
+`  color ``=`` ``"gray50"``,`\
+`  alpha ``=`` ``0.4`\
+`)`
 
 ![](ggformula_files/figure-html/penguins-4.png)
 
@@ -261,24 +239,20 @@ not modify attributes of individual glyphs but control some other aspect
 of the plot. In this case, `adjust` can be used to increase or decrease
 the amount of smoothing.
 
-``` r
-
-# less smoothing
-penguins |>
-  gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, adjust = 0.25)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density()`).
-```
+\
+`# less smoothing`\
+`penguins`` ``|>`\
+`  `[`gf_dens`](../reference/gf_density.md)`(``~``bill_length_mm``, color ``=`` ``~``species``, alpha ``=`` ``0.7``, adjust ``=`` ``0.25``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density()`). ``
 
 ![](ggformula_files/figure-html/dens-1.png)
 
-``` r
-
-# more smoothing
-penguins |> gf_dens(~bill_length_mm, color = ~species, alpha = 0.7, adjust = 4)
-#> Warning: Removed 2 rows containing non-finite outside the scale range
-#> (`stat_density()`).
-```
+\
+`# more smoothing`\
+`penguins`` ``|>`` `[`gf_dens`](../reference/gf_density.md)`(``~``bill_length_mm``, color ``=`` ``~``species``, alpha ``=`` ``0.7``, adjust ``=`` ``4``)`\
+`#> Warning: Removed 2 rows containing non-finite outside the scale range`\
+`` #> (`stat_density()`). ``
 
 ![](ggformula_files/figure-html/dens-2.png)
 
