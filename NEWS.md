@@ -2,10 +2,34 @@
 
 * `layer_factory()`, the core function that creates `gf_*()` functions, has been largely refactored. Most existing behavior 
 remains unchanged (aside from bug fixes).
-* It is now possible to specify all aesthetics with `name = ~ variable` syntax.  For example: `gf_point( x = ~ var`, y = ~ var2`, ...)` is equivalent to `gf_point(var2 ~ var 1)`.
+* New feature: aesthetics that are normally supplied via the formula can
+  now also be supplied as named arguments using formula syntax, e.g.
+  `gf_point(x = ~var1, y = ~var2, data = df)` works like
+  `gf_point(var2 ~ var1, data = df)`. This generalizes to every `gf_*`
+  function's formula "roles", not just `x`/`y` (for example
+  `gf_ribbon(ymin = ~lo, ymax = ~hi, x = ~t, data = df)` works like
+  `gf_ribbon(lo + hi ~ t, data = df)`). If a role is supplied both via a
+  literal formula and as a named argument, the named argument wins and a
+  warning is emitted.
 * It is now easier to create wrappers around additional
   stats and geoms.  There is a vignette describing how to
   do so.
+  * New feature: `layer_factory()` gains a `required_packages` argument for
+  extension-package authors. Naming one or more packages there (e.g.
+  `required_packages = "ggforce"`) checks, before anything else runs
+  (including `pre`), that each is both installed and attached (via
+  `library()`), raising an informative error otherwise. This replaces the
+  hand-written `pre`-block checks previously used internally, e.g. in
+  `gf_sina()`; see the new "Extending ggformula" vignette
+  (`vignette("extending-ggformula")`) for details. `required_packages` is
+  also recorded in a function's `ggformula_spec()`.
+* New feature: `layer_factory()` also gains `installed_packages`, a
+  lighter-weight sibling of `required_packages` that only checks that a
+  package is installed, not that it's attached -- the right fit for
+  functions (built with the `layer_fun = ` pattern) that call an
+  extension package's function directly via `pkg::fun()`. `gf_sf()` now
+  uses `installed_packages = "sf"` instead of its hand-written `pre`
+  check. Also recorded in `ggformula_spec()`.
 * Attaching a package that imports 
 `ggformula` (e.g., `mosaic`) prevents dependencies of 
 `ggformula` from being attached, even when `ggformula` 
@@ -29,33 +53,8 @@ caused some behavior to break with unclear messaging unless the user explicitly 
   omitted rather than forwarded as `NULL`, leaving the underlying geom's
   own default in force.
 
-# ggformula 1.1.0
 
-* New feature: `layer_factory()` gains a `required_packages` argument for
-  extension-package authors. Naming one or more packages there (e.g.
-  `required_packages = "ggforce"`) checks, before anything else runs
-  (including `pre`), that each is both installed and attached (via
-  `library()`), raising an informative error otherwise. This replaces the
-  hand-written `pre`-block checks previously used internally, e.g. in
-  `gf_sina()`; see the new "Extending ggformula" vignette
-  (`vignette("extending-ggformula")`) for details. `required_packages` is
-  also recorded in a function's `ggformula_spec()`.
-* New feature: `layer_factory()` also gains `installed_packages`, a
-  lighter-weight sibling of `required_packages` that only checks that a
-  package is installed, not that it's attached -- the right fit for
-  functions (built with the `layer_fun = ` pattern) that call an
-  extension package's function directly via `pkg::fun()`. `gf_sf()` now
-  uses `installed_packages = "sf"` instead of its hand-written `pre`
-  check. Also recorded in `ggformula_spec()`.
-* New feature: aesthetics that are normally supplied via the formula can
-  now also be supplied as named arguments using formula syntax, e.g.
-  `gf_point(x = ~var1, y = ~var2, data = df)` works like
-  `gf_point(var2 ~ var1, data = df)`. This generalizes to every `gf_*`
-  function's formula "roles", not just `x`/`y` (for example
-  `gf_ribbon(ymin = ~lo, ymax = ~hi, x = ~t, data = df)` works like
-  `gf_ribbon(lo + hi ~ t, data = df)`). If a role is supplied both via a
-  literal formula and as a named argument, the named argument wins and a
-  warning is emitted.
+
 * Bug fix: `gf_hline()`, `gf_vline()`, `gf_abline()`, and similar functions
   used with `data = NA` (i.e., with all values supplied directly rather
   than from a data frame) could error or silently pass duplicated/incorrect
@@ -83,10 +82,7 @@ caused some behavior to break with unclear messaging unless the user explicitly 
   `interactive_layer_factory()` now reads that single documented record
   instead of scraping several loosely-related bindings out of a `gf_*`
   function's environment, and extension packages can use it too.
-* Removed unused internal code: `R/ggstrings.R` (unused string-based
-  ggplot2-code generators from an earlier design), `formula_shape0()`
-  (superseded by `formula_shape()`), and `formula2aes()`/`list2aes()`
-  (unused, and relied on the deprecated `aes_()`).
+
 
 # ggformula 1.0.1
 
@@ -273,7 +269,7 @@ the internal implementation, and improved documentation.
   * Use `::` to indicate mapping aesthetics.  (`:` will autodetect, but only if the value
 is the name of a variable in the data set.)  This should be considered experimental.
   * Added wrappers `gf_lims()`, `gf_labs()`, `gf_theme()`, `gf_facet_grid()`, `gf_facet_wrap()`
-  * Added `gf_refine()` which can be used to pass by chaining anything that would have been "added" in ``ggplot2`
+  * Added `gf_refine()` which can be used to pass by chaining anything that would have been "added" in `ggplot2`
   * Expanded and improved vignette describing use of the package.
   * Added two tutorials.
   * Added "quick help" for plotting functions.
