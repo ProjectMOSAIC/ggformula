@@ -663,22 +663,15 @@ ggformula_spec <- function(gf_fun) {
     return(NULL)
   }
 
-  # Development versions between 1.1.0 and this one stored the spec as an
-  # attribute; honor that if we find it, so functions built by an older
-  # ggformula (or by an extension package built against one) still work.
-  spec <- attr(gf_fun, "ggformula_spec")
-
-  if (is.null(spec)) {
-    env <- environment(gf_fun)
-    # primitives (and functions stripped of their environment) have none
-    if (is.null(env)) {
-      return(NULL)
-    }
-    # `inherit = FALSE`: only the function's own enclosing environment --
-    # the one `layer_factory()` created -- counts as a match.
-    spec <-
-      rlang::env_get(env, ".ggformula_spec", default = NULL, inherit = FALSE)
+  env <- environment(gf_fun)
+  # primitives (and functions stripped of their environment) have none
+  if (is.null(env)) {
+    return(NULL)
   }
+  # `inherit = FALSE`: only the function's own enclosing environment --
+  # the one `layer_factory()` created -- counts as a match.
+  spec <-
+    rlang::env_get(env, ".ggformula_spec", default = NULL, inherit = FALSE)
 
   if (is_ggformula_spec(spec)) spec else NULL
 }

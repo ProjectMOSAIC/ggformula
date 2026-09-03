@@ -48,22 +48,6 @@ test_that("ggformula_spec() ignores an unrelated .ggformula_spec binding", {
   })
 })
 
-test_that("ggformula_spec() still honors the attribute form", {
-  # Functions built by earlier development versions carried the spec as an
-  # attribute; those should keep working.
-  f <- function(x) x
-  attr(f, "ggformula_spec") <-
-    list(
-      geom = "point",
-      stat = "identity",
-      position = "identity",
-      aes_form = y ~ x,
-      extras = alist()
-    )
-
-  expect_equal(ggformula_spec(f)$geom, "point")
-})
-
 test_that("interactive_layer_factory() can still read a spec", {
   skip_if_not_installed("ggiraph")
 
