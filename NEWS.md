@@ -1,4 +1,4 @@
-# ggformula (development version)
+# ggformula 2.0.0
 
 * `layer_factory()`, the core function that creates `gf_*()` functions, has been largely refactored. Most existing behavior 
 remains unchanged (aside from bug fixes).
