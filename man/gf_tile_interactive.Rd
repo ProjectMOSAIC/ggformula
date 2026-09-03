@@ -3,33 +3,93 @@
 \name{gf_tile_interactive}
 \alias{gf_tile_interactive}
 \title{Interactive tile plots}
+\usage{
+gf_tile_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  linewidth,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{A data frame with the variables to be plotted.}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{color}{A color or a formula used for mapping color.}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{fill}{A color for filling, or a formula used for mapping fill.}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{group}{Used for grouping.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a
+formula used for mapping linetype.}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{linewidth}{A numerical line width or a formula used for mapping
+linewidth.}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{A character string naming the stat used to make the layer.}
+
+\item{position}{Either a character string naming the position function
+used for the layer or a position object returned from a call to a
+position function.}
+
+\item{show.legend}{A logical indicating whether this layer should be
+included in the legends. \code{NA}, the default, includes layer in the
+legends if any of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

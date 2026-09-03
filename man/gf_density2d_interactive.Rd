@@ -6,33 +6,223 @@
 \alias{gf_density2d_filled_interactive}
 \alias{gf_density2d_interactive}
 \title{Interactive 2-demensional density plots}
+\usage{
+gf_density_2d_filled_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  linewidth,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "density_2d_filled",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_density_2d_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  linewidth,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "density_2d",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_density2d_filled_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  linewidth,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "density_2d_filled",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+
+gf_density2d_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  group,
+  linetype,
+  linewidth,
+  contour = TRUE,
+  n = 100,
+  h = NULL,
+  lineend = "butt",
+  linejoin = "round",
+  linemitre = 1,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "density2d",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{The data to be displayed in this layer. There are three
+options: If \code{NULL}, the default, the data is inherited from the
+plot data as specified in the call to
+\code{\link[ggplot2:ggplot]{ggplot()}}. A \code{data.frame}, or other
+object, will override the plot data. All objects will be fortified to
+produce a data frame. See \code{\link[ggplot2:fortify]{fortify()}} for
+which variables will be created. A \code{function} will be called with
+a single argument, the plot data. The return value must be a
+\code{data.frame}, and will be used as the layer data. A
+\code{function} can be created from a \code{formula} (e.g. \code{~
+head(.x, 10)}).}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{color}{A color or a formula used for mapping color.}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{group}{Used for grouping.}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a
+formula used for mapping linetype.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{linewidth}{A numerical line width or a formula used for mapping
+linewidth.}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{contour}{If \code{TRUE}, contour the results of the 2d density
+estimation.}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{n}{Number of grid points in each direction.}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{h}{Bandwidth (vector of length two). If \code{NULL}, estimated
+using \code{\link[MASS:bandwidth.nrd]{MASS::bandwidth.nrd()}}.}
+
+\item{lineend}{Line end style (round, butt, square).}
+
+\item{linejoin}{Line join style (round, mitre, bevel).}
+
+\item{linemitre}{Line mitre limit (number greater than 1).}
+
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{Use to override the default connection between
+\code{geom_density_2d()} and \code{stat_density_2d()}. For more
+information at overriding these connections, see how the
+\link[ggplot2:layer_stats]{stat} and \link[ggplot2:layer_geoms]{geom}
+arguments work.}
+
+\item{position}{A position adjustment to use on the data for this layer.
+This can be used in various ways, including to prevent overplotting
+and improving the display. The \code{position} argument accepts the
+following: \itemize{ \item The result of calling a position function,
+such as \code{position_jitter()}. This method allows for passing extra
+arguments to the position. \item A string naming the position
+adjustment. To give the position as a string, strip the function name
+of the \code{position_} prefix. For example, to use
+\code{position_jitter()}, give the position as \code{"jitter"}. \item
+For more information and other ways to specify the position, see the
+\link[ggplot2:layer_positions]{layer position} documentation. }}
+
+\item{show.legend}{logical. Should this layer be included in the
+legends? \code{NA}, the default, includes if any aesthetics are
+mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics
+to display. To include legend keys for all levels, even when no data
+exists, use \code{TRUE}. If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

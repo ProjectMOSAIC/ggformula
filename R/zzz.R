@@ -1,3 +1,11 @@
+# Runs when the package is built, not when it is loaded: report any
+# interactive geom {ggiraph} exports that ggformula doesn't wrap. Defined
+# in R/ggiraph.R but called here because zzz.R is collated last, after the
+# `gf_*_interactive()` assignments in
+# R/ggiraph-documentation-with-examples.R. Silent when coverage is
+# complete.
+report_interactive_coverage()
+
 .onAttach <- function(libname, pkgname) {
   # Note: ggformula deliberately does *not* attach its Depends
   # (ggplot2, scales, ggiraph, ggridges) from here.

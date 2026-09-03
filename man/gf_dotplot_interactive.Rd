@@ -3,33 +3,135 @@
 \name{gf_dotplot_interactive}
 \alias{gf_dotplot_interactive}
 \title{Interactive dotplot plots}
+\usage{
+gf_dotplot_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  binwidth = NULL,
+  binaxis = "x",
+  method = "dotdensity",
+  binpositions = "bygroup",
+  stackdir = "up",
+  stackratio = 1,
+  dotsize = 1,
+  stackgroups = FALSE,
+  origin = NULL,
+  right = TRUE,
+  width = 0.9,
+  drop = FALSE,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = rlang::quo(ggplot2::StatBin),
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{A data frame with the variables to be plotted.}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{color}{A color or a formula used for mapping color.}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{fill}{A color for filling, or a formula used for mapping fill.}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{group}{Used for grouping.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{binwidth}{When \code{method} is "dotdensity", this specifies
+maximum bin width. When \code{method} is "histodot", this specifies
+bin width. Defaults to 1/30 of the range of the data}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{binaxis}{The axis to bin along, "x" (default) or "y"}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{method}{"dotdensity" (default) for dot-density binning, or
+"histodot" for fixed bin widths (like stat_bin)}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{binpositions}{When \code{method} is "dotdensity", "bygroup"
+(default) determines positions of the bins for each group separately.
+"all" determines positions of the bins with all the data taken
+together; this is used for aligning dot stacks across multiple groups.}
+
+\item{stackdir}{which direction to stack the dots. "up" (default),
+"down", "center", "centerwhole" (centered, but with dots aligned)}
+
+\item{stackratio}{how close to stack the dots. Default is 1, where dots
+just touch. Use smaller values for closer, overlapping dots.}
+
+\item{dotsize}{The diameter of the dots relative to \code{binwidth},
+default 1.}
+
+\item{stackgroups}{should dots be stacked across groups? This has the
+effect that \code{position = "stack"} should have, but can't (because
+this geom has some odd properties).}
+
+\item{origin}{When \code{method} is "histodot", origin of first bin}
+
+\item{right}{When \code{method} is "histodot", should intervals be
+closed on the right (a, b], or not [a, b)}
+
+\item{width}{When \code{binaxis} is "y", the spacing of the dot stacks
+for dodging.}
+
+\item{drop}{If TRUE, remove all bins with zero counts}
+
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{Use to override the default connection between
+\code{geom_lm} and \code{stat_lm}.}
+
+\item{position}{Either a character string naming the position function
+used for the layer or a position object returned from a call to a
+position function.}
+
+\item{show.legend}{A logical indicating whether this layer should be
+included in the legends. \code{NA}, the default, includes layer in the
+legends if any of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

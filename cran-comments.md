@@ -1,5 +1,19 @@
 ## Submission notes
 
+### Resubmission
+
+This is a resubmission.  The previous submission was flagged (in some contexts) for
+
+    Rd files without \usage:
+       'gf_abline_interactive.Rd' 'gf_area_interactive.Rd'
+       'gf_bar_interactive.Rd' ... (39 files in all)
+    \arguments should not be documented without \usage.
+
+
+All 41 `*_interactive` Rd files now have a `\usage` section, no Rd file in
+the package has `\arguments` without `\usage`, and `tools::checkDocFiles()`
+reports no problems.
+
 ### Email change
 
 The change of email for the maintainer is intentional.

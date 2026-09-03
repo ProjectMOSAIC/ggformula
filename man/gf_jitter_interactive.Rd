@@ -3,33 +3,102 @@
 \name{gf_jitter_interactive}
 \alias{gf_jitter_interactive}
 \title{Interactive jitter plots}
+\usage{
+gf_jitter_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  size,
+  shape,
+  fill,
+  width,
+  height,
+  group,
+  stroke,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "identity",
+  position = "jitter",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{A data frame with the variables to be plotted.}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{color}{A color or a formula used for mapping color.}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{size}{A numeric size or a formula used for mapping size.}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{shape}{An integer or letter shape or a formula used for mapping
+shape.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{fill}{A color for filling, or a formula used for mapping fill.}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{width}{Amount of horizontal jitter.}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{height}{Amount of vertical jitter.}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{group}{Used for grouping.}
+
+\item{stroke}{A numeric size of the border or a formula used to map
+stroke.}
+
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{A character string naming the stat used to make the layer.}
+
+\item{position}{Either a character string naming the position function
+used for the layer or a position object returned from a call to a
+position function.}
+
+\item{show.legend}{A logical indicating whether this layer should be
+included in the legends. \code{NA}, the default, includes layer in the
+legends if any of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

@@ -32,6 +32,22 @@ test_that("interactive layers require ggiraph to be installed, not attached", {
   )
 })
 
+test_that("every wrappable ggiraph interactive geom has a gf_* wrapper", {
+  skip_on_cran()
+  skip_if_not_installed("ggiraph")
+
+  # The `gf_*_interactive()` functions are written out explicitly (so that
+  # roxygen can generate their `\usage` sections), which means the list can
+  # fall behind ggiraph. `report_interactive_coverage()` reports any gap at
+  # build time; this makes the same invariant enforceable in CI. Skipped on
+  # CRAN, where a new ggiraph release should not fail the checks.
+  coverage <-
+    ggformula:::report_interactive_coverage(asNamespace("ggformula"))
+
+  expect_equal(coverage$missing, character(0))
+  expect_true(length(coverage$wrapped) > 40)
+})
+
 test_that("ggiraph_fun() errors informatively for an unknown constructor", {
   skip_if_not_installed("ggiraph")
 

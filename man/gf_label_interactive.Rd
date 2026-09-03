@@ -3,33 +3,158 @@
 \name{gf_label_interactive}
 \alias{gf_label_interactive}
 \title{Interactive text labels}
+\usage{
+gf_label_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  label,
+  alpha,
+  angle,
+  color,
+  family,
+  fontface,
+  group,
+  hjust,
+  vjust,
+  size,
+  parse,
+  nudge_x = 0,
+  nudge_y = 0,
+  label.padding = unit(0.25, "lines"),
+  label.r = unit(0.15, "lines"),
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "identity",
+  position = "nudge",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{The data to be displayed in this layer. There are three
+options: If \code{NULL}, the default, the data is inherited from the
+plot data as specified in the call to
+\code{\link[ggplot2:ggplot]{ggplot()}}. A \code{data.frame}, or other
+object, will override the plot data. All objects will be fortified to
+produce a data frame. See \code{\link[ggplot2:fortify]{fortify()}} for
+which variables will be created. A \code{function} will be called with
+a single argument, the plot data. The return value must be a
+\code{data.frame}, and will be used as the layer data. A
+\code{function} can be created from a \code{formula} (e.g. \code{~
+head(.x, 10)}).}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{label}{The text to be displayed.}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{angle}{An angle for rotating the text.}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{color}{A color or a formula used for mapping color.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{family}{A font family.}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{fontface}{One of \code{"plain"}, \code{"bold"}, \code{"italic"},
+or \code{"bold italic"}.}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{group}{Used for grouping.}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{hjust}{Numbers between 0 and 1 indicating how to justify text
+relative the the specified location.}
+
+\item{vjust}{Numbers between 0 and 1 indicating how to justify text
+relative the the specified location.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{parse}{If \code{TRUE}, the labels will be parsed into expressions
+and displayed as described in \code{?plotmath}.}
+
+\item{nudge_x}{Passed to
+\code{\link[ggplot2:position_nudge]{ggplot2::position_nudge()}} to
+nudge text or labels horizontally or vertically.}
+
+\item{nudge_y}{Passed to
+\code{\link[ggplot2:position_nudge]{ggplot2::position_nudge()}} to
+nudge text or labels horizontally or vertically.}
+
+\item{label.padding}{Amount of padding around label. Defaults to 0.25
+lines.}
+
+\item{label.r}{Radius of rounded corners. Defaults to 0.15 lines.}
+
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{The statistical transformation to use on the data for this
+layer. When using a \verb{geom_*()} function to construct a layer, the
+\code{stat} argument can be used to override the default coupling
+between geoms and stats. The \code{stat} argument accepts the
+following: \itemize{ \item A \code{Stat} ggproto subclass, for example
+\code{StatCount}. \item A string naming the stat. To give the stat as
+a string, strip the function name of the \code{stat_} prefix. For
+example, to use \code{stat_count()}, give the stat as \code{"count"}.
+\item For more information and other ways to specify the stat, see the
+\link[ggplot2:layer_stats]{layer stat} documentation. }}
+
+\item{position}{A position adjustment to use on the data for this layer.
+This can be used in various ways, including to prevent overplotting
+and improving the display. The \code{position} argument accepts the
+following: \itemize{ \item The result of calling a position function,
+such as \code{position_jitter()}. This method allows for passing extra
+arguments to the position. \item A string naming the position
+adjustment. To give the position as a string, strip the function name
+of the \code{position_} prefix. For example, to use
+\code{position_jitter()}, give the position as \code{"jitter"}. \item
+For more information and other ways to specify the position, see the
+\link[ggplot2:layer_positions]{layer position} documentation. }}
+
+\item{show.legend}{logical. Should this layer be included in the
+legends? \code{NA}, the default, includes if any aesthetics are
+mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics
+to display. To include legend keys for all levels, even when no data
+exists, use \code{TRUE}. If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

@@ -3,33 +3,123 @@
 \name{gf_smooth_interactive}
 \alias{gf_smooth_interactive}
 \title{Interactive smoothed conditional means}
+\usage{
+gf_smooth_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  method = "auto",
+  formula = y ~ x,
+  se = FALSE,
+  method.args,
+  n = 80,
+  span = 0.75,
+  fullrange = FALSE,
+  level = 0.95,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "smooth",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+}
 \arguments{
-\item{object}{When chaining, this holds an object produced in the earlier portions
-of the chain. Most users can safely ignore this argument.}
+\item{object}{When chaining, this holds an object produced in the
+earlier portions of the chain. Most users can safely ignore this
+argument. See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be achieved by
-including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x}. Faceting can be
+achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer.}
+\item{data}{A data frame with the variables to be plotted.}
 
-\item{tooltip}{A formula specifying a variable for tooltips, or a character vector.}
+\item{...}{Additional arguments passed to the underlying interactive
+geom. This is where ggiraph's interactive aesthetics are supplied,
+including \code{tooltip} (text shown on hover), \code{data_id}
+(identifiers used for interactive selection), and \code{onclick}
+(JavaScript run on click).}
 
-\item{data_id}{A formula or character vector specifying data identifiers
-for interactive selection.}
+\item{method}{Smoothing method (function) to use, accepts either
+\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"},
+\code{"gam"}, \code{"loess"} or a function, e.g. \code{MASS::rlm} or
+\code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
+\code{"auto"} is also accepted for backwards compatibility. It is
+equivalent to \code{NULL}. For \code{method = NULL} the smoothing
+method is chosen based on the size of the largest group (across all
+panels). \code{\link[stats:loess]{stats::loess()}} is used for less
+than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}}
+is used with \code{formula = y ~ s(x, bs = "cs")} with \code{method =
+"REML"}. Somewhat anecdotally, \code{loess} gives a better appearance,
+but is \eqn{O(N^{2})}{O(N^2)} in memory, so does not work for larger
+datasets. If you have fewer than 1,000 observations but want to use
+the same \code{gam()} model that \code{method = NULL} would use, then
+set \verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
 
-\item{...}{Additional arguments passed to the underlying geom.}
+\item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
+\code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in
+which case \code{method = NULL} implies \code{formula = y ~ x} when
+there are fewer than 1,000 observations and \code{formula = y ~ s(x,
+bs = "cs")} otherwise.}
 
-\item{alpha, color, size, shape, fill, group, stroke}{Aesthetics passed to the geom.}
+\item{se}{Display confidence band around smooth? (\code{TRUE} by
+default, see \code{level} to control.)}
 
-\item{xlab, ylab, title, subtitle, caption}{Labels for the plot.}
+\item{method.args}{List of additional arguments passed on to the
+modelling function defined by \code{method}.}
 
-\item{show.legend}{Logical. Should this layer be included in the legends?}
+\item{n}{Number of points at which to evaluate smoother.}
 
-\item{show.help}{Logical. If \code{TRUE}, display some minimal help.}
+\item{span}{Controls the amount of smoothing for the default loess
+smoother. Smaller numbers produce wigglier lines, larger numbers
+produce smoother lines. Only used with loess, i.e. when \code{method =
+"loess"}, or when \code{method = NULL} (the default) and there are
+fewer than 1,000 observations.}
 
-\item{inherit}{Logical. If \code{TRUE}, inherit aesthetics from previous layers.}
+\item{fullrange}{If \code{TRUE}, the smoothing line gets expanded to the
+range of the plot, potentially beyond the data. This does not extend
+the line into any additional padding created by \code{expansion}.}
 
-\item{environment}{An environment in which to evaluate the formula.}
+\item{level}{Level of confidence band to use (0.95 by default).}
+
+\item{xlab}{Label for x-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot. See also
+\code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{stat}{A character string naming the stat used to make the layer.}
+
+\item{position}{Either a character string naming the position function
+used for the layer or a position object returned from a call to a
+position function.}
+
+\item{show.legend}{A logical indicating whether this layer should be
+included in the legends. \code{NA}, the default, includes layer in the
+legends if any of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are
+inherited.}
+
+\item{environment}{An environment in which to look for variables not
+found in \code{data}.}
 }
 \value{
 A gg object that can be displayed with \code{\link[=gf_girafe]{gf_girafe()}}.

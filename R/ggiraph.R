@@ -47,38 +47,75 @@ gf_girafe <- function(ggobj, code, ...) {
   }
   ggiraph::girafe(code = code, ggobj = ggobj, ...)
 }
-# The set of interactive geoms to wrap is determined when this package is
-# built. Read it from {ggiraph}'s namespace rather than with `apropos()`,
-# which searches the *search path* and so silently depended on {ggiraph}
-# happening to be attached at build time (and would have picked up
-# similarly-named functions from any other attached package).
-geoms <-
-  sort(grep(
-    "^geom_.*_interactive$",
-    getNamespaceExports("ggiraph"),
-    value = TRUE
-  ))
-
-# geoms <- c('geom_contour_filled_interactive')
-
-skipped <- created_funs <- character(0)
-
-for (g in geoms) {
-  gf <- sub("geom_", "gf_", g)
-  res <- assign(gf, interactive_layer_factory(g))
-  if (is.null(res)) {
-    skipped <- c(skipped, g)
-    next
-  }
-  assign(gf, res)
-  created_funs <- c(created_funs, gf)
-}
-
+# Build-time completeness check for the interactive wrappers.
+#
+# The `gf_*_interactive()` functions used to be created here by a loop over
+# {ggiraph}'s exported geoms. They are now written out explicitly, one
+# assignment per function, in `R/ggiraph-documentation-with-examples.R`;
+# that is what lets roxygen2 generate a `\usage` section for each of them
+# (a bare symbol gives roxygen nothing to derive usage from, which left
+# every interactive Rd file with `\arguments` but no `\usage`).
+#
+# The cost of writing them out is that the list can fall behind {ggiraph}.
+# This check closes that gap: it reports any interactive geom that ggiraph
+# exports but ggformula does not wrap. It only reports -- a missing wrapper
+# is a maintenance to-do, not a reason to fail an installation -- and stays
+# silent when coverage is complete.
+#
+# It is called from `R/zzz.R`, which is collated last, because the
+# assignments it inspects are made in a file collated after this one.
+#
 #' @importFrom cli cli_h3 cli_ul
-cli::cli_h3("Skipped functions:")
-cli::cli_ul(skipped)
-cli::cli_h3("Created functions:")
-cli::cli_ul(created_funs)
+report_interactive_coverage <- function(env = parent.frame()) {
+  has_fun <- function(nm) {
+    exists(nm, envir = env, mode = "function", inherits = FALSE)
+  }
+
+  # Read ggiraph's geoms from its namespace rather than with `apropos()`,
+  # which searches the *search path* and so would depend on {ggiraph}
+  # happening to be attached (and could pick up similarly-named functions
+  # from any other attached package).
+  geoms <-
+    sort(grep(
+      "^geom_.*_interactive$",
+      getNamespaceExports("ggiraph"),
+      value = TRUE
+    ))
+  gf_names <- sub("^geom_", "gf_", geoms)
+
+  wrapped <- vapply(gf_names, has_fun, logical(1))
+  # A wrapper is only possible when the corresponding non-interactive
+  # `gf_*()` both exists *and* was built by `layer_factory()`: that is
+  # exactly what `interactive_layer_factory()` requires, since it reads
+  # the twin's `ggformula_spec()` and returns NULL without one. Mere
+  # existence isn't enough -- `gf_errorbarh()`, for instance, is a
+  # deprecated ggstance shim with no spec. Geoms failing this test are
+  # expected gaps rather than oversights, so they aren't reported.
+  wrappable <- vapply(
+    sub("_interactive$", "", gf_names),
+    function(nm) {
+      has_fun(nm) &&
+        !is.null(ggformula_spec(get(nm, envir = env, inherits = FALSE)))
+    },
+    logical(1)
+  )
+
+  missing <- geoms[!wrapped & wrappable]
+  if (length(missing) > 0) {
+    cli_h3("ggiraph interactive geoms with no ggformula wrapper:")
+    cli_ul(missing)
+    cli_h3(
+      "Add an assignment (and roxygen docs) for each in
+       R/ggiraph-documentation-with-examples.R."
+    )
+  }
+
+  invisible(list(
+    wrapped = gf_names[wrapped],
+    missing = missing,
+    unwrappable = geoms[!wrappable]
+  ))
+}
 
 
 #' Interactive facets
