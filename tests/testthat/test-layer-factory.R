@@ -609,7 +609,10 @@ test_that("gf_dist()", {
   )
   wrapped_expect_doppelganger(
     "gf_dist3",
-    gf_dist("norm", fill = "red", kind = "histogram")
+    # `bins = 30` is the default stat_bin() would pick anyway; stating it
+    # explicitly silences its "Pick better value `binwidth`" message
+    # without changing the binning.
+    gf_dist("norm", fill = "red", kind = "histogram", bins = 30)
   )
   wrapped_expect_doppelganger(
     "gf_dist4",
@@ -947,9 +950,17 @@ test_that("gf_quantile()", {
   skip_if_not_installed("quantreg")
   wrapped_expect_doppelganger(
     "gf_quantile",
+    # `formula = y ~ x` is stat_quantile()'s own default; stating it
+    # explicitly silences its "Smoothing formula not specified" message
+    # without changing the fit.
     gf_point((1 / hwy) ~ displ, data = mpg) |>
-      gf_quantile((1 / hwy) ~ displ, quantiles = 0.5, color = "red") |>
-      gf_quantile((1 / hwy) ~ displ, quantiles = c(0.2, 0.8))
+      gf_quantile(
+        (1 / hwy) ~ displ,
+        quantiles = 0.5,
+        color = "red",
+        formula = y ~ x
+      ) |>
+      gf_quantile((1 / hwy) ~ displ, quantiles = c(0.2, 0.8), formula = y ~ x)
   )
 })
 
