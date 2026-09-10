@@ -817,3 +817,21 @@ plots, it is handy to have words for their various components.
  a legend, but also things like axis labeling.
 
  * **facets** are coordinated subplots.
+
+<script type="module">
+// pkgdown's article extraction (pkgdown:::data_quarto_article()) keeps
+// only the <head> scripts/links and the contents of <main>. quarto-live
+// appends its own bootstrap script -- the one that calls
+// `window._ojs.runtime.interpretFromScriptTags()` to actually mount the
+// interactive exercises -- *after* </main>, so pkgdown silently drops
+// it and none of the exercises render on the pkgdown site (they still
+// work in `quarto preview`, which serves quarto's raw output). Re-run
+// it ourselves if that never happened. Deferred to a macrotask so
+// quarto's own trigger (present when this file isn't run through
+// pkgdown) gets a chance to run first, avoiding a double interpretation.
+await new Promise((resolve) => setTimeout(resolve, 0));
+const alreadyMounted = document.querySelector(".exercise-cell")?.children.length > 0;
+if (!alreadyMounted && window._ojs?.runtime) {
+  window._ojs.runtime.interpretFromScriptTags();
+}
+</script>
