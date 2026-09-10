@@ -12,5 +12,3 @@
   {ggformula}](interactive-graphics-intro.md):
 - [Interactive graphics with {ggformula}](interactive-graphics.md):
 - [Learn More About ggformula](pkgdown/learn-more.md):
-- [Plotting with formulas](plotting-with-formulas.md):
-- [Refining ggformula plots](refining-ggformula.md):

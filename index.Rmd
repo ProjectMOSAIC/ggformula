@@ -68,8 +68,8 @@ penguins |>
 Interactive, browser-based tutorials (powered by webR -- no installation or
 server required) are available at
 
-* [https://www.mosaic-web.org/ggformula/articles/plotting-with-formulas.html](https://www.mosaic-web.org/ggformula/articles/plotting-with-formulas.html)
-* [https://www.mosaic-web.org/ggformula/articles/refining-ggformula.html](https://www.mosaic-web.org/ggformula/articles/refining-ggformula.html)
+* [https://www.mosaic-web.org/ggformula/tutorials/plotting-with-formulas.html](https://www.mosaic-web.org/ggformula/tutorials/plotting-with-formulas.html)
+* [https://www.mosaic-web.org/ggformula/tutorials/refining-ggformula.html](https://www.mosaic-web.org/ggformula/tutorials/refining-ggformula.html)
 
 ### Package Vignette
 

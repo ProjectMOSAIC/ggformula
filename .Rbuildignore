@@ -27,3 +27,4 @@ cran-comments.md
 ^\.quarto$
 ^vignettes/_extensions$
 ^\.claude$
+^tutorials$

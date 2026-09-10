@@ -22,9 +22,9 @@ navbar:
       text: Tutorials
       menu:
       - text: Plotting with formulas
-        href: articles/plotting-with-formulas.html
+        href: tutorials/plotting-with-formulas.html
       - text: Refining ggformula plots
-        href: articles/refining-ggformula.html
+        href: tutorials/refining-ggformula.html
 template:
   bootstrap: 5
   light-switch: true

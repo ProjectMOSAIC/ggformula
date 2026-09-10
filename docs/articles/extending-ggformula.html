@@ -51,8 +51,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-tutorials" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-tutorials">
-<li><a class="dropdown-item" href="../articles/plotting-with-formulas.html">Plotting with formulas</a></li>
-    <li><a class="dropdown-item" href="../articles/refining-ggformula.html">Refining ggformula plots</a></li>
+<li><a class="dropdown-item" href="../tutorials/plotting-with-formulas.html">Plotting with formulas</a></li>
+    <li><a class="dropdown-item" href="../tutorials/refining-ggformula.html">Refining ggformula plots</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -127,7 +127,7 @@
 <span><span class="co">#&gt;  $ stat              : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ position          : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ aes_form          :Class 'formula'  language y ~ x</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0xad8ba24d8&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0x86cfe3dc8&gt; </span></span>
 <span><span class="co">#&gt;  $ extras            :List of 7</span></span>
 <span><span class="co">#&gt;   ..$ alpha : symbol </span></span>
 <span><span class="co">#&gt;   ..$ color : symbol </span></span>
@@ -139,10 +139,10 @@
 <span><span class="co">#&gt;  $ pre               : language { }</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "srcref")=List of 1</span></span>
 <span><span class="co">#&gt;   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002</span></span>
-<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xad8f69b98&gt; </span></span>
-<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xad8f69b98&gt; </span></span>
+<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x86d36bbd0&gt; </span></span>
+<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x86d36bbd0&gt; </span></span>
 <span><span class="co">#&gt;   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xad8f69b98&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x86d36bbd0&gt; </span></span>
 <span><span class="co">#&gt;  $ aesthetics        : &lt;ggplot2::mapping&gt;  Named list()</span></span>
 <span><span class="co">#&gt;  $ inherit.aes       : logi TRUE</span></span>
 <span><span class="co">#&gt;  $ check.aes         : logi TRUE</span></span>
@@ -204,7 +204,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gf_sf</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="../reference/layer_factory.html">layer_factory</a></span><span class="op">(</span></span>
-<span>    layer_fun <span class="op">=</span> <span class="fu">quo</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">)</span>,</span>
+<span>    layer_fun <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">quo</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">)</span>,</span>
 <span>    installed_packages <span class="op">=</span> <span class="st">"sf"</span>,</span>
 <span>    geom <span class="op">=</span> <span class="st">"sf"</span>,</span>
 <span>    stat <span class="op">=</span> <span class="st">"sf"</span>,</span>

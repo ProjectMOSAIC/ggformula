@@ -1,5 +1,6 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
+<url><loc>/AGENTS.html</loc></url>
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/articles/extending-ggformula.html</loc></url>
 <url><loc>/articles/ggformula-blog.html</loc></url>
@@ -11,8 +12,6 @@
 <url><loc>/articles/pkgdown/ggformula-blog.html</loc></url>
 <url><loc>/articles/pkgdown/ggformula-long.html</loc></url>
 <url><loc>/articles/pkgdown/learn-more.html</loc></url>
-<url><loc>/articles/plotting-with-formulas.html</loc></url>
-<url><loc>/articles/refining-ggformula.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
@@ -133,8 +132,7 @@
 <url><loc>/reference/stat_fitdistr.html</loc></url>
 <url><loc>/reference/stat_qqline.html</loc></url>
 <url><loc>/reference/theme_facets_interactive.html</loc></url>
-<url><loc>/tutorials/index.html</loc></url>
-<url><loc>/tutorials/introduction.html</loc></url>
-<url><loc>/tutorials/refining.html</loc></url>
+<url><loc>/tutorials/plotting-with-formulas.html</loc></url>
+<url><loc>/tutorials/refining-ggformula.html</loc></url>
 </urlset>
 
