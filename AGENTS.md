@@ -90,3 +90,53 @@ plain static file server (`python3 -m http.server` from inside `docs/`
 confirm in a browser that the exercise "Run Code" buttons actually
 appear and produce output, not just that the page loads without a
 console error.
+
+### 3. Once the exercises mount, the pkgdown navbar breaks: wrong colors, dead dropdowns
+
+Symptom: the navbar background turns steelblue (instead of matching the
+site theme) and the "Articles"/"Tutorials" dropdown menus stop opening
+-- but only on pages that use `format: live-html`.
+
+**Root cause**: any document using the OJS engine (which quarto-live
+requires) gets its own bundled copy of Bootstrap from quarto --
+`<link id="quarto-bootstrap" ...>` and
+`<script src=".../libs/bootstrap/bootstrap.min.js">` in `<head>`.
+pkgdown's article extraction keeps `<head>` scripts/links verbatim (it
+filters out jquery specifically, but not bootstrap), so the page ends
+up with two independent copies of Bootstrap 5 loaded at once: pkgdown's
+own (`deps/bootstrap-5.3.8/...`) and quarto's. The duplicate CSS
+overrides the site's theme colors; the duplicate JS registers a second,
+independent set of document-level Bootstrap Dropdown click handlers
+that conflict with pkgdown's own and leave the navbar dropdowns dead.
+
+Confirmed by isolating each tag: removing only quarto's `<link
+id="quarto-bootstrap">` fixes the colors; removing only quarto's
+`bootstrap.min.js` fixes the dropdowns; you need both gone. Also
+confirmed `theme: none` is not a fix -- it changes quarto's own
+document structure so `<main>` ends up essentially empty, and
+pkgdown's extraction (which keeps only `xpath "//main"` for the body)
+then drops the real content, including the exercises, entirely.
+
+quarto's `bootstrap.min.js` is a plain classic `<script>` (no
+`type="module"`, no `defer`) in `<head>`, so it runs synchronously
+while the page is still being parsed -- before any content we control
+in the body/`<main>` even exists yet. That means this can't be patched
+client-side (there's nothing left to intercept by the time our own
+scripts run); it has to be stripped from the built HTML before it's
+served. Confirmed removing both tags has no effect on the exercises
+themselves -- quarto-live's UI doesn't use Bootstrap's JS components.
+
+**The fix**: run `pkgdown/fixup-webr-bootstrap.R` after every
+`pkgdown::build_site()` / `build_articles()`. It strips both tags from
+every built article that has them (detected automatically, so it
+covers future webR tutorials too):
+
+```bash
+Rscript pkgdown/fixup-webr-bootstrap.R
+```
+
+This is a real gap in the workflow right now -- there's no pkgdown
+hook to run this automatically as part of `build_site()`, so it's a
+manual step. If you add another webR tutorial, don't forget it, and
+verify the *navbar* (not just the exercises) after building, the same
+way described in point 2 above.
