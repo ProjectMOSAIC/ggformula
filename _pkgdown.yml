@@ -12,8 +12,6 @@ navbar:
         text: Another Option for Teaching Graphics
       - href: articles/pkgdown/ggformula-long.html
         text: Formula interface for ggplot2
-      - href: articles/refining-ggformula.html
-        text: Refining ggformula Plots
       - href: articles/pkgdown/learn-more.html
         text: Learn More about ggformula
       - href: articles/interactive-graphics.html

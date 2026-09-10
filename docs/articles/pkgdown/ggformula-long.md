@@ -1186,6 +1186,8 @@ fitting distributions to data and displaying the resulting pdf.
 `#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
 `#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
 `#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
+`#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`\
 `#> Warning in densfun(x, parm[1], parm[2], ...): NaNs produced`
 
 ![](ggformula-long_files/figure-html/unnamed-chunk-12-1.png)
