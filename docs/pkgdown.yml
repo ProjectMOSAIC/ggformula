@@ -9,4 +9,6 @@ articles:
   interactive-graphics-intro: interactive-graphics-intro.html
   articles/interactive-graphics: interactive-graphics.html
   pkgdown/learn-more: pkgdown/learn-more.html
-last_built: 2026-09-10T02:19Z
+  articles/plotting-with-formulas: plotting-with-formulas.html
+  articles/refining-ggformula: refining-ggformula.html
+last_built: 2026-09-10T04:32Z

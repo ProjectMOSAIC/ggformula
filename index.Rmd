@@ -65,12 +65,11 @@ penguins |>
 
 ### Tutorials
 
-Interactive tutorials demonstrating the package functionality can be run with
+Interactive, browser-based tutorials (powered by webR -- no installation or
+server required) are available at
 
-```r
-learnr::run_tutorial("introduction", package = "ggformula")
-learnr::run_tutorial("refining", package = "ggformula")
-```
+* [https://www.mosaic-web.org/ggformula/articles/plotting-with-formulas.html](https://www.mosaic-web.org/ggformula/articles/plotting-with-formulas.html)
+* [https://www.mosaic-web.org/ggformula/articles/refining-ggformula.html](https://www.mosaic-web.org/ggformula/articles/refining-ggformula.html)
 
 ### Package Vignette
 

@@ -9,6 +9,7 @@ ggformula.Rproj
 revdep
 _snaps
 Rbuildignore
+.claude
 
 /.quarto/
 **/.quarto/

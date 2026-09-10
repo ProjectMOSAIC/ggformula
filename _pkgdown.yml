@@ -1,5 +1,10 @@
 destination: docs
 articles:
+- title: Tutorials
+  desc: Interactive, browser-based tutorials powered by webR -- no installation or server required.
+  contents:
+  - articles/plotting-with-formulas
+  - articles/refining-ggformula
 - title: All vignettes
   contents:
   - ggformula
@@ -11,13 +16,17 @@ articles:
 - title: internal
   contents:
   - interactive-graphics-intro
-tutorials:
-- name: introduction
-  title: Plotting with Formulas
-  url: https://rsconnect.calvin.edu/ggformula/intro/
-- name: refining
-  title: Refining ggformula Plots
-  url: https://rsconnect.calvin.edu/ggformula/refining/
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news]
+  components:
+    tutorials:
+      text: Tutorials
+      menu:
+      - text: Plotting with formulas
+        href: articles/plotting-with-formulas.html
+      - text: Refining ggformula plots
+        href: articles/refining-ggformula.html
 template:
   bootstrap: 5
   light-switch: true

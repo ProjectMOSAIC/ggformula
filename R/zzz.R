@@ -31,9 +31,9 @@ report_interactive_coverage()
 
   packageStartupMessage(
     paste(
-      "\nNew to ggformula?  Try the tutorials: ",
-      '\tlearnr::run_tutorial("introduction", package = "ggformula")',
-      '\tlearnr::run_tutorial("refining", package = "ggformula")',
+      "\nNew to ggformula?  Try the interactive tutorials: ",
+      "\thttps://www.mosaic-web.org/ggformula/articles/plotting-with-formulas.html",
+      "\thttps://www.mosaic-web.org/ggformula/articles/refining-ggformula.html",
       collapse = "\n",
       sep = "\n"
     ),
