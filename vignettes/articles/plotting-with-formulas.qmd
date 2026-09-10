@@ -4,9 +4,25 @@ format: live-html
 engine: knitr
 webr:
   packages: [ggformula, mosaic, tibble, NHANES, mosaicData]
+  cell-options:
+    fig-width: 8
+    fig-height: 3
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+<style>
+
+.exercise {
+  border-radius: 10px;
+  border-color: steelblue;
+  border-width: 3px;
+  border-style: solid;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+</style>
 
 ## How do we make this plot?
 
@@ -74,7 +90,7 @@ th, td { padding: 5px; }
 ### US Births in 1978
 Here is an interesting plot showing the number of live births in the United
 States each day of 1978.  We are going to use it to learn how to create
-plots using the `ggformula` package.
+and modify this plot using the `ggformula` package.
 
 ```{r, first-look, echo = FALSE}
 gf_point(births ~ date, data = Births1978)
@@ -221,7 +237,7 @@ goal( formula , data = mydata )
 </tr>
 </table>
 
-#### Exercise
+:::{#exr-assemble-first-plot}
 
 Put each piece in its place in the template below and then run the code
 to create the plot.
@@ -235,15 +251,21 @@ goal(y ~ x, data = mydata)
 If you get an "object not found" or "could not find function" error message,
 that indicates that you have not correctly filled in one of the four boxes from
 the template.
+:::
 
-Note: R is case sensitive, so watch your capitalization.
+:::{.callout-warning}
+#### Capitalization matters
+R is case sensitive, so watch your capitalization.
 :::
 
 For the record, here are the first few rows of `Births1978`.
 
-```{r, top-of-data}
+```{r}
+#| label: top-of-data
 Births1978 |> head(3) |> select(births, date, day_of_year)
 ```
+
+:::
 
 ## Using formulas to describe plots
 
@@ -281,7 +303,7 @@ so the $y$-variable name goes before the tilde and the $x$-variable name goes
 after.  (Think:  "y depends on x".  Also note that the $y$-axis label appears
 farther left than the $x$-axis label.)
 
-#### Exercise
+:::{#exr-reverse-x-and-y}
 
 Reverse the roles of the variables -- changing `births ~ date` to
 `date ~ birth` -- to see how the plot changes.
@@ -290,8 +312,9 @@ Reverse the roles of the variables -- changing `births ~ date` to
 #| exercise: gf_point-xy
 gf_point(births ~ date, data = Births1978)
 ```
+:::
 
-#### Exercise
+:::{#exr-date-vs-day-of-year}
 
 Change `date` to `day_of_year` and see how the plot changes.
 (If you do this on a separate line, you will see both plots at once.)
@@ -300,6 +323,20 @@ Change `date` to `day_of_year` and see how the plot changes.
 #| exercise: gf_point-day_of_year
 gf_point(births ~ date, data = Births1978)
 ```
+:::
+
+:::{.callout-tip}
+Beginning with version 2.0, `ggformula` allows each element of the formula
+shape to be defined individually.  For example, the following is equivalent
+to the previous plot.
+
+```{webr}
+#| exercise: exercise-ggformula-2.0
+gf_point(y = ~ births, x =  ~ date, data = Births1978)
+```
+
+:::
+
 
 ## Changing things up -- different data
 
@@ -470,7 +507,8 @@ In the lingo of `ggformula`, we need to **map** color to the variable `wday`.
 gf_point(births ~ date, data = Births1978, color = "navy")
 ```
 
-**Question 1.** Does it appear that the conjecture about weekends is generally correct?
+:::{#exr-is-conjecture-correct}
+Does it appear that the conjecture about weekends is generally correct?
 
 ::: {.callout-note collapse="true"}
 ## Answer
@@ -478,8 +516,10 @@ gf_point(births ~ date, data = Births1978, color = "navy")
 Yes -- the two bands of points correspond to weekdays (higher) and weekends
 (lower); mapping color to `wday` shows this directly.
 :::
+:::
 
-**Question 2.** What happens if you omit the `~` before `wday`?
+:::{#exr-omit-tilde}
+What happens if you omit the `~` before `wday`?
 
 ::: {.callout-note collapse="true"}
 ## Answer
@@ -487,6 +527,7 @@ Yes -- the two bands of points correspond to weekdays (higher) and weekends
 There is an error message: `'wday' not found`. Without the tilde, R looks
 for an object named `wday` in your environment (rather than a column in
 the data), and there isn't one.
+:::
 :::
 
 ## Facets
@@ -515,7 +556,7 @@ gf_point(births ~ day_of_year, data = Births, size = 0.5) |>
   gf_facet_wrap( ~ year)
 ```
 
-#### Exercise
+:::{#exr-edit-facet-plots}
 
 Edit one of the plots above to do the following:
 
@@ -525,8 +566,9 @@ Edit one of the plots above to do the following:
 ```{webr}
 #| exercise: births-facets-ex1
 ```
+:::
 
-#### Exercise
+:::{#exr-more-facet-edits}
 
 Now edit one the plots above to
 
@@ -538,6 +580,7 @@ What advantage do we get from using facets in this case?
 ```{webr}
 #| exercise: births-facets-ex2
 ```
+:::
 
 ## Facet Grids and Facet Wraps
 
@@ -551,7 +594,7 @@ A facet grid uses rows, or columns, or both in a fixed way.
 gf_point(births ~ day_of_year | year ~ wday, data = Births, size = 0.5)
 ```
 
-#### Exercise
+:::{#exr-facet-grid}
 
 Recreate the plot above using `gf_facet_grid()`.  This works much like `gf_facet_wrap()`
 and accepts a formula with one of three shapes
@@ -566,6 +609,7 @@ and accepts a formula with one of three shapes
 ```{webr}
 #| exercise: facet-grid2
 ```
+:::
 
 
 ## Plots with one positional variable
@@ -586,7 +630,7 @@ Notice that when there is only one variable it is always on the **right** side.
 Other examples of functions that take just one variable include
 `gf_dens()`, `gf_freqpoly()`, `gf_dotplot()`, `gf_bar()`, and `gf_qq()`.
 
-#### Exercise
+:::{#exr-one-var-plots}
 
 Create some "one-variable" plots using the functions listed above
 and the template below.  Which variable should you use?
@@ -595,7 +639,7 @@ and the template below.  Which variable should you use?
 #| exercise: gf_histogram-etc
 gf____( ~ _____, data = Births1978)
 ```
-
+:::
 
 ## Your Turn
 
@@ -619,7 +663,7 @@ To get a list of functions available in `ggformula`, run this code chunk.
 apropos("gf_")
 ```
 
-#### Exercise.
+:::{#exr-make-more-plots}
 
 Make some plots to explore one or more of these data sets.
 
@@ -639,6 +683,7 @@ head(KidsFeet)
 ```{webr}
 #| exercise: explore-more
 ```
+:::
 
 ## Creating data summaries with df_stats()
 
@@ -655,7 +700,7 @@ gf_boxplot(births ~ wday, data = Births1978)
 We can see clear trends, but what if we want to know the mean and standard deviation,
 or the median and IQR for the number of births on each of the seven weekdays?
 
-#### Exercise
+:::{#exr-df_stats}
 
 Change `gf_boxplot()` to `df_stats()`.
 
@@ -663,6 +708,8 @@ Change `gf_boxplot()` to `df_stats()`.
 #| exercise: df_stats01
 gf_boxplot(births ~ wday, data = Births1978)
 ```
+
+:::
 
 The default use of `df_stats()` computes some of the most common summary statistics.
 But we can use `df_stats()` to create other numerical summaries as well.
@@ -673,25 +720,44 @@ But we can use `df_stats()` to create other numerical summaries as well.
 df_stats(births ~ wday, data = Births1978, median, iqr)
 ```
 
-#### Exercise
+:::{#exr-modify-df_stats}
 
 Modify the code above to compute some other summaries of your choosing.
 
+```{webr}
+#| exercise: df_stats03
+df_stats(births ~ wday, data = Births1978, median, iqr)
+```
+:::
 
 
 ### Chaining with df_stats()
 
+`df_stats()` is designed to work in command chains with `|>`.
+
 ```{webr}
-#| exercise: df_stats03
+#| exercise: df_stats-chaining01
 Births1978 |>
   df_stats(births ~ wday, median, iqr)
 ```
 
-### Combining with plots
+The result can be passed directly to a `gf_*()` function for plotting.
+
+```{webr}
+#| exercise: df_stats-chaining02
+Births1978 |>
+  df_stats(births ~ wday, median, iqr) |>
+  gf_point(median ~ wday)
+
+```
+
+### Annotating plots
 
 In addition to the usual plot elements (lines, points, etc.), sometimes it is
 useful to add text with `gf_text()` or `gf_label()`.
 
+
+:::{#exr-annotated-plot}
 See if you can figure out what this does before your execute it.
 
 ```{webr}
@@ -704,6 +770,7 @@ gf_boxplot(births ~ wday, data = Births1978) |>
   gf_text( 6700 ~ wday, label = ~ round(mean),   data = Births_summary,
            color = "red")
 ```
+:::
 
 ## Where do we go from here?
 
