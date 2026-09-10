@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggformula</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,7 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../articles/ggformula.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/extending-ggformula.html">Extending {ggformula}</a></li>
-    <li><a class="dropdown-item" href="../articles/pkgdown/ggformula-blog.html">ggformula: Another Option for Teaching Graphics in R to Beginners</a></li>
-    <li><a class="dropdown-item" href="../articles/pkgdown/ggformula-long.html">Formula Interface for ggplot2 (full version)</a></li>
-    <li><a class="dropdown-item" href="../articles/interactive-graphics.html">Interactive graphics with {ggformula}</a></li>
-    <li><a class="dropdown-item" href="../articles/pkgdown/learn-more.html">Learn More About ggformula</a></li>
-  </ul>
-</li>
+<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-tutorials" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-tutorials">
@@ -82,7 +73,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extending {ggformula}</h1>
 
       <p class="author">Randall Pruim</p>
-      <p class="date">2026-08-26</p>
+      <p class="date">2026-09-09</p>
 
       <small class="dont-index">Source: <a href="https://github.com/ProjectMOSAIC/ggformula/blob/HEAD/vignettes/extending-ggformula.qmd" class="external-link"><code>vignettes/extending-ggformula.qmd</code></a></small>
       <div class="d-none name"><code></code></div>
@@ -128,7 +119,7 @@
 <span><span class="co">#&gt;  $ stat              : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ position          : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ aes_form          :Class 'formula'  language y ~ x</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0x9998a5c78&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0xb969a9038&gt; </span></span>
 <span><span class="co">#&gt;  $ extras            :List of 7</span></span>
 <span><span class="co">#&gt;   ..$ alpha : symbol </span></span>
 <span><span class="co">#&gt;   ..$ color : symbol </span></span>
@@ -140,10 +131,10 @@
 <span><span class="co">#&gt;  $ pre               : language { }</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "srcref")=List of 1</span></span>
 <span><span class="co">#&gt;   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002</span></span>
-<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x999c5f5e8&gt; </span></span>
-<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x999c5f5e8&gt; </span></span>
+<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xb96d18660&gt; </span></span>
+<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xb96d18660&gt; </span></span>
 <span><span class="co">#&gt;   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x999c5f5e8&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xb96d18660&gt; </span></span>
 <span><span class="co">#&gt;  $ aesthetics        : &lt;ggplot2::mapping&gt;  Named list()</span></span>
 <span><span class="co">#&gt;  $ inherit.aes       : logi TRUE</span></span>
 <span><span class="co">#&gt;  $ check.aes         : logi TRUE</span></span>
@@ -336,7 +327,7 @@
 </section><section class="level2"><h2 id="wrapping-interactive-geoms-from-ggiraph">Wrapping interactive geoms from <code>ggiraph</code>
 <a class="anchor" aria-label="anchor" href="#wrapping-interactive-geoms-from-ggiraph"></a>
 </h2>
-<p>If you’d like an <code>_interactive</code> counterpart of your new function (for use with <code><a href="../reference/gf_girafe.html">gf_girafe()</a></code>), you generally don’t need to do anything extra: <code><a href="../reference/interactive_layer_factory.html">interactive_layer_factory()</a></code> builds one automatically from any function’s <code><a href="../reference/ggformula_spec.html">ggformula_spec()</a></code>, as long as <a href="https://davidgohel.github.io/ggiraph/" class="external-link">ggiraph</a> provides an interactive version of the same geom (e.g. <code><a href="https://davidgohel.github.io/ggiraph/reference/geom_text_repel_interactive.html" class="external-link">ggiraph::geom_text_repel_interactive()</a></code>). See <code><a href="../articles/interactive-graphics.html">vignette("interactive-graphics")</a></code> for more on interactive plots in general.</p>
+<p>If you’d like an <code>_interactive</code> counterpart of your new function (for use with <code><a href="../reference/gf_girafe.html">gf_girafe()</a></code>), you generally don’t need to do anything extra: <code><a href="../reference/interactive_layer_factory.html">interactive_layer_factory()</a></code> builds one automatically from any function’s <code><a href="../reference/ggformula_spec.html">ggformula_spec()</a></code>, as long as <a href="https://davidgohel.github.io/ggiraph/" class="external-link">ggiraph</a> provides an interactive version of the same geom (e.g. <code><a href="https://davidgohel.github.io/ggiraph/reference/geom_text_repel_interactive.html" class="external-link">ggiraph::geom_text_repel_interactive()</a></code>). See <code><a href="../articles/interactive-graphics-intro.html">vignette("interactive-graphics-intro")</a></code> for more on interactive plots in general.</p>
 </section><section class="level2"><h2 id="tips-and-things-to-watch-for">Tips and things to watch for<a class="anchor" aria-label="anchor" href="#tips-and-things-to-watch-for"></a>
 </h2>
 <ul>

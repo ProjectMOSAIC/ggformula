@@ -4,12 +4,51 @@ Creates an interactive plot using ggiraph. This function extends
 [`gf_violin()`](gf_violin.md) with interactive features like tooltips
 and clickable elements.
 
+## Usage
+
+``` r
+gf_violin_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  linewidth,
+  weight,
+  quantile.colour = NULL,
+  quantile.color = NULL,
+  quantile.linetype = 0L,
+  quantile.linewidth = NULL,
+  trim = TRUE,
+  scale = "area",
+  bw,
+  adjust = 1,
+  kernel = "gaussian",
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "ydensity",
+  position = "dodge",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+```
+
 ## Arguments
 
 - object:
 
   When chaining, this holds an object produced in the earlier portions
-  of the chain. Most users can safely ignore this argument.
+  of the chain. Most users can safely ignore this argument. See details
+  and examples.
 
 - gformula:
 
@@ -18,44 +57,186 @@ and clickable elements.
 
 - data:
 
-  The data to be displayed in this layer.
-
-- tooltip:
-
-  A formula specifying a variable for tooltips, or a character vector.
-
-- data_id:
-
-  A formula or character vector specifying data identifiers for
-  interactive selection.
+  The data to be displayed in this layer. There are three options: If
+  `NULL`, the default, the data is inherited from the plot data as
+  specified in the call to
+  [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html). A
+  `data.frame`, or other object, will override the plot data. All
+  objects will be fortified to produce a data frame. See
+  [`fortify()`](https://ggplot2.tidyverse.org/reference/fortify.html)
+  for which variables will be created. A `function` will be called with
+  a single argument, the plot data. The return value must be a
+  `data.frame`, and will be used as the layer data. A `function` can be
+  created from a `formula` (e.g. `~ head(.x, 10)`).
 
 - ...:
 
-  Additional arguments passed to the underlying geom.
+  Additional arguments passed to the underlying interactive geom. This
+  is where ggiraph's interactive aesthetics are supplied, including
+  `tooltip` (text shown on hover), `data_id` (identifiers used for
+  interactive selection), and `onclick` (JavaScript run on click).
 
-- alpha, color, size, shape, fill, group, stroke:
+- alpha:
 
-  Aesthetics passed to the geom.
+  Opacity (0 = invisible, 1 = opaque).
 
-- xlab, ylab, title, subtitle, caption:
+- color:
 
-  Labels for the plot.
+  A color or a formula used for mapping color.
+
+- fill:
+
+  A color for filling, or a formula used for mapping fill.
+
+- group:
+
+  Used for grouping.
+
+- linetype:
+
+  A linetype (numeric or "dashed", "dotted", etc.) or a formula used for
+  mapping linetype.
+
+- linewidth:
+
+  A numerical line width or a formula used for mapping linewidth.
+
+- weight:
+
+  Useful for summarized data, `weight` provides a count of the number of
+  values with the given combination of `x` and `y` values.
+
+- quantile.colour:
+
+  Default aesthetics for the quantile lines. Set to `NULL` to inherit
+  from the data's aesthetics. By default, quantile lines are hidden and
+  can be turned on by changing `quantile.linetype`. Quantile values can
+  be set using the `quantiles` argument when using `stat = "ydensity"`
+  (default).
+
+- quantile.color:
+
+  Default aesthetics for the quantile lines. Set to `NULL` to inherit
+  from the data's aesthetics. By default, quantile lines are hidden and
+  can be turned on by changing `quantile.linetype`. Quantile values can
+  be set using the `quantiles` argument when using `stat = "ydensity"`
+  (default).
+
+- quantile.linetype:
+
+  Default aesthetics for the quantile lines. Set to `NULL` to inherit
+  from the data's aesthetics. By default, quantile lines are hidden and
+  can be turned on by changing `quantile.linetype`. Quantile values can
+  be set using the `quantiles` argument when using `stat = "ydensity"`
+  (default).
+
+- quantile.linewidth:
+
+  Default aesthetics for the quantile lines. Set to `NULL` to inherit
+  from the data's aesthetics. By default, quantile lines are hidden and
+  can be turned on by changing `quantile.linetype`. Quantile values can
+  be set using the `quantiles` argument when using `stat = "ydensity"`
+  (default).
+
+- trim:
+
+  If `TRUE` (default), trim the tails of the violins to the range of the
+  data. If `FALSE`, don't trim the tails.
+
+- scale:
+
+  if "area" (default), all violins have the same area (before trimming
+  the tails). If "count", areas are scaled proportionally to the number
+  of observations. If "width", all violins have the same maximum width.
+
+- bw:
+
+  The smoothing bandwidth to be used. If numeric, the standard deviation
+  of the smoothing kernel. If character, a rule to choose the bandwidth,
+  as listed in
+  [`stats::bw.nrd()`](https://rdrr.io/r/stats/bandwidth.html). Note that
+  automatic calculation of the bandwidth does not take weights into
+  account.
+
+- adjust:
+
+  A multiplicate bandwidth adjustment. This makes it possible to adjust
+  the bandwidth while still using the a bandwidth estimator. For
+  example, `adjust = 1/2` means use half of the default bandwidth.
+
+- kernel:
+
+  Kernel. See list of available kernels in
+  [`density()`](https://rdrr.io/r/stats/density.html).
+
+- xlab:
+
+  Label for x-axis. See also [`gf_labs()`](gf_aux.md).
+
+- ylab:
+
+  Label for y-axis. See also [`gf_labs()`](gf_aux.md).
+
+- title:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- subtitle:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- caption:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- stat:
+
+  A character string naming the stat used to make the layer.
+
+- position:
+
+  A position adjustment to use on the data for this layer. This can be
+  used in various ways, including to prevent overplotting and improving
+  the display. The `position` argument accepts the following:
+
+  - The result of calling a position function, such as
+    [`position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html).
+    This method allows for passing extra arguments to the position.
+
+  - A string naming the position adjustment. To give the position as a
+    string, strip the function name of the `position_` prefix. For
+    example, to use
+    [`position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html),
+    give the position as `"jitter"`.
+
+  - For more information and other ways to specify the position, see the
+    [layer
+    position](https://ggplot2.tidyverse.org/reference/layer_positions.html)
+    documentation.
 
 - show.legend:
 
-  Logical. Should this layer be included in the legends?
+  logical. Should this layer be included in the legends? `NA`, the
+  default, includes if any aesthetics are mapped. `FALSE` never
+  includes, and `TRUE` always includes. It can also be a named logical
+  vector to finely select the aesthetics to display. To include legend
+  keys for all levels, even when no data exists, use `TRUE`. If `NA`,
+  all levels are shown in legend, but unobserved levels are omitted.
 
 - show.help:
 
-  Logical. If `TRUE`, display some minimal help.
+  If `TRUE`, display some minimal help.
 
 - inherit:
 
-  Logical. If `TRUE`, inherit aesthetics from previous layers.
+  A logical indicating whether default attributes are inherited.
 
 - environment:
 
-  An environment in which to evaluate the formula.
+  An environment in which to look for variables not found in `data`.
 
 ## Value
 

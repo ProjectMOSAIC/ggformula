@@ -4,12 +4,43 @@ Creates an interactive plot using ggiraph. This function extends
 [`gf_smooth()`](gf_smooth.md) with interactive features like tooltips
 and clickable elements.
 
+## Usage
+
+``` r
+gf_smooth_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  method = "auto",
+  formula = y ~ x,
+  se = FALSE,
+  method.args,
+  n = 80,
+  span = 0.75,
+  fullrange = FALSE,
+  level = 0.95,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "smooth",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+```
+
 ## Arguments
 
 - object:
 
   When chaining, this holds an object produced in the earlier portions
-  of the chain. Most users can safely ignore this argument.
+  of the chain. Most users can safely ignore this argument. See details
+  and examples.
 
 - gformula:
 
@@ -18,44 +49,125 @@ and clickable elements.
 
 - data:
 
-  The data to be displayed in this layer.
-
-- tooltip:
-
-  A formula specifying a variable for tooltips, or a character vector.
-
-- data_id:
-
-  A formula or character vector specifying data identifiers for
-  interactive selection.
+  A data frame with the variables to be plotted.
 
 - ...:
 
-  Additional arguments passed to the underlying geom.
+  Additional arguments passed to the underlying interactive geom. This
+  is where ggiraph's interactive aesthetics are supplied, including
+  `tooltip` (text shown on hover), `data_id` (identifiers used for
+  interactive selection), and `onclick` (JavaScript run on click).
 
-- alpha, color, size, shape, fill, group, stroke:
+- method:
 
-  Aesthetics passed to the geom.
+  Smoothing method (function) to use, accepts either `NULL` or a
+  character vector, e.g. `"lm"`, `"glm"`, `"gam"`, `"loess"` or a
+  function, e.g. [`MASS::rlm`](https://rdrr.io/pkg/MASS/man/rlm.html) or
+  [`mgcv::gam`](https://rdrr.io/pkg/mgcv/man/gam.html),
+  [`stats::lm`](https://rdrr.io/r/stats/lm.html), or
+  [`stats::loess`](https://rdrr.io/r/stats/loess.html). `"auto"` is also
+  accepted for backwards compatibility. It is equivalent to `NULL`. For
+  `method = NULL` the smoothing method is chosen based on the size of
+  the largest group (across all panels).
+  [`stats::loess()`](https://rdrr.io/r/stats/loess.html) is used for
+  less than 1,000 observations; otherwise
+  [`mgcv::gam()`](https://rdrr.io/pkg/mgcv/man/gam.html) is used with
+  `formula = y ~ s(x, bs = "cs")` with `method = "REML"`. Somewhat
+  anecdotally, `loess` gives a better appearance, but is \\O(N^{2})\\ in
+  memory, so does not work for larger datasets. If you have fewer than
+  1,000 observations but want to use the same `gam()` model that
+  `method = NULL` would use, then set
+  `method = "gam", formula = y ~ s(x, bs = "cs")`.
 
-- xlab, ylab, title, subtitle, caption:
+- formula:
 
-  Labels for the plot.
+  Formula to use in smoothing function, eg. `y ~ x`, `y ~ poly(x, 2)`,
+  `y ~ log(x)`. `NULL` by default, in which case `method = NULL` implies
+  `formula = y ~ x` when there are fewer than 1,000 observations and
+  `formula = y ~ s(x, bs = "cs")` otherwise.
+
+- se:
+
+  Display confidence band around smooth? (`TRUE` by default, see `level`
+  to control.)
+
+- method.args:
+
+  List of additional arguments passed on to the modelling function
+  defined by `method`.
+
+- n:
+
+  Number of points at which to evaluate smoother.
+
+- span:
+
+  Controls the amount of smoothing for the default loess smoother.
+  Smaller numbers produce wigglier lines, larger numbers produce
+  smoother lines. Only used with loess, i.e. when `method = "loess"`, or
+  when `method = NULL` (the default) and there are fewer than 1,000
+  observations.
+
+- fullrange:
+
+  If `TRUE`, the smoothing line gets expanded to the range of the plot,
+  potentially beyond the data. This does not extend the line into any
+  additional padding created by `expansion`.
+
+- level:
+
+  Level of confidence band to use (0.95 by default).
+
+- xlab:
+
+  Label for x-axis. See also [`gf_labs()`](gf_aux.md).
+
+- ylab:
+
+  Label for y-axis. See also [`gf_labs()`](gf_aux.md).
+
+- title:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- subtitle:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- caption:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- stat:
+
+  A character string naming the stat used to make the layer.
+
+- position:
+
+  Either a character string naming the position function used for the
+  layer or a position object returned from a call to a position
+  function.
 
 - show.legend:
 
-  Logical. Should this layer be included in the legends?
+  A logical indicating whether this layer should be included in the
+  legends. `NA`, the default, includes layer in the legends if any of
+  the attributes of the layer are mapped.
 
 - show.help:
 
-  Logical. If `TRUE`, display some minimal help.
+  If `TRUE`, display some minimal help.
 
 - inherit:
 
-  Logical. If `TRUE`, inherit aesthetics from previous layers.
+  A logical indicating whether default attributes are inherited.
 
 - environment:
 
-  An environment in which to evaluate the formula.
+  An environment in which to look for variables not found in `data`.
 
 ## Value
 

@@ -80,7 +80,7 @@ with via [`ggformula_spec()`](../reference/ggformula_spec.md):
 `#>  $ stat              : chr "identity"`\
 `#>  $ position          : chr "identity"`\
 `#>  $ aes_form          :Class 'formula'  language y ~ x`\
-`#>   .. ..- attr(*, ".Environment")=<environment: 0x9998a5c78> `\
+`#>   .. ..- attr(*, ".Environment")=<environment: 0xb969a9038> `\
 `#>  $ extras            :List of 7`\
 `#>   ..$ alpha : symbol `\
 `#>   ..$ color : symbol `\
@@ -92,10 +92,10 @@ with via [`ggformula_spec()`](../reference/ggformula_spec.md):
 `#>  $ pre               : language { }`\
 `#>   ..- attr(*, "srcref")=List of 1`\
 `#>   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002`\
-`#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
-`#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
+`#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xb96d18660> `\
+`#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xb96d18660> `\
 `#>   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002`\
-`#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x999c5f5e8> `\
+`#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xb96d18660> `\
 `#>  $ aesthetics        : <ggplot2::mapping>  Named list()`\
 `#>  $ inherit.aes       : logi TRUE`\
 `#>  $ check.aes         : logi TRUE`\
@@ -375,7 +375,7 @@ builds one automatically from any function’s
 version of the same geom (e.g.
 [`ggiraph::geom_text_repel_interactive()`](https://davidgohel.github.io/ggiraph/reference/geom_text_repel_interactive.html)).
 See
-[`vignette("interactive-graphics")`](../articles/interactive-graphics.md)
+[`vignette("interactive-graphics-intro")`](../articles/interactive-graphics-intro.md)
 for more on interactive plots in general.
 
 ## Tips and things to watch for

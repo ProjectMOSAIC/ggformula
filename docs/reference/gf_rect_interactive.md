@@ -4,58 +4,133 @@ Creates an interactive plot using ggiraph. This function extends
 [`gf_rect()`](gf_rect.md) with interactive features like tooltips and
 clickable elements.
 
+## Usage
+
+``` r
+gf_rect_interactive(
+  object = NULL,
+  gformula = NULL,
+  data = NULL,
+  ...,
+  alpha,
+  color,
+  fill,
+  group,
+  linetype,
+  linewidth,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  stat = "identity",
+  position = "identity",
+  show.legend = NA,
+  show.help = NULL,
+  inherit = TRUE,
+  environment = parent.frame()
+)
+```
+
 ## Arguments
 
 - object:
 
   When chaining, this holds an object produced in the earlier portions
-  of the chain. Most users can safely ignore this argument.
+  of the chain. Most users can safely ignore this argument. See details
+  and examples.
 
 - gformula:
 
-  A formula with shape `y ~ x`. Faceting can be achieved by including
-  `|` in the formula.
+  A formula with shape `ymin + ymax ~ xmin + xmax`. Faceting can be
+  achieved by including `|` in the formula.
 
 - data:
 
-  The data to be displayed in this layer.
-
-- tooltip:
-
-  A formula specifying a variable for tooltips, or a character vector.
-
-- data_id:
-
-  A formula or character vector specifying data identifiers for
-  interactive selection.
+  A data frame with the variables to be plotted.
 
 - ...:
 
-  Additional arguments passed to the underlying geom.
+  Additional arguments passed to the underlying interactive geom. This
+  is where ggiraph's interactive aesthetics are supplied, including
+  `tooltip` (text shown on hover), `data_id` (identifiers used for
+  interactive selection), and `onclick` (JavaScript run on click).
 
-- alpha, color, size, shape, fill, group, stroke:
+- alpha:
 
-  Aesthetics passed to the geom.
+  Opacity (0 = invisible, 1 = opaque).
 
-- xlab, ylab, title, subtitle, caption:
+- color:
 
-  Labels for the plot.
+  A color or a formula used for mapping color.
+
+- fill:
+
+  A color for filling, or a formula used for mapping fill.
+
+- group:
+
+  Used for grouping.
+
+- linetype:
+
+  A linetype (numeric or "dashed", "dotted", etc.) or a formula used for
+  mapping linetype.
+
+- linewidth:
+
+  A numerical line width or a formula used for mapping linewidth.
+
+- xlab:
+
+  Label for x-axis. See also [`gf_labs()`](gf_aux.md).
+
+- ylab:
+
+  Label for y-axis. See also [`gf_labs()`](gf_aux.md).
+
+- title:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- subtitle:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- caption:
+
+  Title, sub-title, and caption for the plot. See also
+  [`gf_labs()`](gf_aux.md).
+
+- stat:
+
+  A character string naming the stat used to make the layer.
+
+- position:
+
+  Either a character string naming the position function used for the
+  layer or a position object returned from a call to a position
+  function.
 
 - show.legend:
 
-  Logical. Should this layer be included in the legends?
+  A logical indicating whether this layer should be included in the
+  legends. `NA`, the default, includes layer in the legends if any of
+  the attributes of the layer are mapped.
 
 - show.help:
 
-  Logical. If `TRUE`, display some minimal help.
+  If `TRUE`, display some minimal help.
 
 - inherit:
 
-  Logical. If `TRUE`, inherit aesthetics from previous layers.
+  A logical indicating whether default attributes are inherited.
 
 - environment:
 
-  An environment in which to evaluate the formula.
+  An environment in which to look for variables not found in `data`.
 
 ## Value
 
