@@ -8,6 +8,11 @@ webr:
     fig-width: 8
     fig-height: 3
 ---
+<script type="module">
+  import { WebR } from 'https://r-wasm.org';
+  globalThis.webR = new WebR();
+  await globalThis.webR.init();
+</script>
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 

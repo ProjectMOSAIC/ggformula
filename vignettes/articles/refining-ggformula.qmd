@@ -2,12 +2,20 @@
 title: "Refining ggformula plots"
 format: live-html
 engine: knitr
+pkgdown:
+  as_is: true
 webr:
   packages: [ggformula, mosaic, mosaicData, NHANES, ggthemes, lubridate, palmerpenguins, tibble]
   cell-options:
     fig-width: 8
     fig-height: 3
 ---
+
+<script type="module">
+  import { WebR } from 'https://r-wasm.org';
+  globalThis.webR = new WebR();
+  await globalThis.webR.init();
+</script>
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 

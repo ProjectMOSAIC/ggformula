@@ -110,7 +110,11 @@
 
 
 
-</header><style>
+</header><script type="module">
+  import { WebR } from 'https://r-wasm.org';
+  globalThis.webR = new WebR();
+  await globalThis.webR.init();
+</script><style>
 
 .exercise {
   border-radius: 10px;
