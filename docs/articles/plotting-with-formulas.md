@@ -8,7 +8,7 @@
 
 Here is an interesting plot showing the number of live births in the
 United States each day of 1978. We are going to use it to learn how to
-create plots using the `ggformula` package.
+create and modify this plot using the `ggformula` package.
 
 ![](plotting-with-formulas_files/figure-html/first-look-1.png)
 
@@ -124,16 +124,16 @@ other forms we will eventually see.
 | `x`      | `date`       | x-axis variable  |
 | `mydata` | `Births1978` | name of data set |
 
-##### Exercise
-
-Put each piece in its place in the template below and then run the code
-to create the plot.
+**Exercise 1** Put each piece in its place in the template below and
+then run the code to create the plot.
 
 If you get an “object not found” or “could not find function” error
 message, that indicates that you have not correctly filled in one of the
 four boxes from the template.
 
-Note: R is case sensitive, so watch your capitalization.
+WarningCapitalization matters
+
+R is case sensitive, so watch your capitalization.
 
 For the record, here are the first few rows of `Births1978`.
 
@@ -173,15 +173,18 @@ and the \\x\\-variable name goes after. (Think: “y depends on x”. Also
 note that the \\y\\-axis label appears farther left than the \\x\\-axis
 label.)
 
-##### Exercise
+**Exercise 2** Reverse the roles of the variables – changing
+`births ~ date` to `date ~ birth` – to see how the plot changes.
 
-Reverse the roles of the variables – changing `births ~ date` to
-`date ~ birth` – to see how the plot changes.
+**Exercise 3** Change `date` to `day_of_year` and see how the plot
+changes. (If you do this on a separate line, you will see both plots at
+once.)
 
-##### Exercise
+Tip
 
-Change `date` to `day_of_year` and see how the plot changes. (If you do
-this on a separate line, you will see both plots at once.)
+Beginning with version 2.0, `ggformula` allows each element of the
+formula shape to be defined individually. For example, the following is
+equivalent to the previous plot.
 
 ### Changing things up – different data
 
@@ -308,7 +311,7 @@ important way.
     [`gf_smooth()`](../reference/gf_smooth.md), etc. Which do you like
     best? Why?
 
-**Question 1.** Does it appear that the conjecture about weekends is
+**Exercise 4** Does it appear that the conjecture about weekends is
 generally correct?
 
 NoteAnswer
@@ -316,7 +319,7 @@ NoteAnswer
 Yes – the two bands of points correspond to weekdays (higher) and
 weekends (lower); mapping color to `wday` shows this directly.
 
-**Question 2.** What happens if you omit the `~` before `wday`?
+**Exercise 5** What happens if you omit the `~` before `wday`?
 
 NoteAnswer
 
@@ -339,16 +342,12 @@ vertical bar `|` to our formula.
 
 The second way is to add on a facet command using `|>`:
 
-##### Exercise
-
-Edit one of the plots above to do the following:
+**Exercise 6** Edit one of the plots above to do the following:
 
 1.  map color to `wday`
 2.  change from points to lines or one of the smoothers
 
-##### Exercise
-
-Now edit one the plots above to
+**Exercise 7** Now edit one the plots above to
 
 1.  remove the facets, and
 2.  use `date` instead of `day_of_year`
@@ -363,9 +362,7 @@ additional rows.
 
 A facet grid uses rows, or columns, or both in a fixed way.
 
-##### Exercise
-
-Recreate the plot above using
+**Exercise 8** Recreate the plot above using
 [`gf_facet_grid()`](../reference/gf_facet_grid.md). This works much like
 [`gf_facet_wrap()`](../reference/gf_facet_grid.md) and accepts a formula
 with one of three shapes
@@ -393,10 +390,8 @@ include [`gf_dens()`](../reference/gf_density.md),
 [`gf_bar()`](../reference/gf_bar.md), and
 [`gf_qq()`](../reference/gf_qq.md).
 
-##### Exercise
-
-Create some “one-variable” plots using the functions listed above and
-the template below. Which variable should you use?
+**Exercise 9** Create some “one-variable” plots using the functions
+listed above and the template below. Which variable should you use?
 
 ### Your Turn
 
@@ -419,9 +414,8 @@ To find out more about the data sets use
 To get a list of functions available in `ggformula`, run this code
 chunk.
 
-##### Exercise.
-
-Make some plots to explore one or more of these data sets.
+**Exercise 10** Make some plots to explore one or more of these data
+sets.
 
 - Experiment with different types of plots.
 - Use mapping and/or facets to reveal groups.
@@ -446,9 +440,7 @@ We can see clear trends, but what if we want to know the mean and
 standard deviation, or the median and IQR for the number of births on
 each of the seven weekdays?
 
-##### Exercise
-
-Change [`gf_boxplot()`](../reference/gf_boxplot.md) to
+**Exercise 11** Change [`gf_boxplot()`](../reference/gf_boxplot.md) to
 [`df_stats()`](https://rdrr.io/pkg/mosaicCore/man/df_stats.html).
 
 The default use of
@@ -457,19 +449,24 @@ computes some of the most common summary statistics. But we can use
 [`df_stats()`](https://rdrr.io/pkg/mosaicCore/man/df_stats.html) to
 create other numerical summaries as well.
 
-##### Exercise
-
-Modify the code above to compute some other summaries of your choosing.
+**Exercise 12** Modify the code above to compute some other summaries of
+your choosing.
 
 #### Chaining with df_stats()
 
-#### Combining with plots
+[`df_stats()`](https://rdrr.io/pkg/mosaicCore/man/df_stats.html) is
+designed to work in command chains with `|>`.
+
+The result can be passed directly to a `gf_*()` function for plotting.
+
+#### Annotating plots
 
 In addition to the usual plot elements (lines, points, etc.), sometimes
 it is useful to add text with [`gf_text()`](../reference/gf_text.md) or
 [`gf_label()`](../reference/gf_text.md).
 
-See if you can figure out what this does before your execute it.
+**Exercise 13** See if you can figure out what this does before your
+execute it.
 
 ### Where do we go from here?
 

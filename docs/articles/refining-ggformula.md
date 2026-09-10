@@ -62,19 +62,15 @@ several `gf_` functions that require more than two position variables.
 How these positions are communicated via slots in the formula is
 described by the “shape” listed in the quick help for these functions.
 
-##### Exercise
-
-Edit the code below to reveal the shape for some of the following:
-[`gf_linerange()`](../reference/gf_linerange.md),
+**Exercise 1** Edit the code below to reveal the formula shape for some
+of the following: [`gf_linerange()`](../reference/gf_linerange.md),
 [`gf_errorbar()`](../reference/gf_errorbar.md),
 [`gf_errorbarh()`](../reference/ggstance.md),
 [`gf_ribbon()`](../reference/gf_ribbon.md),
 [`gf_crossbar()`](../reference/gf_crossbar.md).
 
-##### Exercise
-
-The `Weather` data set has temperature information for five cities for
-each day in 2016 and 2017. Edit the code below to use
+**Exercise 2** The `Weather` data set has temperature information for
+five cities for each day in 2016 and 2017. Edit the code below to use
 [`gf_linerange()`](../reference/gf_linerange.md) or
 [`gf_pointrange()`](../reference/gf_linerange.md). For a fancier plot,
 map the color to one of the three temperature variables.
@@ -87,11 +83,9 @@ Plot titles and axis labels can be set using
 [`gf_labs()`](../reference/gf_aux.md). Text can be provied for `title`,
 `subtitle`, `caption`, and the positional attributes (`x` and `y`).
 
-##### Exercise
-
-Edit some of the labels of this plot as you see fit. Notice that labels
-can be turned off by setting them to ““. (We’ll learn how to improve the
-color scheme shortly.)
+**Exercise 3** Edit some of the labels of this plot as you see fit.
+Notice that labels can be turned off by setting them to ““. (We’ll learn
+how to improve the color scheme shortly.)
 
 #### Text and other labels
 
@@ -99,7 +93,7 @@ Arbitrary text can be placed on a plot using
 [`gf_text()`](../reference/gf_text.md) or
 [`gf_label()`](../reference/gf_text.md).
 
-##### Exercise
+**Exercise 4**  
 
 1.  Run the code below.
 
@@ -157,9 +151,7 @@ creates a scale by interpolating between several colors – in this case
 five colors selected using the
 [`rainbow()`](https://rdrr.io/r/grDevices/palettes.html) function.
 
-##### Exercise
-
-You can also use
+**Exercise 5** You can also use
 [`scale_color_gradientn()`](https://ggplot2.tidyverse.org/reference/scale_gradient.html)
 with colors you enter manually. Add a few colors between navy and red to
 make something more like the rainbow colors above.
@@ -171,9 +163,7 @@ determine which values are assigned to which colors, you can do this
 with
 [`scale_color_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html)
 
-##### Exercise
-
-Refine this plot using
+**Exercise 6** Refine this plot using
 [`scale_fill_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html).
 Replace the five colors in the example with five of your own choosing.
 (Use [`colors()`](https://rdrr.io/r/grDevices/colors.html) to list the
@@ -212,10 +202,8 @@ for discrete data or
 for continuous data. The latter interpolates colors within one of the
 categorical palettes from ColorBrewer.
 
-##### Exercise
-
-Experiment with different colors by choosing different values for `type`
-and `palette`.
+**Exercise 7** Experiment with different colors by choosing different
+values for `type` and `palette`.
 
 #### Adjusing other scales
 
@@ -231,12 +219,21 @@ reverses the roles of the x- and y-axes. This is most useful for glyphs
 that `ggplot2` only provides in a “vertical” version, such as boxplots
 and violin plots.
 
-##### Exercise
-
-Make horizontal violin plots by inserting
+**Exercise 8** Make horizontal violin plots by inserting
 [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html)
 into [`gf_refine()`](../reference/gf_aux.md). Change the plot to
 boxplots if you prefer those.
+
+Tip[`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html)
+often not needed.
+
+Many `ggplot2` geoms determine whether to draw horizontal or vertical
+version based on the types of data supplied in the variables, so
+`ccord_flip()` can often be avoid by simply reversing which variable
+goes where.
+
+If the default orientation isn’t the desired one, the `orientation`
+argument can be used to clarify.
 
 #### coord_equal()
 
@@ -244,9 +241,7 @@ When the x- and y-axes are on the same scale, it is sometimes good to
 force both scales to be rendered at the same size. This also forces an
 identity line to have a true 45 degree slope.
 
-##### Exercise
-
-Use
+**Exercise 9** Use
 [`coord_equal()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
 to force equally-sized coordinate scales in the plot below.
 
@@ -283,23 +278,6 @@ and
 New transformations can be created using
 [`trans_new()`](https://scales.r-lib.org/reference/new_transform.html)
 in the `scales` package.
-
-### Horizontal geoms
-
-Several of the geoms in `ggplot2` (like violin plots, boxplots, etc.)
-can only be created vertically. We can use
-[`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html)
-to flip the coordinates. The `ggstance` package provides horizontal
-versions of some of these. We have included them in `ggformula` for
-convenience.
-
-##### Exercise
-
-Run the code below. Then change `gf_voilinh()` to
-[`gf_boxploth()`](../reference/ggstance.md).
-
-The list generated by the code below includes several other horizontal
-versions of plot elements.
 
 ### Controlling the view
 
@@ -371,7 +349,7 @@ popular publications.
 The theme can be set for an individual plot using
 [`gf_theme()`](../reference/gf_theme.md).
 
-##### Exercise
+**Exercise 10**  
 
 1.  Run the code below.
 
@@ -386,9 +364,7 @@ The theme can be set for an individual plot using
 
 Individual theme elements can also be adjusted.
 
-##### Exercise
-
-Edit the code below to adjust theme elements. See
+**Exercise 11** Edit the code below to adjust theme elements. See
 [`?theme`](https://ggplot2.tidyverse.org/reference/theme.html) for
 details regarding the elements and how to change them.
 
@@ -402,7 +378,7 @@ example, the default stat for
 which bins the data before plotting the rectangular bars. So the
 following are equivalent.
 
-This also explains why the message reported when you create a historam
+This also explains why the message reported when you create a histogram
 without setting `binwidth` is coming from `stat_bin`. Notice that the
 stat can be specified by a quoted string that names the part after
 `stat_` or it can be specified by providing the function (potentially
@@ -425,14 +401,15 @@ Occasionally it is useful to use a non-default stat. In particular,
 and
 [`stat_summary_bin()`](https://ggplot2.tidyverse.org/reference/stat_summary.html)
 can be used to avoid common data transformation situations where a
-function is used to aggegrate over unique values of `x` or over bins of
+function is used to aggregate over unique values of `x` or over bins of
 `x` values.
 
 These stats are designed to work with
 [`gf_linerange()`](../reference/gf_linerange.md) and
 [`gf_pointrange()`](../reference/gf_linerange.md), so three summary
-functions can be specified. `fun.ymin` and `fun.ymax` return results
-that are available in `..ymin..` and `..ymax`.
+functions can be specified.\
+`fun.ymin` and `fun.ymax` return results that are available in
+`after_stat(ymin)` and `after_stat(ymax)`.
 
 The default summary function is `mean_se` which computes the mean, and
 the mean one standard errors added and subtracted.

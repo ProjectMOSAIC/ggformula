@@ -1,25 +1,25 @@
 destination: docs
-articles:
-- title: Tutorials
-  desc: Interactive, browser-based tutorials powered by webR -- no installation or server required.
-  contents:
-  - articles/plotting-with-formulas
-  - articles/refining-ggformula
-- title: All vignettes
-  contents:
-  - ggformula
-  - extending-ggformula
-  - articles/interactive-graphics
-  - pkgdown/ggformula-blog
-  - pkgdown/ggformula-long
-  - pkgdown/learn-more
-- title: internal
-  contents:
-  - interactive-graphics-intro
+
 navbar:
   structure:
     left: [intro, reference, articles, tutorials, news]
   components:
+    intro:
+    articles:
+      text: Articles
+      menu:
+      - href: articles/pkgdown/ggformula-blog.html
+        text: Another Option for Teaching Graphics
+      - href: articles/pkgdown/ggformula-long.html
+        text: Formula interface for ggplot2
+      - href: articles/refining-ggformula.html
+        text: Refining ggformula Plots
+      - href: articles/pkgdown/learn-more.html
+        text: Learn More about ggformula
+      - href: articles/interactive-graphics.html
+        text: Interactive Graphics 
+      - href: articles/extending-ggformula.html
+        text: Extending ggformula
     tutorials:
       text: Tutorials
       menu:

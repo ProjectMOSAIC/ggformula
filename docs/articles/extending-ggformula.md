@@ -80,7 +80,7 @@ with via [`ggformula_spec()`](../reference/ggformula_spec.md):
 `#>  $ stat              : chr "identity"`\
 `#>  $ position          : chr "identity"`\
 `#>  $ aes_form          :Class 'formula'  language y ~ x`\
-`#>   .. ..- attr(*, ".Environment")=<environment: 0xa6ae4d540> `\
+`#>   .. ..- attr(*, ".Environment")=<environment: 0x984fe5188> `\
 `#>  $ extras            :List of 7`\
 `#>   ..$ alpha : symbol `\
 `#>   ..$ color : symbol `\
@@ -92,10 +92,10 @@ with via [`ggformula_spec()`](../reference/ggformula_spec.md):
 `#>  $ pre               : language { }`\
 `#>   ..- attr(*, "srcref")=List of 1`\
 `#>   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002`\
-`#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xa6b1e1850> `\
-`#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xa6b1e1850> `\
+`#>   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x9853c1850> `\
+`#>   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x9853c1850> `\
 `#>   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002`\
-`#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xa6b1e1850> `\
+`#>   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x9853c1850> `\
 `#>  $ aesthetics        : <ggplot2::mapping>  Named list()`\
 `#>  $ inherit.aes       : logi TRUE`\
 `#>  $ check.aes         : logi TRUE`\

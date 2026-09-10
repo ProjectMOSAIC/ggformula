@@ -37,9 +37,18 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/ggformula.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/pkgdown/ggformula-blog.html">Another Option for Teaching Graphics</a></li>
+    <li><a class="dropdown-item" href="../articles/pkgdown/ggformula-long.html">Formula interface for ggplot2</a></li>
+    <li><a class="dropdown-item" href="../articles/refining-ggformula.html">Refining ggformula Plots</a></li>
+    <li><a class="dropdown-item" href="../articles/pkgdown/learn-more.html">Learn More about ggformula</a></li>
+    <li><a class="dropdown-item" href="../articles/interactive-graphics.html">Interactive Graphics</a></li>
+    <li><a class="dropdown-item" href="../articles/extending-ggformula.html">Extending ggformula</a></li>
+  </ul>
+</li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-tutorials" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-tutorials">
@@ -73,7 +82,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extending {ggformula}</h1>
 
       <p class="author">Randall Pruim</p>
-      <p class="date">2026-09-09</p>
+      <p class="date">2026-09-10</p>
 
       <small class="dont-index">Source: <a href="https://github.com/ProjectMOSAIC/ggformula/blob/HEAD/vignettes/extending-ggformula.qmd" class="external-link"><code>vignettes/extending-ggformula.qmd</code></a></small>
       <div class="d-none name"><code></code></div>
@@ -119,7 +128,7 @@
 <span><span class="co">#&gt;  $ stat              : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ position          : chr "identity"</span></span>
 <span><span class="co">#&gt;  $ aes_form          :Class 'formula'  language y ~ x</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0xa6ae4d540&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: 0x984fe5188&gt; </span></span>
 <span><span class="co">#&gt;  $ extras            :List of 7</span></span>
 <span><span class="co">#&gt;   ..$ alpha : symbol </span></span>
 <span><span class="co">#&gt;   ..$ color : symbol </span></span>
@@ -131,10 +140,10 @@
 <span><span class="co">#&gt;  $ pre               : language { }</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "srcref")=List of 1</span></span>
 <span><span class="co">#&gt;   .. ..$ : 'srcref' int [1:8] 395 11 395 11 11 11 1002 1002</span></span>
-<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xa6b1e1850&gt; </span></span>
-<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xa6b1e1850&gt; </span></span>
+<span><span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x9853c1850&gt; </span></span>
+<span><span class="co">#&gt;   ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x9853c1850&gt; </span></span>
 <span><span class="co">#&gt;   ..- attr(*, "wholeSrcref")= 'srcref' int [1:8] 1 0 395 12 0 12 1 1002</span></span>
-<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0xa6b1e1850&gt; </span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x9853c1850&gt; </span></span>
 <span><span class="co">#&gt;  $ aesthetics        : &lt;ggplot2::mapping&gt;  Named list()</span></span>
 <span><span class="co">#&gt;  $ inherit.aes       : logi TRUE</span></span>
 <span><span class="co">#&gt;  $ check.aes         : logi TRUE</span></span>

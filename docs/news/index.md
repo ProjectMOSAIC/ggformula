@@ -74,6 +74,12 @@
   omitted rather than forwarded as `NULL`, leaving the underlying geom’s
   own default in force.
 
+- The vignette on interactive functions has been moved out of the
+  package and only appears on the pkgdown site to reduce the size of the
+  package.
+
+- The tutorials have been converted to webr.
+
 - Bug fix: [`gf_hline()`](../reference/gf_lines.md),
   [`gf_vline()`](../reference/gf_lines.md),
   [`gf_abline()`](../reference/gf_lines.md), and similar functions used

@@ -52,6 +52,10 @@ caused some behavior to break with unclear messaging unless the user explicitly 
   `gf_point(..., inherit = FALSE)`. When not supplied, `inherit.aes` is
   omitted rather than forwarded as `NULL`, leaving the underlying geom's
   own default in force.
+* The vignette on interactive functions has been moved out of the package and
+  only appears on the pkgdown site to reduce the size of the package.
+* The tutorials have been converted to webr.
+
 
 
 
