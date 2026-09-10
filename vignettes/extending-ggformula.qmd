@@ -354,7 +354,7 @@ with `gf_girafe()`), you generally don't need to do anything extra:
 `interactive_layer_factory()` builds one automatically from any function's
 `ggformula_spec()`, as long as [ggiraph](https://davidgohel.github.io/ggiraph/)
 provides an interactive version of the same geom (e.g.
-`ggiraph::geom_text_repel_interactive()`). See `vignette("interactive-graphics")`
+`ggiraph::geom_text_repel_interactive()`). See `vignette("interactive-graphics-intro")`
 for more on interactive plots in general.
 
 ## Tips and things to watch for
