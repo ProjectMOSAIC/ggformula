@@ -1,4 +1,16 @@
 destination: docs
+articles:
+- title: All vignettes
+  contents:
+  - ggformula
+  - extending-ggformula
+  - articles/interactive-graphics
+  - pkgdown/ggformula-blog
+  - pkgdown/ggformula-long
+  - pkgdown/learn-more
+- title: internal
+  contents:
+  - interactive-graphics-intro
 tutorials:
 - name: introduction
   title: Plotting with Formulas
