@@ -12,9 +12,9 @@ gf_crossbar_interactive(
   alpha,
   color,
   group,
-  middle.linetype,
   middle.colour = NULL,
   middle.color = NULL,
+  middle.linetype = NULL,
   middle.linewidth = NULL,
   box.colour = NULL,
   box.color = NULL,
@@ -67,11 +67,11 @@ including \code{tooltip} (text shown on hover), \code{data_id}
 
 \item{group}{Used for grouping.}
 
-\item{middle.linetype}{Arguments to control the middle line.}
-
 \item{middle.colour}{Arguments to control the middle line.}
 
 \item{middle.color}{Arguments to control the middle line.}
+
+\item{middle.linetype}{Arguments to control the middle line.}
 
 \item{middle.linewidth}{Arguments to control the middle line.}
 

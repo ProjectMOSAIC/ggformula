@@ -240,6 +240,32 @@ test_that("gf_boxplot()", {
     ) |>
       gf_jitter(width = 0.2, alpha = 0.3, seed = 123)
   )
+  # outlier.* must reach geom_boxplot()'s `outlier_gp`, not be dropped
+  p <- gf_boxplot(~x, data = data.frame(x = c(-30, 1:5, 100)),
+    outlier.shape = NA, outlier.color = "red")
+  outlier_gp <- p$layers[[1]]$geom_params$outlier_gp
+  expect_true(is.na(outlier_gp$shape))
+  expect_equal(outlier_gp$colour, "red")
+  expect_s3_class(
+    gf_boxplot(age ~ substance, data = mosaicData::HELPrct, color = ~sex)$layers[[1]]$position,
+    "PositionDodge"
+  )
+})
+
+test_that("gf_crossbar(), gf_freqpoly(), gf_density(), gf_area() match ggplot2 constructors", {
+  d <- data.frame(x = 1:3, y = 2:4, lo = 1:3, hi = 3:5)
+  p <- gf_crossbar(y + lo + hi ~ x, data = d, middle.color = "red", box.linewidth = 2)
+  expect_equal(p$layers[[1]]$geom_params$middle_gp$colour, "red")
+  expect_equal(p$layers[[1]]$geom_params$box_gp$linewidth, 2)
+
+  x <- data.frame(x = c(1, 2, 2, 3, 3, 3, 4))
+  expect_equal(
+    layer_data(gf_freqpoly(~x, data = x, binwidth = 1))$x,
+    layer_data(ggplot(x, aes(x)) + geom_freqpoly(binwidth = 1))$x
+  )
+
+  expect_equal(gf_density(~x, data = x)$layers[[1]]$geom_params$outline.type, "upper")
+  expect_equal(gf_area(y ~ x, data = d)$layers[[1]]$geom_params$outline.type, "upper")
 })
 
 

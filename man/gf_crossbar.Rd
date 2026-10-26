@@ -12,9 +12,9 @@ gf_crossbar(
   alpha,
   color,
   group,
-  middle.linetype,
   middle.colour = NULL,
   middle.color = NULL,
+  middle.linetype = NULL,
   middle.linewidth = NULL,
   box.colour = NULL,
   box.color = NULL,
@@ -27,7 +27,6 @@ gf_crossbar(
   title,
   subtitle,
   caption,
-  geom = "crossbar",
   stat = "identity",
   position = "identity",
   show.legend = NA,
@@ -88,8 +87,6 @@ the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{ann
 
 \item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{geom}{A character string naming the geom used to make the layer.}
 
 \item{stat}{The statistical transformation to use on the data for this layer.
 When using a \verb{geom_*()} function to construct a layer, the \code{stat}

@@ -18,6 +18,7 @@ gf_freqpoly(
   bins,
   center,
   boundary,
+  pad = TRUE,
   xlab,
   ylab,
   title,
@@ -94,6 +95,9 @@ For example, to center on integers use \code{binwidth = 1} and \code{center = 0}
 if \code{0} is outside the range of the data. Alternatively, this same alignment
 can be specified with \code{binwidth = 1} and \code{boundary = 0.5}, even if \code{0.5} is
 outside the range of the data.}
+
+\item{pad}{If \code{TRUE}, adds empty bins at either end of x, so the
+polygon starts and ends at zero (as in \code{\link[ggplot2:geom_freqpoly]{ggplot2::geom_freqpoly()}}).}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

@@ -15,6 +15,7 @@ gf_area(
   group,
   linetype,
   linewidth,
+  outline.type = "upper",
   xlab,
   ylab,
   title,
@@ -69,6 +70,10 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 for mapping linetype.}
 
 \item{linewidth}{A numerical line width or a formula used for mapping linewidth.}
+
+\item{outline.type}{Type of the outline of the area; \code{"both"} draws both the
+upper and lower lines, \code{"upper"}/\code{"lower"} draws the respective lines only.
+\code{"full"} draws a closed polygon around the area.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

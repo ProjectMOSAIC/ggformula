@@ -30,7 +30,6 @@ gf_boxplot(
   title,
   subtitle,
   caption,
-  geom = "boxplot",
   stat = "boxplot",
   position = "dodge",
   show.legend = NA,
@@ -112,10 +111,7 @@ weighted, using the \code{weight} aesthetic).}
 \item{title, subtitle, caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{geom, stat}{Use to override the default connection between
-\code{geom_boxplot()} and \code{stat_boxplot()}. For more information about
-overriding these connections, see how the \link[ggplot2:layer_stats]{stat} and
-\link[ggplot2:layer_geoms]{geom} arguments work.}
+\item{stat}{A character string naming the stat used to make the layer.}
 
 \item{position}{A position adjustment to use on the data for this layer. This
 can be used in various ways, including to prevent overplotting and

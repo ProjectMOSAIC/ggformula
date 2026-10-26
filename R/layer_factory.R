@@ -230,6 +230,11 @@ build_layer_args <-
             mapping = ingredients[["mapping"]],
             show.legend = show.legend
           ),
+          # forward `position` so the constructor's own default (e.g.
+          # "dodge2" for geom_boxplot()) doesn't silently replace ours.
+          # Interactive constructors such as geom_jitter_interactive()
+          # build their own position from `width`/`height` and refuse both.
+          if (!interactive) list(position = position),
           # `inherit.aes` must be forwarded when `layer_fun` declares it,
           # or `gf_*(inherit = FALSE)` is silently ignored (as happened
           # for `gf_violin()`, which uses `layer_fun = geom_violin`).

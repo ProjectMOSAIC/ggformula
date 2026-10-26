@@ -1,3 +1,9 @@
+# ggformula (development version)
+
+* Bug fix: A few ggplot2 geoms preprocess their arguments rather than passing
+them directly to `layer()`. This was properly handled by `gf_violin()`, but not
+by `gf_boxplot()` and `gf_crossbar()`.
+
 # ggformula 2.0.0
 
 * `layer_factory()`, the core function that creates `gf_*()` functions, has been largely refactored. Most existing behavior 

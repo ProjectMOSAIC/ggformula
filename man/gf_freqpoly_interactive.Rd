@@ -18,6 +18,7 @@ gf_freqpoly_interactive(
   bins,
   center,
   boundary,
+  pad = TRUE,
   xlab,
   ylab,
   title,

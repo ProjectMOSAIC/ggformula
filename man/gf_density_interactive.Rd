@@ -18,6 +18,7 @@ gf_density_interactive(
   kernel = "gaussian",
   n = 512,
   trim = FALSE,
+  outline.type = "upper",
   xlab,
   ylab,
   title,

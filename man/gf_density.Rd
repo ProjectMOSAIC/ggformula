@@ -20,6 +20,7 @@ gf_density(
   kernel = "gaussian",
   n = 512,
   trim = FALSE,
+  outline.type = "upper",
   xlab,
   ylab,
   title,
@@ -143,6 +144,10 @@ range of that group: this typically means the estimated x values will
 not line-up, and hence you won't be able to stack density values.
 This parameter only matters if you are displaying multiple densities in
 one plot or if you are manually adjusting the scale limits.}
+
+\item{outline.type}{Type of the outline of the area; \code{"both"} draws both the
+upper and lower lines, \code{"upper"}/\code{"lower"} draws the respective lines only.
+\code{"full"} draws a closed polygon around the area.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

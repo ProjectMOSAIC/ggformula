@@ -15,6 +15,7 @@ gf_area_interactive(
   group,
   linetype,
   linewidth,
+  outline.type = "upper",
   xlab,
   ylab,
   title,

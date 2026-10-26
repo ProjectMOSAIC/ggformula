@@ -745,6 +745,8 @@ gf_boxplot <-
     geom = "boxplot",
     stat = "boxplot",
     position = "dodge",
+    # geom_boxplot() bundles outlier.* into `outlier_gp`; layer() would drop them
+    layer_fun = quo(ggplot2::geom_boxplot),
     extras = alist(
       alpha = ,
       color = ,
@@ -915,7 +917,8 @@ gf_area <-
       fill = ,
       group = ,
       linetype = ,
-      linewidth =
+      linewidth = ,
+      outline.type = "upper"
     )
   )
 
@@ -1390,7 +1393,8 @@ gf_density <-
       linewidth = ,
       kernel = "gaussian",
       n = 512,
-      trim = FALSE
+      trim = FALSE,
+      outline.type = "upper"
     ),
     aesthetics = aes(y = ggplot2::after_stat(density))
   )
@@ -1713,6 +1717,8 @@ gf_percents <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
+#' @param pad If `TRUE`, adds empty bins at either end of x, so the
+#'   polygon starts and ends at zero (as in [ggplot2::geom_freqpoly()]).
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
@@ -1739,7 +1745,8 @@ gf_freqpoly <-
       binwidth = ,
       bins = ,
       center = ,
-      boundary =
+      boundary = ,
+      pad = TRUE
     ),
     note = "y may be omitted or after_stat(density) or after_stat(count) or after_stat(ndensity) or after_stat(ncount)."
   )
@@ -2365,11 +2372,13 @@ gf_crossbar <-
   layer_factory(
     geom = "crossbar",
     aes_form = list(y + ymin + ymax ~ x, y ~ x + xmin + xmax),
+    # geom_crossbar() bundles middle.*/box.* into `middle_gp`/`box_gp`;
+    # layer() would drop them
+    layer_fun = quo(ggplot2::geom_crossbar),
     extras = alist(
       alpha = ,
       color = ,
       group = ,
-      middle.linetype = ,
       middle.colour = NULL,
       middle.color = NULL,
       middle.linetype = NULL,
